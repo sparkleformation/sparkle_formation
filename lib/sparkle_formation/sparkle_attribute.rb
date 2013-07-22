@@ -6,25 +6,37 @@ module SparkleAttribute
   # simple ones with a bit of string manipulations
   
   def _cf_join(*args)
-    {'Fn::Join' => ['', *args]}
+    options = args.detect{|i| i.is_a?(Hash) && i[:options]} || {}
+    args.delete(options)
+    {'Fn::Join' => [options[:delimiter] || '', [*args]]}
   end
   
   def _cf_ref(thing)
-    thing = _process_key(thing) if thing.is_a?(Symbol)
+    thing = _process_key(thing, :force) if thing.is_a?(Symbol)
     {'Ref' => thing}
   end
 
   def _cf_map(thing, key, *suffix)
+    suffix = suffix.map do |item|
+      if(item.is_a?(Symbol))
+        _process_key(item, :force)
+      else
+        item
+      end
+    end
+    thing = _process_key(thing, :force) if thing.is_a?(Symbol)
+    key = _process_key(key, :force) if key.is_a?(Symbol)
     {'Fn::FindInMap' => [_process_key(thing), {'Ref' => _process_key(key)}, *suffix]}
   end
 
   def _cf_attr(*args)
     args = args.map do |thing|
       if(thing.is_a?(Symbol))
-        _process_key(thing)
+        _process_key(thing, :force)
       else
         thing
       end
+
     end
     {'Fn::GetAtt' => args}
   end
