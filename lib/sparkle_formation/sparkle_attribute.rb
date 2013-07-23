@@ -6,9 +6,9 @@ module SparkleAttribute
   # simple ones with a bit of string manipulations
   
   def _cf_join(*args)
-    options = args.detect{|i| i.is_a?(Hash) && i[:options]} || {}
+    options = args.detect{|i| i.is_a?(Hash) && i[:options]} || {:options => {}}
     args.delete(options)
-    {'Fn::Join' => [options[:delimiter] || '', [*args]]}
+    {'Fn::Join' => [options[:options][:delimiter] || '', [*args]]}
   end
   
   def _cf_ref(thing)
