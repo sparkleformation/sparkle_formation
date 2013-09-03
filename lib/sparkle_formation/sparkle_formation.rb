@@ -9,6 +9,21 @@ module KnifeCloudformation
     class << self
 
       attr_reader :dynamics
+      attr_reader :components_path
+      attr_reader :dynamics_path
+
+      def custom_paths
+        @_paths ||= {}
+        @_paths
+      end
+      
+      def components_path=(path)
+        custom_paths[:sparkle_path] = path
+      end
+
+      def dynamics_path=(path)
+        custom_paths[:dynamics_directory] = path
+      end
       
       def compile(path)
         formation = self.instance_eval(IO.read(path), path, 1)
@@ -59,8 +74,12 @@ module KnifeCloudformation
     
     def initialize(name, options={})
       @name = name
-      @sparkle_path = options[:sparkle_path] || File.join(Dir.pwd, 'cloudformation/components')
-      @dynamics_directory = options[:dynamics_directory] || File.join(File.dirname(@sparkle_path), 'dynamics')
+      @sparkle_path = options[:sparkle_path] ||
+        self.class.custom_paths[:sparkle_path] ||
+        File.join(Dir.pwd, 'cloudformation/components')
+      @dynamics_directory = options[:dynamics_directory] ||
+        self.class.custom_paths[:dynamics_directory] ||
+        File.join(File.dirname(@sparkle_path), 'dynamics')
       self.class.load_dynamics!(@dynamics_directory)
       @components = Mash.new
       @load_order = []
