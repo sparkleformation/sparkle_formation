@@ -1,11 +1,15 @@
 require 'chef/mash'
 require 'attribute_struct'
 require 'knife-cloudformation/sparkle_attribute'
+require 'knife-cloudformation/utils'
 
 AttributeStruct.camel_keys = true
 
 module KnifeCloudformation
   class SparkleFormation
+
+    include KnifeCloudformation::Utils::AnimalStrings
+
     class << self
 
       attr_reader :dynamics
@@ -16,7 +20,7 @@ module KnifeCloudformation
         @_paths ||= {}
         @_paths
       end
-      
+
       def components_path=(path)
         custom_paths[:sparkle_path] = path
       end
@@ -24,7 +28,7 @@ module KnifeCloudformation
       def dynamics_path=(path)
         custom_paths[:dynamics_directory] = path
       end
-      
+
       def compile(path)
         formation = self.instance_eval(IO.read(path), path, 1)
         formation.compile._dump
@@ -51,7 +55,7 @@ module KnifeCloudformation
         @loaded_dynamics.uniq!
         true
       end
-      
+
       def dynamic(name, &block)
         @dynamics ||= Mash.new
         @dynamics[name] = block
@@ -65,13 +69,21 @@ module KnifeCloudformation
           raise "Failed to locate requested dynamic block for insertion: #{dynamic_name} (valid: #{@dynamics.keys.sort.join(', ')})"
         end
       end
+
+      def from_hash(hash)
+        struct = AttributeStruct.new
+        struct._camel_keys_set(:auto_discovery)
+        struct._load(hash)
+        struct._camel_keys_set(nil)
+        struct
+      end
     end
-    
+
     attr_reader :name
     attr_reader :sparkle_path
     attr_reader :components
     attr_reader :load_order
-    
+
     def initialize(name, options={})
       @name = name
       @sparkle_path = options[:sparkle_path] ||
@@ -103,7 +115,7 @@ module KnifeCloudformation
       @overrides = self.class.build(&block)
       self
     end
-    
+
     # Returns compiled Mash instance
     def compile
       compiled = AttributeStruct.new
