@@ -181,13 +181,81 @@ end
 
 Now a few things have changed. Instead of passing a block directly to the
 instance instantiation, we are loading a component (the `ami` component)
-into the formation, and the applying an override block on top of the `ami`
+into the formation, and then applying an override block on top of the `ami`
 component. The result is the same as the initial example, but now we have
 a DRY component to use. Great!
 
 ## Dynamics
 
-Okay,
+Okay, so lets say we want to have two ec2 instances. We could duplicate the
+resource and outputs, renaming where required. This would get ugly quick,
+especially as more instances are added. Making a component for the ec2 resource
+won't really help since components are static, used to apply the same common
+parts to multiple templates. So what do we use?
+
+Enter `dynamics`. These are much like components, except that instead of simply
+being merged, they allow passing of arguments which makes them reusable to create
+unique resources. So, from our last example, lets move the ec2 related items
+into a dynamic (dynamics/ec2.rb):
+
+```ruby
+SparkleFormation.dynamic(:ec2) do |_name|
+  resources("#{_name}_instance".to_sym)
+    type 'AWS::EC2::Instance'
+    properties do
+      key_name _cf_ref(:key_name)
+      image_id _cf_map(:region_map, 'AWS::Region', :ami)
+      user_data _cf_base64('80')
+    end
+  end
+
+  outputs("#{_name}_instance_id".to_sym) do
+    description 'InstanceId of the newly created EC2 instance'
+    value _cf_ref("#{_name}_instance".to_sym)
+  end
+  outputs("#{_name}_az".to_sym) do
+    description 'Availability Zone of the newly created EC2 instance'
+    value _cf_attr("#{_name}_instance".to_sym, :availability_zone)
+  end
+  outputs("#{_name}_public_ip".to_sym) do
+    description 'Public IP address of the newly created EC2 instance'
+    value _cf_attr("#{_name}_instance".to_sym, :public_ip)
+  end
+  outputs("#{_name}_private_ip".to_sym) do
+    description 'Private IP address of the newly created EC2 instance'
+    value _cf_attr("#{_name}_instance".to_sym, :private_ip)
+  end
+  outputs("#{_name}_public_dns".to_sym) do
+    description 'Public DNSName of the newly created EC2 instance'
+    value _cf_attr("#{_name}_instance".to_sym, :public_dns_name)
+  end
+  outputs("#{_name}_private_dns".to_sym) do
+    description 'Private DNSName of the newly created EC2 instance'
+    value _cf_attr("#{_name}_instance".to_sym, :private_dns_name)
+  end
+end
+```
+
+Now we can put all of these together, and create multiple ec2 instance
+resource easily:
+
+```ruby
+SparkleFormation.new('ec2_example').load(:ami).overrides do
+
+  description "AWS CloudFormation Sample Template EC2InstanceSample: Create an Amazon EC2 instance running the Amazon Linux AMI. The AMI is chosen based on the region in which the stack is run. This example uses the default security group, so to SSH to the new instance using the KeyPair you enter, you will need to have port 22 open in your default security group. **WARNING** This template an Amazon EC2 instances. You will be billed for the AWS resources used if you create a stack from this template."
+
+  [:node1, :node2, :node3].each do |_node_name|
+    SparkleFormation.insert(:ec2, self, _node_name)
+  end
+
+end
+```
+
+## TODO
+* Add information about symbol importance
+* Add examples of camel case control
+* Add examples of complex merge strategies
+* Add examples of accessing parent hash elements
 
 # Infos
 * Repository: https://github.com/heavywater/sparkle_formation
