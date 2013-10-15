@@ -82,7 +82,7 @@ class SparkleFormation
   attr_reader :components
   attr_reader :load_order
 
-  def initialize(name, options={})
+  def initialize(name, options={}, &block)
     @name = name
     @sparkle_path = options[:sparkle_path] ||
       self.class.custom_paths[:sparkle_path] ||
@@ -91,8 +91,16 @@ class SparkleFormation
       self.class.custom_paths[:dynamics_directory] ||
       File.join(File.dirname(@sparkle_path), 'dynamics')
     self.class.load_dynamics!(@dynamics_directory)
-    @components = Mash.new
+    @components = AttributeStruct.hashish.new
     @load_order = []
+    if(block)
+      load_block(block)
+    end
+  end
+
+  def load_block(block)
+    @components[:__base__] = self.class.build(&block)
+    @load_order << :__base__
   end
 
   def load(*args)
