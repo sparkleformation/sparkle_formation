@@ -62,7 +62,7 @@ module SparkleAttribute
 
   def _cf_select(index, item)
     item = _cf_ref(item) if item.is_a?(Symbol)
-    {'Fn::Select', [index.to_i.to_s, item]}
+    {'Fn::Select' => [index.to_i.to_s, item]}
   end
 
   def rhel?
