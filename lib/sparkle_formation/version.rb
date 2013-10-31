@@ -19,5 +19,5 @@
 class SparkleFormation
   class Version < Gem::Version
   end
-  VERSION = Version.new('0.1.2')
+  VERSION = Version.new('0.1.3')
 end
