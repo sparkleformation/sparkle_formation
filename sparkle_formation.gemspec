@@ -9,6 +9,6 @@ Gem::Specification.new do |s|
   s.homepage = 'http://github.com/heavywater/sparkle_formation'
   s.description = 'Cloud Formation builder'
   s.require_path = 'lib'
-  s.add_dependency 'attribute_struct', '~> 0.1.6'
+  s.add_dependency 'attribute_struct', '~> 0.1.8'
   s.files = Dir['**/*']
 end
