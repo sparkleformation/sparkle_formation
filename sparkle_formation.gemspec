@@ -8,6 +8,7 @@ Gem::Specification.new do |s|
   s.email = 'chrisroberts.code@gmail.com'
   s.homepage = 'http://github.com/heavywater/sparkle_formation'
   s.description = 'Cloud Formation builder'
+  s.license = 'Apache-2.0'
   s.require_path = 'lib'
   s.add_dependency 'attribute_struct', '~> 0.1.8'
   s.files = Dir['**/*']
