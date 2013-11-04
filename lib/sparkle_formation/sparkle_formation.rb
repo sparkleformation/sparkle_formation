@@ -50,8 +50,8 @@ class SparkleFormation
       formation.compile._dump
     end
 
-    def build(&block)
-      struct = AttributeStruct.new
+    def build(base=nil, &block)
+      struct = base || AttributeStruct.new
       struct.instance_exec(&block)
       struct
     end
@@ -136,7 +136,7 @@ class SparkleFormation
   end
 
   def overrides(&block)
-    @overrides = self.class.build(&block)
+    @overrides = block
     self
   end
 
@@ -147,7 +147,7 @@ class SparkleFormation
       compiled._merge!(components[key])
     end
     if(@overrides)
-      compiled._merge!(@overrides)
+      self.class.build(compiled, &@overrides)
     end
     compiled
   end
