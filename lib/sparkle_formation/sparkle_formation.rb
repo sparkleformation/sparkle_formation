@@ -45,9 +45,9 @@ class SparkleFormation
       custom_paths[:dynamics_directory] = path
     end
 
-    def compile(path)
+    def compile(path, *args)
       formation = self.instance_eval(IO.read(path), path, 1)
-      formation.compile._dump
+      args.include?(:sparkle) ? formation : formation.compile._dump
     end
 
     def build(base=nil, &block)
