@@ -16,6 +16,8 @@
 # limitations under the License.
 #
 
+require 'attribute_struct/attribute_struct'
+
 class SparkleFormation
   module Utils
 
@@ -32,4 +34,31 @@ class SparkleFormation
     end
 
   end
+
+  class Registry
+
+    class << self
+
+      def init!
+        @register = AttributeStruct.hashish.new
+      end
+
+      def register(name, &block)
+        @register[name] = block
+      end
+
+      def insert(name, location)
+        if(block = @register[name])
+          location.instance_exec(&block)
+        else
+          raise KeyError.new("Requested item not found in registry (#{name})")
+        end
+      end
+
+    end
+
+  end
 end
+
+
+SfnRegistry = SparkleFormation::Registry.init!
