@@ -97,6 +97,14 @@ module SparkleAttribute
     @platform[plat.to_sym] = true
   end
 
+  def dynamic!(name, *args)
+    SparkleFormation.insert(name, self, *args)
+  end
+
+  def registry!(name)
+    SfnRegistry.insert(name, self)
+  end
+
 end
 
 AttributeStruct.send(:include, SparkleAttribute)
