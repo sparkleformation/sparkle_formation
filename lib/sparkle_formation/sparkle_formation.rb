@@ -32,34 +32,49 @@ class SparkleFormation
     attr_reader :components_path
     attr_reader :dynamics_path
 
+    # Return custom paths
     def custom_paths
       @_paths ||= {}
       @_paths
     end
 
+    # path:: Path
+    # Set path to component files
     def components_path=(path)
       custom_paths[:sparkle_path] = path
     end
 
+    # path:: Path
+    # Set path to dynamic files
     def dynamics_path=(path)
       custom_paths[:dynamics_directory] = path
     end
 
+    # path:: Path
+    # args:: Option symbols
+    #   - :sparkle:: Return formation instead of Hash
+    # Compile file at given path and return Hash
     def compile(path, *args)
       formation = self.instance_eval(IO.read(path), path, 1)
       args.include?(:sparkle) ? formation : formation.compile._dump
     end
 
+    # base:: Base AttributeStruct
+    # Execute given block within base
     def build(base=nil, &block)
       struct = base || AttributeStruct.new
       struct.instance_exec(&block)
       struct
     end
 
+    # path:: Path
+    # Load component at given path
     def load_component(path)
       self.instance_eval(IO.read(path), path, 1)
     end
 
+    # directory:: Path
+    # Load all dynamics within given directory
     def load_dynamics!(directory)
       @loaded_dynamics ||= []
       Dir.glob(File.join(directory, '*.rb')).each do |dyn|
@@ -72,20 +87,57 @@ class SparkleFormation
       true
     end
 
+    # name:: Name of dynamic
+    # Define a new dynamic and store associated block
     def dynamic(name, &block)
       @dynamics ||= Mash.new
       @dynamics[name] = block
     end
 
+    # dynamic_name:: Name of dynamic
+    # struct:: AttributeStruct instances
+    # args:: Args to pass to dynamic
+    # Inserts a dynamic into the given AttributeStruct instance
     def insert(dynamic_name, struct, *args)
+      result = false
       if(@dynamics && @dynamics[dynamic_name])
         struct.instance_exec(*args, &@dynamics[dynamic_name])
-        struct
+        result = struct
       else
+        result = builtin_insert(dynamic_name, struct, *args)
+      end
+      unless(result)
         raise "Failed to locate requested dynamic block for insertion: #{dynamic_name} (valid: #{@dynamics.keys.sort.join(', ')})"
+      end
+      result
+    end
+
+    # dynamic_name:: Name of dynamic
+    # struct:: AttributeStruct instances
+    # args:: Args to pass to dynamic
+    # Inserts a builtin dynamic into the given AttributeStruct instance
+    def builtin_insert(dynamic_name, struct, *args)
+      if(defined?(SfnAws) && lookup_key = SfnAws.registry_key(dynamic_name))
+        _name, _config = *args
+        _config ||= {}
+        return unless _name
+        new_resource = struct.resources("#{_name}_#{dynamic_name}".to_sym)
+        new_resource.type = lookup_key
+        properties = new_resource.properties
+        SfnAws.resource(dynamic_name, :properties).each do |prop_name|
+          value = [prop_name, snake(prop_name)].map do |key|
+            _config[key] || _config[key.to_sym]
+          end.compact.first
+          properties.__send__(prop_name, value)
+        end
+        struct
       end
     end
 
+    # hash:: Hash
+    # Attempts to load an AttributeStruct instance from and existing
+    # Hash instance
+    # NOTE: camel keys will do best effort at auto discovery
     def from_hash(hash)
       struct = AttributeStruct.new
       struct._camel_keys_set(:auto_discovery)
@@ -109,18 +161,27 @@ class SparkleFormation
       self.class.custom_paths[:dynamics_directory] ||
       File.join(File.dirname(@sparkle_path), 'dynamics')
     self.class.load_dynamics!(@dynamics_directory)
+    unless(options[:disable_aws_builtins])
+      require 'sparkle_formation/aws'
+      SfnAws.load!
+    end
     @components = AttributeStruct.hashish.new
     @load_order = []
+    @overrides = []
     if(block)
       load_block(block)
     end
   end
 
+  # block:: block to execute
+  # Loads block
   def load_block(block)
     @components[:__base__] = self.class.build(&block)
     @load_order << :__base__
   end
 
+  # args:: symbols or paths for component loads
+  # Loads components into instance
   def load(*args)
     args.each do |thing|
       if(thing.is_a?(Symbol))
@@ -135,8 +196,9 @@ class SparkleFormation
     self
   end
 
+  # Registers block into overrides
   def overrides(&block)
-    @overrides = block
+    @overrides << block
     self
   end
 
@@ -146,8 +208,8 @@ class SparkleFormation
     @load_order.each do |key|
       compiled._merge!(components[key])
     end
-    if(@overrides)
-      self.class.build(compiled, &@overrides)
+    @overrides.each do |override|
+      self.class.build(compiled, &override)
     end
     compiled
   end
