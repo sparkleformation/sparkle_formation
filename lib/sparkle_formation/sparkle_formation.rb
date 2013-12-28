@@ -28,6 +28,8 @@ class SparkleFormation
 
   class << self
 
+    include SparkleFormation::Utils::AnimalStrings
+
     attr_reader :dynamics
     attr_reader :components_path
     attr_reader :dynamics_path
@@ -121,14 +123,14 @@ class SparkleFormation
         _name, _config = *args
         _config ||= {}
         return unless _name
-        new_resource = struct.resources("#{_name}_#{dynamic_name}".to_sym)
-        new_resource.type = lookup_key
+        new_resource = struct.resources.__send__("#{_name}_#{dynamic_name}".to_sym)
+        new_resource.type lookup_key
         properties = new_resource.properties
         SfnAws.resource(dynamic_name, :properties).each do |prop_name|
           value = [prop_name, snake(prop_name)].map do |key|
             _config[key] || _config[key.to_sym]
           end.compact.first
-          properties.__send__(prop_name, value)
+          properties.__send__(prop_name, value) if value
         end
         struct
       end

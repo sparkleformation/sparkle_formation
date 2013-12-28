@@ -1,7 +1,7 @@
 require 'attribute_struct'
 require 'sparkle_formation/utils'
 
-module SparkleFormation
+class SparkleFormation
   class Aws
     class << self
 
@@ -11,7 +11,7 @@ module SparkleFormation
       # hash:: Hash of information
       # Register an AWS resource
       def register(type, hash)
-        unless(@@registry)
+        unless(class_variable_defined?(:@@registry))
           @@registry = AttributeStruct.hashish.new
         end
         @@registry[type] = hash
@@ -56,14 +56,14 @@ module SparkleFormation
       def registry_key(key)
         key = key.to_s
         @@registry.keys.detect do |ref|
-          ref = ref.tr('::', '')
-          snake_ref = snake(ref)
+          ref = ref.tr('::', '_')
+          snake_ref = snake(ref).to_s.gsub('__', '_')
           snake_parts = snake_ref.split('_')
           until(snake_parts.empty?)
             break if snake_parts.join('_') == key
             snake_parts.shift
           end
-          !!snake_parts.empty?
+          !snake_parts.empty?
         end
       end
 
