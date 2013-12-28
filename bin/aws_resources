@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'nokogiri'
+require 'fileutils'
+
+STORE = '/tmp/aws-cfn-docs'
+
+unless(File.directory?(STORE))
+  FileUtils.mkdir_p(STORE)
+  Dir.chdir(STORE) do
+    unless(system('wget -q -r -l 1 -A "aws-*" "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html"'))
+      puts "FAILED: Documentation fetching failed!"
+      exit -1
+    end
+  end
+end
+
+aws_resources = {}
+
+Dir.glob(File.join(STORE, '**/*.html')).each do |path|
+  resource = nil
+  begin
+    file = Nokogiri::HTML(File.open(path, 'r'))
+    type = file.css('h1.topictitle').text
+    if(type.include?(' '))
+      next
+    end
+    resource = file.css('div.variablelist').first
+    if(resource)
+      aws_resources[type] = {:properties => resource.css('span.term').map(&:text)}
+    else
+      resource = file.css('div.informaltable')
+      if(resource)
+        aws_resources[type] = {
+          :properties => resource.css('tr').map{|tr|
+            item = tr.css('td').first
+            item ? item.text.strip : nil
+          }.compact
+        }
+      else
+        next
+      end
+    end
+    aws_resources[type][:path] = File.basename(path)
+  end
+end
+
+require 'pp'
+
+pp aws_resources
