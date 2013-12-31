@@ -131,7 +131,13 @@ class SparkleFormation
           value = [prop_name, snake(prop_name)].map do |key|
             _config[key] || _config[key.to_sym]
           end.compact.first
-          properties.__send__(prop_name, value) if value
+          if(value)
+            if(value.is_a?(Proc))
+              properties.__send__(prop_name).instance_exec(&value)
+            else
+              properties.__send__(prop_name, value)
+            end
+          end
         end
         struct
       end
