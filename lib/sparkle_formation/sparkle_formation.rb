@@ -66,13 +66,14 @@ class SparkleFormation
     def build(base=nil, &block)
       struct = base || AttributeStruct.new
       struct.instance_exec(&block)
-      struct
+      @_struct = struct
     end
 
     # path:: Path
     # Load component at given path
     def load_component(path)
       self.instance_eval(IO.read(path), path, 1)
+      @_struct
     end
 
     # directory:: Path

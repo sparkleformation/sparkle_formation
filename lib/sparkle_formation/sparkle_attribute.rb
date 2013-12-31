@@ -101,8 +101,8 @@ module SparkleAttribute
     SparkleFormation.insert(name, self, *args)
   end
 
-  def registry!(name)
-    SfnRegistry.insert(name, self)
+  def registry!(name, *args)
+    SfnRegistry.insert(name, self, *args)
   end
 
 end

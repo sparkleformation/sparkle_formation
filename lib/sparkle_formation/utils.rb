@@ -41,15 +41,16 @@ class SparkleFormation
 
       def init!
         @register = AttributeStruct.hashish.new
+        self
       end
 
       def register(name, &block)
         @register[name] = block
       end
 
-      def insert(name, location)
+      def insert(name, location, *args)
         if(block = @register[name])
-          location.instance_exec(&block)
+          location.instance_exec(*args, &block)
         else
           raise KeyError.new("Requested item not found in registry (#{name})")
         end
