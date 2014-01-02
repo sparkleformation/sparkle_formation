@@ -101,13 +101,13 @@ class SparkleFormation
     # struct:: AttributeStruct instances
     # args:: Args to pass to dynamic
     # Inserts a dynamic into the given AttributeStruct instance
-    def insert(dynamic_name, struct, *args)
+    def insert(dynamic_name, struct, *args, &block)
       result = false
       if(@dynamics && @dynamics[dynamic_name])
         struct.instance_exec(*args, &@dynamics[dynamic_name])
         result = struct
       else
-        result = builtin_insert(dynamic_name, struct, *args)
+        result = builtin_insert(dynamic_name, struct, *args, &block)
       end
       unless(result)
         raise "Failed to locate requested dynamic block for insertion: #{dynamic_name} (valid: #{@dynamics.keys.sort.join(', ')})"
@@ -119,7 +119,7 @@ class SparkleFormation
     # struct:: AttributeStruct instances
     # args:: Args to pass to dynamic
     # Inserts a builtin dynamic into the given AttributeStruct instance
-    def builtin_insert(dynamic_name, struct, *args)
+    def builtin_insert(dynamic_name, struct, *args, &block)
       if(defined?(SfnAws) && lookup_key = SfnAws.registry_key(dynamic_name))
         _name, _config = *args
         _config ||= {}
@@ -139,6 +139,7 @@ class SparkleFormation
             end
           end
         end
+        properties.instance_exec(&block) if block
         struct
       end
     end
