@@ -97,8 +97,8 @@ module SparkleAttribute
     @platform[plat.to_sym] = true
   end
 
-  def dynamic!(name, *args)
-    SparkleFormation.insert(name, self, *args)
+  def dynamic!(name, *args, &block)
+    SparkleFormation.insert(name, self, *args, &block)
   end
 
   def registry!(name, *args)
