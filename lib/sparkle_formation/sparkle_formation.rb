@@ -31,8 +31,6 @@ class SparkleFormation
     include SparkleFormation::Utils::AnimalStrings
 
     attr_reader :dynamics
-    attr_reader :components_path
-    attr_reader :dynamics_path
 
     # Return custom paths
     def custom_paths
@@ -41,16 +39,36 @@ class SparkleFormation
     end
 
     # path:: Path
-    # Set path to component files
-    def components_path=(path)
-      custom_paths[:sparkle_path] = path
+    # Path to sparkle directory
+    def sparkle_path=(path=nil)
+      if(path)
+        custom_paths[:sparkle_path] = path
+        custom_paths[:components_directory] ||= File.join(path, 'components')
+        custom_paths[:dynamics_directory] ||= File.join(path, 'dynamics')
+      end
+      custom_paths[:sparkle_path]
     end
+    alias_method(:sparkle_path, :sparkle_path=)
+
+    # path:: Path
+    # Set path to component files
+    def components_path=(path=nil)
+      if(path)
+        custom_paths[:components_directory] = path
+      end
+      custom_paths[:components_directory]
+    end
+    alias_method(:components_path, :components_path=)
 
     # path:: Path
     # Set path to dynamic files
-    def dynamics_path=(path)
-      custom_paths[:dynamics_directory] = path
+    def dynamics_path=(path=nil)
+      if(path)
+        custom_paths[:dynamics_directory] = path
+      end
+      custom_paths[:dynamics_directory]
     end
+    alias_method(:dynamics_path, :dynamics_path=)
 
     # path:: Path
     # args:: Option symbols
