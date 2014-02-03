@@ -74,6 +74,15 @@ class SparkleFormation
         @@registry[registry_key(key)]
       end
 
+      # Return the currently loaded AWS registry
+      def registry
+        if(class_variable_defined?(:@@registry))
+          @@registry
+        else
+          {}
+        end
+      end
+
     end
   end
 end
