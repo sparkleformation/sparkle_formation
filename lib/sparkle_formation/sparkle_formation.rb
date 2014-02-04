@@ -177,6 +177,8 @@ class SparkleFormation
 
   attr_reader :name
   attr_reader :sparkle_path
+  attr_reader :components_directory
+  attr_reader :dynamics_directory
   attr_reader :components
   attr_reader :load_order
 
@@ -184,10 +186,13 @@ class SparkleFormation
     @name = name
     @sparkle_path = options[:sparkle_path] ||
       self.class.custom_paths[:sparkle_path] ||
-      File.join(Dir.pwd, 'cloudformation/components')
+      File.join(Dir.pwd, 'cloudformation')
+    @components_directory = options[:components_directory] ||
+      self.class.custom_paths[:dynamics_directory] ||
+      File.join(sparkle_path, 'components')
     @dynamics_directory = options[:dynamics_directory] ||
       self.class.custom_paths[:dynamics_directory] ||
-      File.join(File.dirname(@sparkle_path), 'dynamics')
+      File.join(sparkle_path, 'dynamics')
     self.class.load_dynamics!(@dynamics_directory)
     unless(options[:disable_aws_builtins])
       require 'sparkle_formation/aws'
@@ -213,7 +218,7 @@ class SparkleFormation
   def load(*args)
     args.each do |thing|
       if(thing.is_a?(Symbol))
-        path = File.join(sparkle_path, "#{thing}.rb")
+        path = File.join(components_directory, "#{thing}.rb")
       else
         path = thing
       end
