@@ -188,7 +188,7 @@ class SparkleFormation
       self.class.custom_paths[:sparkle_path] ||
       File.join(Dir.pwd, 'cloudformation')
     @components_directory = options[:components_directory] ||
-      self.class.custom_paths[:dynamics_directory] ||
+      self.class.custom_paths[:components_directory] ||
       File.join(sparkle_path, 'components')
     @dynamics_directory = options[:dynamics_directory] ||
       self.class.custom_paths[:dynamics_directory] ||
