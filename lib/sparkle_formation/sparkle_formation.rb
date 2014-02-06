@@ -230,8 +230,8 @@ class SparkleFormation
   end
 
   # Registers block into overrides
-  def overrides(&block)
-    @overrides << block
+  def overrides(args={}, &block)
+    @overrides << {:args => args, :block => block}
     self
   end
 
@@ -242,7 +242,10 @@ class SparkleFormation
       compiled._merge!(components[key])
     end
     @overrides.each do |override|
-      self.class.build(compiled, &override)
+      if(override[:args] && !override[:args].empty?)
+        compiled._set_state(override[:args])
+      end
+      self.class.build(compiled, &override[:block])
     end
     compiled
   end
