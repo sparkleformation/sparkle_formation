@@ -109,11 +109,25 @@ class SparkleFormation
     end
 
     # name:: Name of dynamic
+    # args:: Optional dynamic metadata
     # Define a new dynamic and store associated block
-    def dynamic(name, &block)
-      @dynamics ||= Mash.new
-      @dynamics[name] = block
+    def dynamic(name, args={}, &block)
+      @dynamics ||= AttributeStruct.hashish
+      @dynamics[name] = AttributeStruct.hashish[
+        :block, block, :args, AttributeStruct.hashish[args.map(&:to_a)]
+      ]
     end
+
+    # name:: Name of dynamic
+    # Return metadata about dynamic
+    def dynamic_info(name)
+      if(@dynamics[name])
+        @dynamics[name][:args]
+      else
+        raise KeyError.new("No dynamic registered with provided name (#{name})")
+      end
+    end
+    alias_method :dynamic_information, :dynamic_info
 
     # dynamic_name:: Name of dynamic
     # struct:: AttributeStruct instances
@@ -122,7 +136,7 @@ class SparkleFormation
     def insert(dynamic_name, struct, *args, &block)
       result = false
       if(@dynamics && @dynamics[dynamic_name])
-        struct.instance_exec(*args, &@dynamics[dynamic_name])
+        struct.instance_exec(*args, &@dynamics[dynamic_name][:block])
         result = struct
       else
         result = builtin_insert(dynamic_name, struct, *args, &block)
