@@ -112,7 +112,7 @@ class SparkleFormation
     # args:: Optional dynamic metadata
     # Define a new dynamic and store associated block
     def dynamic(name, args={}, &block)
-      @dynamics ||= AttributeStruct.hashish
+      @dynamics ||= AttributeStruct.hashish.new
       @dynamics[name] = AttributeStruct.hashish[
         :block, block, :args, AttributeStruct.hashish[args.map(&:to_a)]
       ]
