@@ -18,7 +18,7 @@
 
 require 'sparkle_formation'
 
-AttributeStruct.camel_keys = true
+SparkleFormation::SparkleStruct.camel_keys = true
 
 class SparkleFormation
 
@@ -77,10 +77,10 @@ class SparkleFormation
       args.include?(:sparkle) ? formation : formation.compile._dump
     end
 
-    # base:: Base AttributeStruct
+    # base:: Base SparkleStruct
     # Execute given block within base
     def build(base=nil, &block)
-      struct = base || AttributeStruct.new
+      struct = base || SparkleStruct.new
       struct.instance_exec(&block)
       @_struct = struct
     end
@@ -110,9 +110,9 @@ class SparkleFormation
     # args:: Optional dynamic metadata
     # Define a new dynamic and store associated block
     def dynamic(name, args={}, &block)
-      @dynamics ||= AttributeStruct.hashish.new
-      @dynamics[name] = AttributeStruct.hashish[
-        :block, block, :args, AttributeStruct.hashish[args.map(&:to_a)]
+      @dynamics ||= SparkleStruct.hashish.new
+      @dynamics[name] = SparkleStruct.hashish[
+        :block, block, :args, SparkleStruct.hashish[args.map(&:to_a)]
       ]
     end
 
@@ -128,9 +128,9 @@ class SparkleFormation
     alias_method :dynamic_information, :dynamic_info
 
     # dynamic_name:: Name of dynamic
-    # struct:: AttributeStruct instances
+    # struct:: SparkleStruct instances
     # args:: Args to pass to dynamic
-    # Inserts a dynamic into the given AttributeStruct instance
+    # Inserts a dynamic into the given SparkleStruct instance
     def insert(dynamic_name, struct, *args, &block)
       result = false
       if(@dynamics && @dynamics[dynamic_name])
@@ -146,9 +146,9 @@ class SparkleFormation
     end
 
     # dynamic_name:: Name of dynamic
-    # struct:: AttributeStruct instances
+    # struct:: SparkleStruct instances
     # args:: Args to pass to dynamic
-    # Inserts a builtin dynamic into the given AttributeStruct instance
+    # Inserts a builtin dynamic into the given SparkleStruct instance
     def builtin_insert(dynamic_name, struct, *args, &block)
       if(defined?(SfnAws) && lookup_key = SfnAws.registry_key(dynamic_name))
         _name, _config = *args
@@ -175,11 +175,11 @@ class SparkleFormation
     end
 
     # hash:: Hash
-    # Attempts to load an AttributeStruct instance from and existing
+    # Attempts to load an SparkleStruct instance from and existing
     # Hash instance
     # NOTE: camel keys will do best effort at auto discovery
     def from_hash(hash)
-      struct = AttributeStruct.new
+      struct = SparkleStruct.new
       struct._camel_keys_set(:auto_discovery)
       struct._load(hash)
       struct._camel_keys_set(nil)
@@ -210,7 +210,7 @@ class SparkleFormation
       require 'sparkle_formation/aws'
       SfnAws.load!
     end
-    @components = AttributeStruct.hashish.new
+    @components = SparkleStruct.hashish.new
     @load_order = []
     @overrides = []
     if(block)
@@ -249,7 +249,7 @@ class SparkleFormation
 
   # Returns compiled Mash instance
   def compile
-    compiled = AttributeStruct.new
+    compiled = SparkleStruct.new
     @load_order.each do |key|
       compiled._merge!(components[key])
     end
