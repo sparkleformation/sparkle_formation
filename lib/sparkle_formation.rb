@@ -16,5 +16,12 @@
 # limitations under the License.
 #
 
-require 'sparkle_formation/version'
-require 'sparkle_formation/sparkle_formation'
+require 'attribute_struct'
+
+module SparkleFormation
+  autoload :Aws, 'sparkle_formation/aws'
+  autoload :SparkleAttribute, 'sparkle_formation/sparkle_attribute'
+  autoload :SparkleFormation, 'sparkle_formation/sparkle_formation'
+  autoload :Utils, 'sparkle_formation/utils'
+  autoload :Version, 'sparkle_formation/version'
+end

@@ -1,5 +1,4 @@
-require 'attribute_struct'
-require 'sparkle_formation/utils'
+require 'sparkle_formation'
 
 class SparkleFormation
   class Aws

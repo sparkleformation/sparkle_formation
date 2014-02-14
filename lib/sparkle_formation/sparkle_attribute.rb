@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-require 'attribute_struct'
+require 'sparkle_formation'
 
 module SparkleAttribute
 

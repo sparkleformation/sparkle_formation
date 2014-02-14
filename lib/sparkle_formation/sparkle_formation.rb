@@ -16,9 +16,7 @@
 # limitations under the License.
 #
 
-require 'attribute_struct'
-require 'sparkle_formation/sparkle_attribute'
-require 'sparkle_formation/utils'
+require 'sparkle_formation'
 
 AttributeStruct.camel_keys = true
 

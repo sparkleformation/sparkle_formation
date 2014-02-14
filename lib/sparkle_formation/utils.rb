@@ -16,8 +16,6 @@
 # limitations under the License.
 #
 
-require 'attribute_struct/attribute_struct'
-
 class SparkleFormation
   module Utils
 
