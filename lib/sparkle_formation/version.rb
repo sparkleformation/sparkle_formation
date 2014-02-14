@@ -16,8 +16,6 @@
 # limitations under the License.
 #
 
-require 'sparkle_formation'
-
 class SparkleFormation
   class Version < Gem::Version
   end
