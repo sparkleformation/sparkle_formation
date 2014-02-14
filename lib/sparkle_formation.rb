@@ -18,7 +18,7 @@
 
 require 'attribute_struct'
 
-module SparkleFormation
+class SparkleFormation
   autoload :Aws, 'sparkle_formation/aws'
   autoload :SparkleAttribute, 'sparkle_formation/sparkle_attribute'
   autoload :SparkleFormation, 'sparkle_formation/sparkle_formation'
