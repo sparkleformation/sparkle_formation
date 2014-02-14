@@ -17,7 +17,6 @@
 #
 
 require 'attribute_struct'
-require 'sparkle_formation/sparkle_formation'
 
 class SparkleFormation
   autoload :Aws, 'sparkle_formation/aws'
@@ -25,3 +24,5 @@ class SparkleFormation
   autoload :Utils, 'sparkle_formation/utils'
   autoload :Version, 'sparkle_formation/version'
 end
+
+require 'sparkle_formation/sparkle_formation'
