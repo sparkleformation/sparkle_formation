@@ -57,7 +57,29 @@ class SparkleFormation
     end
 
   end
+
+  class Cache
+    class << self
+
+      def [](k)
+        init!
+        Thread.current[:sparkle_cache][k]
+      end
+
+      def []=(k,v)
+        init!
+        Thread.current[:sparkle_cache][k] = v
+      end
+
+      def init!
+        unless(Thread.current[:sparkle_cache])
+          Thread.current[:sparkle_cache] = {}
+        end
+      end
+
+    end
+  end
 end
 
-
+SfnCache = SparkleFormation::Cache
 SfnRegistry = SparkleFormation::Registry.init!
