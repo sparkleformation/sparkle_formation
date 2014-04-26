@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'nokogiri'
+require 'fileutils'
+
+STORE = '/tmp/openstack-heat-docs'
+
+unless(File.directory?(STORE))
+  FileUtils.mkdir_p(STORE)
+  Dir.chdir(STORE) do
+    unless(system('wget -q "http://docs.openstack.org/developer/heat/template_guide/openstack.html"'))
+      puts "FAILED: Documentation fetching failed!"
+      exit -1
+    end
+  end
+end
+
+file = Nokogiri::HTML(File.open(File.join(STORE, 'openstack.html'), 'r'))
+
+resources = Hash[
+  file.css('div.section[id*="json"]').css('pre.literal-block').map do |node|
+    [
+      node.text.scan(/Type":.*"(.+?)"/).flatten.first,
+      node.text.scan(/Properties.*?\{(.+)$/m).flatten.first.
+      strip.split("\n").map{|z| z.split(' ')}.flatten.find_all{|z| !z.scan(/^[A-Za-z0-9_"]+:$/).empty?}.map{|z| z.tr('":', '')}
+    ]
+  end
+]
+
+require 'pp'
+
+pp resources
