@@ -23,6 +23,7 @@ class SparkleFormation
   autoload :SparkleAttribute, 'sparkle_formation/sparkle_attribute'
   autoload :SparkleStruct, 'sparkle_formation/sparkle_struct'
   autoload :Utils, 'sparkle_formation/utils'
+  autoload :Translation, 'sparkle_formation/translation'
   autoload :Version, 'sparkle_formation/version'
 end
 
