@@ -28,7 +28,7 @@ Dir.glob(File.join(STORE, '**/*.html')).each do |path|
     end
     resource = file.css('div.variablelist').first
     if(resource)
-      aws_resources[type] = {:properties => resource.css('span.term').map(&:text)}
+      aws_resources[type] = {:properties => resource.css('span.term').map(&:text).map(&:strip)}
     else
       resource = file.css('div.informaltable')
       if(resource)
