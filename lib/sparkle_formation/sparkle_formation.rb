@@ -43,6 +43,7 @@ class SparkleFormation
         custom_paths[:sparkle_path] = path
         custom_paths[:components_directory] ||= File.join(path, 'components')
         custom_paths[:dynamics_directory] ||= File.join(path, 'dynamics')
+        custom_paths[:registry_directory] ||= File.join(path, 'registry')
       end
       custom_paths[:sparkle_path]
     end
@@ -67,6 +68,16 @@ class SparkleFormation
       custom_paths[:dynamics_directory]
     end
     alias_method(:dynamics_path, :dynamics_path=)
+
+    # path:: Path
+    # Set path to registry files
+    def registry_path=(path=nil)
+      if(path)
+        custom_paths[:registry_directory] = path
+      end
+      custom_paths[:registry_directory]
+    end
+    alias_method(:registry_path, :registry_path=)
 
     # path:: Path
     # args:: Option symbols
@@ -103,6 +114,16 @@ class SparkleFormation
         @loaded_dynamics << dyn
       end
       @loaded_dynamics.uniq!
+      true
+    end
+
+    # directory:: Path
+    # Load all registry entries within given directory
+    def load_registry!(directory)
+      Dir.glob(File.join(directory, '*.rb')).each do |reg|
+        reg = File.expand_path(reg)
+        require reg
+      end
       true
     end
 
@@ -191,6 +212,7 @@ class SparkleFormation
   attr_reader :sparkle_path
   attr_reader :components_directory
   attr_reader :dynamics_directory
+  attr_reader :registry_directory
   attr_reader :components
   attr_reader :load_order
 
@@ -205,7 +227,11 @@ class SparkleFormation
     @dynamics_directory = options[:dynamics_directory] ||
       self.class.custom_paths[:dynamics_directory] ||
       File.join(sparkle_path, 'dynamics')
+    @registry_directory = options[:registry_directory] ||
+      self.class.custom_paths[:registry_directory] ||
+      File.join(sparkle_path, 'registry')
     self.class.load_dynamics!(@dynamics_directory)
+    self.class.load_registry!(@registry_directory)
     unless(options[:disable_aws_builtins])
       require 'sparkle_formation/aws'
       SfnAws.load!
