@@ -13,13 +13,13 @@ class SparkleFormation
         [:user_data, Hash[value.values.first]]
       end
 
-      def nova_server_finalizer(resource_name, new_resource, old_resource)
-        if(old_resource['Metadata'] && old_resource)
-          new_resource['Properties'][:user_data] = cloud_init(resource_name, 'OS')
-          new_resource['Properties'][:user_data_format] = 'RAW'
-          new_resource['Properties'][:config_drive] = 'true'
+      def resource_finalizer(resource_name, new_resource, old_resource, translated_resources)
+        %w(DependsOn Metadata).each do |key|
+          if(old_resource[key])
+            new_resource[key] = old_resource[key]
+          end
         end
-        new_resource['Metadata'] = old_resource['Metadata']
+        true
       end
 
       # TODO: implement
