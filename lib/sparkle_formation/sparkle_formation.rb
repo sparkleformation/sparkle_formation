@@ -169,8 +169,8 @@ class SparkleFormation
             end
           end
         end
-        properties.instance_exec(&block) if block
-        struct
+        new_resource.instance_exec(&block) if block
+        new_resource
       end
     end
 
