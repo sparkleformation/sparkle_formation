@@ -13,9 +13,13 @@ class SparkleFormation
         [:user_data, Hash[value.values.first]]
       end
 
+      def nova_server_finalizer(*_)
+        true
+      end
+
       def resource_finalizer(resource_name, new_resource, old_resource, translated_resources)
         %w(DependsOn Metadata).each do |key|
-          if(old_resource[key])
+          if(old_resource[key] && !new_resource[key])
             new_resource[key] = old_resource[key]
           end
         end
