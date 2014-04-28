@@ -10,12 +10,18 @@ class SparkleFormation
     include SparkleFormation::Utils::AnimalStrings
     include SparkleFormation::SparkleAttribute
 
-    attr_reader :original, :translated, :template
+    attr_reader :original, :translated, :template, :logger
 
-    def initialize(template_hash)
+    def initialize(template_hash, logger=nil)
       @original = template_hash.dup
       @template = MultiJson.load(MultiJson.dump(template_hash)) ## LOL: Lazy deep dup
       @translated = {}
+      if(logger)
+        @logger = logger
+      else
+        require 'logger'
+        @logger = Logger.new($stdout)
+      end
     end
 
     def map
@@ -44,7 +50,7 @@ class SparkleFormation
           new_resource = {}
           lookup = map[:resources][resource_args['Type']]
           unless(lookup)
-            puts "FAILED TO FIND TYPE: #{resource_args['Type']}"
+            logger.warn "Failed to locate resource type: #{resource_args['Type']}"
             next
           end
           new_resource['Type'] = lookup[:name]
@@ -63,13 +69,14 @@ class SparkleFormation
                   new_properties[new_key] = property_value
                 end
               else
-                puts "OHAY, NOT FOUND: #{property_name}"
+                logger.warn "Failed to locate property conversion for `#{property_name}` on resource type `#{resource_args['Type']}`"
               end
             end
           end
           if(lookup[:finalizer])
             send(lookup[:finalizer], resource_name, new_resource, resource_args, modified_resources)
           end
+          resource_finalizer(resource_name, new_resource, resource_args, modified_resources)
           modified_resources[resource_name] = new_resource
         end
       end
