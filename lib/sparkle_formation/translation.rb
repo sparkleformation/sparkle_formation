@@ -1,9 +1,11 @@
 require 'sparkle_formation'
+require 'multi_json'
 
 class SparkleFormation
   class Translation
 
     autoload :Heat, 'sparkle_formation/translation/heat'
+    autoload :Rackspace, 'sparkle_formation/translation/rackspace'
 
     include SparkleFormation::Utils::AnimalStrings
     include SparkleFormation::SparkleAttribute
@@ -66,30 +68,11 @@ class SparkleFormation
             end
           end
           if(lookup[:finalizer])
-            send(lookup[:finalizer], resource_name, new_resource, resource_args)
+            send(lookup[:finalizer], resource_name, new_resource, resource_args, modified_resources)
           end
           modified_resources[resource_name] = new_resource
         end
       end
-    end
-
-    def cloud_init(resource_name, ref_prefix = 'AWS')
-      pkgs = 'python-argparse cloud-init python-psutil python-pip heat-cfntools'
-      _cf_join(
-        "#!/bin/bash\n",
-        "ls /etc/redhat-release\n",
-        "if [ $? -eq 0 ] then\n",
-        "  yum install -y -q #{pkgs}\n",
-        "else\n",
-        "  apt-get install -q -y #{pkgs}\n",
-        "fi\n",
-        "cfn-create-aws-symlinks\n",
-        "cfn-init -v --region ",
-        _cf_ref("#{ref_prefix}::Region"),
-        " -s ",
-        _cf_ref("#{ref_prefix}::StackName"),
-        " -r #{resource_name}\n"
-      )
     end
 
   end
