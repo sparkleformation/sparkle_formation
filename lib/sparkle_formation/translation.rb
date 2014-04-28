@@ -69,7 +69,8 @@ class SparkleFormation
                   new_properties[new_key] = property_value
                 end
               else
-                logger.warn "Failed to locate property conversion for `#{property_name}` on resource type `#{resource_args['Type']}`"
+                logger.warn "Failed to locate property conversion for `#{property_name}` on resource type `#{resource_args['Type']}`. Passing directly."
+                new_properties[snake(property_name)] = property_value
               end
             end
           end
