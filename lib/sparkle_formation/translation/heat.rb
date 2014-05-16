@@ -17,7 +17,7 @@ class SparkleFormation
         true
       end
 
-      def resource_finalizer(resource_name, new_resource, old_resource, translated_resources)
+      def resource_finalizer(resource_name, new_resource, old_resource)
         %w(DependsOn Metadata).each do |key|
           if(old_resource[key] && !new_resource[key])
             new_resource[key] = old_resource[key]
@@ -29,6 +29,10 @@ class SparkleFormation
       # TODO: implement
       def autoscaling_group_resource(value, args={})
         ['resource', value]
+      end
+
+      def default_key_format(key)
+        snake(key)
       end
 
       MAP = {
@@ -58,9 +62,11 @@ class SparkleFormation
               'MinSize' => 'min_size',
               'LaunchConfigurationName' => :autoscaling_group_resource
             }
-          }
+          },
+          'AWS::AutoScaling::LaunchConfiguration' => :delete
         }
       }
+
     end
   end
 end
