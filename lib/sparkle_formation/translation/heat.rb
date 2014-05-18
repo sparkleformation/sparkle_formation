@@ -27,7 +27,7 @@ class SparkleFormation
       end
 
       # TODO: implement
-      def autoscaling_group_resource(value, args={})
+      def autoscaling_group_launchconfig(value, args={})
         ['resource', value]
       end
 
@@ -60,7 +60,7 @@ class SparkleFormation
               'DesiredCapacity' => 'desired_capacity',
               'MaxSize' => 'max_size',
               'MinSize' => 'min_size',
-              'LaunchConfigurationName' => :autoscaling_group_resource
+              'LaunchConfigurationName' => :autoscaling_group_launchconfig
             }
           },
           'AWS::AutoScaling::LaunchConfiguration' => :delete
