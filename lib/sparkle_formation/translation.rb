@@ -1,5 +1,6 @@
 require 'sparkle_formation'
 require 'multi_json'
+require 'logger'
 
 class SparkleFormation
   class Translation
@@ -10,18 +11,14 @@ class SparkleFormation
     include SparkleFormation::Utils::AnimalStrings
     include SparkleFormation::SparkleAttribute
 
-    attr_reader :original, :translated, :template, :logger
+    attr_reader :original, :translated, :template, :logger, :parameters
 
-    def initialize(template_hash, logger=nil)
+    def initialize(template_hash, args={})
       @original = template_hash.dup
       @template = MultiJson.load(MultiJson.dump(template_hash)) ## LOL: Lazy deep dup
       @translated = {}
-      if(logger)
-        @logger = logger
-      else
-        require 'logger'
-        @logger = Logger.new($stdout)
-      end
+      @logger = args.fetch(:logger, Logger.new($stdout))
+      @parameters = args.fetch(:parameters, {})
     end
 
     def map
@@ -100,7 +97,10 @@ class SparkleFormation
       translated['Resources'] = {}
       translated['Resources'].tap do |modified_resources|
         value.each do |resource_name, resource_args|
-          modified_resources[resource_name] = resource_translation(resource_name, resource_args)
+          new_resource = resource_translation(resource_name, resource_args)
+          if(new_resource)
+            modified_resources[resource_name] = new_resource
+          end
         end
       end
     end
