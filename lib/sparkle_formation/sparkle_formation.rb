@@ -20,24 +20,29 @@ require 'sparkle_formation'
 
 SparkleFormation::SparkleStruct.camel_keys = true
 
+# Formation container
 class SparkleFormation
 
   include SparkleFormation::Utils::AnimalStrings
+  extend SparkleFormation::Utils::AnimalStrings
 
   class << self
 
-    include SparkleFormation::Utils::AnimalStrings
+    # @return [Hashish] loaded dynamics
+    def dynamics
+      @dynamics ||= SparkleStruct.hashish.new
+    end
 
-    attr_reader :dynamics
-
-    # Return custom paths
+    # @return [Hashish] custom paths
     def custom_paths
-      @_paths ||= {}
+      @_paths ||= SparkleStruct.hashish.new
       @_paths
     end
 
-    # path:: Path
-    # Path to sparkle directory
+    # Get/set path to sparkle directory
+    #
+    # @param path [String] path to directory
+    # @return [String] path to directory
     def sparkle_path=(path=nil)
       if(path)
         custom_paths[:sparkle_path] = path
@@ -49,8 +54,10 @@ class SparkleFormation
     end
     alias_method(:sparkle_path, :sparkle_path=)
 
-    # path:: Path
-    # Set path to component files
+    # Get/set path to component files
+    #
+    # @param path [String] path to component files
+    # @return [String] path to component files
     def components_path=(path=nil)
       if(path)
         custom_paths[:components_directory] = path
@@ -59,8 +66,10 @@ class SparkleFormation
     end
     alias_method(:components_path, :components_path=)
 
-    # path:: Path
-    # Set path to dynamic files
+    # Get/set path to dynamic files
+    #
+    # @param path [String] path to dynamic files
+    # @return [String] path to dynamic files
     def dynamics_path=(path=nil)
       if(path)
         custom_paths[:dynamics_directory] = path
@@ -69,8 +78,10 @@ class SparkleFormation
     end
     alias_method(:dynamics_path, :dynamics_path=)
 
-    # path:: Path
-    # Set path to registry files
+    # Get/set path to registry files
+    #
+    # @param path [String] path to registry files
+    # @return [String] path to registry files
     def registry_path=(path=nil)
       if(path)
         custom_paths[:registry_directory] = path
@@ -79,32 +90,40 @@ class SparkleFormation
     end
     alias_method(:registry_path, :registry_path=)
 
-    # path:: Path
-    # args:: Option symbols
-    #   - :sparkle:: Return formation instead of Hash
-    # Compile file at given path and return Hash
+    # Compile file
+    #
+    # @param path [String] path to file
+    # @param args [Object] use :sparkle to return struct
+    # @return [Hashish, SparkleStruct]
     def compile(path, *args)
       formation = self.instance_eval(IO.read(path), path, 1)
       args.include?(:sparkle) ? formation : formation.compile._dump
     end
 
-    # base:: Base SparkleStruct
-    # Execute given block within base
+    # Execute given block within struct context
+    #
+    # @param base [SparkleStruct] context for block
+    # @yield block to execute
+    # @return [SparkleStruct] provided base or new struct
     def build(base=nil, &block)
       struct = base || SparkleStruct.new
       struct.instance_exec(&block)
       @_struct = struct
     end
 
-    # path:: Path
-    # Load component at given path
+    # Load component
+    #
+    # @param path [String] path to component
+    # @return [SparkleStruct] resulting struct
     def load_component(path)
       self.instance_eval(IO.read(path), path, 1)
       @_struct
     end
 
-    # directory:: Path
-    # Load all dynamics within given directory
+    # Load all dynamics within a directory
+    #
+    # @param directory [String]
+    # @return [TrueClass]
     def load_dynamics!(directory)
       @loaded_dynamics ||= []
       Dir.glob(File.join(directory, '*.rb')).each do |dyn|
@@ -117,8 +136,10 @@ class SparkleFormation
       true
     end
 
-    # directory:: Path
-    # Load all registry entries within given directory
+    # Load all registry entries within a directory
+    #
+    # @param directory [String]
+    # @return [TrueClass]
     def load_registry!(directory)
       Dir.glob(File.join(directory, '*.rb')).each do |reg|
         reg = File.expand_path(reg)
@@ -127,31 +148,43 @@ class SparkleFormation
       true
     end
 
-    # name:: Name of dynamic
-    # args:: Optional dynamic metadata
-    # Define a new dynamic and store associated block
+    # Define and register new dynamic
+    #
+    # @param name [String, Symbol] name of dynamic
+    # @param args [Hash] dynamic metadata
+    # @param args [Hash] :parameters description of _config parameters
+    # @example
+    #   metadata describes dynamic parameters for _config hash:
+    #   :item_name => {:description => 'Defines item name', :type => 'String'}
+    # @yield dynamic block
+    # @return [TrueClass]
     def dynamic(name, args={}, &block)
       @dynamics ||= SparkleStruct.hashish.new
-      @dynamics[name] = SparkleStruct.hashish[
+      dynamics[name] = SparkleStruct.hashish[
         :block, block, :args, SparkleStruct.hashish[args.map(&:to_a)]
       ]
+      true
     end
 
-    # name:: Name of dynamic
-    # Return metadata about dynamic
+    # Metadata for dynamic
+    #
+    # @param name [String, Symbol] dynamic name
+    # @return [Hashish] metadata information
     def dynamic_info(name)
       if(@dynamics[name])
-        @dynamics[name][:args]
+        @dynamics[name][:args] ||= SparkleStruct.hashish.new
       else
         raise KeyError.new("No dynamic registered with provided name (#{name})")
       end
     end
     alias_method :dynamic_information, :dynamic_info
 
-    # dynamic_name:: Name of dynamic
-    # struct:: SparkleStruct instances
-    # args:: Args to pass to dynamic
-    # Inserts a dynamic into the given SparkleStruct instance
+    # Insert a dynamic into a context
+    #
+    # @param dynamic_name [String, Symbol] dynamic name
+    # @param struct [SparkleStruct] context for insertion
+    # @param args [Object] parameters for dynamic
+    # @return [SparkleStruct]
     def insert(dynamic_name, struct, *args, &block)
       result = false
       if(@dynamics && @dynamics[dynamic_name])
@@ -166,10 +199,12 @@ class SparkleFormation
       result
     end
 
-    # dynamic_name:: Name of dynamic
-    # struct:: SparkleStruct instances
-    # args:: Args to pass to dynamic
-    # Inserts a builtin dynamic into the given SparkleStruct instance
+    # Insert a builtin dynamic into a context
+    #
+    # @param dynamic_name [String, Symbol] dynamic name
+    # @param struct [SparkleStruct] context for insertion
+    # @param args [Object] parameters for dynamic
+    # @return [SparkleStruct]
     def builtin_insert(dynamic_name, struct, *args, &block)
       if(defined?(SfnAws) && lookup_key = SfnAws.registry_key(dynamic_name))
         _name, _config = *args
@@ -195,10 +230,11 @@ class SparkleFormation
       end
     end
 
-    # hash:: Hash
-    # Attempts to load an SparkleStruct instance from and existing
-    # Hash instance
-    # NOTE: camel keys will do best effort at auto discovery
+    # Convert hash to SparkleStruct instance
+    #
+    # @param hash [Hashish]
+    # @return [SparkleStruct]
+    # @note will do best effort on camel key auto discovery
     def from_hash(hash)
       struct = SparkleStruct.new
       struct._camel_keys_set(:auto_discovery)
@@ -208,16 +244,33 @@ class SparkleFormation
     end
   end
 
+  # @return [Symbol] name of formation
   attr_reader :name
+  # @return [String] base path
   attr_reader :sparkle_path
+  # @return [String] components path
   attr_reader :components_directory
+  # @return [String] dynamics path
   attr_reader :dynamics_directory
+  # @return [String] registry path
   attr_reader :registry_directory
+  # @return [Array] components to load
   attr_reader :components
+  # @return [Array] order of loading
   attr_reader :load_order
 
+  # Create new instance
+  #
+  # @param name [String, Symbol] name of formation
+  # @param options [Hash] options
+  # @option options [String] :sparkle_path custom base path
+  # @option options [String] :components_directory custom components path
+  # @option options [String] :dynamics_directory custom dynamics path
+  # @option options [String] :registry_directory custom registry path
+  # @option options [Truthy, Falsey] :disable_aws_builtins do not load builtins
+  # @yield base context
   def initialize(name, options={}, &block)
-    @name = name
+    @name = name.to_sym
     @sparkle_path = options[:sparkle_path] ||
       self.class.custom_paths[:sparkle_path] ||
       File.join(Dir.pwd, 'cloudformation')
@@ -244,15 +297,20 @@ class SparkleFormation
     end
   end
 
-  # block:: block to execute
-  # Loads block
+  # Add block to load order
+  #
+  # @param block [Proc]
+  # @return [TrueClass]
   def load_block(block)
     @components[:__base__] = self.class.build(&block)
     @load_order << :__base__
+    true
   end
 
-  # args:: symbols or paths for component loads
-  # Loads components into instance
+  # Load components into instance
+  #
+  # @param args [String, Symbol] Symbol component names or String paths
+  # @return [self]
   def load(*args)
     args.each do |thing|
       if(thing.is_a?(Symbol))
@@ -268,12 +326,17 @@ class SparkleFormation
   end
 
   # Registers block into overrides
+  #
+  # @param args [Hash] optional arguments to provide state
+  # @yield override block
   def overrides(args={}, &block)
     @overrides << {:args => args, :block => block}
     self
   end
 
-  # Returns compiled Mash instance
+  # Compile the formation
+  #
+  # @return [SparkleStruct]
   def compile
     compiled = SparkleStruct.new
     @load_order.each do |key|
