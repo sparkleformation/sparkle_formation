@@ -19,8 +19,14 @@
 require 'sparkle_formation'
 
 class SparkleFormation
+
+  # Provides template helper methods
   module SparkleAttribute
 
+    # Fn::Join generator
+    #
+    # @param args [Object]
+    # @return [Hash]
     def _cf_join(*args)
       options = args.detect{|i| i.is_a?(Hash) && i[:options]} || {:options => {}}
       args.delete(options)
@@ -29,13 +35,26 @@ class SparkleFormation
       end
       {'Fn::Join' => [options[:options][:delimiter] || '', *args]}
     end
+    alias_method :join!, :cf_join
 
+    # Ref generator
+    #
+    # @param thing [String, Symbol] reference name
+    # @return [Hash]
+    # @note Symbol value will force key processing
     def _cf_ref(thing)
       thing = _process_key(thing, :force) if thing.is_a?(Symbol)
       {'Ref' => thing}
     end
     alias_method :_ref, :_cf_ref
+    alias_method :ref!, :_cf_ref
 
+    # Fn::FindInMap generator
+    #
+    # @param thing [String, Symbol] thing to find
+    # @param key [String, Symbol] thing to search
+    # @param suffix [Object] additional args
+    # @return [Hash]
     def _cf_map(thing, key, *suffix)
       suffix = suffix.map do |item|
         if(item.is_a?(Symbol))
@@ -49,7 +68,13 @@ class SparkleFormation
       {'Fn::FindInMap' => [_process_key(thing), {'Ref' => _process_key(key)}, *suffix]}
     end
     alias_method :_cf_find_in_map, :_cf_map
+    alias_method :find_in_map!, :_cf_map
+    alias_method :map!, :_cf_map
 
+    # Fn::GetAtt generator
+    #
+    # @param [Object] pass through arguments
+    # @return [Hash]
     def _cf_attr(*args)
       args = args.map do |thing|
         if(thing.is_a?(Symbol))
@@ -62,11 +87,22 @@ class SparkleFormation
       {'Fn::GetAtt' => args}
     end
     alias_method :_cf_get_att, :_cf_attr
+    alias_method :get_att!, :_cf_attr
+    alias_method :attr!, :cf_attr
 
+    # Fn::Base64 generator
+    #
+    # @param arg [Object] pass through
+    # @return [Hash]
     def _cf_base64(arg)
       {'Fn::Base64' => arg}
     end
+    alias_method :base64!, :_cf_base64
 
+    # Fn::GetAZs generator
+    #
+    # @param region [String, Symbol] String will pass through. Symbol will be converted to ref
+    # @return [Hash]
     def _cf_get_azs(region=nil)
       region = case region
                when Symbol
@@ -78,30 +114,54 @@ class SparkleFormation
                end
       {'Fn::GetAZs' => region}
     end
+    alias_method :get_azs!, :_cf_get_azs
+    alias_method :azs!, :_cf_get_azs
 
+    # Fn::Select generator
+    #
+    # @param index [String, Symbol] String will pass through. Symbol will be converted to ref
+    # @param item [Object]
+    # @return [Hash]
     def _cf_select(index, item)
       item = _cf_ref(item) if item.is_a?(Symbol)
       {'Fn::Select' => [index.to_i.to_s, item]}
     end
+    alias_method :select!, :_cf_select
 
+    # @return [TrueClass, FalseClass]
     def rhel?
       !!@platform[:rhel]
     end
 
+    # @return [TrueClass, FalseClass]
     def debian?
       !!@platform[:debian]
     end
 
+    # Set the destination platform
+    #
+    # @param plat [String, Symbol] one of :rhel or :debian
+    # @return [TrueClass]
     def _platform=(plat)
       @platform || __hashish
       @platform.clear
       @platform[plat.to_sym] = true
     end
 
+    # Dynamic insertion helper method
+    #
+    # @param name [String, Symbol] dynamic name
+    # @param args [Object] argument list for dynamic
+    # @return [self]
     def dynamic!(name, *args, &block)
       SparkleFormation.insert(name, self, *args, &block)
     end
 
+    # Registry insertion helper method
+    #
+    # @param name [String, Symbol] name of registry item
+    # @param args [Object] argument list for registry
+    # @return [self]
     def registry!(name, *args)
       SfnRegistry.insert(name, self, *args)
     end
