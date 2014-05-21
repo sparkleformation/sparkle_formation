@@ -161,7 +161,7 @@ class SparkleFormation
         result = builtin_insert(dynamic_name, struct, *args, &block)
       end
       unless(result)
-        raise "Failed to locate requested dynamic block for insertion: #{dynamic_name} (valid: #{@dynamics.keys.sort.join(', ')})"
+        raise "Failed to locate requested dynamic block for insertion: #{dynamic_name} (valid: #{(@dynamics || {}).keys.sort.join(', ')})"
       end
       result
     end
