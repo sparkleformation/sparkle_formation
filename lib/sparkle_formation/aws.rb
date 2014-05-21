@@ -1,24 +1,30 @@
 require 'sparkle_formation'
 
 class SparkleFormation
+  # AWS resource helper
   class Aws
     class << self
 
       include SparkleFormation::Utils::AnimalStrings
 
-      # type:: AWS CFN resource type
-      # hash:: Hash of information
       # Register an AWS resource
+      #
+      # @param type [String] AWS CFN resource type
+      # @param hash [Hash] metadata information
+      # @return [TrueClass]
       def register(type, hash)
         unless(class_variable_defined?(:@@registry))
           @@registry = AttributeStruct.hashish.new
         end
         @@registry[type] = hash
+        true
       end
 
-      # identifier:: resource identifier
-      # key:: key of value to return from information hash
-      # Return the associated aws resource information
+      # Resource information
+      #
+      # @param identifier [String, Symbol] resource identifier
+      # @param key [String, Symbol] specific data
+      # @return [Hashish]
       def resource(identifier, key=nil)
         res = lookup(identifier)
         if(key && res)
@@ -28,8 +34,10 @@ class SparkleFormation
         end
       end
 
-      # json_path_or_hash:: Path to JSON file or Hash instance of resources
       # Register all discovered resources
+      #
+      # @param json_path_or_hash [String, Hashish] path to files or hash
+      # @return [TrueClass]
       def load(json_path_or_hash)
         if(json_path_or_hash.is_a?(String))
           require 'json'
@@ -44,14 +52,18 @@ class SparkleFormation
       end
 
       # Load the builtin AWS resources
+      #
+      # @return [TrueClass]
       def load!
         require File.join(File.dirname(__FILE__), 'aws', 'cfn_resources.rb')
         load(AWS_RESOURCES)
+        true
       end
 
-      # key:: string or symbol
-      # Return matching registry key. Uses snaked resource type for
-      # matching and will attempt all parts for match
+      # Discover registry key via part searching
+      #
+      # @param key [String, Symbol]
+      # @return [String, NilClass]
       def registry_key(key)
         key = key.to_s
         @@registry.keys.detect do |ref|
@@ -66,19 +78,20 @@ class SparkleFormation
         end
       end
 
-      # key:: string or symbol
-      # Returns resource information of type discovered via matching
-      # using #registry_key
+      # Registry information for given type
+      #
+      # @param key [String, Symbol]
+      # @return [Hashish, NilClass]
       def lookup(key)
         @@registry[registry_key(key)]
       end
 
-      # Return the currently loaded AWS registry
+      # @return [Hashish] currently loaded AWS registry
       def registry
         if(class_variable_defined?(:@@registry))
           @@registry
         else
-          {}
+          @@registry = AttrubuteStruct.hashish.new
         end
       end
 
@@ -86,4 +99,5 @@ class SparkleFormation
   end
 end
 
+# Shortcut helper constant
 SfnAws = SparkleFormation::Aws
