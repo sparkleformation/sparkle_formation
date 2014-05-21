@@ -35,7 +35,7 @@ class SparkleFormation
       end
       {'Fn::Join' => [options[:options][:delimiter] || '', *args]}
     end
-    alias_method :join!, :cf_join
+    alias_method :join!, :_cf_join
 
     # Ref generator
     #
@@ -88,7 +88,7 @@ class SparkleFormation
     end
     alias_method :_cf_get_att, :_cf_attr
     alias_method :get_att!, :_cf_attr
-    alias_method :attr!, :cf_attr
+    alias_method :attr!, :_cf_attr
 
     # Fn::Base64 generator
     #
