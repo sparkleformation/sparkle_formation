@@ -22,13 +22,47 @@ Dir.glob(File.join(STORE, '**/*.html')).each do |path|
   resource = nil
   begin
     file = Nokogiri::HTML(File.open(path, 'r'))
-    type = file.css('h1.topictitle').text
+    type = file.css('h1.topictitle').text.strip
     if(type.include?(' '))
       next
     end
     resource = file.css('div.variablelist').first
     if(resource)
-      aws_resources[type] = {:properties => resource.css('span.term').map(&:text).map(&:strip)}
+      names = resource.css('dt').css('span').map(&:text).map(&:strip)
+      types = resource.css('dd p').map(&:text).find_all do |x|
+        x.include?('Type')
+      end.map do |x|
+        if(x.downcase.match(/(\s|^)list(\s|$)/))
+          'Array'
+        elsif(x.include?('Type: String'))
+          'String'
+        elsif(x.include?('Type: Boolean'))
+          'Boolean'
+        elsif(x.include?('Type: Integer'))
+          'Number'
+        elsif(x.include?('Type:') && x.include?('JSON') && x.include?('document'))
+          'JSON'
+        else
+          'Unknown'
+        end
+      end
+      requires = resource.css('dd p').map(&:text).find_all do |x|
+        x.include?('Required:')
+      end.map do |x|
+        x.include?('No') ? false : true
+      end
+      descriptions = resource.css('dd').map do |dd|
+        dd.css('p').first.text.strip
+      end.map do |string|
+        string.split("\n").map(&:strip).join(' ')
+      end
+      property_hashes = names.size.times.map do |i|
+        [names[i], {:description => descriptions[i], :required => requires[i], :type => types[i]}]
+      end
+      aws_resources[type] = {
+        :properties => names,
+        :full_properties => Hash[property_hashes]
+      }
     else
       resource = file.css('div.informaltable')
       if(resource)
