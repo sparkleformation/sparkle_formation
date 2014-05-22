@@ -91,7 +91,7 @@ class SparkleFormation
         if(class_variable_defined?(:@@registry))
           @@registry
         else
-          @@registry = AttrubuteStruct.hashish.new
+          @@registry = AttributeStruct.hashish.new
         end
       end
 
