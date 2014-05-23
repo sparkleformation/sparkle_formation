@@ -171,8 +171,8 @@ class SparkleFormation
     # @param name [String, Symbol] dynamic name
     # @return [Hashish] metadata information
     def dynamic_info(name)
-      if(@dynamics[name])
-        @dynamics[name][:args] ||= SparkleStruct.hashish.new
+      if(dynamics[name])
+        dynamics[name][:args] ||= SparkleStruct.hashish.new
       else
         raise KeyError.new("No dynamic registered with provided name (#{name})")
       end
@@ -301,7 +301,7 @@ class SparkleFormation
   #
   # @param block [Proc]
   # @return [TrueClass]
-  def load_block(block)
+  def block(block)
     @components[:__base__] = self.class.build(&block)
     @load_order << :__base__
     true
