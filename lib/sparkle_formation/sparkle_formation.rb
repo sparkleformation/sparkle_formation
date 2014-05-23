@@ -306,6 +306,7 @@ class SparkleFormation
     @load_order << :__base__
     true
   end
+  alias_method :load_block, :block
 
   # Load components into instance
   #
