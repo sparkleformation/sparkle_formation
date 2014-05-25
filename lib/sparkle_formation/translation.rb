@@ -3,6 +3,7 @@ require 'multi_json'
 require 'logger'
 
 class SparkleFormation
+  # Translator
   class Translation
 
     autoload :Heat, 'sparkle_formation/translation/heat'
@@ -11,8 +12,23 @@ class SparkleFormation
     include SparkleFormation::Utils::AnimalStrings
     include SparkleFormation::SparkleAttribute
 
-    attr_reader :original, :translated, :template, :logger, :parameters
+    # @return [Hash] original template
+    attr_reader :original
+    # @return [Hash] current translation
+    attr_reader :translated
+    # @return [Hash] duplicated template (full deep copy)
+    attr_reader :template
+    # @return [Logger] current logger
+    attr_reader :logger
+    # @return [Hash] parameters for template
+    attr_reader :parameters
 
+    # Create new instance
+    #
+    # @param template_hash [Hash] stack template
+    # @param args [Hash]
+    # @option args [Logger] :logger custom logger
+    # @option args [Hash] :parameters parameters for stack creation
     def initialize(template_hash, args={})
       @original = template_hash.dup
       @template = MultiJson.load(MultiJson.dump(template_hash)) ## LOL: Lazy deep dup
@@ -21,10 +37,14 @@ class SparkleFormation
       @parameters = args.fetch(:parameters, {})
     end
 
+    # @return [Hash] resource mapping
     def map
       self.class.const_get(:MAP)
     end
 
+    # Translate stack definition
+    #
+    # @return [TrueClass]
     def translate!
       template.each do |key, value|
         translate_method = "translate_#{snake(key.to_s)}".to_sym
@@ -37,10 +57,18 @@ class SparkleFormation
       true
     end
 
+    # Default translation action if no mapping is provided
+    #
+    # @return [Object] value
     def translate_default(key, value)
       translated[key] = value
     end
 
+    # Translate resource
+    #
+    # @param resource_name [String]
+    # @param resource_args [Hash]
+    # @return [Hash, NilClass] new resource Hash or nil
     def resource_translation(resource_name, resource_args)
       new_resource = {}
       lookup = map[:resources][resource_args['Type']]
@@ -68,6 +96,14 @@ class SparkleFormation
       end
     end
 
+    # Format the properties of the new resource
+    #
+    # @param args [Hash]
+    # @option args [Hash] :original_properties
+    # @option args [Hash] :property_map
+    # @option args [Hash] :new_resource
+    # @option args [Hash] :original_resource
+    # @return [Hash]
     def format_properties(args)
       args[:new_resource]['Properties'] = {}.tap do |new_properties|
         args[:original_properties].each do |property_name, property_value|
@@ -93,6 +129,10 @@ class SparkleFormation
       end
     end
 
+    # Translate provided resources
+    #
+    # @param value [Hash] resources hash
+    # @return [Hash]
     def translate_resources(value)
       translated['Resources'] = {}
       translated['Resources'].tap do |modified_resources|
@@ -105,19 +145,68 @@ class SparkleFormation
       end
     end
 
-    def decode_resource_name(obj)
-      case obj
-      when String
-        obj
-      when Hash
-        obj['Ref']
-      else
-        obj.to_s
-      end
-    end
-
+    # Default formatting for keys
+    #
+    # @param key [String, Symbol]
+    # @return [String, Symbol]
     def default_key_format(key)
       key
+    end
+
+    # Attempt to dereference name
+    #
+    # @param obj [Object]
+    # @return [Object]
+    def dereference(obj)
+      result = obj
+      if(obj.is_a?(Hash))
+        name = obj['Ref']
+        if(name)
+          p_val = parameters[name.to_s]
+          if(p_val)
+            result = p_val
+          end
+        end
+      end
+      result
+    end
+
+    # Process object through dereferencer. This will dereference names
+    # and apply functions if possible.
+    #
+    # @param obj [Object]
+    # @return [Object]
+    def dereference_processor(obj)
+      obj = dereference(obj)
+      case obj
+      when Array
+        obj = obj.map{|v| dereference_processor(v)}
+      when Hash
+        new_hash = {}
+        obj.each do |k,v|
+          new_hash[k] = dereference_processor(v)
+        end
+        obj = apply_function(new_hash)
+      end
+      obj
+    end
+
+    # Apply function if possible
+    #
+    # @param hash [Hash]
+    # @return [Hash]
+    def apply_function(hash)
+      if(hash.size == 1 && hash.keys.first.start_with?('Fn'))
+        k,v = hash.first
+        case k
+        when 'Fn::Join'
+          v.last.join(v.first)
+        else
+          hash
+        end
+      else
+        hash
+      end
     end
 
   end

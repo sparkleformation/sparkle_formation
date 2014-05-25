@@ -6,6 +6,7 @@ class SparkleFormation
     class << self
 
       include SparkleFormation::Utils::AnimalStrings
+      # @!parse include SparkleFormation::Utils::AnimalStrings
 
       # Register an AWS resource
       #

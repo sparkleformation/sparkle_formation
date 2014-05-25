@@ -24,7 +24,9 @@ SparkleFormation::SparkleStruct.camel_keys = true
 class SparkleFormation
 
   include SparkleFormation::Utils::AnimalStrings
+  # @!parse include SparkleFormation::Utils::AnimalStrings
   extend SparkleFormation::Utils::AnimalStrings
+  # @!parse extend SparkleFormation::Utils::AnimalStrings
 
   class << self
 
