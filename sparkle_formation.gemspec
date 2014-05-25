@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.description = 'Cloud Formation builder'
   s.license = 'Apache-2.0'
   s.require_path = 'lib'
-  s.add_dependency 'attribute_struct', '~> 0.1.8'
+  s.add_dependency 'attribute_struct', '~> 0.2.0'
   s.add_dependency 'multi_json'
   s.files = Dir['**/*']
 end
