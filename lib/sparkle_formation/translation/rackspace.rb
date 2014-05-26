@@ -16,6 +16,10 @@ class SparkleFormation
         end
       end
 
+      RACKSPACE_ASG_SRV_MAP = {
+        'imageRef' => 'image',
+        'flavorRef' => 'flavor'
+      }
       # Finalizer for the rackspace autoscaling group resource.
       # Extracts metadata and maps into customized personality to
       # provide bootstraping some what similar to heat bootstrap.
@@ -35,10 +39,10 @@ class SparkleFormation
             translated = resource_translation(launch_config_name, config_resource)
             config['args'] = {}.tap do |lnch_args|
               lnch_args['server'] = {}.tap do |srv|
-                # TODO: ADD HASH MAPPING
                 srv['name'] = launch_config_name
-                srv['imageRef'] = translated['Properties']['image']
-                srv['flavorRef'] = translated['Properties']['flavor']
+                RACKSPACE_ASG_SRV_MAP.each do |k, v|
+                  srv[k] = translated['Properties'][v]
+                end
                 srv['personality'] = build_personality(config_resource)
               end
             end
@@ -70,6 +74,7 @@ class SparkleFormation
       #
       # @param resource [Hash]
       # @return [Hash] personality hash
+      # @todo update chunking to use join!
       def build_personality(resource)
         require 'base64'
         init = resource['Metadata']['AWS::CloudFormation::Init']
