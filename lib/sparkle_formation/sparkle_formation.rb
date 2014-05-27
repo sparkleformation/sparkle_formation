@@ -191,6 +191,9 @@ class SparkleFormation
       result = false
       if(@dynamics && @dynamics[dynamic_name])
         struct.instance_exec(*args, &@dynamics[dynamic_name][:block])
+        if(block_given?)
+          struct.instance_exec(&block)
+        end
         result = struct
       else
         result = builtin_insert(dynamic_name, struct, *args, &block)
