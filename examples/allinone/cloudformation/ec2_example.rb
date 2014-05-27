@@ -1,5 +1,5 @@
 SparkleFormation.new('ec2_example') do
-  description "AWS CloudFormation Sample Template EC2InstanceSample: Create an Amazon EC2 instance running the Amazon Linux AMI. The AMI is chosen based on the region in which the stack is run. This example uses the default security group, so to SSH to the new instance using the KeyPair you enter, you will need to have port 22 open in your default security group. **WARNING** This template an Amazon EC2 instances. You will be billed for the AWS resources used if you create a stack from this template."
+  description "AWS CloudFormation Sample Template EC2InstanceSample..."
 
   parameters do
     key_name do
