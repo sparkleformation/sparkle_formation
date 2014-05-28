@@ -119,12 +119,13 @@ class SparkleFormation
 
     # Fn::Select generator
     #
-    # @param index [String, Symbol] String will pass through. Symbol will be converted to ref
-    # @param item [Object]
+    # @param index [String, Symbol, Integer] Symbol will be converted to ref
+    # @param item [Object, Symbol] Symbol will be converted to ref
     # @return [Hash]
     def _cf_select(index, item)
+      index = index.is_a?(Symbol) ? _cf_ref(index) : index
       item = _cf_ref(item) if item.is_a?(Symbol)
-      {'Fn::Select' => [index.to_i.to_s, item]}
+      {'Fn::Select' => [index, item]}
     end
     alias_method :select!, :_cf_select
 
