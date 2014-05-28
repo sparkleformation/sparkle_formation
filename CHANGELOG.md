@@ -1,3 +1,13 @@
+## v0.2.0
+* Add Registry helper into Utils
+* Add script for collecting cfn and hot resources
+* Provide builtin dynamics
+* Add helpers for registry and dynamic insertions
+* Let dynamics provide metadata about themselves
+* Start translation implementation
+* Include bang helper method aliases
+* Add hash dumping and JSON dumping helpers to formation instance
+
 ## v0.1.4
 * Allow compile to return raw object instead of hash dump
 
