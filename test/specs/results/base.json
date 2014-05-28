@@ -1,0 +1,43 @@
+{
+  "Parameters": {
+    "KeyName": {
+      "Description": "Name of an existing EC2 KeyPair to enable SSH access to the instance",
+      "Type": "String"
+    }
+  },
+  "Mappings": {
+    "RegionMap": {
+      "Us-east-1": {
+        "Ami": "ami-7f418316"
+      },
+      "Us-west-1": {
+        "Ami": "ami-951945d0"
+      },
+      "Us-west-2": {
+        "Ami": "ami-16fd7026"
+      },
+      "Eu-west-1": {
+        "Ami": "ami-24506250"
+      },
+      "Sa-east-1": {
+        "Ami": "ami-3e3be423"
+      },
+      "Ap-southeast-1": {
+        "Ami": "ami-74dda626"
+      },
+      "Ap-northeast-1": {
+        "Ami": "ami-dcfa4edd"
+      }
+    }
+  },
+  "Resources": {
+    "MyEc2Instance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "KeyName": {
+          "Ref": "KeyName"
+        }
+      }
+    }
+  }
+}

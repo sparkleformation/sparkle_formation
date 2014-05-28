@@ -1,0 +1,27 @@
+{
+  "Mappings": {
+    "RegionMap": {
+      "Us-east-1": {
+        "Ami": "ami-7f418316"
+      },
+      "Us-west-1": {
+        "Ami": "ami-951945d0"
+      },
+      "Us-west-2": {
+        "Ami": "ami-16fd7026"
+      },
+      "Eu-west-1": {
+        "Ami": "ami-24506250"
+      },
+      "Sa-east-1": {
+        "Ami": "ami-3e3be423"
+      },
+      "Ap-southeast-1": {
+        "Ami": "ami-74dda626"
+      },
+      "Ap-northeast-1": {
+        "Ami": "ami-dcfa4edd"
+      }
+    }
+  }
+}
