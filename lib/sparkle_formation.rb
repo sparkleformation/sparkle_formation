@@ -16,6 +16,7 @@
 # limitations under the License.
 #
 
+require 'multi_json'
 require 'attribute_struct'
 
 class SparkleFormation
