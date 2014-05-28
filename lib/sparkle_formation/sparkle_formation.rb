@@ -190,9 +190,9 @@ class SparkleFormation
     def insert(dynamic_name, struct, *args, &block)
       result = false
       if(@dynamics && @dynamics[dynamic_name])
-        struct.instance_exec(*args, &@dynamics[dynamic_name][:block])
+        result = struct.instance_exec(*args, &@dynamics[dynamic_name][:block])
         if(block_given?)
-          struct.instance_exec(&block)
+          result.instance_exec(&block)
         end
         result = struct
       else
@@ -355,6 +355,16 @@ class SparkleFormation
       self.class.build(compiled, &override[:block])
     end
     compiled
+  end
+
+  # @return [Hash] dumped hash
+  def dump
+    MultiJson.load(self.to_json)
+  end
+
+  # @return [String] dumped hash JSON
+  def to_json
+    MultiJson.dump(compile.dump!)
   end
 
 end
