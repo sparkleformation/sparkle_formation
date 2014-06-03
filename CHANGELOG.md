@@ -1,3 +1,6 @@
+## v0.1.6
+* Final release cut prior to refactor
+
 ## v0.1.4
 * Allow compile to return raw object instead of hash dump
 
