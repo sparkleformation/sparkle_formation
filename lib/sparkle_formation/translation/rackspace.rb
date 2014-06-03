@@ -15,7 +15,7 @@ class SparkleFormation
           props['LaunchConfigurationName'] = :delete
         end
       end
-      MAP[:resources]['AWS::EC2::Subnet'].tap do |subnet|
+      MAP[:resources]['AWS::EC2::Subnet'] = {}.tap do |subnet|
         subnet[:name] = 'Rackspace::Cloud::Network'
         subnet[:finalizer] = :rackspace_subnet_finalizer
         subnet[:properties] = {
