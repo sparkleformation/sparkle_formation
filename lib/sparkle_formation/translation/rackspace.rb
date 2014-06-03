@@ -15,11 +15,20 @@ class SparkleFormation
           props['LaunchConfigurationName'] = :delete
         end
       end
+      MAP[:resources]['AWS::EC2::Subnet'].tap do |subnet|
+        subnet[:name] = 'Rackspace::Cloud::Network'
+        subnet[:finalizer] = :rackspace_subnet_finalizer
+        subnet[:properties] = {
+          'CidrBlock' => 'cidr'
+        }
+      end
 
+      # Attribute map for autoscaling group server properties
       RACKSPACE_ASG_SRV_MAP = {
         'imageRef' => 'image',
         'flavorRef' => 'flavor'
       }
+
       # Finalizer for the rackspace autoscaling group resource.
       # Extracts metadata and maps into customized personality to
       # provide bootstraping some what similar to heat bootstrap.
@@ -49,6 +58,17 @@ class SparkleFormation
             config['type'] = 'launch_server'
           end
         end
+      end
+
+      # Finalizer for the rackspace network resource. Uses
+      # resource name as label identifier.
+      #
+      # @param resource_name [String]
+      # @param new_resource [Hash]
+      # @param old_resource [Hash]
+      # @return [Object]
+      def rackspace_subnet_finalizer(resource_name, new_resource, old_resource)
+        new_resource['Properties']['label'] = resource_name
       end
 
       # Custom mapping for server user data. Removes data formatting
