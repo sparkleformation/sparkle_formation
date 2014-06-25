@@ -171,6 +171,19 @@ class SparkleFormation
       result
     end
 
+    # Provide name of resource
+    #
+    # @param obj [Object]
+    # @return [String] name
+    def resource_name(obj)
+      case obj
+      when Hash
+        obj['Ref']
+      else
+        obj.to_s
+      end
+    end
+
     # Process object through dereferencer. This will dereference names
     # and apply functions if possible.
     #
