@@ -42,7 +42,7 @@ class SparkleFormation
           properties['groupConfiguration'] = new_resource['Properties'].merge('name' => resource_name)
 
           properties['launchConfiguration'] = {}.tap do |config|
-            launch_config_name = dereference(old_resource['Properties']['LaunchConfigurationName'])
+            launch_config_name = resource_name(old_resource['Properties']['LaunchConfigurationName'])
             config_resource = original['Resources'][launch_config_name]
             config_resource['Type'] = 'AWS::EC2::Instance'
             translated = resource_translation(launch_config_name, config_resource)
@@ -100,6 +100,61 @@ class SparkleFormation
         init = resource['Metadata']['AWS::CloudFormation::Init']
         init = dereference_processor(init)
         content = MultiJson.dump('AWS::CloudFormation::Init' => init)
+        # Break out our content to extract items required during stack
+        # execution
+        result = content.scan(/(?=(\{\s*"(Ref|Fn::[A-Za-z]+)"((?:[^{}]++|\{\g<3>\})++)\}))/).map(&:first)
+        objects = result.map do |i|
+          i.strip.split(/\n(?=(?:[^"]*"[^"]*")*[^"]*\Z)/).join.gsub("\n", "\\n")
+        end.map do |string|
+          MultiJson.load(string)
+        end
+        new_content = content.dup
+        result_set = []
+        result.each_with_index do |str, i|
+          result_set << new_content.slice!(0, new_content.index(str))
+          result_set << objects[i]
+          new_content.slice!(0, str.size)
+        end
+        result_set << new_content unless new_content.empty?
+        require 'pry'
+        binding.pry
+        leftovers = ''
+
+        parts = {}.tap do |files|
+          count = 0
+          (content.size.to_f / CHUNK_SIZE).ceil.times do
+            file_content = []
+            unless(leftovers.empty?)
+              file_content << leftovers
+              leftovers = ''
+            end
+            item = nil
+            until(file_content.find_all{|o|o.is_a?(String)}.map(&:size).inject(&:+).to_i >= CHUNK_SIZE || result_set.empty?)
+              item = result_set.shift
+              case item
+              when String
+                file_content << item.slice!(0, CHUNK_SIZE)
+              else
+                file_content << item
+              end
+            end
+            leftovers = item if item.is_a?(String) && !item.empty?
+            unless(file_content.empty?)
+              if(file_content.all?{|o|o.is_a?(String)})
+                files["/etc/sprkl/#{count}.cfg"] = Base64.urlsafe_encode64(file_content.join)
+              else
+                files["/etc/sprkl/#{count}.cfg"] = {
+                  "Fn::Join" => [
+                    "",
+                    file_content.map{|x| {"Fn::Base64" => x}}
+                  ]
+                }
+              end
+              count += 1
+            end
+          end
+        end
+=begin
         parts = {}.tap do |files|
           (content.length.to_f / CHUNK_SIZE).ceil.times.map do |i|
             files["/etc/sprkl/#{i}.cfg"] = Base64.urlsafe_encode64(
@@ -107,6 +162,7 @@ class SparkleFormation
             )
           end
         end
+=end
         parts['/etc/cloud/cloud.cfg.d/99_s.cfg'] = Base64.urlsafe_encode64(RUNNER)
         parts
       end
