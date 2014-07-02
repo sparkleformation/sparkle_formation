@@ -116,8 +116,6 @@ class SparkleFormation
           new_content.slice!(0, str.size)
         end
         result_set << new_content unless new_content.empty?
-        require 'pry'
-        binding.pry
         leftovers = ''
 
         parts = {}.tap do |files|
@@ -144,10 +142,12 @@ class SparkleFormation
                 files["/etc/sprkl/#{count}.cfg"] = Base64.urlsafe_encode64(file_content.join)
               else
                 files["/etc/sprkl/#{count}.cfg"] = {
-                  "Fn::Join" => [
-                    "",
-                    file_content.map{|x| {"Fn::Base64" => x}}
-                  ]
+                  "Fn::Base64" => {
+                    "Fn::Join" => [
+                      "",
+                      file_content
+                    ]
+                  }
                 }
               end
               count += 1
