@@ -88,7 +88,7 @@ class SparkleFormation
       end
 
       # Max chunk size for server personality files
-      CHUNK_SIZE = 400
+      CHUNK_SIZE = 200
 
       # Build server personality structure
       #
@@ -96,7 +96,6 @@ class SparkleFormation
       # @return [Hash] personality hash
       # @todo update chunking to use join!
       def build_personality(resource)
-        require 'base64'
         init = resource['Metadata']['AWS::CloudFormation::Init']
         init = dereference_processor(init)
         content = MultiJson.dump('AWS::CloudFormation::Init' => init)
@@ -139,13 +138,20 @@ class SparkleFormation
             leftovers = item if item.is_a?(String) && !item.empty?
             unless(file_content.empty?)
               if(file_content.all?{|o|o.is_a?(String)})
-                files["/etc/sprkl/#{count}.cfg"] = Base64.urlsafe_encode64(file_content.join)
+                files["/etc/sprkl/#{count}.cfg"] = file_content.join
               else
+                file_content.map! do |cont|
+                  if(cont.is_a?(Hash))
+                    ["\"", cont, "\""]
+                  else
+                    cont
+                  end
+                end
                 files["/etc/sprkl/#{count}.cfg"] = {
                   "Fn::Base64" => {
                     "Fn::Join" => [
                       "",
-                      file_content
+                      file_content.flatten
                     ]
                   }
                 }
@@ -154,16 +160,7 @@ class SparkleFormation
             end
           end
         end
-=begin
-        parts = {}.tap do |files|
-          (content.length.to_f / CHUNK_SIZE).ceil.times.map do |i|
-            files["/etc/sprkl/#{i}.cfg"] = Base64.urlsafe_encode64(
-              content.slice(CHUNK_SIZE * i, CHUNK_SIZE)
-            )
-          end
-        end
-=end
-        parts['/etc/cloud/cloud.cfg.d/99_s.cfg'] = Base64.urlsafe_encode64(RUNNER)
+        parts['/etc/cloud/cloud.cfg.d/99_s.cfg'] = RUNNER
         parts
       end
 
