@@ -26,7 +26,8 @@ class SparkleFormation
       # Attribute map for autoscaling group server properties
       RACKSPACE_ASG_SRV_MAP = {
         'imageRef' => 'image',
-        'flavorRef' => 'flavor'
+        'flavorRef' => 'flavor',
+        'networks' => 'networks'
       }
 
       # Finalizer for the rackspace autoscaling group resource.
@@ -88,7 +89,7 @@ class SparkleFormation
       end
 
       # Max chunk size for server personality files
-      CHUNK_SIZE = 200
+      CHUNK_SIZE = 150
 
       # Build server personality structure
       #
@@ -97,7 +98,6 @@ class SparkleFormation
       # @todo update chunking to use join!
       def build_personality(resource)
         init = resource['Metadata']['AWS::CloudFormation::Init']
-        init = dereference_processor(init)
         content = MultiJson.dump('AWS::CloudFormation::Init' => init)
         # Break out our content to extract items required during stack
         # execution
@@ -110,7 +110,7 @@ class SparkleFormation
         new_content = content.dup
         result_set = []
         result.each_with_index do |str, i|
-          result_set << new_content.slice!(0, new_content.index(str))
+          result_set << new_content.slice!(0, new_content.index(str).to_i)
           result_set << objects[i]
           new_content.slice!(0, str.size)
         end
