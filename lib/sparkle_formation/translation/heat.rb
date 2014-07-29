@@ -53,11 +53,11 @@ class SparkleFormation
                     args['source'].replace("\"#{args['source']}\"")
                   else
                     args['source'] = {
-                      'Fn::Join', [
+                      'Fn::Join' => [
                         "",
                         "\"",
-                        args['source']
-                        "\"",
+                        args['source'],
+                        "\""
                       ]
                     }
                   end
