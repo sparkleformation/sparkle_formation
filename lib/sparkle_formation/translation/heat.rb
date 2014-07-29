@@ -49,7 +49,18 @@ class SparkleFormation
             if(files = config['files'])
               files.each do |key, args|
                 if(args['source'])
-                  args['source'].replace("\"#{args['source']}\"")
+                  if(args['source'].is_a?(String))
+                    args['source'].replace("\"#{args['source']}\"")
+                  else
+                    args['source'] = {
+                      'Fn::Join', [
+                        "",
+                        "\"",
+                        args['source']
+                        "\"",
+                      ]
+                    }
+                  end
                 end
               end
             end
