@@ -54,10 +54,11 @@ class SparkleFormation
                   else
                     args['source'] = {
                       'Fn::Join' => [
-                        "",
-                        "\"",
-                        args['source'],
-                        "\""
+                        "", [
+                          "\"",
+                          args['source'],
+                          "\""
+                        ]
                       ]
                     }
                   end
