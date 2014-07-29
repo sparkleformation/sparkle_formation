@@ -101,10 +101,22 @@ class SparkleFormation
         content = MultiJson.dump('AWS::CloudFormation::Init' => init)
         # Break out our content to extract items required during stack
         # execution
-        result = content.scan(/(?=(\{\s*"(Ref|Fn::[A-Za-z]+)"((?:[^{}]++|\{\g<3>\})++)\}))/).map(&:first)
-        objects = result.map do |i|
-          i.strip.split(/\n(?=(?:[^"]*"[^"]*")*[^"]*\Z)/).join.gsub('\n', '\\\\\n')
-        end.map do |string|
+        raw_result = content.scan(/(?=(\{\s*"(Ref|Fn::[A-Za-z]+)"((?:[^{}]++|\{\g<3>\})++)\}))/).map(&:first)
+        result = [].tap do |filtered|
+          until(raw_result.empty?)
+            item = raw_result.shift
+            filtered.push(item)
+            check_item = nil
+            until(raw_result.empty? || !item.include?(check_item = raw_result.shift))
+              check_item = nil
+            end
+            if(check_item && !item.include?(check_item))
+              raw_result.unshift(check_item)
+            end
+          end
+        end
+        objects = result.map do |string|
+          string.strip.split(/\n(?=(?:[^"]*"[^"]*")*[^"]*\Z)/).join.gsub('\n', '\\\\\n')
           MultiJson.load(string)
         end
         new_content = content.dup
@@ -115,6 +127,8 @@ class SparkleFormation
             result_set << new_content.slice!(0, cut_index)
             result_set << objects[i]
             new_content.slice!(0, str.size)
+          else
+            $stderr.puts "Failed to mach: #{str}"
           end
         end
 
