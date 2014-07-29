@@ -89,7 +89,7 @@ class SparkleFormation
       end
 
       # Max chunk size for server personality files
-      CHUNK_SIZE = 150
+      CHUNK_SIZE = 200
 
       # Build server personality structure
       #
@@ -103,17 +103,21 @@ class SparkleFormation
         # execution
         result = content.scan(/(?=(\{\s*"(Ref|Fn::[A-Za-z]+)"((?:[^{}]++|\{\g<3>\})++)\}))/).map(&:first)
         objects = result.map do |i|
-          i.strip.split(/\n(?=(?:[^"]*"[^"]*")*[^"]*\Z)/).join.gsub("\n", "\\n")
+          i.strip.split(/\n(?=(?:[^"]*"[^"]*")*[^"]*\Z)/).join.gsub('\n', '\\\\\n')
         end.map do |string|
           MultiJson.load(string)
         end
         new_content = content.dup
         result_set = []
         result.each_with_index do |str, i|
-          result_set << new_content.slice!(0, new_content.index(str).to_i)
-          result_set << objects[i]
-          new_content.slice!(0, str.size)
+          cut_index = new_content.index(str)
+          if(cut_index)
+            result_set << new_content.slice!(0, cut_index)
+            result_set << objects[i]
+            new_content.slice!(0, str.size)
+          end
         end
+
         result_set << new_content unless new_content.empty?
         leftovers = ''
 
