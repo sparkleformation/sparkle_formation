@@ -55,9 +55,9 @@ class SparkleFormation
                     args['source'] = {
                       'Fn::Join' => [
                         "", [
-                          "\\\"",
+                          "\"",
                           args['source'],
-                          "\\\""
+                          "\""
                         ]
                       ]
                     }

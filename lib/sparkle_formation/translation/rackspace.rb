@@ -116,11 +116,15 @@ class SparkleFormation
           end
         end
         objects = result.map do |string|
-          MultiJson.load(
-            string.strip.split(
-              /\n(?=(?:[^"]*"[^"]*")*[^"]*\Z)/
-            ).join.gsub('\n', '\\\\\n')
-          )
+          # Format for load and make newlines happy
+          string = string.strip.split(
+            /\n(?=(?:[^"]*"[^"]*")*[^"]*\Z)/
+          ).join.gsub('\n', '\\\\\n')
+          # Check for nested join and fix quotes
+          if(string.match(/^[^A-Za-z]+Fn::Join/))
+            string!.gsub("\\\"", "\\\\\\\\\\\"")
+          end
+          MultiJson.load(string)
         end
         new_content = content.dup
         result_set = []
