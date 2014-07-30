@@ -122,7 +122,7 @@ class SparkleFormation
           ).join.gsub('\n', '\\\\\n')
           # Check for nested join and fix quotes
           if(string.match(/^[^A-Za-z]+Fn::Join/))
-            string!.gsub("\\\"", "\\\\\\\\\\\"")
+            string.gsub!("\\\"", "\\\\\\\\\\\"")
           end
           MultiJson.load(string)
         end
