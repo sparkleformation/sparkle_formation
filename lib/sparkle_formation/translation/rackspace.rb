@@ -3,9 +3,25 @@ class SparkleFormation
     # Translation for Rackspace
     class Rackspace < Heat
 
+      # Custom mapping for network interfaces
+      #
+      # @param value [Object] original property value
+      # @param args [Hash]
+      # @option args [Hash] :new_resource
+      # @option args [Hash] :new_properties
+      # @option args [Hash] :original_resource
+      # @return [Array<String, Object>] name and new value
+      def rackspace_server_network_interfaces_mapping(value, args={})
+        networks = [value].flatten.map do |item|
+          {:uuid => item['NetworkInterfaceId']}
+        end
+        ['networks', networks]
+      end
+
       # Rackspace translation mapping
       MAP = Heat::MAP
       MAP[:resources]['AWS::EC2::Instance'][:name] = 'Rackspace::Cloud::Server'
+      MAP[:resources]['AWS::EC2::Instance'][:properties]['NetworkInterfaces'] = :rackspace_server_network_interfaces_mapping
       MAP[:resources]['AWS::AutoScaling::AutoScalingGroup'].tap do |asg|
         asg[:name] = 'Rackspace::AutoScale::Group'
         asg[:finalizer] = :rackspace_asg_finalizer
