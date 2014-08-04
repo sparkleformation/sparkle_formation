@@ -22,6 +22,8 @@ class SparkleFormation
     attr_reader :logger
     # @return [Hash] parameters for template
     attr_reader :parameters
+    # @return [Hash] extra options (generally used by translation implementations)
+    attr_reader :options
 
     # Create new instance
     #
@@ -29,12 +31,14 @@ class SparkleFormation
     # @param args [Hash]
     # @option args [Logger] :logger custom logger
     # @option args [Hash] :parameters parameters for stack creation
+    # @option args [Hash] :options options for translation
     def initialize(template_hash, args={})
       @original = template_hash.dup
       @template = MultiJson.load(MultiJson.dump(template_hash)) ## LOL: Lazy deep dup
       @translated = {}
       @logger = args.fetch(:logger, Logger.new($stdout))
       @parameters = args.fetch(:parameters, {})
+      @options = args.fetch(:options, {})
     end
 
     # @return [Hash] resource mapping
