@@ -105,7 +105,7 @@ class SparkleFormation
       end
 
       # Max chunk size for server personality files
-      CHUNK_SIZE = 200
+      DEFAULT_CHUNK_SIZE = 350
 
       # Build server personality structure
       #
@@ -113,6 +113,10 @@ class SparkleFormation
       # @return [Hash] personality hash
       # @todo update chunking to use join!
       def build_personality(resource)
+        chunk_size = options.fetch(
+          :serialization_chunk_size,
+          DEFAULT_CHUNK_SIZE
+        ).to_i
         init = resource['Metadata']['AWS::CloudFormation::Init']
         content = MultiJson.dump('AWS::CloudFormation::Init' => init)
         # Break out our content to extract items required during stack
@@ -138,7 +142,7 @@ class SparkleFormation
           ).join.gsub('\n', '\\\\\n')
           # Check for nested join and fix quotes
           if(string.match(/^[^A-Za-z]+Fn::Join/))
-            string.gsub!("\\\"", "\\\\\\\\\\\"")
+            string.gsub!("\\\"", "\\\\\\\\\\\"") # HAHAHA ohai thar hairy yak!
           end
           MultiJson.load(string)
         end
@@ -160,18 +164,20 @@ class SparkleFormation
 
         parts = {}.tap do |files|
           count = 0
-          (content.size.to_f / CHUNK_SIZE).ceil.times do
+          (content.size.to_f / chunk_size).ceil.times do
             file_content = []
             unless(leftovers.empty?)
               file_content << leftovers
               leftovers = ''
             end
             item = nil
-            until(file_content.find_all{|o|o.is_a?(String)}.map(&:size).inject(&:+).to_i >= CHUNK_SIZE || result_set.empty?)
+            # @todo need better way to determine length of objects since
+            #   function structures can severely bloat actual length
+            until(file_content.map(&:to_s).map(&:size).inject(&:+).to_i >= chunk_size || result_set.empty?)
               item = result_set.shift
               case item
               when String
-                file_content << item.slice!(0, CHUNK_SIZE)
+                file_content << item.slice!(0, chunk_size)
               else
                 file_content << item
               end
