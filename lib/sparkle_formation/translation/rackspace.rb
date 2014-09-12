@@ -3,6 +3,48 @@ class SparkleFormation
     # Translation for Rackspace
     class Rackspace < Heat
 
+      # translation override to provide HOT format
+      # @todo still needs replacements of functions and pseudo-params
+      def translate!
+        super
+        cache = MultiJson.load(MultiJson.dump(translated))
+        # top level
+        cache.each do |k,v|
+          translated.delete(k)
+          translated[snake(k).to_s] = v
+        end
+        # params
+        cache.fetch('Parameters', {}).each do |k,v|
+          translated['parameters'][k] = Hash[
+            v.map do |key, value|
+              if(key == 'Type')
+                [snake(key).to_s, value.downcase]
+              else
+                [snake(key).to_s, value]
+              end
+            end
+          ]
+        end
+        # resources
+        cache.fetch('Resources', {}).each do |r_name, r_value|
+          translated['resources'][r_name] = Hash[
+            r_value.map do |k,v|
+              [snake(k).to_s, v]
+            end
+          ]
+        end
+        # outputs
+        cache.fetch('Outputs', {}).each do |o_name, o_value|
+          translated['outputs'][o_name] = Hash[
+            o_value.map do |k,v|
+              [snake(k).to_s, v]
+            end
+          ]
+        end
+        translated.delete('awstemplate_format_version')
+        translated['heat_template_version'] = '2013-05-23'
+      end
+
       # Custom mapping for network interfaces
       #
       # @param value [Object] original property value
@@ -69,18 +111,22 @@ class SparkleFormation
       #
       # @todo make virtualIp creation allow servnet/multiple?
       def rackspace_lb_finalizer(resource_name, new_resource, old_resource)
-        listeners = new_resource['Properties'].delete('listeners')
-        source_listener = listeners.pop
+        listeners = new_resource['Properties'].delete('listeners') || []
+        source_listener = listeners.shift
         new_resource['Properties']['port'] = source_listener['LoadBalancerPort']
         new_resource['Properties']['protocol'] = source_listener['Protocol']
         new_resource['Properties']['virtualIps'] = ['type' => 'PUBLIC', 'ipVersion' => 'IPV4']
+        new_resource['Properties']['nodes'] = [] unless new_resource['Properties']['nodes']
         health_check = new_resource['Properties'].delete('health_check')
+        health_check = nil
         if(health_check)
           new_resource['Properties']['healthCheck'] = {}.tap do |check|
             check['timeout'] = health_check['Timeout']
             check['attemptsBeforeDeactivation'] = health_check['UnhealthyThreshold']
             check['delay'] = health_check['Interval']
-            check_type, check_args = health_check['Target'].split(':')
+            check_target = dereference_processor(health_check['Target'])
+            check_args = check_target.split(':')
+            check_type = check_args.shift
             if(check_type == 'HTTP' || check_type == 'HTTPS')
               check['type'] = check_type
               check['path'] = check_args.last
@@ -90,19 +136,24 @@ class SparkleFormation
           end
         end
         unless(listeners.empty?)
-          listeners.each do |listener|
+          listeners.each_with_index do |listener, idx|
             port = listener['LoadBalancerPort']
             proto = listener['Protocol']
-            vip_name = "#{resource_name}Vip#{proto}#{port}"
+            vip_name = "#{resource_name}Vip#{idx}"
             vip_resource = MultiJson.load(MultiJson.dump(new_resource))
             vip_resource['Properties']['name'] = vip_name
             vip_resource['Properties']['protocol'] = proto
             vip_resource['Properties']['port'] = port
-            vip_resource['Properties']['virtualIps'] = {
-              'Fn::GetAtt' => [
-                resource_name, 'virtualIps', 0, id
-              ]
-            }
+            vip_resource['Properties']['virtualIps'] = [
+              'id' => {
+                'get_attr' => [
+                  resource_name,
+                  'virtualIps',
+                  0,
+                  'id'
+                ]
+              }
+            ]
             translated['Resources'][vip_name] = vip_resource
           end
         end
