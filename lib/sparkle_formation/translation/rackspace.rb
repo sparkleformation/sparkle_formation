@@ -18,6 +18,53 @@ class SparkleFormation
         ['networks', networks]
       end
 
+      # Translate override to provide finalization of resources
+      #
+      # @return [TrueClass]
+      def translate!
+        super
+        complete_launch_config_lb_setups
+        true
+      end
+
+      # Update any launch configuration which define load balancers to
+      # ensure they are attached to the correct resources when
+      # multiple listeners (ports) have been defined resulting in
+      # multiple isolated LB resources
+      def complete_launch_config_lb_setups
+        translated['resources'].find_all do |resource_name, resource|
+          resource['type'] == 'Rackspace::AutoScale::Group'
+        end.each do |name, value|
+          if(lbs = value['properties'].delete('load_balancers'))
+            lbs.each do |lb_ref|
+              lb_name = resource_name(lb_ref)
+              lb_resource = translated['resources'][lb_name]
+              puts "LBN: #{lb_name.inspect}"
+              puts "REC: #{lb_resource.inspect}"
+              p translated['resources'].keys
+              vip_resources = translated['resources'].find_all do |k, v|
+                k.match(/#{lb_name}Vip\d+/) && v['type'] == 'Rackspace::Cloud::LoadBalancer'
+              end
+              value['properties']['launchConfiguration']['args'].tap do |lnch_config|
+                lnch_config['loadBalancers'] = [
+                  'loadBalancerId' => lb_ref,
+                  'port' => lb_resource['properties']['port']
+                ]
+                vip_resources.each do |vip_name, vip_resource|
+                  lnch_config['loadBalancers'].push(
+                    'loadBalancerId' => {
+                      'Ref' => vip_name
+                    },
+                    'port' => vip_resource['properties']['port']
+                  )
+                end
+              end
+            end
+          end
+        end
+        true
+      end
+
       # Rackspace translation mapping
       MAP = Heat::MAP
       MAP[:resources]['AWS::EC2::Instance'][:name] = 'Rackspace::Cloud::Server'
@@ -28,6 +75,7 @@ class SparkleFormation
         asg[:properties].tap do |props|
           props['MaxSize'] = 'maxEntities'
           props['MinSize'] = 'minEntities'
+          props['LoadBalancerNames'] = 'load_balancers'
           props['LaunchConfigurationName'] = :delete
         end
       end
@@ -127,8 +175,10 @@ class SparkleFormation
       # @return [Object]
       def rackspace_asg_finalizer(resource_name, new_resource, old_resource)
         new_resource['Properties'] = {}.tap do |properties|
+          if(new_resource['Properties']['load_balancers'])
+            properties['load_balancers'] = new_resource['Properties']['load_balancers']
+          end
           properties['groupConfiguration'] = new_resource['Properties'].merge('name' => resource_name)
-
           properties['launchConfiguration'] = {}.tap do |config|
             launch_config_name = resource_name(old_resource['Properties']['LaunchConfigurationName'])
             config_resource = original['Resources'][launch_config_name]
