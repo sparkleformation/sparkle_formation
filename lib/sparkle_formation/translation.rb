@@ -42,10 +42,15 @@ class SparkleFormation
     # @return [Hash] parameters for template
     def parameters
       Hash[
-        @original['Parameters'].map do |k,v|
+        @original.fetch('Parameters', {}).map do |k,v|
           [k, v.fetch('Default', '')]
         end
       ].merge(@parameters)
+    end
+
+    # @return [Hash]
+    def mappings
+      @original.fetch('Mappings', {})
     end
 
     # @return [Hash] resource mapping
@@ -200,17 +205,17 @@ class SparkleFormation
     #
     # @param obj [Object]
     # @return [Object]
-    def dereference_processor(obj)
+    def dereference_processor(obj, funcs=[])
       obj = dereference(obj)
       case obj
       when Array
-        obj = obj.map{|v| dereference_processor(v)}
+        obj = obj.map{|v| dereference_processor(v, funcs)}
       when Hash
         new_hash = {}
         obj.each do |k,v|
-          new_hash[k] = dereference_processor(v)
+          new_hash[k] = dereference_processor(v, funcs)
         end
-        obj = apply_function(new_hash)
+        obj = apply_function(new_hash, funcs)
       end
       obj
     end
@@ -218,13 +223,20 @@ class SparkleFormation
     # Apply function if possible
     #
     # @param hash [Hash]
+    # @param funcs [Array] allowed functions
     # @return [Hash]
-    def apply_function(hash)
-      if(hash.size == 1 && hash.keys.first.start_with?('Fn'))
-        k,v = hash.first
+    # @note also allows 'Ref' within funcs to provide mapping
+    #   replacements using the REF_MAPPING constant
+    def apply_function(hash, funcs=[])
+      k,v = hash.first
+      if(hash.size == 1 && (k.start_with?('Fn') || k == 'Ref') && (funcs.empty? || funcs.include?(k)))
         case k
         when 'Fn::Join'
           v.last.join(v.first)
+        when 'Fn::FindInMap'
+          mappings[v[0]][dereference(v[1])][v[2]]
+        when 'Ref'
+          {'Ref' => self.class.const_get(:REF_MAPPING).fetch(v, v)}
         else
           hash
         end
@@ -232,6 +244,9 @@ class SparkleFormation
         hash
       end
     end
+
+    # @return [Hash] mapping for pseudo-parameters
+    REF_MAPPING = {}
 
   end
 end

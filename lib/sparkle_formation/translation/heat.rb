@@ -22,6 +22,9 @@ class SparkleFormation
             v.map do |key, value|
               if(key == 'Type')
                 [snake(key).to_s, value.downcase]
+              elsif(key == 'AllowedValues')
+                # @todo fix this up to properly build constraints
+                ['constraints', [{'allowed_values' => value}]]
               else
                 [snake(key).to_s, value]
               end
@@ -46,6 +49,11 @@ class SparkleFormation
         end
         translated.delete('awstemplate_format_version')
         translated['heat_template_version'] = '2013-05-23'
+        # no HOT support for mappings, so remove and clean pseudo
+        # params in refs
+        translated['resources'] = dereference_processor(translated['resources'], ['Fn::FindInMap', 'Ref'])
+        translated['outputs'] = dereference_processor(translated['outputs'], ['Fn::FindInMap', 'Ref'])
+        translated.delete('mappings')
         true
       end
 

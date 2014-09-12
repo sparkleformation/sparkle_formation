@@ -18,6 +18,12 @@ class SparkleFormation
         ['networks', networks]
       end
 
+      REF_MAPPING = {
+        'AWS::StackName' => 'OS::stack_name',
+        'AWS::StackId' => 'OS::stack_id',
+        'AWS::Region' => 'OS::region'
+      }
+
       # Translate override to provide finalization of resources
       #
       # @return [TrueClass]
@@ -39,9 +45,6 @@ class SparkleFormation
             lbs.each do |lb_ref|
               lb_name = resource_name(lb_ref)
               lb_resource = translated['resources'][lb_name]
-              puts "LBN: #{lb_name.inspect}"
-              puts "REC: #{lb_resource.inspect}"
-              p translated['resources'].keys
               vip_resources = translated['resources'].find_all do |k, v|
                 k.match(/#{lb_name}Vip\d+/) && v['type'] == 'Rackspace::Cloud::LoadBalancer'
               end
