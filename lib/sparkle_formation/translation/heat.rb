@@ -3,6 +3,52 @@ class SparkleFormation
     # Translation for Heat (HOT)
     class Heat < Translation
 
+      # Translate stack definition
+      #
+      # @return [TrueClass]
+      # @note this is an override to return in proper HOT format
+      # @todo still needs replacements of functions and pseudo-params
+      def translate!
+        super
+        cache = MultiJson.load(MultiJson.dump(translated))
+        # top level
+        cache.each do |k,v|
+          translated.delete(k)
+          translated[snake(k).to_s] = v
+        end
+        # params
+        cache.fetch('Parameters', {}).each do |k,v|
+          translated['parameters'][k] = Hash[
+            v.map do |key, value|
+              if(key == 'Type')
+                [snake(key).to_s, value.downcase]
+              else
+                [snake(key).to_s, value]
+              end
+            end
+          ]
+        end
+        # resources
+        cache.fetch('Resources', {}).each do |r_name, r_value|
+          translated['resources'][r_name] = Hash[
+            r_value.map do |k,v|
+              [snake(k).to_s, v]
+            end
+          ]
+        end
+        # outputs
+        cache.fetch('Outputs', {}).each do |o_name, o_value|
+          translated['outputs'][o_name] = Hash[
+            o_value.map do |k,v|
+              [snake(k).to_s, v]
+            end
+          ]
+        end
+        translated.delete('awstemplate_format_version')
+        translated['heat_template_version'] = '2013-05-23'
+        true
+      end
+
       # Custom mapping for block device
       #
       # @param value [Object] original property value
