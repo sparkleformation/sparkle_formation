@@ -38,6 +38,16 @@ class SparkleFormation
           'CidrBlock' => 'cidr'
         }
       end
+      MAP[:resources]['AWS::ElasticLoadBalancing::LoadBalancer'] = {
+        :name => 'Rackspace::Cloud::LoadBalancer',
+        :finalizer => :rackspace_lb_finalizer,
+        :properties => {
+          'LoadBalancerName' => 'name',
+          'Instances' => 'nodes',
+          'Listeners' => 'listeners',
+          'HealthCheck' => 'health_check'
+        }
+      }
 
       # Attribute map for autoscaling group server properties
       RACKSPACE_ASG_SRV_MAP = {
@@ -45,6 +55,58 @@ class SparkleFormation
         'flavorRef' => 'flavor',
         'networks' => 'networks'
       }
+
+      # Finalizer for the rackspace load balancer resource. This
+      # finalizer may generate new resources if the load balancer has
+      # multiple listeners defined (rackspace implementation defines
+      # multiple isolated resources sharing a common virtual IP)
+      #
+      #
+      # @param resource_name [String]
+      # @param new_resource [Hash]
+      # @param old_resource [Hash]
+      # @return [Object]
+      #
+      # @todo make virtualIp creation allow servnet/multiple?
+      def rackspace_lb_finalizer(resource_name, new_resource, old_resource)
+        listeners = new_resource['Properties'].delete('listeners')
+        source_listener = listeners.pop
+        new_resource['Properties']['port'] = source_listener['LoadBalancerPort']
+        new_resource['Properties']['protocol'] = source_listener['Protocol']
+        new_resource['Properties']['virtualIps'] = ['type' => 'PUBLIC', 'ipVersion' => 'IPV4']
+        health_check = new_resource['Properties'].delete('health_check')
+        if(health_check)
+          new_resource['Properties']['healthCheck'] = {}.tap do |check|
+            check['timeout'] = health_check['Timeout']
+            check['attemptsBeforeDeactivation'] = health_check['UnhealthyThreshold']
+            check['delay'] = health_check['Interval']
+            check_type, check_args = health_check['Target'].split(':')
+            if(check_type == 'HTTP' || check_type == 'HTTPS')
+              check['type'] = check_type
+              check['path'] = check_args.last
+            else
+              check['type'] = 'CONNECT'
+            end
+          end
+        end
+        unless(listeners.empty?)
+          listeners.each do |listener|
+            port = listener['LoadBalancerPort']
+            proto = listener['Protocol']
+            vip_name = "#{resource_name}Vip#{proto}#{port}"
+            vip_resource = MultiJson.load(MultiJson.dump(new_resource))
+            vip_resource['Properties']['name'] = vip_name
+            vip_resource['Properties']['protocol'] = proto
+            vip_resource['Properties']['port'] = port
+            vip_resource['Properties']['virtualIps'] = {
+              'Fn::GetAtt' => [
+                resource_name, 'virtualIps', 0, id
+              ]
+            }
+            translated['Resources'][vip_name] = vip_resource
+          end
+        end
+      end
 
       # Finalizer for the rackspace autoscaling group resource.
       # Extracts metadata and maps into customized personality to
