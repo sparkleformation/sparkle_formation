@@ -20,8 +20,6 @@ class SparkleFormation
     attr_reader :template
     # @return [Logger] current logger
     attr_reader :logger
-    # @return [Hash] parameters for template
-    attr_reader :parameters
     # @return [Hash] extra options (generally used by translation implementations)
     attr_reader :options
 
@@ -37,8 +35,17 @@ class SparkleFormation
       @template = MultiJson.load(MultiJson.dump(template_hash)) ## LOL: Lazy deep dup
       @translated = {}
       @logger = args.fetch(:logger, Logger.new($stdout))
-      @parameters = args.fetch(:parameters, {})
-      @options = args.fetch(:options, {})
+      @parameters = args[:parameters] || {}
+      @options = args[:options] || {}
+    end
+
+    # @return [Hash] parameters for template
+    def parameters
+      Hash[
+        @original['Parameters'].map do |k,v|
+          [k, v.fetch('Default', '')]
+        end
+      ].merge(@parameters)
     end
 
     # @return [Hash] resource mapping
