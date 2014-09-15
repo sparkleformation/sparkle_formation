@@ -18,12 +18,6 @@ class SparkleFormation
         ['networks', networks]
       end
 
-      REF_MAPPING = {
-        'AWS::StackName' => 'OS::stack_name',
-        'AWS::StackId' => 'OS::stack_id',
-        'AWS::Region' => 'OS::region'
-      }
-
       # Translate override to provide finalization of resources
       #
       # @return [TrueClass]
@@ -63,6 +57,25 @@ class SparkleFormation
                 end
               end
             end
+          end
+        end
+        translated['resources'].find_all do |resource_name, resource|
+          resource['type'] == 'Rackspace::Cloud::LoadBalancer' &&
+            !resource['properties']['nodes'].empty?
+        end.each do |resource_name, resource|
+          resource['properties']['nodes'].map! do |node_ref|
+            {
+              'addresses' => [
+                {
+                  'get_attr' => [
+                    dereference(node_ref),
+                    'accessIPv4'
+                  ]
+                }
+              ],
+              'port' => resource['properties']['port'],
+              'condition' => 'ENABLED'
+            }
           end
         end
         true
@@ -182,6 +195,7 @@ class SparkleFormation
             properties['load_balancers'] = new_resource['Properties']['load_balancers']
           end
           properties['groupConfiguration'] = new_resource['Properties'].merge('name' => resource_name)
+          properties['groupConfiguration'].delete('load_balancers')
           properties['launchConfiguration'] = {}.tap do |config|
             launch_config_name = resource_name(old_resource['Properties']['LaunchConfigurationName'])
             config_resource = original['Resources'][launch_config_name]
