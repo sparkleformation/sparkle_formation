@@ -68,7 +68,7 @@ class SparkleFormation
               'addresses' => [
                 {
                   'get_attr' => [
-                    dereference(node_ref),
+                    resource_name(node_ref),
                     'accessIPv4'
                   ]
                 }
@@ -191,11 +191,10 @@ class SparkleFormation
       # @return [Object]
       def rackspace_asg_finalizer(resource_name, new_resource, old_resource)
         new_resource['Properties'] = {}.tap do |properties|
-          if(new_resource['Properties']['load_balancers'])
-            properties['load_balancers'] = new_resource['Properties']['load_balancers']
+          if(lbs = new_resource['Properties'].delete('load_balancers'))
+            properties['load_balancers'] = lbs
           end
           properties['groupConfiguration'] = new_resource['Properties'].merge('name' => resource_name)
-          properties['groupConfiguration'].delete('load_balancers')
           properties['launchConfiguration'] = {}.tap do |config|
             launch_config_name = resource_name(old_resource['Properties']['LaunchConfigurationName'])
             config_resource = original['Resources'][launch_config_name]
@@ -333,12 +332,10 @@ class SparkleFormation
                   end
                 end
                 files["/etc/sprkl/#{count}.cfg"] = {
-                  "Fn::Base64" => {
-                    "Fn::Join" => [
-                      "",
-                      file_content.flatten
-                    ]
-                  }
+                  "Fn::Join" => [
+                    "",
+                    file_content.flatten
+                  ]
                 }
               end
               count += 1
