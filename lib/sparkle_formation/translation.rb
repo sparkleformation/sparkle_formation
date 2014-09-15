@@ -48,9 +48,19 @@ class SparkleFormation
       ].merge(@parameters)
     end
 
-    # @return [Hash]
+    # @return [Hash] mappings for template
     def mappings
       @original.fetch('Mappings', {})
+    end
+
+    # @return [Hash] resources for template
+    def resources
+      @original.fetch('Resources', {})
+    end
+
+    # @return [Hash] outputs for template
+    def outputs
+      @original.fetch('Outputs', {})
     end
 
     # @return [Hash] resource mapping
@@ -194,7 +204,7 @@ class SparkleFormation
     def resource_name(obj)
       case obj
       when Hash
-        obj['Ref']
+        obj['Ref'] || obj['get_resource']
       else
         obj.to_s
       end
@@ -206,7 +216,6 @@ class SparkleFormation
     # @param obj [Object]
     # @return [Object]
     def dereference_processor(obj, funcs=[])
-      obj = dereference(obj)
       case obj
       when Array
         obj = obj.map{|v| dereference_processor(v, funcs)}
@@ -218,6 +227,52 @@ class SparkleFormation
         obj = apply_function(new_hash, funcs)
       end
       obj
+    end
+
+    # Process object through name mapping
+    #
+    # @param obj [Object]
+    # @param names [Array<Symbol>] enable renaming (:ref, :fn)
+    # @return [Object]
+    def rename_processor(obj, names=[])
+      case obj
+      when Array
+        obj = obj.map{|v| rename_processor(v, names)}
+      when Hash
+        new_hash = {}
+        obj.each do |k,v|
+          new_hash[k] = rename_processor(v, names)
+        end
+        obj = apply_rename(new_hash, names)
+      end
+      obj
+    end
+
+    # Apply function if possible
+    #
+    # @param hash [Hash]
+    # @param names [Array<Symbol>] enable renaming (:ref, :fn)
+    # @return [Hash]
+    # @note remapping references two constants:
+    #   REF_MAPPING for Ref maps
+    #   FN_MAPPING for Fn maps
+    def apply_rename(hash, names=[])
+      k,v = hash.first
+      if(hash.size == 1)
+        if(k.start_with?('Fn::'))
+          {self.class.const_get(:FN_MAPPING).fetch(k, k) => v}
+        elsif(k == 'Ref')
+          if(resources.has_key?(v))
+            {'get_resource' => v}
+          else
+            {'get_param' => self.class.const_get(:REF_MAPPING).fetch(v, v)}
+          end
+        else
+          hash
+        end
+      else
+        hash
+      end
     end
 
     # Apply function if possible
@@ -247,6 +302,9 @@ class SparkleFormation
 
     # @return [Hash] mapping for pseudo-parameters
     REF_MAPPING = {}
+
+    # @return [Hash] mapping for intrinsic functions
+    FN_MAPPING = {}
 
   end
 end
