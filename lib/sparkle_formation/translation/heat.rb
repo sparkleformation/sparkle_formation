@@ -54,6 +54,9 @@ class SparkleFormation
         translated['resources'] = dereference_processor(translated['resources'], ['Fn::FindInMap', 'Ref'])
         translated['outputs'] = dereference_processor(translated['outputs'], ['Fn::FindInMap', 'Ref'])
         translated.delete('mappings')
+        # convert intrinsic functions
+        translated['resources'] = rename_processor(translated['resources'])
+        translated['outputs'] = rename_processor(translated['outputs'])
         true
       end
 
@@ -190,6 +193,17 @@ class SparkleFormation
           },
           'AWS::AutoScaling::LaunchConfiguration' => :delete
         }
+      }
+
+      REF_MAPPING = {
+        'AWS::StackName' => 'OS::stack_name',
+        'AWS::StackId' => 'OS::stack_id',
+        'AWS::Region' => 'OS::stack_id' # @todo i see it set in source, but no function. wat
+      }
+
+      FN_MAPPING = {
+        'Fn::GetAtt' => 'get_attr',
+#        'Fn::Join' => 'list_join'  # @todo why is this not working?
       }
 
     end
