@@ -153,7 +153,7 @@ class SparkleFormation
               check['type'] = check_type
               check['path'] = check_args.last
             else
-              check['type'] = 'CONNECT'
+              check['type'] = 'TCP_STREAM'
             end
           end
         end
