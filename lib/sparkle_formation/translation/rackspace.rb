@@ -45,7 +45,7 @@ class SparkleFormation
               value['properties']['launchConfiguration']['args'].tap do |lnch_config|
                 lnch_config['loadBalancers'] = [
                   'loadBalancerId' => lb_ref,
-                  'port' => lb_resource['properties']['port']
+                  'port' => lb_resource['cache_instance_port']
                 ]
                 vip_resources.each do |vip_name, vip_resource|
                   lnch_config['loadBalancers'].push(
