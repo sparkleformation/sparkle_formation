@@ -52,7 +52,7 @@ class SparkleFormation
                     'loadBalancerId' => {
                       'Ref' => vip_name
                     },
-                    'port' => vip_resource['properties']['port']
+                    'port' => vip_resource['cache_instance_port']
                   )
                 end
               end
@@ -73,10 +73,15 @@ class SparkleFormation
                   ]
                 }
               ],
-              'port' => resource['properties']['port'],
+              'port' => resource['cache_instance_port'],
               'condition' => 'ENABLED'
             }
           end
+        end
+        translated['resources'].values.find_all do |resource|
+          resource['type'] == 'Rackspace::Cloud::LoadBalancer'
+        end.each do |resource|
+          resource.delete('cache_instance_port')
         end
         true
       end
@@ -135,8 +140,11 @@ class SparkleFormation
       def rackspace_lb_finalizer(resource_name, new_resource, old_resource)
         listeners = new_resource['Properties'].delete('listeners') || []
         source_listener = listeners.shift
-        new_resource['Properties']['port'] = source_listener['LoadBalancerPort']
-        new_resource['Properties']['protocol'] = source_listener['Protocol']
+        if(source_listener)
+          new_resource['Properties']['port'] = source_listener['LoadBalancerPort']
+          new_resource['Properties']['protocol'] = source_listener['Protocol']
+          new_resource['cache_instance_port'] = source_listener['InstancePort']
+        end
         new_resource['Properties']['virtualIps'] = ['type' => 'PUBLIC', 'ipVersion' => 'IPV4']
         new_resource['Properties']['nodes'] = [] unless new_resource['Properties']['nodes']
         health_check = new_resource['Properties'].delete('health_check')
@@ -176,6 +184,7 @@ class SparkleFormation
                 ]
               }
             ]
+            vip_resource['cache_instance_port'] = listener['InstancePort']
             translated['Resources'][vip_name] = vip_resource
           end
         end
