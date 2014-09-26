@@ -444,7 +444,7 @@ end
 ```
 These can be referenced, in turn, with the following:
 ```
-map!(:region_map, 'AWS::Region', :ami)
+map!(:region_map, ref!('AWS::Region'), :ami)
 ```
 'AWS::Region' is a psuedo parameter. We could also perform a lookup
 based on a parameter we provide, e.g. an instance size based on the environment:
@@ -469,8 +469,16 @@ resources.website_launch_config do
   end
 end
 ```
+### Joins
+A Join combines strings. You can use Refs and Mappings within a Join.
+```
+join!(ref!(:environment), '-', map!(:region_map, ref!('AWS::Region'),
+  :ami))
+```
+Would return 'development-us-east-1', if we built a stack in the
+AWS  Virgnia region and provided 'development' for the environment
+parameter. 
 
-* joins
 * outputs
 * tags
 * get resource attribute
