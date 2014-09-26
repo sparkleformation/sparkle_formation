@@ -186,7 +186,7 @@ class SparkleFormation
     def dereference(obj)
       result = obj
       if(obj.is_a?(Hash))
-        name = obj['Ref']
+        name = obj['Ref'] || obj['get_param']
         if(name)
           p_val = parameters[name.to_s]
           if(p_val)
