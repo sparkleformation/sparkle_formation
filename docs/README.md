@@ -472,13 +472,14 @@ end
 ### Joins
 A Join combines strings. You can use Refs and Mappings within a Join.
 ```
-join!(ref!(:environment), '-', map!(:region_map, ref!('AWS::Region'),
-  :ami))
+join!(ref!(:environment), '-', map!(:region_map, ref!('AWS::Region'), :ami))
 ```
 Would return 'development-us-east-1', if we built a stack in the
 AWS  Virgnia region and provided 'development' for the environment
 parameter. 
 
+
+### Still to come.
 * outputs
 * tags
 * get resource attribute
