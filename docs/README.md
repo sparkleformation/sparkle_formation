@@ -402,7 +402,7 @@ SparkleFormation.new(:website).load(:base).overrides do
 end
 ```
 
-## Other cool stuff
+## Intrinsic Functions
 The following are all intrinsic AWS Cloudformation functions that are
 supported with special syntax in SparkleFormation. Note that these may
 not be implemented for all providers. 
