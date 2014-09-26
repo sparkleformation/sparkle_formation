@@ -446,7 +446,7 @@ These can be referenced, in turn, with the following:
 ```
 map!(:region_map, 'AWS::Region', :ami)
 ```
-'AWS::Region' is a built in parameter. We could also perform a lookup
+'AWS::Region' is a psuedo parameter. We could also perform a lookup
 based on a parameter we provide, e.g. an instance size based on the environment:
 
 ```
