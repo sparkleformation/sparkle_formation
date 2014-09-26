@@ -251,7 +251,10 @@ class SparkleFormation
       end
 
       # Max chunk size for server personality files
-      DEFAULT_CHUNK_SIZE = 350
+      DEFAULT_CHUNK_SIZE = 950
+      # Max number of files to create (by default this is n-1 since we
+      # require one of the files for injecting into cloud init)
+      DEFAULT_NUMBER_OF_CHUNKS = 4
 
       # Build server personality structure
       #
@@ -259,14 +262,18 @@ class SparkleFormation
       # @return [Hash] personality hash
       # @todo update chunking to use join!
       def build_personality(resource)
-        chunk_size = options.fetch(
+        max_chunk_size = options.fetch(
           :serialization_chunk_size,
           DEFAULT_CHUNK_SIZE
         ).to_i
+        num_personality_files = options.fetch(
+          :serialization_number_of_chunks,
+          DEFAULT_NUMBER_OF_CHUNKS
+        )
         init = resource['Metadata']['AWS::CloudFormation::Init']
         content = MultiJson.dump('AWS::CloudFormation::Init' => init)
         # Break out our content to extract items required during stack
-        # execution
+        # execution (template functions, refs, and the like)
         raw_result = content.scan(/(?=(\{\s*"(Ref|Fn::[A-Za-z]+)"((?:[^{}]++|\{\g<3>\})++)\}))/).map(&:first)
         result = [].tap do |filtered|
           until(raw_result.empty?)
@@ -281,6 +288,8 @@ class SparkleFormation
             end
           end
         end
+
+        # Cycle through the result and format entries where required
         objects = result.map do |string|
           # Format for load and make newlines happy
           string = string.strip.split(
@@ -292,6 +301,8 @@ class SparkleFormation
           end
           MultiJson.load(string)
         end
+
+        # Find and replace any found objects
         new_content = content.dup
         result_set = []
         result.each_with_index do |str, i|
@@ -301,37 +312,57 @@ class SparkleFormation
             result_set << objects[i]
             new_content.slice!(0, str.size)
           else
-            $stderr.puts "Failed to mach: #{str}"
+            $stderr.puts "Failed to match: #{str}"
           end
         end
 
+        # The result set is the final formatted content that
+        # now needs to be split and assigned to files
         result_set << new_content unless new_content.empty?
         leftovers = ''
 
+        # Determine optimal chuck sizing and check if viable
+        calculated_chunk_size = (content.size.to_f / num_personality_files).ceil
+        if(calculated_chunk_size > max_chunk_size)
+          $stderr.puts 'ERROR: Unable to split personality files within defined bounds!'
+          $stderr.puts "  Maximum chunk size: #{max_chunk_size.inspect}"
+          $stderr.puts "  Maximum personality files: #{num_personality_files.inspect}"
+          $stderr.puts "  Calculated chunk size: #{calculated_chunk_size}"
+          raise ArgumentError.new 'Unable to split personality files within defined bounds'
+        end
+
+        # Do the split!
+        chunk_size = calculated_chunk_size
+        file_index = 0
         parts = {}.tap do |files|
-          count = 0
-          (content.size.to_f / chunk_size).ceil.times do
+          until(leftovers.empty? && result_set.empty?)
             file_content = []
             unless(leftovers.empty?)
-              file_content << leftovers
+              result_set.unshift leftovers
               leftovers = ''
             end
             item = nil
             # @todo need better way to determine length of objects since
             #   function structures can severely bloat actual length
-            until(file_content.map(&:to_s).map(&:size).inject(&:+).to_i >= chunk_size || result_set.empty?)
+            until((cur_len = file_content.map(&:to_s).map(&:size).inject(&:+).to_i) >= chunk_size || result_set.empty?)
+              to_cut = chunk_size - cur_len
               item = result_set.shift
               case item
               when String
-                file_content << item.slice!(0, chunk_size)
+                file_content << item.slice!(0, to_cut)
               else
-                file_content << item
+                derefed = dereference(item)
+                if(derefed == item)
+                  file_content << item
+                else
+                  result_set.unshift "\"#{derefed}\""
+                end
               end
             end
             leftovers = item if item.is_a?(String) && !item.empty?
             unless(file_content.empty?)
               if(file_content.all?{|o|o.is_a?(String)})
-                files["/etc/sprkl/#{count}.cfg"] = file_content.join
+                files["/etc/sprkl/#{file_index}.cfg"] = file_content.join
               else
                 file_content.map! do |cont|
                   if(cont.is_a?(Hash))
@@ -340,16 +371,19 @@ class SparkleFormation
                     cont
                   end
                 end
-                files["/etc/sprkl/#{count}.cfg"] = {
+                files["/etc/sprkl/#{file_index}.cfg"] = {
                   "Fn::Join" => [
                     "",
                     file_content.flatten
                   ]
                 }
               end
-              count += 1
             end
+            file_index += 1
           end
+        end
+        if(parts.size > num_personality_files)
+          raise "Failed to generate personality within defined bounds (Max files: #{num_personality_files} Actual files: #{parts.size})"
         end
         parts['/etc/cloud/cloud.cfg.d/99_s.cfg'] = RUNNER
         parts
