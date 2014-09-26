@@ -403,8 +403,75 @@ end
 ```
 
 ## Other cool stuff
-* mappings (sorry OpenStack users!)
-* joins, refs
+The following are all intrinsic AWS Cloudformation functions that are
+supported with special syntax in SparkleFormation. Note that these may
+not be implemented for all providers. 
+
+### Ref
+Ref allows you to reference parameter and resource values. We did this
+earlier with the autoscaling group size:
+```
+parameters.web_nodes do
+  type 'Number'
+  description 'Number of web nodes for ASG.'
+  default '2'
+end
+
+...
+
+min_size ref!(:web_nodes)
+```
+It also works for resource names. The following returns the name of
+the launch configuration so we can use it in the autoscaling group
+properties. 
+```
+ref!(:website_launch_config)
+```  
+
+### Mappings
+Mappings allow you to create key/value pairs which can be referenced
+at runtime. This is useful for things like an AMI value that differs
+by region or environment. 
+
+Mappings for the 2014.09 Amazon Linux PV Instance Store 64-bit AMIs
+for each US region:
+```
+mappings.region_map do
+  set!('us-east-1', :ami => 'ami-8e852ce6')
+  set!('us-west-1', :ami => 'ami-03a8a146')
+  set!('us-west-2', :ami => 'ami-f786c6c7')
+end
+```
+These can be referenced, in turn, with the following:
+```
+map!(:region_map, 'AWS::Region', :ami)
+```
+'AWS::Region' is a built in parameter. We could also perform a lookup
+based on a parameter we provide, e.g. an instance size based on the environment:
+
+```
+parameters.environment do
+  type 'String'
+  allowed_values ['development', 'staging', 'production']                
+end
+
+mappings.instance_size do
+  set!('development', :instance => 'm3.small')
+  set!('staging', :instance => 'm3.medium')
+  set!('production', :instance => 'm3.large')
+end
+
+resources.website_launch_config do
+  type 'AWS::AutoScaling::LaunchConfiguration'
+  properties do
+    image_id map!(:region_map, 'AWS::Region', :ami)
+    instance_type map!(:instance_size, ref!(:environment), :instance)
+  end
+end
+```
+
+* joins
 * outputs
+* tags
 * get resource attribute
 * built-in dynamics for AWS resource types
