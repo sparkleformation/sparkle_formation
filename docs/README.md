@@ -17,14 +17,20 @@ formats for AWS, Rackspace, Google Compute, and similar services.
 
 - Getting Started
 - Building Blocks
-  - Components
-  - Dynamics
-  - Registries
-- Things
-  - Parameters
-  - Resources
-  - Outputs
-
+  - [Components](#Components)
+  - [Dynamics](#Dynamics)
+  - [Registries](#Registries)
+- Anatomy
+  - [Parameters](#Parameters)
+  - [Resources](#Resources)
+  - [Mappings](#Mappings)
+  - [Outputs](#Outputs)
+- Intrinsic Functions
+  - [Ref](#Ref)
+  - [Attr](#Attr)
+  - [Join](#Join)
+- Universal Properties
+ - [Tags](#Tags)
 ## Getting Started
 Below is a basic SparkleFormation template which would provision an
 elastic load balancer forwarding port 80 to an autoscaling group of
