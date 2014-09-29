@@ -15,19 +15,19 @@ formats for AWS, Rackspace, Google Compute, and similar services.
 
 ## Table of Contents
 
-- Getting Started
-- Anatomy
+- [Getting Started](#getting-started)
+- [Template Anatomy](#template-anatomy)
   - [Parameters](#parameters)
   - [Resources](#resources)
   - [Mappings](#mappings)
   - [Outputs](#outputs)
-- Intrinsic Functions
+- [Intrinsic Functions](#intrinsic-functions)
   - [Ref](#ref)
   - [Attr](#attr)
   - [Join](#join)
-- Universal Properties
+- [Universal Properties](#universal-properties)
  - [Tags](#tags)
-- Building Blocks
+- [Building Blocks](#sparkleformation-building-blocks)
   - [Components](#components)
   - [Dynamics](#dynamics)
   - [Registries](#registries)
@@ -113,6 +113,9 @@ SparkleFormation.new('website') do
   end
 end
 ```
+
+## Template Anatomy
+
 ### Parameters
 Parameters are prompts for stack specific values. A default may be
 specified, but is not required. Every parameter must have a value at runtime.
