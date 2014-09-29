@@ -30,7 +30,7 @@ Below is a basic SparkleFormation template which would provision an
 elastic load balancer forwarding port 80 to an autoscaling group of
 ec2 instances.
 
-```
+```ruby
 SparkleFormation.new('website') do
 
   set!('AWSTemplateFormatVersion', '2010-09-09')
@@ -146,7 +146,7 @@ a component which allows us to inserts the two IAM resources into any
 template in a resuable fashion. The component, which we will call
 'base' and put in a file called 'base.rb,' would look like this:
 
-```
+```ruby
 SparkleFormation.build do
   set!('AWSTemplateFormatVersion', '2010-09-09')
 
@@ -179,7 +179,7 @@ component, we will update the template so that the base component is
 loaded on the first line, and the resources it contains are no longer
 present in the template itself:
 
-```
+```ruby
 SparkleFormation.new(:website).load(:base).overrides do
 
   description 'Supercool Website'
@@ -246,7 +246,7 @@ copying the full resource configuration between templates.
 
 The resulting implementation would look something like this:
 
-```
+```ruby
 SparkleFormation.dynamic(:elb) do |_name, _config={}|
   resources("#{_name}_elb".to_sym) do
     type 'AWS::ElasticLoadBalancing::LoadBalancer'
@@ -281,7 +281,7 @@ _config hash.
 Once updated to make use of the new ELB dynamic, our template looks
 like this:
 
-```
+```ruby
 SparkleFormation.new(:website).load(:base).overrides do
 
   description 'Supercool Website'
@@ -319,7 +319,7 @@ e.g. to configure the ELB to listen on and communicate with back-end
 node on port 8080 instead of 80, we can specify these override values
 in the configuration passed to the ELB dynamic:
 
-```
+```ruby
   dynamic!(:elb, 'website', :load_balancer_port => 8080,
   :instance_port => 8080)
 ```
@@ -352,7 +352,7 @@ required for this task directly inside a dynamic isn't going to work
 quite the way we need. Instead we can put this inside a registry which
 can be inserted into the resources defined in one or more dynamics:
 
-```
+```ruby
 SparkleFormation::Registry.register(:apt_get_update) do
   metadata('AWS::CloudFormation::Init') do
     _camel_keys_set(:auto_disable) do
@@ -368,7 +368,7 @@ end
 
 Now we can insert this registry entry into our existing template:
 
-```
+```ruby
 SparkleFormation.new(:website).load(:base).overrides do
 
   description 'Supercool Website'
@@ -410,7 +410,7 @@ not be implemented for all providers.
 ### Ref
 Ref allows you to reference parameter and resource values. We did this
 earlier with the autoscaling group size:
-```
+```ruby
 parameters.web_nodes do
   type 'Number'
   description 'Number of web nodes for ASG.'
@@ -424,7 +424,7 @@ min_size ref!(:web_nodes)
 It also works for resource names. The following returns the name of
 the launch configuration so we can use it in the autoscaling group
 properties. 
-```
+```ruby
 ref!(:website_launch_config)
 ```  
 
@@ -435,7 +435,7 @@ by region or environment.
 
 Mappings for the 2014.09 Amazon Linux PV Instance Store 64-bit AMIs
 for each US region:
-```
+```ruby
 mappings.region_map do
   set!('us-east-1', :ami => 'ami-8e852ce6')
   set!('us-west-1', :ami => 'ami-03a8a146')
@@ -443,13 +443,13 @@ mappings.region_map do
 end
 ```
 These can be referenced, in turn, with the following:
-```
+```ruby
 map!(:region_map, ref!('AWS::Region'), :ami)
 ```
 'AWS::Region' is a psuedo parameter. We could also perform a lookup
 based on a parameter we provide, e.g. an instance size based on the environment:
 
-```
+```ruby
 parameters.environment do
   type 'String'
   allowed_values ['development', 'staging', 'production']                
@@ -471,16 +471,59 @@ end
 ```
 ### Joins
 A Join combines strings. You can use Refs and Mappings within a Join.
-```
+```ruby
 join!(ref!(:environment), '-', map!(:region_map, ref!('AWS::Region'), :ami))
 ```
 Would return 'development-us-east-1', if we built a stack in the
 AWS  Virgnia region and provided 'development' for the environment
 parameter. 
+### Resource Attributes
+Certain resources attributes can be retrieved directly. To access an
+IAM user's (in this case, :cfn_user) secret key:
+```ruby
+attr!(:cfn_user, :secret_access_key)
+```
+### Tags
+Tags can be applied to any resource. These make it easy to track
+resource usage across stacks. They may be used for cost tracking as
+well as configuration tools that are cloud-infrastructure aware. Tags
+are provided as key/value pairs within an array. In this example we
+provide the stack name and a contact email:
+```ruby
+  resources.website_autoscale do
+    type 'AWS::AutoScaling::AutoScalingGroup'
+    properties do
+      availability_zones({ 'Fn::GetAZs' => '' })
+      tags _array(
+        -> {
+          key 'StackName'
+          value ref!('AWS::StackName'))
+          propagate_at_launch true
+        },
+        -> {
+          key 'ContactEmail'
+          value support@hw-ops.com'
+          propagate_at_launch true
+        }
+      )
+      launch_configuration_name ref!(:website_launch_config)
+    end
+```
+### Other Stuff.
+Outputs are similar to tags, but apply to the entire stack, rather
+than individual resources. These are provided as key/value pairs
+within an outputs block. Note that this block lives outside the
+resource blocks. This will retrieve the DNSName attribute for our load
+balancer, and provide it as a value for an 'Elb Dns' output.
+```ruby
+  outputs do
+    elb_dns do
+      value attr!(:website_elb, 'DNSName')
+      description "Website ELB DNS name"
+    end
+  end
+```
+Future versions of SparkleFormation and the knife-cloudformation
+plugin will support  ingesting an existing stack's outputs as
+parameters in another stack.
 
-
-### Still to come.
-* outputs
-* tags
-* get resource attribute
-* built-in dynamics for AWS resource types
