@@ -3,6 +3,63 @@ class SparkleFormation
     # Translation for Heat (HOT)
     class Heat < Translation
 
+      # Translate stack definition
+      #
+      # @return [TrueClass]
+      # @note this is an override to return in proper HOT format
+      # @todo still needs replacements of functions and pseudo-params
+      def translate!
+        super
+        cache = MultiJson.load(MultiJson.dump(translated))
+        # top level
+        cache.each do |k,v|
+          translated.delete(k)
+          translated[snake(k).to_s] = v
+        end
+        # params
+        cache.fetch('Parameters', {}).each do |k,v|
+          translated['parameters'][k] = Hash[
+            v.map do |key, value|
+              if(key == 'Type')
+                [snake(key).to_s, value.downcase]
+              elsif(key == 'AllowedValues')
+                # @todo fix this up to properly build constraints
+                ['constraints', [{'allowed_values' => value}]]
+              else
+                [snake(key).to_s, value]
+              end
+            end
+          ]
+        end
+        # resources
+        cache.fetch('Resources', {}).each do |r_name, r_value|
+          translated['resources'][r_name] = Hash[
+            r_value.map do |k,v|
+              [snake(k).to_s, v]
+            end
+          ]
+        end
+        # outputs
+        cache.fetch('Outputs', {}).each do |o_name, o_value|
+          translated['outputs'][o_name] = Hash[
+            o_value.map do |k,v|
+              [snake(k).to_s, v]
+            end
+          ]
+        end
+        translated.delete('awstemplate_format_version')
+        translated['heat_template_version'] = '2013-05-23'
+        # no HOT support for mappings, so remove and clean pseudo
+        # params in refs
+        translated['resources'] = dereference_processor(translated['resources'], ['Fn::FindInMap', 'Ref'])
+        translated['outputs'] = dereference_processor(translated['outputs'], ['Fn::FindInMap', 'Ref'])
+        translated.delete('mappings')
+        # convert intrinsic functions
+        translated['resources'] = rename_processor(translated['resources'])
+        translated['outputs'] = rename_processor(translated['outputs'])
+        true
+      end
+
       # Custom mapping for block device
       #
       # @param value [Object] original property value
@@ -49,7 +106,19 @@ class SparkleFormation
             if(files = config['files'])
               files.each do |key, args|
                 if(args['source'])
-                  args['source'].replace("\"#{args['source']}\"")
+                  if(args['source'].is_a?(String))
+                    args['source'].replace("\"#{args['source']}\"")
+                  else
+                    args['source'] = {
+                      'Fn::Join' => [
+                        "", [
+                          "\"",
+                          args['source'],
+                          "\""
+                        ]
+                      ]
+                    }
+                  end
                 end
               end
             end
@@ -124,6 +193,17 @@ class SparkleFormation
           },
           'AWS::AutoScaling::LaunchConfiguration' => :delete
         }
+      }
+
+      REF_MAPPING = {
+        'AWS::StackName' => 'OS::stack_name',
+        'AWS::StackId' => 'OS::stack_id',
+        'AWS::Region' => 'OS::stack_id' # @todo i see it set in source, but no function. wat
+      }
+
+      FN_MAPPING = {
+        'Fn::GetAtt' => 'get_attr',
+#        'Fn::Join' => 'list_join'  # @todo why is this not working?
       }
 
     end
