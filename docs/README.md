@@ -1,6 +1,6 @@
 ## Overview
 SparkleFormation is a Ruby DSL for programatically composing
-AWS Cloudformation, OpenStack Heat, and other infrastructure
+[AWS Cloudformation][cloudformation], [OpenStack Heat][heat]
 provisioning templates for the purpose of interacting with cloud
 infrastructure orchestration APIs.
 
@@ -542,3 +542,8 @@ SparkleFormation.new(:website).load(:base).overrides do
   dynamic!(:elb, 'website')
 end
 ```
+
+[cloudformation]: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html
+[heat]:
+http://docs.openstack.org/developer/heat/template_guide/index.html
+
