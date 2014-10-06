@@ -312,7 +312,7 @@ class SparkleFormation
             result_set << objects[i]
             new_content.slice!(0, str.size)
           else
-            $stderr.puts "Failed to match: #{str}"
+            logger.warn "Failed to match: #{str}"
           end
         end
 
@@ -324,11 +324,11 @@ class SparkleFormation
         # Determine optimal chuck sizing and check if viable
         calculated_chunk_size = (content.size.to_f / num_personality_files).ceil
         if(calculated_chunk_size > max_chunk_size)
-          $stderr.puts 'ERROR: Unable to split personality files within defined bounds!'
-          $stderr.puts "  Maximum chunk size: #{max_chunk_size.inspect}"
-          $stderr.puts "  Maximum personality files: #{num_personality_files.inspect}"
-          $stderr.puts "  Calculated chunk size: #{calculated_chunk_size}"
-          $stderr.puts "-> Content: #{content.inspect}"
+          logger.error 'ERROR: Unable to split personality files within defined bounds!'
+          logger.error "  Maximum chunk size: #{max_chunk_size.inspect}"
+          logger.error "  Maximum personality files: #{num_personality_files.inspect}"
+          logger.error "  Calculated chunk size: #{calculated_chunk_size}"
+          logger.error "-> Content: #{content.inspect}"
           raise ArgumentError.new 'Unable to split personality files within defined bounds'
         end
 
