@@ -328,6 +328,7 @@ class SparkleFormation
           $stderr.puts "  Maximum chunk size: #{max_chunk_size.inspect}"
           $stderr.puts "  Maximum personality files: #{num_personality_files.inspect}"
           $stderr.puts "  Calculated chunk size: #{calculated_chunk_size}"
+          $stderr.puts "-> Content: #{content.inspect}"
           raise ArgumentError.new 'Unable to split personality files within defined bounds'
         end
 
@@ -351,12 +352,7 @@ class SparkleFormation
               when String
                 file_content << item.slice!(0, to_cut)
               else
-                derefed = dereference(item)
-                if(derefed == item)
-                  file_content << item
-                else
-                  result_set.unshift "\"#{derefed}\""
-                end
+                file_content << item
               end
             end
             leftovers = item if item.is_a?(String) && !item.empty?
@@ -383,7 +379,18 @@ class SparkleFormation
           end
         end
         if(parts.size > num_personality_files)
-          raise "Failed to generate personality within defined bounds (Max files: #{num_personality_files} Actual files: #{parts.size})"
+          logger.warn "Failed to split files within defined range! (Max files: #{num_personality_files} Actual files: #{parts.size})"
+          logger.warn 'Appending to last file and hoping for the best!'
+          parts = parts.to_a
+          extras = parts.slice!(4, parts.length)
+          tail_name, tail_contents = parts.pop
+          parts = Hash[parts]
+          parts[tail_name] = {
+            "Fn::Join" => [
+              '',
+              *extras.map(&:last).unshift(tail_contents)
+            ]
+          }
         end
         parts['/etc/cloud/cloud.cfg.d/99_s.cfg'] = RUNNER
         parts
