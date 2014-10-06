@@ -51,12 +51,15 @@ class SparkleFormation
         translated['heat_template_version'] = '2013-05-23'
         # no HOT support for mappings, so remove and clean pseudo
         # params in refs
-        translated['resources'] = dereference_processor(translated['resources'], ['Fn::FindInMap', 'Ref'])
-        translated['outputs'] = dereference_processor(translated['outputs'], ['Fn::FindInMap', 'Ref'])
+        if(translated['resources'])
+          translated['resources'] = dereference_processor(translated['resources'], ['Fn::FindInMap', 'Ref'])
+          translated['resources'] = rename_processor(translated['resources'])
+        end
+        if(translated['outputs'])
+          translated['outputs'] = dereference_processor(translated['outputs'], ['Fn::FindInMap', 'Ref'])
+          translated['outputs'] = rename_processor(translated['outputs'])
+        end
         translated.delete('mappings')
-        # convert intrinsic functions
-        translated['resources'] = rename_processor(translated['resources'])
-        translated['outputs'] = rename_processor(translated['outputs'])
         true
       end
 
