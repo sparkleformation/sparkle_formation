@@ -14,8 +14,7 @@ not cover everything AWS offers.
 
 |Provider    |Available |Limitations                                                  |
 |------------|----------|-------------------------------------------------------------|
-|Rackspace   |Yes       |Autoscaling will not replace lost instances,
-only does policy based scaling. |
+|Rackspace   |Yes       |Autoscaling will not replace lost instances, only does policy based scaling. |
 
 #### Security Groups
 
