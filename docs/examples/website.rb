@@ -4,12 +4,6 @@ SparkleFormation.new('website') do
 
   description 'Supercool Website'
 
-  parameters.web_nodes do
-    type 'Number'
-    description 'Number of web nodes for ASG.'
-    default '2'
-  end
-
   resources.cfn_user do
     type 'AWS::IAM::User'
     properties.path '/'
@@ -32,6 +26,12 @@ SparkleFormation.new('website') do
     properties.user_name ref!(:cfn_user)
   end
 
+  parameters.web_nodes do
+    type 'Number'
+    description 'Number of web nodes for ASG.'
+    default '2'
+  end
+  
   resources.website_autoscale do
     type 'AWS::AutoScaling::AutoScalingGroup'
     properties do

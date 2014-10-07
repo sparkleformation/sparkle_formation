@@ -1,13 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "Supercool Website",
-  "Parameters": {
-    "WebNodes": {
-      "Type": "Number",
-      "Description": "Number of web nodes for ASG.",
-      "Default": "2"
-    }
-  },
   "Resources": {
     "CfnUser": {
       "Type": "AWS::IAM::User",
@@ -83,6 +76,13 @@
           "Timeout": "15"
         }
       }
+    }
+  },
+  "Parameters": {
+    "WebNodes": {
+      "Type": "Number",
+      "Description": "Number of web nodes for ASG.",
+      "Default": "2"
     }
   }
 }
