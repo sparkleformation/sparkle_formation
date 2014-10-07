@@ -29,7 +29,7 @@ SparkleFormation.new('website') do
   parameters.web_nodes do
     type 'Number'
     description 'Number of web nodes for ASG.'
-    default '2'
+    default 2
   end
   
   resources.website_autoscale do
