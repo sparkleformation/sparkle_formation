@@ -40,6 +40,11 @@ that configures the resource. Some resources also have metadata. For
 the complete list of required and optional options, see the
 individual resource documentation.
 
+Resource availability is not consistent across
+providers. SparkleFormation's resources support is based on AWS, and
+not all resources will be available on other platforms. See the
+[resource reference](resource-reference.md) table for more information.
+
 The prior example included the following resources:
 - cfn_user: The IAM user for the stack, which will be used to
 provision stack resources.
