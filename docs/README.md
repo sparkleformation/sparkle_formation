@@ -114,9 +114,9 @@ SparkleFormation.new('website') do
 end
 ```
 
-This template is 74 lines long (with generous spacing for
+This template is 75 lines long (with generous spacing for
 readability). The [json template this
-renders](examples/template_json/website.json) is 88 lines, without
+renders](examples/template_json/website.json) is 89 lines, without
 spacing). This can be improved, though. SparkleFormation allows you to
 create resusable files such that the above template can become :
 
@@ -126,10 +126,7 @@ SparkleFormation.new(:website).load(:base).overrides do
   description 'Supercool Website'
 
   dynamic!(:autoscale, 'website', :nodes => 2)
-
-  dynamic!(:launch_config, 'website', :image_id => 'ami-123456',
-  :instance_type => 'm3.medium')
-
+  dynamic!(:launch_config, 'website', :image_id => 'ami-123456', :instance_type => 'm3.medium')
   dynamic!(:elb, 'website')
 
 end
