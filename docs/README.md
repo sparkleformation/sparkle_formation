@@ -16,21 +16,21 @@ formats for AWS, Rackspace, Google Compute, and similar services.
 ## Table of Contents
 
 - [Getting Started](#getting-started)
-- [Template Anatomy](#template-anatomy)
-  - [Parameters](#parameters)
-  - [Resources](#resources)
-  - [Mappings](#mappings)
-  - [Outputs](#outputs)
-- [Intrinsic Functions](#intrinsic-functions)
-  - [Ref](#ref)
-  - [Attr](#attr)
-  - [Join](#join)
-- [Universal Properties](#universal-properties)
- - [Tags](#tags)
 - [Building Blocks](#sparkleformation-building-blocks)
   - [Components](#components)
   - [Dynamics](#dynamics)
   - [Registries](#registries)
+- [Template Anatomy](anatomy.md)
+  - [Parameters](anatomy.md#parameters)
+  - [Resources](anatomy.md#resources)
+  - [Mappings](anatomy.md#mappings)
+  - [Outputs](anatomy.md#outputs)
+- [Intrinsic Functions](functions.md)
+  - [Ref](functions.md#ref)
+  - [Attr](functions.md#attr)
+  - [Join](functions.md#join)
+- [Universal Properties](properties.md)
+ - [Tags](properties.md#tags)
 
 ## Getting Started
 Below is a basic SparkleFormation template which would provision an
@@ -43,12 +43,6 @@ SparkleFormation.new('website') do
   set!('AWSTemplateFormatVersion', '2010-09-09')
 
   description 'Supercool Website'
-
-  parameters.web_nodes do
-    type 'Number'
-    description 'Number of web nodes for ASG.'
-    default '2'
-  end
 
   resources.cfn_user do
     type 'AWS::IAM::User'
@@ -70,6 +64,12 @@ SparkleFormation.new('website') do
   resources.cfn_keys do
     type 'AWS::IAM::AccessKey'
     properties.user_name ref!(:cfn_user)
+  end
+
+  parameters.web_nodes do
+    type 'Number'
+    description 'Number of web nodes for ASG.'
+    default '2'
   end
 
   resources.website_autoscale do
@@ -112,163 +112,6 @@ SparkleFormation.new('website') do
     end
   end
 end
-```
-
-## Template Anatomy
-
-### Parameters
-Parameters are prompts for stack specific values. A default may be
-specified, but is not required. Every parameter must have a value at runtime.
-- web_nodes: The number of nodes for the autoscaling group.
-
-### Resources
-Resources are the infrastructure resources that are provisioned with
-the stack. Every resource must have a type that corresponds to a
-supported cloud resource. Resources typically have a properties hash
-that configures the resource. Some resources also have metadata. For
-the complete list of required and optional options, see the
-individual resource documentation.
-- cfn_user: The IAM user for the stack, which will be used to
-provision stack resources.
-- cfn_key: The IAM keys for the stack IAM user.
-- website_asg: The autoscaling group containing website nodes. The
-size of the autoscaling group is set to the value of the web_nodes parameter. 
-- website_launch_configuration: The launch configuration for
-website_asg nodes. The AMI image ID and instance type (size) are
-required. 
-- website_elb: The elastic load balancer for the website. The
-listeners array configures port forwarding. The health check
-configures the load balancer health check target and thresholds.
-
-
-### Mappings
-Mappings allow you to create key/value pairs which can be referenced
-at runtime. This is useful for things like an AMI value that differs
-by region or environment. 
-
-Mappings for the 2014.09 Amazon Linux PV Instance Store 64-bit AMIs
-for each US region:
-```ruby
-mappings.region_map do
-  set!('us-east-1', :ami => 'ami-8e852ce6')
-  set!('us-west-1', :ami => 'ami-03a8a146')
-  set!('us-west-2', :ami => 'ami-f786c6c7')
-end
-```
-These can be referenced, in turn, with the following:
-```ruby
-map!(:region_map, ref!('AWS::Region'), :ami)
-```
-'AWS::Region' is a psuedo parameter. We could also perform a lookup
-based on a parameter we provide, e.g. an instance size based on the environment:
-
-```ruby
-parameters.environment do
-  type 'String'
-  allowed_values ['development', 'staging', 'production']                
-end
-
-mappings.instance_size do
-  set!('development', :instance => 'm3.small')
-  set!('staging', :instance => 'm3.medium')
-  set!('production', :instance => 'm3.large')
-end
-
-resources.website_launch_config do
-  type 'AWS::AutoScaling::LaunchConfiguration'
-  properties do
-    image_id map!(:region_map, 'AWS::Region', :ami)
-    instance_type map!(:instance_size, ref!(:environment), :instance)
-  end
-end
-```
-### Outputs
-Outputs are similar to tags, but apply to the entire stack, rather
-than individual resources. These are provided as key/value pairs
-within an outputs block. Note that this block lives outside the
-resource blocks. This will retrieve the DNSName attribute for our load
-balancer, and provide it as a value for an 'Elb Dns' output.
-```ruby
-  outputs do
-    elb_dns do
-      value attr!(:website_elb, 'DNSName')
-      description "Website ELB DNS name"
-    end
-  end
-```
-Future versions of SparkleFormation and the knife-cloudformation
-plugin will support  ingesting an existing stack's outputs as
-parameters in another stack.
-
-## Intrinsic Functions
-The following are all intrinsic AWS Cloudformation functions that are
-supported with special syntax in SparkleFormation. Note that these may
-not be implemented for all providers. 
-
-### Ref
-Ref allows you to reference parameter and resource values. We did this
-earlier with the autoscaling group size:
-```ruby
-parameters.web_nodes do
-  type 'Number'
-  description 'Number of web nodes for ASG.'
-  default '2'
-end
-
-...
-
-min_size ref!(:web_nodes)
-```
-It also works for resource names. The following returns the name of
-the launch configuration so we can use it in the autoscaling group
-properties. 
-```ruby
-ref!(:website_launch_config)
-```  
-
-### Join
-A Join combines strings. You can use Refs and Mappings within a Join.
-```ruby
-join!(ref!(:environment), '-', map!(:region_map, ref!('AWS::Region'), :ami))
-```
-Would return 'development-us-east-1', if we built a stack in the
-AWS  Virgnia region and provided 'development' for the environment
-parameter. 
-
-### Attr
-Certain resources attributes can be retrieved directly. To access an
-IAM user's (in this case, :cfn_user) secret key:
-```ruby
-attr!(:cfn_user, :secret_access_key)
-```
-
-## Universal Properties
-
-### Tags
-Tags can be applied to any resource. These make it easy to track
-resource usage across stacks. They may be used for cost tracking as
-well as configuration tools that are cloud-infrastructure aware. Tags
-are provided as key/value pairs within an array. In this example we
-provide the stack name and a contact email:
-```ruby
-  resources.website_autoscale do
-    type 'AWS::AutoScaling::AutoScalingGroup'
-    properties do
-      availability_zones({ 'Fn::GetAZs' => '' })
-      tags _array(
-        -> {
-          key 'StackName'
-          value ref!('AWS::StackName'))
-          propagate_at_launch true
-        },
-        -> {
-          key 'ContactEmail'
-          value support@hw-ops.com'
-          propagate_at_launch true
-        }
-      )
-      launch_configuration_name ref!(:website_launch_config)
-    end
 ```
 
 ## SparkleFormation Building Blocks
@@ -413,11 +256,11 @@ SparkleFormation.dynamic(:elb) do |_name, _config={}|
 end
 ```
 
-This dynamic accepts two arguments: a name (a string, required) and configuration
+This dynamic accepts two arguments: `_name` (a string, required) and `_config`
 (a hash, optional). The dynamic will use the values passed in these
 arguments to generate a new ELB resource, and override the default ELB
 properties wherever a corresponding key/value pair is provided in the
-_config hash.
+`_config` hash.
 
 Once updated to make use of the new ELB dynamic, our template looks
 like this:
@@ -461,16 +304,17 @@ node on port 8080 instead of 80, we can specify these override values
 in the configuration passed to the ELB dynamic:
 
 ```ruby
-  dynamic!(:elb, 'website', :load_balancer_port => 8080,
-  :instance_port => 8080)
+  dynamic!(:elb, 'website', :load_balancer_port => 8080, :instance_port => 8080)
 ```
 
-The arguments being passed here are as follows:
+We're passing three arguments here:
 
-1. :elb is the name of the dynamic to be inserted, as a ruby symbol
-2. the name (referred to as _name in our dynamic code) to be used when generating unique resource names
-3. one or more key/value pairs which are passed into the dynamic as
-the _config hash.
+1. `:elb` is the name of the dynamic to insert, as a ruby symbol
+2. A name string (`'website'`), which is passed to `_name` in the
+dynamic. This is prepended to the resource name in the dynamic,
+resulting in a unique resource name.
+3. The ELB ports to configure as key/value pairs. These are passed into the dynamic as
+the `_config` hash.
 
 ### Registries
 
@@ -507,7 +351,8 @@ SparkleFormation::Registry.register(:apt_get_update) do
 end
 ```
 
-Now we can insert this registry entry into our existing template:
+Now we can insert this registry entry into our existing template, to
+ensure that apt is updated upon provisioning:
 
 ```ruby
 SparkleFormation.new(:website).load(:base).overrides do
@@ -540,6 +385,8 @@ SparkleFormation.new(:website).load(:base).overrides do
   end
 
   dynamic!(:elb, 'website')
+
+  registry!(:apt_get_update, 'website')
 end
 ```
 
