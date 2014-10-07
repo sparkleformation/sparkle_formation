@@ -388,13 +388,18 @@ class SparkleFormation
           parts[tail_name] = {
             "Fn::Join" => [
               '',
-              *extras.map(&:last).unshift(tail_contents)
+              extras.map(&:last).unshift(tail_contents)
             ]
           }
         end
         parts['/etc/cloud/cloud.cfg.d/99_s.cfg'] = RUNNER
         parts
       end
+
+      FN_MAPPING = {
+        'Fn::GetAtt' => 'get_attr',
+#        'Fn::Join' => 'list_join'  # @todo why is this not working?
+      }
 
       # Metadata init runner
       RUNNER = <<-EOR
