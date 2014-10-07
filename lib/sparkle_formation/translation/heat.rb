@@ -206,7 +206,7 @@ class SparkleFormation
 
       FN_MAPPING = {
         'Fn::GetAtt' => 'get_attr',
-#        'Fn::Join' => 'list_join'  # @todo why is this not working?
+        'Fn::Join' => 'list_join'  # @todo why is this not working?
       }
 
     end
