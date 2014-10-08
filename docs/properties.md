@@ -19,7 +19,7 @@ provide the stack name and a contact email:
         },
         -> {
           key 'ContactEmail'
-          value support@hw-ops.com'
+          value 'support@hw-ops.com'
           propagate_at_launch true
         }
       )
