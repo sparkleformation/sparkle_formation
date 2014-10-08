@@ -54,7 +54,7 @@ SparkleFormation.new('website') do
           -> {
             effect 'Allow'
             action 'cloudformation:DescribeStackResource'
-            resource '*' 
+            resource '*'
           }
         )
       }
@@ -133,6 +133,4 @@ end
 ```
 
 [cloudformation]: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html
-[heat]:
-http://docs.openstack.org/developer/heat/template_guide/index.html
-
+[heat]: http://docs.openstack.org/developer/heat/template_guide/index.html
