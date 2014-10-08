@@ -3,7 +3,7 @@
 This is a best-effort list of commonly used cloudformation resources and their
 availability/feature set in supported cloud providers. This list does
 not cover everything that may be offered by a specific provider, and
-is not intended as a comparison of cloud providers. 
+is not intended as a comparison of cloud providers.
 
 #### Auto Scaling Groups
 
@@ -24,9 +24,10 @@ is not intended as a comparison of cloud providers.
 |Provider    |Available |Caveats & Limitations                                                        |
 |------------|----------|-----------------------------------------------------------------------------|
 |AWS         |Yes       |Security Group Ingress is not automatic. Must be defined separately.         |
-|Rackspace   |Yes       |Only allows a single LB port & a single instance port.                       |
+|Rackspace   |Yes       |Multiple ports generates new template resources.                             |
 
 #### Security Groups
+
 |Provider    |Available |Caveats & Limitations                                                        |
 |------------|----------|-----------------------------------------------------------------------------|
 |AWS         |Yes       |                                                                             |
@@ -36,14 +37,13 @@ is not intended as a comparison of cloud providers.
 
 |Provider    |Available |Caveats & Limitations                                                        |
 |------------|----------|-----------------------------------------------------------------------------|
-|AWS         |Yes       |                                                                             |        
-|Rackspace   |Yes       |                                                                             |
+|AWS         |Yes       |                                                                             |
+|Rackspace   |No        |                                                                             |
 
 
 #### Stack Users
+
 |Provider    |Available |Caveats & Limitations                                                        |
 |------------|----------|-----------------------------------------------------------------------------|
 |AWS         |Yes       |                                                                             |
 |Rackspace   |No        |                                                                             |
-        
-
