@@ -154,7 +154,7 @@ class SparkleFormation
     #
     # @param name [String, Symbol] name of dynamic
     # @param args [Hash] dynamic metadata
-    # @param args [Hash] :parameters description of _config parameters
+    # @option args [Hash] :parameters description of _config parameters
     # @example
     #   metadata describes dynamic parameters for _config hash:
     #   :item_name => {:description => 'Defines item name', :type => 'String'}
