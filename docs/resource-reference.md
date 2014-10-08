@@ -2,7 +2,8 @@
 
 This is a best-effort list of commonly used cloudformation resources and their
 availability/feature set in supported cloud providers. This list does
-not cover everything that may be offered by a specific provider. 
+not cover everything that may be offered by a specific provider, and
+is not intended as a comparison of cloud providers. 
 
 #### Auto Scaling Groups
 

@@ -1,11 +1,12 @@
 ## Universal Properties
 
 ### Tags
-Tags can be applied to any resource. These make it easy to track
+Tags can be applied to most resources. These make it easy to track
 resource usage across stacks. They may be used for cost tracking as
 well as configuration tools that are cloud-infrastructure aware. Tags
 are provided as key/value pairs within an array. In this example we
 provide the stack name and a contact email:
+
 ```ruby
   resources.website_autoscale do
     type 'AWS::AutoScaling::AutoScalingGroup'
@@ -26,3 +27,6 @@ provide the stack name and a contact email:
       launch_configuration_name ref!(:website_launch_config)
     end
 ```
+
+Please check the relevant reference documentation to confirm that tags
+are available for a specific resource type.
