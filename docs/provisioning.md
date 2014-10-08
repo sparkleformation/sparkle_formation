@@ -33,7 +33,7 @@ character limit. However, it is much easier to read.
 knife-cloudformation [knife-cloudformation plugin](https://rubygems.org/gems/knife-cloudformation) is a plugin for
 knife that provisions cloudformation stacks. It can be used with
 SparkleFormation to build stacks without the intermediary steps of
-writing a json template to file and uploading the template to the provider.
+writing a JSON template to file and uploading the template to the provider.
 
 #### Processing SparkleFormation Templates
 
@@ -45,8 +45,8 @@ knife cloudformation create my-web-stack --file templates/website.rb --processin
 ```
 
 `--file` directs knife to a file under the `cloudformation` directory,
-and `--processing` tells knife to render a json template using
-SparkleFormation. 
+and `--processing` tells knife to render JSON from the
+SparkleFormation template before passing it to the provider.
          
 #### Applying Stacks
 
