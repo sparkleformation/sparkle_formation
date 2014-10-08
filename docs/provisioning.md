@@ -16,14 +16,17 @@ puts SparkleFormation.compile(ARGV[0])
 ```
 
 The output can be written to a file and uploaded to the provider using
-the method of your choice. For a more legible template:
+the method of your choice. 
+
+For a more legible template:
 
 ```ruby
 puts JSON.pretty_generate(SparkleFormation.compile(ARGV[0]))
 ```
 
 Note: The output from this command may not be usable with cloud providers,
-as the many spaces and newlines may exceed the cloudformation character limit.
+as the many spaces and newlines may exceed the cloudformation
+character limit. However, it is much easier to read.
 
 ### Knife Cloudformation
 
