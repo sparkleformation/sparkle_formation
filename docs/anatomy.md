@@ -196,7 +196,8 @@ outputs do
 end
 ```
 
-The knife-cloudformation pluging supports ingesting an existing
-stack's outputs as parameters for the stack that is being
-provisioned. 
+Outputs are not simply informational. You can interact with them
+during [provisioning](provisioning.md) using the [knife-cloudformation
+plugin](https://rubygems.org/gems/knife-cloudformation). 
+
 
