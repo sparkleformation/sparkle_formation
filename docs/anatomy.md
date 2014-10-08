@@ -197,7 +197,7 @@ end
 ```
 
 Outputs are not simply informational. You can interact with them
-during [provisioning#knife-cloudformation](provisioning.md) using the [knife-cloudformation
+during [provisioning](provisioning.md#knife-cloudformation) using the [knife-cloudformation
 plugin](https://rubygems.org/gems/knife-cloudformation). 
 
 

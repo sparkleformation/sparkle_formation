@@ -29,14 +29,12 @@ as the many spaces and newlines may exceed the cloudformation
 character limit. However, it is much easier to read.
 
 ### Knife Cloudformation
-
 knife-cloudformation [knife-cloudformation plugin](https://rubygems.org/gems/knife-cloudformation) is a plugin for
 knife that provisions cloudformation stacks. It can be used with
 SparkleFormation to build stacks without the intermediary steps of
 writing a JSON template to file and uploading the template to the provider.
 
 #### Processing SparkleFormation Templates
-
 To build a stack directly from a SparkleFormation template, use the
 `create` command with the `--file` and `--processing` flags:
 
@@ -49,9 +47,8 @@ and `--processing` tells knife to render JSON from the
 SparkleFormation template before passing it to the provider.
          
 #### Applying Stacks
-
 You can also apply an existing stack's outputs to the stack you are
-building. Using the `--apply-stack` flag sets parameters are to the
+building. Using the `--apply-stack` flag sets parameters to the
 values of any matching outputs.  
 
 Consider that you have built a database stack (`db-stack-01`) that includes an output for the
