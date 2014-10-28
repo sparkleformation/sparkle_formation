@@ -6,7 +6,7 @@
 <title>
   File: resource-reference
   
-    &mdash; Documentation by YARD 0.8.7.3
+    &mdash; Documentation by YARD 0.8.7.6
   
 </title>
 
@@ -17,7 +17,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '';
-  framesUrl = "frames.html#!" + escape(window.location.href);
+  framesUrl = "frames.html#!file.resource-reference.html";
 </script>
 
 
@@ -61,162 +61,53 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h2 id="resource-reference">Resource Reference</h2>
+    <div id="content"><div id='filecontents'>
+<h2 id="label-Resource+Reference">Resource Reference</h2>
 
-<p>This is a best-effort list of commonly used cloudformation resources and their
-availability/feature set in supported cloud providers. This list does
-not cover everything that may be offered by a specific provider, and
-is not intended as a comparison of cloud providers.</p>
+<p>This is a best-effort list of commonly used cloudformation resources and
+their availability/feature set in supported cloud providers. This list does
+not cover everything that may be offered by a specific provider, and is not
+intended as a comparison of cloud providers.</p>
 
-<h4 id="auto-scaling-groups">Auto Scaling Groups</h4>
+<h4 id="label-Auto+Scaling+Groups">Auto Scaling Groups</h4>
 
-<table>
-  <thead>
-    <tr>
-      <th>Provider</th>
-      <th>Available</th>
-      <th>Caveats &amp; Limitations</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>AWS</td>
-      <td>Yes</td>
-      <td>EC2 Classic and VPC use mutually exclusive properties.</td>
-    </tr>
-    <tr>
-      <td>Rackspace</td>
-      <td>Yes</td>
-      <td>Autoscaling will not replace lost instances, only does policy based scaling.</td>
-    </tr>
-  </tbody>
-</table>
+<p>|Provider |Available |Caveats &amp; Limitations |
+|————|———-|—————————————————————————–| |AWS |Yes |EC2 Classic and VPC use
+mutually exclusive properties. | |Rackspace |Yes |Autoscaling will not
+replace lost instances, only does policy based scaling. |</p>
 
-<h4 id="compute-instances">Compute Instances</h4>
+<h4 id="label-Compute+Instances">Compute Instances</h4>
 
-<table>
-  <thead>
-    <tr>
-      <th>Provider</th>
-      <th>Available</th>
-      <th>Caveats &amp; Limitations</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>AWS</td>
-      <td>Yes</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Rackspace</td>
-      <td>Yes</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+<p>|Provider |Available |Caveats &amp; Limitations |
+|————|———-|—————————————————————————–| |AWS |Yes | | |Rackspace |Yes | |</p>
 
-<h4 id="load-balancers">Load Balancers</h4>
+<h4 id="label-Load+Balancers">Load Balancers</h4>
 
-<table>
-  <thead>
-    <tr>
-      <th>Provider</th>
-      <th>Available</th>
-      <th>Caveats &amp; Limitations</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>AWS</td>
-      <td>Yes</td>
-      <td>Security Group Ingress is not automatic. Must be defined separately.</td>
-    </tr>
-    <tr>
-      <td>Rackspace</td>
-      <td>Yes</td>
-      <td>Multiple ports generates new template resources.</td>
-    </tr>
-  </tbody>
-</table>
+<p>|Provider |Available |Caveats &amp; Limitations |
+|————|———-|—————————————————————————–| |AWS |Yes |Security Group Ingress is
+not automatic. Must be defined separately. | |Rackspace |Yes |Multiple
+ports generates new template resources. |</p>
 
-<h4 id="security-groups">Security Groups</h4>
+<h4 id="label-Security+Groups">Security Groups</h4>
 
-<table>
-  <thead>
-    <tr>
-      <th>Provider</th>
-      <th>Available</th>
-      <th>Caveats &amp; Limitations</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>AWS</td>
-      <td>Yes</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Rackspace</td>
-      <td>No</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+<p>|Provider |Available |Caveats &amp; Limitations |
+|————|———-|—————————————————————————–| |AWS |Yes | | |Rackspace |No | |</p>
 
-<h4 id="storage">Storage</h4>
+<h4 id="label-Storage">Storage</h4>
 
-<table>
-  <thead>
-    <tr>
-      <th>Provider</th>
-      <th>Available</th>
-      <th>Caveats &amp; Limitations</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>AWS</td>
-      <td>Yes</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Rackspace</td>
-      <td>No</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+<p>|Provider |Available |Caveats &amp; Limitations |
+|————|———-|—————————————————————————–| |AWS |Yes | | |Rackspace |No | |</p>
 
-<h4 id="stack-users">Stack Users</h4>
+<h4 id="label-Stack+Users">Stack Users</h4>
 
-<table>
-  <thead>
-    <tr>
-      <th>Provider</th>
-      <th>Available</th>
-      <th>Caveats &amp; Limitations</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>AWS</td>
-      <td>Yes</td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td>Rackspace</td>
-      <td>No</td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
+<p>|Provider |Available |Caveats &amp; Limitations |
+|————|———-|—————————————————————————–| |AWS |Yes | | |Rackspace |No | |</p>
 </div></div>
 
     <div id="footer">
-  Generated on Tue Oct 28 11:50:54 2014 by
+  Generated on Tue Oct 28 12:01:38 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.3 (ruby-2.1.2).
+  0.8.7.6 (ruby-2.1.2).
 </div>
 
   </body>

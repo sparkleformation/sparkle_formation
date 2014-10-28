@@ -6,7 +6,7 @@
 <title>
   File: functions
   
-    &mdash; Documentation by YARD 0.8.7.3
+    &mdash; Documentation by YARD 0.8.7.6
   
 </title>
 
@@ -17,7 +17,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '';
-  framesUrl = "frames.html#!" + escape(window.location.href);
+  framesUrl = "frames.html#!file.functions.html";
 </script>
 
 
@@ -61,53 +61,46 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h2 id="intrinsic-functions">Intrinsic Functions</h2>
-<p>The following are all intrinsic AWS Cloudformation functions that are
-supported with special syntax in SparkleFormation. Note that these may
-not be implemented for all providers. </p>
+    <div id="content"><div id='filecontents'>
+<h2 id="label-Intrinsic+Functions">Intrinsic Functions</h2>
 
-<h3 id="ref">Ref</h3>
+<p>The following are all intrinsic AWS Cloudformation functions that are
+supported with special syntax in SparkleFormation. Note that these may not
+be implemented for all providers.</p>
+
+<h3 id="label-Ref">Ref</h3>
+
 <p>Ref allows you to reference parameter and resource values. We did this
-earlier with the autoscaling group size:
-```ruby
-parameters.web_nodes do
-  type ‘Number’
-  description ‘Number of web nodes for ASG.’
-  default ‘2’
-end</p>
+earlier with the autoscaling group size: “`ruby parameters.web_nodes do 
+type &#39;Number&#39;  description &#39;Number of web nodes for ASG.&#39; 
+default &#39;2&#39; end</p>
 
 <p>…</p>
 
-<p>min_size ref!(:web_nodes)
-<code>
-It also works for resource names. The following returns the name of
-the launch configuration so we can use it in the autoscaling group
-properties. 
-</code>ruby
-ref!(:website_launch_config)
-```  </p>
+<p>min_size ref!(:web_nodes) <code> It also works for resource names. The
+following returns the name of the launch configuration so we can use it in
+the autoscaling group properties.  </code>ruby ref!(:website_launch_config)
+“`</p>
 
-<h3 id="join">Join</h3>
+<h3 id="label-Join">Join</h3>
+
 <p>A Join combines strings. You can use Refs and Mappings within a Join.
-<code>ruby
-join!(ref!(:environment), '-', map!(:region_map, ref!('AWS::Region'), :ami))
-</code>
-Would return ‘development-us-east-1’, if we built a stack in the
-AWS  Virgnia region and provided ‘development’ for the environment
-parameter. </p>
+<code>ruby join!(ref!(:environment), &#39;-&#39;, map!(:region_map,
+ref!(&#39;AWS::Region&#39;), :ami)) </code> Would return
+&#39;development-us-east-1&#39;, if we built a stack in the AWS Virgnia
+region and provided &#39;development&#39; for the environment parameter.</p>
 
-<h3 id="attr">Attr</h3>
-<p>Certain resources attributes can be retrieved directly. To access an
-IAM user’s (in this case, :cfn_user) secret key:
-<code>ruby
-attr!(:cfn_user, :secret_access_key)
-</code></p>
+<h3 id="label-Attr">Attr</h3>
+
+<p>Certain resources attributes can be retrieved directly. To access an IAM
+user&#39;s (in this case, :cfn_user) secret key: <code>ruby
+attr!(:cfn_user, :secret_access_key) </code></p>
 </div></div>
 
     <div id="footer">
-  Generated on Tue Oct 28 11:50:54 2014 by
+  Generated on Tue Oct 28 12:01:39 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.3 (ruby-2.1.2).
+  0.8.7.6 (ruby-2.1.2).
 </div>
 
   </body>

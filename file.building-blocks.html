@@ -6,7 +6,7 @@
 <title>
   File: building-blocks
   
-    &mdash; Documentation by YARD 0.8.7.3
+    &mdash; Documentation by YARD 0.8.7.6
   
 </title>
 
@@ -17,7 +17,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '';
-  framesUrl = "frames.html#!" + escape(window.location.href);
+  framesUrl = "frames.html#!file.building-blocks.html";
 </script>
 
 
@@ -61,289 +61,283 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h2 id="sparkleformation-building-blocks">SparkleFormation Building Blocks</h2>
+    <div id="content"><div id='filecontents'>
+<h2 id="label-SparkleFormation+Building+Blocks">SparkleFormation Building Blocks</h2>
 
-<p>Using SparkleFormation for the above template has already saved us
-many keystrokes, but what about reusing SparkleFormation code between
-similar stacks? This is where SparkleFormation concepts like
-components, dynamics, and registries come into play.</p>
+<p>Using SparkleFormation for the above template has already saved us many
+keystrokes, but what about reusing SparkleFormation code between similar
+stacks? This is where SparkleFormation concepts like components, dynamics,
+and registries come into play.</p>
 
-<h3 id="components">Components</h3>
+<h3 id="label-Components">Components</h3>
 
-<p>Components are static configuration which can be reused between many
-stack templates. In our example case we have decided that all our
-stacks will need to make use of IAM credentials, so we will create
-a component which allows us to inserts the two IAM resources into any
-template in a resuable fashion. The component, which we will call
-‘base’ and put in a file called ‘base.rb,’ would look like this:</p>
+<p>Components are static configuration which can be reused between many stack
+templates. In our example case we have decided that all our stacks will
+need to make use of IAM credentials, so we will create a component which
+allows us to inserts the two IAM resources into any template in a resuable
+fashion. The component, which we will call &#39;base&#39; and put in a file
+called &#39;base.rb,&#39; would look like this:</p>
 
-<p>```ruby
-SparkleFormation.build do
-  set!(‘AWSTemplateFormatVersion’, ‘2010-09-09’)</p>
+<pre class="code ruby"><code class="ruby"><span class='const'>SparkleFormation</span><span class='period'>.</span><span class='id identifier rubyid_build'>build</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_set!'>set!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWSTemplateFormatVersion</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>2010-09-09</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 
-<p>resources.cfn_user do
-    type ‘AWS::IAM::User’
-    properties.path ‘/’
-    properties.policies _array(
-      -&gt; {
-        policy_name ‘cfn_access’
-        policy_document.statement _array(
-          -&gt; {
-            effect ‘Allow’
-            action ‘cloudformation:DescribeStackResource’
-            resource ‘*’ 
-          }
-        )
-      }
-    )
-  end</p>
+  <span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_cfn_user'>cfn_user</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS::IAM::User</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_properties'>properties</span><span class='period'>.</span><span class='id identifier rubyid_path'>path</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_properties'>properties</span><span class='period'>.</span><span class='id identifier rubyid_policies'>policies</span> <span class='id identifier rubyid__array'>_array</span><span class='lparen'>(</span>
+      <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span>
+        <span class='id identifier rubyid_policy_name'>policy_name</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cfn_access</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_policy_document'>policy_document</span><span class='period'>.</span><span class='id identifier rubyid_statement'>statement</span> <span class='id identifier rubyid__array'>_array</span><span class='lparen'>(</span>
+          <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span>
+            <span class='id identifier rubyid_effect'>effect</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Allow</span><span class='tstring_end'>&#39;</span></span>
+            <span class='id identifier rubyid_action'>action</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cloudformation:DescribeStackResource</span><span class='tstring_end'>&#39;</span></span>
+            <span class='id identifier rubyid_resource'>resource</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>*</span><span class='tstring_end'>&#39;</span></span> 
+          <span class='rbrace'>}</span>
+        <span class='rparen'>)</span>
+      <span class='rbrace'>}</span>
+    <span class='rparen'>)</span>
+  <span class='kw'>end</span>
 
-<p>resources.cfn_keys do
-    type ‘AWS::IAM::AccessKey’
-    properties.user_name ref!(:cfn_user)
-  end
-end
-```</p>
+  <span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_cfn_keys'>cfn_keys</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS::IAM::AccessKey</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_properties'>properties</span><span class='period'>.</span><span class='id identifier rubyid_user_name'>user_name</span> <span class='id identifier rubyid_ref!'>ref!</span><span class='lparen'>(</span><span class='symbol'>:cfn_user</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</code></pre>
 
 <p>After moving these resources out of the initial template and into a
-component, we will update the template so that the base component is
-loaded on the first line, and the resources it contains are no longer
-present in the template itself:</p>
+component, we will update the template so that the base component is loaded
+on the first line, and the resources it contains are no longer present in
+the template itself:</p>
 
-<p>```ruby
-SparkleFormation.new(:website).load(:base).overrides do</p>
+<pre class="code ruby"><code class="ruby"><span class='const'>SparkleFormation</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:website</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='symbol'>:base</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_overrides'>overrides</span> <span class='kw'>do</span>
 
-<p>description ‘Supercool Website’</p>
+  <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Supercool Website</span><span class='tstring_end'>&#39;</span></span>
 
-<p>parameters.web_nodes do
-    type ‘Number’
-    description ‘Number of web nodes for ASG.’
-    default ‘2’
-  end</p>
+  <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_web_nodes'>web_nodes</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Number of web nodes for ASG.</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_default'>default</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>2</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>end</span>
 
-<p>resources.website_autoscale do
-    type ‘AWS::AutoScaling::AutoScalingGroup’
-    properties do
-      availability_zones(=&gt; ‘’)
-      launch_configuration_name ref!(:website_launch_config)
-      min_size ref!(:web_nodes)
-      max_size ref!(:web_nodes)
-    end
-  end</p>
+  <span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_website_autoscale'>website_autoscale</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS::AutoScaling::AutoScalingGroup</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_properties'>properties</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_availability_zones'>availability_zones</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::GetAZs</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_launch_configuration_name'>launch_configuration_name</span> <span class='id identifier rubyid_ref!'>ref!</span><span class='lparen'>(</span><span class='symbol'>:website_launch_config</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_min_size'>min_size</span> <span class='id identifier rubyid_ref!'>ref!</span><span class='lparen'>(</span><span class='symbol'>:web_nodes</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_max_size'>max_size</span> <span class='id identifier rubyid_ref!'>ref!</span><span class='lparen'>(</span><span class='symbol'>:web_nodes</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
 
-<p>resources.website_launch_config do
-    type ‘AWS::AutoScaling::LaunchConfiguration’
-    properties do
-      image_id ‘ami-123456’
-      instance_type ‘m3.medium’
-    end
-  end</p>
+  <span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_website_launch_config'>website_launch_config</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS::AutoScaling::LaunchConfiguration</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_properties'>properties</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_image_id'>image_id</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ami-123456</span><span class='tstring_end'>&#39;</span></span>
+      <span class='id identifier rubyid_instance_type'>instance_type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>m3.medium</span><span class='tstring_end'>&#39;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
 
-<p>resources.website_elb do
-    type ‘AWS::ElasticLoadBalancing::LoadBalancer’
-    properties do
-      availability_zones._set(‘Fn::GetAZs’, ‘’)
-      listeners _array(
-        -&gt; {
-          load_balancer_port ‘80’
-          protocol ‘HTTP’
-          instance_port ‘80’
-          instance_protocol ‘HTTP’
-        }
-      )
-      health_check do
-        target ‘HTTP:80/’
-        healthy_threshold ‘3’
-        unhealthy_threshold ‘3’
-        interval ‘5’
-        timeout ‘15’
-      end
-    end
-  end
-end
-```</p>
+  <span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_website_elb'>website_elb</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS::ElasticLoadBalancing::LoadBalancer</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_properties'>properties</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_availability_zones'>availability_zones</span><span class='period'>.</span><span class='id identifier rubyid__set'>_set</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::GetAZs</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_listeners'>listeners</span> <span class='id identifier rubyid__array'>_array</span><span class='lparen'>(</span>
+        <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span>
+          <span class='id identifier rubyid_load_balancer_port'>load_balancer_port</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>80</span><span class='tstring_end'>&#39;</span></span>
+          <span class='id identifier rubyid_protocol'>protocol</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HTTP</span><span class='tstring_end'>&#39;</span></span>
+          <span class='id identifier rubyid_instance_port'>instance_port</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>80</span><span class='tstring_end'>&#39;</span></span>
+          <span class='id identifier rubyid_instance_protocol'>instance_protocol</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HTTP</span><span class='tstring_end'>&#39;</span></span>
+        <span class='rbrace'>}</span>
+      <span class='rparen'>)</span>
+      <span class='id identifier rubyid_health_check'>health_check</span> <span class='kw'>do</span>
+        <span class='id identifier rubyid_target'>target</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HTTP:80/</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_healthy_threshold'>healthy_threshold</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>3</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_unhealthy_threshold'>unhealthy_threshold</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>3</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_interval'>interval</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>5</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_timeout'>timeout</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>15</span><span class='tstring_end'>&#39;</span></span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</code></pre>
 
-<h3 id="dynamics">Dynamics</h3>
+<h3 id="label-Dynamics">Dynamics</h3>
 
 <p>Like components, dynamics are another SparkleFormation feature which
-enables code reuse between stack templates. Where components are
-static, dynamics are useful for creating unique resources via
-the passing of arguments.</p>
+enables code reuse between stack templates. Where components are static,
+dynamics are useful for creating unique resources via the passing of
+arguments.</p>
 
-<p>In our example scenario we have decided that we want to use elastic
-load balancer resources in many of our stack templates, we want to
-create a dynamic which makes inserting ELB resources much easier than
-copying the full resource configuration between templates.</p>
+<p>In our example scenario we have decided that we want to use elastic load
+balancer resources in many of our stack templates, we want to create a
+dynamic which makes inserting ELB resources much easier than copying the
+full resource configuration between templates.</p>
 
 <p>The resulting implementation would look something like this:</p>
 
-<p><code>ruby
-SparkleFormation.dynamic(:elb) do |_name, _config={}|
-  resources("#{_name}_elb".to_sym) do
-    type 'AWS::ElasticLoadBalancing::LoadBalancer'
-    properties do
-      availability_zones._set('Fn::GetAZs', '')
-      listeners _array(
-        -&gt; {
-          load_balancer_port _config[:load_balancer_port] || '80'
-          protocol _config[:protocol] || 'HTTP'
-          instance_port _config[:instance_port] || '80'
-          instance_protocol _config[:instance_protocol] || 'HTTP'
-        }
-      )
-      health_check do
-        target _config[:target] || 'HTTP:80/'
-        healthy_threshold _config[:healthy_threshold] || '3'
-        unhealthy_threshold _config[:unhealthy_threshold] || '3'
-        interval _config[:interval] || '5'
-        timeout _config[:timeout] || '15'
-      end
-    end
-  end
-end
-</code></p>
+<pre class="code ruby"><code class="ruby"><span class='const'>SparkleFormation</span><span class='period'>.</span><span class='id identifier rubyid_dynamic'>dynamic</span><span class='lparen'>(</span><span class='symbol'>:elb</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid__name'>_name</span><span class='comma'>,</span> <span class='id identifier rubyid__config'>_config</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='op'>|</span>
+  <span class='id identifier rubyid_resources'>resources</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid__name'>_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>_elb</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS::ElasticLoadBalancing::LoadBalancer</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_properties'>properties</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_availability_zones'>availability_zones</span><span class='period'>.</span><span class='id identifier rubyid__set'>_set</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::GetAZs</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_listeners'>listeners</span> <span class='id identifier rubyid__array'>_array</span><span class='lparen'>(</span>
+        <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span>
+          <span class='id identifier rubyid_load_balancer_port'>load_balancer_port</span> <span class='id identifier rubyid__config'>_config</span><span class='lbracket'>[</span><span class='symbol'>:load_balancer_port</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>80</span><span class='tstring_end'>&#39;</span></span>
+          <span class='id identifier rubyid_protocol'>protocol</span> <span class='id identifier rubyid__config'>_config</span><span class='lbracket'>[</span><span class='symbol'>:protocol</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HTTP</span><span class='tstring_end'>&#39;</span></span>
+          <span class='id identifier rubyid_instance_port'>instance_port</span> <span class='id identifier rubyid__config'>_config</span><span class='lbracket'>[</span><span class='symbol'>:instance_port</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>80</span><span class='tstring_end'>&#39;</span></span>
+          <span class='id identifier rubyid_instance_protocol'>instance_protocol</span> <span class='id identifier rubyid__config'>_config</span><span class='lbracket'>[</span><span class='symbol'>:instance_protocol</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HTTP</span><span class='tstring_end'>&#39;</span></span>
+        <span class='rbrace'>}</span>
+      <span class='rparen'>)</span>
+      <span class='id identifier rubyid_health_check'>health_check</span> <span class='kw'>do</span>
+        <span class='id identifier rubyid_target'>target</span> <span class='id identifier rubyid__config'>_config</span><span class='lbracket'>[</span><span class='symbol'>:target</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HTTP:80/</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_healthy_threshold'>healthy_threshold</span> <span class='id identifier rubyid__config'>_config</span><span class='lbracket'>[</span><span class='symbol'>:healthy_threshold</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>3</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_unhealthy_threshold'>unhealthy_threshold</span> <span class='id identifier rubyid__config'>_config</span><span class='lbracket'>[</span><span class='symbol'>:unhealthy_threshold</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>3</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_interval'>interval</span> <span class='id identifier rubyid__config'>_config</span><span class='lbracket'>[</span><span class='symbol'>:interval</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>5</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_timeout'>timeout</span> <span class='id identifier rubyid__config'>_config</span><span class='lbracket'>[</span><span class='symbol'>:timeout</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>15</span><span class='tstring_end'>&#39;</span></span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</code></pre>
 
-<p>This dynamic accepts two arguments: <code>_name</code> (a string, required) and <code>_config</code>
-(a hash, optional). The dynamic will use the values passed in these
-arguments to generate a new ELB resource, and override the default ELB
-properties wherever a corresponding key/value pair is provided in the
-<code>_config</code> hash.</p>
+<p>This dynamic accepts two arguments: <code>_name</code> (a string, required)
+and <code>_config</code> (a hash, optional). The dynamic will use the
+values passed in these arguments to generate a new ELB resource, and
+override the default ELB properties wherever a corresponding key/value pair
+is provided in the <code>_config</code> hash.</p>
 
-<p>Once updated to make use of the new ELB dynamic, our template looks
-like this:</p>
+<p>Once updated to make use of the new ELB dynamic, our template looks like
+this:</p>
 
-<p>```ruby
-SparkleFormation.new(:website).load(:base).overrides do</p>
+<pre class="code ruby"><code class="ruby"><span class='const'>SparkleFormation</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:website</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='symbol'>:base</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_overrides'>overrides</span> <span class='kw'>do</span>
 
-<p>description ‘Supercool Website’</p>
+  <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Supercool Website</span><span class='tstring_end'>&#39;</span></span>
 
-<p>parameters.web_nodes do
-    type ‘Number’
-    description ‘Number of web nodes for ASG.’
-    default ‘2’
-  end</p>
+  <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_web_nodes'>web_nodes</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Number of web nodes for ASG.</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_default'>default</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>2</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>end</span>
 
-<p>resources.website_autoscale do
-    type ‘AWS::AutoScaling::AutoScalingGroup’
-    properties do
-      availability_zones(=&gt; ‘’)
-      launch_configuration_name ref!(:website_launch_config)
-      min_size ref!(:web_nodes)
-      max_size ref!(:web_nodes)
-    end
-  end</p>
+  <span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_website_autoscale'>website_autoscale</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS::AutoScaling::AutoScalingGroup</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_properties'>properties</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_availability_zones'>availability_zones</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::GetAZs</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_launch_configuration_name'>launch_configuration_name</span> <span class='id identifier rubyid_ref!'>ref!</span><span class='lparen'>(</span><span class='symbol'>:website_launch_config</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_min_size'>min_size</span> <span class='id identifier rubyid_ref!'>ref!</span><span class='lparen'>(</span><span class='symbol'>:web_nodes</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_max_size'>max_size</span> <span class='id identifier rubyid_ref!'>ref!</span><span class='lparen'>(</span><span class='symbol'>:web_nodes</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
 
-<p>resources.website_launch_config do
-    type ‘AWS::AutoScaling::LaunchConfiguration’
-    properties do
-      image_id ‘ami-123456’
-      instance_type ‘m3.medium’
-    end
-  end</p>
+  <span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_website_launch_config'>website_launch_config</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS::AutoScaling::LaunchConfiguration</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_properties'>properties</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_image_id'>image_id</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ami-123456</span><span class='tstring_end'>&#39;</span></span>
+      <span class='id identifier rubyid_instance_type'>instance_type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>m3.medium</span><span class='tstring_end'>&#39;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
 
-<p>dynamic!(:elb, ‘website’)
-end
-```</p>
+  <span class='id identifier rubyid_dynamic!'>dynamic!</span><span class='lparen'>(</span><span class='symbol'>:elb</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>website</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span>
+</code></pre>
 
-<p>If we wanted to override the default configuration for the ELB,
-e.g. to configure the ELB to listen on and communicate with back-end
-node on port 8080 instead of 80, we can specify these override values
-in the configuration passed to the ELB dynamic:</p>
+<p>If we wanted to override the default configuration for the ELB, e.g. to
+configure the ELB to listen on and communicate with back-end node on port
+8080 instead of 80, we can specify these override values in the
+configuration passed to the ELB dynamic:</p>
 
-<p><code>ruby
-  dynamic!(:elb, 'website', :load_balancer_port =&gt; 8080, :instance_port =&gt; 8080)
-</code></p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_dynamic!'>dynamic!</span><span class='lparen'>(</span><span class='symbol'>:elb</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>website</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:load_balancer_port</span> <span class='op'>=&gt;</span> <span class='int'>8080</span><span class='comma'>,</span> <span class='symbol'>:instance_port</span> <span class='op'>=&gt;</span> <span class='int'>8080</span><span class='rparen'>)</span>
+</code></pre>
 
-<p>We’re passing three arguments here:</p>
+<p>We&#39;re passing three arguments here:</p>
+<ol><li>
+<p><code>:elb</code> is the name of the dynamic to insert, as a ruby symbol</p>
+</li><li>
+<p>A name string (<code>&#39;website&#39;</code>), which is passed to
+<code>_name</code> in the dynamic. This is prepended to the resource name
+in the dynamic, resulting in a unique resource name.</p>
+</li><li>
+<p>The ELB ports to configure as key/value pairs. These are passed into the
+dynamic as the <code>_config</code> hash.</p>
+</li></ol>
 
-<ol>
-  <li><code>:elb</code> is the name of the dynamic to insert, as a ruby symbol</li>
-  <li>A name string (<code>'website'</code>), which is passed to <code>_name</code> in the
-dynamic. This is prepended to the resource name in the dynamic,
-resulting in a unique resource name.</li>
-  <li>The ELB ports to configure as key/value pairs. These are passed into the dynamic as
-the <code>_config</code> hash.</li>
-</ol>
+<h3 id="label-Registries">Registries</h3>
 
-<h3 id="registries">Registries</h3>
+<p>Similar to dynamics, registries are reusable resource configuration code
+which can be reused inside different resource definitions.</p>
 
-<p>Similar to dynamics, registries are reusable resource configuration
-code which can be reused inside different resource definitions.</p>
+<p>Registries are useful for defining properties that may be reused between
+resources of different types. For example, the LaunchConfiguration and
+Instance resource types make use of metadata properties which inform both
+resource types how to bootstrap one or more instances.</p>
 
-<p>Registries are useful for defining properties that may be reused
-between resources of different types. For example, the
-LaunchConfiguration and Instance resource types make use of metadata
-properties which inform both resource types how to bootstrap one or
-more instances.</p>
-
-<p>In our example scenario we would like our new instances to run
-‘sudo apt-get update &amp;&amp; sudo apt-get upgrade -y’ at first boot,
-regardless of whether or not the instances are members of an
-autoscaling group.</p>
+<p>In our example scenario we would like our new instances to run &#39;sudo
+apt-get update &amp;&amp; sudo apt-get upgrade -y&#39; at first boot,
+regardless of whether or not the instances are members of an autoscaling
+group.</p>
 
 <p>Because these resources are of different types, placing the metadata
-required for this task directly inside a dynamic isn’t going to work
-quite the way we need. Instead we can put this inside a registry which
-can be inserted into the resources defined in one or more dynamics:</p>
+required for this task directly inside a dynamic isn&#39;t going to work
+quite the way we need. Instead we can put this inside a registry which can
+be inserted into the resources defined in one or more dynamics:</p>
 
-<p><code>ruby
-SparkleFormation::Registry.register(:apt_get_update) do
-  metadata('AWS::CloudFormation::Init') do
+<pre class="code ruby"><code class="ruby">SparkleFormation::Registry.register(:apt_get_update) do
+  metadata(&#39;AWS::CloudFormation::Init&#39;) do
     _camel_keys_set(:auto_disable) do
-    commands('01_apt_get_update') do
-      command 'sudo apt-get update'
+    commands(&#39;01_apt_get_update&#39;) do
+      command &#39;sudo apt-get update&#39;
     end
-    commands('02_apt_get_upgrade') do
-      command 'sudo apt-get upgrade -y'
+    commands(&#39;02_apt_get_upgrade&#39;) do
+      command &#39;sudo apt-get upgrade -y&#39;
     end
   end
 end
-</code></p>
+</code></pre>
 
-<p>Now we can insert this registry entry into our existing template, to
-ensure that apt is updated upon provisioning:</p>
+<p>Now we can insert this registry entry into our existing template, to ensure
+that apt is updated upon provisioning:</p>
 
-<p>```ruby
-SparkleFormation.new(:website).load(:base).overrides do</p>
+<pre class="code ruby"><code class="ruby"><span class='const'>SparkleFormation</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:website</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='symbol'>:base</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_overrides'>overrides</span> <span class='kw'>do</span>
 
-<p>description ‘Supercool Website’</p>
+  <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Supercool Website</span><span class='tstring_end'>&#39;</span></span>
 
-<p>parameters.web_nodes do
-    type ‘Number’
-    description ‘Number of web nodes for ASG.’
-    default 2
-  end</p>
+  <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_web_nodes'>web_nodes</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Number of web nodes for ASG.</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_default'>default</span> <span class='int'>2</span>
+  <span class='kw'>end</span>
 
-<p>resources.website_autoscale do
-    type ‘AWS::AutoScaling::AutoScalingGroup’
-    properties do
-      availability_zones(=&gt; ‘’)
-      launch_configuration_name ref!(:website_launch_config)
-      min_size ref!(:web_nodes)
-      max_size ref!(:web_nodes)
-    end
-  end</p>
+  <span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_website_autoscale'>website_autoscale</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS::AutoScaling::AutoScalingGroup</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_properties'>properties</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_availability_zones'>availability_zones</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::GetAZs</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_launch_configuration_name'>launch_configuration_name</span> <span class='id identifier rubyid_ref!'>ref!</span><span class='lparen'>(</span><span class='symbol'>:website_launch_config</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_min_size'>min_size</span> <span class='id identifier rubyid_ref!'>ref!</span><span class='lparen'>(</span><span class='symbol'>:web_nodes</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_max_size'>max_size</span> <span class='id identifier rubyid_ref!'>ref!</span><span class='lparen'>(</span><span class='symbol'>:web_nodes</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
 
-<p>resources.website_launch_config do
-    type ‘AWS::AutoScaling::LaunchConfiguration’
-    registry!(:apt_get_update, ‘website’)
-    properties do
-      image_id ‘ami-123456’
-      instance_type ‘m3.medium’
-    end
-  end</p>
+  <span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_website_launch_config'>website_launch_config</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS::AutoScaling::LaunchConfiguration</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_registry!'>registry!</span><span class='lparen'>(</span><span class='symbol'>:apt_get_update</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>website</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_properties'>properties</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_image_id'>image_id</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ami-123456</span><span class='tstring_end'>&#39;</span></span>
+      <span class='id identifier rubyid_instance_type'>instance_type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>m3.medium</span><span class='tstring_end'>&#39;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
 
-<p>dynamic!(:elb, ‘website’)</p>
+  <span class='id identifier rubyid_dynamic!'>dynamic!</span><span class='lparen'>(</span><span class='symbol'>:elb</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>website</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 
-<p>registry!(:apt_get_update, ‘website’)
-end
-```</p>
+  <span class='id identifier rubyid_registry!'>registry!</span><span class='lparen'>(</span><span class='symbol'>:apt_get_update</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>website</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span>
+</code></pre>
 </div></div>
 
     <div id="footer">
-  Generated on Tue Oct 28 11:50:54 2014 by
+  Generated on Tue Oct 28 12:01:39 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.3 (ruby-2.1.2).
+  0.8.7.6 (ruby-2.1.2).
 </div>
 
   </body>

@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.8.7.3
+    &mdash; Documentation by YARD 0.8.7.6
   
 </title>
 
@@ -17,7 +17,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '';
-  framesUrl = "frames.html#!" + escape(window.location.href);
+  framesUrl = "frames.html#!file.README.html";
 </script>
 
 
@@ -61,218 +61,213 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h2 id="overview">Overview</h2>
-<p>SparkleFormation is a Ruby DSL for programatically composing
-<a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html">AWS Cloudformation</a>, <a href="http://docs.openstack.org/developer/heat/template_guide/index.html">OpenStack Heat</a>
-provisioning templates for the purpose of interacting with cloud
+    <div id="content"><div id='filecontents'>
+<h2 id="label-Overview">Overview</h2>
+
+<p>SparkleFormation is a Ruby DSL for programatically composing <a
+href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html">AWS
+Cloudformation</a>, <a
+href="http://docs.openstack.org/developer/heat/template_guide/index.html">OpenStack
+Heat</a> provisioning templates for the purpose of interacting with cloud
 infrastructure orchestration APIs.</p>
 
 <p>SparkleFormation templates describe the creation and configuration of
-collections of cloud resources (a stack) as code, allowing you to
-provision stacks in a predictable and repeatable manner. Stacks can be
-managed as single unit, allowing you to create, modify, or delete
-collections of resources via a single API call.</p>
+collections of cloud resources (a stack) as code, allowing you to provision
+stacks in a predictable and repeatable manner. Stacks can be managed as
+single unit, allowing you to create, modify, or delete collections of
+resources via a single API call.</p>
 
 <p>SparkleFormation composes templates in the native cloud orchestration
 formats for AWS, Rackspace, Google Compute, and similar services.</p>
 
-<h2 id="table-of-contents">Table of Contents</h2>
+<h2 id="label-Table+of+Contents">Table of Contents</h2>
+<ul><li>
+<p><a href="#getting-started">Getting Started</a></p>
+</li><li>
+<p><a href="#what-it-looks-like">What It Looks Like</a></p>
+</li><li>
+<p><a href="building-blocks.md">Building Blocks</a></p>
+</li><li>
+<p><a href="building-blocks.md#components">Components</a></p>
+</li><li>
+<p><a href="building-blocks.md#dynamics">Dynamics</a></p>
+</li><li>
+<p><a href="building-blocks.md#registries">Registries</a></p>
+</li><li>
+<p><a href="anatomy.md">Template Anatomy</a></p>
+</li><li>
+<p><a href="anatomy.md#parameters">Parameters</a></p>
+</li><li>
+<p><a href="anatomy.md#resources">Resources</a></p>
+</li><li>
+<p><a href="anatomy.md#mappings">Mappings</a></p>
+</li><li>
+<p><a href="anatomy.md#outputs">Outputs</a></p>
+</li><li>
+<p><a href="functions.md">Intrinsic Functions</a></p>
+</li><li>
+<p><a href="functions.md#ref">Ref</a></p>
+</li><li>
+<p><a href="functions.md#attr">Attr</a></p>
+</li><li>
+<p><a href="functions.md#join">Join</a></p>
+</li><li>
+<p><a href="properties.md">Universal Properties</a></p>
+</li><li>
+<p><a href="properties.md#tags">Tags</a></p>
+</li></ul>
 
-<ul>
-  <li><a href="#getting-started">Getting Started</a></li>
-  <li><a href="#what-it-looks-like">What It Looks Like</a></li>
-  <li><a href="building-blocks.md">Building Blocks</a>
-    <ul>
-      <li><a href="building-blocks.md#components">Components</a></li>
-      <li><a href="building-blocks.md#dynamics">Dynamics</a></li>
-      <li><a href="building-blocks.md#registries">Registries</a></li>
-    </ul>
-  </li>
-  <li><a href="anatomy.md">Template Anatomy</a>
-    <ul>
-      <li><a href="anatomy.md#parameters">Parameters</a></li>
-      <li><a href="anatomy.md#resources">Resources</a></li>
-      <li><a href="anatomy.md#mappings">Mappings</a></li>
-      <li><a href="anatomy.md#outputs">Outputs</a></li>
-    </ul>
-  </li>
-  <li><a href="functions.md">Intrinsic Functions</a>
-    <ul>
-      <li><a href="functions.md#ref">Ref</a></li>
-      <li><a href="functions.md#attr">Attr</a></li>
-      <li><a href="functions.md#join">Join</a></li>
-    </ul>
-  </li>
-  <li><a href="properties.md">Universal Properties</a></li>
-  <li><a href="properties.md#tags">Tags</a></li>
-</ul>
+<h2 id="label-Getting+Started">Getting Started</h2>
 
-<h2 id="getting-started">Getting Started</h2>
-<p>### Gemfile
-SparkleFormation is in active development. To access all the features
+<h3 id="label-Gemfile">Gemfile</h3>
+
+<p>SparkleFormation is in active development. To access all the features
 detailed in the documentation (using the knife plugin CLI), you should
 install the plugin and supporting libraries from git:</p>
 
-<p><code>ruby
-gem 'fog', :git =&gt; 'https://github.com/chrisroberts/fog.git', :ref =&gt; 'feature/orchestration'
-gem 'fog-core', :git =&gt; 'https://github.com/chrisroberts/fog-core.git', :ref =&gt; 'feature/orchestration'
-gem 'knife-cloudformation', :git =&gt; 'https://github.com/heavywater/knife-cloudformation.git', :ref =&gt; 'feature/fog-model'
-</code></p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>fog</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:git</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://github.com/chrisroberts/fog.git</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:ref</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>feature/orchestration</span><span class='tstring_end'>&#39;</span></span>
+<span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>fog-core</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:git</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://github.com/chrisroberts/fog-core.git</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:ref</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>feature/orchestration</span><span class='tstring_end'>&#39;</span></span>
+<span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>knife-cloudformation</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:git</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://github.com/heavywater/knife-cloudformation.git</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:ref</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>feature/fog-model</span><span class='tstring_end'>&#39;</span></span>
+</code></pre>
 
 <p>The Knife Cloudformation gem is only needed for stack provisioning via
-knife. You could also upload SparkleFormation generated templates to AWS via the WebUI.</p>
+knife. You could also upload SparkleFormation generated templates to AWS
+via the WebUI.</p>
 
-<h3 id="knife-config">Knife Config</h3>
-<p>To use Knife for provisioning, you will need to add the following to
-your <code>knife.rb</code> file:</p>
+<h3 id="label-Knife+Config">Knife Config</h3>
 
-<p>```ruby
-knife[:aws_access_key_id] = ENV[‘AWS_ACCESS_KEY_ID’]
-knife[:aws_secret_access_key] = ENV[‘AWS_SECRET_ACCESS_KEY’]</p>
+<p>To use Knife for provisioning, you will need to add the following to your
+<code>knife.rb</code> file:</p>
 
-<p>[:cloudformation, :options].inject(knife){ |m,k| m[k] ||= Mash.new }
-knife[:cloudformation][:options][:disable_rollback] = ENV[‘AWS_CFN_DISABLE_ROLLBACK’].to_s.downcase == ‘true’
-knife[:cloudformation][:options][:capabilities] = [‘CAPABILITY_IAM’]
-knife[:cloudformation][:processing] = true
-knife[:cloudformation][:credentials] = {
-  :aws_access_key_id =&gt; knife[:aws_access_key_id],
-  :aws_secret_access_key =&gt; knife[:aws_secret_access_key]
-}
-```</p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_knife'>knife</span><span class='lbracket'>[</span><span class='symbol'>:aws_access_key_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS_ACCESS_KEY_ID</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+<span class='id identifier rubyid_knife'>knife</span><span class='lbracket'>[</span><span class='symbol'>:aws_secret_access_key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS_SECRET_ACCESS_KEY</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
 
-<table>
-  <thead>
-    <tr>
-      <th>Attribute</th>
-      <th>Function</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>[:cloudformation][:options][:disable_rollback]</code></td>
-      <td>Disables rollback if stack is unsuccessful. Useful for debugging.</td>
-    </tr>
-    <tr>
-      <td><code>[:cloudformation][:credentials]</code></td>
-      <td>Credentials for a user that is allowed to create stacks.</td>
-    </tr>
-    <tr>
-      <td><code>[:cloudformation][:options][:capabilities]</code></td>
-      <td>Enables IAM creation (AWS only). Options are <code>nil</code> or <code>['CAPABILITY_IAM']</code></td>
-    </tr>
-    <tr>
-      <td><code>[:cloudformation][:processing]</code></td>
-      <td>Enables processing SparkleFormation templates (otherwise knife cloudformation will expect a JSON CFN template.</td>
-    </tr>
-  </tbody>
-</table>
+<span class='lbracket'>[</span><span class='symbol'>:cloudformation</span><span class='comma'>,</span> <span class='symbol'>:options</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='id identifier rubyid_knife'>knife</span><span class='rparen'>)</span><span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_m'>m</span><span class='comma'>,</span><span class='id identifier rubyid_k'>k</span><span class='op'>|</span> <span class='id identifier rubyid_m'>m</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>Mash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='rbrace'>}</span>
+<span class='id identifier rubyid_knife'>knife</span><span class='lbracket'>[</span><span class='symbol'>:cloudformation</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:options</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:disable_rollback</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS_CFN_DISABLE_ROLLBACK</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>true</span><span class='tstring_end'>&#39;</span></span>
+<span class='id identifier rubyid_knife'>knife</span><span class='lbracket'>[</span><span class='symbol'>:cloudformation</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:options</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:capabilities</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CAPABILITY_IAM</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+<span class='id identifier rubyid_knife'>knife</span><span class='lbracket'>[</span><span class='symbol'>:cloudformation</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:processing</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>true</span>
+<span class='id identifier rubyid_knife'>knife</span><span class='lbracket'>[</span><span class='symbol'>:cloudformation</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:credentials</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+  <span class='symbol'>:aws_access_key_id</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_knife'>knife</span><span class='lbracket'>[</span><span class='symbol'>:aws_access_key_id</span><span class='rbracket'>]</span><span class='comma'>,</span>
+  <span class='symbol'>:aws_secret_access_key</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_knife'>knife</span><span class='lbracket'>[</span><span class='symbol'>:aws_secret_access_key</span><span class='rbracket'>]</span>
+<span class='rbrace'>}</span>
+</code></pre>
 
-<h2 id="what-it-looks-like">What it Looks Like</h2>
-<p>Below is a basic SparkleFormation template which would provision an
-elastic load balancer forwarding port 80 to an autoscaling group of
-ec2 instances.</p>
+<p>| Attribute | Function |
+|————————————————–|—————————————————————————————————————-| |
+<code>[:cloudformation][:options][:disable_rollback]</code> | Disables
+rollback if stack is unsuccessful. Useful for debugging. | |
+<code>[:cloudformation][:credentials]</code> | Credentials for a user that
+is allowed to create stacks. | |
+<code>[:cloudformation][:options][:capabilities]</code> | Enables IAM
+creation (AWS only). Options are <code>nil</code> or
+<code>[&#39;CAPABILITY_IAM&#39;]</code> | |
+<code>[:cloudformation][:processing]</code> | Enables processing
+SparkleFormation templates (otherwise knife cloudformation will expect a
+JSON CFN template. |</p>
 
-<p>```ruby
-SparkleFormation.new(‘website’) do</p>
+<h2 id="label-What+it+Looks+Like">What it Looks Like</h2>
 
-<p>set!(‘AWSTemplateFormatVersion’, ‘2010-09-09’)</p>
+<p>Below is a basic SparkleFormation template which would provision an elastic
+load balancer forwarding port 80 to an autoscaling group of ec2 instances.</p>
 
-<p>description ‘Supercool Website’</p>
+<pre class="code ruby"><code class="ruby"><span class='const'>SparkleFormation</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>website</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
 
-<p>resources.cfn_user do
-    type ‘AWS::IAM::User’
-    properties.path ‘/’
-    properties.policies _array(
-      -&gt; {
-        policy_name ‘cfn_access’
-        policy_document.statement _array(
-          -&gt; {
-            effect ‘Allow’
-            action ‘cloudformation:DescribeStackResource’
-            resource ‘*’
-          }
-        )
-      }
-    )
-  end</p>
+  <span class='id identifier rubyid_set!'>set!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWSTemplateFormatVersion</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>2010-09-09</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 
-<p>resources.cfn_keys do
-    type ‘AWS::IAM::AccessKey’
-    properties.user_name ref!(:cfn_user)
-  end</p>
+  <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Supercool Website</span><span class='tstring_end'>&#39;</span></span>
 
-<p>parameters.web_nodes do
-    type ‘Number’
-    description ‘Number of web nodes for ASG.’
-    default 2
-  end</p>
+  <span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_cfn_user'>cfn_user</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS::IAM::User</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_properties'>properties</span><span class='period'>.</span><span class='id identifier rubyid_path'>path</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>/</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_properties'>properties</span><span class='period'>.</span><span class='id identifier rubyid_policies'>policies</span> <span class='id identifier rubyid__array'>_array</span><span class='lparen'>(</span>
+      <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span>
+        <span class='id identifier rubyid_policy_name'>policy_name</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cfn_access</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_policy_document'>policy_document</span><span class='period'>.</span><span class='id identifier rubyid_statement'>statement</span> <span class='id identifier rubyid__array'>_array</span><span class='lparen'>(</span>
+          <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span>
+            <span class='id identifier rubyid_effect'>effect</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Allow</span><span class='tstring_end'>&#39;</span></span>
+            <span class='id identifier rubyid_action'>action</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cloudformation:DescribeStackResource</span><span class='tstring_end'>&#39;</span></span>
+            <span class='id identifier rubyid_resource'>resource</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>*</span><span class='tstring_end'>&#39;</span></span>
+          <span class='rbrace'>}</span>
+        <span class='rparen'>)</span>
+      <span class='rbrace'>}</span>
+    <span class='rparen'>)</span>
+  <span class='kw'>end</span>
 
-<p>resources.website_autoscale do
-    type ‘AWS::AutoScaling::AutoScalingGroup’
-    properties do
-      availability_zones(=&gt; ‘’)
-      launch_configuration_name ref!(:website_launch_config)
-      min_size ref!(:web_nodes)
-      max_size ref!(:web_nodes)
-    end
-  end</p>
+  <span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_cfn_keys'>cfn_keys</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS::IAM::AccessKey</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_properties'>properties</span><span class='period'>.</span><span class='id identifier rubyid_user_name'>user_name</span> <span class='id identifier rubyid_ref!'>ref!</span><span class='lparen'>(</span><span class='symbol'>:cfn_user</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
 
-<p>resources.website_launch_config do
-    type ‘AWS::AutoScaling::LaunchConfiguration’
-    properties do
-      image_id ‘ami-123456’
-      instance_type ‘m3.medium’
-    end
-  end</p>
+  <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_web_nodes'>web_nodes</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Number of web nodes for ASG.</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_default'>default</span> <span class='int'>2</span>
+  <span class='kw'>end</span>
 
-<p>resources.website_elb do
-    type ‘AWS::ElasticLoadBalancing::LoadBalancer’
-    properties do
-      availability_zones._set(‘Fn::GetAZs’, ‘’)
-      listeners _array(
-        -&gt; {
-          load_balancer_port ‘80’
-          protocol ‘HTTP’
-          instance_port ‘80’
-          instance_protocol ‘HTTP’
-        }
-      )
-      health_check do
-        target ‘HTTP:80/’
-        healthy_threshold ‘3’
-        unhealthy_threshold ‘3’
-        interval ‘5’
-        timeout ‘15’
-      end
-    end
-  end
-end
-```</p>
+  <span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_website_autoscale'>website_autoscale</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS::AutoScaling::AutoScalingGroup</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_properties'>properties</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_availability_zones'>availability_zones</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::GetAZs</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_launch_configuration_name'>launch_configuration_name</span> <span class='id identifier rubyid_ref!'>ref!</span><span class='lparen'>(</span><span class='symbol'>:website_launch_config</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_min_size'>min_size</span> <span class='id identifier rubyid_ref!'>ref!</span><span class='lparen'>(</span><span class='symbol'>:web_nodes</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_max_size'>max_size</span> <span class='id identifier rubyid_ref!'>ref!</span><span class='lparen'>(</span><span class='symbol'>:web_nodes</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
 
-<p>This template is 74 lines long (with generous spacing for
-readability). The <a href="examples/template_json/website.json">json template this
-renders</a> is 88 lines, without
-spacing). This can be improved, though. SparkleFormation allows you to
-create resusable files such that the above template can become :</p>
+  <span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_website_launch_config'>website_launch_config</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS::AutoScaling::LaunchConfiguration</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_properties'>properties</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_image_id'>image_id</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ami-123456</span><span class='tstring_end'>&#39;</span></span>
+      <span class='id identifier rubyid_instance_type'>instance_type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>m3.medium</span><span class='tstring_end'>&#39;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
 
-<p>```ruby
-SparkleFormation.new(:website).load(:base).overrides do</p>
+  <span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_website_elb'>website_elb</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS::ElasticLoadBalancing::LoadBalancer</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_properties'>properties</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_availability_zones'>availability_zones</span><span class='period'>.</span><span class='id identifier rubyid__set'>_set</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::GetAZs</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_listeners'>listeners</span> <span class='id identifier rubyid__array'>_array</span><span class='lparen'>(</span>
+        <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span>
+          <span class='id identifier rubyid_load_balancer_port'>load_balancer_port</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>80</span><span class='tstring_end'>&#39;</span></span>
+          <span class='id identifier rubyid_protocol'>protocol</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HTTP</span><span class='tstring_end'>&#39;</span></span>
+          <span class='id identifier rubyid_instance_port'>instance_port</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>80</span><span class='tstring_end'>&#39;</span></span>
+          <span class='id identifier rubyid_instance_protocol'>instance_protocol</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HTTP</span><span class='tstring_end'>&#39;</span></span>
+        <span class='rbrace'>}</span>
+      <span class='rparen'>)</span>
+      <span class='id identifier rubyid_health_check'>health_check</span> <span class='kw'>do</span>
+        <span class='id identifier rubyid_target'>target</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HTTP:80/</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_healthy_threshold'>healthy_threshold</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>3</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_unhealthy_threshold'>unhealthy_threshold</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>3</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_interval'>interval</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>5</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_timeout'>timeout</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>15</span><span class='tstring_end'>&#39;</span></span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</code></pre>
 
-<p>description ‘Supercool Website’</p>
+<p>This template is 74 lines long (with generous spacing for readability). The
+<a href="examples/template_json/website.json">json template this
+renders</a> is 88 lines, without spacing). This can be improved, though.
+SparkleFormation allows you to create resusable files such that the above
+template can become :</p>
 
-<p>dynamic!(:autoscale, ‘website’, :nodes =&gt; 2)
-  dynamic!(:launch_config, ‘website’, :image_id =&gt; ‘ami-123456’, :instance_type =&gt; ‘m3.medium’)
-  dynamic!(:elb, ‘website’)</p>
+<pre class="code ruby"><code class="ruby"><span class='const'>SparkleFormation</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:website</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='symbol'>:base</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_overrides'>overrides</span> <span class='kw'>do</span>
 
-<p>end
-```</p>
+  <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Supercool Website</span><span class='tstring_end'>&#39;</span></span>
 
+  <span class='id identifier rubyid_dynamic!'>dynamic!</span><span class='lparen'>(</span><span class='symbol'>:autoscale</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>website</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:nodes</span> <span class='op'>=&gt;</span> <span class='int'>2</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_dynamic!'>dynamic!</span><span class='lparen'>(</span><span class='symbol'>:launch_config</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>website</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:image_id</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ami-123456</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:instance_type</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>m3.medium</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_dynamic!'>dynamic!</span><span class='lparen'>(</span><span class='symbol'>:elb</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>website</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+
+<span class='kw'>end</span>
+</code></pre>
 </div></div>
 
     <div id="footer">
-  Generated on Tue Oct 28 11:50:54 2014 by
+  Generated on Tue Oct 28 12:01:38 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.3 (ruby-2.1.2).
+  0.8.7.6 (ruby-2.1.2).
 </div>
 
   </body>

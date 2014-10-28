@@ -6,7 +6,7 @@
 <title>
   File: provisioning
   
-    &mdash; Documentation by YARD 0.8.7.3
+    &mdash; Documentation by YARD 0.8.7.6
   
 </title>
 
@@ -17,7 +17,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '';
-  framesUrl = "frames.html#!" + escape(window.location.href);
+  framesUrl = "frames.html#!file.provisioning.html";
 </script>
 
 
@@ -61,94 +61,96 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h2 id="provisioning-sparkleformations">Provisioning SparkleFormations</h2>
+    <div id="content"><div id='filecontents'>
+<h2 id="label-Provisioning+SparkleFormations">Provisioning SparkleFormations</h2>
 
-<h3 id="json-templates">JSON Templates</h3>
+<h3 id="label-JSON+Templates">JSON Templates</h3>
 
-<p>Generating JSON from a SparkleFormation template is as simple as
-calling <code>SparkleFormation.compile()</code> on the template file. Here’s a simple
-script to output a JSON template from a supplied
-SparkeFormation template:</p>
+<p>Generating JSON from a SparkleFormation template is as simple as calling
+<code>SparkleFormation.compile()</code> on the template file. Here&#39;s a
+simple script to output a JSON template from a supplied SparkeFormation
+template:</p>
 
-<p>```ruby
-#!/usr/bin/env ruby
-require ‘sparkle_formation’
-require ‘json’</p>
+<pre class="code ruby"><code class="ruby"><span class='comment'>#!/usr/bin/env ruby
+</span><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>sparkle_formation</span><span class='tstring_end'>&#39;</span></span>
+<span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>json</span><span class='tstring_end'>&#39;</span></span>
 
-<p>puts SparkleFormation.compile(ARGV[0])
-```</p>
+<span class='id identifier rubyid_puts'>puts</span> <span class='const'>SparkleFormation</span><span class='period'>.</span><span class='id identifier rubyid_compile'>compile</span><span class='lparen'>(</span><span class='const'>ARGV</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+</code></pre>
 
-<p>The output can be written to a file and uploaded to the provider using
-the method of your choice. </p>
+<p>The output can be written to a file and uploaded to the provider using the
+method of your choice.</p>
 
 <p>For a more legible template:</p>
 
-<p><code>ruby
-puts JSON.pretty_generate(SparkleFormation.compile(ARGV[0]))
-</code></p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_puts'>puts</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_pretty_generate'>pretty_generate</span><span class='lparen'>(</span><span class='const'>SparkleFormation</span><span class='period'>.</span><span class='id identifier rubyid_compile'>compile</span><span class='lparen'>(</span><span class='const'>ARGV</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='rparen'>)</span>
+</code></pre>
 
 <p>Note: The output from this command may not be usable with cloud providers,
-as the many spaces and newlines may exceed the cloudformation
-character limit. However, it is much easier to read.</p>
+as the many spaces and newlines may exceed the cloudformation character
+limit. However, it is much easier to read.</p>
 
-<h3 id="knife-cloudformation">Knife Cloudformation</h3>
-<p>knife-cloudformation <a href="https://rubygems.org/gems/knife-cloudformation">knife-cloudformation plugin</a> is a plugin for
-knife that provisions cloudformation stacks. It can be used with
-SparkleFormation to build stacks without the intermediary steps of
-writing a JSON template to file and uploading the template to the provider.</p>
+<h3 id="label-Knife+Cloudformation">Knife Cloudformation</h3>
 
-<h4 id="processing-sparkleformation-templates">Processing SparkleFormation Templates</h4>
+<p>knife-cloudformation <a
+href="https://rubygems.org/gems/knife-cloudformation">knife-cloudformation
+plugin</a> is a plugin for knife that provisions cloudformation stacks. It
+can be used with SparkleFormation to build stacks without the intermediary
+steps of writing a JSON template to file and uploading the template to the
+provider.</p>
+
+<h4 id="label-Processing+SparkleFormation+Templates">Processing SparkleFormation Templates</h4>
+
 <p>To build a stack directly from a SparkleFormation template, use the
-<code>create</code> command with the <code>--file</code> and <code>--processing</code> flags:</p>
+<code>create</code> command with the <code>--file</code> and
+<code>--processing</code> flags:</p>
 
-<p><code>
-knife cloudformation create my-web-stack --file templates/website.rb --processing
-</code></p>
+<pre class="code ruby"><code class="ruby">knife cloudformation create my-web-stack --file templates/website.rb --processing</code></pre>
 
-<p><code>--file</code> directs knife to a file under the <code>cloudformation</code> directory,
-and <code>--processing</code> tells knife to render JSON from the
-SparkleFormation template before passing it to the provider.</p>
+<p><code>--file</code> directs knife to a file under the
+<code>cloudformation</code> directory, and <code>--processing</code> tells
+knife to render JSON from the SparkleFormation template before passing it
+to the provider.</p>
 
-<h4 id="applying-stacks">Applying Stacks</h4>
-<p>You can also apply an existing stack’s outputs to the stack you are
+<h4 id="label-Applying+Stacks">Applying Stacks</h4>
+
+<p>You can also apply an existing stack&#39;s outputs to the stack you are
 building. Using the <code>--apply-stack</code> flag sets parameters to the
-values of any matching outputs.  </p>
+values of any matching outputs.</p>
 
-<p>Consider that you have built a database stack (<code>db-stack-01</code>) that includes an output for the
-database endpoint:</p>
+<p>Consider that you have built a database stack (<code>db-stack-01</code>)
+that includes an output for the database endpoint:</p>
 
-<p><code>ruby
-outputs do
-  database_endpoint do
-    value attr!(:database_elb, 'DNSName')
-    description "Database ELB Endpoint for client connections"
-  end
-end
-</code></p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_outputs'>outputs</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_database_endpoint'>database_endpoint</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_value'>value</span> <span class='id identifier rubyid_attr!'>attr!</span><span class='lparen'>(</span><span class='symbol'>:database_elb</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>DNSName</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Database ELB Endpoint for client connections</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</code></pre>
 
-<p>Next, you build a website stack (<code>web-stack-01</code>) that needs to connect to the
-database. The SparkleFormation for this stack includes a parameter to
-prompt for the database endpoint:</p>
+<p>Next, you build a website stack (<code>web-stack-01</code>) that needs to
+connect to the database. The SparkleFormation for this stack includes a
+parameter to prompt for the database endpoint:</p>
 
-<p><code>ruby
-parameters.database_endpoint do
-  type 'String'
-  description 'Database endpoint to connect to'
-  default 'localhost'
-end
-</code></p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_database_endpoint'>database_endpoint</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>String</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Database endpoint to connect to</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_default'>default</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>localhost</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span>
+</code></pre>
 
 <p>Using knife-cloudformation, you apply the database stack in order to
 automatically provide the correct database endpoint:</p>
 
-<p><code>knife cloudformation create web-stack-01 --file templates/website.rb --processing --apply-stack db-stack-01</code></p>
-
+<p><code>knife cloudformation create web-stack-01 --file templates/website.rb
+--processing --apply-stack db-stack-01</code></p>
 </div></div>
 
     <div id="footer">
-  Generated on Tue Oct 28 11:50:54 2014 by
+  Generated on Tue Oct 28 12:01:39 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.3 (ruby-2.1.2).
+  0.8.7.6 (ruby-2.1.2).
 </div>
 
   </body>
