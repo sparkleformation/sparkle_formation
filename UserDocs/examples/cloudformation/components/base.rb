@@ -1,4 +1,3 @@
-<!DOCTYPE html><html><title>SparkleFormation User Documentation</title><xmp theme="simplex" style="display:none;">
 SparkleFormation.build do
   set!('AWSTemplateFormatVersion', '2010-09-09')
 
@@ -24,4 +23,3 @@ SparkleFormation.build do
     properties.user_name ref!(:cfn_user)
   end
 end
-</xmp><script src="http://strapdownjs.com/v/0.2/strapdown.js"></script></html>

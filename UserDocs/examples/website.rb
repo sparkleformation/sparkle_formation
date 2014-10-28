@@ -1,4 +1,3 @@
-<!DOCTYPE html><html><title>SparkleFormation User Documentation</title><xmp theme="simplex" style="display:none;">
 SparkleFormation.new('website') do
 
   set!('AWSTemplateFormatVersion', '2010-09-09')
@@ -73,4 +72,3 @@ SparkleFormation.new('website') do
     end
   end
 end
-</xmp><script src="http://strapdownjs.com/v/0.2/strapdown.js"></script></html>
