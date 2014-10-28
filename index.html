@@ -61,31 +61,29 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'>
-<h1 id="label-SparkleFormation">SparkleFormation</h1>
+    <div id="content"><div id='filecontents'><h1>SparkleFormation</h1>
 
 <p>AWS CloudFormation template building tools for Ruby. Yay!</p>
 
-<h2 id="label-What%27s+it+do%3F">What&#39;s it do?</h2>
+<h2>What&#39;s it do?</h2>
 
-<p>Provides a very loose DSL to describe an AWS CloudFormation in Ruby.</p>
+<p>Provides a very loose DSL to describe an AWS CloudFormation
+in Ruby.</p>
 
-<h2 id="label-Is+that+it%3F">Is that it?</h2>
+<h2>Is that it?</h2>
 
 <p>Yes. Well, kinda. It also has some extra features, like defining
-components, dynamics, merging, AWS builtin function helpers, and conjouring
-magic (to get unicorns).</p>
+components, dynamics, merging, AWS builtin function helpers, and
+conjouring magic (to get unicorns).</p>
 
-<h2 id="label-Expanded+User+Docs">Expanded User Docs</h2>
+<h2>Expanded User Docs</h2>
 
-<p>New user documentation is now here! <a
-href="http://sparkleformation.github.io/sparkle_formation/UserDocs/README.html">User
-Documentation</a></p>
+<p>New user documentation is now here! <a href="http://sparkleformation.github.io/sparkle_formation/UserDocs/README.html">User Documentation</a></p>
 
-<h2 id="label-What%27s+it+look+like%3F">What&#39;s it look like?</h2>
+<h2>What&#39;s it look like?</h2>
 
-<p>Lets use one of the example CF templates that creates an EC2 instance.
-First we can just convert it into a single file (ec2_example.rb):</p>
+<p>Lets use one of the example CF templates that creates an EC2 instance. First
+we can just convert it into a single file (ec2_example.rb):</p>
 
 <pre class="code ruby"><code class="ruby"><span class='const'>SparkleFormation</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ec2_example</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
   <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>AWS CloudFormation Sample Template ...</span><span class='tstring_end'>&quot;</span></span>
@@ -156,18 +154,18 @@ is ready for AWS. To print:</p>
 
 <p>Easy!</p>
 
-<h2 id="label-Why+not+just+write+JSON%3F">Why not just write JSON?</h2>
+<h2>Why not just write JSON?</h2>
 
-<p>Because, who in their right mind would want to write all of that in JSON?
-Also, we can start applying some of the underlying features in
-<code>SparkleFormation</code> to make this easier to maintain.</p>
+<p>Because, who in their right mind would want to write all of that in JSON? Also,
+we can start applying some of the underlying features in <code>SparkleFormation</code> to
+make this easier to maintain.</p>
 
-<h1 id="label-Components">Components</h1>
+<h1>Components</h1>
 
-<p>Lets say we have a handful of CF templates we want to maintain, and all of
-those templates use the same AMI. Instead of copying that information into
-all the templates, lets create an AMI component instead, and then load it
-into the actual templates.</p>
+<p>Lets say we have a handful of CF templates we want to maintain, and all of those
+templates use the same AMI. Instead of copying that information into all the
+templates, lets create an AMI component instead, and then load it into the actual
+templates.</p>
 
 <p>First, create the component (components/ami.rb):</p>
 
@@ -187,8 +185,7 @@ into the actual templates.</p>
 <span class='kw'>end</span>
 </code></pre>
 
-<p>Now, we can modify our initial example to use this component
-(ec2_example.rb):</p>
+<p>Now, we can modify our initial example to use this component (ec2_example.rb):</p>
 
 <pre class="code ruby"><code class="ruby"><span class='const'>SparkleFormation</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ec2_example</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='symbol'>:ami</span><span class='rparen'>)</span> <span class='kw'>do</span>
 
@@ -237,23 +234,23 @@ into the actual templates.</p>
 </code></pre>
 
 <p>Now a few things have changed. Instead of passing a block directly to the
-instance instantiation, we are loading a component (the <code>ami</code>
-component) into the formation, and then applying an override block on top
-of the <code>ami</code> component. The result is the same as the initial
-example, but now we have a DRY component to use. Great!</p>
+instance instantiation, we are loading a component (the <code>ami</code> component)
+into the formation, and then applying an override block on top of the <code>ami</code>
+component. The result is the same as the initial example, but now we have
+a DRY component to use. Great!</p>
 
-<h2 id="label-Dynamics">Dynamics</h2>
+<h2>Dynamics</h2>
 
 <p>Okay, so lets say we want to have two ec2 instances. We could duplicate the
 resource and outputs, renaming where required. This would get ugly quick,
-especially as more instances are added. Making a component for the ec2
-resource won&#39;t really help since components are static, used to apply
-the same common parts to multiple templates. So what do we use?</p>
+especially as more instances are added. Making a component for the ec2 resource
+won&#39;t really help since components are static, used to apply the same common
+parts to multiple templates. So what do we use?</p>
 
-<p>Enter <code>dynamics</code>. These are much like components, except that
-instead of simply being merged, they allow passing of arguments which makes
-them reusable to create unique resources. So, from our last example, lets
-move the ec2 related items into a dynamic (dynamics/node.rb):</p>
+<p>Enter <code>dynamics</code>. These are much like components, except that instead of simply
+being merged, they allow passing of arguments which makes them reusable to create
+unique resources. So, from our last example, lets move the ec2 related items
+into a dynamic (dynamics/node.rb):</p>
 
 <pre class="code ruby"><code class="ruby"><span class='const'>SparkleFormation</span><span class='period'>.</span><span class='id identifier rubyid_dynamic'>dynamic</span><span class='lparen'>(</span><span class='symbol'>:node</span><span class='comma'>,</span>
   <span class='symbol'>:parameters</span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span>
@@ -323,34 +320,27 @@ resource easily:</p>
 <span class='kw'>end</span>
 </code></pre>
 
-<h2 id="label-TODO">TODO</h2>
-<ul><li>
-<p>Add information about symbol importance</p>
-</li><li>
-<p>Add examples of camel case control</p>
-</li><li>
-<p>Add examples of complex merge strategies</p>
-</li><li>
-<p>Add examples of accessing parent hash elements</p>
-</li></ul>
+<h2>TODO</h2>
 
-<h1 id="label-Infos">Infos</h1>
-<ul><li>
-<p>Documentation: <a
-href="http://sparkleformation.github.io/sparkle_formation">sparkleformation.github.io/sparkle_formation</a></p>
-</li><li>
-<p>User Documentation: <a
-href="http://sparkleformation.github.io/sparkle_formation/UserDocs/README.html">sparkleformation.github.io/sparkle_formation/UserDocs/README.html</a></p>
-</li><li>
-<p>Repository: <a
-href="https://github.com/heavywater/sparkle_formation">github.com/heavywater/sparkle_formation</a></p>
-</li><li>
-<p>IRC: Freenode @ #heavywater</p>
-</li></ul>
+<ul>
+<li>Add information about symbol importance</li>
+<li>Add examples of camel case control</li>
+<li>Add examples of complex merge strategies</li>
+<li>Add examples of accessing parent hash elements</li>
+</ul>
+
+<h1>Infos</h1>
+
+<ul>
+<li>Documentation: <a href="http://sparkleformation.github.io/sparkle_formation">http://sparkleformation.github.io/sparkle_formation</a></li>
+<li>User Documentation: <a href="http://sparkleformation.github.io/sparkle_formation/UserDocs/README.html">http://sparkleformation.github.io/sparkle_formation/UserDocs/README.html</a></li>
+<li>Repository: <a href="https://github.com/heavywater/sparkle_formation">https://github.com/heavywater/sparkle_formation</a></li>
+<li>IRC: Freenode @ #heavywater</li>
+</ul>
 </div></div>
 
     <div id="footer">
-  Generated on Tue Oct 28 12:57:49 2014 by
+  Generated on Tue Oct 28 14:19:25 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.1.2).
 </div>

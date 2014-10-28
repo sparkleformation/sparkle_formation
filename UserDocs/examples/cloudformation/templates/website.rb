@@ -1,3 +1,4 @@
+<!DOCTYPE html><html><title>SparkleFormation User Documentation</title><xmp theme="simplex" style="display:none;">
 SparkleFormation.new(:website).load(:base).overrides do
 
   description 'Supercool Website'
@@ -28,3 +29,4 @@ SparkleFormation.new(:website).load(:base).overrides do
 
   dynamic!(:elb, 'website')
 end
+</xmp><script src="http://strapdownjs.com/v/0.2/strapdown.js"></script></html>

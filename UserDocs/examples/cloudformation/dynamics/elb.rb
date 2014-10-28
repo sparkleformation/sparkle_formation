@@ -1,3 +1,4 @@
+<!DOCTYPE html><html><title>SparkleFormation User Documentation</title><xmp theme="simplex" style="display:none;">
 SparkleFormation.dynamic(:elb) do |_name, _config={}|
   resources("#{_name}_elb".to_sym) do
     type 'AWS::ElasticLoadBalancing::LoadBalancer'
@@ -21,3 +22,4 @@ SparkleFormation.dynamic(:elb) do |_name, _config={}|
     end
   end
 end
+</xmp><script src="http://strapdownjs.com/v/0.2/strapdown.js"></script></html>
