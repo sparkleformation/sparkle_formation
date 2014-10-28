@@ -16,6 +16,7 @@ formats for AWS, Rackspace, Google Compute, and similar services.
 ## Table of Contents
 
 - [Getting Started](#getting-started)
+- [What It Looks Like](#what-it-looks-like)
 - [Building Blocks](building-blocks.md)
   - [Components](building-blocks.md#components)
   - [Dynamics](building-blocks.md#dynamics)
@@ -33,6 +34,46 @@ formats for AWS, Rackspace, Google Compute, and similar services.
  - [Tags](properties.md#tags)
 
 ## Getting Started
+### Gemfile
+SparkleFormation is in active development. To access all the features
+detailed in the documentation, you should install from git:
+
+```ruby
+gem 'fog', :git => 'https://github.com/chrisroberts/fog.git', :ref => 'feature/orchestration'
+gem 'fog-core', :git => 'https://github.com/chrisroberts/fog-core.git', :ref => 'feature/orchestration'
+gem 'sparkle_formation', :git => 'https://github.com/heavywater/sparkle_formation.git', :ref => 'develop'
+gem 'knife-cloudformation', :git => 'https://github.com/heavywater/knife-cloudformation.git', :ref => 'feature/fog-model'
+```
+The Knife Cloudformation gem is only needed for stack provisioning via
+knife. You could also upload SparkleFormation generated templates to AWS via the WebUI.
+
+### Knife Config
+To use Knife for provisioning, you will need to add the following to
+your `knife.rb` file:
+
+```ruby
+knife[:cfn_disable_rollback] = ENV['CLOUDFORMATION_DISABLE_ROLLBACK'].to_s.downcase == 'false' ? false : true
+knife[:aws_access_key_id] = ENV['AWS_ACCESS_KEY_ID']
+knife[:aws_secret_access_key] = ENV['AWS_SECRET_ACCESS_KEY']
+ 
+[:cloudformation, :options].inject(knife){ |m,k| m[k] ||= Mash.new }
+knife[:cloudformation][:options][:disable_rollback] = knife[:cfn_disable_rollback]
+knife[:cloudformation][:options][:capabilities] = ['CAPABILITY_IAM']
+knife[:cloudformation][:processing] = true
+knife[:cloudformation][:credentials] = {
+  :aws_access_key_id => knife[:aws_access_key_id],
+  :aws_secret_access_key => knife[:aws_secret_access_key]
+}
+```
+
+| Attribute                                        | Function                                                                                                       |
+|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| `[:cloudformation][:options][:disable_rollback]` | Disables rollback if stack is unsuccessful. Useful for debugging.                                              |
+| `[:cloudformation][:credentials]`                | Credentials for a user that is allowed to create stacks.                                                       |
+| `[:cloudformation][:options][:capabilities]`     | Enables IAM creation (AWS only). Options are `nil` or `['CAPABILITY_IAM']`                                     |
+| `[:cloudformation][:processing]`                 | Enables processing SparkleFormation templates (otherwise knife cloudformation will expect a JSON CFN template. |
+
+## What it Looks Like
 Below is a basic SparkleFormation template which would provision an
 elastic load balancer forwarding port 80 to an autoscaling group of
 ec2 instances.
