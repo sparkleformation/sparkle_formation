@@ -1,5 +1,6 @@
 .*
 !.gitignore
+!.yardopts
 *.gem
 Gemfile.lock
 build_formation.rb
