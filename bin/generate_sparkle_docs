@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+
+unless(system("yardoc"))
+  $stderr.puts 'ACK: Failed to create docs!'
+  exit -1
+end
+
+FileUtils.mkdir_p('doc/UserDocs')
+
+Dir.glob('docs/**/*').each do |path|
+  next unless File.file?(path)
+  content = File.read(path)
+  new_path = File.join('doc/UserDocs', path.sub(/.*?docs\//, ''))
+  FileUtils.mkdir_p(File.dirname(new_path))
+  File.open(new_path.sub('.md', '.html'), 'w') do |file|
+    if(path.end_with?('.md'))
+      file.puts '<!DOCTYPE html><html><title>SparkleFormation User Documentation</title><xmp theme="simplex" style="display:none;">'
+      file.puts content.gsub('.md', '.html')
+      file.puts '</xmp><script src="http://strapdownjs.com/v/0.2/strapdown.js"></script></html>'
+    else
+      file.puts content
+    end
+  end
+end
+
+File.open('doc/UserDocs/index.html', 'w') do |file|
+  file.puts '<html><head><meta http-equiv="refresh" content="0; url=README.html" /></head></html>'
+end
+
+puts 'done.'
