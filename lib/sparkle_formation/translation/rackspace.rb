@@ -43,10 +43,29 @@ class SparkleFormation
                 k.match(/#{lb_name}Vip\d+/) && v['type'] == 'Rackspace::Cloud::LoadBalancer'
               end
               value['properties']['launchConfiguration']['args'].tap do |lnch_config|
-                lnch_config['loadBalancers'] = [
-                  'loadBalancerId' => lb_ref,
-                  'port' => lb_resource['cache_instance_port']
-                ]
+                lb_instance = {
+                  'loadBalancerId' => lb_ref
+                }
+                # @note search for a port defined within parameters
+                # that matches naming of LB ID for when they are
+                # passed in rather than defined within the template.
+                # Be sure to document this in user docs since it's
+                # weird but needed
+                if(lb_resource)
+                  lb_instance['port'] = lb_resource['cache_instance_port']
+                else
+                  key = parameters.keys.detect do |k|
+                    if(k.end_with?('Port'))
+                      lb_ref.values.first.start_with?(k.sub(/Port$/, ''))
+                    end
+                  end
+                  if(key)
+                    lb_instance['port'] = {'get_param' => key}
+                  else
+                    raise "Failed to translate load balancer configuartion. No port found! (#{lb_ref})"
+                  end
+                end
+                lnch_config['loadBalancers'] = [lb_instance]
                 vip_resources.each do |vip_name, vip_resource|
                   lnch_config['loadBalancers'].push(
                     'loadBalancerId' => {
@@ -399,6 +418,18 @@ class SparkleFormation
       FN_MAPPING = {
         'Fn::GetAtt' => 'get_attr',
 #        'Fn::Join' => 'list_join'  # @todo why is this not working?
+      }
+
+      FN_ATT_MAPPING = {
+        'AWS::EC2::Instance' => {
+          'PrivateDnsName' => 'accessIPv4', # @todo - need srv net name for access via nets
+          'PublicDnsName' => 'accessIPv4',
+          'PrivateIp' => 'accessIPv4', # @todo - need srv net name for access via nets
+          'PublicIp' => 'accessIPv4'
+        },
+        'AWS::ElasticLoadBalancing::LoadBalancer' => {
+          'DNSName' => 'PublicIp'
+        }
       }
 
       # Metadata init runner
