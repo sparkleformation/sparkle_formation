@@ -1,3 +1,7 @@
+## v0.2.2
+* Lots of translation updates (AWS -> RS "hot")
+* User Documentation!
+
 ## v0.2.0
 * Add Registry helper into Utils
 * Add script for collecting cfn and hot resources
