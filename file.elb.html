@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: elb
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: elb</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><pre class="code ruby"><span class='const'>SparkleFormation</span><span class='period'>.</span><span class='id identifier rubyid_dynamic'>dynamic</span><span class='lparen'>(</span><span class='symbol'>:elb</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid__name'>_name</span><span class='comma'>,</span> <span class='id identifier rubyid__config'>_config</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='op'>|</span>
+  <span class='id identifier rubyid_resources'>resources</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid__name'>_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>_elb</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS::ElasticLoadBalancing::LoadBalancer</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_properties'>properties</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_availability_zones'>availability_zones</span><span class='period'>.</span><span class='id identifier rubyid__set'>_set</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::GetAZs</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_listeners'>listeners</span> <span class='id identifier rubyid__array'>_array</span><span class='lparen'>(</span>
+        <span class='tlambda'>-&gt;</span> <span class='tlambeg'>{</span>
+          <span class='id identifier rubyid_load_balancer_port'>load_balancer_port</span> <span class='id identifier rubyid__config'>_config</span><span class='lbracket'>[</span><span class='symbol'>:load_balancer_port</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>80</span><span class='tstring_end'>&#39;</span></span>
+          <span class='id identifier rubyid_protocol'>protocol</span> <span class='id identifier rubyid__config'>_config</span><span class='lbracket'>[</span><span class='symbol'>:protocol</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HTTP</span><span class='tstring_end'>&#39;</span></span>
+          <span class='id identifier rubyid_instance_port'>instance_port</span> <span class='id identifier rubyid__config'>_config</span><span class='lbracket'>[</span><span class='symbol'>:instance_port</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>80</span><span class='tstring_end'>&#39;</span></span>
+          <span class='id identifier rubyid_instance_protocol'>instance_protocol</span> <span class='id identifier rubyid__config'>_config</span><span class='lbracket'>[</span><span class='symbol'>:instance_protocol</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HTTP</span><span class='tstring_end'>&#39;</span></span>
+        <span class='rbrace'>}</span>
+      <span class='rparen'>)</span>
+      <span class='id identifier rubyid_health_check'>health_check</span> <span class='kw'>do</span>
+        <span class='id identifier rubyid_target'>target</span> <span class='id identifier rubyid__config'>_config</span><span class='lbracket'>[</span><span class='symbol'>:target</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>HTTP:80/</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_healthy_threshold'>healthy_threshold</span> <span class='id identifier rubyid__config'>_config</span><span class='lbracket'>[</span><span class='symbol'>:healthy_threshold</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>3</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_unhealthy_threshold'>unhealthy_threshold</span> <span class='id identifier rubyid__config'>_config</span><span class='lbracket'>[</span><span class='symbol'>:unhealthy_threshold</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>3</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_interval'>interval</span> <span class='id identifier rubyid__config'>_config</span><span class='lbracket'>[</span><span class='symbol'>:interval</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>5</span><span class='tstring_end'>&#39;</span></span>
+        <span class='id identifier rubyid_timeout'>timeout</span> <span class='id identifier rubyid__config'>_config</span><span class='lbracket'>[</span><span class='symbol'>:timeout</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>15</span><span class='tstring_end'>&#39;</span></span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre></div></div>
+
+    <div id="footer">
+  Generated on Tue Oct 28 11:50:54 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-2.1.2).
+</div>
+
+  </body>
+</html>

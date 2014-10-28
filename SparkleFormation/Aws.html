@@ -6,7 +6,7 @@
 <title>
   Class: SparkleFormation::Aws
   
-    &mdash; Documentation by YARD 0.8.7.4
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -17,7 +17,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '../';
-  framesUrl = "../frames.html#!SparkleFormation/Aws.html";
+  framesUrl = "../frames.html#!" + escape(window.location.href);
 </script>
 
 
@@ -105,8 +105,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>AWS resource helper</p>
+    <p>AWS resource helper</p>
 
 
   </div>
@@ -151,8 +150,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Camel case string.</p>
+    <span class="summary_desc"><div class='inline'><p>Camel case string.</p>
 </div></span>
   
 </li>
@@ -175,8 +173,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Register all discovered resources.</p>
+    <span class="summary_desc"><div class='inline'><p>Register all discovered resources.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Load the builtin AWS resources.</p>
+    <span class="summary_desc"><div class='inline'><p>Load the builtin AWS resources.</p>
 </div></span>
   
 </li>
@@ -223,8 +219,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Registry information for given type.</p>
+    <span class="summary_desc"><div class='inline'><p>Registry information for given type.</p>
 </div></span>
   
 </li>
@@ -247,8 +242,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Register an AWS resource.</p>
+    <span class="summary_desc"><div class='inline'><p>Register an AWS resource.</p>
 </div></span>
   
 </li>
@@ -271,8 +265,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Currently loaded AWS registry.</p>
+    <span class="summary_desc"><div class='inline'><p>Currently loaded AWS registry.</p>
 </div></span>
   
 </li>
@@ -295,8 +288,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Discover registry key via part searching.</p>
+    <span class="summary_desc"><div class='inline'><p>Discover registry key via part searching.</p>
 </div></span>
   
 </li>
@@ -319,8 +311,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Resource information.</p>
+    <span class="summary_desc"><div class='inline'><p>Resource information.</p>
 </div></span>
   
 </li>
@@ -348,8 +339,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Snake case (underscore) string.</p>
+    <span class="summary_desc"><div class='inline'><p>Snake case (underscore) string.</p>
 </div></span>
   
 </li>
@@ -382,8 +372,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Camel case string</p>
+    <p>Camel case string</p>
 
 
   </div>
@@ -433,8 +422,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Register all discovered resources</p>
+    <p>Register all discovered resources</p>
 
 
   </div>
@@ -453,8 +441,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>path to files or hash</p>
+        <div class='inline'><p>path to files or hash</p>
 </div>
       
     </li>
@@ -499,7 +486,7 @@
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_json_path_or_hash'>json_path_or_hash</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_json_path_or_hash'>json_path_or_hash</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>json</span><span class='tstring_end'>'</span></span>
+    <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>json</span><span class='tstring_end'>&#39;</span></span>
     <span class='id identifier rubyid_content'>content</span> <span class='op'>=</span> <span class='const'>AttributeStruct</span><span class='period'>.</span><span class='id identifier rubyid_hashish'>hashish</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_json'>json</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_content'>content</span> <span class='op'>=</span> <span class='id identifier rubyid_json_path_or_hash'>json_path_or_hash</span>
@@ -525,8 +512,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Load the builtin AWS resources</p>
+    <p>Load the builtin AWS resources</p>
 
 
   </div>
@@ -563,7 +549,7 @@
       <pre class="code"><span class="info file"># File 'lib/sparkle_formation/aws.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load!'>load!</span>
-  <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_dirname'>dirname</span><span class='lparen'>(</span><span class='kw'>__FILE__</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>aws</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>cfn_resources.rb</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_require'>require</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_dirname'>dirname</span><span class='lparen'>(</span><span class='kw'>__FILE__</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>aws</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cfn_resources.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='const'>AWS_RESOURCES</span><span class='rparen'>)</span>
   <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
@@ -583,8 +569,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Registry information for given type</p>
+    <p>Registry information for given type</p>
 
 
   </div>
@@ -652,8 +637,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Register an AWS resource</p>
+    <p>Register an AWS resource</p>
 
 
   </div>
@@ -672,8 +656,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>AWS CFN resource type</p>
+        <div class='inline'><p>AWS CFN resource type</p>
 </div>
       
     </li>
@@ -688,8 +671,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>metadata information</p>
+        <div class='inline'><p>metadata information</p>
 </div>
       
     </li>
@@ -750,8 +732,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns currently loaded AWS registry</p>
+    <p>Returns currently loaded AWS registry</p>
 
 
   </div>
@@ -769,8 +750,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>currently loaded AWS registry</p>
+        <div class='inline'><p>currently loaded AWS registry</p>
 </div>
       
     </li>
@@ -817,8 +797,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Discover registry key via part searching</p>
+    <p>Discover registry key via part searching</p>
 
 
   </div>
@@ -880,11 +859,11 @@
 <span class='kw'>def</span> <span class='id identifier rubyid_registry_key'>registry_key</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
   <span class='cvar'>@@registry</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_detect'>detect</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ref'>ref</span><span class='op'>|</span>
-    <span class='id identifier rubyid_ref'>ref</span> <span class='op'>=</span> <span class='id identifier rubyid_ref'>ref</span><span class='period'>.</span><span class='id identifier rubyid_tr'>tr</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>::</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>_</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_snake_ref'>snake_ref</span> <span class='op'>=</span> <span class='id identifier rubyid_snake'>snake</span><span class='lparen'>(</span><span class='id identifier rubyid_ref'>ref</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>__</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>_</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_snake_parts'>snake_parts</span> <span class='op'>=</span> <span class='id identifier rubyid_snake_ref'>snake_ref</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>_</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_ref'>ref</span> <span class='op'>=</span> <span class='id identifier rubyid_ref'>ref</span><span class='period'>.</span><span class='id identifier rubyid_tr'>tr</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>::</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_snake_ref'>snake_ref</span> <span class='op'>=</span> <span class='id identifier rubyid_snake'>snake</span><span class='lparen'>(</span><span class='id identifier rubyid_ref'>ref</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>__</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_snake_parts'>snake_parts</span> <span class='op'>=</span> <span class='id identifier rubyid_snake_ref'>snake_ref</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
     <span class='kw'>until</span><span class='lparen'>(</span><span class='id identifier rubyid_snake_parts'>snake_parts</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span>
-      <span class='kw'>break</span> <span class='kw'>if</span> <span class='id identifier rubyid_snake_parts'>snake_parts</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>_</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='id identifier rubyid_key'>key</span>
+      <span class='kw'>break</span> <span class='kw'>if</span> <span class='id identifier rubyid_snake_parts'>snake_parts</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='id identifier rubyid_key'>key</span>
       <span class='id identifier rubyid_snake_parts'>snake_parts</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span>
     <span class='kw'>end</span>
     <span class='op'>!</span><span class='id identifier rubyid_snake_parts'>snake_parts</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -906,8 +885,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Resource information</p>
+    <p>Resource information</p>
 
 
   </div>
@@ -926,8 +904,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>resource identifier</p>
+        <div class='inline'><p>resource identifier</p>
 </div>
       
     </li>
@@ -944,8 +921,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>specific data</p>
+        <div class='inline'><p>specific data</p>
 </div>
       
     </li>
@@ -1013,8 +989,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Snake case (underscore) string</p>
+    <p>Snake case (underscore) string</p>
 
 
   </div>
@@ -1058,9 +1033,9 @@
 </div>
 
     <div id="footer">
-  Generated on Wed May 28 10:54:50 2014 by
+  Generated on Tue Oct 28 11:50:55 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.4 (ruby-1.9.3).
+  0.8.7.3 (ruby-2.1.2).
 </div>
 
   </body>

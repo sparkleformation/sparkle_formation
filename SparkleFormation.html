@@ -6,7 +6,7 @@
 <title>
   Class: SparkleFormation
   
-    &mdash; Documentation by YARD 0.8.7.4
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -17,7 +17,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '';
-  framesUrl = "frames.html#!SparkleFormation.html";
+  framesUrl = "frames.html#!" + escape(window.location.href);
 </script>
 
 
@@ -111,8 +111,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Formation container</p>
+    <p>Formation container</p>
 
 
   </div>
@@ -128,7 +127,7 @@
     
   
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="SparkleFormation/Aws.html" title="SparkleFormation::Aws (class)">Aws</a></span>, <span class='object_link'><a href="SparkleFormation/Cache.html" title="SparkleFormation::Cache (class)">Cache</a></span>, <span class='object_link'><a href="SparkleFormation/Registry.html" title="SparkleFormation::Registry (class)">Registry</a></span>, <span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span>, <span class='object_link'><a href="SparkleFormation/Translation.html" title="SparkleFormation::Translation (class)">Translation</a></span>, <span class='object_link'><a href="SparkleFormation/Version.html" title="SparkleFormation::Version (class)">Version</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="SparkleFormation/Aws.html" title="SparkleFormation::Aws (class)">Aws</a></span>, <span class='object_link'><a href="SparkleFormation/Cache.html" title="SparkleFormation::Cache (class)">Cache</a></span>, <span class='object_link'><a href="SparkleFormation/Registry.html" title="SparkleFormation::Registry (class)">Registry</a></span>, <span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span>, <span class='object_link'><a href="SparkleFormation/Translation.html" title="SparkleFormation::Translation (class)">Translation</a></span>
     
   
 </p>
@@ -138,9 +137,19 @@
     <dl class="constants">
       
         <dt id="VERSION-constant" class="">VERSION =
-          
+          <div class="docstring">
+  <div class="discussion">
+    <p>Current library version</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
         </dt>
-        <dd><pre class="code"><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>0.2.0</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span></pre></dd>
+        <dd><pre class="code"><span class='const'>Gem</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>0.2.2</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></pre></dd>
       
     </dl>
   
@@ -173,8 +182,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Components to load.</p>
+    <span class="summary_desc"><div class='inline'><p>Components to load.</p>
 </div></span>
   
 </li>
@@ -202,8 +210,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Components path.</p>
+    <span class="summary_desc"><div class='inline'><p>Components path.</p>
 </div></span>
   
 </li>
@@ -231,8 +238,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Dynamics path.</p>
+    <span class="summary_desc"><div class='inline'><p>Dynamics path.</p>
 </div></span>
   
 </li>
@@ -260,8 +266,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Order of loading.</p>
+    <span class="summary_desc"><div class='inline'><p>Order of loading.</p>
 </div></span>
   
 </li>
@@ -289,8 +294,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Name of formation.</p>
+    <span class="summary_desc"><div class='inline'><p>Name of formation.</p>
 </div></span>
   
 </li>
@@ -318,8 +322,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Registry path.</p>
+    <span class="summary_desc"><div class='inline'><p>Registry path.</p>
 </div></span>
   
 </li>
@@ -347,8 +350,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Base path.</p>
+    <span class="summary_desc"><div class='inline'><p>Base path.</p>
 </div></span>
   
 </li>
@@ -384,8 +386,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Execute given block within struct context.</p>
+    <span class="summary_desc"><div class='inline'><p>Execute given block within struct context.</p>
 </div></span>
   
 </li>
@@ -408,8 +409,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Insert a builtin dynamic into a context.</p>
+    <span class="summary_desc"><div class='inline'><p>Insert a builtin dynamic into a context.</p>
 </div></span>
   
 </li>
@@ -437,8 +437,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Camel case string.</p>
+    <span class="summary_desc"><div class='inline'><p>Camel case string.</p>
 </div></span>
   
 </li>
@@ -461,8 +460,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Compile file.</p>
+    <span class="summary_desc"><div class='inline'><p>Compile file.</p>
 </div></span>
   
 </li>
@@ -487,8 +485,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Get/set path to component files.</p>
+    <span class="summary_desc"><div class='inline'><p>Get/set path to component files.</p>
 </div></span>
   
 </li>
@@ -511,8 +508,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Custom paths.</p>
+    <span class="summary_desc"><div class='inline'><p>Custom paths.</p>
 </div></span>
   
 </li>
@@ -535,8 +531,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Define and register new dynamic.</p>
+    <span class="summary_desc"><div class='inline'><p>Define and register new dynamic.</p>
 </div></span>
   
 </li>
@@ -561,8 +556,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Metadata for dynamic.</p>
+    <span class="summary_desc"><div class='inline'><p>Metadata for dynamic.</p>
 </div></span>
   
 </li>
@@ -585,8 +579,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Loaded dynamics.</p>
+    <span class="summary_desc"><div class='inline'><p>Loaded dynamics.</p>
 </div></span>
   
 </li>
@@ -611,8 +604,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Get/set path to dynamic files.</p>
+    <span class="summary_desc"><div class='inline'><p>Get/set path to dynamic files.</p>
 </div></span>
   
 </li>
@@ -635,8 +627,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Convert hash to SparkleStruct instance.</p>
+    <span class="summary_desc"><div class='inline'><p>Convert hash to SparkleStruct instance.</p>
 </div></span>
   
 </li>
@@ -659,8 +650,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Insert a dynamic into a context.</p>
+    <span class="summary_desc"><div class='inline'><p>Insert a dynamic into a context.</p>
 </div></span>
   
 </li>
@@ -683,8 +673,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Load component.</p>
+    <span class="summary_desc"><div class='inline'><p>Load component.</p>
 </div></span>
   
 </li>
@@ -707,8 +696,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Load all dynamics within a directory.</p>
+    <span class="summary_desc"><div class='inline'><p>Load all dynamics within a directory.</p>
 </div></span>
   
 </li>
@@ -731,8 +719,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Load all registry entries within a directory.</p>
+    <span class="summary_desc"><div class='inline'><p>Load all registry entries within a directory.</p>
 </div></span>
   
 </li>
@@ -757,8 +744,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Get/set path to registry files.</p>
+    <span class="summary_desc"><div class='inline'><p>Get/set path to registry files.</p>
 </div></span>
   
 </li>
@@ -786,8 +772,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Snake case (underscore) string.</p>
+    <span class="summary_desc"><div class='inline'><p>Snake case (underscore) string.</p>
 </div></span>
   
 </li>
@@ -812,8 +797,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Get/set path to sparkle directory.</p>
+    <span class="summary_desc"><div class='inline'><p>Get/set path to sparkle directory.</p>
 </div></span>
   
 </li>
@@ -847,8 +831,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Add block to load order.</p>
+    <span class="summary_desc"><div class='inline'><p>Add block to load order.</p>
 </div></span>
   
 </li>
@@ -876,8 +859,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Camel case string.</p>
+    <span class="summary_desc"><div class='inline'><p>Camel case string.</p>
 </div></span>
   
 </li>
@@ -900,8 +882,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Compile the formation.</p>
+    <span class="summary_desc"><div class='inline'><p>Compile the formation.</p>
 </div></span>
   
 </li>
@@ -924,8 +905,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Dumped hash.</p>
+    <span class="summary_desc"><div class='inline'><p>Dumped hash.</p>
 </div></span>
   
 </li>
@@ -950,8 +930,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Create new instance.</p>
+    <span class="summary_desc"><div class='inline'><p>Create new instance.</p>
 </div></span>
   
 </li>
@@ -974,8 +953,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Load components into instance.</p>
+    <span class="summary_desc"><div class='inline'><p>Load components into instance.</p>
 </div></span>
   
 </li>
@@ -998,8 +976,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Registers block into overrides.</p>
+    <span class="summary_desc"><div class='inline'><p>Registers block into overrides.</p>
 </div></span>
   
 </li>
@@ -1027,8 +1004,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Snake case (underscore) string.</p>
+    <span class="summary_desc"><div class='inline'><p>Snake case (underscore) string.</p>
 </div></span>
   
 </li>
@@ -1051,8 +1027,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Dumped hash JSON.</p>
+    <span class="summary_desc"><div class='inline'><p>Dumped hash JSON.</p>
 </div></span>
   
 </li>
@@ -1077,8 +1052,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Create new instance</p>
+    <p>Create new instance</p>
 
 
   </div>
@@ -1097,8 +1071,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>name of formation</p>
+        <div class='inline'><p>name of formation</p>
 </div>
       
     </li>
@@ -1115,8 +1088,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>options</p>
+        <div class='inline'><p>options</p>
 </div>
       
     </li>
@@ -1138,8 +1110,7 @@
             
           </span>
           
-            &mdash; <div class='inline'>
-<p>custom base path</p>
+            &mdash; <div class='inline'><p>custom base path</p>
 </div>
           
         </li>
@@ -1151,8 +1122,7 @@
             
           </span>
           
-            &mdash; <div class='inline'>
-<p>custom components path</p>
+            &mdash; <div class='inline'><p>custom components path</p>
 </div>
           
         </li>
@@ -1164,8 +1134,7 @@
             
           </span>
           
-            &mdash; <div class='inline'>
-<p>custom dynamics path</p>
+            &mdash; <div class='inline'><p>custom dynamics path</p>
 </div>
           
         </li>
@@ -1177,8 +1146,7 @@
             
           </span>
           
-            &mdash; <div class='inline'>
-<p>custom registry path</p>
+            &mdash; <div class='inline'><p>custom registry path</p>
 </div>
           
         </li>
@@ -1190,8 +1158,7 @@
             
           </span>
           
-            &mdash; <div class='inline'>
-<p>do not load builtins</p>
+            &mdash; <div class='inline'><p>do not load builtins</p>
 </div>
           
         </li>
@@ -1210,8 +1177,7 @@
       
       
         
-        <div class='inline'>
-<p>base context</p>
+        <div class='inline'><p>base context</p>
 </div>
       
     </li>
@@ -1259,20 +1225,20 @@
   <span class='ivar'>@name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
   <span class='ivar'>@sparkle_path</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:sparkle_path</span><span class='rbracket'>]</span> <span class='op'>||</span>
     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_custom_paths'>custom_paths</span><span class='lbracket'>[</span><span class='symbol'>:sparkle_path</span><span class='rbracket'>]</span> <span class='op'>||</span>
-    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_pwd'>pwd</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>cloudformation</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_pwd'>pwd</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cloudformation</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='ivar'>@components_directory</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:components_directory</span><span class='rbracket'>]</span> <span class='op'>||</span>
     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_custom_paths'>custom_paths</span><span class='lbracket'>[</span><span class='symbol'>:components_directory</span><span class='rbracket'>]</span> <span class='op'>||</span>
-    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_sparkle_path'>sparkle_path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>components</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_sparkle_path'>sparkle_path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>components</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='ivar'>@dynamics_directory</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:dynamics_directory</span><span class='rbracket'>]</span> <span class='op'>||</span>
     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_custom_paths'>custom_paths</span><span class='lbracket'>[</span><span class='symbol'>:dynamics_directory</span><span class='rbracket'>]</span> <span class='op'>||</span>
-    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_sparkle_path'>sparkle_path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>dynamics</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_sparkle_path'>sparkle_path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>dynamics</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='ivar'>@registry_directory</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:registry_directory</span><span class='rbracket'>]</span> <span class='op'>||</span>
     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_custom_paths'>custom_paths</span><span class='lbracket'>[</span><span class='symbol'>:registry_directory</span><span class='rbracket'>]</span> <span class='op'>||</span>
-    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_sparkle_path'>sparkle_path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>registry</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+    <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_sparkle_path'>sparkle_path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>registry</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_load_dynamics!'>load_dynamics!</span><span class='lparen'>(</span><span class='ivar'>@dynamics_directory</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_load_registry!'>load_registry!</span><span class='lparen'>(</span><span class='ivar'>@registry_directory</span><span class='rparen'>)</span>
   <span class='kw'>unless</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:disable_aws_builtins</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>sparkle_formation/aws</span><span class='tstring_end'>'</span></span>
+    <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>sparkle_formation/aws</span><span class='tstring_end'>&#39;</span></span>
     <span class='const'>SfnAws</span><span class='period'>.</span><span class='id identifier rubyid_load!'>load!</span>
   <span class='kw'>end</span>
   <span class='ivar'>@components</span> <span class='op'>=</span> <span class='const'>SparkleStruct</span><span class='period'>.</span><span class='id identifier rubyid_hashish'>hashish</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -1305,8 +1271,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns components to load</p>
+    <p>Returns components to load</p>
 
 
   </div>
@@ -1324,8 +1289,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>components to load</p>
+        <div class='inline'><p>components to load</p>
 </div>
       
     </li>
@@ -1366,8 +1330,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns components path</p>
+    <p>Returns components path</p>
 
 
   </div>
@@ -1385,8 +1348,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>components path</p>
+        <div class='inline'><p>components path</p>
 </div>
       
     </li>
@@ -1427,8 +1389,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns dynamics path</p>
+    <p>Returns dynamics path</p>
 
 
   </div>
@@ -1446,8 +1407,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>dynamics path</p>
+        <div class='inline'><p>dynamics path</p>
 </div>
       
     </li>
@@ -1488,8 +1448,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns order of loading</p>
+    <p>Returns order of loading</p>
 
 
   </div>
@@ -1507,8 +1466,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>order of loading</p>
+        <div class='inline'><p>order of loading</p>
 </div>
       
     </li>
@@ -1549,8 +1507,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns name of formation</p>
+    <p>Returns name of formation</p>
 
 
   </div>
@@ -1568,8 +1525,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>name of formation</p>
+        <div class='inline'><p>name of formation</p>
 </div>
       
     </li>
@@ -1610,8 +1566,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns registry path</p>
+    <p>Returns registry path</p>
 
 
   </div>
@@ -1629,8 +1584,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>registry path</p>
+        <div class='inline'><p>registry path</p>
 </div>
       
     </li>
@@ -1671,8 +1625,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns base path</p>
+    <p>Returns base path</p>
 
 
   </div>
@@ -1690,8 +1643,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>base path</p>
+        <div class='inline'><p>base path</p>
 </div>
       
     </li>
@@ -1737,8 +1689,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Execute given block within struct context</p>
+    <p>Execute given block within struct context</p>
 
 
   </div>
@@ -1759,8 +1710,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>context for block</p>
+        <div class='inline'><p>context for block</p>
 </div>
       
     </li>
@@ -1778,8 +1728,7 @@
       
       
         
-        <div class='inline'>
-<p>block to execute</p>
+        <div class='inline'><p>block to execute</p>
 </div>
       
     </li>
@@ -1796,8 +1745,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>provided base or new struct</p>
+        <div class='inline'><p>provided base or new struct</p>
 </div>
       
     </li>
@@ -1840,8 +1788,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Insert a builtin dynamic into a context</p>
+    <p>Insert a builtin dynamic into a context</p>
 
 
   </div>
@@ -1860,8 +1807,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>dynamic name</p>
+        <div class='inline'><p>dynamic name</p>
 </div>
       
     </li>
@@ -1876,8 +1822,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>context for insertion</p>
+        <div class='inline'><p>context for insertion</p>
 </div>
       
     </li>
@@ -1892,8 +1837,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>parameters for dynamic</p>
+        <div class='inline'><p>parameters for dynamic</p>
 </div>
       
     </li>
@@ -1953,7 +1897,7 @@
     <span class='id identifier rubyid__name'>_name</span><span class='comma'>,</span> <span class='id identifier rubyid__config'>_config</span> <span class='op'>=</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span>
     <span class='id identifier rubyid__config'>_config</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
     <span class='kw'>return</span> <span class='kw'>unless</span> <span class='id identifier rubyid__name'>_name</span>
-    <span class='id identifier rubyid_new_resource'>new_resource</span> <span class='op'>=</span> <span class='id identifier rubyid_struct'>struct</span><span class='period'>.</span><span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid__name'>_name</span><span class='rbrace'>}</span><span class='tstring_content'>_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_dynamic_name'>dynamic_name</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_new_resource'>new_resource</span> <span class='op'>=</span> <span class='id identifier rubyid_struct'>struct</span><span class='period'>.</span><span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid__name'>_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_dynamic_name'>dynamic_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_new_resource'>new_resource</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span> <span class='id identifier rubyid_lookup_key'>lookup_key</span>
     <span class='id identifier rubyid_properties'>properties</span> <span class='op'>=</span> <span class='id identifier rubyid_new_resource'>new_resource</span><span class='period'>.</span><span class='id identifier rubyid_properties'>properties</span>
     <span class='const'>SfnAws</span><span class='period'>.</span><span class='id identifier rubyid_resource'>resource</span><span class='lparen'>(</span><span class='id identifier rubyid_dynamic_name'>dynamic_name</span><span class='comma'>,</span> <span class='symbol'>:properties</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_prop_name'>prop_name</span><span class='op'>|</span>
@@ -1993,8 +1937,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Camel case string</p>
+    <p>Camel case string</p>
 
 
   </div>
@@ -2044,8 +1987,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Compile file</p>
+    <p>Compile file</p>
 
 
   </div>
@@ -2064,8 +2006,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>path to file</p>
+        <div class='inline'><p>path to file</p>
 </div>
       
     </li>
@@ -2080,8 +2021,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>use :sparkle to return struct</p>
+        <div class='inline'><p>use :sparkle to return struct</p>
 </div>
       
     </li>
@@ -2140,8 +2080,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Get/set path to component files</p>
+    <p>Get/set path to component files</p>
 
 
   </div>
@@ -2162,8 +2101,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>path to component files</p>
+        <div class='inline'><p>path to component files</p>
 </div>
       
     </li>
@@ -2181,8 +2119,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>path to component files</p>
+        <div class='inline'><p>path to component files</p>
 </div>
       
     </li>
@@ -2227,8 +2164,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns custom paths</p>
+    <p>Returns custom paths</p>
 
 
   </div>
@@ -2246,8 +2182,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>custom paths</p>
+        <div class='inline'><p>custom paths</p>
 </div>
       
     </li>
@@ -2288,8 +2223,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Define and register new dynamic</p>
+    <p>Define and register new dynamic</p>
 
 
   </div>
@@ -2301,7 +2235,7 @@
     
       
       <pre class="example code"><code>metadata describes dynamic parameters for _config hash:
-:item_name =&gt; {:description =&gt; 'Defines item name', :type =&gt; 'String'}</code></pre>
+:item_name =&gt; {:description =&gt; &#39;Defines item name&#39;, :type =&gt; &#39;String&#39;}</code></pre>
     
   </div>
 <p class="tag_title">Parameters:</p>
@@ -2317,8 +2251,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>name of dynamic</p>
+        <div class='inline'><p>name of dynamic</p>
 </div>
       
     </li>
@@ -2335,31 +2268,35 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>dynamic metadata</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>args</span>
-      
-      
-        <span class='type'>(<tt>Hash</tt>)</span>
-      
-      
-        <em class="default">(defaults to: <tt>{}</tt>)</em>
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>:parameters description of _config parameters</p>
+        <div class='inline'><p>dynamic metadata</p>
 </div>
       
     </li>
   
 </ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>args</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:parameters</span>
+          <span class="type">(<tt>Hash</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>description of _config parameters</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
 
 <p class="tag_title">Yields:</p>
 <ul class="yield">
@@ -2372,8 +2309,7 @@
       
       
         
-        <div class='inline'>
-<p>dynamic block</p>
+        <div class='inline'><p>dynamic block</p>
 </div>
       
     </li>
@@ -2437,8 +2373,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Metadata for dynamic</p>
+    <p>Metadata for dynamic</p>
 
 
   </div>
@@ -2457,8 +2392,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>dynamic name</p>
+        <div class='inline'><p>dynamic name</p>
 </div>
       
     </li>
@@ -2476,8 +2410,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>metadata information</p>
+        <div class='inline'><p>metadata information</p>
 </div>
       
     </li>
@@ -2505,7 +2438,7 @@
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_dynamics'>dynamics</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_dynamics'>dynamics</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:args</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>SparkleStruct</span><span class='period'>.</span><span class='id identifier rubyid_hashish'>hashish</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>KeyError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No dynamic registered with provided name (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>KeyError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No dynamic registered with provided name (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -2524,8 +2457,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns loaded dynamics</p>
+    <p>Returns loaded dynamics</p>
 
 
   </div>
@@ -2543,8 +2475,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>loaded dynamics</p>
+        <div class='inline'><p>loaded dynamics</p>
 </div>
       
     </li>
@@ -2587,8 +2518,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Get/set path to dynamic files</p>
+    <p>Get/set path to dynamic files</p>
 
 
   </div>
@@ -2609,8 +2539,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>path to dynamic files</p>
+        <div class='inline'><p>path to dynamic files</p>
 </div>
       
     </li>
@@ -2628,8 +2557,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>path to dynamic files</p>
+        <div class='inline'><p>path to dynamic files</p>
 </div>
       
     </li>
@@ -2677,11 +2605,9 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>will do best effort on camel key auto discovery</p>
+    <div class='inline'><p>will do best effort on camel key auto discovery</p>
 </div>
   </div>
-
 
 <p>Convert hash to SparkleStruct instance</p>
 
@@ -2759,8 +2685,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Insert a dynamic into a context</p>
+    <p>Insert a dynamic into a context</p>
 
 
   </div>
@@ -2779,8 +2704,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>dynamic name</p>
+        <div class='inline'><p>dynamic name</p>
 </div>
       
     </li>
@@ -2795,8 +2719,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>context for insertion</p>
+        <div class='inline'><p>context for insertion</p>
 </div>
       
     </li>
@@ -2811,8 +2734,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>parameters for dynamic</p>
+        <div class='inline'><p>parameters for dynamic</p>
 </div>
       
     </li>
@@ -2871,7 +2793,7 @@
     <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_builtin_insert'>builtin_insert</span><span class='lparen'>(</span><span class='id identifier rubyid_dynamic_name'>dynamic_name</span><span class='comma'>,</span> <span class='id identifier rubyid_struct'>struct</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='kw'>unless</span><span class='lparen'>(</span><span class='id identifier rubyid_result'>result</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed to locate requested dynamic block for insertion: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_dynamic_name'>dynamic_name</span><span class='rbrace'>}</span><span class='tstring_content'> (valid: </span><span class='embexpr_beg'>#{</span><span class='lparen'>(</span><span class='ivar'>@dynamics</span> <span class='op'>||</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>, </span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed to locate requested dynamic block for insertion: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_dynamic_name'>dynamic_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> (valid: </span><span class='embexpr_beg'>#{</span><span class='lparen'>(</span><span class='ivar'>@dynamics</span> <span class='op'>||</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
   <span class='id identifier rubyid_result'>result</span>
 <span class='kw'>end</span></pre>
@@ -2891,8 +2813,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Load component</p>
+    <p>Load component</p>
 
 
   </div>
@@ -2911,8 +2832,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>path to component</p>
+        <div class='inline'><p>path to component</p>
 </div>
       
     </li>
@@ -2930,8 +2850,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>resulting struct</p>
+        <div class='inline'><p>resulting struct</p>
 </div>
       
     </li>
@@ -2972,8 +2891,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Load all dynamics within a directory</p>
+    <p>Load all dynamics within a directory</p>
 
 
   </div>
@@ -3032,7 +2950,7 @@
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load_dynamics!'>load_dynamics!</span><span class='lparen'>(</span><span class='id identifier rubyid_directory'>directory</span><span class='rparen'>)</span>
   <span class='ivar'>@loaded_dynamics</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
-  <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_glob'>glob</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_directory'>directory</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>*.rb</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_dyn'>dyn</span><span class='op'>|</span>
+  <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_glob'>glob</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_directory'>directory</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>*.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_dyn'>dyn</span><span class='op'>|</span>
     <span class='id identifier rubyid_dyn'>dyn</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_expand_path'>expand_path</span><span class='lparen'>(</span><span class='id identifier rubyid_dyn'>dyn</span><span class='rparen'>)</span>
     <span class='kw'>next</span> <span class='kw'>if</span> <span class='ivar'>@loaded_dynamics</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_dyn'>dyn</span><span class='rparen'>)</span>
     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_instance_eval'>instance_eval</span><span class='lparen'>(</span><span class='const'>IO</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_dyn'>dyn</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_dyn'>dyn</span><span class='comma'>,</span> <span class='int'>1</span><span class='rparen'>)</span>
@@ -3057,8 +2975,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Load all registry entries within a directory</p>
+    <p>Load all registry entries within a directory</p>
 
 
   </div>
@@ -3112,7 +3029,7 @@
       <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 145</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load_registry!'>load_registry!</span><span class='lparen'>(</span><span class='id identifier rubyid_directory'>directory</span><span class='rparen'>)</span>
-  <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_glob'>glob</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_directory'>directory</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>*.rb</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_reg'>reg</span><span class='op'>|</span>
+  <span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_glob'>glob</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_directory'>directory</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>*.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_reg'>reg</span><span class='op'>|</span>
     <span class='id identifier rubyid_reg'>reg</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_expand_path'>expand_path</span><span class='lparen'>(</span><span class='id identifier rubyid_reg'>reg</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_require'>require</span> <span class='id identifier rubyid_reg'>reg</span>
   <span class='kw'>end</span>
@@ -3138,8 +3055,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Get/set path to registry files</p>
+    <p>Get/set path to registry files</p>
 
 
   </div>
@@ -3160,8 +3076,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>path to registry files</p>
+        <div class='inline'><p>path to registry files</p>
 </div>
       
     </li>
@@ -3179,8 +3094,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>path to registry files</p>
+        <div class='inline'><p>path to registry files</p>
 </div>
       
     </li>
@@ -3230,8 +3144,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Snake case (underscore) string</p>
+    <p>Snake case (underscore) string</p>
 
 
   </div>
@@ -3285,8 +3198,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Get/set path to sparkle directory</p>
+    <p>Get/set path to sparkle directory</p>
 
 
   </div>
@@ -3307,8 +3219,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>path to directory</p>
+        <div class='inline'><p>path to directory</p>
 </div>
       
     </li>
@@ -3326,8 +3237,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>path to directory</p>
+        <div class='inline'><p>path to directory</p>
 </div>
       
     </li>
@@ -3356,9 +3266,9 @@
 <span class='kw'>def</span> <span class='id identifier rubyid_sparkle_path='>sparkle_path=</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_custom_paths'>custom_paths</span><span class='lbracket'>[</span><span class='symbol'>:sparkle_path</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_path'>path</span>
-    <span class='id identifier rubyid_custom_paths'>custom_paths</span><span class='lbracket'>[</span><span class='symbol'>:components_directory</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>components</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_custom_paths'>custom_paths</span><span class='lbracket'>[</span><span class='symbol'>:dynamics_directory</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>dynamics</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_custom_paths'>custom_paths</span><span class='lbracket'>[</span><span class='symbol'>:registry_directory</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>registry</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_custom_paths'>custom_paths</span><span class='lbracket'>[</span><span class='symbol'>:components_directory</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>components</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_custom_paths'>custom_paths</span><span class='lbracket'>[</span><span class='symbol'>:dynamics_directory</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>dynamics</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_custom_paths'>custom_paths</span><span class='lbracket'>[</span><span class='symbol'>:registry_directory</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>registry</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='id identifier rubyid_custom_paths'>custom_paths</span><span class='lbracket'>[</span><span class='symbol'>:sparkle_path</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
@@ -3388,8 +3298,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Add block to load order</p>
+    <p>Add block to load order</p>
 
 
   </div>
@@ -3466,8 +3375,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Camel case string</p>
+    <p>Camel case string</p>
 
 
   </div>
@@ -3517,8 +3425,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Compile the formation</p>
+    <p>Compile the formation</p>
 
 
   </div>
@@ -3591,8 +3498,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns dumped hash</p>
+    <p>Returns dumped hash</p>
 
 
   </div>
@@ -3610,8 +3516,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>dumped hash</p>
+        <div class='inline'><p>dumped hash</p>
 </div>
       
     </li>
@@ -3650,8 +3555,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Load components into instance</p>
+    <p>Load components into instance</p>
 
 
   </div>
@@ -3670,8 +3574,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Symbol component names or String paths</p>
+        <div class='inline'><p>Symbol component names or String paths</p>
 </div>
       
     </li>
@@ -3718,11 +3621,11 @@
 <span class='kw'>def</span> <span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_thing'>thing</span><span class='op'>|</span>
     <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_thing'>thing</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Symbol</span><span class='rparen'>)</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_path'>path</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_components_directory'>components_directory</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_thing'>thing</span><span class='rbrace'>}</span><span class='tstring_content'>.rb</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_path'>path</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_components_directory'>components_directory</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_thing'>thing</span><span class='embexpr_end'>}</span><span class='tstring_content'>.rb</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>else</span>
       <span class='id identifier rubyid_path'>path</span> <span class='op'>=</span> <span class='id identifier rubyid_thing'>thing</span>
     <span class='kw'>end</span>
-    <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>.rb</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>.rb</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_components'>components</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_load_component'>load_component</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
     <span class='ivar'>@load_order</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_key'>key</span>
   <span class='kw'>end</span>
@@ -3744,8 +3647,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Registers block into overrides</p>
+    <p>Registers block into overrides</p>
 
 
   </div>
@@ -3766,8 +3668,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>optional arguments to provide state</p>
+        <div class='inline'><p>optional arguments to provide state</p>
 </div>
       
     </li>
@@ -3785,8 +3686,7 @@
       
       
         
-        <div class='inline'>
-<p>override block</p>
+        <div class='inline'><p>override block</p>
 </div>
       
     </li>
@@ -3832,8 +3732,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Snake case (underscore) string</p>
+    <p>Snake case (underscore) string</p>
 
 
   </div>
@@ -3883,8 +3782,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns dumped hash JSON</p>
+    <p>Returns dumped hash JSON</p>
 
 
   </div>
@@ -3902,8 +3800,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>dumped hash JSON</p>
+        <div class='inline'><p>dumped hash JSON</p>
 </div>
       
     </li>
@@ -3936,9 +3833,9 @@
 </div>
 
     <div id="footer">
-  Generated on Wed May 28 10:54:50 2014 by
+  Generated on Tue Oct 28 11:50:55 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.4 (ruby-1.9.3).
+  0.8.7.3 (ruby-2.1.2).
 </div>
 
   </body>

@@ -6,7 +6,7 @@
 <title>
   Class: SparkleFormation::Translation
   
-    &mdash; Documentation by YARD 0.8.7.4
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -17,7 +17,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '../';
-  framesUrl = "../frames.html#!SparkleFormation/Translation.html";
+  framesUrl = "../frames.html#!" + escape(window.location.href);
 </script>
 
 
@@ -107,8 +107,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Translator</p>
+    <p>Translator</p>
 
 
   </div>
@@ -130,6 +129,77 @@
     
   
 </p>
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="REF_MAPPING-constant" class="">REF_MAPPING =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Returns mapping for pseudo-parameters</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>mapping for pseudo-parameters</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span><span class='rbrace'>}</span></pre></dd>
+      
+        <dt id="FN_MAPPING-constant" class="">FN_MAPPING =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Returns mapping for intrinsic functions</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>mapping for intrinsic functions</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span><span class='rbrace'>}</span></pre></dd>
+      
+    </dl>
+  
 
 
 
@@ -159,8 +229,35 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Current logger.</p>
+    <span class="summary_desc"><div class='inline'><p>Current logger.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#options-instance_method" title="#options (instance method)">- (Hash) <strong>options</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Extra options (generally used by translation implementations).</p>
 </div></span>
   
 </li>
@@ -188,37 +285,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Original template.</p>
-</div></span>
-  
-</li>
-
-    
-      <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#parameters-instance_method" title="#parameters (instance method)">- (Hash) <strong>parameters</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-    
-      <span class="note title readonly">readonly</span>
-    
-    
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Parameters for template.</p>
+    <span class="summary_desc"><div class='inline'><p>Original template.</p>
 </div></span>
   
 </li>
@@ -246,8 +313,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Duplicated template (full deep copy).</p>
+    <span class="summary_desc"><div class='inline'><p>Duplicated template (full deep copy).</p>
 </div></span>
   
 </li>
@@ -275,8 +341,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Current translation.</p>
+    <span class="summary_desc"><div class='inline'><p>Current translation.</p>
 </div></span>
   
 </li>
@@ -319,8 +384,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Fn::GetAtt generator.</p>
+    <span class="summary_desc"><div class='inline'><p>Fn::GetAtt generator.</p>
 </div></span>
   
 </li>
@@ -350,8 +414,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Fn::Base64 generator.</p>
+    <span class="summary_desc"><div class='inline'><p>Fn::Base64 generator.</p>
 </div></span>
   
 </li>
@@ -381,8 +444,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Fn::GetAZs generator.</p>
+    <span class="summary_desc"><div class='inline'><p>Fn::GetAZs generator.</p>
 </div></span>
   
 </li>
@@ -412,8 +474,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Fn::Join generator.</p>
+    <span class="summary_desc"><div class='inline'><p>Fn::Join generator.</p>
 </div></span>
   
 </li>
@@ -443,8 +504,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Fn::FindInMap generator.</p>
+    <span class="summary_desc"><div class='inline'><p>Fn::FindInMap generator.</p>
 </div></span>
   
 </li>
@@ -474,8 +534,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Ref generator.</p>
+    <span class="summary_desc"><div class='inline'><p>Ref generator.</p>
 </div></span>
   
 </li>
@@ -505,8 +564,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Fn::Select generator.</p>
+    <span class="summary_desc"><div class='inline'><p>Fn::Select generator.</p>
 </div></span>
   
 </li>
@@ -534,8 +592,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Set the destination platform.</p>
+    <span class="summary_desc"><div class='inline'><p>Set the destination platform.</p>
 </div></span>
   
 </li>
@@ -544,7 +601,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#apply_function-instance_method" title="#apply_function (instance method)">- (Hash) <strong>apply_function</strong>(hash) </a>
+      <a href="#apply_function-instance_method" title="#apply_function (instance method)">- (Hash) <strong>apply_function</strong>(hash, funcs = []) </a>
     
 
     
@@ -558,8 +615,30 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Apply function if possible.</p>
+    <span class="summary_desc"><div class='inline'><p>Apply function if possible.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#apply_rename-instance_method" title="#apply_rename (instance method)">- (Hash) <strong>apply_rename</strong>(hash, names = []) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Apply function if possible.</p>
 </div></span>
   
 </li>
@@ -587,8 +666,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Camel case string.</p>
+    <span class="summary_desc"><div class='inline'><p>Camel case string.</p>
 </div></span>
   
 </li>
@@ -616,7 +694,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+</div></span>
   
 </li>
 
@@ -638,8 +717,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Default formatting for keys.</p>
+    <span class="summary_desc"><div class='inline'><p>Default formatting for keys.</p>
 </div></span>
   
 </li>
@@ -662,8 +740,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Attempt to dereference name.</p>
+    <span class="summary_desc"><div class='inline'><p>Attempt to dereference name.</p>
 </div></span>
   
 </li>
@@ -672,7 +749,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#dereference_processor-instance_method" title="#dereference_processor (instance method)">- (Object) <strong>dereference_processor</strong>(obj) </a>
+      <a href="#dereference_processor-instance_method" title="#dereference_processor (instance method)">- (Object) <strong>dereference_processor</strong>(obj, funcs = []) </a>
     
 
     
@@ -686,8 +763,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Process object through dereferencer.</p>
+    <span class="summary_desc"><div class='inline'><p>Process object through dereferencer.</p>
 </div></span>
   
 </li>
@@ -715,8 +791,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Dynamic insertion helper method.</p>
+    <span class="summary_desc"><div class='inline'><p>Dynamic insertion helper method.</p>
 </div></span>
   
 </li>
@@ -739,8 +814,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Format the properties of the new resource.</p>
+    <span class="summary_desc"><div class='inline'><p>Format the properties of the new resource.</p>
 </div></span>
   
 </li>
@@ -765,8 +839,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Create new instance.</p>
+    <span class="summary_desc"><div class='inline'><p>Create new instance.</p>
 </div></span>
   
 </li>
@@ -789,8 +862,76 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Resource mapping.</p>
+    <span class="summary_desc"><div class='inline'><p>Resource mapping.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#mappings-instance_method" title="#mappings (instance method)">- (Hash) <strong>mappings</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Mappings for template.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#outputs-instance_method" title="#outputs (instance method)">- (Hash) <strong>outputs</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Outputs for template.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parameters-instance_method" title="#parameters (instance method)">- (Hash) <strong>parameters</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Parameters for template.</p>
 </div></span>
   
 </li>
@@ -818,8 +959,53 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Registry insertion helper method.</p>
+    <span class="summary_desc"><div class='inline'><p>Registry insertion helper method.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rename_processor-instance_method" title="#rename_processor (instance method)">- (Object) <strong>rename_processor</strong>(obj, names = []) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Process object through name mapping.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#resource_name-instance_method" title="#resource_name (instance method)">- (String) <strong>resource_name</strong>(obj) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Provide name of resource.</p>
 </div></span>
   
 </li>
@@ -842,8 +1028,30 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Translate resource.</p>
+    <span class="summary_desc"><div class='inline'><p>Translate resource.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#resources-instance_method" title="#resources (instance method)">- (Hash) <strong>resources</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Resources for template.</p>
 </div></span>
   
 </li>
@@ -871,7 +1079,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+</div></span>
   
 </li>
 
@@ -898,8 +1107,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Snake case (underscore) string.</p>
+    <span class="summary_desc"><div class='inline'><p>Snake case (underscore) string.</p>
 </div></span>
   
 </li>
@@ -922,8 +1130,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Translate stack definition.</p>
+    <span class="summary_desc"><div class='inline'><p>Translate stack definition.</p>
 </div></span>
   
 </li>
@@ -946,8 +1153,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Default translation action if no mapping is provided.</p>
+    <span class="summary_desc"><div class='inline'><p>Default translation action if no mapping is provided.</p>
 </div></span>
   
 </li>
@@ -970,8 +1176,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Translate provided resources.</p>
+    <span class="summary_desc"><div class='inline'><p>Translate provided resources.</p>
 </div></span>
   
 </li>
@@ -998,8 +1203,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Create new instance</p>
+    <p>Create new instance</p>
 
 
   </div>
@@ -1018,8 +1222,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>stack template</p>
+        <div class='inline'><p>stack template</p>
 </div>
       
     </li>
@@ -1054,8 +1257,7 @@
             
           </span>
           
-            &mdash; <div class='inline'>
-<p>custom logger</p>
+            &mdash; <div class='inline'><p>custom logger</p>
 </div>
           
         </li>
@@ -1067,8 +1269,19 @@
             
           </span>
           
-            &mdash; <div class='inline'>
-<p>parameters for stack creation</p>
+            &mdash; <div class='inline'><p>parameters for stack creation</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:options</span>
+          <span class="type">(<tt>Hash</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>options for translation</p>
 </div>
           
         </li>
@@ -1083,23 +1296,25 @@
       <pre class="lines">
 
 
-32
 33
 34
 35
 36
 37
-38</pre>
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_template_hash'>template_hash</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@original</span> <span class='op'>=</span> <span class='id identifier rubyid_template_hash'>template_hash</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
   <span class='ivar'>@template</span> <span class='op'>=</span> <span class='const'>MultiJson</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='const'>MultiJson</span><span class='period'>.</span><span class='id identifier rubyid_dump'>dump</span><span class='lparen'>(</span><span class='id identifier rubyid_template_hash'>template_hash</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='comment'>## LOL: Lazy deep dup
 </span>  <span class='ivar'>@translated</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='ivar'>@logger</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:logger</span><span class='comma'>,</span> <span class='const'>Logger</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='gvar'>$stdout</span><span class='rparen'>)</span><span class='rparen'>)</span>
-  <span class='ivar'>@parameters</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:parameters</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='ivar'>@parameters</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='symbol'>:parameters</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@options</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='symbol'>:options</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1124,8 +1339,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns current logger</p>
+    <p>Returns current logger</p>
 
 
   </div>
@@ -1143,8 +1357,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>current logger</p>
+        <div class='inline'><p>current logger</p>
 </div>
       
     </li>
@@ -1175,9 +1388,9 @@
       
       <span id=""></span>
       <div class="method_details ">
-  <h3 class="signature " id="original-instance_method">
+  <h3 class="signature " id="options-instance_method">
   
-    - (<tt>Hash</tt>) <strong>original</strong>  <span class="extras">(readonly)</span>
+    - (<tt>Hash</tt>) <strong>options</strong>  <span class="extras">(readonly)</span>
   
 
   
@@ -1185,8 +1398,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns original template</p>
+    <p>Returns extra options (generally used by translation implementations)</p>
 
 
   </div>
@@ -1204,8 +1416,66 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>original template</p>
+        <div class='inline'><p>extra options (generally used by translation implementations)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 24</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_options'>options</span>
+  <span class='ivar'>@options</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="original-instance_method">
+  
+    - (<tt>Hash</tt>) <strong>original</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns original template</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>original template</p>
 </div>
       
     </li>
@@ -1236,67 +1506,6 @@
       
       <span id=""></span>
       <div class="method_details ">
-  <h3 class="signature " id="parameters-instance_method">
-  
-    - (<tt>Hash</tt>) <strong>parameters</strong>  <span class="extras">(readonly)</span>
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Returns parameters for template</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Hash</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'>
-<p>parameters for template</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-24
-25
-26</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 24</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_parameters'>parameters</span>
-  <span class='ivar'>@parameters</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      
-      <span id=""></span>
-      <div class="method_details ">
   <h3 class="signature " id="template-instance_method">
   
     - (<tt>Hash</tt>) <strong>template</strong>  <span class="extras">(readonly)</span>
@@ -1307,8 +1516,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns duplicated template (full deep copy)</p>
+    <p>Returns duplicated template (full deep copy)</p>
 
 
   </div>
@@ -1326,8 +1534,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>duplicated template (full deep copy)</p>
+        <div class='inline'><p>duplicated template (full deep copy)</p>
 </div>
       
     </li>
@@ -1368,8 +1575,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns current translation</p>
+    <p>Returns current translation</p>
 
 
   </div>
@@ -1387,8 +1593,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>current translation</p>
+        <div class='inline'><p>current translation</p>
 </div>
       
     </li>
@@ -1443,8 +1648,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Fn::GetAtt generator</p>
+    <p>Fn::GetAtt generator</p>
 
 
   </div>
@@ -1463,8 +1667,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>through arguments</p>
+        <div class='inline'><p>through arguments</p>
 </div>
       
     </li>
@@ -1508,8 +1711,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Fn::Base64 generator</p>
+    <p>Fn::Base64 generator</p>
 
 
   </div>
@@ -1528,8 +1730,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>pass through</p>
+        <div class='inline'><p>pass through</p>
 </div>
       
     </li>
@@ -1573,8 +1774,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Fn::GetAZs generator</p>
+    <p>Fn::GetAZs generator</p>
 
 
   </div>
@@ -1595,8 +1795,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>String will pass through. Symbol will be converted to ref</p>
+        <div class='inline'><p>String will pass through. Symbol will be converted to ref</p>
 </div>
       
     </li>
@@ -1640,8 +1839,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Fn::Join generator</p>
+    <p>Fn::Join generator</p>
 
 
   </div>
@@ -1700,8 +1898,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Fn::FindInMap generator</p>
+    <p>Fn::FindInMap generator</p>
 
 
   </div>
@@ -1720,8 +1917,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>thing to find</p>
+        <div class='inline'><p>thing to find</p>
 </div>
       
     </li>
@@ -1736,8 +1932,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>thing to search</p>
+        <div class='inline'><p>thing to search</p>
 </div>
       
     </li>
@@ -1752,8 +1947,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>additional args</p>
+        <div class='inline'><p>additional args</p>
 </div>
       
     </li>
@@ -1800,11 +1994,9 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>Symbol value will force key processing</p>
+    <div class='inline'><p>Symbol value will force key processing</p>
 </div>
   </div>
-
 
 <p>Ref generator</p>
 
@@ -1825,8 +2017,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>reference name</p>
+        <div class='inline'><p>reference name</p>
 </div>
       
     </li>
@@ -1870,8 +2061,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Fn::Select generator</p>
+    <p>Fn::Select generator</p>
 
 
   </div>
@@ -1890,8 +2080,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Symbol will be converted to ref</p>
+        <div class='inline'><p>Symbol will be converted to ref</p>
 </div>
       
     </li>
@@ -1906,8 +2095,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Symbol will be converted to ref</p>
+        <div class='inline'><p>Symbol will be converted to ref</p>
 </div>
       
     </li>
@@ -1947,8 +2135,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Set the destination platform</p>
+    <p>Set the destination platform</p>
 
 
   </div>
@@ -1967,8 +2154,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>one of :rhel or :debian</p>
+        <div class='inline'><p>one of :rhel or :debian</p>
 </div>
       
     </li>
@@ -1995,7 +2181,7 @@
       <div class="method_details ">
   <h3 class="signature " id="apply_function-instance_method">
   
-    - (<tt>Hash</tt>) <strong>apply_function</strong>(hash) 
+    - (<tt>Hash</tt>) <strong>apply_function</strong>(hash, funcs = []) 
   
 
   
@@ -2004,6 +2190,13 @@
 </h3><div class="docstring">
   <div class="discussion">
     
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>also allows ‘Ref’ within funcs to provide mapping
+replacements using the REF_MAPPING constant</p>
+</div>
+  </div>
+
 <p>Apply function if possible</p>
 
 
@@ -2021,6 +2214,23 @@
         <span class='type'>(<tt>Hash</tt>)</span>
       
       
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>funcs</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>allowed functions</p>
+</div>
       
     </li>
   
@@ -2046,29 +2256,161 @@
       <pre class="lines">
 
 
-198
-199
-200
-201
-202
-203
-204
-205
-206
-207
-208
-209
-210</pre>
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 198</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 285</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_apply_function'>apply_function</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span>
-  <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>1</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Fn</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_apply_function'>apply_function</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='comma'>,</span> <span class='id identifier rubyid_funcs'>funcs</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
+  <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>1</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_k'>k</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ref</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_funcs'>funcs</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>||</span> <span class='id identifier rubyid_funcs'>funcs</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
     <span class='kw'>case</span> <span class='id identifier rubyid_k'>k</span>
-    <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Fn::Join</span><span class='tstring_end'>'</span></span>
+    <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::Join</span><span class='tstring_end'>&#39;</span></span>
       <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span><span class='rparen'>)</span>
+    <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::FindInMap</span><span class='tstring_end'>&#39;</span></span>
+      <span class='id identifier rubyid_mappings'>mappings</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_dereference'>dereference</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_v'>v</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+    <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ref</span><span class='tstring_end'>&#39;</span></span>
+      <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ref</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='symbol'>:REF_MAPPING</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span><span class='rbrace'>}</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_hash'>hash</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_hash'>hash</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="apply_rename-instance_method">
+  
+    - (<tt>Hash</tt>) <strong>apply_rename</strong>(hash, names = []) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>remapping references two constants:
+REF_MAPPING for Ref maps
+FN_MAPPING for Fn maps</p>
+</div>
+  </div>
+
+<p>Apply function if possible</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>hash</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>names</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;Symbol&gt;</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>enable renaming (:ref, :fn)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 259</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_apply_rename'>apply_rename</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='comma'>,</span> <span class='id identifier rubyid_names'>names</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
+  <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>1</span><span class='rparen'>)</span>
+    <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='lbrace'>{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='symbol'>:FN_MAPPING</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_k'>k</span><span class='rparen'>)</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_v'>v</span><span class='rbrace'>}</span>
+    <span class='kw'>elsif</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ref</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span><span class='rparen'>)</span>
+        <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>get_resource</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_v'>v</span><span class='rbrace'>}</span>
+      <span class='kw'>else</span>
+        <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>get_param</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='symbol'>:REF_MAPPING</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span><span class='rbrace'>}</span>
+      <span class='kw'>end</span>
     <span class='kw'>else</span>
       <span class='id identifier rubyid_hash'>hash</span>
     <span class='kw'>end</span>
@@ -2097,8 +2439,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Camel case string</p>
+    <p>Camel case string</p>
 
 
   </div>
@@ -2155,6 +2496,7 @@
   <div class="discussion">
     
 
+
   </div>
 </div>
 <div class="tags">
@@ -2187,8 +2529,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Default formatting for keys</p>
+    <p>Default formatting for keys</p>
 
 
   </div>
@@ -2230,12 +2571,12 @@
       <pre class="lines">
 
 
-152
-153
-154</pre>
+178
+179
+180</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 152</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 178</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_default_key_format'>default_key_format</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_key'>key</span>
@@ -2256,8 +2597,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Attempt to dereference name</p>
+    <p>Attempt to dereference name</p>
 
 
   </div>
@@ -2299,27 +2639,27 @@
       <pre class="lines">
 
 
-160
-161
-162
-163
-164
-165
-166
-167
-168
-169
-170
-171
-172</pre>
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 160</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 186</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dereference'>dereference</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_obj'>obj</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_obj'>obj</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Ref</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_obj'>obj</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ref</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_obj'>obj</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>get_param</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
     <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_p_val'>p_val</span> <span class='op'>=</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rbracket'>]</span>
       <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_p_val'>p_val</span><span class='rparen'>)</span>
@@ -2337,7 +2677,7 @@
       <div class="method_details ">
   <h3 class="signature " id="dereference_processor-instance_method">
   
-    - (<tt>Object</tt>) <strong>dereference_processor</strong>(obj) 
+    - (<tt>Object</tt>) <strong>dereference_processor</strong>(obj, funcs = []) 
   
 
   
@@ -2345,9 +2685,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Process object through dereferencer. This will dereference names and apply
-functions if possible.</p>
+    <p>Process object through dereferencer. This will dereference names
+and apply functions if possible.</p>
 
 
   </div>
@@ -2389,35 +2728,33 @@ functions if possible.</p>
       <pre class="lines">
 
 
-179
-180
-181
-182
-183
-184
-185
-186
-187
-188
-189
-190
-191
-192</pre>
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 179</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 218</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_dereference_processor'>dereference_processor</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='id identifier rubyid_dereference'>dereference</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_dereference_processor'>dereference_processor</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='comma'>,</span> <span class='id identifier rubyid_funcs'>funcs</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_obj'>obj</span>
   <span class='kw'>when</span> <span class='const'>Array</span>
-    <span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_dereference_processor'>dereference_processor</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span><span class='rbrace'>}</span>
+    <span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_dereference_processor'>dereference_processor</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_funcs'>funcs</span><span class='rparen'>)</span><span class='rbrace'>}</span>
   <span class='kw'>when</span> <span class='const'>Hash</span>
     <span class='id identifier rubyid_new_hash'>new_hash</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
     <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
-      <span class='id identifier rubyid_new_hash'>new_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_dereference_processor'>dereference_processor</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_new_hash'>new_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_dereference_processor'>dereference_processor</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_funcs'>funcs</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
-    <span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='id identifier rubyid_apply_function'>apply_function</span><span class='lparen'>(</span><span class='id identifier rubyid_new_hash'>new_hash</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='id identifier rubyid_apply_function'>apply_function</span><span class='lparen'>(</span><span class='id identifier rubyid_new_hash'>new_hash</span><span class='comma'>,</span> <span class='id identifier rubyid_funcs'>funcs</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='id identifier rubyid_obj'>obj</span>
 <span class='kw'>end</span></pre>
@@ -2442,8 +2779,7 @@ functions if possible.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Dynamic insertion helper method</p>
+    <p>Dynamic insertion helper method</p>
 
 
   </div>
@@ -2462,8 +2798,7 @@ functions if possible.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>dynamic name</p>
+        <div class='inline'><p>dynamic name</p>
 </div>
       
     </li>
@@ -2478,8 +2813,7 @@ functions if possible.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>argument list for dynamic</p>
+        <div class='inline'><p>argument list for dynamic</p>
 </div>
       
     </li>
@@ -2514,8 +2848,7 @@ functions if possible.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Format the properties of the new resource</p>
+    <p>Format the properties of the new resource</p>
 
 
   </div>
@@ -2602,36 +2935,36 @@ functions if possible.</p>
       <pre class="lines">
 
 
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129
-130</pre>
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 107</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 133</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_format_properties'>format_properties</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='symbol'>:new_resource</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Properties</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_tap'>tap</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_new_properties'>new_properties</span><span class='op'>|</span>
+  <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='symbol'>:new_resource</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Properties</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_tap'>tap</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_new_properties'>new_properties</span><span class='op'>|</span>
     <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='symbol'>:original_properties</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_property_name'>property_name</span><span class='comma'>,</span> <span class='id identifier rubyid_property_value'>property_value</span><span class='op'>|</span>
       <span class='id identifier rubyid_new_key'>new_key</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='symbol'>:property_map</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_property_name'>property_name</span><span class='rbracket'>]</span>
       <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_new_key'>new_key</span><span class='rparen'>)</span>
@@ -2648,7 +2981,7 @@ functions if possible.</p>
           <span class='id identifier rubyid_new_properties'>new_properties</span><span class='lbracket'>[</span><span class='id identifier rubyid_new_key'>new_key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_property_value'>property_value</span>
         <span class='kw'>end</span>
       <span class='kw'>else</span>
-        <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_warn'>warn</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed to locate property conversion for `</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_property_name'>property_name</span><span class='rbrace'>}</span><span class='tstring_content'>` on resource type `</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='symbol'>:new_resource</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Type</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'>`. Passing directly.</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_warn'>warn</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed to locate property conversion for `</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_property_name'>property_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>` on resource type `</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='symbol'>:new_resource</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'>`. Passing directly.</span><span class='tstring_end'>&quot;</span></span>
         <span class='id identifier rubyid_new_properties'>new_properties</span><span class='lbracket'>[</span><span class='id identifier rubyid_default_key_format'>default_key_format</span><span class='lparen'>(</span><span class='id identifier rubyid_property_name'>property_name</span><span class='rparen'>)</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_property_value'>property_value</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
@@ -2670,8 +3003,7 @@ functions if possible.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns resource mapping</p>
+    <p>Returns resource mapping</p>
 
 
   </div>
@@ -2689,8 +3021,7 @@ functions if possible.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>resource mapping</p>
+        <div class='inline'><p>resource mapping</p>
 </div>
       
     </li>
@@ -2703,15 +3034,194 @@ functions if possible.</p>
       <pre class="lines">
 
 
-41
-42
-43</pre>
+67
+68
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_map'>map</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='symbol'>:MAP</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="mappings-instance_method">
+  
+    - (<tt>Hash</tt>) <strong>mappings</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns mappings for template</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>mappings for template</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+52
+53
+54</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 52</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_mappings'>mappings</span>
+  <span class='ivar'>@original</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Mappings</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="outputs-instance_method">
+  
+    - (<tt>Hash</tt>) <strong>outputs</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns outputs for template</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>outputs for template</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62
+63
+64</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 62</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_outputs'>outputs</span>
+  <span class='ivar'>@original</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Outputs</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="parameters-instance_method">
+  
+    - (<tt>Hash</tt>) <strong>parameters</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns parameters for template</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>parameters for template</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45
+46
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_parameters'>parameters</span>
+  <span class='const'>Hash</span><span class='lbracket'>[</span>
+    <span class='ivar'>@original</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Parameters</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
+      <span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Default</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+  <span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='ivar'>@parameters</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2734,8 +3244,7 @@ functions if possible.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Registry insertion helper method</p>
+    <p>Registry insertion helper method</p>
 
 
   </div>
@@ -2754,8 +3263,7 @@ functions if possible.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>name of registry item</p>
+        <div class='inline'><p>name of registry item</p>
 </div>
       
     </li>
@@ -2770,8 +3278,7 @@ functions if possible.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>argument list for registry</p>
+        <div class='inline'><p>argument list for registry</p>
 </div>
       
     </li>
@@ -2796,6 +3303,193 @@ functions if possible.</p>
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="rename_processor-instance_method">
+  
+    - (<tt>Object</tt>) <strong>rename_processor</strong>(obj, names = []) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Process object through name mapping</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>obj</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>names</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;Symbol&gt;</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>enable renaming (:ref, :fn)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 237</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_rename_processor'>rename_processor</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='comma'>,</span> <span class='id identifier rubyid_names'>names</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>case</span> <span class='id identifier rubyid_obj'>obj</span>
+  <span class='kw'>when</span> <span class='const'>Array</span>
+    <span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_rename_processor'>rename_processor</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_names'>names</span><span class='rparen'>)</span><span class='rbrace'>}</span>
+  <span class='kw'>when</span> <span class='const'>Hash</span>
+    <span class='id identifier rubyid_new_hash'>new_hash</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+    <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
+      <span class='id identifier rubyid_new_hash'>new_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_rename_processor'>rename_processor</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='comma'>,</span> <span class='id identifier rubyid_names'>names</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_obj'>obj</span> <span class='op'>=</span> <span class='id identifier rubyid_apply_rename'>apply_rename</span><span class='lparen'>(</span><span class='id identifier rubyid_new_hash'>new_hash</span><span class='comma'>,</span> <span class='id identifier rubyid_names'>names</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_obj'>obj</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="resource_name-instance_method">
+  
+    - (<tt>String</tt>) <strong>resource_name</strong>(obj) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Provide name of resource</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>obj</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>name</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+204
+205
+206
+207
+208
+209
+210
+211</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 204</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_resource_name'>resource_name</span><span class='lparen'>(</span><span class='id identifier rubyid_obj'>obj</span><span class='rparen'>)</span>
+  <span class='kw'>case</span> <span class='id identifier rubyid_obj'>obj</span>
+  <span class='kw'>when</span> <span class='const'>Hash</span>
+    <span class='id identifier rubyid_obj'>obj</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ref</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_obj'>obj</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>get_resource</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_obj'>obj</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="resource_translation-instance_method">
   
     - (<tt>Hash</tt>, <tt>NilClass</tt>) <strong>resource_translation</strong>(resource_name, resource_args) 
@@ -2806,8 +3500,7 @@ functions if possible.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Translate resource</p>
+    <p>Translate resource</p>
 
 
   </div>
@@ -2851,8 +3544,7 @@ functions if possible.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>new resource Hash or nil</p>
+        <div class='inline'><p>new resource Hash or nil</p>
 </div>
       
     </li>
@@ -2865,50 +3557,50 @@ functions if possible.</p>
       <pre class="lines">
 
 
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97</pre>
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 72</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_resource_translation'>resource_translation</span><span class='lparen'>(</span><span class='id identifier rubyid_resource_name'>resource_name</span><span class='comma'>,</span> <span class='id identifier rubyid_resource_args'>resource_args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_new_resource'>new_resource</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
-  <span class='id identifier rubyid_lookup'>lookup</span> <span class='op'>=</span> <span class='id identifier rubyid_map'>map</span><span class='lbracket'>[</span><span class='symbol'>:resources</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_resource_args'>resource_args</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Type</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_lookup'>lookup</span> <span class='op'>=</span> <span class='id identifier rubyid_map'>map</span><span class='lbracket'>[</span><span class='symbol'>:resources</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_resource_args'>resource_args</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rbracket'>]</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_lookup'>lookup</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_warn'>warn</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed to locate resource type: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_resource_args'>resource_args</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Type</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_warn'>warn</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed to locate resource type: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_resource_args'>resource_args</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>nil</span>
   <span class='kw'>elsif</span><span class='lparen'>(</span><span class='id identifier rubyid_lookup'>lookup</span> <span class='op'>==</span> <span class='symbol'>:delete</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_warn'>warn</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Deleting resource </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_resource_name'>resource_name</span><span class='rbrace'>}</span><span class='tstring_content'> due to configuration</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_warn'>warn</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Deleting resource </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_resource_name'>resource_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> due to configuration</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>nil</span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_new_resource'>new_resource</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Type</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_lookup'>lookup</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span>
-    <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_resource_args'>resource_args</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Properties</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_new_resource'>new_resource</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Properties</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_format_properties'>format_properties</span><span class='lparen'>(</span>
-        <span class='symbol'>:original_properties</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_resource_args'>resource_args</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Properties</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='id identifier rubyid_new_resource'>new_resource</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_lookup'>lookup</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span>
+    <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_resource_args'>resource_args</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Properties</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_new_resource'>new_resource</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Properties</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_format_properties'>format_properties</span><span class='lparen'>(</span>
+        <span class='symbol'>:original_properties</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_resource_args'>resource_args</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Properties</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
         <span class='symbol'>:property_map</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_lookup'>lookup</span><span class='lbracket'>[</span><span class='symbol'>:properties</span><span class='rbracket'>]</span><span class='comma'>,</span>
         <span class='symbol'>:new_resource</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_new_resource'>new_resource</span><span class='comma'>,</span>
         <span class='symbol'>:original_resource</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_resource_args'>resource_args</span>
@@ -2920,6 +3612,63 @@ functions if possible.</p>
     <span class='id identifier rubyid_resource_finalizer'>resource_finalizer</span><span class='lparen'>(</span><span class='id identifier rubyid_resource_name'>resource_name</span><span class='comma'>,</span> <span class='id identifier rubyid_new_resource'>new_resource</span><span class='comma'>,</span> <span class='id identifier rubyid_resource_args'>resource_args</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_new_resource'>new_resource</span>
   <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="resources-instance_method">
+  
+    - (<tt>Hash</tt>) <strong>resources</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns resources for template</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>resources for template</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+57
+58
+59</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 57</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_resources'>resources</span>
+  <span class='ivar'>@original</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Resources</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2943,6 +3692,7 @@ functions if possible.</p>
 </h3><div class="docstring">
   <div class="discussion">
     
+
 
   </div>
 </div>
@@ -2981,8 +3731,7 @@ functions if possible.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Snake case (underscore) string</p>
+    <p>Snake case (underscore) string</p>
 
 
   </div>
@@ -3032,8 +3781,7 @@ functions if possible.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Translate stack definition</p>
+    <p>Translate stack definition</p>
 
 
   </div>
@@ -3060,24 +3808,24 @@ functions if possible.</p>
       <pre class="lines">
 
 
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58</pre>
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 74</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_translate!'>translate!</span>
   <span class='id identifier rubyid_template'>template</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
-    <span class='id identifier rubyid_translate_method'>translate_method</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>translate_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_snake'>snake</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
+    <span class='id identifier rubyid_translate_method'>translate_method</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>translate_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_snake'>snake</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
     <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_translate_method'>translate_method</span><span class='rparen'>)</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_translate_method'>translate_method</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
     <span class='kw'>else</span>
@@ -3102,8 +3850,7 @@ functions if possible.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Default translation action if no mapping is provided</p>
+    <p>Default translation action if no mapping is provided</p>
 
 
   </div>
@@ -3121,8 +3868,7 @@ functions if possible.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>value</p>
+        <div class='inline'><p>value</p>
 </div>
       
     </li>
@@ -3135,12 +3881,12 @@ functions if possible.</p>
       <pre class="lines">
 
 
-63
-64
-65</pre>
+89
+90
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 89</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_translate_default'>translate_default</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_translated'>translated</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -3161,8 +3907,7 @@ functions if possible.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Translate provided resources</p>
+    <p>Translate provided resources</p>
 
 
   </div>
@@ -3181,8 +3926,7 @@ functions if possible.</p>
       
       
         &mdash;
-        <div class='inline'>
-<p>resources hash</p>
+        <div class='inline'><p>resources hash</p>
 </div>
       
     </li>
@@ -3209,24 +3953,24 @@ functions if possible.</p>
       <pre class="lines">
 
 
-136
-137
-138
-139
-140
-141
-142
-143
-144
-145
-146</pre>
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 136</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation.rb', line 162</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_translate_resources'>translate_resources</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_translated'>translated</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Resources</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
-  <span class='id identifier rubyid_translated'>translated</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Resources</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_tap'>tap</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_modified_resources'>modified_resources</span><span class='op'>|</span>
+  <span class='id identifier rubyid_translated'>translated</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Resources</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_translated'>translated</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Resources</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_tap'>tap</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_modified_resources'>modified_resources</span><span class='op'>|</span>
     <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_resource_name'>resource_name</span><span class='comma'>,</span> <span class='id identifier rubyid_resource_args'>resource_args</span><span class='op'>|</span>
       <span class='id identifier rubyid_new_resource'>new_resource</span> <span class='op'>=</span> <span class='id identifier rubyid_resource_translation'>resource_translation</span><span class='lparen'>(</span><span class='id identifier rubyid_resource_name'>resource_name</span><span class='comma'>,</span> <span class='id identifier rubyid_resource_args'>resource_args</span><span class='rparen'>)</span>
       <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_new_resource'>new_resource</span><span class='rparen'>)</span>
@@ -3245,9 +3989,9 @@ functions if possible.</p>
 </div>
 
     <div id="footer">
-  Generated on Wed May 28 10:54:50 2014 by
+  Generated on Tue Oct 28 11:50:55 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.4 (ruby-1.9.3).
+  0.8.7.3 (ruby-2.1.2).
 </div>
 
   </body>

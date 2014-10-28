@@ -2,11 +2,11 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>
-  File: CHANGELOG
+  File: properties
   
-    &mdash; Documentation by YARD 0.8.7.4
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -17,7 +17,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '';
-  framesUrl = "frames.html#!file.CHANGELOG.html";
+  framesUrl = "frames.html#!" + escape(window.location.href);
 </script>
 
 
@@ -32,7 +32,7 @@
       <div id="menu">
   
     <a href="_index.html">Index</a> &raquo; 
-    <span class="title">File: CHANGELOG</span>
+    <span class="title">File: properties</span>
   
 
   <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
@@ -61,42 +61,44 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h2>v0.2.0</h2>
+    <div id="content"><div id='filecontents'><h2 id="universal-properties">Universal Properties</h2>
 
-<ul>
-<li>Add Registry helper into Utils</li>
-<li>Add script for collecting cfn and hot resources</li>
-<li>Provide builtin dynamics</li>
-<li>Add helpers for registry and dynamic insertions</li>
-<li>Let dynamics provide metadata about themselves</li>
-<li>Start translation implementation</li>
-<li>Include bang helper method aliases</li>
-<li>Add hash dumping and JSON dumping helpers to formation instance</li>
-</ul>
+<h3 id="tags">Tags</h3>
+<p>Tags can be applied to most resources. These make it easy to track
+resource usage across stacks. They may be used for cost tracking as
+well as configuration tools that are cloud-infrastructure aware. Tags
+are provided as key/value pairs within an array. In this example we
+provide the stack name and a contact email:</p>
 
-<h2>v0.1.4</h2>
+<p><code>ruby
+  resources.website_autoscale do
+    type 'AWS::AutoScaling::AutoScalingGroup'
+    properties do
+      availability_zones({ 'Fn::GetAZs' =&gt; '' })
+      tags _array(
+        -&gt; {
+          key 'StackName'
+          value ref!('AWS::StackName'))
+          propagate_at_launch true
+        },
+        -&gt; {
+          key 'ContactEmail'
+          value 'support@hw-ops.com'
+          propagate_at_launch true
+        }
+      )
+      launch_configuration_name ref!(:website_launch_config)
+    end
+</code></p>
 
-<ul>
-<li>Allow compile to return raw object instead of hash dump</li>
-</ul>
-
-<h2>v0.1.2</h2>
-
-<ul>
-<li>Fix syntax issue in cf helpers</li>
-</ul>
-
-<h2>v0.1.0</h2>
-
-<ul>
-<li>Initial release</li>
-</ul>
+<p>Please check the relevant reference documentation to confirm that tags
+are available for a specific resource type.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Wed May 28 10:54:49 2014 by
+  Generated on Tue Oct 28 11:50:54 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.4 (ruby-1.9.3).
+  0.8.7.3 (ruby-2.1.2).
 </div>
 
   </body>

@@ -6,7 +6,7 @@
 <title>
   Module: SparkleFormation::SparkleAttribute
   
-    &mdash; Documentation by YARD 0.8.7.4
+    &mdash; Documentation by YARD 0.8.7.3
   
 </title>
 
@@ -17,7 +17,7 @@
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
   relpath = '../';
-  framesUrl = "../frames.html#!SparkleFormation/SparkleAttribute.html";
+  framesUrl = "../frames.html#!" + escape(window.location.href);
 </script>
 
 
@@ -90,8 +90,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Provides template helper methods</p>
+    <p>Provides template helper methods</p>
 
 
   </div>
@@ -133,8 +132,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Fn::GetAtt generator.</p>
+    <span class="summary_desc"><div class='inline'><p>Fn::GetAtt generator.</p>
 </div></span>
   
 </li>
@@ -159,8 +157,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Fn::Base64 generator.</p>
+    <span class="summary_desc"><div class='inline'><p>Fn::Base64 generator.</p>
 </div></span>
   
 </li>
@@ -185,8 +182,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Fn::GetAZs generator.</p>
+    <span class="summary_desc"><div class='inline'><p>Fn::GetAZs generator.</p>
 </div></span>
   
 </li>
@@ -211,8 +207,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Fn::Join generator.</p>
+    <span class="summary_desc"><div class='inline'><p>Fn::Join generator.</p>
 </div></span>
   
 </li>
@@ -237,8 +232,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Fn::FindInMap generator.</p>
+    <span class="summary_desc"><div class='inline'><p>Fn::FindInMap generator.</p>
 </div></span>
   
 </li>
@@ -263,8 +257,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Ref generator.</p>
+    <span class="summary_desc"><div class='inline'><p>Ref generator.</p>
 </div></span>
   
 </li>
@@ -289,8 +282,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Fn::Select generator.</p>
+    <span class="summary_desc"><div class='inline'><p>Fn::Select generator.</p>
 </div></span>
   
 </li>
@@ -313,8 +305,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Set the destination platform.</p>
+    <span class="summary_desc"><div class='inline'><p>Set the destination platform.</p>
 </div></span>
   
 </li>
@@ -337,7 +328,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+</div></span>
   
 </li>
 
@@ -359,8 +351,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Dynamic insertion helper method.</p>
+    <span class="summary_desc"><div class='inline'><p>Dynamic insertion helper method.</p>
 </div></span>
   
 </li>
@@ -383,8 +374,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Registry insertion helper method.</p>
+    <span class="summary_desc"><div class='inline'><p>Registry insertion helper method.</p>
 </div></span>
   
 </li>
@@ -407,7 +397,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'>
+</div></span>
   
 </li>
 
@@ -436,8 +427,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Fn::GetAtt generator</p>
+    <p>Fn::GetAtt generator</p>
 
 
   </div>
@@ -456,8 +446,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>through arguments</p>
+        <div class='inline'><p>through arguments</p>
 </div>
       
     </li>
@@ -508,7 +497,7 @@
     <span class='kw'>end</span>
 
   <span class='kw'>end</span>
-  <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Fn::GetAtt</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_args'>args</span><span class='rbrace'>}</span>
+  <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::GetAtt</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_args'>args</span><span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -530,8 +519,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Fn::Base64 generator</p>
+    <p>Fn::Base64 generator</p>
 
 
   </div>
@@ -550,8 +538,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>pass through</p>
+        <div class='inline'><p>pass through</p>
 </div>
       
     </li>
@@ -586,7 +573,7 @@
       <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__cf_base64'>_cf_base64</span><span class='lparen'>(</span><span class='id identifier rubyid_arg'>arg</span><span class='rparen'>)</span>
-  <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Fn::Base64</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_arg'>arg</span><span class='rbrace'>}</span>
+  <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::Base64</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_arg'>arg</span><span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -608,8 +595,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Fn::GetAZs generator</p>
+    <p>Fn::GetAZs generator</p>
 
 
   </div>
@@ -630,8 +616,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>String will pass through. Symbol will be converted to ref</p>
+        <div class='inline'><p>String will pass through. Symbol will be converted to ref</p>
 </div>
       
     </li>
@@ -678,11 +663,11 @@
            <span class='kw'>when</span> <span class='const'>Symbol</span>
              <span class='id identifier rubyid__cf_ref'>_cf_ref</span><span class='lparen'>(</span><span class='id identifier rubyid_region'>region</span><span class='rparen'>)</span>
            <span class='kw'>when</span> <span class='const'>NilClass</span>
-             <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span>
+             <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
            <span class='kw'>else</span>
              <span class='id identifier rubyid_region'>region</span>
            <span class='kw'>end</span>
-  <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Fn::GetAZs</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_region'>region</span><span class='rbrace'>}</span>
+  <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::GetAZs</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_region'>region</span><span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -704,8 +689,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Fn::Join generator</p>
+    <p>Fn::Join generator</p>
 
 
   </div>
@@ -765,7 +749,7 @@
   <span class='kw'>unless</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>1</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_args'>args</span><span class='rbracket'>]</span>
   <span class='kw'>end</span>
-  <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Fn::Join</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:options</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:delimiter</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rbracket'>]</span><span class='rbrace'>}</span>
+  <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::Join</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:options</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:delimiter</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rbracket'>]</span><span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -787,8 +771,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Fn::FindInMap generator</p>
+    <p>Fn::FindInMap generator</p>
 
 
   </div>
@@ -807,8 +790,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>thing to find</p>
+        <div class='inline'><p>thing to find</p>
 </div>
       
     </li>
@@ -823,8 +805,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>thing to search</p>
+        <div class='inline'><p>thing to search</p>
 </div>
       
     </li>
@@ -839,8 +820,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>additional args</p>
+        <div class='inline'><p>additional args</p>
 </div>
       
     </li>
@@ -893,7 +873,7 @@
   <span class='kw'>end</span>
   <span class='id identifier rubyid_thing'>thing</span> <span class='op'>=</span> <span class='id identifier rubyid__process_key'>_process_key</span><span class='lparen'>(</span><span class='id identifier rubyid_thing'>thing</span><span class='comma'>,</span> <span class='symbol'>:force</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_thing'>thing</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Symbol</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid__process_key'>_process_key</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='symbol'>:force</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Symbol</span><span class='rparen'>)</span>
-  <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Fn::FindInMap</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='id identifier rubyid__process_key'>_process_key</span><span class='lparen'>(</span><span class='id identifier rubyid_thing'>thing</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Ref</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid__process_key'>_process_key</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_suffix'>suffix</span><span class='rbracket'>]</span><span class='rbrace'>}</span>
+  <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::FindInMap</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='id identifier rubyid__process_key'>_process_key</span><span class='lparen'>(</span><span class='id identifier rubyid_thing'>thing</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ref</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid__process_key'>_process_key</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_suffix'>suffix</span><span class='rbracket'>]</span><span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -918,11 +898,9 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'>
-<p>Symbol value will force key processing</p>
+    <div class='inline'><p>Symbol value will force key processing</p>
 </div>
   </div>
-
 
 <p>Ref generator</p>
 
@@ -943,8 +921,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>reference name</p>
+        <div class='inline'><p>reference name</p>
 </div>
       
     </li>
@@ -981,7 +958,7 @@
 
 <span class='kw'>def</span> <span class='id identifier rubyid__cf_ref'>_cf_ref</span><span class='lparen'>(</span><span class='id identifier rubyid_thing'>thing</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_thing'>thing</span> <span class='op'>=</span> <span class='id identifier rubyid__process_key'>_process_key</span><span class='lparen'>(</span><span class='id identifier rubyid_thing'>thing</span><span class='comma'>,</span> <span class='symbol'>:force</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_thing'>thing</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Symbol</span><span class='rparen'>)</span>
-  <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Ref</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_thing'>thing</span><span class='rbrace'>}</span>
+  <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ref</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_thing'>thing</span><span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1003,8 +980,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Fn::Select generator</p>
+    <p>Fn::Select generator</p>
 
 
   </div>
@@ -1023,8 +999,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Symbol will be converted to ref</p>
+        <div class='inline'><p>Symbol will be converted to ref</p>
 </div>
       
     </li>
@@ -1039,8 +1014,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>Symbol will be converted to ref</p>
+        <div class='inline'><p>Symbol will be converted to ref</p>
 </div>
       
     </li>
@@ -1079,7 +1053,7 @@
 <span class='kw'>def</span> <span class='id identifier rubyid__cf_select'>_cf_select</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_index'>index</span> <span class='op'>=</span> <span class='id identifier rubyid_index'>index</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Symbol</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid__cf_ref'>_cf_ref</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_index'>index</span>
   <span class='id identifier rubyid_item'>item</span> <span class='op'>=</span> <span class='id identifier rubyid__cf_ref'>_cf_ref</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Symbol</span><span class='rparen'>)</span>
-  <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Fn::Select</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='rbracket'>]</span><span class='rbrace'>}</span>
+  <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::Select</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_item'>item</span><span class='rbracket'>]</span><span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1097,8 +1071,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Set the destination platform</p>
+    <p>Set the destination platform</p>
 
 
   </div>
@@ -1117,8 +1090,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>one of :rhel or :debian</p>
+        <div class='inline'><p>one of :rhel or :debian</p>
 </div>
       
     </li>
@@ -1177,6 +1149,7 @@
   <div class="discussion">
     
 
+
   </div>
 </div>
 <div class="tags">
@@ -1227,8 +1200,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Dynamic insertion helper method</p>
+    <p>Dynamic insertion helper method</p>
 
 
   </div>
@@ -1247,8 +1219,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>dynamic name</p>
+        <div class='inline'><p>dynamic name</p>
 </div>
       
     </li>
@@ -1263,8 +1234,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>argument list for dynamic</p>
+        <div class='inline'><p>argument list for dynamic</p>
 </div>
       
     </li>
@@ -1317,8 +1287,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Registry insertion helper method</p>
+    <p>Registry insertion helper method</p>
 
 
   </div>
@@ -1337,8 +1306,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>name of registry item</p>
+        <div class='inline'><p>name of registry item</p>
 </div>
       
     </li>
@@ -1353,8 +1321,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>argument list for registry</p>
+        <div class='inline'><p>argument list for registry</p>
 </div>
       
     </li>
@@ -1409,6 +1376,7 @@
   <div class="discussion">
     
 
+
   </div>
 </div>
 <div class="tags">
@@ -1453,9 +1421,9 @@
 </div>
 
     <div id="footer">
-  Generated on Wed May 28 10:54:50 2014 by
+  Generated on Tue Oct 28 11:50:54 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.4 (ruby-1.9.3).
+  0.8.7.3 (ruby-2.1.2).
 </div>
 
   </body>

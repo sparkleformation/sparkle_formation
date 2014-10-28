@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: anatomy
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: anatomy</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h2 id="template-anatomy">Template Anatomy</h2>
+
+<h3 id="parameters">Parameters</h3>
+<p>Parameters are prompts for stack specific values. A default may be
+specified, but is not required. Every parameter must have a value at runtime.</p>
+
+<p>In the Getting Started example we had one parameter, <code>web_nodes</code> which
+set the min and max for the autoscaling group:</p>
+
+<p><code>ruby
+parameters.web_nodes do
+  type 'Number'
+  description 'Number of web nodes for ASG.'
+  default 2
+end
+</code></p>
+
+<p>Every parameter must have a type and a description. Available types are <code>String</code>,
+<code>Number</code> (an integer), and <code>CommaDelimitedList</code> (an array of
+strings, as-in: <code>['alpha', 'beta', '1', 2']</code>). The descriptions is a
+string describing the resource. </p>
+
+<p>Parameters support optional default values, declared as
+above. An array of accepted values may be set, as well:</p>
+
+<p><code>ruby
+parameters.web_nodes do
+  type 'Number'
+  description 'Number of web nodes for ASG.'
+  default 2
+  allowed_values [1, 2, 3, 5]
+end
+</code></p>
+
+<h3 id="resources">Resources</h3>
+<p>Resources are the infrastructure resources that are provisioned with
+the stack. Every resource must have a type that corresponds to a
+supported cloud resource. Resources typically have a properties hash
+that configures the resource. Some resources also have metadata. For
+the complete list of required and optional options, see the
+individual resource documentation.</p>
+
+<p>Resource availability is not consistent across
+providers. SparkleFormation’s resources support is based on AWS, and
+not all resources will be available on other platforms. See the
+<a href="resource-reference.md">resource reference</a> table for more information.</p>
+
+<p>The prior example included the following resources:
+- cfn_user: The IAM user for the stack, which will be used to
+provision stack resources.</p>
+
+<p><code>ruby
+resources.cfn_user do
+  type 'AWS::IAM::User'
+  properties.path '/'
+  properties.policies _array(
+    -&gt; {
+      policy_name 'cfn_access'
+      policy_document.statement _array(
+        -&gt; {
+          effect 'Allow'
+          action 'cloudformation:DescribeStackResource'
+          resource '*' 
+        }
+      )
+    }
+  )
+end
+</code></p>
+
+<ul>
+  <li>cfn_key: The IAM keys for the stack IAM user.</li>
+</ul>
+
+<p><code>ruby
+resources.cfn_keys do
+  type 'AWS::IAM::AccessKey'
+  properties.user_name ref!(:cfn_user)
+end
+</code></p>
+
+<ul>
+  <li>website_asg: The autoscaling group containing website nodes. The
+size of the autoscaling group is set to the value of the web_nodes
+parameter. </li>
+</ul>
+
+<p><code>ruby
+resources.website_autoscale do
+  type 'AWS::AutoScaling::AutoScalingGroup'
+  properties do
+    availability_zones({'Fn::GetAZs' =&gt; ''})
+    launch_configuration_name ref!(:website_launch_config)
+    min_size ref!(:web_nodes)
+    max_size ref!(:web_nodes)
+  end
+end
+</code></p>
+
+<ul>
+  <li>website_launch_configuration: The launch configuration for
+website_asg nodes. The AMI image ID and instance type (size) are
+required. </li>
+</ul>
+
+<p><code>ruby
+resources.website_launch_config do
+  type 'AWS::AutoScaling::LaunchConfiguration'
+  properties do
+    image_id 'ami-123456'
+    instance_type 'm3.medium'
+  end
+end
+</code></p>
+
+<ul>
+  <li>website_elb: The elastic load balancer for the website. The
+listeners array configures port forwarding. The health check
+configures the load balancer health check target and thresholds.</li>
+</ul>
+
+<p><code>ruby
+resources.website_elb do
+  type 'AWS::ElasticLoadBalancing::LoadBalancer'
+  properties do
+    availability_zones._set('Fn::GetAZs', '')
+    listeners _array(
+      -&gt; {
+        load_balancer_port '80'
+        protocol 'HTTP'
+        instance_port '80'
+        instance_protocol 'HTTP'
+      }
+    )
+    health_check do
+      target 'HTTP:80/'
+      healthy_threshold '3'
+      unhealthy_threshold '3'
+      interval '5'
+      timeout '15'
+    end
+  end
+end
+</code></p>
+
+<h3 id="mappings">Mappings</h3>
+<p>Mappings allow you to create key/value pairs which can be referenced
+at runtime. This is useful for things like an image id that differs
+by region or environment. </p>
+
+<p>Mappings for the 2014.09 Amazon Linux PV Instance Store 64-bit AMIs
+for each US region:</p>
+
+<p><code>ruby
+mappings.region_map do
+  set!('us-east-1', :ami =&gt; 'ami-8e852ce6')
+  set!('us-west-1', :ami =&gt; 'ami-03a8a146')
+  set!('us-west-2', :ami =&gt; 'ami-f786c6c7')
+end
+</code></p>
+
+<p>These can be referenced, in turn, with the following:</p>
+
+<p><code>ruby
+map!(:region_map, ref!('AWS::Region'), :ami)
+</code></p>
+
+<p>‘AWS::Region’ is a psuedo parameter. We could also perform a lookup
+based on a parameter we provide, e.g. an instance size based on the environment:</p>
+
+<p>```ruby
+parameters.environment do
+  type ‘String’
+  allowed_values [‘development’, ‘staging’, ‘production’]              <br />
+end</p>
+
+<p>mappings.instance_size do
+  set!(‘development’, :instance =&gt; ‘m3.small’)
+  set!(‘staging’, :instance =&gt; ‘m3.medium’)
+  set!(‘production’, :instance =&gt; ‘m3.large’)
+end</p>
+
+<p>resources.website_launch_config do
+  type ‘AWS::AutoScaling::LaunchConfiguration’
+  properties do
+    image_id map!(:region_map, ‘AWS::Region’, :ami)
+    instance_type map!(:instance_size, ref!(:environment), :instance)
+  end
+end
+```</p>
+
+<h3 id="outputs">Outputs</h3>
+<p>Outputs provide metadata for the stack, as key/value pairs within an
+outputs block. Note that this block lives outside the resource
+blocks. This will retrieve the DNSName attribute for our load
+balancer, and provide it as a value for an ‘Elb Dns’ output:</p>
+
+<p><code>ruby
+outputs do
+  elb_dns do
+    value attr!(:website_elb, 'DNSName')
+    description "Website ELB DNS name"
+  end
+end
+</code></p>
+
+<p>Outputs are not simply informational. You can interact with them
+during <a href="provisioning.md#knife-cloudformation">provisioning</a> using the <a href="https://rubygems.org/gems/knife-cloudformation">knife-cloudformation
+plugin</a>. </p>
+</div></div>
+
+    <div id="footer">
+  Generated on Tue Oct 28 11:50:54 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-2.1.2).
+</div>
+
+  </body>
+</html>
