@@ -54,11 +54,14 @@ class SparkleFormation
                 if(lb_resource)
                   lb_instance['port'] = lb_resource['cache_instance_port']
                 else
-                  key = parameters.keys.detect do |k|
+                  key = parameters.keys.find_all do |k|
                     if(k.end_with?('Port'))
                       lb_ref.values.first.start_with?(k.sub(/Port$/, ''))
                     end
                   end
+                  key = key.detect do |k|
+                    k.downcase.include?('instance')
+                  end || key.first
                   if(key)
                     lb_instance['port'] = {'get_param' => key}
                   else
