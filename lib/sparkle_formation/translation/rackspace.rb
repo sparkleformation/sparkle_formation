@@ -56,7 +56,7 @@ class SparkleFormation
                 else
                   key = parameters.keys.find_all do |k|
                     if(k.end_with?('Port'))
-                      lb_ref.values.first.start_with?(k.sub(/Port$/, ''))
+                      lb_ref.values.first.start_with?(k.sub('Instance', '').sub(/Port$/, ''))
                     end
                   end
                   key = key.detect do |k|
