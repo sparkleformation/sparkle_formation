@@ -1,0 +1,193 @@
+<h2>Overview</h2>
+
+<p>SparkleFormation is a Ruby DSL for programatically composing
+<a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html">AWS Cloudformation</a>, <a href="http://docs.openstack.org/developer/heat/template_guide/index.html">OpenStack Heat</a>
+provisioning templates for the purpose of interacting with cloud
+infrastructure orchestration APIs.</p>
+
+<p>SparkleFormation templates describe the creation and configuration of
+collections of cloud resources (a stack) as code, allowing you to
+provision stacks in a predictable and repeatable manner. Stacks can be
+managed as single unit, allowing you to create, modify, or delete
+collections of resources via a single API call.</p>
+
+<p>SparkleFormation composes templates in the native cloud orchestration
+formats for AWS, Rackspace, Google Compute, and similar services.</p>
+
+<h2>Table of Contents</h2>
+
+<ul>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#what-it-looks-like">What It Looks Like</a></li>
+<li><a href="building-blocks.md">Building Blocks</a>
+
+<ul>
+<li><a href="building-blocks.md#components">Components</a></li>
+<li><a href="building-blocks.md#dynamics">Dynamics</a></li>
+<li><a href="building-blocks.md#registries">Registries</a></li>
+</ul></li>
+<li><a href="anatomy.md">Template Anatomy</a>
+
+<ul>
+<li><a href="anatomy.md#parameters">Parameters</a></li>
+<li><a href="anatomy.md#resources">Resources</a></li>
+<li><a href="anatomy.md#mappings">Mappings</a></li>
+<li><a href="anatomy.md#outputs">Outputs</a></li>
+</ul></li>
+<li><a href="functions.md">Intrinsic Functions</a>
+
+<ul>
+<li><a href="functions.md#ref">Ref</a></li>
+<li><a href="functions.md#attr">Attr</a></li>
+<li><a href="functions.md#join">Join</a></li>
+</ul></li>
+<li><a href="properties.md">Universal Properties</a>
+
+<ul>
+<li><a href="properties.md#tags">Tags</a></li>
+</ul></li>
+</ul>
+
+<h2>Getting Started</h2>
+
+<h3>Gemfile</h3>
+
+<p>SparkleFormation is in active development. To access all the features
+detailed in the documentation (using the knife plugin CLI), you should
+install the plugin and supporting libraries from git:</p>
+
+<p><code>ruby
+gem &#39;fog&#39;, :git =&gt; &#39;https://github.com/chrisroberts/fog.git&#39;, :ref =&gt; &#39;feature/orchestration&#39;
+gem &#39;fog-core&#39;, :git =&gt; &#39;https://github.com/chrisroberts/fog-core.git&#39;, :ref =&gt; &#39;feature/orchestration&#39;
+gem &#39;knife-cloudformation&#39;, :git =&gt; &#39;https://github.com/heavywater/knife-cloudformation.git&#39;, :ref =&gt; &#39;feature/fog-model&#39;
+</code></p>
+
+<p>The Knife Cloudformation gem is only needed for stack provisioning via
+knife. You could also upload SparkleFormation generated templates to AWS via the WebUI.</p>
+
+<h3>Knife Config</h3>
+
+<p>To use Knife for provisioning, you will need to add the following to
+your <code>knife.rb</code> file:</p>
+
+<p>```ruby
+knife[:aws<em>access</em>key<em>id] = ENV[&#39;AWS</em>ACCESS<em>KEY</em>ID&#39;]
+knife[:aws<em>secret</em>access<em>key] = ENV[&#39;AWS</em>SECRET<em>ACCESS</em>KEY&#39;]</p>
+
+<p>[:cloudformation, :options].inject(knife){ |m,k| m[k] ||= Mash.new }
+knife[:cloudformation][:options][:disable<em>rollback] = ENV[&#39;AWS</em>CFN<em>DISABLE</em>ROLLBACK&#39;].to<em>s.downcase == &#39;true&#39;
+knife[:cloudformation][:options][:capabilities] = [&#39;CAPABILITY</em>IAM&#39;]
+knife[:cloudformation][:processing] = true
+knife[:cloudformation][:credentials] = {
+  :aws<em>access</em>key<em>id =&gt; knife[:aws</em>access<em>key</em>id],
+  :aws<em>secret</em>access<em>key =&gt; knife[:aws</em>secret<em>access</em>key]
+}
+```</p>
+
+<p>| Attribute                                        | Function                                                                                                       |
+|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| <code>[:cloudformation][:options][:disable_rollback]</code> | Disables rollback if stack is unsuccessful. Useful for debugging.                                              |
+| <code>[:cloudformation][:credentials]</code>                | Credentials for a user that is allowed to create stacks.                                                       |
+| <code>[:cloudformation][:options][:capabilities]</code>     | Enables IAM creation (AWS only). Options are <code>nil</code> or <code>[&#39;CAPABILITY_IAM&#39;]</code>                                     |
+| <code>[:cloudformation][:processing]</code>                 | Enables processing SparkleFormation templates (otherwise knife cloudformation will expect a JSON CFN template. |</p>
+
+<h2>What it Looks Like</h2>
+
+<p>Below is a basic SparkleFormation template which would provision an
+elastic load balancer forwarding port 80 to an autoscaling group of
+ec2 instances.</p>
+
+<p>```ruby
+SparkleFormation.new(&#39;website&#39;) do</p>
+
+<p>set!(&#39;AWSTemplateFormatVersion&#39;, &#39;2010-09-09&#39;)</p>
+
+<p>description &#39;Supercool Website&#39;</p>
+
+<p>resources.cfn<em>user do
+    type &#39;AWS::IAM::User&#39;
+    properties.path &#39;/&#39;
+    properties.policies _array(
+      -&gt; {
+        policy</em>name &#39;cfn<em>access&#39;
+        policy</em>document.statement _array(
+          -&gt; {
+            effect &#39;Allow&#39;
+            action &#39;cloudformation:DescribeStackResource&#39;
+            resource &#39;*&#39;
+          }
+        )
+      }
+    )
+  end</p>
+
+<p>resources.cfn<em>keys do
+    type &#39;AWS::IAM::AccessKey&#39;
+    properties.user</em>name ref!(:cfn_user)
+  end</p>
+
+<p>parameters.web_nodes do
+    type &#39;Number&#39;
+    description &#39;Number of web nodes for ASG.&#39;
+    default 2
+  end</p>
+
+<p>resources.website<em>autoscale do
+    type &#39;AWS::AutoScaling::AutoScalingGroup&#39;
+    properties do
+      availability</em>zones({&#39;Fn::GetAZs&#39; =&gt; &#39;&#39;})
+      launch<em>configuration</em>name ref!(:website<em>launch</em>config)
+      min<em>size ref!(:web</em>nodes)
+      max<em>size ref!(:web</em>nodes)
+    end
+  end</p>
+
+<p>resources.website<em>launch</em>config do
+    type &#39;AWS::AutoScaling::LaunchConfiguration&#39;
+    properties do
+      image<em>id &#39;ami-123456&#39;
+      instance</em>type &#39;m3.medium&#39;
+    end
+  end</p>
+
+<p>resources.website<em>elb do
+    type &#39;AWS::ElasticLoadBalancing::LoadBalancer&#39;
+    properties do
+      availability</em>zones.<em>set(&#39;Fn::GetAZs&#39;, &#39;&#39;)
+      listeners _array(
+        -&gt; {
+          load</em>balancer<em>port &#39;80&#39;
+          protocol &#39;HTTP&#39;
+          instance</em>port &#39;80&#39;
+          instance<em>protocol &#39;HTTP&#39;
+        }
+      )
+      health</em>check do
+        target &#39;HTTP:80/&#39;
+        healthy<em>threshold &#39;3&#39;
+        unhealthy</em>threshold &#39;3&#39;
+        interval &#39;5&#39;
+        timeout &#39;15&#39;
+      end
+    end
+  end
+end
+```</p>
+
+<p>This template is 74 lines long (with generous spacing for
+readability). The <a href="examples/template_json/website.json">json template this
+renders</a> is 88 lines, without
+spacing). This can be improved, though. SparkleFormation allows you to
+create resusable files such that the above template can become :</p>
+
+<p>```ruby
+SparkleFormation.new(:website).load(:base).overrides do</p>
+
+<p>description &#39;Supercool Website&#39;</p>
+
+<p>dynamic!(:autoscale, &#39;website&#39;, :nodes =&gt; 2)
+  dynamic!(:launch<em>config, &#39;website&#39;, :image</em>id =&gt; &#39;ami-123456&#39;, :instance_type =&gt; &#39;m3.medium&#39;)
+  dynamic!(:elb, &#39;website&#39;)</p>
+
+<p>end
+```</p>
