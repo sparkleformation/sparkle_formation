@@ -1,0 +1,4 @@
+--markup-provider=redcarpet
+--markup=markdown
+--embed-mixins
+--title SparkleFormation
