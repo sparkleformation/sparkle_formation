@@ -13,6 +13,10 @@ Yes. Well, kinda. It also has some extra features, like defining
 components, dynamics, merging, AWS builtin function helpers, and
 conjouring magic (to get unicorns).
 
+## Expanded User Docs
+
+New user documentation is now here! [User Documentation](http://sparkleformation.github.io/sparkle_formation/UserDocs/)
+
 ## What's it look like?
 
 Lets use one of the example CF templates that creates an EC2 instance. First
@@ -266,5 +270,7 @@ end
 * Add examples of accessing parent hash elements
 
 # Infos
+* Documentation: http://sparkleformation.github.io/sparkle_formation
+* User Documentation: http://sparkleformation.github.io/sparkle_formation/UserDocs/README.html
 * Repository: https://github.com/heavywater/sparkle_formation
 * IRC: Freenode @ #heavywater
