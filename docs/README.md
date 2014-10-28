@@ -36,14 +36,15 @@ formats for AWS, Rackspace, Google Compute, and similar services.
 ## Getting Started
 ### Gemfile
 SparkleFormation is in active development. To access all the features
-detailed in the documentation, you should install from git:
+detailed in the documentation (using the knife plugin CLI), you should
+install the plugin and supporting libraries from git:
 
 ```ruby
 gem 'fog', :git => 'https://github.com/chrisroberts/fog.git', :ref => 'feature/orchestration'
 gem 'fog-core', :git => 'https://github.com/chrisroberts/fog-core.git', :ref => 'feature/orchestration'
-gem 'sparkle_formation', :git => 'https://github.com/heavywater/sparkle_formation.git', :ref => 'develop'
 gem 'knife-cloudformation', :git => 'https://github.com/heavywater/knife-cloudformation.git', :ref => 'feature/fog-model'
 ```
+
 The Knife Cloudformation gem is only needed for stack provisioning via
 knife. You could also upload SparkleFormation generated templates to AWS via the WebUI.
 
@@ -52,12 +53,11 @@ To use Knife for provisioning, you will need to add the following to
 your `knife.rb` file:
 
 ```ruby
-knife[:cfn_disable_rollback] = ENV['CLOUDFORMATION_DISABLE_ROLLBACK'].to_s.downcase == 'false' ? false : true
 knife[:aws_access_key_id] = ENV['AWS_ACCESS_KEY_ID']
 knife[:aws_secret_access_key] = ENV['AWS_SECRET_ACCESS_KEY']
- 
+
 [:cloudformation, :options].inject(knife){ |m,k| m[k] ||= Mash.new }
-knife[:cloudformation][:options][:disable_rollback] = knife[:cfn_disable_rollback]
+knife[:cloudformation][:options][:disable_rollback] = ENV['AWS_CFN_DISABLE_ROLLBACK'].to_s.downcase == 'true'
 knife[:cloudformation][:options][:capabilities] = ['CAPABILITY_IAM']
 knife[:cloudformation][:processing] = true
 knife[:cloudformation][:credentials] = {
