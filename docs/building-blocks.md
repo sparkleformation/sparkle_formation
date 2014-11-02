@@ -17,6 +17,7 @@ cloudformation
 └───registry
 └───templates
 ```
+
 The `components`, `dynamics`, and `registry` directories each contatin
 a specific type of SparkleFormation building block. In addition to
 these directories, you should have at least one directory for
@@ -24,6 +25,7 @@ templates (`template`, in the above example). You may have as many
 template directories as you need, and these can be used to organize
 SparkleFormation templates by function, ownership group, or other
 classification system, as in:
+
 ```sh
 cloudformation
 └───application
@@ -32,7 +34,9 @@ cloudformation
 └───dynamics
 └───registry
 ```
+
 or 
+
 ```sh
 cloudformation
 └───canadian_team
