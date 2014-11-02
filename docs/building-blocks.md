@@ -5,6 +5,43 @@ many keystrokes, but what about reusing SparkleFormation code between
 similar stacks? This is where SparkleFormation concepts like
 components, dynamics, and registries come into play.
 
+### Directory Structure
+
+SparkleFormation Files should be stored in a `cloudformation`
+directory with the following subdirectory structure:
+
+```sh
+cloudformation
+└───components
+└───dynamics
+└───registry
+└───templates
+```
+The `components`, `dynamics`, and `registry` directories each contatin
+a specific type of SparkleFormation building block. In addition to
+these directories, you should have at least one directory for
+templates (`template`, in the above example). You may have as many
+template directories as you need, and these can be used to organize
+SparkleFormation templates by function, ownership group, or other
+classification system, as in:
+```sh
+cloudformation
+└───application
+└───components
+└───database
+└───dynamics
+└───registry
+```
+or 
+```sh
+cloudformation
+└───canadian_team
+└───components
+└───dynamics
+└───registry
+└───us_team
+```
+
 ### Components
 
 Components are static configuration which can be reused between many
