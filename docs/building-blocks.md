@@ -270,6 +270,5 @@ SparkleFormation.new(:website).load(:base).overrides do
 
   dynamic!(:elb, 'website')
 
-  registry!(:apt_get_update, 'website')
 end
 ```
