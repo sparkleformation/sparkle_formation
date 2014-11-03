@@ -34,6 +34,36 @@ knife that provisions cloudformation stacks. It can be used with
 SparkleFormation to build stacks without the intermediary steps of
 writing a JSON template to file and uploading the template to the provider.
 
+#### Knife Cloudformation Setup
+Add the following to your Gemfile:
+
+```ruby
+gem 'fog', :git => 'https://github.com/chrisroberts/fog.git', :ref => 'feature/orchestration'
+gem 'fog-core', :git => 'https://github.com/chrisroberts/fog-core.git', :ref => 'feature/orchestration'
+gem 'knife-cloudformation', :git => 'https://github.com/heavywater/knife-cloudformation.git', :ref => 'feature/fog-model'
+```
+Add the following to your `knife.rb` file:
+```ruby
+knife[:aws_access_key_id] = ENV['AWS_ACCESS_KEY_ID']
+knife[:aws_secret_access_key] = ENV['AWS_SECRET_ACCESS_KEY']
+
+[:cloudformation, :options].inject(knife){ |m,k| m[k] ||= Mash.new }
+knife[:cloudformation][:options][:disable_rollback] = true
+knife[:cloudformation][:options][:capabilities] = ['CAPABILITY_IAM']
+knife[:cloudformation][:processing] = true
+knife[:cloudformation][:credentials] = {
+  :aws_access_key_id => knife[:aws_access_key_id],
+  :aws_secret_access_key => knife[:aws_secret_access_key]
+}
+```
+
+| Attribute                                        | Function                                                                                                       |
+|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| `[:cloudformation][:options][:disable_rollback]` | Disables rollback if stack is unsuccessful. Useful for debugging.                                              |
+| `[:cloudformation][:credentials]`                | Credentials for a user that is allowed to create stacks.                                                       |
+| `[:cloudformation][:options][:capabilities]`     | Enables IAM creation (AWS only). Options are `nil` or `['CAPABILITY_IAM']`                                     |
+| `[:cloudformation][:processing]`                 | Enables processing SparkleFormation templates (otherwise knife cloudformation will expect a JSON CFN template. |
+
 #### Processing SparkleFormation Templates
 To build a stack directly from a SparkleFormation template, use the
 `create` command with the `--file` and `--processing` flags:

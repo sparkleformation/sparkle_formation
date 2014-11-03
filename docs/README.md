@@ -1,13 +1,13 @@
 ## Overview
 SparkleFormation is a Ruby DSL for programatically composing
-[AWS Cloudformation][cloudformation], [OpenStack Heat][heat]
+[AWS Cloudformation][cloudformation], [OpenStack Heat][heat], and similar
 provisioning templates for the purpose of interacting with cloud
 infrastructure orchestration APIs.
 
 SparkleFormation templates describe the creation and configuration of
-collections of cloud resources (a stack) as code, allowing you to
+collections of cloud resources (stacks) as code, allowing you to
 provision stacks in a predictable and repeatable manner. Stacks can be
-managed as single unit, allowing you to create, modify, or delete
+managed as single units, allowing you to create, modify, or delete
 collections of resources via a single API call.
 
 SparkleFormation composes templates in the native cloud orchestration
@@ -35,43 +35,18 @@ formats for AWS, Rackspace, Google Compute, and similar services.
 
 ## Getting Started
 ### Gemfile
-SparkleFormation is in active development. To access all the features
-detailed in the documentation (using the knife plugin CLI), you should
-install the plugin and supporting libraries from git:
+SparkleFormation is available as a Ruby Gem:
+
+```sh
+gem install sparkle_formation
+```
+Or with bundler:
 
 ```ruby
-gem 'fog', :git => 'https://github.com/chrisroberts/fog.git', :ref => 'feature/orchestration'
-gem 'fog-core', :git => 'https://github.com/chrisroberts/fog-core.git', :ref => 'feature/orchestration'
-gem 'knife-cloudformation', :git => 'https://github.com/heavywater/knife-cloudformation.git', :ref => 'feature/fog-model'
+gem 'sparkle_formation'
 ```
 
-The Knife Cloudformation gem is only needed for stack provisioning via
-knife. You could also upload SparkleFormation generated templates to AWS via the WebUI.
-
-### Knife Config
-To use Knife for provisioning, you will need to add the following to
-your `knife.rb` file:
-
-```ruby
-knife[:aws_access_key_id] = ENV['AWS_ACCESS_KEY_ID']
-knife[:aws_secret_access_key] = ENV['AWS_SECRET_ACCESS_KEY']
-
-[:cloudformation, :options].inject(knife){ |m,k| m[k] ||= Mash.new }
-knife[:cloudformation][:options][:disable_rollback] = ENV['AWS_CFN_DISABLE_ROLLBACK'].to_s.downcase == 'true'
-knife[:cloudformation][:options][:capabilities] = ['CAPABILITY_IAM']
-knife[:cloudformation][:processing] = true
-knife[:cloudformation][:credentials] = {
-  :aws_access_key_id => knife[:aws_access_key_id],
-  :aws_secret_access_key => knife[:aws_secret_access_key]
-}
-```
-
-| Attribute                                        | Function                                                                                                       |
-|--------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| `[:cloudformation][:options][:disable_rollback]` | Disables rollback if stack is unsuccessful. Useful for debugging.                                              |
-| `[:cloudformation][:credentials]`                | Credentials for a user that is allowed to create stacks.                                                       |
-| `[:cloudformation][:options][:capabilities]`     | Enables IAM creation (AWS only). Options are `nil` or `['CAPABILITY_IAM']`                                     |
-| `[:cloudformation][:processing]`                 | Enables processing SparkleFormation templates (otherwise knife cloudformation will expect a JSON CFN template. |
+Optionally, you may provision SparkleFormation templates using knife, which requires some [additional setup](provisioning.md#knife-cloudformation-setup).
 
 ## What it Looks Like
 Below is a basic SparkleFormation template which would provision an
