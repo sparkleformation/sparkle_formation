@@ -164,7 +164,11 @@ class SparkleFormation
         source_listener = listeners.shift
         if(source_listener)
           new_resource['Properties']['port'] = source_listener['LoadBalancerPort']
-          new_resource['Properties']['protocol'] = source_listener['Protocol']
+          if(['HTTP', 'HTTPS'].include?(source_listener['Protocol']))
+            new_resource['Properties']['protocol'] = source_listener['Protocol']
+          else
+            new_resource['Properties']['protocol'] = 'TCP_STREAM'
+          end
           new_resource['cache_instance_port'] = source_listener['InstancePort']
         end
         new_resource['Properties']['virtualIps'] = ['type' => 'PUBLIC', 'ipVersion' => 'IPV4']
