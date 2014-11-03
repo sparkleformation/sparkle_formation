@@ -167,7 +167,7 @@ class SparkleFormation
           if(['HTTP', 'HTTPS'].include?(source_listener['Protocol']))
             new_resource['Properties']['protocol'] = source_listener['Protocol']
           else
-            new_resource['Properties']['protocol'] = 'TCP_STREAM'
+            new_resource['Properties']['protocol'] = 'TCP_CLIENT_FIRST'
           end
           new_resource['cache_instance_port'] = source_listener['InstancePort']
         end
@@ -187,7 +187,7 @@ class SparkleFormation
               check['type'] = check_type
               check['path'] = check_args.last
             else
-              check['type'] = 'TCP_STREAM'
+              check['type'] = 'TCP_CLIENT_FIRST'
             end
           end
         end
