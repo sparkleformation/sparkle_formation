@@ -194,7 +194,7 @@ class SparkleFormation
         unless(listeners.empty?)
           listeners.each_with_index do |listener, idx|
             port = listener['LoadBalancerPort']
-            proto = listener['Protocol']
+            proto = ['HTTP', 'HTTPS'].include?(listener['Protocol']) ? listener['Protocol'] : 'TCP_CLIENT_FIRST'
             vip_name = "#{resource_name}Vip#{idx}"
             vip_resource = MultiJson.load(MultiJson.dump(new_resource))
             vip_resource['Properties']['name'] = vip_name
