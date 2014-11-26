@@ -260,7 +260,7 @@ class SparkleFormation
       k,v = hash.first
       if(hash.size == 1)
         if(k.start_with?('Fn::'))
-          {self.class.const_get(:FN_MAPPING).fetch(k, k) => v}
+          {self.class.const_get(:FN_MAPPING).fetch(k, k) => attr_mapping(*v)}
         elsif(k == 'Ref')
           if(resources.has_key?(v))
             {'get_resource' => v}
@@ -273,6 +273,22 @@ class SparkleFormation
       else
         hash
       end
+    end
+
+    # Apply `GetAttr` mapping if available
+    #
+    # @param resource_name [String]
+    # @param value [String]
+    # @return [Array]
+    def attr_mapping(resource_name, value)
+      result = [resource_name, value]
+      if(r = resources[resource_name])
+        attr_map = self.class.const_get(:FN_ATT_MAPPING)
+        if(attr_map[r['Type']] && replacement = attr_map[r['Type']][value])
+          result = [resource_name, *[replacement].flatten.compact]
+        end
+      end
+      result
     end
 
     # Apply function if possible
