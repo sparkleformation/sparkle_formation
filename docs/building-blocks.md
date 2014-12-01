@@ -51,7 +51,7 @@ cloudformation
 Components are static configuration which can be reused between many
 stack templates. In our example case we have decided that all our
 stacks will need to make use of IAM credentials, so we will create
-a component which allows us to inserts the two IAM resources into any
+a component which allows us to insert the two IAM resources into any
 template in a resuable fashion. The component, which we will call
 'base' and put in a file called 'base.rb,' would look like this:
 
