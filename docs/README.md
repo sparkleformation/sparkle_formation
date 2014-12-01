@@ -76,7 +76,7 @@ knife[:cloudformation][:credentials] = {
 ## What it Looks Like
 Below is a basic SparkleFormation template which would provision an
 elastic load balancer forwarding port 80 to an autoscaling group of
-ec2 instances. For the following to work in AWS, you'll need to have a key called `sparklesinfrakey` on your account. Otherwise, replace `sparklesinfrakey` below with the name of a key pair on your account.
+ec2 instances. For the following to work in AWS, you'll need to have a key called `sparkleinfrakey` on your account. Otherwise, replace `sparkleinfrakey` below with the name of a key pair on your account.
 
 ```ruby
 SparkleFormation.new('website') do
@@ -126,7 +126,7 @@ SparkleFormation.new('website') do
   resources.website_launch_config do
     type 'AWS::AutoScaling::LaunchConfiguration'
     properties do
-      key_name 'sparklesinfrakey'
+      key_name 'sparkleinfrakey'
       image_id 'ami-59a4a230'
       instance_type 'm3.medium'
     end
