@@ -17,7 +17,7 @@ end
 
 Every parameter must have a type and a description. Available types are `String`,
 `Number` (an integer), and `CommaDelimitedList` (an array of
-strings, as-in: `['alpha', 'beta', '1', 2']`). The descriptions is a
+strings, as-in: `['alpha', 'beta', '1', 2']`). The description is a
 string describing the resource. 
 
 Parameters support optional default values, declared as

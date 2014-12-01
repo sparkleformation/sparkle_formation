@@ -50,7 +50,7 @@
     "WebsiteLaunchConfig": {
       "Type": "AWS::AutoScaling::LaunchConfiguration",
       "Properties": {
-        "ImageId": "ami-123456",
+        "ImageId": "ami-12345678",
         "InstanceType": "m3.medium"
       }
     },
@@ -72,8 +72,8 @@
           "Target": "HTTP:80/",
           "HealthyThreshold": "3",
           "UnhealthyThreshold": "3",
-          "Interval": "5",
-          "Timeout": "15"
+          "Interval": "10",
+          "Timeout": "8"
         }
       }
     }
@@ -82,7 +82,7 @@
     "WebNodes": {
       "Type": "Number",
       "Description": "Number of web nodes for ASG.",
-      "Default": "2"
+      "Default": 2
     }
   }
 }
