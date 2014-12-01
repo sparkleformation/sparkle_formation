@@ -22,6 +22,20 @@
         ]
       }
     },
+    "SecurityGroupWebsite": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Enable SSH",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIp": "0.0.0.0/0"
+          }
+        ]
+      }
+    },
     "CfnKeys": {
       "Type": "AWS::IAM::AccessKey",
       "Properties": {
@@ -50,7 +64,13 @@
     "WebsiteLaunchConfig": {
       "Type": "AWS::AutoScaling::LaunchConfiguration",
       "Properties": {
-        "ImageId": "ami-123456",
+        "SecurityGroups": [
+          {
+            "Ref": "SecurityGroupWebsite"
+          }
+        ],
+        "KeyName": "sparkleinfrakey",
+        "ImageId": "ami-59a4a230",
         "InstanceType": "m3.medium"
       }
     },
@@ -72,8 +92,8 @@
           "Target": "HTTP:80/",
           "HealthyThreshold": "3",
           "UnhealthyThreshold": "3",
-          "Interval": "5",
-          "Timeout": "15"
+          "Interval": "10",
+          "Timeout": "8"
         }
       }
     }
@@ -82,7 +102,7 @@
     "WebNodes": {
       "Type": "Number",
       "Description": "Number of web nodes for ASG.",
-      "Default": "2"
+      "Default": 2
     }
   }
 }
