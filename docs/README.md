@@ -102,6 +102,21 @@ SparkleFormation.new('website') do
     )
   end
 
+  resources.security_group_website do
+    type 'AWS::EC2::SecurityGroup'
+    properties do
+      group_description 'Enable SSH'
+      security_group_ingress array!(
+        -> {
+          ip_protocol 'tcp'
+          from_port 22
+          to_port 22
+          cidr_ip '0.0.0.0/0'
+        }
+      )
+    end
+  end
+
   resources.cfn_keys do
     type 'AWS::IAM::AccessKey'
     properties.user_name ref!(:cfn_user)
@@ -126,6 +141,7 @@ SparkleFormation.new('website') do
   resources.website_launch_config do
     type 'AWS::AutoScaling::LaunchConfiguration'
     properties do
+      security_groups [ ref!(:security_group_website) ]
       key_name 'sparkleinfrakey'
       image_id 'ami-59a4a230'
       instance_type 'm3.medium'
@@ -156,9 +172,9 @@ SparkleFormation.new('website') do
 end
 ```
 
-This template is 75 lines long (with generous spacing for
+This template is 91 lines long (with generous spacing for
 readability). The [json template this
-renders](examples/template_json/website.json) is 88 lines, without
+renders](examples/template_json/website.json) is 108 lines, without
 spacing). This can be improved, though. SparkleFormation allows you to
 create resusable files such that the above template can become :
 
