@@ -101,7 +101,7 @@ SparkleFormation.new('website') do
   resources.website_launch_config do
     type 'AWS::AutoScaling::LaunchConfiguration'
     properties do
-      image_id 'ami-123456'
+      image_id 'ami-59a4a230'
       instance_type 'm3.medium'
     end
   end
@@ -142,7 +142,7 @@ SparkleFormation.new(:website).load(:base).overrides do
   description 'Supercool Website'
 
   dynamic!(:autoscale, 'website', :nodes => 2)
-  dynamic!(:launch_config, 'website', :image_id => 'ami-123456', :instance_type => 'm3.medium')
+  dynamic!(:launch_config, 'website', :image_id => 'ami-59a4a230', :instance_type => 'm3.medium')
   dynamic!(:elb, 'website')
 
 end
