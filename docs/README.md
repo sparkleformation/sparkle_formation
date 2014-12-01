@@ -147,8 +147,8 @@ SparkleFormation.new('website') do
         target 'HTTP:80/'
         healthy_threshold '3'
         unhealthy_threshold '3'
-        interval '5'
-        timeout '15'
+        interval '10'
+        timeout '8'
       end
     end
   end
