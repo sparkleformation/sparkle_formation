@@ -131,7 +131,7 @@ SparkleFormation.new('website') do
 end
 ```
 
-This template is 74 lines long (with generous spacing for
+This template is 75 lines long (with generous spacing for
 readability). The [json template this
 renders](examples/template_json/website.json) is 88 lines, without
 spacing). This can be improved, though. SparkleFormation allows you to
