@@ -316,7 +316,7 @@ SparkleFormation::Registry.register(:apt_get_update) do
 end
 ```
 
-Now we can insert this registry entry into our existing template, to
+What is `_camel_keys_set`? Since SparkleFormation is just transforming Ruby hashes from snake case to camel case JSON hashes, `_camel_keys_set` works out the proper casing for this registry to make sure it's rendered as proper JSON. Now we can insert this registry entry into our existing template, to
 ensure that apt is updated upon provisioning:
 
 ```ruby
