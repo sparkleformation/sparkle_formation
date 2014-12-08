@@ -202,7 +202,7 @@ class SparkleFormation
       else
         arg = _array(arg).first
       end
-      {'Fn::Not' => arg}
+      {'Fn::Not' => [arg]}
     end
     alias_method :not!, :_not
 
