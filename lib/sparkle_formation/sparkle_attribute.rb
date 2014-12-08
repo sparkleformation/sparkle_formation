@@ -129,6 +129,90 @@ class SparkleFormation
     end
     alias_method :select!, :_cf_select
 
+    # Fn::If generator
+    #
+    # @param cond [String, Symbol] symbol will be converted to ref
+    # @param true_value [Object]
+    # @param false_value [Object]
+    # @return [Hash]
+    def _if(cond, true_value, false_value)
+      cond = cond.is_a?(Symbol) ? _cf_ref(cond) : cond
+      {'Fn::If' => _array(true_value, false_value)}
+    end
+    alias_method :if!, :_if
+
+    # Fn::And generator
+    #
+    # @param args [Object]
+    # @return [Hash]
+    # @note symbols will be processed and set as condition. strings
+    #   will be set as condition directly. procs will be evaluated
+    def _and(*args)
+      {
+        'Fn::And' => _array(
+          args.map{|v|
+            if(v.is_a?(Symbol))
+              {'Condition' => _process_key(v)}
+            elsif(v.is_a?(String))
+              {'Condition' => v}
+            else
+              v
+            end
+          }
+        )
+      }
+    end
+    alias_method :and!, :_and
+
+    # Fn::Equals generator
+    #
+    # @param v1 [Object]
+    # @param v2 [Object]
+    # @return [Hash]
+    def _equals(v1, v2)
+      {'Fn::Equals' => _array(v1, v2)}
+    end
+    alias_method :equals!, :_equals
+
+    # Fn::Not generator
+    #
+    # @param arg [Object]
+    # @return [Hash]
+    def _not(arg)
+      case arg
+      when Symbol
+        arg = {'Condition' => _process_key(arg)}
+      when String
+        arg = {'Condition' => arg}
+      else
+        arg = _array(arg).first
+      end
+      {'Fn::Not' => arg}
+    end
+    alias_method :not!, :_not
+
+    # Fn::Or generator
+    #
+    # @param v1 [Object]
+    # @param v2 [Object]
+    # @return [Hash]
+    def _or(v1, v2)
+      {
+        'Fn::Or' => _array(
+          [v1,v2].map{|v|
+            if(v.is_a?(Symbol))
+              {'Condition' => _process_key(v)}
+            elsif(v.is_a?(String))
+              {'Condition' => v}
+            else
+              v
+            end
+          }
+        )
+      }
+    end
+    alias_method :or!, :_or
+
     # @return [TrueClass, FalseClass]
     def rhel?
       !!@platform[:rhel]
