@@ -129,14 +129,34 @@ class SparkleFormation
     end
     alias_method :select!, :_cf_select
 
+    # Condition generator
+    #
+    # @param name [String, Symbol] symbol will be processed
+    # @return [Hash]
+    def _condition(name)
+      {'Condition' => name.is_a?(Symbol) ? _process_key(name) : name}
+    end
+    alias_method :condition!, :_condition
+
+    # Condition setter
+    #
+    # @param name [String, Symbol] condition name
+    # @return [SparkleStruct]
+    # @note this is used to set a {"Condition" => "Name"} into the
+    #   current context, generally the top level of a resource
+    def _on_condition(name)
+      _set(*_condition(name).to_a.flatten)
+    end
+    alias_method :on_condition!, :_on_condition
+
     # Fn::If generator
     #
-    # @param cond [String, Symbol] symbol will be converted to ref
+    # @param cond [String, Symbol] symbol will be converted to condition
     # @param true_value [Object]
     # @param false_value [Object]
     # @return [Hash]
     def _if(cond, true_value, false_value)
-      cond = cond.is_a?(Symbol) ? _cf_ref(cond) : cond
+      cond = cond.is_a?(Symbol) ? _condition(cond) : cond
       {'Fn::If' => _array(true_value, false_value)}
     end
     alias_method :if!, :_if
@@ -151,10 +171,8 @@ class SparkleFormation
       {
         'Fn::And' => _array(
           args.map{|v|
-            if(v.is_a?(Symbol))
-              {'Condition' => _process_key(v)}
-            elsif(v.is_a?(String))
-              {'Condition' => v}
+            if(v.is_a?(Symbol) || v.is_a?(String))
+              _condition(v)
             else
               v
             end
@@ -179,11 +197,8 @@ class SparkleFormation
     # @param arg [Object]
     # @return [Hash]
     def _not(arg)
-      case arg
-      when Symbol
-        arg = {'Condition' => _process_key(arg)}
-      when String
-        arg = {'Condition' => arg}
+      if(arg.is_a?(String) || arg.is_a?(Symbol))
+        arg = _condition(arg)
       else
         arg = _array(arg).first
       end
@@ -200,10 +215,8 @@ class SparkleFormation
       {
         'Fn::Or' => _array(
           [v1,v2].map{|v|
-            if(v.is_a?(Symbol))
-              {'Condition' => _process_key(v)}
-            elsif(v.is_a?(String))
-              {'Condition' => v}
+            if(v.is_a?(Symbol) || v.is_a?(String))
+              _condition(v)
             else
               v
             end
