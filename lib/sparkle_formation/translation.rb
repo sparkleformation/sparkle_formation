@@ -305,7 +305,17 @@ class SparkleFormation
         when 'Fn::Join'
           v.last.join(v.first)
         when 'Fn::FindInMap'
-          mappings[v[0]][dereference(v[1])][v[2]]
+          map_holder = mappings[v[0]]
+          if(map_holder)
+            map_item = map_holder[dereference(v[1])]
+            if(map_item)
+              map_item[v[2]]
+            else
+              raise "Failed to find mapping item! (#{v[0]} -> #{v[1]})"
+            end
+          else
+            raise "Failed to find mapping! (#{v[0]})"
+          end
         when 'Ref'
           {'Ref' => self.class.const_get(:REF_MAPPING).fetch(v, v)}
         else
