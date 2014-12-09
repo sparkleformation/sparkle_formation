@@ -272,5 +272,5 @@ end
 # Infos
 * Documentation: http://sparkleformation.github.io/sparkle_formation
 * User Documentation: http://sparkleformation.github.io/sparkle_formation/UserDocs/README.html
-* Repository: https://github.com/heavywater/sparkle_formation
+* Repository: https://github.com/sparkleformation/sparkle_formation
 * IRC: Freenode @ #heavywater

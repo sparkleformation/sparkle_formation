@@ -1,3 +1,9 @@
+## v0.2.4
+* Update builtin registry lookup to better handle all caps types
+* Add helper methods for conditionals
+* Provide better error message when dereferencing mappings that do not exist
+* Add more coverage within heat translation
+
 ## v0.2.2
 * Lots of translation updates (AWS -> RS "hot")
 * User Documentation!
