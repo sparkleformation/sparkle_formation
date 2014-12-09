@@ -77,6 +77,7 @@ class SparkleFormation
       def neutron_loadbalancer_finalizer(resource_name, new_resource, old_resource)
         listeners = new_resource['Properties'].delete('listeners') || []
         healthcheck = new_resource['Properties'].delete('health_check')
+        subnet = (new_resource['Properties'].delete('subnets') || []).first
 
         # if health check is provided, create resource and apply to
         # all pools generated
@@ -102,7 +103,7 @@ class SparkleFormation
           translated['Resources'].merge!(check)
         end
 
-        base_pool = listeners.shift
+        base_listener = listeners.shift
         base_pool_name = "#{resource_name}Pool"
         base_pool = {
           base_pool_name => {
@@ -110,25 +111,27 @@ class SparkleFormation
             'Properties' => {
               'lb_method' => 'ROUND_ROBIN',
               'monitors' => [
-                {'Ref' => healthcheck_name}
+                {'get_resource' => healthcheck_name}
               ],
-              'protocol' => base_pool['Protocol'],
+              'protocol' => base_listener['Protocol'],
               'vip' => {
-                'protocol_port' => base_pool['LoadBalancerPort']
-              }
+                'protocol_port' => base_listener['LoadBalancerPort']
+              },
+              'subnet' => subnet
             }
           }
         }
         if(healthcheck)
           base_pool[base_pool_name]['Properties'].merge(
             'monitors' => [
-              {'Ref' => healthcheck_name}
+              {'get_resource' => healthcheck_name}
             ]
           )
         end
 
         translated['Resources'].merge!(base_pool)
-        new_resource['Properties']['pool_id'] = {'Ref' => base_pool_name}
+        new_resource['Properties']['pool_id'] = {'get_resource' => base_pool_name}
+        new_resource['Properties']['protocol_port'] = base_listener['InstancePort']
 
         listeners.each_with_index do |listener, count|
           pool_name = "#{resource_name}PoolVip#{count}"
@@ -138,13 +141,8 @@ class SparkleFormation
               'Properties' => {
                 'lb_method' => 'ROUND_ROBIN',
                 'protocol' => listener['Protocol'],
+                'subnet' => subnet,
                 'vip' => {
-                  'address' => {
-                    'get_attr' => [
-                      base_pool_name,
-                      'vip'
-                    ]
-                  },
                   'protocol_port' => listener['LoadBalancerPort']
                 }
               }
@@ -153,14 +151,15 @@ class SparkleFormation
           if(healthcheck)
             pool[pool_name]['Properties'].merge(
               'monitors' => [
-                {'Ref' => healthcheck_name}
+                {'get_resource' => healthcheck_name}
               ]
             )
           end
 
           lb_name = "#{resource_name}Vip#{count}"
           lb = {lb_name => MultiJson.load(MultiJson.dump(new_resource))}
-          lb[lb_name]['Properties']['pool_id'] = {'Ref' => pool_name}
+          lb[lb_name]['Properties']['pool_id'] = {'get_resource' => pool_name}
+          lb[lb_name]['Properties']['protocol_port'] = listener['InstancePort']
           translated['Resources'].merge!(pool)
           translated['Resources'].merge!(lb)
         end
@@ -182,7 +181,7 @@ class SparkleFormation
                 k.match(/#{lb_name}Vip\d+/) && v['type'] == 'OS::Neutron::LoadBalancer'
               end
               value['properties']['load_balancers'] = vip_resources.map do |vip_name|
-                {'Ref' => vip_name}
+                {'get_resource' => vip_name}
               end
             end
           end
@@ -328,7 +327,8 @@ class SparkleFormation
             :properties => {
               'Instances' => 'members',
               'Listeners' => 'listeners',
-              'HealthCheck' => 'health_check'
+              'HealthCheck' => 'health_check',
+              'Subnets' => 'subnets'
             }
           }
         }
