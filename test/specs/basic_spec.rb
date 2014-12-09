@@ -1,11 +1,5 @@
 describe SparkleFormation do
 
-  before do
-    SparkleFormation.sparkle_path = File.join(
-      File.dirname(__FILE__), 'cloudformation'
-    )
-  end
-
   describe 'Basic Usage' do
 
     it 'should dump hashes' do
