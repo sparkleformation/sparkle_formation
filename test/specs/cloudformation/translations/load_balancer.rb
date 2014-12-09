@@ -23,6 +23,7 @@ SparkleFormation.new('load_balancer').overrides do
         timeout 10
         unhealthy_threshold 3
       end
+      subnets ['private-subnet']
     end
   end
 
