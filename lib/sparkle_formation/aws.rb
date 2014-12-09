@@ -41,8 +41,8 @@ class SparkleFormation
       # @return [TrueClass]
       def load(json_path_or_hash)
         if(json_path_or_hash.is_a?(String))
-          require 'json'
-          content = AttributeStruct.hashish.new(JSON.load(File.read(json)))
+          require 'multi_json'
+          content = AttributeStruct.hashish.new(MultiJson.load(File.read(json)))
         else
           content = json_path_or_hash
         end
@@ -66,13 +66,12 @@ class SparkleFormation
       # @param key [String, Symbol]
       # @return [String, NilClass]
       def registry_key(key)
-        key = key.to_s
+        key = key.to_s.tr('_', '')
         @@registry.keys.detect do |ref|
-          ref = ref.tr('::', '_')
-          snake_ref = snake(ref).to_s.gsub('__', '_')
-          snake_parts = snake_ref.split('_')
+          ref = ref.downcase
+          snake_parts = ref.split('::')
           until(snake_parts.empty?)
-            break if snake_parts.join('_') == key
+            break if snake_parts.join('') == key
             snake_parts.shift
           end
           !snake_parts.empty?
