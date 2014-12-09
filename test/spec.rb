@@ -9,7 +9,6 @@ Dir.glob(
     'specs/**/**/*_spec.rb'
   )
 ).each do |path|
-  puts path
   require path
 end
 

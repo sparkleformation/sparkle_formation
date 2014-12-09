@@ -1,0 +1,1 @@
+{"resources":{"TestEc2Vpc":{"type":"OS::Neutron::Net","properties":{}}},"heat_template_version":"2013-05-23"}
