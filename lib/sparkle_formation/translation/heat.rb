@@ -60,6 +60,133 @@ class SparkleFormation
           translated['outputs'] = rename_processor(translated['outputs'])
         end
         translated.delete('mappings')
+        complete_launch_config_lb_setups
+        true
+      end
+
+      # Finalizer for the neutron load balancer resource. This
+      # finalizer may generate new resources if the load balancer has
+      # multiple listeners defined (neutron lb implementation defines
+      # multiple isolated resources sharing a common virtual IP)
+      #
+      #
+      # @param resource_name [String]
+      # @param new_resource [Hash]
+      # @param old_resource [Hash]
+      # @return [Object]
+      def neutron_loadbalancer_finalizer(resource_name, new_resource, old_resource)
+        listeners = new_resource['Properties'].delete('listeners') || []
+        healthcheck = new_resource['Properties'].delete('health_check')
+
+        # if health check is provided, create resource and apply to
+        # all pools generated
+        if(healthcheck)
+          healthcheck_name = "#{resource_name}HealthCheck"
+          check = {
+            healthcheck_name => {
+              'Type' => 'OS::Neutron::HealthMonitor',
+              'Properties' => {}.tap{ |properties|
+                {'Timeout' => 'timeout', 'Interval' => 'delay', 'HealthyThreshold' => 'max_retries'}.each do |aws, hot|
+                  if(healthcheck[aws])
+                    properties[hot] = healthcheck[aws]
+                  end
+                end
+                type, port, path = healthcheck['Target'].split(/(:|\/.*)/).find_all{|x| x != ':'}
+                properties['type'] = type
+                if(path)
+                  properties['url_path'] = path
+                end
+              }
+            }
+          }
+          translated['Resources'].merge!(check)
+        end
+
+        base_pool = listeners.shift
+        base_pool_name = "#{resource_name}Pool"
+        base_pool = {
+          base_pool_name => {
+            'Type' => 'OS::Neutron::Pool',
+            'Properties' => {
+              'lb_method' => 'ROUND_ROBIN',
+              'monitors' => [
+                {'Ref' => healthcheck_name}
+              ],
+              'protocol' => base_pool['Protocol'],
+              'vip' => {
+                'protocol_port' => base_pool['LoadBalancerPort']
+              }
+            }
+          }
+        }
+        if(healthcheck)
+          base_pool[base_pool_name]['Properties'].merge(
+            'monitors' => [
+              {'Ref' => healthcheck_name}
+            ]
+          )
+        end
+
+        translated['Resources'].merge!(base_pool)
+        new_resource['Properties']['pool_id'] = {'Ref' => base_pool_name}
+
+        listeners.each_with_index do |listener, count|
+          pool_name = "#{resource_name}PoolVip#{count}"
+          pool = {
+            pool_name => {
+              'Type' => 'OS::Neutron::Pool',
+              'Properties' => {
+                'lb_method' => 'ROUND_ROBIN',
+                'protocol' => listener['Protocol'],
+                'vip' => {
+                  'address' => {
+                    'get_attr' => [
+                      base_pool_name,
+                      'vip'
+                    ]
+                  },
+                  'protocol_port' => listener['LoadBalancerPort']
+                }
+              }
+            }
+          }
+          if(healthcheck)
+            pool[pool_name]['Properties'].merge(
+              'monitors' => [
+                {'Ref' => healthcheck_name}
+              ]
+            )
+          end
+
+          lb_name = "#{resource_name}Vip#{count}"
+          lb = {lb_name => MultiJson.load(MultiJson.dump(new_resource))}
+          lb[lb_name]['Properties']['pool_id'] = {'Ref' => pool_name}
+          translated['Resources'].merge!(pool)
+          translated['Resources'].merge!(lb)
+        end
+      end
+
+      # Update any launch configuration which define load balancers to
+      # ensure they are attached to the correct resources when
+      # multiple listeners (ports) have been defined resulting in
+      # multiple isolated LB resources
+      def complete_launch_config_lb_setups
+        translated['resources'].find_all do |resource_name, resource|
+          resource['type'] == 'OS::Heat::AutoScalingGroup'
+        end.each do |name, value|
+          if(lbs = value['properties'].delete('load_balancers'))
+            lbs.each do |lb_ref|
+              lb_name = resource_name(lb_ref)
+              lb_resource = translated['resources'][lb_name]
+              vip_resources = translated['resources'].find_all do |k, v|
+                k.match(/#{lb_name}Vip\d+/) && v['type'] == 'OS::Neutron::LoadBalancer'
+              end
+              value['properties']['load_balancers'] = vip_resources.map do |vip_name|
+                {'Ref' => vip_name}
+              end
+            end
+          end
+        end
         true
       end
 
@@ -194,7 +321,16 @@ class SparkleFormation
               'LaunchConfigurationName' => :autoscaling_group_launchconfig
             }
           },
-          'AWS::AutoScaling::LaunchConfiguration' => :delete
+          'AWS::AutoScaling::LaunchConfiguration' => :delete,
+          'AWS::ElasticLoadBalancing::LoadBalancer' => {
+            :name => 'OS::Neutron::LoadBalancer',
+            :finalizer => :neutron_loadbalancer_finalizer,
+            :properties => {
+              'Instances' => 'members',
+              'Listeners' => 'listeners',
+              'HealthCheck' => 'health_check'
+            }
+          }
         }
       }
 
@@ -206,7 +342,7 @@ class SparkleFormation
 
       FN_MAPPING = {
         'Fn::GetAtt' => 'get_attr',
-        'Fn::Join' => 'list_join'  # @todo why is this not working?
+        'Fn::Join' => 'list_join'
       }
 
     end
