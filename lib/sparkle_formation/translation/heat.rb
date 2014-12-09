@@ -275,6 +275,17 @@ class SparkleFormation
         true
       end
 
+      # Finalizer for the neutron net resource. Scrub properties.
+      #
+      # @param resource_name [String]
+      # @param new_resource [Hash]
+      # @param old_resource [Hash]
+      # @return [TrueClass]
+      def neutron_net_finalizer(resource_name, new_resource, old_resource)
+        new_resource['Properties'].clear
+        true
+      end
+
       # Finalizer applied to all new resources
       #
       # @param resource_name [String]
@@ -353,6 +364,7 @@ class SparkleFormation
           },
           'AWS::EC2::VPC' => {
             :name => 'OS::Neutron::Net',
+            :finalizer => :neutron_net_finalizer,
             :properties => {
             }
           },
