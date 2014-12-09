@@ -255,15 +255,24 @@ class SparkleFormation
         end
       end
 
-      def neutron_net_finalizer(resource_name, new_resource, old_resource)
-        new_resource['Properties'] = {}.tap do |properties|
-          subnet_name = "#{resource_name}_OSNeutronSubnet"
-          subnet_resource = MultiJson.load(MultiJson.dump(new_resource))
-          subnet_resource['Type'] = 'OS::Neutron::Subnet'
-          subnet_resource['Properties']['cidr'] = MultiJson.load(MultiJson.dump(old_resource['Properties']['CidrBlock']))
-          subnet_resource['Properties']['network_id'] = { 'Ref' => resource_name }
-          translated['Resources'][subnet_name] = subnet_resource
+      # Finalizer for the neutron subnet resource. Creates a stub
+      # network to attach subnet if availability zones are defined
+      # (aws classic)
+      #
+      # @param resource_name [String]
+      # @param new_resource [Hash]
+      # @param old_resource [Hash]
+      # @return [TrueClass]
+      def neutron_subnet_finalizer(resource_name, new_resource, old_resource)
+        azs = new_resource['Properties'].delete('availability_zone')
+        if(azs)
+          network_name = "NetworkFor#{resource_name}"
+          translated['Resources'][network_name] = {
+            'type' => 'OS::Neutron::Network'
+          }
+          new_resource['Properties']['network'] = {'get_resource' => network_name}
         end
+        true
       end
 
       # Finalizer applied to all new resources
@@ -342,11 +351,18 @@ class SparkleFormation
               'Subnets' => 'subnets'
             }
           },
-          'AWS::EC2::Subnet' => {
+          'AWS::EC2::VPC' => {
             :name => 'OS::Neutron::Net',
-            :finalizer => :neutron_net_finalizer,
             :properties => {
-              'CidrBlock' => 'cidr'
+            }
+          },
+          'AWS::EC2::Subnet' => {
+            :name => 'OS::Neutron::Subnet',
+            :finalizer => :neutron_subnet_finalizer,
+            :properties => {
+              'CidrBlock' => 'cidr',
+              'VpcId' => 'network',
+              'AvailabilityZone' => 'availability_zone'
             }
           }
         }
