@@ -226,6 +226,15 @@ class SparkleFormation
     end
     alias_method :or!, :_or
 
+    # Execute system command
+    #
+    # @param command [String]
+    # @return [String] result
+    def _system(command)
+      ::Kernel.send('`', command)
+    end
+    alias_method :system!, :_system
+
     # @return [TrueClass, FalseClass]
     def rhel?
       !!@platform[:rhel]
