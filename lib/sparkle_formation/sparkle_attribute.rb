@@ -273,5 +273,14 @@ class SparkleFormation
       SfnRegistry.insert(name, self, *args)
     end
 
+    # Stack nesting helper method
+    #
+    # @param template [String, Symbol] template to nest
+    # @param args [String, Symbol] stringified and underscore joined for name
+    # @return [self]
+    def nest!(template, *args, &block)
+      SparkleFormation.nest(template, self, *args, &block)
+    end
+
   end
 end
