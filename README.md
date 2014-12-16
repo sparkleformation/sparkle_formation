@@ -109,7 +109,7 @@ templates.
 First, create the component (components/ami.rb):
 
 ```ruby
-SparkleFormation.build(:ami) do
+SparkleFormation.build do
 
   mappings.region_map do
     set!('us-east-1', :ami => 'ami-7f418316')
