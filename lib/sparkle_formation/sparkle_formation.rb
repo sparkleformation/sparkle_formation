@@ -28,6 +28,13 @@ class SparkleFormation
   extend SparkleFormation::Utils::AnimalStrings
   # @!parse extend SparkleFormation::Utils::AnimalStrings
 
+  # @return [Array<String>] directory names to ignore
+  IGNORE_DIRECTORIES = [
+    'components',
+    'dynamics',
+    'registry'
+  ]
+
   class << self
 
     # @return [Hashish] loaded dynamics
@@ -204,6 +211,36 @@ class SparkleFormation
       result
     end
 
+    # Nest a template into a context
+    #
+    # @param template [String, Symbol] template to nest
+    # @param struct [SparkleStruct] context for nesting
+    # @param args [String, Symbol] stringified and underscore joined for name
+    # @return [SparkleStruct]
+    # @note if symbol is provided for template, double underscores
+    #   will be used for directory separator and dashes will match underscores
+    def nest(template, struct, *args, &block)
+      spath = SparkleFormation.new('stub').sparkle_path
+      resource_name = [template.to_s.gsub(/(\/|__|-)/, '_'), *args].compact.join('_').to_sym
+      path = template.is_a?(Symbol) ? template.to_s.gsub('__', '/') : template.to_s
+      file = Dir.glob(File.join(spath, '**', '**', '*.rb')).detect do |local_path|
+        strip_path = local_path.sub(spath, '').sub(/^\//, '').tr('-', '_').sub('.rb', '')
+        strip_path == path
+      end
+      unless(file)
+        raise ArgumentError.new("Failed to locate nested stack file! (#{template.inspect} -> #{path.inspect})")
+      end
+      instance = self.instance_eval(IO.read(file), file, 1)
+      struct.resources.set!(resource_name) do
+        type 'AWS::CloudFormation::Stack'
+      end
+      struct.resources.__send__(resource_name).properties.stack instance.compile
+      if(block_given?)
+        struct.resources.__send__(resource_name).instance_exec(&block)
+      end
+      struct.resources.__send__(resource_name)
+    end
+
     # Insert a builtin dynamic into a context
     #
     # @param dynamic_name [String, Symbol] dynamic name
@@ -300,6 +337,7 @@ class SparkleFormation
     if(block)
       load_block(block)
     end
+    @compiled = nil
   end
 
   # Add block to load order
@@ -344,17 +382,116 @@ class SparkleFormation
   #
   # @return [SparkleStruct]
   def compile
-    compiled = SparkleStruct.new
-    @load_order.each do |key|
-      compiled._merge!(components[key])
-    end
-    @overrides.each do |override|
-      if(override[:args] && !override[:args].empty?)
-        compiled._set_state(override[:args])
+    unless(@compiled)
+      compiled = SparkleStruct.new
+      @load_order.each do |key|
+        compiled._merge!(components[key])
       end
-      self.class.build(compiled, &override[:block])
+      @overrides.each do |override|
+        if(override[:args] && !override[:args].empty?)
+          compiled._set_state(override[:args])
+        end
+        self.class.build(compiled, &override[:block])
+      end
+      @compiled = compiled
     end
-    compiled
+    @compiled
+  end
+
+  # Clear compiled stack if cached and perform compilation again
+  #
+  # @return [SparkleStruct]
+  def recompile
+    @compiled = nil
+    compile
+  end
+
+  # @return [TrueClass, FalseClass] includes nested stacks
+  def nested?
+    !!compile.dump!['Resources'].detect do |r_name, resource|
+      resource['Type'] == 'AWS::CloudFormation::Stack'
+    end
+  end
+
+  # @return [TrueClass, FalseClass] includes _only_ nested stacks
+  def isolated_nests?
+    hash = compile.dump!
+    (hash.keys == ['Resources'] || hash.keys == ['Resources', 'AWSTemplateFormatVersion']) &&
+      !hash['Resources'].detect{|_, r| r['Type'] != 'AWS::CloudFormation::Stack'}
+  end
+
+  # Apply stack nesting logic. Will extract unique parameters from
+  # nested stacks, update refs to use sibling stack outputs where
+  # required and extract nested stack templates for remote persistence
+  #
+  # @yieldparam template_name [String] nested stack resource name
+  # @yieldparam template [Hash] nested stack template
+  # @yieldreturn [String] remote URL
+  # @return [Hash] dumped template hash
+  def apply_nesting
+    hash = compile.dump!
+    stacks = Hash[
+      hash['Resources'].find_all do |r_name, resource|
+        [r_name, MultiJson.load(MultiJson.dump(resource))]
+      end
+    ]
+    parameters = hash.fetch('Parameters', {})
+    output_map = {}
+    stacks.each do |stack_name, stack_resource|
+      remap_nested_parameters(hash, parameters, stack_name, stack_resource, output_map)
+    end
+    hash['Parameters'] = parameters
+    hash['Resources'].each do |resource_name, resource|
+      if(resource['Type'] == 'AWS::CloudFormation::Stack')
+        stack = resource['Properties'].delete('Stack')
+        resource['Properties']['TemplateURL'] = yield(resource_name, stack)
+      end
+    end
+    hash
+  end
+
+  # Extract parameters from nested stacks. Check for previous nested
+  # stack outputs that match parameter. If match, set parameter to use
+  # output. If no match, check container stack parameters for match.
+  # If match, set to use ref. If no match, add parameter to container
+  # stack parameters and set to use ref.
+  #
+  # @param template [Hash] template being processed
+  # @param parameters [Hash] top level parameter set being built
+  # @param stack_name [String] name of stack resource
+  # @param stack_resource [Hash] duplicate of stack resource contents
+  # @param output_map [Hash] mapping of output names to required stack output access
+  # @return [TrueClass]
+  # @note if parameter has includes `StackUnique` a new parameter will
+  #   be added to container stack and it will not use outputs
+  def remap_nested_parameters(template, parameters, stack_name, stack_resource, output_map)
+    stack_parameters = stack_resource['Properties']['Stack']['Parameters']
+    if(stack_parameters)
+      template['Resources'][stack_name]['Properties']['Parameters'] ||= {}
+      stack_parameters.each do |pname, pval|
+        if(pval['StackUnique'])
+          check_name = [stack_name, pname].join
+        else
+          check_name = pname
+        end
+        if(parameters.keys.include?(check_name))
+          template['Resources'][stack_name]['Properties']['Parameters'][pname] = {'Ref' => check_name}
+        elsif(output_map[check_name])
+          template['Resources'][stack_name]['Properties']['Parameters'][pname] = {
+            'Fn::GetAtt' => output_map[check_name]
+          }
+        else
+          template['Resources'][stack_name]['Properties']['Parameters'][pname] = {'Ref' => check_name}
+          parameters[check_name] = pval
+        end
+      end
+    end
+    if(stack_resource['Properties']['Stack']['Outputs'])
+      stack_resource['Properties']['Stack']['Outputs'].keys.each do |oname|
+        output_map[oname] = [stack_name, "Outputs.#{oname}"]
+      end
+    end
+    true
   end
 
   # @return [Hash] dumped hash
