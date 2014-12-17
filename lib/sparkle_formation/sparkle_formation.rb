@@ -486,7 +486,12 @@ class SparkleFormation
             'Fn::GetAtt' => output_map[check_name]
           }
         else
-          template['Resources'][stack_name]['Properties']['Parameters'][pname] = {'Ref' => check_name}
+          if(pval['Type'] == 'CommaDelimitedList')
+            new_val = {'Fn::Join' => [',', {'Ref' => check_name}]}
+          else
+            new_val = {'Ref' => check_name}
+          end
+          template['Resources'][stack_name]['Properties']['Parameters'][pname] = new_val
           parameters[check_name] = pval
         end
       end
