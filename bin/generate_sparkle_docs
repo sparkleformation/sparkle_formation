@@ -17,7 +17,7 @@ Dir.glob('docs/**/*').each do |path|
     if(path.end_with?('.md'))
       file.puts '<!DOCTYPE html><html><title>SparkleFormation User Documentation</title><xmp theme="simplex" style="display:none;">'
       file.puts content.gsub('.md', '.html')
-      file.puts '</xmp><script src="http://strapdownjs.com/v/0.2/strapdown.js"></script></html>'
+      file.puts '</xmp><script src="/v/0.2/strapdown.js"></script></html>'
     else
       file.puts content
     end
