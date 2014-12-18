@@ -1,4 +1,4 @@
-## Overview
+# Overview
 SparkleFormation is a Ruby DSL for programatically composing
 [AWS Cloudformation][cloudformation], [OpenStack Heat][heat], and similar
 provisioning templates for the purpose of interacting with cloud
