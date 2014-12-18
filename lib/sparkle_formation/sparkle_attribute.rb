@@ -170,7 +170,7 @@ class SparkleFormation
     def _and(*args)
       {
         'Fn::And' => _array(
-          args.map{|v|
+          *args.map{|v|
             if(v.is_a?(Symbol) || v.is_a?(String))
               _condition(v)
             else
