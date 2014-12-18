@@ -38,9 +38,7 @@ writing a JSON template to file and uploading the template to the provider.
 Add the following to your Gemfile:
 
 ```ruby
-gem 'fog', :git => 'https://github.com/chrisroberts/fog.git', :ref => 'feature/orchestration'
-gem 'fog-core', :git => 'https://github.com/chrisroberts/fog-core.git', :ref => 'feature/orchestration'
-gem 'knife-cloudformation', :git => 'https://github.com/heavywater/knife-cloudformation.git', :ref => 'feature/fog-model'
+gem 'knife-cloudformation'
 ```
 Add the following to your `knife.rb` file:
 ```ruby
