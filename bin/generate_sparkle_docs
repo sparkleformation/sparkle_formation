@@ -11,15 +11,21 @@ FileUtils.mkdir_p('doc/UserDocs')
 Dir.glob('docs/**/*').each do |path|
   next unless File.file?(path)
   content = File.read(path)
-  new_path = File.join('doc/UserDocs', path.sub(/.*?docs\//, ''))
+  rel_path = path.sub(/.*?docs\//, '')
+  new_path = File.join('doc/UserDocs', rel_path)
+  user_doc_root = (['..'] * rel_path.scan('/').size).join('/')
+  unless(user_doc_root.to_s.empty?)
+    user_doc_root << '/'
+  end
   FileUtils.mkdir_p(File.dirname(new_path))
-  File.open(new_path.sub('.md', '.html'), 'w') do |file|
-    if(path.end_with?('.md'))
-      file.puts '<!DOCTYPE html><html><title>SparkleFormation User Documentation</title><xmp theme="simplex" style="display:none;">'
-      file.puts content.gsub('.md', '.html')
-      file.puts '</xmp><script src="/v/0.2/strapdown.js"></script></html>'
-    else
-      file.puts content
+  File.open(new_path, 'w') do |file|
+    file.puts content
+  end
+  if(new_path.end_with?('.md'))
+    File.open(new_path.sub('.md', '.html'), 'w') do |file|
+      file.print "<!DOCTYPE html><html><head><title>SparkleFormation User Documentation</title><script src=\"#{user_doc_root}v/0.3.2/marked.js\"></script><script src=\"#{user_doc_root}v/jquery-2.1.3.min.js\"></script><script src=\"#{user_doc_root}v/loader.js\"></script><script src=\"#{user_doc_root}v/highlight.min.js\"></script><link rel=\"stylesheet\" href=\"#{user_doc_root}v/github-markdown.css\"></link><link rel=\"stylesheet\" href=\"#{user_doc_root}v/highlight.min.css\"></link>"
+      file.print "</head><body><div id=\"content\" class=\"markdown-body\"></div>"
+      file.print "</body></html>"
     end
   end
 end
