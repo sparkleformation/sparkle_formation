@@ -21,7 +21,7 @@ function display_page(content){
       '"><span class="header-link"></span></a>' +
       text + '</h' + level + '>';
   }
-  $('#content').html(marked(content, {renderer: renderer}));
+  $('#content').html($('#content').html() + marked(content, {renderer: renderer}));
   hljs.initHighlighting();
   if(window.location.hash){
     $('html, body').scrollTop(
