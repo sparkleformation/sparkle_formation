@@ -1,3 +1,7 @@
+## v0.2.6
+* Add initial nested stack implementation
+* Update user docs generation
+
 ## v0.2.4
 * Update builtin registry lookup to better handle all caps types
 * Add helper methods for conditionals
