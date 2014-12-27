@@ -416,8 +416,9 @@ class SparkleFormation
   # @return [TrueClass, FalseClass] includes _only_ nested stacks
   def isolated_nests?
     hash = compile.dump!
-    (hash.keys == ['Resources'] || hash.keys == ['Resources', 'AWSTemplateFormatVersion']) &&
-      !hash['Resources'].detect{|_, r| r['Type'] != 'AWS::CloudFormation::Stack'}
+    hash.fetch('Resources', {}).all? do |name, resource|
+      resource['Type'] == 'AWS::CloudFormation::Stack'
+    end
   end
 
   # Apply stack nesting logic. Will extract unique parameters from
