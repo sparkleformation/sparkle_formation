@@ -170,7 +170,7 @@ class SparkleFormation
     def _and(*args)
       {
         'Fn::And' => _array(
-          *args.map{|v|
+          args.map{|v|
             if(v.is_a?(Symbol) || v.is_a?(String))
               _condition(v)
             else
@@ -226,18 +226,6 @@ class SparkleFormation
     end
     alias_method :or!, :_or
 
-<<<<<<< HEAD
-    # Execute system command
-    #
-    # @param command [String]
-    # @return [String] result
-    def _system(command)
-      ::Kernel.send('`', command)
-    end
-    alias_method :system!, :_system
-
-=======
->>>>>>> 9fb30272e30b49f50b4918897df5c9ce03e0eace
     # @return [TrueClass, FalseClass]
     def rhel?
       !!@platform[:rhel]
@@ -274,15 +262,6 @@ class SparkleFormation
     # @return [self]
     def registry!(name, *args)
       SfnRegistry.insert(name, self, *args)
-    end
-
-    # Stack nesting helper method
-    #
-    # @param template [String, Symbol] template to nest
-    # @param args [String, Symbol] stringified and underscore joined for name
-    # @return [self]
-    def nest!(template, *args, &block)
-      SparkleFormation.nest(template, self, *args, &block)
     end
 
   end
