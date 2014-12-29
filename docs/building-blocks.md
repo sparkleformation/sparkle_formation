@@ -113,7 +113,7 @@ SparkleFormation.new('website').load(:base).overrides do
     properties do
       security_groups [ ref!(:security_group_website) ]
       key_name 'sparkleinfrakey'
-      image_id 'ami-59a4a230'
+      image_id 'ami-12345678'
       instance_type 'm3.medium'
     end
   end
@@ -217,7 +217,7 @@ SparkleFormation.new('website').load(:base).overrides do
   resources.website_launch_config do
     type 'AWS::AutoScaling::LaunchConfiguration'
     properties do
-      image_id 'ami-59a4a230'
+      image_id 'ami-12345678'
       instance_type 'm3.medium'
     end
   end
@@ -309,7 +309,7 @@ SparkleFormation.new(:website).load(:base).overrides do
     type 'AWS::AutoScaling::LaunchConfiguration'
     registry!(:apt_get_update, 'website')
     properties do
-      image_id 'ami-123456'
+      image_id 'ami-12345678'
       instance_type 'm3.medium'
     end
   end
