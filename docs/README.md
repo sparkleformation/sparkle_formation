@@ -142,7 +142,7 @@ SparkleFormation.new(:website).load(:base).overrides do
   description 'Supercool Website'
 
   dynamic!(:autoscale, 'website', :nodes => 2)
-  dynamic!(:launch_config, 'website', :image_id => 'ami-59a4a230', :instance_type => 'm3.medium')
+  dynamic!(:launch_config, 'website', :image_id => 'ami-12345678', :instance_type => 'm3.medium')
   dynamic!(:elb, 'website')
 
 end
