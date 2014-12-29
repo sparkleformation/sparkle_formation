@@ -204,21 +204,6 @@ SparkleFormation.new('website').load(:base).overrides do
     default 2
   end
 
-  resources.security_group_website do
-    type 'AWS::EC2::SecurityGroup'
-    properties do
-      group_description 'Enable SSH'
-      security_group_ingress array!(
-        -> {
-          ip_protocol 'tcp'
-          from_port 22
-          to_port 22
-          cidr_ip '0.0.0.0/0'
-        }
-      )
-    end
-  end
-
   resources.website_autoscale do
     type 'AWS::AutoScaling::AutoScalingGroup'
     properties do
@@ -232,8 +217,6 @@ SparkleFormation.new('website').load(:base).overrides do
   resources.website_launch_config do
     type 'AWS::AutoScaling::LaunchConfiguration'
     properties do
-      security_groups [ ref!(:security_group_website) ]
-      key_name 'sparkleinfrakey'
       image_id 'ami-59a4a230'
       instance_type 'm3.medium'
     end
