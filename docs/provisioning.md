@@ -36,10 +36,6 @@ writing a JSON template to file and uploading the template to the provider.
 
 #### Knife Cloudformation Setup
 
-```ruby
-gem 'knife-cloudformation'
-```
-
 ```
 $ gem install knife-cloudformation
 ```

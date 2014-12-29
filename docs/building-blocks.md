@@ -111,8 +111,6 @@ SparkleFormation.new('website').load(:base).overrides do
   resources.website_launch_config do
     type 'AWS::AutoScaling::LaunchConfiguration'
     properties do
-      security_groups [ ref!(:security_group_website) ]
-      key_name 'sparkleinfrakey'
       image_id 'ami-12345678'
       instance_type 'm3.medium'
     end
@@ -193,8 +191,6 @@ like this:
 
 ```ruby
 SparkleFormation.new('website').load(:base).overrides do
-
-  set!('AWSTemplateFormatVersion', '2010-09-09')
 
   description 'Supercool Website'
 
