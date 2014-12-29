@@ -91,8 +91,6 @@ present in the template itself:
 ```ruby
 SparkleFormation.new('website').load(:base).overrides do
 
-  set!('AWSTemplateFormatVersion', '2010-09-09')
-
   description 'Supercool Website'
 
   parameters.web_nodes do
