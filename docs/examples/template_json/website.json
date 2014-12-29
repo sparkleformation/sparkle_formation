@@ -50,11 +50,6 @@
     "WebsiteLaunchConfig": {
       "Type": "AWS::AutoScaling::LaunchConfiguration",
       "Properties": {
-        "SecurityGroups": [
-          {
-            "Ref": "SecurityGroupWebsite"
-          }
-        ],
         "ImageId": "ami-12345678",
         "InstanceType": "m3.medium"
       }
