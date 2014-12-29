@@ -22,20 +22,6 @@
         ]
       }
     },
-    "SecurityGroupWebsite": {
-      "Type": "AWS::EC2::SecurityGroup",
-      "Properties": {
-        "GroupDescription": "Enable SSH",
-        "SecurityGroupIngress": [
-          {
-            "IpProtocol": "tcp",
-            "FromPort": 22,
-            "ToPort": 22,
-            "CidrIp": "0.0.0.0/0"
-          }
-        ]
-      }
-    },
     "CfnKeys": {
       "Type": "AWS::IAM::AccessKey",
       "Properties": {
@@ -69,8 +55,7 @@
             "Ref": "SecurityGroupWebsite"
           }
         ],
-        "KeyName": "sparkleinfrakey",
-        "ImageId": "ami-59a4a230",
+        "ImageId": "ami-12345678",
         "InstanceType": "m3.medium"
       }
     },
