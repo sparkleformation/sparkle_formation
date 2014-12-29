@@ -159,7 +159,7 @@ The resulting implementation would look something like this:
 
 ```ruby
 SparkleFormation.dynamic(:elb) do |_name, _config={}|
-    resources.("#{_name}_elb".to_sym) do
+    resources("#{_name}_elb".to_sym) do
       type 'AWS::ElasticLoadBalancing::LoadBalancer'
       properties do
         availability_zones._set('Fn::GetAZs', '')
