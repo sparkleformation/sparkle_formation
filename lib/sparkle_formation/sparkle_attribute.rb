@@ -226,6 +226,7 @@ class SparkleFormation
     end
     alias_method :or!, :_or
 
+<<<<<<< HEAD
     # Execute system command
     #
     # @param command [String]
@@ -235,6 +236,8 @@ class SparkleFormation
     end
     alias_method :system!, :_system
 
+=======
+>>>>>>> 9fb30272e30b49f50b4918897df5c9ce03e0eace
     # @return [TrueClass, FalseClass]
     def rhel?
       !!@platform[:rhel]

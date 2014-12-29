@@ -35,11 +35,19 @@ SparkleFormation to build stacks without the intermediary steps of
 writing a JSON template to file and uploading the template to the provider.
 
 #### Knife Cloudformation Setup
+<<<<<<< HEAD
 
 ```
 $ gem install knife-cloudformation
 ```
 
+=======
+Add the following to your Gemfile:
+
+```ruby
+gem 'knife-cloudformation'
+```
+>>>>>>> 9fb30272e30b49f50b4918897df5c9ce03e0eace
 Add the following to your `knife.rb` file:
 ```ruby
 knife[:aws_access_key_id] = ENV['AWS_ACCESS_KEY_ID']
