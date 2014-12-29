@@ -57,7 +57,6 @@ template in a resuable fashion. The component, which we will call
 
 ```ruby
 SparkleFormation.build do
-  set!('AWSTemplateFormatVersion', '2010-09-09')
 
   resources.cfn_user do
     type 'AWS::IAM::User'
