@@ -51,7 +51,7 @@ cloudformation
 Components are static configuration which can be reused between many
 stack templates. In our example case we have decided that all our
 stacks will need to make use of IAM credentials, so we will create
-a component which allows us to inserts the two IAM resources into any
+a component which allows us to insert the two IAM resources into any
 template in a resuable fashion. The component, which we will call
 'base' and put in a file called 'base.rb,' would look like this:
 
@@ -89,14 +89,14 @@ loaded on the first line, and the resources it contains are no longer
 present in the template itself:
 
 ```ruby
-SparkleFormation.new(:website).load(:base).overrides do
+SparkleFormation.new('website').load(:base).overrides do
 
   description 'Supercool Website'
 
   parameters.web_nodes do
     type 'Number'
     description 'Number of web nodes for ASG.'
-    default '2'
+    default 2
   end
 
   resources.website_autoscale do
@@ -112,7 +112,7 @@ SparkleFormation.new(:website).load(:base).overrides do
   resources.website_launch_config do
     type 'AWS::AutoScaling::LaunchConfiguration'
     properties do
-      image_id 'ami-123456'
+      image_id 'ami-12345678'
       instance_type 'm3.medium'
     end
   end
@@ -133,8 +133,8 @@ SparkleFormation.new(:website).load(:base).overrides do
         target 'HTTP:80/'
         healthy_threshold '3'
         unhealthy_threshold '3'
-        interval '5'
-        timeout '15'
+        interval '10'
+        timeout '8'
       end
     end
   end
@@ -173,8 +173,8 @@ SparkleFormation.dynamic(:elb) do |_name, _config={}|
         target _config[:target] || 'HTTP:80/'
         healthy_threshold _config[:healthy_threshold] || '3'
         unhealthy_threshold _config[:unhealthy_threshold] || '3'
-        interval _config[:interval] || '5'
-        timeout _config[:timeout] || '15'
+        interval _config[:interval] || '10'
+        timeout _config[:timeout] || '8'
       end
     end
   end
@@ -191,14 +191,14 @@ Once updated to make use of the new ELB dynamic, our template looks
 like this:
 
 ```ruby
-SparkleFormation.new(:website).load(:base).overrides do
+SparkleFormation.new('website').load(:base).overrides do
 
   description 'Supercool Website'
 
   parameters.web_nodes do
     type 'Number'
     description 'Number of web nodes for ASG.'
-    default '2'
+    default 2
   end
 
   resources.website_autoscale do
@@ -214,7 +214,7 @@ SparkleFormation.new(:website).load(:base).overrides do
   resources.website_launch_config do
     type 'AWS::AutoScaling::LaunchConfiguration'
     properties do
-      image_id 'ami-123456'
+      image_id 'ami-12345678'
       instance_type 'm3.medium'
     end
   end
@@ -278,7 +278,7 @@ SparkleFormation::Registry.register(:apt_get_update) do
 end
 ```
 
-Now we can insert this registry entry into our existing template, to
+What is `_camel_keys_set`? Since SparkleFormation is just transforming Ruby hashes from snake case to camel case JSON hashes, `_camel_keys_set` works out the proper casing for this registry to make sure it's rendered as proper JSON. Now we can insert this registry entry into our existing template, to
 ensure that apt is updated upon provisioning:
 
 ```ruby
@@ -306,7 +306,7 @@ SparkleFormation.new(:website).load(:base).overrides do
     type 'AWS::AutoScaling::LaunchConfiguration'
     registry!(:apt_get_update, 'website')
     properties do
-      image_id 'ami-123456'
+      image_id 'ami-12345678'
       instance_type 'm3.medium'
     end
   end
