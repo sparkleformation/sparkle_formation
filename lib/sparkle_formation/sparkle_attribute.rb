@@ -157,7 +157,7 @@ class SparkleFormation
     # @return [Hash]
     def _if(cond, true_value, false_value)
       cond = cond.is_a?(Symbol) ? _condition(cond) : cond
-      {'Fn::If' => _array(true_value, false_value)}
+      {'Fn::If' => _array(cond, true_value, false_value)}
     end
     alias_method :if!, :_if
 
