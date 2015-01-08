@@ -2,7 +2,7 @@
 SparkleFormation is a Ruby DSL for programatically composing
 [AWS Cloudformation][cloudformation], [OpenStack Heat][heat], and similar
 provisioning templates for the purpose of interacting with cloud
-infrastructure orchestration APIs.
+infrastructure orchestration APIs. This documentation provides general usage instructions, but [see here for a more AWS-specific SparkleFormation example repo](https://github.com/heavywater/sparkleformation-aws-example-repo).
 
 SparkleFormation templates describe the creation and configuration of
 collections of cloud resources (stacks) as code, allowing you to
