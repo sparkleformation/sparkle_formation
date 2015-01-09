@@ -26,9 +26,9 @@ we can just convert it into a single file (ec2_example.rb):
 SparkleFormation.new('ec2_example') do
   description "AWS CloudFormation Sample Template ..."
 
-  parameters.keyname do
+  parameters.key_name do
     description 'Name of EC2 key pair'
-    type 'string'
+    type 'String'
   end
 
   mappings.region_map do
@@ -100,7 +100,7 @@ make this easier to maintain.
 
 # Components
 
-Lets say we have a handful of CF templates we want to maintain, and all of those
+Lets say we have a handful of CFN templates we want to maintain, and all of those
 templates use the same AMI. Instead of copying that information into all the
 templates, lets create an AMI component instead, and then load it into the actual
 templates.
@@ -127,13 +127,13 @@ end
 Now, we can modify our initial example to use this component (ec2_example.rb):
 
 ```ruby
-SparkleFormation.new('ec2_example').load(:ami) do
+SparkleFormation.new('ec2_example').load(:ami).overrides do
 
   description "AWS CloudFormation Sample Template ..."
 
-  parameters.keyname do
+  parameters.key_name do
     description 'Name of EC2 key pair'
-    type 'string'
+    type 'String'
   end
 
   dynamic!(:ec2_instance, :foobar) do
@@ -203,15 +203,15 @@ SparkleFormation.dynamic(:node,
 ) do |_name, _config|
 
   if(_config[:key_name])
-    parameters.keyname do
+    parameters.set!("#{_name}_key_name".to_sym) do
       description 'Name of EC2 key pair'
-      type 'string'
+      type 'String'
     end
   end
 
   dynamic!(:ec2_instance, _name) do
     properties do
-      key_name _config.fetch(:key_name, ref!(:key_name))
+      key_name _config.fetch(:key_name, ref!("#{_name}_key_name".to_sym))
       image_id map!(:region_map, 'AWS::Region', :ami)
       user_data baes64!('80')
     end
