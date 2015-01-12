@@ -156,7 +156,7 @@ class SparkleFormation
     # @param false_value [Object]
     # @return [Hash]
     def _if(cond, true_value, false_value)
-      cond = cond.is_a?(Symbol) ? _condition(cond) : cond
+      cond = cond.is_a?(Symbol) || cond.is_a?(String) ? _condition(cond) : cond
       {'Fn::If' => _array(cond, true_value, false_value)}
     end
     alias_method :if!, :_if
@@ -214,7 +214,7 @@ class SparkleFormation
     def _or(v1, v2)
       {
         'Fn::Or' => _array(
-          [v1,v2].map{|v|
+          *[v1,v2].map{|v|
             if(v.is_a?(Symbol) || v.is_a?(String))
               _condition(v)
             else
