@@ -1,3 +1,9 @@
+## v0.2.8
+* Relax isolated nesting check (resources only)
+* Include condition within generated hash within `if!` helper (#32)
+* Auto process String arguments provided to `if!`
+* Fix array nesting within `or!`
+
 ## v0.2.6
 * Add initial nested stack implementation
 * Update user docs generation
