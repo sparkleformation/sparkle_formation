@@ -1,3 +1,7 @@
+## v0.2.10
+* Add helper for generating no value
+* Fix Fn::If generator (#35 thanks @yhuang !)
+
 ## v0.2.8
 * Relax isolated nesting check (resources only)
 * Include condition within generated hash within `if!` helper (#32)
