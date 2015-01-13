@@ -140,7 +140,7 @@ describe SparkleFormation::SparkleAttribute do
   end
 
   it 'should generate a `no value`' do
-    @attr.no_value!.must_equal 'AWS::NoValue'
+    @attr.no_value!.must_equal 'Ref' => 'AWS::NoValue'
   end
 
 end

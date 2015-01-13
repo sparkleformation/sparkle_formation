@@ -230,7 +230,7 @@ class SparkleFormation
     #
     # @return [String]
     def _no_value
-      'AWS::NoValue'
+      _ref('AWS::NoValue')
     end
     alias_method :no_value!, :_no_value
 
