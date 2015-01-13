@@ -141,4 +141,8 @@ describe SparkleFormation::SparkleAttribute do
     end.dump['Test'].must_include('..')
   end
 
+  it 'should generate a `no value`' do
+    @attr.no_value!.must_equal 'AWS::NoValue'
+  end
+
 end

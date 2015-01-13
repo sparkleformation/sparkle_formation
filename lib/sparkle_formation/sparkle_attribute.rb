@@ -226,6 +226,14 @@ class SparkleFormation
     end
     alias_method :or!, :_or
 
+    # No value generator
+    #
+    # @return [String]
+    def _no_value
+      'AWS::NoValue'
+    end
+    alias_method :no_value!, :_no_value
+
     # Execute system command
     #
     # @param command [String]
