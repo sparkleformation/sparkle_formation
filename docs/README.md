@@ -32,6 +32,7 @@ formats for AWS, Rackspace, Google Compute, and similar services.
   - [Join](functions.md#join)
 - [Universal Properties](properties.md)
  - [Tags](properties.md#tags)
+- [Provisioning](provisioning.md)
 
 ## Getting Started
 ### Gemfile
