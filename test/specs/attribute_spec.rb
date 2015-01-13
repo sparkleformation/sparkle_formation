@@ -90,11 +90,9 @@ describe SparkleFormation::SparkleAttribute do
     result = @sfn.overrides do
       test if!(:my_condition, 'true', 'false')
       test_string if!('my_condition', 'true', 'false')
-      test_direct if!(condition!(:my_condition), 'true', 'false')
     end.dump
-    result['Test'].must_equal 'Fn::If' => [{'Condition' => 'MyCondition'}, 'true', 'false']
-    result['TestString'].must_equal 'Fn::If' => [{'Condition' => 'my_condition'}, 'true', 'false']
-    result['TestDirect'].must_equal 'Fn::If' => [{'Condition' => 'MyCondition'}, 'true', 'false']
+    result['Test'].must_equal 'Fn::If' => ['MyCondition', 'true', 'false']
+    result['TestString'].must_equal 'Fn::If' => ['my_condition', 'true', 'false']
   end
 
   it 'should define an `and`' do

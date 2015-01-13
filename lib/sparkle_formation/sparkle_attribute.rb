@@ -151,12 +151,12 @@ class SparkleFormation
 
     # Fn::If generator
     #
-    # @param cond [String, Symbol] symbol will be converted to condition
+    # @param cond [String, Symbol] symbol will be case processed
     # @param true_value [Object]
     # @param false_value [Object]
     # @return [Hash]
     def _if(cond, true_value, false_value)
-      cond = cond.is_a?(Symbol) || cond.is_a?(String) ? _condition(cond) : cond
+      cond = cond.is_a?(Symbol) ? _process_key(cond) : cond
       {'Fn::If' => _array(cond, true_value, false_value)}
     end
     alias_method :if!, :_if
