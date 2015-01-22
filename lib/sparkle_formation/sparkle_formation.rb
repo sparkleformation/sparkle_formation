@@ -102,11 +102,17 @@ class SparkleFormation
     # Compile file
     #
     # @param path [String] path to file
-    # @param args [Object] use :sparkle to return struct
+    # @param args [Object] use :sparkle to return struct. provide Hash
+    #   to pass through when compiling ({:state => {}})
     # @return [Hashish, SparkleStruct]
     def compile(path, *args)
       formation = self.instance_eval(IO.read(path), path, 1)
-      args.include?(:sparkle) ? formation : formation.compile._dump
+      if(args.delete(:sparkle))
+        formation
+      else
+        comp_arg = args.detect{|i| i.is_a?(Hash) }
+        (comp_arg ? formation.compile(comp_arg) : formation.compile)._dump
+      end
     end
 
     # Execute given block within struct context
@@ -380,10 +386,15 @@ class SparkleFormation
 
   # Compile the formation
   #
+  # @param args [Hash]
+  # @option args [Hash] :state local state parameters
   # @return [SparkleStruct]
-  def compile
+  def compile(args={})
     unless(@compiled)
       compiled = SparkleStruct.new
+      if(args[:state])
+        compiled.set_state!(args[:state])
+      end
       @load_order.each do |key|
         compiled._merge!(components[key])
       end
