@@ -306,6 +306,8 @@ class SparkleFormation
   attr_reader :components
   # @return [Array] order of loading
   attr_reader :load_order
+  # @return [Hash] parameters for stack compile
+  attr_reader :parameters
 
   # Create new instance
   #
@@ -337,6 +339,7 @@ class SparkleFormation
       require 'sparkle_formation/aws'
       SfnAws.load!
     end
+    @parameters = options[:parameters]
     @components = SparkleStruct.hashish.new
     @load_order = []
     @overrides = []
