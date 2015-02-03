@@ -258,7 +258,8 @@ class SparkleFormation
         _name, _config = *args
         _config ||= {}
         return unless _name
-        new_resource = struct.resources.__send__("#{_name}_#{dynamic_name}".to_sym)
+        resource_name = "#{_name}_#{_config.delete(:resource_name_suffix) || dynamic_name}".to_sym
+        new_resource = struct.resources.__send__(resource_name)
         new_resource.type lookup_key
         properties = new_resource.properties
         SfnAws.resource(dynamic_name, :properties).each do |prop_name|
