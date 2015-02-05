@@ -243,6 +243,20 @@ class SparkleFormation
     end
     alias_method :system!, :_system
 
+    # @return [TrueClass, FalseClass] resource can be tagged
+    def taggable?
+      if(defined?(SfnAws))
+        if(self[:type])
+          resource = SfnAws.lookup(self[:type].gsub('::', '_').downcase)
+          resource && resource[:properties].include?('Tags')
+        else
+          if(self._parent)
+            self._parent.taggable?
+          end
+        end
+      end
+    end
+
     # @return [TrueClass, FalseClass]
     def rhel?
       !!@platform[:rhel]
