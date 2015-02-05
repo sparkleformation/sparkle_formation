@@ -444,7 +444,7 @@ class SparkleFormation
   # @yieldparam template [Hash] nested stack template
   # @yieldreturn [String] remote URL
   # @return [Hash] dumped template hash
-  def apply_nesting
+  def apply_nesting(*args)
     hash = compile.dump!
     stacks = Hash[
       hash['Resources'].find_all do |r_name, resource|
@@ -461,6 +461,18 @@ class SparkleFormation
       if(resource['Type'] == 'AWS::CloudFormation::Stack')
         stack = resource['Properties'].delete('Stack')
         resource['Properties']['TemplateURL'] = yield(resource_name, stack)
+      end
+    end
+    if(args.include?(:collect_outputs))
+      outputs_hash = Hash[
+        output_map do |name, value|
+          [name, {'Value' => {'Fn::GetAtt' => value}}]
+        end
+      ]
+      if(hash['Outputs'])
+        hash['Outputs'].merge!(outputs_hash)
+      else
+        hash['Outputs'] = outputs_hash
       end
     end
     hash
