@@ -418,6 +418,7 @@ class SparkleFormation
   def compile(args={})
     unless(@compiled)
       compiled = SparkleStruct.new
+      compiled._self(self)
       if(args[:state])
         compiled.set_state!(args[:state])
       end
