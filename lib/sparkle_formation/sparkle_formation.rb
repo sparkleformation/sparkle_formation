@@ -307,7 +307,7 @@ class SparkleFormation
   attr_reader :components
   # @return [Array] order of loading
   attr_reader :load_order
-  # @return [Hash] parameters for stack compile
+  # @return [Hash] parameters for stack generation
   attr_reader :parameters
 
   # Create new instance
@@ -318,6 +318,7 @@ class SparkleFormation
   # @option options [String] :components_directory custom components path
   # @option options [String] :dynamics_directory custom dynamics path
   # @option options [String] :registry_directory custom registry path
+  # @option options [Hash] :parameters parameters for stack generation
   # @option options [Truthy, Falsey] :disable_aws_builtins do not load builtins
   # @yield base context
   def initialize(name, options={}, &block)
@@ -340,7 +341,7 @@ class SparkleFormation
       require 'sparkle_formation/aws'
       SfnAws.load!
     end
-    @parameters = options[:parameters]
+    @parameters = set_generation_parameters!(options.fetch(:parameters, {}))
     @components = SparkleStruct.hashish.new
     @load_order = []
     @overrides = []
@@ -348,6 +349,27 @@ class SparkleFormation
       load_block(block)
     end
     @compiled = nil
+  end
+
+  ALLOWED_GENERATION_PARAMETERS = ['type', 'default']
+  VALID_GENERATION_PARAMETER_TYPES = ['String', 'Number']
+
+  # Validation parameters used for template generation to ensure they
+  # are in the expected format
+  #
+  # @param params [Hash] parameter set
+  # @return [Hash] parameter set
+  # @raises [ArgumentError]
+  def set_generation_parameters!(params)
+    params.each do |name, value|
+      unless(value.is_a?(Hash))
+        raise TypeError.new("Expecting `Hash` type. Received `#{value.class}`")
+      end
+      if(key = value.keys.detect{|k| !ALLOWED_GENERATION_PARAMETERS.include?(k.to_s) })
+        raise ArgumentError.new("Invalid generation parameter key provided `#{key}`")
+      end
+    end
+    params
   end
 
   # Add block to load order
