@@ -234,6 +234,31 @@ class SparkleFormation
     end
     alias_method :no_value!, :_no_value
 
+    def _region
+      _ref('AWS::Region')
+    end
+    alias_method :region!, :_region
+
+    def _notification_arns
+      _ref('AWS::NotificationARNs')
+    end
+    alias_method :notification_arns!, :_notification_arns
+
+    def _account_id
+      _ref('AWS::AccountId')
+    end
+    alias_method :account_id!, :_account_id
+
+    def _stack_id
+      _ref('AWS::StackId')
+    end
+    alias_method :stack_id!, :_stack_id
+
+    def _stack_name
+      _ref('AWS::StackName')
+    end
+    alias_method :stack_name!, :_stack_name
+
     # Execute system command
     #
     # @param command [String]
