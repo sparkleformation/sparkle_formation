@@ -55,9 +55,9 @@ class SparkleFormation
     def sparkle_path=(path=nil)
       if(path)
         custom_paths[:sparkle_path] = path
-        custom_paths[:components_directory] ||= File.join(path, 'components')
-        custom_paths[:dynamics_directory] ||= File.join(path, 'dynamics')
-        custom_paths[:registry_directory] ||= File.join(path, 'registry')
+        custom_paths[:components_directory] = File.join(path, 'components')
+        custom_paths[:dynamics_directory] = File.join(path, 'dynamics')
+        custom_paths[:registry_directory] = File.join(path, 'registry')
       end
       custom_paths[:sparkle_path]
     end
