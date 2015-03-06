@@ -1,3 +1,10 @@
+## v0.2.12
+* Stubs for template generation parameters
+* Add `no_value!` helper method
+* Force path resets with `sparkle_path` is set
+* Include all missing pseudo parameter helpers
+* Provide more control on dynamic naming
+
 ## v0.2.10
 * Add helper for generating no value
 * Fix Fn::If generator (#35 thanks @yhuang !)
