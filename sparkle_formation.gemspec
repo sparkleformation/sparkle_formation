@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.add_dependency 'attribute_struct', '~> 0.2.2'
   s.add_dependency 'multi_json'
+  s.add_dependency 'bogo'
   s.executables << 'generate_sparkle_docs'
   s.files = Dir['lib/**/*'] + %w(sparkle_formation.gemspec README.md CHANGELOG.md LICENSE)
 end
