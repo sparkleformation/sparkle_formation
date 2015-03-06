@@ -293,6 +293,8 @@ class SparkleFormation
     end
   end
 
+  include Bogo::Memoization
+
   # @return [Symbol] name of formation
   attr_reader :name
   # @return [String] base path
@@ -323,6 +325,9 @@ class SparkleFormation
   # @yield base context
   def initialize(name, options={}, &block)
     @name = name.to_sym
+    @component_paths = []
+
+
     @sparkle_path = options[:sparkle_path] ||
       self.class.custom_paths[:sparkle_path] ||
       File.join(Dir.pwd, 'cloudformation')
@@ -349,6 +354,19 @@ class SparkleFormation
       load_block(block)
     end
     @compiled = nil
+  end
+
+  # @return [Smash] currently set paths
+  def paths
+    {
+      :sparkle_path => sparkle_path,
+      :components => component_paths,
+      :registries => registry_paths,
+      :dynamics => dynamic_paths
+    }
+  end
+
+  def component_paths
   end
 
   ALLOWED_GENERATION_PARAMETERS = ['type', 'default']
