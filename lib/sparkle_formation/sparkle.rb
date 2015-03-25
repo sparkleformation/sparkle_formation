@@ -68,6 +68,14 @@ class SparkleFormation
       'dynamics'
     ]
 
+    # Valid types
+    TYPES = [
+      'component',
+      'registry',
+      'dynamic',
+      'template'
+    ]
+
     # @return [String] path to sparkle directories
     attr_reader :root
 
@@ -127,10 +135,26 @@ class SparkleFormation
             slim_path = path.sub("#{root}/", '')
             next if DIRS.include?(slim_path.split('/').first)
             name = slim_path.tr('/', '__')
-            hash[name] = path
+            hash[name] = Smash.new(
+              :path => path,
+              :type => :template
+            )
           end
         end
       end
+    end
+
+    # Request item from the store
+    #
+    # @param type [String, Symbol] item type (see: TYPES)
+    # @param name [String, Symbol] name of item
+    # @return [Smash] requested item
+    # @raises [NameError, KeyError]
+    def get(type, name)
+      unless(TYPES.include?(type.to_s))
+        raise NameError.new "Invalid type requested (#{type})! Valid types: #{TYPES.join(', ')}"
+      end
+      send(type)[name] || KeyError.new "No #{type} registered with requested name (#{name})!"
     end
 
     private
