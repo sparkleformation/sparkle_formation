@@ -203,16 +203,18 @@ class SparkleFormation
     def insert(dynamic_name, struct, *args, &block)
       result = false
       begin
-        result = struct.instance_exec(*args, &_struct._self.sparkle.get(:dynamic, dynamic_name)[:block])
+        dyn = struct._self.sparkle.get(:dynamic, dynamic_name)
+        raise dyn if dyn.is_a?(Exception)
+        result = struct.instance_exec(*args, &dyn[:block])
         if(block_given?)
           result.instance_exec(&block)
         end
         result = struct
-      rescue KeyError
+      rescue Error::NotFound::Dynamic
         result = builtin_insert(dynamic_name, struct, *args, &block)
       end
       unless(result)
-        raise "Failed to locate requested dynamic block for insertion: #{dynamic_name} (valid: #{struct._self.dynamics.keys.sort.join(', ')})"
+        raise "Failed to locate requested dynamic block for insertion: #{dynamic_name} (valid: #{struct._self.sparkle.dynamics.keys.sort.join(', ')})"
       end
       result
     end
@@ -297,6 +299,8 @@ class SparkleFormation
 
   # @return [Symbol] name of formation
   attr_reader :name
+  # @return [Sparkle] parts store
+  attr_reader :sparkle
   # @return [String] base path
   attr_reader :sparkle_path
   # @return [String] components path
@@ -326,47 +330,25 @@ class SparkleFormation
   def initialize(name, options={}, &block)
     @name = name.to_sym
     @component_paths = []
-
-
-    @sparkle_path = options[:sparkle_path] ||
-      self.class.custom_paths[:sparkle_path] ||
-      File.join(Dir.pwd, 'cloudformation')
-    @components_directory = options[:components_directory] ||
-      self.class.custom_paths[:components_directory] ||
-      File.join(sparkle_path, 'components')
-    @dynamics_directory = options[:dynamics_directory] ||
-      self.class.custom_paths[:dynamics_directory] ||
-      File.join(sparkle_path, 'dynamics')
-    @registry_directory = options[:registry_directory] ||
-      self.class.custom_paths[:registry_directory] ||
-      File.join(sparkle_path, 'registry')
-    self.class.load_dynamics!(@dynamics_directory)
-    self.class.load_registry!(@registry_directory)
+    @sparkle = Sparkle.new(
+      Smash.new.tap{|h|
+        if(options[:sparkle_path])
+          h[:root] = options[:sparkle_path]
+        end
+      }
+    )
     unless(options[:disable_aws_builtins])
       require 'sparkle_formation/aws'
       SfnAws.load!
     end
     @parameters = set_generation_parameters!(options.fetch(:parameters, {}))
-    @components = SparkleStruct.hashish.new
+    @components = Smash.new
     @load_order = []
     @overrides = []
     if(block)
       load_block(block)
     end
     @compiled = nil
-  end
-
-  # @return [Smash] currently set paths
-  def paths
-    {
-      :sparkle_path => sparkle_path,
-      :components => component_paths,
-      :registries => registry_paths,
-      :dynamics => dynamic_paths
-    }
-  end
-
-  def component_paths
   end
 
   ALLOWED_GENERATION_PARAMETERS = ['type', 'default']
@@ -411,7 +393,9 @@ class SparkleFormation
       if(thing.is_a?(String))
         components[key] = self.class.load_component(thing)
       else
-        components[key] = sparkle.get(:component, thing)
+        struct = SparkleStruct.new
+        struct._set_self(self)
+        components[key] = struct.instance_exec(&sparkle.get(:component, thing)[:block])
       end
       @load_order << key
     end
@@ -435,7 +419,7 @@ class SparkleFormation
   def compile(args={})
     unless(@compiled)
       compiled = SparkleStruct.new
-      compiled._self(self)
+      compiled._set_self(self)
       if(args[:state])
         compiled.set_state!(args[:state])
       end
