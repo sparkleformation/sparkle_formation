@@ -20,9 +20,14 @@ class SparkleFormation
     # @return [SparkleFormation]
     def _self
       unless(@self)
-        raise 'Creator did not provide return reference!'
+        if(_parent.nil?)
+          raise 'Creator did not provide return reference!'
+        else
+          _parent._self
+        end
+      else
+        @self
       end
-      @self
     end
 
     # @return [Class]
