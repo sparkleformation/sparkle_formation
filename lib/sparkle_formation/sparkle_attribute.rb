@@ -308,7 +308,7 @@ class SparkleFormation
     # @param args [Object] argument list for dynamic
     # @return [self]
     def dynamic!(name, *args, &block)
-      _self.insert(name, self, *args, &block)
+      SparkleFormation.insert(name, self, *args, &block)
     end
 
     # Registry insertion helper method
@@ -317,7 +317,7 @@ class SparkleFormation
     # @param args [Object] argument list for registry
     # @return [self]
     def registry!(name, *args)
-      _self.registry.insert(name, self, *args)
+      SparkleFormation::Registry.insert(name, self, *args)
     end
 
     # Stack nesting helper method
@@ -326,7 +326,7 @@ class SparkleFormation
     # @param args [String, Symbol] stringified and underscore joined for name
     # @return [self]
     def nest!(template, *args, &block)
-      _self.nest(template, self, *args, &block)
+      SparkleFormation.nest(template, self, *args, &block)
     end
 
   end
