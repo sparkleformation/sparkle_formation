@@ -202,17 +202,17 @@ class SparkleFormation
     # @return [SparkleStruct]
     def insert(dynamic_name, struct, *args, &block)
       result = false
-      if(@dynamics && @dynamics[dynamic_name])
-        result = struct.instance_exec(*args, &@dynamics[dynamic_name][:block])
+      begin
+        result = struct.instance_exec(*args, &_struct._self.sparkle.get(:dynamic, dynamic_name)[:block])
         if(block_given?)
           result.instance_exec(&block)
         end
         result = struct
-      else
+      rescue KeyError
         result = builtin_insert(dynamic_name, struct, *args, &block)
       end
       unless(result)
-        raise "Failed to locate requested dynamic block for insertion: #{dynamic_name} (valid: #{(@dynamics || {}).keys.sort.join(', ')})"
+        raise "Failed to locate requested dynamic block for insertion: #{dynamic_name} (valid: #{struct._self.dynamics.keys.sort.join(', ')})"
       end
       result
     end
@@ -407,13 +407,12 @@ class SparkleFormation
   # @return [self]
   def load(*args)
     args.each do |thing|
-      if(thing.is_a?(Symbol))
-        path = File.join(components_directory, "#{thing}.rb")
+      key = File.basename(thing.to_s).sub('.rb', '')
+      if(thing.is_a?(String))
+        components[key] = self.class.load_component(thing)
       else
-        path = thing
+        components[key] = sparkle.get(:component, thing)
       end
-      key = File.basename(path).sub('.rb', '')
-      components[key] = self.class.load_component(path)
       @load_order << key
     end
     self
