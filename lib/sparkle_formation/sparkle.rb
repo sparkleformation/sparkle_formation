@@ -5,49 +5,92 @@ class SparkleFormation
 
     # Wrapper for evaluating sfn files to store within sparkle
     # container and remove global application
-    class EvalWrapper < BasicObject
-      class SparkleFormation
-
-        def self.dynamic(name, args={}, &block)
-          ::Smash.new(
-            :name => name,
-            :block => block,
-            :args => Smash[
-              args.map(&:to_a)
-            ],
-            :type => :dynamic
-          )
+    def eval_wrapper
+      klass = Class.new(BasicObject)
+      klass.class_eval(<<-EOS
+        def require(*args)
+          ::Kernel.require *args
         end
 
-        def self.build(&block)
-          ::Smash.new(
-            :block => block,
-            :type => :component
-          )
-        end
+        class SparkleFormation
 
-        def self.component(name, &block)
-          ::Smash.new(
-            :name => name,
-            :block => block,
-            :type => :component
-          )
-        end
+          class << self
 
-        class Registry
+            def part_data(data=nil)
+              if(data)
+                @data = data
+              else
+                @data
+              end
+            end
 
-          def self.register(name, &block)
-            ::Smash.new(
-              :name => name,
-              :block => block,
-              :type => :registry
-            )
+            def dynamic(name, args={}, &block)
+              part_data[:dynamic].push(
+                ::Smash.new(
+                  :name => name,
+                  :block => block,
+                  :args => Smash[
+                    args.map(&:to_a)
+                  ],
+                  :type => :dynamic
+                )
+              ).last
+            end
+
+            def build(&block)
+              part_data[:component].push(
+                ::Smash.new(
+                  :block => block,
+                  :type => :component
+                )
+              ).last
+            end
+
+            def component(name, &block)
+              part_data[:component].push(
+                ::Smash.new(
+                  :name => name,
+                  :block => block,
+                  :type => :component
+                )
+              ).last
+            end
+
+            def dynamic_info(*args)
+              Smash.new(:metadata => {}, :args => {})
+            end
+
           end
 
-        end
-        SfnRegistry = Registry
+          class Registry
 
-      end
+            def self.register(name, &block)
+              SparkleFormation.part_data[:registry].push(
+                ::Smash.new(
+                  :name => name,
+                  :block => block,
+                  :type => :registry
+                )
+              ).last
+            end
+
+          end
+          SfnRegistry = Registry
+
+        end
+        ::Object.constants.each do |const|
+          unless(self.const_defined?(const))
+            next if const == :Config # prevent warning output
+            self.const_set(const, ::Object.const_get(const))
+          end
+        end
+
+        def part_data(arg)
+          SparkleFormation.part_data(arg)
+        end
+        EOS
+      )
+      klass
     end
 
     include Bogo::Memoization
@@ -64,20 +107,23 @@ class SparkleFormation
     # Reserved directories
     DIRS = [
       'components',
-      'registries',
+      'registry',
       'dynamics'
     ]
 
     # Valid types
-    TYPES = [
-      'component',
-      'registry',
-      'dynamic',
-      'template'
-    ]
+    TYPES = Smash.new(
+      'component' => 'components',
+      'registry' => 'registries',
+      'dynamic' => 'dynamics',
+      'template' => 'templates'
+    )
 
     # @return [String] path to sparkle directories
     attr_reader :root
+    # @return [Smash] raw part data
+    attr_reader :raw_data
+    attr_reader :wrapper
 
     # Create new sparkle instance
     #
@@ -86,44 +132,53 @@ class SparkleFormation
     # @return [self]
     def initialize(args={})
       @root = args.fetch(:root, locate_root)
+      @raw_data = Smash.new(
+        :dynamic => [],
+        :component => [],
+        :registry => []
+      )
+      @wrapper = eval_wrapper.new
+      wrapper.part_data(raw_data)
+      load_parts!
+    end
+
+    def load_parts!
+      memoize(:load_parts) do
+        Dir.glob(File.join(root, "{#{DIRS.join(',')}}", '*.rb')).each do |file|
+          wrapper.instance_eval(IO.read(file), file, 1)
+        end
+        raw_data.each do |key, items|
+          items.each do |item|
+            if(item[:name])
+              send(TYPES[key])[item.delete(:name)] = item
+            else
+              path = item[:block].source_location.first.sub('.rb', '').split(File::SEPARATOR)
+              type, name = path.slice(path.size - 2, 2)
+              send(type)[name] = item
+            end
+          end
+        end
+      end
     end
 
     # @return [Smash<name:block>]
     def components
       memoize(:components) do
-        Smash.new.tap do |hash|
-          Dir.glob(File.join(root, 'components', '*.rb')) do |file|
-            result = EvalWrapper.new.instance_eval(IO.read(file), file, 1)
-            unless(result[:name])
-              result[:name] = File.basename(file).sub('.rb', '')
-            end
-            hash[result.delete(:name)] = result
-          end
-        end
+        Smash.new
       end
     end
 
     # @return [Smash<name:block>]
     def dynamics
       memoize(:dynamics) do
-        Smash.new.tap do |hash|
-          Dir.glob(File.join(root, 'dynamics', '*.rb')) do |file|
-            dyn = EvalWrapper.new.instance_eval(IO.read(file), file, 1)
-            hash[dyn.delete(:name)] = dyn
-          end
-        end
+        Smash.new
       end
     end
 
     # @return [Smash<name:block>]
     def registries
       memoize(:registries) do
-        Smash.new.tap do |hash|
-          Dir.glob(File.join(root, 'registries', '*.rb')) do |file|
-            reg = EvalWrapper.new.instance_eval(IO.read(file), file, 1)
-            hash[reg.delete(:name)] = reg
-          end
-        end
+        Smash.new
       end
     end
 
@@ -151,10 +206,15 @@ class SparkleFormation
     # @return [Smash] requested item
     # @raises [NameError, KeyError]
     def get(type, name)
-      unless(TYPES.include?(type.to_s))
+      unless(TYPES.keys.include?(type.to_s))
         raise NameError.new "Invalid type requested (#{type})! Valid types: #{TYPES.join(', ')}"
       end
-      send(type)[name] || KeyError.new "No #{type} registered with requested name (#{name})!"
+      result = send(TYPES[type])[name]
+      unless(result)
+        klass = Error::NotFound.const_get(type.capitalize)
+        raise klass.new("No #{type} registered with requested name (#{name})!", :name => name)
+      end
+      result
     end
 
     private
