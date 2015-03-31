@@ -253,7 +253,7 @@ class SparkleFormation
         _config ||= {}
         return unless _name
         resource_name = "#{_name}_#{_config.delete(:resource_name_suffix) || dynamic_name}".to_sym
-        new_resource = struct.resources.__send__(resource_name)
+        new_resource = struct.resources[resource_name]
         new_resource.type lookup_key
         properties = new_resource.properties
         SfnAws.resource(dynamic_name, :properties).each do |prop_name|
@@ -262,9 +262,9 @@ class SparkleFormation
           end.compact.first
           if(value)
             if(value.is_a?(Proc))
-              properties.__send__(prop_name).instance_exec(&value)
+              properties[prop_name].to_sym.instance_exec(&value)
             else
-              properties.__send__(prop_name, value)
+              properties.set!(prop_name, value)
             end
           end
         end
