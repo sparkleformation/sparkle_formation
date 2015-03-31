@@ -16,6 +16,7 @@
 # limitations under the License.
 #
 
+require 'bogo'
 require 'multi_json'
 require 'attribute_struct'
 
