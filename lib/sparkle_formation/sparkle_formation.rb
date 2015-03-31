@@ -228,25 +228,17 @@ class SparkleFormation
     # @note if symbol is provided for template, double underscores
     #   will be used for directory separator and dashes will match underscores
     def nest(template, struct, *args, &block)
-      spath = SparkleFormation.new('stub').sparkle_path
-      resource_name = [template.to_s.gsub(/(\/|__|-)/, '_'), *args].compact.join('_').to_sym
-      path = template.is_a?(Symbol) ? template.to_s.gsub('__', '/') : template.to_s
-      file = Dir.glob(File.join(spath, '**', '**', '*.rb')).detect do |local_path|
-        strip_path = local_path.sub(spath, '').sub(/^\//, '').tr('-', '_').sub('.rb', '')
-        strip_path == path
-      end
-      unless(file)
-        raise ArgumentError.new("Failed to locate nested stack file! (#{template.inspect} -> #{path.inspect})")
-      end
-      instance = self.instance_eval(IO.read(file), file, 1)
+      to_nest = struct._self.sparkle.get(:template, template)
+      resource_name = [template.to_s.gsub('__', '_'), *args].compact.join('_').to_sym
+      nested_template = self.compile(to_nest[:path])
       struct.resources.set!(resource_name) do
         type 'AWS::CloudFormation::Stack'
       end
-      struct.resources.__send__(resource_name).properties.stack instance.compile
+      struct.resources[resource_name].properties.stack nested_template.compile
       if(block_given?)
-        struct.resources.__send__(resource_name).instance_exec(&block)
+        struct.resources[resource_name].instance_exec(&block)
       end
-      struct.resources.__send__(resource_name)
+      struct.resources[resource_name]
     end
 
     # Insert a builtin dynamic into a context
