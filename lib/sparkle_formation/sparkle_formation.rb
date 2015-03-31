@@ -123,7 +123,7 @@ class SparkleFormation
     def build(base=nil, &block)
       struct = base || SparkleStruct.new
       struct.instance_exec(&block)
-      @_struct = struct
+      struct
     end
 
     # Load component
@@ -253,6 +253,7 @@ class SparkleFormation
         _config ||= {}
         return unless _name
         resource_name = "#{_name}_#{_config.delete(:resource_name_suffix) || dynamic_name}".to_sym
+        struct.resources.set!(resource_name)
         new_resource = struct.resources[resource_name]
         new_resource.type lookup_key
         properties = new_resource.properties
@@ -324,8 +325,11 @@ class SparkleFormation
     @component_paths = []
     @sparkle = Sparkle.new(
       Smash.new.tap{|h|
-        if(options[:sparkle_path])
-          h[:root] = options[:sparkle_path]
+        s_path = options.fetch(:sparkle_path,
+          self.class.custom_paths[:sparkle_path]
+        )
+        if(s_path)
+          h[:root] = s_path
         end
       }
     )
@@ -387,7 +391,8 @@ class SparkleFormation
       else
         struct = SparkleStruct.new
         struct._set_self(self)
-        components[key] = struct.instance_exec(&sparkle.get(:component, thing)[:block])
+        struct.instance_exec(&sparkle.get(:component, thing)[:block])
+        components[key] = struct
       end
       @load_order << key
     end
