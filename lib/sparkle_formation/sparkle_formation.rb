@@ -446,16 +446,17 @@ class SparkleFormation
   end
 
   # @return [TrueClass, FalseClass] includes nested stacks
-  def nested?
-    !!compile.dump!['Resources'].detect do |r_name, resource|
+  def nested?(stack_hash=nil)
+    stack_hash = compile.dump! unless stack_hash
+    !!stack_hash['Resources'].detect do |r_name, resource|
       resource['Type'] == 'AWS::CloudFormation::Stack'
     end
   end
 
   # @return [TrueClass, FalseClass] includes _only_ nested stacks
-  def isolated_nests?
-    hash = compile.dump!
-    hash.fetch('Resources', {}).all? do |name, resource|
+  def isolated_nests?(stack_hash=nil)
+    stack_hash = compile.dump! unless stack_hash
+    stack_hash.fetch('Resources', {}).all? do |name, resource|
       resource['Type'] == 'AWS::CloudFormation::Stack'
     end
   end
@@ -468,8 +469,14 @@ class SparkleFormation
   # @yieldparam template [Hash] nested stack template
   # @yieldreturn [String] remote URL
   # @return [Hash] dumped template hash
-  def apply_nesting(*args)
-    hash = compile.dump!
+  def apply_nesting(*args, &block)
+    if(args.empty?)
+      hash = compile.dump!
+    elsif(args.size == 1 && args.first.is_a?(Hash))
+      hash = args.first
+    else
+      ArgumentError.new 'Only single argument of `Hash` type is allowed'
+    end
     stacks = Hash[
       hash['Resources'].find_all do |r_name, resource|
         [r_name, MultiJson.load(MultiJson.dump(resource))]
@@ -484,7 +491,10 @@ class SparkleFormation
     hash['Resources'].each do |resource_name, resource|
       if(resource['Type'] == 'AWS::CloudFormation::Stack')
         stack = resource['Properties'].delete('Stack')
-        resource['Properties']['TemplateURL'] = yield(resource_name, stack)
+        if(nested?(stack))
+          apply_nesting(stack, &block)
+        end
+        resource['Properties']['TemplateURL'] = block.call(resource_name, stack)
       end
     end
     if(args.include?(:collect_outputs))
