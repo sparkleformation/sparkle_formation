@@ -12,9 +12,14 @@ describe SparkleFormation do
       end.dump.must_equal 'Test' => true
     end
 
-    it 'should include components' do
+    it 'should include file named components' do
       SparkleFormation.new(:dummy).load(:ami).
         dump.keys.must_include 'Mappings'
+    end
+
+    it 'should include explicitly named components' do
+      SparkleFormation.new(:dummy).load(:user_info).
+        dump.keys.must_include 'Parameters'
     end
 
     it 'should process overrides' do
