@@ -14,6 +14,8 @@ class SparkleFormation
 
         class SparkleFormation
 
+          attr_accessor :sparkle_path
+
           class << self
 
             def part_data(data=nil)
