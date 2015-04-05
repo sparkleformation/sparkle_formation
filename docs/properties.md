@@ -11,8 +11,8 @@ provide the stack name and a contact email:
   resources.website_autoscale do
     type 'AWS::AutoScaling::AutoScalingGroup'
     properties do
-      availability_zones({ 'Fn::GetAZs' => '' })
-      tags _array(
+      availability_zones azs!
+      tags array!(
         -> {
           key 'StackName'
           value ref!('AWS::StackName'))

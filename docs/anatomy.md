@@ -56,7 +56,7 @@ resources.cfn_user do
   properties.policies _array(
     -> {
       policy_name 'cfn_access'
-      policy_document.statement _array(
+      policy_document.statement array!(
         -> {
           effect 'Allow'
           action 'cloudformation:DescribeStackResource'
@@ -85,7 +85,7 @@ parameter.
 resources.website_autoscale do
   type 'AWS::AutoScaling::AutoScalingGroup'
   properties do
-    availability_zones({'Fn::GetAZs' => ''})
+    availability_zones az!
     launch_configuration_name ref!(:website_launch_config)
     min_size ref!(:web_nodes)
     max_size ref!(:web_nodes)
@@ -95,7 +95,9 @@ end
 
 - website_launch_configuration: The launch configuration for
 website_asg nodes. The AMI image ID and instance type (size) are
-required. 
+required. `azs!` is a helper method for AWS's 'Fn::GetAZs' intrinsic
+function, which returns all the availability zones available to an
+account within the given region.
 
 ```ruby
 resources.website_launch_config do
@@ -115,8 +117,8 @@ configures the load balancer health check target and thresholds.
 resources.website_elb do
   type 'AWS::ElasticLoadBalancing::LoadBalancer'
   properties do
-    availability_zones._set('Fn::GetAZs', '')
-    listeners _array(
+    availability_zones azs!
+    listeners array!(
       -> {
         load_balancer_port '80'
         protocol 'HTTP'
