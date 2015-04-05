@@ -62,10 +62,10 @@ SparkleFormation.build do
   resources.cfn_user do
     type 'AWS::IAM::User'
     properties.path '/'
-    properties.policies _array(
+    properties.policies array!(
       -> {
         policy_name 'cfn_access'
-        policy_document.statement _array(
+        policy_document.statement array!(
           -> {
             effect 'Allow'
             action 'cloudformation:DescribeStackResource'
@@ -102,7 +102,7 @@ SparkleFormation.new('website').load(:base).overrides do
   resources.website_autoscale do
     type 'AWS::AutoScaling::AutoScalingGroup'
     properties do
-      availability_zones({'Fn::GetAZs' => ''})
+      availability_zones azs!
       launch_configuration_name ref!(:website_launch_config)
       min_size ref!(:web_nodes)
       max_size ref!(:web_nodes)
@@ -120,7 +120,7 @@ SparkleFormation.new('website').load(:base).overrides do
   resources.website_elb do
     type 'AWS::ElasticLoadBalancing::LoadBalancer'
     properties do
-      availability_zones._set('Fn::GetAZs', '')
+      availability_zones azs!
       listeners _array(
         -> {
           load_balancer_port '80'
@@ -160,8 +160,8 @@ SparkleFormation.dynamic(:elb) do |_name, _config={}|
   resources("#{_name}_elb".to_sym) do
     type 'AWS::ElasticLoadBalancing::LoadBalancer'
     properties do
-      availability_zones._set('Fn::GetAZs', '')
-      listeners _array(
+      availability_zones azs!
+      listeners array!(
         -> {
           load_balancer_port _config[:load_balancer_port] || '80'
           protocol _config[:protocol] || 'HTTP'
@@ -204,7 +204,7 @@ SparkleFormation.new('website').load(:base).overrides do
   resources.website_autoscale do
     type 'AWS::AutoScaling::AutoScalingGroup'
     properties do
-      availability_zones({'Fn::GetAZs' => ''})
+      availability_zones azs!
       launch_configuration_name ref!(:website_launch_config)
       min_size ref!(:web_nodes)
       max_size ref!(:web_nodes)
@@ -295,7 +295,7 @@ SparkleFormation.new(:website).load(:base).overrides do
   resources.website_autoscale do
     type 'AWS::AutoScaling::AutoScalingGroup'
     properties do
-      availability_zones({'Fn::GetAZs' => ''})
+      availability_zones azs!
       launch_configuration_name ref!(:website_launch_config)
       min_size ref!(:web_nodes)
       max_size ref!(:web_nodes)
