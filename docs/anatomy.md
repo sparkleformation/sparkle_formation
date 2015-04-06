@@ -172,7 +172,7 @@ parameters.environment do
 end
 
 mappings.instance_size do
-_camel_keys_set(:auto_disable)
+  _camel_keys_set(:auto_disable)
   set!('development', :instance => 'm3.small')
   set!('staging', :instance => 'm3.medium')
   set!('production', :instance => 'm3.large')
