@@ -106,7 +106,7 @@ class SparkleFormation
     #   to pass through when compiling ({:state => {}})
     # @return [Hashish, SparkleStruct]
     def compile(path, *args)
-      opts = args.detect{|i| i.is_a?(Hash) }
+      opts = args.detect{|i| i.is_a?(Hash) } || {}
       if(opts[:sparkle_path])
         container = Sparkle.new(:root => opts[:sparkle_path])
         formation = container.get(:template, path)
