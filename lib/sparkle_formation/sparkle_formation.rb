@@ -107,12 +107,11 @@ class SparkleFormation
     # @return [Hashish, SparkleStruct]
     def compile(path, *args)
       opts = args.detect{|i| i.is_a?(Hash) } || {}
-      if(opts[:sparkle_path])
-        container = Sparkle.new(:root => opts[:sparkle_path])
-        formation = container.get(:template, path)
-      else
-        formation = self.instance_eval(IO.read(path), path, 1)
+      if(spath = opts.fetch(:sparkle_path, SparkleFormation.sparkle_path))
+        container = Sparkle.new(:root => spath)
+        path = container.get(:template, path)[:path]
       end
+      formation = self.instance_eval(IO.read(path), path, 1)
       if(args.delete(:sparkle))
         formation
       else
