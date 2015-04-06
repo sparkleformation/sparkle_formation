@@ -17,6 +17,7 @@ class SparkleFormation
       class Dynamic < NotFound; end
       class Component < NotFound; end
       class Registry < NotFound; end
+      class Template < NotFound; end
 
     end
   end
