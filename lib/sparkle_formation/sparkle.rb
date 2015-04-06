@@ -213,6 +213,9 @@ class SparkleFormation
       end
       result = send(TYPES[type])[name]
       unless(result)
+        result = (send(TYPES[type]).detect{|k,v| v[:path] == name} || []).last
+      end
+      unless(result)
         klass = Error::NotFound.const_get(type.capitalize)
         raise klass.new("No #{type} registered with requested name (#{name})!", :name => name)
       end
