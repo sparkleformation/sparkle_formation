@@ -317,7 +317,7 @@ class SparkleFormation
     # @param args [Object] argument list for registry
     # @return [self]
     def registry!(name, *args)
-      SfnRegistry.insert(name, self, *args)
+      SparkleFormation::Registry.insert(name, self, *args)
     end
 
     # Stack nesting helper method

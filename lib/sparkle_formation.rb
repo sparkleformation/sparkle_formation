@@ -16,11 +16,14 @@
 # limitations under the License.
 #
 
+require 'bogo'
 require 'multi_json'
 require 'attribute_struct'
 
 class SparkleFormation
   autoload :Aws, 'sparkle_formation/aws'
+  autoload :Error, 'sparkle_formation/error'
+  autoload :Sparkle, 'sparkle_formation/sparkle'
   autoload :SparkleAttribute, 'sparkle_formation/sparkle_attribute'
   autoload :SparkleStruct, 'sparkle_formation/sparkle_struct'
   autoload :Utils, 'sparkle_formation/utils'

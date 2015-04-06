@@ -106,6 +106,11 @@ class SparkleFormation
     #   to pass through when compiling ({:state => {}})
     # @return [Hashish, SparkleStruct]
     def compile(path, *args)
+      opts = args.detect{|i| i.is_a?(Hash) } || {}
+      if(spath = opts.fetch(:sparkle_path, SparkleFormation.sparkle_path))
+        container = Sparkle.new(:root => spath)
+        path = container.get(:template, path)[:path]
+      end
       formation = self.instance_eval(IO.read(path), path, 1)
       if(args.delete(:sparkle))
         formation
@@ -123,7 +128,7 @@ class SparkleFormation
     def build(base=nil, &block)
       struct = base || SparkleStruct.new
       struct.instance_exec(&block)
-      @_struct = struct
+      struct
     end
 
     # Load component
@@ -202,17 +207,19 @@ class SparkleFormation
     # @return [SparkleStruct]
     def insert(dynamic_name, struct, *args, &block)
       result = false
-      if(@dynamics && @dynamics[dynamic_name])
-        result = struct.instance_exec(*args, &@dynamics[dynamic_name][:block])
+      begin
+        dyn = struct._self.sparkle.get(:dynamic, dynamic_name)
+        raise dyn if dyn.is_a?(Exception)
+        result = struct.instance_exec(*args, &dyn[:block])
         if(block_given?)
           result.instance_exec(&block)
         end
         result = struct
-      else
+      rescue Error::NotFound::Dynamic
         result = builtin_insert(dynamic_name, struct, *args, &block)
       end
       unless(result)
-        raise "Failed to locate requested dynamic block for insertion: #{dynamic_name} (valid: #{(@dynamics || {}).keys.sort.join(', ')})"
+        raise "Failed to locate requested dynamic block for insertion: #{dynamic_name} (valid: #{struct._self.sparkle.dynamics.keys.sort.join(', ')})"
       end
       result
     end
@@ -226,25 +233,17 @@ class SparkleFormation
     # @note if symbol is provided for template, double underscores
     #   will be used for directory separator and dashes will match underscores
     def nest(template, struct, *args, &block)
-      spath = SparkleFormation.new('stub').sparkle_path
-      resource_name = [template.to_s.gsub(/(\/|__|-)/, '_'), *args].compact.join('_').to_sym
-      path = template.is_a?(Symbol) ? template.to_s.gsub('__', '/') : template.to_s
-      file = Dir.glob(File.join(spath, '**', '**', '*.rb')).detect do |local_path|
-        strip_path = local_path.sub(spath, '').sub(/^\//, '').tr('-', '_').sub('.rb', '')
-        strip_path == path
-      end
-      unless(file)
-        raise ArgumentError.new("Failed to locate nested stack file! (#{template.inspect} -> #{path.inspect})")
-      end
-      instance = self.instance_eval(IO.read(file), file, 1)
+      to_nest = struct._self.sparkle.get(:template, template)
+      resource_name = [template.to_s.gsub('__', '_'), *args].compact.join('_').to_sym
+      nested_template = self.compile(to_nest[:path])
       struct.resources.set!(resource_name) do
         type 'AWS::CloudFormation::Stack'
       end
-      struct.resources.__send__(resource_name).properties.stack instance.compile
+      struct.resources[resource_name].properties.stack nested_template
       if(block_given?)
-        struct.resources.__send__(resource_name).instance_exec(&block)
+        struct.resources[resource_name].instance_exec(&block)
       end
-      struct.resources.__send__(resource_name)
+      struct.resources[resource_name]
     end
 
     # Insert a builtin dynamic into a context
@@ -259,7 +258,8 @@ class SparkleFormation
         _config ||= {}
         return unless _name
         resource_name = "#{_name}_#{_config.delete(:resource_name_suffix) || dynamic_name}".to_sym
-        new_resource = struct.resources.__send__(resource_name)
+        struct.resources.set!(resource_name)
+        new_resource = struct.resources[resource_name]
         new_resource.type lookup_key
         properties = new_resource.properties
         SfnAws.resource(dynamic_name, :properties).each do |prop_name|
@@ -268,9 +268,9 @@ class SparkleFormation
           end.compact.first
           if(value)
             if(value.is_a?(Proc))
-              properties.__send__(prop_name).instance_exec(&value)
+              properties[prop_name].to_sym.instance_exec(&value)
             else
-              properties.__send__(prop_name, value)
+              properties.set!(prop_name, value)
             end
           end
         end
@@ -293,8 +293,12 @@ class SparkleFormation
     end
   end
 
+  include Bogo::Memoization
+
   # @return [Symbol] name of formation
   attr_reader :name
+  # @return [Sparkle] parts store
+  attr_reader :sparkle
   # @return [String] base path
   attr_reader :sparkle_path
   # @return [String] components path
@@ -323,26 +327,23 @@ class SparkleFormation
   # @yield base context
   def initialize(name, options={}, &block)
     @name = name.to_sym
-    @sparkle_path = options[:sparkle_path] ||
-      self.class.custom_paths[:sparkle_path] ||
-      File.join(Dir.pwd, 'cloudformation')
-    @components_directory = options[:components_directory] ||
-      self.class.custom_paths[:components_directory] ||
-      File.join(sparkle_path, 'components')
-    @dynamics_directory = options[:dynamics_directory] ||
-      self.class.custom_paths[:dynamics_directory] ||
-      File.join(sparkle_path, 'dynamics')
-    @registry_directory = options[:registry_directory] ||
-      self.class.custom_paths[:registry_directory] ||
-      File.join(sparkle_path, 'registry')
-    self.class.load_dynamics!(@dynamics_directory)
-    self.class.load_registry!(@registry_directory)
+    @component_paths = []
+    @sparkle = Sparkle.new(
+      Smash.new.tap{|h|
+        s_path = options.fetch(:sparkle_path,
+          self.class.custom_paths[:sparkle_path]
+        )
+        if(s_path)
+          h[:root] = s_path
+        end
+      }
+    )
     unless(options[:disable_aws_builtins])
       require 'sparkle_formation/aws'
       SfnAws.load!
     end
     @parameters = set_generation_parameters!(options.fetch(:parameters, {}))
-    @components = SparkleStruct.hashish.new
+    @components = Smash.new
     @load_order = []
     @overrides = []
     if(block)
@@ -377,7 +378,9 @@ class SparkleFormation
   # @param block [Proc]
   # @return [TrueClass]
   def block(block)
-    @components[:__base__] = self.class.build(&block)
+    struct = SparkleStruct.new
+    struct._set_self(self)
+    @components[:__base__] = self.class.build(struct, &block)
     @load_order << :__base__
     true
   end
@@ -389,13 +392,15 @@ class SparkleFormation
   # @return [self]
   def load(*args)
     args.each do |thing|
-      if(thing.is_a?(Symbol))
-        path = File.join(components_directory, "#{thing}.rb")
+      key = File.basename(thing.to_s).sub('.rb', '')
+      if(thing.is_a?(String))
+        components[key] = self.class.load_component(thing)
       else
-        path = thing
+        struct = SparkleStruct.new
+        struct._set_self(self)
+        struct.instance_exec(&sparkle.get(:component, thing)[:block])
+        components[key] = struct
       end
-      key = File.basename(path).sub('.rb', '')
-      components[key] = self.class.load_component(path)
       @load_order << key
     end
     self
@@ -418,6 +423,7 @@ class SparkleFormation
   def compile(args={})
     unless(@compiled)
       compiled = SparkleStruct.new
+      compiled._set_self(self)
       if(args[:state])
         compiled.set_state!(args[:state])
       end
@@ -444,16 +450,17 @@ class SparkleFormation
   end
 
   # @return [TrueClass, FalseClass] includes nested stacks
-  def nested?
-    !!compile.dump!['Resources'].detect do |r_name, resource|
+  def nested?(stack_hash=nil)
+    stack_hash = compile.dump! unless stack_hash
+    !!stack_hash['Resources'].detect do |r_name, resource|
       resource['Type'] == 'AWS::CloudFormation::Stack'
     end
   end
 
   # @return [TrueClass, FalseClass] includes _only_ nested stacks
-  def isolated_nests?
-    hash = compile.dump!
-    hash.fetch('Resources', {}).all? do |name, resource|
+  def isolated_nests?(stack_hash=nil)
+    stack_hash = compile.dump! unless stack_hash
+    stack_hash.fetch('Resources', {}).all? do |name, resource|
       resource['Type'] == 'AWS::CloudFormation::Stack'
     end
   end
@@ -466,8 +473,14 @@ class SparkleFormation
   # @yieldparam template [Hash] nested stack template
   # @yieldreturn [String] remote URL
   # @return [Hash] dumped template hash
-  def apply_nesting(*args)
-    hash = compile.dump!
+  def apply_nesting(*args, &block)
+    if(args.empty?)
+      hash = compile.dump!
+    elsif(args.size == 1 && args.first.is_a?(Hash))
+      hash = args.first
+    else
+      ArgumentError.new 'Only single argument of `Hash` type is allowed'
+    end
     stacks = Hash[
       hash['Resources'].find_all do |r_name, resource|
         [r_name, MultiJson.load(MultiJson.dump(resource))]
@@ -482,7 +495,10 @@ class SparkleFormation
     hash['Resources'].each do |resource_name, resource|
       if(resource['Type'] == 'AWS::CloudFormation::Stack')
         stack = resource['Properties'].delete('Stack')
-        resource['Properties']['TemplateURL'] = yield(resource_name, stack)
+        if(nested?(stack))
+          apply_nesting(stack, &block)
+        end
+        resource['Properties']['TemplateURL'] = block.call(resource_name, stack)
       end
     end
     if(args.include?(:collect_outputs))

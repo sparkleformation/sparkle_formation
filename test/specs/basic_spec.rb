@@ -1,5 +1,9 @@
 describe SparkleFormation do
 
+  before do
+    SparkleFormation.sparkle_path = File.join(File.dirname(__FILE__), 'cloudformation')
+  end
+
   describe 'Basic Usage' do
 
     it 'should dump hashes' do
@@ -8,9 +12,14 @@ describe SparkleFormation do
       end.dump.must_equal 'Test' => true
     end
 
-    it 'should include components' do
+    it 'should include file named components' do
       SparkleFormation.new(:dummy).load(:ami).
         dump.keys.must_include 'Mappings'
+    end
+
+    it 'should include explicitly named components' do
+      SparkleFormation.new(:dummy).load(:user_info).
+        dump.keys.must_include 'Parameters'
     end
 
     it 'should process overrides' do
@@ -44,6 +53,13 @@ describe SparkleFormation do
       SparkleFormation.new(:dummy).load(:ami).overrides do
         dynamic!(:node, :my)
       end.dump.must_equal full_stack
+    end
+
+    it 'should load dynamics via deprecated inserts' do
+      full_stack = MultiJson.load(File.read(File.join(File.dirname(__FILE__), 'results', 'base.json')))
+      SparkleFormation.new(:dummy).load(:ami).overrides do
+        SparkleFormation.insert(:node, self, :my)
+      end.dump.to_smash(:sorted).must_equal full_stack.to_smash(:sorted)
     end
 
     it 'should allow dynamic customization' do
