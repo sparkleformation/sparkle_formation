@@ -55,6 +55,13 @@ describe SparkleFormation do
       end.dump.must_equal full_stack
     end
 
+    it 'should load dynamics via deprecated inserts' do
+      full_stack = MultiJson.load(File.read(File.join(File.dirname(__FILE__), 'results', 'base.json')))
+      SparkleFormation.new(:dummy).load(:ami).overrides do
+        SparkleFormation.insert(:node, self, :my)
+      end.dump.to_smash(:sorted).must_equal full_stack.to_smash(:sorted)
+    end
+
     it 'should allow dynamic customization' do
       full_stack = MultiJson.load(File.read(File.join(File.dirname(__FILE__), 'results', 'base_with_map.json')))
       SparkleFormation.new(:dummy).load(:ami).overrides do
