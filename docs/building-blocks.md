@@ -278,7 +278,11 @@ SparkleFormation::Registry.register(:apt_get_update) do
 end
 ```
 
-What is `_camel_keys_set`? Since SparkleFormation is just transforming Ruby hashes from snake case to camel case JSON hashes, `_camel_keys_set` works out the proper casing for this registry to make sure it's rendered as proper JSON. Now we can insert this registry entry into our existing template, to
+By default, keys and symbols are converted to the camel
+casing used throughout CloudFormation. `_camel_keys_set(:auto_disable)` removes the automatic camel
+casing for the block that follows.
+
+Now we can insert this registry entry into our existing template, to
 ensure that apt is updated upon provisioning:
 
 ```ruby

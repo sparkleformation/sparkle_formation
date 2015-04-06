@@ -147,9 +147,9 @@ for each US region:
 
 ```ruby
 mappings.region_map do
-  set!('us-east-1', :ami => 'ami-8e852ce6')
-  set!('us-west-1', :ami => 'ami-03a8a146')
-  set!('us-west-2', :ami => 'ami-f786c6c7')
+  set!('us-east-1'._no_hump, :ami => 'ami-8e852ce6')
+  set!('us-west-1'._no_hump, :ami => 'ami-03a8a146')
+  set!('us-west-2'._no_hump, :ami => 'ami-f786c6c7')
 end
 ```
 
@@ -159,8 +159,13 @@ These can be referenced, in turn, with the following:
 map!(:region_map, ref!('AWS::Region'), :ami)
 ```
 
-'AWS::Region' is a psuedo parameter. We could also perform a lookup
-based on a parameter we provide, e.g. an instance size based on the environment:
+'AWS::Region' is a psuedo parameter, which returns the AWS region. The
+`_no_hump` method is used above to prevent automatic camel casing, so
+the mapping key matches the region that is returned. Camel casing may
+also be disabled for the entier block with `_camel_keys_set(:auto_disable)`.
+
+We could also perform a lookup based on a parameter we provide,
+e.g. an instance size based on the environment:
 
 ```ruby
 parameters.environment do
@@ -169,6 +174,7 @@ parameters.environment do
 end
 
 mappings.instance_size do
+  _camel_keys_set(:auto_disable)
   set!('development', :instance => 'm3.small')
   set!('staging', :instance => 'm3.medium')
   set!('production', :instance => 'm3.large')
@@ -200,6 +206,4 @@ end
 
 Outputs are not simply informational. You can interact with them
 during [provisioning](provisioning.md#knife-cloudformation) using the [knife-cloudformation
-plugin](https://rubygems.org/gems/knife-cloudformation). 
-
-
+plugin](https://rubygems.org/gems/knife-cloudformation).
