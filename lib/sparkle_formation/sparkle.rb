@@ -64,6 +64,15 @@ class SparkleFormation
 
           end
 
+          def initialize(*args)
+            SparkleFormation.part_data[:template].push(
+              ::Smash.new(
+                :name => args.first
+              )
+            )
+            raise TypeError
+          end
+
           class Registry
 
             def self.register(name, &block)
@@ -191,10 +200,22 @@ class SparkleFormation
           Dir.glob(File.join(root, '**', '**', '*.{json,rb}')) do |path|
             slim_path = path.sub("#{root}/", '')
             next if DIRS.include?(slim_path.split('/').first)
-            name = slim_path.tr('/', '__')
-            hash[name] = Smash.new(
-              :path => path,
-              :type => :template
+            data = Smash.new(:template => [])
+            t_wrap = eval_wrapper.new
+            t_wrap.part_data(data)
+            begin
+              t_wrap.instance_eval(IO.read(path), path, 1)
+            rescue TypeError
+            end
+            data = data[:template].first
+            unless(data[:name])
+              data[:name] = slim_path.tr('/', '__')
+            end
+            hash[data[:name]] = data.merge(
+              Smash.new(
+                :type => :template,
+                :path => path
+              )
             )
           end
         end
@@ -212,8 +233,13 @@ class SparkleFormation
         raise NameError.new "Invalid type requested (#{type})! Valid types: #{TYPES.join(', ')}"
       end
       result = send(TYPES[type])[name]
-      unless(result)
-        result = (send(TYPES[type]).detect{|k,v| v[:path] == name} || []).last
+      if(result.nil? && TYPES[type] == 'templates')
+        result = (
+          send(TYPES[type]).detect{|k,v|
+            v[:path] == name ||
+            v[:path].sub(/#{Regexp.escape(root)}\/?/, '') == name
+          } || []
+        ).last
       end
       unless(result)
         klass = Error::NotFound.const_get(type.capitalize)
