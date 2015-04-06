@@ -239,7 +239,7 @@ class SparkleFormation
       struct.resources.set!(resource_name) do
         type 'AWS::CloudFormation::Stack'
       end
-      struct.resources[resource_name].properties.stack nested_template.compile
+      struct.resources[resource_name].properties.stack nested_template
       if(block_given?)
         struct.resources[resource_name].instance_exec(&block)
       end
@@ -378,7 +378,9 @@ class SparkleFormation
   # @param block [Proc]
   # @return [TrueClass]
   def block(block)
-    @components[:__base__] = self.class.build(&block)
+    struct = SparkleStruct.new
+    struct._set_self(self)
+    @components[:__base__] = self.class.build(struct, &block)
     @load_order << :__base__
     true
   end
