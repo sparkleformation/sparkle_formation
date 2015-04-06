@@ -107,7 +107,7 @@ class SparkleFormation
     # @return [Hashish, SparkleStruct]
     def compile(path, *args)
       opts = args.detect{|i| i.is_a?(Hash) } || {}
-      if(spath = opts.fetch(:sparkle_path, SparkleFormation.sparkle_path))
+      if(spath = (opts.delete(:sparkle_path) || SparkleFormation.sparkle_path))
         container = Sparkle.new(:root => spath)
         path = container.get(:template, path)[:path]
       end
@@ -115,8 +115,7 @@ class SparkleFormation
       if(args.delete(:sparkle))
         formation
       else
-        comp_arg = args.detect{|i| i.is_a?(Hash) }
-        (comp_arg ? formation.compile(comp_arg) : formation.compile)._dump
+        formation.compile(opts)._dump
       end
     end
 
