@@ -24,6 +24,7 @@ class SparkleFormation
   autoload :Aws, 'sparkle_formation/aws'
   autoload :Error, 'sparkle_formation/error'
   autoload :Sparkle, 'sparkle_formation/sparkle'
+  autoload :SparkleCollection, 'sparkle_formation/sparkle_collection'
   autoload :SparkleAttribute, 'sparkle_formation/sparkle_attribute'
   autoload :SparkleStruct, 'sparkle_formation/sparkle_struct'
   autoload :Utils, 'sparkle_formation/utils'
