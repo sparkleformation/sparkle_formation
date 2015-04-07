@@ -327,15 +327,19 @@ class SparkleFormation
   def initialize(name, options={}, &block)
     @name = name.to_sym
     @component_paths = []
-    @sparkle = Sparkle.new(
-      Smash.new.tap{|h|
-        s_path = options.fetch(:sparkle_path,
-          self.class.custom_paths[:sparkle_path]
-        )
-        if(s_path)
-          h[:root] = s_path
-        end
-      }
+    @sparkle = SparkleCollection.new
+    @sparkle.add_sparkle(
+      Sparkle.new(
+        Smash.new.tap{|h|
+          s_path = options.fetch(:sparkle_path,
+            self.class.custom_paths[:sparkle_path]
+          )
+          if(s_path)
+            h[:root] = s_path
+          end
+        }
+      ),
+      :high
     )
     unless(options[:disable_aws_builtins])
       require 'sparkle_formation/aws'
