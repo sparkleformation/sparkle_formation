@@ -228,6 +228,11 @@ class SparkleFormation
       result
     end
 
+    # @return [String]
+    def inspect
+      "<SparkleFormation::Sparkle [root: #{root.inspect} raw_data: #{@raw_data.inspect}]>"
+    end
+
     private
 
     attr_reader :wrapper
