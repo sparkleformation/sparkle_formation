@@ -89,7 +89,7 @@ class SparkleFormation
       memoize("templates_#{checksum}") do
         Smash.new.tap do |hsh|
           sparkles.each do |sprkl|
-            hsh.merge(sprkl.templates)
+            hsh.merge!(sprkl.templates)
           end
         end
       end
