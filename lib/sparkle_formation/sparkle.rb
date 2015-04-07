@@ -134,7 +134,6 @@ class SparkleFormation
     attr_reader :root
     # @return [Smash] raw part data
     attr_reader :raw_data
-    attr_reader :wrapper
 
     # Create new sparkle instance
     #
@@ -151,25 +150,6 @@ class SparkleFormation
       @wrapper = eval_wrapper.new
       wrapper.part_data(raw_data)
       load_parts!
-    end
-
-    def load_parts!
-      memoize(:load_parts) do
-        Dir.glob(File.join(root, "{#{DIRS.join(',')}}", '*.rb')).each do |file|
-          wrapper.instance_eval(IO.read(file), file, 1)
-        end
-        raw_data.each do |key, items|
-          items.each do |item|
-            if(item[:name])
-              send(TYPES[key])[item.delete(:name)] = item
-            else
-              path = item[:block].source_location.first.sub('.rb', '').split(File::SEPARATOR)
-              type, name = path.slice(path.size - 2, 2)
-              send(type)[name] = item
-            end
-          end
-        end
-      end
     end
 
     # @return [Smash<name:block>]
@@ -250,6 +230,8 @@ class SparkleFormation
 
     private
 
+    attr_reader :wrapper
+
     # Locate root directory. Defaults to current working directory if
     # valid sub directory is not located
     #
@@ -261,6 +243,26 @@ class SparkleFormation
           path
         end
       end.compact.first
+    end
+
+    # Load all sparkle parts
+    def load_parts!
+      memoize(:load_parts) do
+        Dir.glob(File.join(root, "{#{DIRS.join(',')}}", '*.rb')).each do |file|
+          wrapper.instance_eval(IO.read(file), file, 1)
+        end
+        raw_data.each do |key, items|
+          items.each do |item|
+            if(item[:name])
+              send(TYPES[key])[item.delete(:name)] = item
+            else
+              path = item[:block].source_location.first.sub('.rb', '').split(File::SEPARATOR)
+              type, name = path.slice(path.size - 2, 2)
+              send(type)[name] = item
+            end
+          end
+        end
+      end
     end
 
   end
