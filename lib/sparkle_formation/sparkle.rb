@@ -207,7 +207,7 @@ class SparkleFormation
     # @param type [String, Symbol] item type (see: TYPES)
     # @param name [String, Symbol] name of item
     # @return [Smash] requested item
-    # @raises [NameError, KeyError]
+    # @raises [NameError, Error::NotFound]
     def get(type, name)
       unless(TYPES.keys.include?(type.to_s))
         raise NameError.new "Invalid type requested (#{type})! Valid types: #{TYPES.join(', ')}"
@@ -216,8 +216,11 @@ class SparkleFormation
       if(result.nil? && TYPES[type] == 'templates')
         result = (
           send(TYPES[type]).detect{|k,v|
+            name = name.to_s
+            short_name = v[:path].sub(/#{Regexp.escape(root)}\/?/, '')
             v[:path] == name ||
-            v[:path].sub(/#{Regexp.escape(root)}\/?/, '') == name
+            short_name == name ||
+            short_name.sub('.rb', '').gsub(File::SEPARATOR, '__').tr('-', '_') == name
           } || []
         ).last
       end
@@ -230,7 +233,7 @@ class SparkleFormation
 
     # @return [String]
     def inspect
-      "<SparkleFormation::Sparkle [root: #{root.inspect} raw_data: #{@raw_data.inspect}]>"
+      "<SparkleFormation::Sparkle [root: #{root.inspect}]>"
     end
 
     private
