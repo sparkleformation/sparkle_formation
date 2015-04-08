@@ -95,6 +95,28 @@ class SparkleFormation
       end
     end
 
+    # Request item from the store
+    #
+    # @param type [String, Symbol] item type (see: TYPES)
+    # @param name [String, Symbol] name of item
+    # @return [Smash] requested item
+    # @raises [NameError, Error::NotFound]
+    def get(*args)
+      result = nil
+      error = nil
+      sparkles.each do |sprkl|
+        begin
+          result = sprkl.get(*args)
+        rescue Error::NotFound => error
+        end
+      end
+      if(result)
+        result
+      else
+        raise error
+      end
+    end
+
     protected
 
     # @return [Array<Sparkle>]
