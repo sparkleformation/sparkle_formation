@@ -312,6 +312,8 @@ class SparkleFormation
   attr_reader :load_order
   # @return [Hash] parameters for stack generation
   attr_reader :parameters
+  # @return [SparkleFormation] parent stack
+  attr_reader :parent
 
   # Create new instance
   #
@@ -353,6 +355,20 @@ class SparkleFormation
       load_block(block)
     end
     @compiled = nil
+  end
+
+  # @return [SparkleFormation] root stack
+  def root
+    if(parent)
+      parent.root
+    else
+      self
+    end
+  end
+
+  # @return [TrueClass, FalseClass] current stack is root
+  def root?
+    root == self
   end
 
   ALLOWED_GENERATION_PARAMETERS = ['type', 'default']
@@ -476,6 +492,12 @@ class SparkleFormation
   # @yieldparam template [Hash] nested stack template
   # @yieldreturn [String] remote URL
   # @return [Hash] dumped template hash
+  #
+  # NOTE: lets define some valid args
+  #   - bubble_parameters
+  #     * Bubbles all nested stack parameters to root stack
+  #   - bubble_outputs
+  #     * Bubbles all nested stack outputs to root stack
   def apply_nesting(*args, &block)
     if(args.empty?)
       hash = compile.dump!
@@ -504,7 +526,7 @@ class SparkleFormation
         resource['Properties']['TemplateURL'] = block.call(resource_name, stack)
       end
     end
-    if(args.include?(:collect_outputs))
+    if(args.include?(:bubble_outputs))
       outputs_hash = Hash[
         output_map do |name, value|
           [name, {'Value' => {'Fn::GetAtt' => value}}]
