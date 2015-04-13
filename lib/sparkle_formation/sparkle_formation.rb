@@ -35,6 +35,9 @@ class SparkleFormation
     'registry'
   ]
 
+  # @return [String] default stack resource name
+  DEFAULT_STACK_RESOURCE = 'AWS::CloudFormation::Stack'
+
   class << self
 
     # @return [Hashish] loaded dynamics
@@ -234,7 +237,7 @@ class SparkleFormation
     def nest(template, struct, *args, &block)
       to_nest = struct._self.sparkle.get(:template, template)
       resource_name = [template.to_s.gsub('__', '_'), *args].compact.join('_').to_sym
-      nested_template = self.compile(to_nest[:path])
+      nested_template = self.compile(to_nest[:path], :parent => struct._self)
       struct.resources.set!(resource_name) do
         type 'AWS::CloudFormation::Stack'
       end
@@ -351,6 +354,7 @@ class SparkleFormation
     @components = Smash.new
     @load_order = []
     @overrides = []
+    @parent = options[:parent]
     if(block)
       load_block(block)
     end
