@@ -537,8 +537,7 @@ class SparkleFormation
         if(output_name = output_matched?(parameter_name, outputs.keys))
           next if outputs[output_name] == stack
           stack_output = stack.make_output_available(output_name, outputs)
-          resource.properties.parameters.set!(parameter_name, resource.attr!(*stack_output))
-
+          resource.properties.parameters.set!(parameter_name, stack_output)
         end
       end
     end
@@ -556,11 +555,23 @@ class SparkleFormation
 
   def make_output_available(output_name, outputs)
     bubble_path = outputs[output_name].root_path - root_path
+    drip_path = root_path - outputs[output_name].root_path
     bubble_path.each_slice(2) do |base_sparkle, ref_sparkle|
       next unless ref_sparkle
       base_sparkle.compile.outputs.set!(output_name).set!(:value, base_sparkle.compile.attr!(ref_sparkle.name, "Outputs.#{output_name}"))
     end
-    [bubble_path.first.name, "Outputs.#{output_name}"]
+    result = compile.attr!(bubble_path.first.name, "Outputs.#{output_name}")
+    if(drip_path.size > 1)
+      parent = drip_path.first.parent
+      drip_path.unshift(parent) if parent
+      drip_path.each_slice(2) do |base_sparkle, ref_sparkle|
+        next unless ref_sparkle
+        base_sparkle.compile.resources[ref_sparkle.name].properties.parameters.set!(output_name, result)
+        ref_sparkle.compile.parameters.set!(output_name){ type 'String' } # TODO <<<<------ type check and prop
+        result = compile.ref!(output_name)
+      end
+    end
+    result
   end
 
   def extract_templates(&block)
@@ -617,20 +628,24 @@ class SparkleFormation
 
 
   # @return [Smash<output_name:SparkleFormation>]
-  def collect_outputs
-    if(compile.outputs)
-      outputs = Smash[
-        compile.outputs.keys!.zip(
-          [self] * compile.outputs.keys!.size
-        )
-      ]
+  def collect_outputs(*args)
+    if(args.include?(:force) || root?)
+      if(compile.outputs)
+        outputs = Smash[
+          compile.outputs.keys!.zip(
+            [self] * compile.outputs.keys!.size
+          )
+        ]
+      else
+        outputs = Smash.new
+      end
+      nested_stacks.each do |nested_stack|
+        outputs = nested_stack.collect_outputs(:force).merge(outputs)
+      end
+      outputs
     else
-      outputs = Smash.new
+      root.collect_outputs(:force)
     end
-    nested_stacks.each do |nested_stack|
-      outputs = nested_stack.collect_outputs.merge(outputs)
-    end
-    outputs
   end
 
   # Extract parameters from nested stacks. Check for previous nested
