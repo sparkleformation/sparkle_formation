@@ -261,10 +261,10 @@ class SparkleFormation
         new_resource = struct.resources[resource_name]
         new_resource.type lookup_key
         properties = new_resource.properties
+        config_keys = _config.keys.zip(_config.keys.map{|k| snake(k).to_s.tr('_', '')})
         SfnAws.resource(dynamic_name, :properties).each do |prop_name|
-          value = [prop_name, snake(prop_name)].map do |key|
-            _config[key] || _config[key.to_sym]
-          end.compact.first
+          key = config_keys.detect{|k| k.last == snake(prop_name).to_s.tr('_', '')}.first
+          value = _config[key] if key
           if(value)
             if(value.is_a?(Proc))
               properties[prop_name].to_sym.instance_exec(&value)
