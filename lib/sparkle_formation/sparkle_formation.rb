@@ -510,28 +510,34 @@ class SparkleFormation
     end
   end
 
-  # Apply stack nesting logic. Will extract unique parameters from
-  # nested stacks, update refs to use sibling stack outputs where
-  # required and extract nested stack templates for remote persistence
+  # Apply nesting logic to stack
   #
-  # @yieldparam template_name [String] nested stack resource name
-  # @yieldparam template [Hash] nested stack template
-  # @yieldreturn [String] remote URL
-  # @return [Hash] dumped template hash
-  #
-  # NOTE: lets define some valid args
-  #   - bubble_parameters
-  #     * Bubbles all nested stack parameters to root stack
-  #   - bubble_outputs
-  #     * Bubbles all nested stack outputs to root stack
-  #   - auto_bubble
-  #     * Automatically bubbles outputs for parameter usage
-  #     * Stack parameters _not_ bubbled to root
+  # @param nest_type [Symbol] values: :shallow, :deep (default: :deep)
+  # @return [Hash] dumped stack
+  # @note see specific version for expected block parameters
   def apply_nesting(*args, &block)
+    if(args.include?(:shallow))
+      apply_shallow_nesting(&block)
+    else
+      apply_deep_nesting(&block)
+    end
+  end
+
+  # Apply deeply nested stacks. This is the new nesting approach and
+  # does not bubble parameters up to the root stack. Parameters are
+  # isolated to the stack resource itself and output mapping is
+  # automatically applied.
+  #
+  # @yieldparam stack [SparkleFormation] stack instance
+  # @yieldparam resource [AttributeStruct] the stack resource
+  # @yieldparam s_name [String] stack resource name
+  # @yieldreturn [Hash] key/values to be merged into resource properties
+  # @return [Hash] dumped stack
+  def apply_deep_nesting(*args, &block)
     outputs = collect_outputs
     nested_stacks(:with_resource).each do |stack, resource|
       unless(stack.nested_stacks.empty?)
-        stack.apply_nesting(*args)
+        stack.apply_deep_nesting(*args)
       end
       stack.compile.parameters.keys!.each do |parameter_name|
         if(output_name = output_matched?(parameter_name, outputs.keys))
@@ -547,12 +553,24 @@ class SparkleFormation
     compile.dump!
   end
 
+  # Check if parameter name matches an output name
+  #
+  # @param p_name [String, Symbol] parameter name
+  # @param output_names [Array<String>] list of available outputs
+  # @return [String, NilClass] matching output name
+  # @note will auto downcase name prior to comparison
   def output_matched?(p_name, output_names)
     output_names.detect do |o_name|
       Bogo::Utility.snake(o_name).tr('_', '') == Bogo::Utility.snake(p_name).tr('_', '')
     end
   end
 
+  # Extract output to make available for stack parameter usage at the
+  # current depth
+  #
+  # @param output_name [String] name of output
+  # @param outputs [Hash] listing of outputs
+  # @reutrn [Hash] reference to output value (used for setting parameter)
   def make_output_available(output_name, outputs)
     bubble_path = outputs[output_name].root_path - root_path
     drip_path = root_path - outputs[output_name].root_path
@@ -574,58 +592,75 @@ class SparkleFormation
     result
   end
 
+  # Extract and process nested stacks
+  #
+  # @yieldparam stack [SparkleFormation] stack instance
+  # @yieldparam resource [AttributeStruct] the stack resource
+  # @yieldparam s_name [String] stack resource name
+  # @yieldreturn [Hash] key/values to be merged into resource properties
   def extract_templates(&block)
     nested_stacks(:with_resource, :with_name).each do |stack, resource, s_name|
       resource.properties.set!(:stack, stack.compile.dump!)
-#      resource.properties.delete!(:stack)
+      #      resource.properties.delete!(:stack)
+      result = block.call(s_name, stack.compile.dump!)
+      result.each do |key, value|
+        resource.properties.set!(key, value)
+      end
       resource.properties.set!('TemplateURL', block.call(s_name, stack.compile.dump!))
     end
   end
 
-  # def apply_nesting(*args, &block)
-  #   if(args.empty?)
-  #     hash = compile.dump!
-  #   elsif(args.size == 1 && args.first.is_a?(Hash))
-  #     hash = args.first
-  #   else
-  #     ArgumentError.new 'Only single argument of `Hash` type is allowed'
-  #   end
-  #   stacks = Hash[
-  #     hash['Resources'].find_all do |r_name, resource|
-  #       [r_name, MultiJson.load(MultiJson.dump(resource))]
-  #     end
-  #   ]
-  #   parameters = hash.fetch('Parameters', {})
-  #   output_map = {}
-  #   stacks.each do |stack_name, stack_resource|
-  #     remap_nested_parameters(hash, parameters, stack_name, stack_resource, output_map)
-  #   end
-  #   hash['Parameters'] = parameters
-  #   hash['Resources'].each do |resource_name, resource|
-  #     if(resource['Type'] == DEFAULT_STACK_RESOURCE)
-  #       stack = resource['Properties'].delete('Stack')
-  #       if(nested?(stack))
-  #         apply_nesting(stack, &block)
-  #       end
-  #       resource['Properties']['TemplateURL'] = block.call(resource_name, stack)
-  #     end
-  #   end
-  #   if(args.include?(:bubble_outputs))
-  #     outputs_hash = Hash[
-  #       output_map do |name, value|
-  #         [name, {'Value' => {'Fn::GetAtt' => value}}]
-  #       end
-  #     ]
-  #     if(hash['Outputs'])
-  #       hash['Outputs'].merge!(outputs_hash)
-  #     else
-  #       hash['Outputs'] = outputs_hash
-  #     end
-  #   end
-  #   hash
-  # end
-
-
+  # Apply shallow nesting. This style of nesting will bubble
+  # parameters up to the root stack. This type of nesting is the
+  # original and now deprecated, but remains for compat issues so any
+  # existing usage won't be automatically busted.
+  #
+  # @yieldparam resource_name [String] name of stack resource
+  # @yieldparam stack [SparkleFormation] nested stack
+  # @yieldreturn [String] Remote URL storage for template
+  # @return [Hash]
+  def apply_shallow_nesting(*args, &block)
+    if(args.empty?)
+      hash = compile.dump!
+    elsif(args.size == 1 && args.first.is_a?(Hash))
+      hash = args.first
+    else
+      ArgumentError.new 'Only single argument of `Hash` type is allowed'
+    end
+    stacks = Hash[
+      hash['Resources'].find_all do |r_name, resource|
+        [r_name, MultiJson.load(MultiJson.dump(resource))]
+      end
+    ]
+    parameters = hash.fetch('Parameters', {})
+    output_map = {}
+    stacks.each do |stack_name, stack_resource|
+      remap_nested_parameters(hash, parameters, stack_name, stack_resource, output_map)
+    end
+    hash['Parameters'] = parameters
+    hash['Resources'].each do |resource_name, resource|
+      if(resource['Type'] == DEFAULT_STACK_RESOURCE)
+        stack = resource['Properties'].delete('Stack')
+        if(nested?(stack))
+          apply_shallow_nesting(stack, &block)
+        end
+        resource['Properties']['TemplateURL'] = block.call(resource_name, stack)
+      end
+    end
+    if(args.include?(:bubble_outputs))
+      outputs_hash = Hash[
+        output_map do |name, value|
+          [name, {'Value' => {'Fn::GetAtt' => value}}]
+        end
+      ]
+      if(hash['Outputs'])
+        hash['Outputs'].merge!(outputs_hash)
+      else
+        hash['Outputs'] = outputs_hash
+      end
+    end
+    hash
+  end
 
   # @return [Smash<output_name:SparkleFormation>]
   def collect_outputs(*args)
