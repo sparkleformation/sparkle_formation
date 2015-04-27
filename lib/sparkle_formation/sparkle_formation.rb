@@ -510,6 +510,42 @@ class SparkleFormation
     end
   end
 
+  # @return [TrueClass, FalseClass] policies defined
+  def includes_policies?(stack_hash=nil)
+    stack_hash = compile.dump! unless stack_hash
+    stack_hash.fetch('Resources', {}).any? do |name, resource|
+      resource.has_key?('Policy')
+    end
+  end
+
+  # Generate policy for stack
+  #
+  # @return [Hash]
+  # @todo this is very AWS specific, so make this easy for swapping
+  def generate_policy
+    statements = []
+    stack.resources.keys!.each do |r_name, r_object|
+      if(r_object[:policy])
+        r_object.keys!.each do |effect|
+          statements.push(
+            'Effect' => effect.to_s.capitalize,
+            'Action' => [r_object[effect]].flatten.compact.map{|i| "Update:#{i}"},
+            'Resource' => "LogicalResourceId/#{r_name}",
+            'Principal' => '*'
+          )
+        end
+        r_object.delete!(:policy)
+      end
+    end
+    statements.push(
+      'Effect' => 'Allow',
+      'Action' => 'Update:*',
+      'Resource' => '*',
+      'Principal' => '*'
+    )
+    Smash.new('Statement' => statements)
+  end
+
   # Apply nesting logic to stack
   #
   # @param nest_type [Symbol] values: :shallow, :deep (default: :deep)
