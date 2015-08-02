@@ -26,6 +26,7 @@ formats for AWS, Rackspace, Google Compute, and similar services.
   - [Resources](anatomy.md#resources)
   - [Mappings](anatomy.md#mappings)
   - [Outputs](anatomy.md#outputs)
+  - [Nested Stacks](nested_stacks.md)
 - [Intrinsic Functions](functions.md)
   - [Ref](functions.md#ref)
   - [Attr](functions.md#attr)
