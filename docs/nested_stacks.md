@@ -9,7 +9,7 @@ multi-template infrastructure via a single command.
 ## Syntax
 
 The `nest!` method takes a template path argument, and an optional name
-arguments. At its simplest, this will create a nested stack with one
+argument. At its simplest, this will create a nested stack with one
 child, the website template whose local path is  `cloudformation/templates/website.rb`.
 ```ruby
 SparkleFormation.new('nested_stack') do
