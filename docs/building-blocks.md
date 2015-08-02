@@ -103,6 +103,7 @@ SparkleFormation.new('website').load(:base).overrides do
     type 'AWS::AutoScaling::AutoScalingGroup'
     properties do
       availability_zones azs!
+      load_balancer_names [ ref!(:website_elb) ]
       launch_configuration_name ref!(:website_launch_config)
       min_size ref!(:web_nodes)
       max_size ref!(:web_nodes)
