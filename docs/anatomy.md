@@ -79,13 +79,15 @@ end
 
 - website_asg: The autoscaling group containing website nodes. The
 size of the autoscaling group is set to the value of the web_nodes
-parameter. 
+parameter. It is attached to the Elastic Load Balancer created by the
+`:website_elb` resource.
 
 ```ruby
 resources.website_autoscale do
   type 'AWS::AutoScaling::AutoScalingGroup'
   properties do
     availability_zones az!
+    load_balancer_names [ ref!(:website_elb) ]
     launch_configuration_name ref!(:website_launch_config)
     min_size ref!(:web_nodes)
     max_size ref!(:web_nodes)
