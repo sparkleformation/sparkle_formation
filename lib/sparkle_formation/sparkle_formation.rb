@@ -267,7 +267,7 @@ class SparkleFormation
         properties = new_resource.properties
         config_keys = _config.keys.zip(_config.keys.map{|k| snake(k).to_s.tr('_', '')})
         SfnAws.resource(dynamic_name, :properties).each do |prop_name|
-          key = config_keys.detect{|k| k.last == snake(prop_name).to_s.tr('_', '')}.first
+          key = (config_keys.detect{|k| k.last == snake(prop_name).to_s.tr('_', '')} || []).first
           value = _config[key] if key
           if(value)
             if(value.is_a?(Proc))
@@ -664,7 +664,8 @@ class SparkleFormation
       ArgumentError.new 'Only single argument of `Hash` type is allowed'
     end
     stacks = Hash[
-      hash['Resources'].find_all do |r_name, resource|
+      hash.fetch('Resources', {}).find_all do |r_name, resource|
+        resource['Properties']['Stack'] = resource['Properties']['Stack'].compile.dump!
         [r_name, MultiJson.load(MultiJson.dump(resource))]
       end
     ]
