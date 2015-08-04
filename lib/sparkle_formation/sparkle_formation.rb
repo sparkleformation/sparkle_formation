@@ -648,11 +648,7 @@ class SparkleFormation
         stack_template_extractor(stack.nested_stacks(:with_resource, :with_name), &block)
       end
       resource.properties.set!(:stack, stack.compile.dump!)
-      result = block.call(s_name, stack, resource)
-      resource.properties.delete!(:stack)
-      result.each do |key, value|
-        resource.properties.set!(key, value)
-      end
+      block.call(s_name, stack, resource)
     end
   end
 
@@ -687,11 +683,11 @@ class SparkleFormation
     hash['Parameters'] = parameters
     hash['Resources'].each do |resource_name, resource|
       if(resource['Type'] == DEFAULT_STACK_RESOURCE)
-        stack = resource['Properties'].delete('Stack')
+        stack = resource['Properties']['Stack']
         if(nested?(stack))
           apply_shallow_nesting(stack, &block)
         end
-        resource['Properties']['TemplateURL'] = block.call(resource_name, stack)
+        block.call(resource_name, stack, resource)
       end
     end
     if(args.include?(:bubble_outputs))
