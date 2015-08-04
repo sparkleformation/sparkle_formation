@@ -648,7 +648,7 @@ class SparkleFormation
         stack_template_extractor(stack.nested_stacks(:with_resource, :with_name), &block)
       end
       resource.properties.set!(:stack, stack.compile.dump!)
-      result = block.call(s_name, stack.compile.dump!, resource._dump, stack)
+      result = block.call(s_name, stack, resource)
       resource.properties.delete!(:stack)
       result.each do |key, value|
         resource.properties.set!(key, value)
