@@ -637,12 +637,11 @@ class SparkleFormation
   def extract_templates(&block)
     nested_stacks(:with_resource, :with_name).each do |stack, resource, s_name|
       resource.properties.set!(:stack, stack.compile.dump!)
-      #      resource.properties.delete!(:stack)
-      result = block.call(s_name, stack.compile.dump!)
+      result = block.call(s_name, stack.compile.dump!, resource._dump)
+      resource.properties.delete!(:stack)
       result.each do |key, value|
         resource.properties.set!(key, value)
       end
-      resource.properties.set!('TemplateURL', block.call(s_name, stack.compile.dump!))
     end
   end
 
