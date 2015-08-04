@@ -524,17 +524,18 @@ class SparkleFormation
   # @todo this is very AWS specific, so make this easy for swapping
   def generate_policy
     statements = []
-    stack.resources.keys!.each do |r_name, r_object|
-      if(r_object[:policy])
-        r_object.keys!.each do |effect|
+    compile.resources.keys!.each do |r_name|
+      r_object = compile.resources[r_name]
+      if(r_object['Policy'])
+        r_object['Policy'].keys!.each do |effect|
           statements.push(
             'Effect' => effect.to_s.capitalize,
-            'Action' => [r_object[effect]].flatten.compact.map{|i| "Update:#{i}"},
+            'Action' => [r_object['Policy'][effect]].flatten.compact.map{|i| "Update:#{i}"},
             'Resource' => "LogicalResourceId/#{r_name}",
             'Principal' => '*'
           )
         end
-        r_object.delete!(:policy)
+        r_object.delete!('Policy')
       end
     end
     statements.push(
@@ -635,9 +636,19 @@ class SparkleFormation
   # @yieldparam s_name [String] stack resource name
   # @yieldreturn [Hash] key/values to be merged into resource properties
   def extract_templates(&block)
-    nested_stacks(:with_resource, :with_name).each do |stack, resource, s_name|
+    stack_template_extractor(nested_stacks(:with_resource, :with_name), &block)
+  end
+
+  # Run the stack extraction
+  #
+  # @param x_stacks [Array<Array<SparkleFormation, SparkleStruct, String>>]
+  def stack_template_extractor(x_stacks, &block)
+    x_stacks.each do |stack, resource, s_name|
+      unless(stack.nested_stacks.empty?)
+        stack_template_extractor(stack.nested_stacks(:with_resource, :with_name), &block)
+      end
       resource.properties.set!(:stack, stack.compile.dump!)
-      result = block.call(s_name, stack.compile.dump!, resource._dump)
+      result = block.call(s_name, stack.compile.dump!, resource._dump, stack)
       resource.properties.delete!(:stack)
       result.each do |key, value|
         resource.properties.set!(key, value)
