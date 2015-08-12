@@ -64,8 +64,10 @@ class SparkleFormation
         end
       end
       thing = _process_key(thing, :force) if thing.is_a?(Symbol)
-      key = _process_key(key, :force) if key.is_a?(Symbol)
-      {'Fn::FindInMap' => [_process_key(thing), {'Ref' => _process_key(key)}, *suffix]}
+      if(key.is_a?(Symbol))
+        key = ref!(key)
+      end
+      {'Fn::FindInMap' => [thing, key, *suffix]}
     end
     alias_method :_cf_find_in_map, :_cf_map
     alias_method :find_in_map!, :_cf_map
@@ -211,10 +213,10 @@ class SparkleFormation
     # @param v1 [Object]
     # @param v2 [Object]
     # @return [Hash]
-    def _or(v1, v2)
+    def _or(*args)
       {
         'Fn::Or' => _array(
-          *[v1,v2].map{|v|
+          *args.map{|v|
             if(v.is_a?(Symbol) || v.is_a?(String))
               _condition(v)
             else
