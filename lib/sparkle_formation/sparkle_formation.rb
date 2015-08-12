@@ -236,7 +236,16 @@ class SparkleFormation
     #   will be used for directory separator and dashes will match underscores
     def nest(template, struct, *args, &block)
       to_nest = struct._self.sparkle.get(:template, template)
-      resource_name = [template.to_s.gsub('__', '_'), *args].compact.join('_').to_sym
+      # NOTE: Think more about this setup and if we want to do this
+      # (cfn will update stack name and may blow out limit)
+      # this does make it easier when dealing with callbacks, but if
+      # we have sparkle instance instead of dumped json, we can do the
+      # same thing without needing to add more prefixing
+      resource_name = [
+#        struct._self.name,
+        template.to_s.gsub('__', '_'),
+        *args
+      ].compact.join('_').to_sym
       nested_template = self.compile(to_nest[:path], :sparkle)
       nested_template.parent = struct._self
       struct.resources.set!(resource_name) do
