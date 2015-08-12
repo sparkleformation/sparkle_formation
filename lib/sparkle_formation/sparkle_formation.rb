@@ -236,16 +236,7 @@ class SparkleFormation
     #   will be used for directory separator and dashes will match underscores
     def nest(template, struct, *args, &block)
       to_nest = struct._self.sparkle.get(:template, template)
-      # NOTE: Think more about this setup and if we want to do this
-      # (cfn will update stack name and may blow out limit)
-      # this does make it easier when dealing with callbacks, but if
-      # we have sparkle instance instead of dumped json, we can do the
-      # same thing without needing to add more prefixing
-      resource_name = [
-#        struct._self.name,
-        template.to_s.gsub('__', '_'),
-        *args
-      ].compact.join('_').to_sym
+      resource_name = (args.empty? ? template.to_s.gsub('__', '_') : args.map{|a| Bogo::Utility.snake(a)}.join('_')).to_sym
       nested_template = self.compile(to_nest[:path], :sparkle)
       nested_template.parent = struct._self
       struct.resources.set!(resource_name) do
@@ -671,47 +662,28 @@ class SparkleFormation
   # @yieldreturn [String] Remote URL storage for template
   # @return [Hash]
   def apply_shallow_nesting(*args, &block)
-    if(args.empty?)
-      hash = compile.dump!
-    elsif(args.size == 1 && args.first.is_a?(Hash))
-      hash = args.first
-    else
-      ArgumentError.new 'Only single argument of `Hash` type is allowed'
-    end
-    stacks = Hash[
-      hash.fetch('Resources', {}).find_all do |r_name, resource|
-        resource['Properties']['Stack'] = resource['Properties']['Stack'].compile.dump!
-        [r_name, MultiJson.load(MultiJson.dump(resource))]
-      end
-    ]
-    parameters = hash.fetch('Parameters', {})
+    parameters = compile[:parameters] ? compile[:parameters]._dump : {}
     output_map = {}
-    stacks.each do |stack_name, stack_resource|
-      remap_nested_parameters(hash, parameters, stack_name, stack_resource, output_map)
+    nested_stacks(:with_resource, :with_name).each do |stack, stack_resource, stack_name|
+      remap_nested_parameters(compile, parameters, stack_name, stack_resource, output_map)
     end
-    hash['Parameters'] = parameters
-    hash['Resources'].each do |resource_name, resource|
-      if(resource['Type'] == DEFAULT_STACK_RESOURCE)
-        stack = resource['Properties']['Stack']
-        if(nested?(stack))
-          apply_shallow_nesting(stack, &block)
-        end
-        block.call(resource_name, stack, resource)
-      end
+    nested_stacks(:with_resource, :with_name).each do |stack, stack_resource, stack_name|
+      block.call(stack_name, stack, stack_resource)
     end
+    compile.parameters parameters
     if(args.include?(:bubble_outputs))
       outputs_hash = Hash[
         output_map do |name, value|
           [name, {'Value' => {'Fn::GetAtt' => value}}]
         end
       ]
-      if(hash['Outputs'])
-        hash['Outputs'].merge!(outputs_hash)
+      if(compile.outputs)
+        compile._merge(SparkleStruct.new(outputs_hash))
       else
-        hash['Outputs'] = outputs_hash
+        compile.outputs output_hash
       end
     end
-    hash
+    compile.dump!
   end
 
   # @return [Smash<output_name:SparkleFormation>]
@@ -750,10 +722,9 @@ class SparkleFormation
   # @note if parameter has includes `StackUnique` a new parameter will
   #   be added to container stack and it will not use outputs
   def remap_nested_parameters(template, parameters, stack_name, stack_resource, output_map)
-    stack_parameters = stack_resource['Properties']['Stack']['Parameters']
-    if(stack_parameters)
-      template['Resources'][stack_name]['Properties']['Parameters'] ||= {}
-      stack_parameters.each do |pname, pval|
+    stack_parameters = stack_resource.properties.stack.compile.parameters
+    unless(stack_parameters.nil?)
+      stack_parameters._dump.each do |pname, pval|
         if(pval['StackUnique'])
           check_name = [stack_name, pname].join
         else
@@ -765,24 +736,22 @@ class SparkleFormation
           else
             new_val = {'Ref' => check_name}
           end
-          template['Resources'][stack_name]['Properties']['Parameters'][pname] = new_val
+          template.resources.set!(stack_name).properties.parameters.set!(pname, new_val)
         elsif(output_map[check_name])
-          template['Resources'][stack_name]['Properties']['Parameters'][pname] = {
-            'Fn::GetAtt' => output_map[check_name]
-          }
+          template.resources.set!(stack_name).properties.parameters.set!(pname, 'Fn::GetAtt' => output_map[check_name])
         else
           if(pval['Type'] == 'CommaDelimitedList')
             new_val = {'Fn::Join' => [',', {'Ref' => check_name}]}
           else
             new_val = {'Ref' => check_name}
           end
-          template['Resources'][stack_name]['Properties']['Parameters'][pname] = new_val
+          template.resources.set!(stack_name).properties.parameters.set!(pname, new_val)
           parameters[check_name] = pval
         end
       end
     end
-    if(stack_resource['Properties']['Stack']['Outputs'])
-      stack_resource['Properties']['Stack']['Outputs'].keys.each do |oname|
+    unless(stack_resource.properties.stack.compile.outputs.nil?)
+      stack_resource.properties.stack.compile.outputs.keys!.each do |oname|
         output_map[oname] = [stack_name, "Outputs.#{oname}"]
       end
     end
