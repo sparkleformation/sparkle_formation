@@ -236,30 +236,54 @@ class SparkleFormation
     end
     alias_method :no_value!, :_no_value
 
+    # Region generator
+    #
+    # @return [Hash]
     def _region
       _ref('AWS::Region')
     end
     alias_method :region!, :_region
 
+    # Notification ARNs generator
+    #
+    # @return [Hash]
     def _notification_arns
       _ref('AWS::NotificationARNs')
     end
     alias_method :notification_arns!, :_notification_arns
 
+    # Account ID generator
+    #
+    # @return [Hash]
     def _account_id
       _ref('AWS::AccountId')
     end
     alias_method :account_id!, :_account_id
 
+    # Stack ID generator
+    #
+    # @return [Hash]
     def _stack_id
       _ref('AWS::StackId')
     end
     alias_method :stack_id!, :_stack_id
 
+    # Stack name generator
+    #
+    # @return [Hash]
     def _stack_name
       _ref('AWS::StackName')
     end
     alias_method :stack_name!, :_stack_name
+
+    # Resource dependency generator
+    #
+    # @param [Symbol, String, Array<Symbol, String>] resource names
+    # @return [Array<String>]
+    def _depends_on(*args)
+      _set('DependsOn', [args].flatten.compact.map{|s| _process_key(s)})
+    end
+    alias_method :depends_on!, :_depends_on
 
     # Execute system command
     #
