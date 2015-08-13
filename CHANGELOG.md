@@ -1,3 +1,10 @@
+## v0.3.0
+* Update `or!` helper method to take multiple arguments
+* Support non-ref values in `map!` (#19)
+
+_NOTE: This release *could* contain a breaking change. The `map!` method
+will now only auto generate a `ref!` call if the passed value is a symbol._
+
 ## v0.2.12
 * Stubs for template generation parameters
 * Add `no_value!` helper method
