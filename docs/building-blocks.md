@@ -192,8 +192,148 @@ SparkleFormation.new(:with_namespace) do
   )
 end
 ```
+
 which will result in a resource name: `FoobarInstance`
+
+##### Dynamic Return Context
+
+When defining custom dynamics, the result of the dynamic block is important.
+Many times a dynamic can be making multiple modifications to a template when
+inserted (addition of parameters, resources, and/or outputs). It is important
+to be aware of the importance of the value returned from the dynamic block to
+prevent surprise for users. When `dynamic!` is called and provided a block, that
+block is evaluated within the context returned from the requested dynamic.
+
+For example, this is a poor implementation of a dynamic:
+
+```ruby
+SparkleFormation.dynamic(:bad_dynamic) do |_name, _config|
+  dynamic!(:ec2_instance, _name)
+  outputs do
+    address.value attr!("#{_name}_ec2_instance".to_sym, :public_ip)
+  end
+end
+```
+
+If a template attempts to use this dynamic and make an override modification
+to the instance:
+
+```ruby
+SparkleFormation.new(:failed_template) do
+  dynamic!(:bad_dynamic, :foobar) do
+    properties.key_name 'default'
+  end
+end
+```
+
+The `properties.key_name` will be evaluated within the context of the `outputs`
+because it is the returned value of the dynamic block. Instead the dynamic should
+return the context of the referenced resource (if applicable). To make the
+dynamic act as expected, the resource must be returned from the block:
+
+```ruby
+SparkleFormation.dynamic(:bad_dynamic) do |_name, _config|
+  _resource = dynamic!(:ec2_instance, _name)
+  outputs do
+    address.value attr!("#{_name}_ec2_instance".to_sym, :public_ip)
+  end
+  _resource
+end
+```
+
+This ensures the instance resource is the context returned, and provided blocks
+will work as expected:
+
+```ruby
+SparkleFormation.new(:successful_template) do
+  dynamic!(:bad_dynamic, :foobar) do
+    properties.key_name 'default'
+  end
+end
+```
 
 ##### Dynamic Lookup Behavior
 
-##### Dynamic Return Context
+Dynamics can be loaded from multiple locations. When SparkleFormation performs
+a dynamic lookup, the following locations are checked in order of precedence:
+
+1. Implementation local `dynamics` directory
+2. SparklePack dynamics with reverse load order precedence
+3. Builtin dynamics lookup table
+
+### Registries
+
+Registries are lightweight dynamics that are useful for storing items that
+may be used in multiple locations. For example, the valid sizes of an instance
+within an infrastructure will generally be restricted to a specific list.
+This list can be stored within a registry to provide a single point of
+contact for any changes:
+
+```ruby
+SfnRegistry.register(:instance_sizes) do
+  [
+    'm3.large',
+    'm3.medium',
+    't2.medium'
+  ]
+end
+SfnRegistry.register(:instance_size_default){ 'm3.medium' }
+```
+
+With the value registered, it can then be referenced:
+
+```ruby
+SparkleFormation.new(:instance_stack) do
+  parameters.instance_size do
+    type 'String'
+    allowed_values registry!(:instance_sizes)
+    default registry!(:instance_size_default)
+  end
+end
+```
+
+### Templates
+
+Templates are the files that pull all the building block together to produce
+a final data structure to be serialized into a document which can then be
+submitted to an orchestration API. There are three stages of template compilation:
+
+1. Evaluate optional block given on instantiation
+2. Evaluate any loaded components
+3. Evaluate `override` block
+
+#### Instantiation Block
+
+A block provided on instantiation is the first block evaluated:
+
+```ruby
+SparkleFormation.new(:my_template) do
+  dynamic!(:ec2_instance, :foobar)
+end
+```
+
+#### Loaded Components
+
+Components are evaluated in the order they are added to the template via
+the `load` method:
+
+```ruby
+SparkleFormation.new(:my_template) do
+  dynamic!(:ec2_instance, :foobar)
+end.load(:common, :special)
+```
+
+On compilation, this will evaluate the instantiation block first, the `common`
+component second, and finally the `special` component.
+
+#### Overrides
+
+Override blocks are the final blocks evaluated during compilation:
+
+```ruby
+SparkleFormation.new(:my_template) do
+  dynamic!(:ec2_instance, :foobar)
+end.load(:common, :special).overrides do
+  resources.foobar_ec2_instance.properties.key_name 'default'
+end
+```
