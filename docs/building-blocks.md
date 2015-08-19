@@ -1,322 +1,199 @@
 ## SparkleFormation Building Blocks
 
-Using SparkleFormation for the above template has already saved us
-many keystrokes, but what about reusing SparkleFormation code between
-similar stacks? This is where SparkleFormation concepts like
-components, dynamics, and registries come into play.
+SparkleFormation provides a collection of building blocks to
+assist in applying DRY concepts to template generation. The
+building blocks provided by SparkleFormation are:
 
-### Directory Structure
-
-SparkleFormation Files should be stored in a `cloudformation`
-directory with the following subdirectory structure:
-
-```sh
-cloudformation
-└───components
-└───dynamics
-└───registry
-└───templates
-```
-
-The `components`, `dynamics`, and `registry` directories each contatin
-a specific type of SparkleFormation building block. In addition to
-these directories, you should have at least one directory for
-templates (`template`, in the above example). You may have as many
-template directories as you need, and these can be used to organize
-SparkleFormation templates by function, ownership group, or other
-classification system, as in:
-
-```sh
-cloudformation
-└───application
-└───components
-└───database
-└───dynamics
-└───registry
-```
-
-or 
-
-```sh
-cloudformation
-└───canadian_team
-└───components
-└───dynamics
-└───registry
-└───us_team
-```
+- [Components](#components)
+- [Dynamics](#dynamics)
+- [Registries](#registries)
+- [Templates](#templates)
 
 ### Components
 
-Components are static configuration which can be reused between many
-stack templates. In our example case we have decided that all our
-stacks will need to make use of IAM credentials, so we will create
-a component which allows us to insert the two IAM resources into any
-template in a resuable fashion. The component, which we will call
-'base' and put in a file called 'base.rb,' would look like this:
+Components are static pieces of template that are inserted once.
+They do not provide any dynamic functionality and are intended
+for common static content. Components are the second set of items
+loaded during template compilation and are evaluated in the order
+defined.
+
+An example component for an AWS CloudFormation based implementation
+may contain the template versioning information and a common stack
+output value:
 
 ```ruby
-SparkleFormation.build do
+SparkleFormation.component(:common) do
   set!('AWSTemplateFormatVersion', '2010-09-09')
 
-  resources.cfn_user do
-    type 'AWS::IAM::User'
-    properties.path '/'
-    properties.policies array!(
-      -> {
-        policy_name 'cfn_access'
-        policy_document.statement array!(
-          -> {
-            effect 'Allow'
-            action 'cloudformation:DescribeStackResource'
-            resource '*' 
-          }
-        )
-      }
-    )
-  end
-
-  resources.cfn_keys do
-    type 'AWS::IAM::AccessKey'
-    properties.user_name ref!(:cfn_user)
+  outputs.creator do
+    description 'Stack creator'
+    value ENV['USER']
   end
 end
 ```
 
-After moving these resources out of the initial template and into a
-component, we will update the template so that the base component is
-loaded on the first line, and the resources it contains are no longer
-present in the template itself:
+There are two supported ways of creating components:
+
+* Path based components
+* Name based components
+
+#### Path based components
+
+Path based components are components that infer their name based on
+the base name of a file. These types of components use the `SparkleFormation.build`
+method, which does not accept a name argument. For example:
 
 ```ruby
-SparkleFormation.new('website').load(:base).overrides do
-
-  description 'Supercool Website'
-
-  parameters.web_nodes do
-    type 'Number'
-    description 'Number of web nodes for ASG.'
-    default 2
-  end
-
-  resources.website_autoscale do
-    type 'AWS::AutoScaling::AutoScalingGroup'
-    properties do
-      availability_zones azs!
-      load_balancer_names [ ref!(:website_elb) ]
-      launch_configuration_name ref!(:website_launch_config)
-      min_size ref!(:web_nodes)
-      max_size ref!(:web_nodes)
-    end
-  end
-
-  resources.website_launch_config do
-    type 'AWS::AutoScaling::LaunchConfiguration'
-    properties do
-      image_id 'ami-12345678'
-      instance_type 'm3.medium'
-    end
-  end
-
-  resources.website_elb do
-    type 'AWS::ElasticLoadBalancing::LoadBalancer'
-    properties do
-      availability_zones azs!
-      listeners _array(
-        -> {
-          load_balancer_port '80'
-          protocol 'HTTP'
-          instance_port '80'
-          instance_protocol 'HTTP'
-        }
-      )
-      health_check do
-        target 'HTTP:80/'
-        healthy_threshold '3'
-        unhealthy_threshold '3'
-        interval '10'
-        timeout '8'
-      end
-    end
-  end
+# components/common.rb
+SparkleFormation.build do
+   ...
 end
 ```
+
+The name of this component will be `common`.
+
+#### Name based components
+
+Name based components are components whose names are explicitly
+defined. These types of components use the `SparkleFormation.component`
+method, which accepts a name argument. For example:
+
+```ruby
+# components/my-common-component.rb
+SparkleFormation.component(:core) do
+  ...
+end
+```
+
+The name of this component will be `core` as it is explicitly provided
+when creating the component. These name based components are specifically
+geared towards usage in "sparkle packs" or any other implementations where
+a single file may provide multiple components or building blocks, or where
+the file name may be required to be different from the name of the component.
 
 ### Dynamics
 
-Like components, dynamics are another SparkleFormation feature which
-enables code reuse between stack templates. Where components are
-static, dynamics are useful for creating unique resources via
-the passing of arguments.
+Dynamics are reusable blocks of code that can be applied multiple times
+within the same template to provide multiple discrete sets of content.
+They provide the ability to refactor common template content out into
+reusable and configurable dynamics that can then be re-inserted using
+customized naming structures. Dynamics _always_ explicitly define their
+name when creating unlike components which optionally supports explict
+naming.
 
-In our example scenario we have decided that we want to use elastic
-load balancer resources in many of our stack templates, we want to
-create a dynamic which makes inserting ELB resources much easier than
-copying the full resource configuration between templates.
+Dynamics are registered blocks which accept two parameters:
 
-The resulting implementation would look something like this:
+1. Name for the dynamic call
+2. Configuration Hash for the dynamic call
+
+Here is an example dynamic:
 
 ```ruby
-SparkleFormation.dynamic(:elb) do |_name, _config={}|
-  resources("#{_name}_elb".to_sym) do
-    type 'AWS::ElasticLoadBalancing::LoadBalancer'
-    properties do
-      availability_zones azs!
-      listeners array!(
-        -> {
-          load_balancer_port _config[:load_balancer_port] || '80'
-          protocol _config[:protocol] || 'HTTP'
-          instance_port _config[:instance_port] || '80'
-          instance_protocol _config[:instance_protocol] || 'HTTP'
-        }
-      )
-      health_check do
-        target _config[:target] || 'HTTP:80/'
-        healthy_threshold _config[:healthy_threshold] || '3'
-        unhealthy_threshold _config[:unhealthy_threshold] || '3'
-        interval _config[:interval] || '10'
-        timeout _config[:timeout] || '8'
-      end
+# dynamics/node.rb
+SparkleFormation.dynamic(:node) do |_name, _config={}|
+  unless(_config[:ssh_key])
+    parameters.set!("#{_name}_ssh_key".to_sym) do
+      type 'String'
     end
+  end
+  dynamic!(:ec2_instance, _name).properties do
+    key_name _config[:ssh_key] ? _config[:ssh_key] : ref!("#{_name}_ssh_key".to_sym)
   end
 end
 ```
 
-This dynamic accepts two arguments: `_name` (a string, required) and `_config`
-(a hash, optional). The dynamic will use the values passed in these
-arguments to generate a new ELB resource, and override the default ELB
-properties wherever a corresponding key/value pair is provided in the
-`_config` hash.
+_NOTE: The underscore (`_`) prefix on the parameter names are simply a convention
+and not required. It is a convention to make it easier to identify variables
+used within the dynamic, and its usage is completely author dependent._
 
-Once updated to make use of the new ELB dynamic, our template looks
-like this:
+The dynamic defines two parameters: `_name` and `_config`. The `_config`
+parameter is defaulted to an empty Hash allowing the dynamic call to optionally
+accept a configuration Hash. With this dynamic in place, it can be called
+multiple times within a template:
 
 ```ruby
-SparkleFormation.new('website').load(:base).overrides do
-
-  description 'Supercool Website'
-
-  parameters.web_nodes do
-    type 'Number'
-    description 'Number of web nodes for ASG.'
-    default 2
-  end
-
-  resources.website_autoscale do
-    type 'AWS::AutoScaling::AutoScalingGroup'
-    properties do
-      availability_zones azs!
-      launch_configuration_name ref!(:website_launch_config)
-      min_size ref!(:web_nodes)
-      max_size ref!(:web_nodes)
-    end
-  end
-
-  resources.website_launch_config do
-    type 'AWS::AutoScaling::LaunchConfiguration'
-    properties do
-      image_id 'ami-12345678'
-      instance_type 'm3.medium'
-    end
-  end
-
-  dynamic!(:elb, 'website')
+SparkleFormation.new(:node_stack) do
+  dynamic!(:node, :fubar)
+  dynamic!(:node, :foobar, :ssh_key => 'default')
 end
 ```
 
-If we wanted to override the default configuration for the ELB,
-e.g. to configure the ELB to listen on and communicate with back-end
-node on port 8080 instead of 80, we can specify these override values
-in the configuration passed to the ELB dynamic:
+#### Builtin Dynamics
+
+SparkleFormation includes a lookup of known AWS resources which can be accessed
+using the `dynamic!` method. This lookup is provided simply as a convenience
+to speed development and compact implementations. When a builtin is inserted,
+it will automatically set the `type` of the resource and evaluate an optionally
+provided block within the resource. The following two template below will generate
+equivalent results when compiled:
 
 ```ruby
-  dynamic!(:elb, 'website', :load_balancer_port => 8080, :instance_port => 8080)
+SparkleFormation.new(:with_dynamic) do
+  dynamic!(:ec2_instance, :fubar).properties.key_name 'default'
+end
 ```
 
-We're passing three arguments here:
-
-1. `:elb` is the name of the dynamic to insert, as a ruby symbol
-2. A name string (`'website'`), which is passed to `_name` in the
-dynamic. This is prepended to the resource name in the dynamic,
-resulting in a unique resource name.
-3. The ELB ports to configure as key/value pairs. These are passed into the dynamic as
-the `_config` hash.
-
-### Registries
-
-Similar to dynamics, registries are reusable resource configuration
-code which can be reused inside different resource definitions.
-
-Registries are useful for defining properties that may be reused
-between resources of different types. For example, the
-LaunchConfiguration and Instance resource types make use of metadata
-properties which inform both resource types how to bootstrap one or
-more instances.
-
-In our example scenario we would like our new instances to run
-'sudo apt-get update && sudo apt-get upgrade -y' at first boot,
-regardless of whether or not the instances are members of an
-autoscaling group.
-
-Because these resources are of different types, placing the metadata
-required for this task directly inside a dynamic isn't going to work
-quite the way we need. Instead we can put this inside a registry which
-can be inserted into the resources defined in one or more dynamics:
-
 ```ruby
-SparkleFormation::Registry.register(:apt_get_update) do
-  metadata('AWS::CloudFormation::Init') do
-    _camel_keys_set(:auto_disable)
-    config do
-      commands('01_apt_get_update') do
-        command 'sudo apt-get update'
-      end
-      commands('02_apt_get_upgrade') do
-        command 'sudo apt-get upgrade -y'
-      end
-    end
+SparkleFormation.new(:without_dynamic) do
+  resources.fubar_ec2_instance do
+    type 'AWS::EC2::Instance'
+    properties.key_name 'default'
   end
 end
 ```
 
-By default, keys and symbols are converted to the camel
-casing used throughout CloudFormation. `_camel_keys_set(:auto_disable)` removes the automatic camel
-casing for the block that follows.
+##### Builtin Lookup Behavior
 
-Now we can insert this registry entry into our existing template, to
-ensure that apt is updated upon provisioning:
+Builtin lookups are based on the resource type. Resource matching is performed
+using a *suffix based* match. When searching for matching types, the _first_
+match is used. For example:
 
 ```ruby
-SparkleFormation.new(:website).load(:base).overrides do
-
-  description 'Supercool Website'
-
-  parameters.web_nodes do
-    type 'Number'
-    description 'Number of web nodes for ASG.'
-    default 2
-  end
-
-  resources.website_autoscale do
-    type 'AWS::AutoScaling::AutoScalingGroup'
-    properties do
-      availability_zones azs!
-      launch_configuration_name ref!(:website_launch_config)
-      min_size ref!(:web_nodes)
-      max_size ref!(:web_nodes)
-    end
-  end
-
-  resources.website_launch_config do
-    type 'AWS::AutoScaling::LaunchConfiguration'
-    registry!(:apt_get_update, 'website')
-    properties do
-      image_id 'ami-12345678'
-      instance_type 'm3.medium'
-    end
-  end
-
-  dynamic!(:elb, 'website')
-
+SparkleFormation.new(:class_only) do
+  dynamic!(:instance, :foobar)
 end
 ```
+
+When the lookup is performed, this will match the `AWS::EC2::Instance` resource.
+This may not be the correct match, however, since there is also an
+`AWS::OpsWorks::Instance` resource type. The correct lookup can be forced (if
+the `OpsWorks` resource is the desired resource) by providing the namespace
+prefix:
+
+```ruby
+SparkleFormation.new(:with_namespace) do
+  dynamic!(:opsworks_instance, :foobar)
+end
+```
+
+This can also be taken a step further by including the `AWS` namespace as well:
+
+```ruby
+SparkleFormation.new(:with_namespace) do
+  dynamic!(:aws_opsworks_instance, :foobar)
+end
+```
+
+but will likely be a bit superfluous. It is also important to note the name
+of the generated resource is dependent on the value of the first parameter.
+The resultant resource names from the above three examples will be:
+
+* FoobarInstance
+* FoobarOpsworksInstance
+* FoobarAwsOpsworksInstance
+
+The value used for the suffix of the resource name can be provided with
+the `dynamic!` call:
+
+```ruby
+SparkleFormation.new(:with_namespace) do
+  dynamic!(:aws_opsworks_instance, :foobar,
+    :resource_suffix_name => :instance
+  )
+end
+```
+which will result in a resource name: `FoobarInstance`
+
+##### Dynamic Lookup Behavior
+
+##### Dynamic Return Context
