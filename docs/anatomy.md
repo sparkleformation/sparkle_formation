@@ -8,8 +8,17 @@ style template as it is the most widely implemented.
 
 ### AWS CloudFormation in SparkleFormation
 
+- [Base Attributes](#base-attributes)
+- [Parameters](#parameters)
+- [Mappings](#mappings)
+- [Conditions](#conditions)
+- [Resources](#resources)
+- [Outputs](#outputs)
+
+#### Base Attributes
+
 All templates must begin with the expected API version and may include a description
-and or meatadata:
+and or metadata:
 
 ```ruby
 SparkleFormation.new(:template) do
