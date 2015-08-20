@@ -20,22 +20,23 @@ AWS, Rackspace, OpenStack, GCE, and other similar services.
 
 - [Getting Started](#getting-started)
 - [Building Blocks](building-blocks.md)
+  - [SparkleFormation DSL](building-blocks.md#the-dsl)
   - [Components](building-blocks.md#components)
   - [Dynamics](building-blocks.md#dynamics)
   - [Registries](building-blocks.md#registries)
+  - [Templates](building-blocks.md#templates)
 - [Template Anatomy](anatomy.md)
+  - [Base Attributes](anatomy.md#base-attributes)
   - [Parameters](anatomy.md#parameters)
-  - [Resources](anatomy.md#resources)
   - [Mappings](anatomy.md#mappings)
+  - [Conditions](anatomy.md#conditions)
+  - [Resources](anatomy.md#resources)
   - [Outputs](anatomy.md#outputs)
+- [Library Features]
+  - [Helper Methods](helper_methods.md)
   - [Nested Stacks](nested_stacks.md)
-- [Intrinsic Functions](functions.md)
-  - [Ref](functions.md#ref)
-  - [Attr](functions.md#attr)
-  - [Join](functions.md#join)
-- [Universal Properties](properties.md)
- - [Tags](properties.md#tags)
-- [Provisioning](provisioning.md)
+    - [Shallow Nesting](nested_stacks.md#shallow-nesting)
+    - [Deep Nesting](nested_stacks.md#deep-nesting)
 
 ## Getting Started
 
