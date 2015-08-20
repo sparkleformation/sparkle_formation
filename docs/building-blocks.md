@@ -1,5 +1,19 @@
 ## SparkleFormation Building Blocks
 
+### The DSL
+
+The SparkleFormation DSL (domain specific language) is based
+on (and built on top of) the AttributeStruct library. This
+provides SparkleFormation with its free-form behavior and
+allows immediate support of any template style or API
+updates requiring modifications to existing templates.
+
+For more information on the DSL features provided by the
+AttributeStruct library, refer to the AttributeStruct
+documentation.
+
+### Building Blocks
+
 SparkleFormation provides a collection of building blocks to
 assist in applying DRY concepts to template generation. The
 building blocks provided by SparkleFormation are:
