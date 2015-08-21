@@ -116,9 +116,9 @@ SparkleFormation.dynamic(:node) do |_name, _config={}|
 end
 ```
 
-_NOTE: The underscore (`_`) prefix on the parameter names are simply a convention
+*NOTE: The underscore (`_`) prefix on the parameter names are simply a convention
 and not required. It is a convention to make it easier to identify variables
-used within the dynamic, and its usage is completely author dependent._
+used within the dynamic, and its usage is completely author dependent.*
 
 The dynamic defines two parameters: `_name` and `_config`. The `_config`
 parameter is defaulted to an empty Hash allowing the dynamic call to optionally
