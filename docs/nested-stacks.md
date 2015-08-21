@@ -161,6 +161,24 @@ _NOTE: One issue quickly encountered with parameter heavy nested stacks
 is resource limits on the number of parameters allowed within a single
 stack. Using deep stack nesting prevents this issue._
 
+#### Shallow Nesting Usage
+
+Shallow nesting is performed by calling `SparkleFormation#apply_nesting`.
+The method expects a block to be provided. This block handles storage
+of the nested stack template (if required) and any updates to the
+original stack resource.
+
+```ruby
+sfn = SparkleFormation.compile(template_path, :sparkle)
+
+sfn.apply_nesting(:shallow) do |stack_name, nested_stack_sfn, original_stack_resource|
+  template_content = nested_stack_cfn.compile.dump!
+  # store the template content as required, set remote location as `template_url`
+  original_stack_resource.properites.delete!(:stack)
+  original_stack_resource.properties.set!('TemplateURL', template_url)
+end
+```
+
 ### Deep Nesting
 
 Deep stack nesting is an expansion of the shallow stack nesting functionality.
@@ -258,4 +276,22 @@ the output to the root stack. Once it is available at the root stack, it can
 be passed to the `application` stack resource:
 
 ```json
+```
+
+#### Deep Nesting Usage
+
+Deep nesting is performed by calling `SparkleFormation#apply_nesting`.
+The method expects a block to be provided. This block handles storage
+of the nested stack template (if required) and any updates to the
+original stack resource.
+
+```ruby
+sfn = SparkleFormation.compile(template_path, :sparkle)
+
+sfn.apply_nesting(:deep) do |stack_name, nested_stack_sfn, original_stack_resource|
+  template_content = nested_stack_cfn.compile.dump!
+  # store the template content as required, set remote location as `template_url`
+  original_stack_resource.properites.delete!(:stack)
+  original_stack_resource.properties.set!('TemplateURL', template_url)
+end
 ```
