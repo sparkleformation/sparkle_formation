@@ -28,7 +28,9 @@ action based on load order (last loaded retains highest precedence).
 The explicit building block methods must be used when creating
 a SparklePack. Usage of implicit methods (like `SparkleFormation.build`
 instead of `SparkleFormation.component`) is currently working but
-should be considered un-supported.
+should be considered un-supported. The explicit methods also allow
+more flexibility on the layout of files since the file system structure
+and file naming are decoupled.
 
 ### Layout
 
@@ -52,7 +54,9 @@ A customized pack can be provided on instantiation to override this
 behavior:
 
 ```ruby
-root_pack = SparkleFormation::SparklePack.new(:root => PATH_TO_PACK)
+root_pack = SparkleFormation::SparklePack.new(
+  :root => PATH_TO_PACK
+)
 sfn = SparkleFormation.new(:my_template, :sparkle => root_pack) do
   # Define template
 end
@@ -68,46 +72,87 @@ SparkleFormation.
 Building from the previous example, adding a additional pack:
 
 ```ruby
-root_pack = SparkleFormation::SparklePack.new(:root => PATH_TO_PACK)
-custom_pack = SparkleFormation::SparklePack.new(:root => PATH_TO_PACK)
-sfn = SparkleFormation.new(:my_template, :sparkle => custom_pack)
+root_pack = SparkleFormation::SparklePack.new(
+  :root => PATH_TO_PACK
+)
+custom_pack = SparkleFormation::SparklePack.new(
+  :root => PATH_TO_PACK
+)
+
+sfn = SparkleFormation.new(
+  :my_template,
+  :sparkle => custom_pack
+)
 sfn.sparkle.add_sparkle(custom_pack)
 ```
 
-When a lookup occurs, SparkleFormation will first look in the `root_pack`
-for a match. If no match is located, it will then move on to the
-`custom_pack` seeking a match. By default new packs added will retain
-higher precedence than existing packs already added:
+With this `custom_pack` added to the collection, the SparkleFormation
+lookup for building blocks will follow the order:
+
+1. `root_pack`
+2. `custom_pack`
+
+By default new packs added will retain higher precedence than existing
+packs already added:
 
 ```ruby
-root_pack = SparkleFormation::SparklePack.new(:root => PATH_TO_PACK)
-custom_pack = SparkleFormation::SparklePack.new(:root => PATH_TO_PACK)
-override_patck = SparkleFormation::SparklePack.new(:root => PATH_TO_PACK)
-sfn = SparkleFormation.new(:my_template, :sparkle => custom_pack)
+root_pack = SparkleFormation::SparklePack.new(
+  :root => PATH_TO_PACK
+)
+custom_pack = SparkleFormation::SparklePack.new(
+  :root => PATH_TO_PACK
+)
+override_patck = SparkleFormation::SparklePack.new(
+  :root => PATH_TO_PACK
+)
+
+sfn = SparkleFormation.new(
+  :my_template,
+  :sparkle => custom_pack
+)
 sfn.sparkle.add_sparkle(custom_pack)
 sfn.sparkle.add_sparkle(override_pack)
 ```
 
+
 In the above example `override_pack` holds the second highest precedence
-(the `root_pack` always holding the highest). Lookups will now start
-at the `root_pack`, move to the `override_pack`, and finally move to
-the `custom_pack`.
+(the `root_pack` always holding the highest). Lookups will now have the
+following order:
+
+1. `root_pack`
+2. `override_pack`
+3. `custom_pack`
 
 It is possible to force a pack to the lowest precedence level when
 adding:
 
 ```ruby
-root_pack = SparkleFormation::SparklePack.new(:root => PATH_TO_PACK)
-custom_pack = SparkleFormation::SparklePack.new(:root => PATH_TO_PACK)
-base_patck = SparkleFormation::SparklePack.new(:root => PATH_TO_PACK)
-sfn = SparkleFormation.new(:my_template, :sparkle => custom_pack)
+root_pack = SparkleFormation::SparklePack.new(
+  :root => PATH_TO_PACK
+)
+custom_pack = SparkleFormation::SparklePack.new(
+  :root => PATH_TO_PACK
+)
+base_patck = SparkleFormation::SparklePack.new(
+  :root => PATH_TO_PACK
+)
+
+sfn = SparkleFormation.new(
+  :my_template,
+  :sparkle => custom_pack
+)
 sfn.sparkle.add_sparkle(custom_pack)
 sfn.sparkle.add_sparkle(base_pack, :low)
 ```
 
 This example demonstrates how to add a pack at the lowest precedence
 level allowing currently registered SparklePacks to retain their
-existing precedence. In this example the lookup will start at the
-`root_pack`, move to the `custom_pack`, and finally move to the
-`base_pack`. This behavior is _non-default_ so ensure it is the
-expected behavior within an implementation.
+existing precedence. Lookups in this example will have the
+following order:
+
+1. `root_pack`
+2. `custom_pack`
+3. `base_pack`
+
+This behavior is _non-default_ so ensure it is the expected behavior
+within an implementation.
