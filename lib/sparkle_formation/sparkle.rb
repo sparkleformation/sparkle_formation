@@ -274,4 +274,6 @@ class SparkleFormation
     end
 
   end
+  # Alias for interfacing naming
+  SparklePack = Sparkle
 end
