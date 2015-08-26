@@ -334,7 +334,7 @@ class SparkleFormation
     @name = name.to_sym
     @component_paths = []
     @sparkle = SparkleCollection.new
-    @sparkle.add_sparkle(
+    @sparkle.set_root(
       Sparkle.new(
         Smash.new.tap{|h|
           s_path = options.fetch(:sparkle_path,
@@ -344,8 +344,7 @@ class SparkleFormation
             h[:root] = s_path
           end
         }
-      ),
-      :high
+      )
     )
     unless(options[:disable_aws_builtins])
       require 'sparkle_formation/aws'
