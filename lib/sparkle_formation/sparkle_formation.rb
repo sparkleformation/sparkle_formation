@@ -496,7 +496,7 @@ class SparkleFormation
   # @return [TrueClass, FalseClass] includes nested stacks
   def nested?(stack_hash=nil)
     stack_hash = compile.dump! unless stack_hash
-    !!stack_hash['Resources'].detect do |r_name, resource|
+    !!stack_hash.fetch('Resources', {}).detect do |r_name, resource|
       resource['Type'] == DEFAULT_STACK_RESOURCE
     end
   end
