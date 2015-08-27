@@ -284,5 +284,5 @@ The resultant data structure after compiling:
   }
 }
 ```
-> NOTE: No key modification is performed when using `_data` as it is
+> NOTE: No key modification is performed when using `data!` as it is
 > simply a Hash instance.
