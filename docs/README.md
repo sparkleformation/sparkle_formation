@@ -32,7 +32,7 @@ AWS, Rackspace, OpenStack, GCE, and other similar services.
   - [Conditions](anatomy.md#conditions)
   - [Resources](anatomy.md#resources)
   - [Outputs](anatomy.md#outputs)
-- [Library Features]
+- Library Features
   - [Helper Methods](helper_methods.md)
   - [Nested Stacks](nested-stacks.md)
     - [Shallow Nesting](nested-stacks.md#shallow-nesting)
