@@ -19,8 +19,10 @@ AWS, Rackspace, OpenStack, GCE, and other similar services.
 ## Table of Contents
 
 - [Getting Started](#getting-started)
+- [The DSL](sparkleformation-dsl.md)
+  - [Behavior](sparkleformation-dsl.md#behavior)
+  - [Features](sparkleformation-dsl.md#features)
 - [Building Blocks](building-blocks.md)
-  - [SparkleFormation DSL](building-blocks.md#the-dsl)
   - [Components](building-blocks.md#components)
   - [Dynamics](building-blocks.md#dynamics)
   - [Registries](building-blocks.md#registries)
