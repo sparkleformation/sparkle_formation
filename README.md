@@ -114,6 +114,15 @@ concepts to infrastructure codebases easing maintainability.
 
 > [Learn more!](https://sparkleformation.github.io/sparkle_formation/UserDocs/building-blocks.html)
 
+## SparkleFormation Implementations
+
+SparkleFormation itself is simply a library for building complex template
+documents in Ruby. It does not provide any integrations with remote API
+services. For interacting with remote services using the SparkleFormation
+library, see the SparkleFormation CLI application:
+
+* [SparkleFormation CLI (sfn)](https://github.com/sparkleformation/sfn)
+
 # Infos
 * Documentation: http://sparkleformation.github.io/sparkle_formation
 * User Documentation: http://sparkleformation.github.io/sparkle_formation/UserDocs/README.html
