@@ -5,7 +5,7 @@ SparkleFormation.new('ec2_example').load(:ami).overrides do
   dynamic!(:ec2_instance, :my) do
     properties do
       key_name ref!(:key_name)
-      image_id map!(:region_map, 'AWS::Region', :ami)
+      image_id map!(:region_map, region!, :ami)
       user_data base64!('80')
     end
   end
