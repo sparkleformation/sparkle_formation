@@ -34,9 +34,11 @@ AWS, Rackspace, OpenStack, GCE, and other similar services.
   - [Outputs](anatomy.md#outputs)
 - [Library Features]
   - [Helper Methods](helper_methods.md)
-  - [Nested Stacks](nested_stacks.md)
-    - [Shallow Nesting](nested_stacks.md#shallow-nesting)
-    - [Deep Nesting](nested_stacks.md#deep-nesting)
+  - [Nested Stacks](nested-stacks.md)
+    - [Shallow Nesting](nested-stacks.md#shallow-nesting)
+    - [Deep Nesting](nested-stacks.md#deep-nesting)
+  - [Sparkle Packs](sparkle-packs.md)
+  - [Translation](translation.md)
 
 ## Getting Started
 
@@ -45,6 +47,3 @@ templates. This documentation is focused mainly on the library specific
 features and functionality. For user documentation focused on building and
 generating infrastructure with SparkleFormation, please refer to the
 sfn documentation.
-
-[cloudformation]: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-guide.html
-[heat]: http://docs.openstack.org/developer/heat/template_guide/index.html
