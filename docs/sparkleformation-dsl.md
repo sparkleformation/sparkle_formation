@@ -141,7 +141,7 @@ The resultant data structure after compiling:
 {
   "Parameters": {
     "creator": {
-      "Default": "spox"
+      "Default": "spox",
       "Type": "String"
     },
     "author": {
@@ -155,9 +155,9 @@ The resultant data structure after compiling:
   }
 }
 ```
-## Features
+### Features
 
-### Data Access
+#### Data Access
 
 As a SparkleFormation template is compiled it is dynamically
 building the data structure defined by the template. Because
@@ -167,3 +167,122 @@ state of the data structure as it exists _at that specific
 time_. This allows for inspecting previously defined data
 and using that data for decision making, or to copy/modify into
 other locations.
+
+##### Local Context Data
+
+When using block style syntax in the DSL an optional parameter
+can be defined for the block. If provided, AttributeStruct will
+pass the local AttributeStruct instance to the block when it
+is executed:
+
+```ruby
+SparkleFormation.new(:test) do
+  parameters.creator.default 'spox'
+  parameters do |params|
+    author.default params.creator.default
+  end
+end
+```
+
+The resultant data structure after compiling:
+
+```ruby
+{
+  "Parameters": {
+    "Creator": {
+      "Default": "spox"
+    },
+    "Author": {
+      "Default": "spox"
+    }
+  }
+}
+```
+
+##### Parent Context Data
+
+It is possible to access the parent context data from the current
+context:
+
+```ruby
+SparkleFormation.new(:test) do
+  parameters.creator.default 'spox'
+  parameters.author do
+    default parent!.creator.default
+  end
+end
+```
+
+The resultant data structure after compiling:
+
+```ruby
+{
+  "Parameters": {
+    "Creator": {
+      "Default": "spox"
+    },
+    "Author": {
+      "Default": "spox"
+    }
+  }
+}
+```
+
+
+##### Root Context Data
+
+It is possible to access the root context data from the current
+context:
+
+```ruby
+SparkleFormation.new(:test) do
+  parameters.creator.default 'spox'
+  parameters.author.default root!.parameters.creator.default
+end
+```
+
+The resultant data structure after compiling:
+
+```ruby
+{
+  "Parameters": {
+    "Creator": {
+      "Default": "spox"
+    },
+    "Author": {
+      "Default": "spox"
+    }
+  }
+}
+```
+
+##### Raw Access
+
+The raw Hash instance holding the data of the current context
+can be reached using the `data!` method:
+
+```ruby
+SparkleFormation.new(:test) do
+  parameters.creator.default 'spox'
+  if(data!['Creator'].default == 'spox')
+    parameters.author.default 'xops'
+  end
+end
+```
+
+The resultant data structure after compiling:
+
+```ruby
+{
+  "Parameters": {
+    "Creator": {
+      "Default": "spox"
+    },
+    "Author": {
+      "Default": "xops"
+    }
+  }
+}
+```
+> NOTE: No key modification is performed when using `_data` as it is
+> simply a Hash instance.
