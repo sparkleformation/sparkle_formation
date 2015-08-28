@@ -3,6 +3,58 @@ require 'sparkle_formation'
 class SparkleFormation
   class Sparkle
 
+    class << self
+
+      @@_pack_registry = Smash.new
+
+      # Register a SparklePack for short name access
+      #
+      # @param name [String, Symbol] name of pack
+      # @param path [String] path to pack
+      # @return [Array<String:name, String:path>]
+      def register!(name=nil, path=nil)
+        unless(path)
+          idx = caller.index do |item|
+            item.end_with?("`register!'")
+          end
+          if(idx)
+            file = caller[idx.next].split(':', 2).first
+            path = File.join(File.dirname(file), 'sparkleformation')
+            unless(File.directory?(path))
+              path = nil
+            end
+          end
+        end
+        unless(name)
+          if(path)
+            name = path.split(File::PATH_SEPARATOR)[-2]
+          end
+        end
+        unless(path)
+          raise ArgumentError.new('No SparklePack path provided and failed to auto-detect!')
+        end
+        unless(name)
+          raise ArgumentError.new('No SparklePack name provided and failed to auto-detect!')
+        end
+        @@_pack_registry[name] = path
+        [name, path]
+      end
+
+      # Return the path to the SparkePack registered with the given
+      # name
+      #
+      # @param name [String, Symbol] name of pack
+      # @return [String] path
+      def path(name)
+        if(@@_pack_registry[name])
+          @@_pack_registry[name]
+        else
+          raise KeyError.new "No pack registered with requested name: #{name}!"
+        end
+      end
+
+    end
+
     # Wrapper for evaluating sfn files to store within sparkle
     # container and remove global application
     def eval_wrapper
