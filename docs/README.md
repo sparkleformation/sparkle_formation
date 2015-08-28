@@ -35,7 +35,7 @@ AWS, Rackspace, OpenStack, GCE, and other similar services.
   - [Resources](anatomy.md#resources)
   - [Outputs](anatomy.md#outputs)
 - Library Features
-  - [Helper Methods](helper_methods.md)
+  - [Helper Methods](helper-methods.md)
   - [Nested Stacks](nested-stacks.md)
     - [Shallow Nesting](nested-stacks.md#shallow-nesting)
     - [Deep Nesting](nested-stacks.md#deep-nesting)

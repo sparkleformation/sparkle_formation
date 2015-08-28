@@ -3,7 +3,7 @@
 ### Building Blocks
 
 SparkleFormation provides a collection of building blocks to
-assist in applying DRY concepts to template generation. The
+assist in applying [DRY][1] concepts to template generation. The
 building blocks provided by SparkleFormation are:
 
 - [Components](#components)
@@ -339,3 +339,5 @@ end.load(:common, :special).overrides do
   resources.foobar_ec2_instance.properties.key_name 'default'
 end
 ```
+
+[1]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
