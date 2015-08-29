@@ -23,11 +23,15 @@ class SparkleFormation
             unless(File.directory?(path))
               path = nil
             end
+            unless(name)
+              name = File.basename(caller[idx.next].split(':', 2).first)
+              name.sub!(File.extname(name), '')
+            end
           end
         end
         unless(name)
           if(path)
-            name = path.split(File::PATH_SEPARATOR)[-2]
+            name = path.split(File::PATH_SEPARATOR)[-3].to_s
           end
         end
         unless(path)
