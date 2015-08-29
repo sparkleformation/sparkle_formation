@@ -1,3 +1,14 @@
+## v1.0.0
+
+> NOTE: This is a major version release. It includes multiple
+> implementation updates that may cause breakage.
+
+* Add SparklePacks for isolation and distribution
+* Add SparkleFormation.component method for defining components
+* Support fully recursive nesting and parameter / output mapping
+* Support previous nesting style (shallow) and new style (deep)
+* Include support for in-line stack policy extraction
+
 ## v0.3.0
 * Update `or!` helper method to take multiple arguments
 * Support non-ref values in `map!` (#19)
