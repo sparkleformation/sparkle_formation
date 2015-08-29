@@ -2,13 +2,25 @@ require 'sparkle_formation'
 
 class SparkleFormation
   # Provides a collection of sparkles
+  # @todo add unmemoize behavior on collection modification to prevent
+  # leak on long running processes with long lasting collections
   class SparkleCollection < Sparkle
 
     # Create a new collection of sparkles
     #
     # @return [self]
     def initialize(*_)
+      @root = nil
       @sparkles = []
+    end
+
+    # Set the root sparkle which forces highest precedence
+    #
+    # @param sparkle [Sparkle]
+    # @return [self]
+    def set_root(sparkle)
+      @root = sparkle
+      self
     end
 
     # Add new sparkle to collection
@@ -120,7 +132,9 @@ class SparkleFormation
     protected
 
     # @return [Array<Sparkle>]
-    attr_reader :sparkles
+    def sparkles
+      @sparkles + [@root]
+    end
 
     # @return [String] checksum of sparkles
     def checksum
