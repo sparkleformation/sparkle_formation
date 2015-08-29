@@ -40,6 +40,7 @@ AWS, Rackspace, OpenStack, GCE, and other similar services.
     - [Shallow Nesting](nested-stacks.md#shallow-nesting)
     - [Deep Nesting](nested-stacks.md#deep-nesting)
   - [Sparkle Packs](sparkle-packs.md)
+  - [Stack Policies](stack-policies.md)
   - [Translation](translation.md)
 
 ## Getting Started
