@@ -156,3 +156,41 @@ following order:
 
 This behavior is _non-default_ so ensure it is the expected behavior
 within an implementation.
+
+### Distribution
+
+SparklePacks are structured such that it is easy to package and
+distrbute them via RubyGems. An example file structure for `my-pack`
+gem:
+
+```
+> tree
+.
+|____my-pack.gemspec
+|____lib
+| |____sparkleformation
+| | |____dynamics
+| | |____components
+| | |____registries
+| |____my-pack.rb
+```
+
+Then register the pack:
+
+```ruby
+# ./lib/my-pack.rb
+
+SparkleFormation::SparklePack.register!
+```
+
+Once registered, packs can be loaded via name:
+
+```ruby
+require 'my-pack'
+root_pack = SparkleFormation::SparklePack.new(:name => 'my-pack')
+
+sfn = SparkleFormation.new(
+  :my_template,
+  :sparkle => root_pack
+)
+```
