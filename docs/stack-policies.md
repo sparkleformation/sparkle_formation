@@ -16,6 +16,14 @@ template. This allows for policies to be programatically generated
 in the same manner as the stack template itself.
 
 ```ruby
+template = SparkleFormation.new(:test) do
+  resources.my_resource do
+    policy do
+      allow 'Modify'
+      deny 'Replace'
+    end
+  end
+end
 ```
 
 ### Library Usage
