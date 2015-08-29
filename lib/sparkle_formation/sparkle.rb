@@ -195,9 +195,17 @@ class SparkleFormation
     #
     # @param args [Hash]
     # @option args [String] :root path to sparkle directories
+    # @option args [String, Symbol] :name registered pack name
     # @return [self]
     def initialize(args={})
-      @root = args.fetch(:root, locate_root)
+      if(args[:name])
+        @root = self.class.path(args[:name])
+      else
+        @root = args.fetch(:root, locate_root)
+      end
+      unless(File.directory?(@root))
+        raise Errno::ENOENT.new("No such directory - #{@root}")
+      end
       @raw_data = Smash.new(
         :dynamic => [],
         :component => [],
