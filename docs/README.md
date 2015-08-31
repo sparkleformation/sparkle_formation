@@ -25,7 +25,7 @@ AWS, Rackspace, OpenStack, GCE, and other similar services.
 - [Building Blocks](building-blocks.md)
   - [Components](building-blocks.md#components)
   - [Dynamics](building-blocks.md#dynamics)
-  - [Registries](building-blocks.md#registries)
+  - [Registry](building-blocks.md#registry)
   - [Templates](building-blocks.md#templates)
 - [Template Anatomy](anatomy.md)
   - [Base Attributes](anatomy.md#base-attributes)
