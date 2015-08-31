@@ -3,8 +3,16 @@ require 'sparkle_formation'
 class SparkleFormation
   # SparkleFormation customized AttributeStruct
   class SparkleStruct < AttributeStruct
+
     include ::SparkleFormation::SparkleAttribute
     # @!parse include ::SparkleFormation::SparkleAttribute
+
+    # Override initializer to force desired behavior
+    def initialize(*_)
+      super
+      _camel_keys = true
+      _set_state :hash_load_struct => true
+    end
 
     # Set SparkleFormation instance
     #

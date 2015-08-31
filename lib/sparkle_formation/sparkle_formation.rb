@@ -1,7 +1,5 @@
 require 'sparkle_formation'
 
-SparkleFormation::SparkleStruct.camel_keys = true
-
 # Formation container
 class SparkleFormation
 
