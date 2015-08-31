@@ -113,7 +113,7 @@ AWS CFN supports runtime conditions. Helpers for building conditions:
 * `and!(VAL1, VAL2, ...)`
 * `equals!(VAL1, VAL2)`
 * `not!(VAL)`
-* `or!(VAL1, VAL2, ...)
+* `or!(VAL1, VAL2, ...)`
 * `condition!(CONDITION_NAME)`
 
 Helpers for using conditions:
