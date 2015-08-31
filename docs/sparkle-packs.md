@@ -81,7 +81,7 @@ custom_pack = SparkleFormation::SparklePack.new(
 
 sfn = SparkleFormation.new(
   :my_template,
-  :sparkle => custom_pack
+  :sparkle => root_pack
 )
 sfn.sparkle.add_sparkle(custom_pack)
 ```
@@ -108,7 +108,7 @@ override_patck = SparkleFormation::SparklePack.new(
 
 sfn = SparkleFormation.new(
   :my_template,
-  :sparkle => custom_pack
+  :sparkle => root_pack
 )
 sfn.sparkle.add_sparkle(custom_pack)
 sfn.sparkle.add_sparkle(override_pack)
@@ -139,7 +139,7 @@ base_patck = SparkleFormation::SparklePack.new(
 
 sfn = SparkleFormation.new(
   :my_template,
-  :sparkle => custom_pack
+  :sparkle => root_pack
 )
 sfn.sparkle.add_sparkle(custom_pack)
 sfn.sparkle.add_sparkle(base_pack, :low)
