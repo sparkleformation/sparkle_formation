@@ -284,5 +284,5 @@ The resultant data structure after compiling:
   }
 }
 ```
-> NOTE: No key modification is performed when using `data!` as it is
-> simply a Hash instance.
+> NOTE: Because `data!` returns a Hash instance, no automatic formatting
+> (camel case conversions) will be applied to keys when accessing values.
