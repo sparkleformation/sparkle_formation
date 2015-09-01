@@ -133,7 +133,7 @@ class SparkleFormation
 
     # @return [Array<Sparkle>]
     def sparkles
-      @sparkles + [@root]
+      (@sparkles + [@root]).compact
     end
 
     # @return [String] checksum of sparkles
