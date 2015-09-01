@@ -284,7 +284,8 @@ class SparkleFormation
             short_name = v[:path].sub(/#{Regexp.escape(root)}\/?/, '')
             v[:path] == name ||
             short_name == name ||
-            short_name.sub('.rb', '').gsub(File::SEPARATOR, '__').tr('-', '_') == name
+            short_name.sub('.rb', '').gsub(File::SEPARATOR, '__').tr('-', '_') == name ||
+            v[:path].end_with?(name)
           } || []
         ).last
       end
