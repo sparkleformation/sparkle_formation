@@ -10,7 +10,7 @@ class SparkleFormation
     # Override initializer to force desired behavior
     def initialize(*_)
       super
-      _camel_keys = true
+      @_camel_keys = true
       _set_state :hash_load_struct => true
     end
 
