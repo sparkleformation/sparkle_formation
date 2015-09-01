@@ -1,4 +1,5 @@
 require 'sparkle_formation'
+require 'attribute_struct/monkey_camels'
 
 class SparkleFormation
   # SparkleFormation customized AttributeStruct
