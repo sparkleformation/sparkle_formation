@@ -646,9 +646,7 @@ class SparkleFormation
     nested_stacks(:with_resource, :with_name).each do |stack, stack_resource, stack_name|
       remap_nested_parameters(compile, parameters, stack_name, stack_resource, output_map)
     end
-    nested_stacks(:with_resource, :with_name).each do |stack, stack_resource, stack_name|
-      block.call(stack_name, stack, stack_resource)
-    end
+    extract_templates(&block)
     compile.parameters parameters
     if(args.include?(:bubble_outputs))
       outputs_hash = Hash[
