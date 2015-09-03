@@ -249,8 +249,15 @@ end
 ```
 
 ```ruby
-SparkleFormation.new(:application) do
+SparkleFormation.new(:applications) do
   ...
+  nest!(:moneymaker)
+  ...
+end
+```
+
+```ruby
+SparkleFormation.new(:moneymaker) do
   parameters.subnet do
     type 'String'
   end
@@ -261,7 +268,7 @@ end
 ```ruby
 SparkleFormation.new(:root) do
   nest!(:infrastructure)
-  nest!(:application)
+  nest!(:applications)
 end
 ```
 
@@ -275,8 +282,117 @@ SparkleFormation will add an output to the `infrastructure` stack "bubbling"
 the output to the root stack. Once it is available at the root stack, it can
 be passed to the `application` stack resource:
 
+_NOTE: The below example includes the nested stack contents. A real template
+will simply include a URL endpoint for fetching the document._
+
 ```json
+{
+  "Resources": {
+    "Infrastructure": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "Stack": {
+          "Resources": {
+            "Networking": {
+              "Type": "AWS::CloudFormation::Stack",
+              "Properties": {
+                "Stack": {
+                  ...
+                  "Outputs": {
+                    "Subnet": {
+                      "Description": "Networking subnet",
+                      "Value": {
+                        "Ref": "SubnetResource"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "TemplateURL": "http://example.com/Networking.json"
+          },
+          "Outputs": {
+            "Subnet": {
+              "Value": {
+                "Fn::Att": [
+                  "Networking",
+                  "Outputs.Subnet"
+                ]
+              }
+            }
+          }
+        },
+        "TemplateURL": "http://example.com/Infrastructure.json"
+      }
+    },
+    "Applications": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "Stack": {
+          "Parameters": {
+            "Subnet": {
+              "Type": "String"
+            }
+          },
+          "Resources": {
+            "Moneymaker": {
+              "Type": "AWS::CloudFormation::Stack",
+              "Properties": {
+                "Stack": {
+                  "Parameters": {
+                    "Subnet": {
+                      "Type": "String"
+                    }
+                  }
+                  ...
+                },
+                "Parameters": {
+                  "Subnet": {
+                    "Ref": "Subnet"
+                  }
+                },
+                "TemplateURL": "http://example.com/Moneymaker.json"
+              }
+            }
+          }
+        },
+        "Parameters": {
+          "Subnet": {
+            "Fn::Att": [
+              "Infrastructure",
+              "Outputs.Subnet"
+            ]
+          }
+        },
+        "TemplateURL": "http://example.com/Applications.json"
+      }
+    }
+  }
+}
 ```
+
+When the `root` template is compiled, it nests the `infrastructure` template, which in turn
+nests the `networking` template. The `Subnet` output is found, registered, and the compilation
+continues. At this point the `networking` template is the last of this "branch", so compilation
+returns to the `root` template and starts on the nested `applications` template. It has
+`moneymaker` nested and when the `moneymaker` template is processed, the parameter `Subnet` is
+checked in the registered outputs. Since a match is found, two things happen:
+
+1. The `Subnet` output is "bubbled" to the `infrastructure` template
+2. The `Subnet` output from the `infrastructure` template is "dripped" into the `applications`
+template and passed to the `moneymaker` template
+
+When a parameter is encountered and a matching output has been registered, SparkleFormation will
+add stack outputs to parent templates until a common context can be found between the requesting
+template (template with the parameter) and the providing template (template with the output). The
+common context for the two templates may not make it accessible to the requesting template, which is
+where the "dripping" method is employed.
+
+Since the requesting template may not have access to the common context (as the example above illustrates),
+SparkleFormation will "drip" the value down to the template. It does this by injecting a `Subnet` parameter
+into child templates and passing the value in the stack resource until it reaches a common depth with
+the requesting template. Once this is completed, the requesting template will have access to the output
+from the provider template.
 
 #### Deep Nesting Usage
 
