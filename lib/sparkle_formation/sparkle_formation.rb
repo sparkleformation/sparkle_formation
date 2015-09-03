@@ -594,6 +594,9 @@ class SparkleFormation
       next unless ref_sparkle
       base_sparkle.compile.outputs.set!(output_name).set!(:value, base_sparkle.compile.attr!(ref_sparkle.name, "Outputs.#{output_name}"))
     end
+    if(bubble_path.empty?)
+      raise ArgumentError.new "Failed to detect available bubbling path for output `#{output_name}`. This may be due to a circular dependency!"
+    end
     result = compile.attr!(bubble_path.first.name, "Outputs.#{output_name}")
     if(drip_path.size > 1)
       parent = drip_path.first.parent
