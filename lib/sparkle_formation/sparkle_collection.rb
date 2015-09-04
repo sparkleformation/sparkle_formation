@@ -32,9 +32,9 @@ class SparkleFormation
         raise TypeError.new "Expected type `SparkleFormation::Sparkle` but received `#{sparkle.class}`!"
       end
       if(precedence == :high)
-        sparkles.push(sparkle).uniq!
+        @sparkles.push(sparkle).uniq!
       else
-        sparkles.unshift(sparkle).uniq!
+        @sparkles.unshift(sparkle).uniq!
       end
       self
     end
@@ -44,7 +44,7 @@ class SparkleFormation
     # @param sparkle [Sparkle]
     # @return [self]
     def remove_sparkle(sparkle)
-      sparkles.delete(sparkle)
+      @sparkles.delete(sparkle)
       self
     end
 
@@ -133,7 +133,7 @@ class SparkleFormation
 
     # @return [Array<Sparkle>]
     def sparkles
-      @sparkles + [@root]
+      (@sparkles + [@root]).compact
     end
 
     # @return [String] checksum of sparkles

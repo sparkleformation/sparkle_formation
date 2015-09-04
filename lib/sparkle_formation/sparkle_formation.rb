@@ -1,24 +1,4 @@
-#
-# Author:: Chris Roberts <chris@hw-ops.com>
-# Copyright:: 2013, Heavy Water Operations, LLC
-# License:: Apache License, Version 2.0
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-
 require 'sparkle_formation'
-
-SparkleFormation::SparkleStruct.camel_keys = true
 
 # Formation container
 class SparkleFormation
@@ -614,6 +594,9 @@ class SparkleFormation
       next unless ref_sparkle
       base_sparkle.compile.outputs.set!(output_name).set!(:value, base_sparkle.compile.attr!(ref_sparkle.name, "Outputs.#{output_name}"))
     end
+    if(bubble_path.empty?)
+      raise ArgumentError.new "Failed to detect available bubbling path for output `#{output_name}`. This may be due to a circular dependency!"
+    end
     result = compile.attr!(bubble_path.first.name, "Outputs.#{output_name}")
     if(drip_path.size > 1)
       parent = drip_path.first.parent
@@ -666,9 +649,7 @@ class SparkleFormation
     nested_stacks(:with_resource, :with_name).each do |stack, stack_resource, stack_name|
       remap_nested_parameters(compile, parameters, stack_name, stack_resource, output_map)
     end
-    nested_stacks(:with_resource, :with_name).each do |stack, stack_resource, stack_name|
-      block.call(stack_name, stack, stack_resource)
-    end
+    extract_templates(&block)
     compile.parameters parameters
     if(args.include?(:bubble_outputs))
       outputs_hash = Hash[

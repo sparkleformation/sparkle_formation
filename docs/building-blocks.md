@@ -8,7 +8,7 @@ building blocks provided by SparkleFormation are:
 
 - [Components](#components)
 - [Dynamics](#dynamics)
-- [Registries](#registries)
+- [Registry](#registry)
 - [Templates](#templates)
 
 ### Components
@@ -263,9 +263,9 @@ a dynamic lookup, the following locations are checked in order of precedence:
 2. SparklePack dynamics with reverse load order precedence
 3. Builtin dynamics lookup table
 
-### Registries
+### Registry
 
-Registries are lightweight dynamics that are useful for storing items that
+Registry entries are lightweight dynamics that are useful for storing items that
 may be used in multiple locations. For example, the valid sizes of an instance
 within an infrastructure will generally be restricted to a specific list.
 This list can be stored within a registry to provide a single point of

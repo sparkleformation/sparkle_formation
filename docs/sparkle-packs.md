@@ -13,7 +13,7 @@ action based on load order (last loaded retains highest precedence).
 * Composed of SparkleFormation any/all building blocks:
   * Components
   * Dynamics
-  * Registries
+  * Registry
   * Templates
 * Packaged and distributed for reuse
 * Supports standalone usage _and_ project integration
@@ -43,7 +43,7 @@ subdirectory which contains all distributed building blocks:
 |____sparkleformation
 | |____dynamics
 | |____components
-| |____registries
+| |____registry
 ```
 
 ### Usage
@@ -81,7 +81,7 @@ custom_pack = SparkleFormation::SparklePack.new(
 
 sfn = SparkleFormation.new(
   :my_template,
-  :sparkle => custom_pack
+  :sparkle => root_pack
 )
 sfn.sparkle.add_sparkle(custom_pack)
 ```
@@ -108,7 +108,7 @@ override_patck = SparkleFormation::SparklePack.new(
 
 sfn = SparkleFormation.new(
   :my_template,
-  :sparkle => custom_pack
+  :sparkle => root_pack
 )
 sfn.sparkle.add_sparkle(custom_pack)
 sfn.sparkle.add_sparkle(override_pack)
@@ -139,7 +139,7 @@ base_patck = SparkleFormation::SparklePack.new(
 
 sfn = SparkleFormation.new(
   :my_template,
-  :sparkle => custom_pack
+  :sparkle => root_pack
 )
 sfn.sparkle.add_sparkle(custom_pack)
 sfn.sparkle.add_sparkle(base_pack, :low)
@@ -171,7 +171,7 @@ gem:
 | |____sparkleformation
 | | |____dynamics
 | | |____components
-| | |____registries
+| | |____registry
 | |____my-pack.rb
 ```
 
