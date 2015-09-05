@@ -272,7 +272,7 @@ class SparkleFormation
     # @param stack_name [String, Symbol] logical resource name of stack
     # @apram output_name [String, Symbol] stack output name
     def _stack_output(stack_name, output_name)
-      _attr(_process_key(stack_name), "Outputs.#{_process_key(output_name)}")
+      _cf_attr(_process_key(stack_name), "Outputs.#{_process_key(output_name)}")
     end
     alias_method :stack_output!, :_stack_output
 
