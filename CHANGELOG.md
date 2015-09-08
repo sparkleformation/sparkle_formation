@@ -1,3 +1,6 @@
+## v1.0.2
+* Support custom values for stack resource type matching
+
 ## v1.0.0
 
 > NOTE: This is a major version release. It includes multiple
