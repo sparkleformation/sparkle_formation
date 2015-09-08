@@ -17,6 +17,8 @@ class SparkleFormation
 
   # @return [String] default stack resource name
   DEFAULT_STACK_RESOURCE = 'AWS::CloudFormation::Stack'
+  # @return [Array<String>] collection of valid stack resource types
+  VALID_STACK_RESOURCES = [DEFAULT_STACK_RESOURCE]
 
   class << self
 
@@ -298,6 +300,8 @@ class SparkleFormation
   attr_reader :parameters
   # @return [SparkleFormation] parent stack
   attr_accessor :parent
+  # @return [Array<String>] valid stack resource types
+  attr_reader :stack_resource_types
 
   # Create new instance
   #
@@ -331,6 +335,10 @@ class SparkleFormation
       SfnAws.load!
     end
     @parameters = set_generation_parameters!(options.fetch(:parameters, {}))
+    @stack_resource_types = (
+      VALID_STACK_RESOURCES +
+      options.fetch(:stack_resource_types, [])
+    ).uniq
     @components = Smash.new
     @load_order = []
     @overrides = []
@@ -339,6 +347,14 @@ class SparkleFormation
       load_block(block)
     end
     @compiled = nil
+  end
+
+  # Check if type is a registered stack type
+  #
+  # @param type [String]
+  # @return [TrueClass, FalseClass]
+  def stack_resource_type?(type)
+    stack_resource_types.include?(type)
   end
 
   # @return [SparkleFormation] root stack
@@ -460,7 +476,7 @@ class SparkleFormation
   # @return [Array<SparkleFormation>]
   def nested_stacks(*args)
     compile.resources.keys!.map do |key|
-      if(compile.resources[key].type == DEFAULT_STACK_RESOURCE)
+      if(stack_resource_type?(compile.resources[key].type))
         result = [compile.resources[key].properties.stack]
         if(args.include?(:with_resource))
           result.push(compile[:resources][key])
@@ -477,7 +493,7 @@ class SparkleFormation
   def nested?(stack_hash=nil)
     stack_hash = compile.dump! unless stack_hash
     !!stack_hash.fetch('Resources', {}).detect do |r_name, resource|
-      resource['Type'] == DEFAULT_STACK_RESOURCE
+      stack_resource_type?(resource['Type'])
     end
   end
 
@@ -485,7 +501,7 @@ class SparkleFormation
   def isolated_nests?(stack_hash=nil)
     stack_hash = compile.dump! unless stack_hash
     stack_hash.fetch('Resources', {}).all? do |name, resource|
-      resource['Type'] == DEFAULT_STACK_RESOURCE
+      stack_resource_type?(resource['Type'])
     end
   end
 
