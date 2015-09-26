@@ -7,25 +7,25 @@
   },
   "Mappings": {
     "RegionMap": {
-      "Us-east-1": {
+      "us-east-1": {
         "Ami": "ami-7f418316"
       },
-      "Us-west-1": {
+      "us-west-1": {
         "Ami": "ami-951945d0"
       },
-      "Us-west-2": {
+      "us-west-2": {
         "Ami": "ami-16fd7026"
       },
-      "Eu-west-1": {
+      "eu-west-1": {
         "Ami": "ami-24506250"
       },
-      "Sa-east-1": {
+      "sa-east-1": {
         "Ami": "ami-3e3be423"
       },
-      "Ap-southeast-1": {
+      "ap-southeast-1": {
         "Ami": "ami-74dda626"
       },
-      "Ap-northeast-1": {
+      "ap-northeast-1": {
         "Ami": "ami-dcfa4edd"
       }
     }
