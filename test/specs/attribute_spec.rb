@@ -27,7 +27,7 @@ describe SparkleFormation::SparkleAttribute do
 
   it 'should generate Fn::FindInMap' do
     @sfn.overrides do
-      thing find_in_map!('MyMap', 'MyKey', 'SubKey')
+      thing find_in_map!('MyMap', ref!('MyKey'), 'SubKey')
     end.dump.
       must_equal 'Thing' => {'Fn::FindInMap' => ['MyMap', {'Ref' => 'MyKey'}, 'SubKey']}
   end

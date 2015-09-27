@@ -67,7 +67,7 @@ describe SparkleFormation do
       SparkleFormation.new(:dummy).load(:ami).overrides do
         dynamic!(:node, :my) do
           properties do
-            image_id map!(:region_map, 'AWS::Region', :ami)
+            image_id map!(:region_map, ref!('AWS::Region'), :ami)
           end
         end
       end.dump.must_equal full_stack
@@ -77,7 +77,7 @@ describe SparkleFormation do
       full_stack = MultiJson.load(File.read(File.join(File.dirname(__FILE__), 'results', 'base_with_map.json')))
       SparkleFormation.new(:dummy).load(:ami).overrides do
         dynamic!(:node, :my)
-        resources.my_ec2_instance.properties.image_id map!(:region_map, 'AWS::Region', :ami)
+        resources.my_ec2_instance.properties.image_id map!(:region_map, ref!('AWS::Region'), :ami)
       end.dump.must_equal full_stack
     end
 
