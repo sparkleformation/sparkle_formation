@@ -30,17 +30,23 @@ describe SparkleFormation do
 
     it 'should apply components on top of initial block' do
       result = SparkleFormation.new(:dummy) do
-        mappings true
+        mappings.region_map do
+          set!('us-east-1'._no_hump, :ami => 'dummy')
+        end
       end.load(:ami).dump
-      result['Mappings'].must_be :is_a?, Hash
+      result['Mappings']['RegionMap']['us-east-1']['Ami'].must_equal 'ami-7f418316'
     end
 
     it 'should apply overrides on top of initial block and components' do
       SparkleFormation.new(:dummy) do
-        mappings true
+        mappings.region_map do
+          set!('us-east-1'._no_hump, :ami => 'initial')
+        end
       end.load(:ami).overrides do
-        mappings true
-      end.dump.must_equal 'Mappings' => true
+        mappings.region_map do
+          set!('us-east-1'._no_hump, :ami => 'override')
+        end
+      end.dump['Mappings']['RegionMap']['us-east-1']['Ami'].must_equal 'override'
     end
 
     it 'should should build component hash' do
