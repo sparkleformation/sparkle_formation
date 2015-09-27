@@ -366,6 +366,7 @@ class SparkleFormation
             :name => 'OS::Neutron::Net',
             :finalizer => :neutron_net_finalizer,
             :properties => {
+              'CidrBlock' => 'cidr'
             }
           },
           'AWS::EC2::Subnet' => {
