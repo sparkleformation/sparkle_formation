@@ -1,3 +1,14 @@
+---
+title: "Translation"
+category: "dsl"
+weight: 9
+anchors:
+  - title: "Supported Translations"
+    url: "#supported-translations"
+  - title: "Usage"
+    url: "#usage"
+---
+
 ## Translation
 
 SparkleFormation has alpha support for template translation from
@@ -20,7 +31,7 @@ the template must be compiled, then it is passed to the translator
 which converts the CFN specific template to the expected format
 of the target API:
 
-```ruby
+~~~ruby
 sfn = SparkleFormation.new(:my_stack) do
   ...
 end
@@ -29,7 +40,7 @@ cfn_template = sfn.compile.dump!
 translator = SparkleFormation::Translation::Heat.new(cfn_template)
 
 heat_template = translator.translate!
-```
+~~~
 
 In general applications of translators, the implementation will
 first collect optional template parameters prior to translation
@@ -37,7 +48,7 @@ allowing the translator access to parameters that may be required
 in places where the resultant template may not have support for
 dynamic references. These can then be passed to the translator:
 
-```ruby
+~~~ruby
 sfn = SparkleFormation.new(:my_stack) do
   ...
 end
@@ -50,4 +61,4 @@ translator = SparkleFormation::Translation::Heat.new(
 )
 
 heat_template = translator.translate!
-```
+~~~

@@ -1,10 +1,19 @@
+---
+title: "Overview"
+category: "dsl"
+weight: 1
+next:
+  label: "SparkleFormation DSL"
+  url: "sparkleformation-dsl"
+---
+
 # Overview
 
 SparkleFormation is a Ruby DSL library that assists in programmatically
 composing template files commonly used by orchestration APIs. The library
-has specific helper methods defined targeting the AWS CloudFormation
-API, but the library is _not_ restricted to generating only AWS CloudFormation
-templates.
+has specific helper methods defined targeting the [AWS CloudFormation][cfn]
+API, but the library is _not_ restricted to generating only
+[AWS CloudFormation][cfn] templates.
 
 SparkleFormation templates describe the state of infrastructure resources
 as code. This allows for provisioning and updating of isolated stacks of
@@ -19,29 +28,29 @@ AWS, Rackspace, OpenStack, GCE, and other similar services.
 ## Table of Contents
 
 - [Getting Started](#getting-started)
-- [The DSL](sparkleformation-dsl.md)
-  - [Behavior](sparkleformation-dsl.md#behavior)
-  - [Features](sparkleformation-dsl.md#features)
-- [Building Blocks](building-blocks.md)
-  - [Components](building-blocks.md#components)
-  - [Dynamics](building-blocks.md#dynamics)
-  - [Registry](building-blocks.md#registry)
-  - [Templates](building-blocks.md#templates)
-- [Template Anatomy](anatomy.md)
-  - [Base Attributes](anatomy.md#base-attributes)
-  - [Parameters](anatomy.md#parameters)
-  - [Mappings](anatomy.md#mappings)
-  - [Conditions](anatomy.md#conditions)
-  - [Resources](anatomy.md#resources)
-  - [Outputs](anatomy.md#outputs)
+- [The DSL](sparkleformation-dsl)
+  - [Behavior](sparkleformation-dsl#behavior)
+  - [Features](sparkleformation-dsl#features)
+- [Building Blocks](building-blocks)
+  - [Components](building-blocks#components)
+  - [Dynamics](building-blocks#dynamics)
+  - [Registry](building-blocks#registry)
+  - [Templates](building-blocks#templates)
+- [Template Anatomy](anatomy)
+  - [Base Attributes](anatomy#base-attributes)
+  - [Parameters](anatomy#parameters)
+  - [Mappings](anatomy#mappings)
+  - [Conditions](anatomy#conditions)
+  - [Resources](anatomy#resources)
+  - [Outputs](anatomy#outputs)
 - Library Features
-  - [Helper Methods](helper-methods.md)
-  - [Nested Stacks](nested-stacks.md)
-    - [Shallow Nesting](nested-stacks.md#shallow-nesting)
-    - [Deep Nesting](nested-stacks.md#deep-nesting)
-  - [Sparkle Packs](sparkle-packs.md)
-  - [Stack Policies](stack-policies.md)
-  - [Translation](translation.md)
+  - [Helper Methods](helper-methods)
+  - [Nested Stacks](nested-stacks)
+    - [Shallow Nesting](nested-stacks#shallow-nesting)
+    - [Deep Nesting](nested-stacks#deep-nesting)
+  - [Sparkle Packs](sparkle-packs)
+  - [Stack Policies](stack-policies)
+  - [Translation](translation)
 
 ## Getting Started
 
@@ -49,4 +58,7 @@ SparkleFormation on its own is simply a library used to generate serialized
 templates. This documentation is focused mainly on the library specific
 features and functionality. For user documentation focused on building and
 generating infrastructure with SparkleFormation, please refer to the
-sfn documentation.
+[sfn][sfn] documentation.
+
+[cfn]: https://aws.amazon.com/cloudformation/
+[sfn]: ../../sfn/
