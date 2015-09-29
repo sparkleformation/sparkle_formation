@@ -1,3 +1,20 @@
+---
+title: "Template Anatomy"
+category: "dsl"
+weight: 4
+anchors:
+  - title: "Parameters"
+    url: "#parameters"
+  - title: "Mappings"
+    url: "#mappings"
+  - title: "Conditions"
+    url: "#conditions"
+  - title: "Resources"
+    url: "#resources"
+  - title: "Outputs"
+    url: "#outputs"  
+---
+
 ## Template Anatomy
 
 The anatomy of a template is dependent on the specific implementation that is
@@ -20,13 +37,13 @@ style template as it is the most widely implemented.
 All templates must begin with the expected API version and may include a description
 and or metadata:
 
-```ruby
+~~~ruby
 SparkleFormation.new(:template) do
   set!('AWSTemplateFormatVersion', '2010-09-09')
   description 'My New Stack'
   metadata.instances.description 'Awesome instances'
 end
-```
+~~~
 
 * [Format Version](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/format-version-structure.html)
 * [Description](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-description-structure.html)
@@ -38,7 +55,7 @@ Parameters are named variables available within the template that users may
 provide customized values when creating or updating a stack. This allows
 "runtime" modifications to occur when the template is evaluated by the API.
 
-```ruby
+~~~ruby
 SparkleFormation.new(:template) do
   parameters do
     creator do
@@ -47,7 +64,7 @@ SparkleFormation.new(:template) do
     end
   end
 end
-```
+~~~
 
 * [Parameters](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html)
 
@@ -57,24 +74,24 @@ Mappings are a nested key/value store. They provide an easy way to dynamically
 specify what value should be used based on context available when the template
 is evaluated by the API.
 
-```ruby
+~~~ruby
 SparkleFormation.new(:template) do
   mappings.platforms.set!('us-west-2'._no_hump) do
     centos6 'ami-b6bdde86'
     centos7 'ami-c7d092f7'
   end
 end
-```
+~~~
 
 These can then be referenced using the `map!` helper method:
 
-```ruby
+~~~ruby
 SparkleFormation.new(:template) do
   dynamic!(:ec2_instance, :foobar) do
     properties.image_id map!(:platforms, region!, :centos7)
   end
 end
-```
+~~~
 
 * [Mappings](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/mappings-section-structure.html)
 * [Fn::FindInMap](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-findinmap.html)
@@ -87,7 +104,7 @@ properties values or to allow/restrict the creation of resources and
 outputs.
 
 
-```ruby
+~~~ruby
 SparkleFormation.new(:template) do
   parameters.creator do
     type 'String'
@@ -97,11 +114,11 @@ SparkleFormation.new(:template) do
     creator_is_spox equals!(ref!(:creator), 'spox')
   end
 end
-```
+~~~
 
 This condition can then be used to provide a custom value for a property:
 
-```ruby
+~~~ruby
 SparkleFormation.new(:template) do
   parameters.creator do
     type 'String'
@@ -114,11 +131,11 @@ SparkleFormation.new(:template) do
     key_name if!(:creator_is_spox, 'spox-key', 'default')
   end
 end
-```
+~~~
 
 The condition can also be used to restrict the creation of a resource:
 
-```ruby
+~~~ruby
 SparkleFormation.new(:template) do
   parameters.creator do
     type 'String'
@@ -131,7 +148,7 @@ SparkleFormation.new(:template) do
     on_condition :creator_is_spox
   end
 end
-```
+~~~
 
 * [Conditions](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/conditions-section-structure.html)
 * [Condition Functions](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-conditions.html)
@@ -141,7 +158,7 @@ end
 Resources are the infrastructure items and configurations to be
 provisioned by the orchestration API:
 
-```ruby
+~~~ruby
 SparkleFormation.new(:template) do
   resources.my_instance do
     type 'AWS::EC2::Instance'
@@ -151,7 +168,7 @@ SparkleFormation.new(:template) do
     end
   end
 end
-```
+~~~
 
 * [Resources](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html)
 
@@ -160,7 +177,7 @@ end
 Outputs are resultant values from the provisioned infrastructure stack.
 It generally contains information about specific resource attributes.
 
-```ruby
+~~~ruby
 SparkleFormation.new(:template) do
   outputs do
     instance_address do
@@ -169,11 +186,11 @@ SparkleFormation.new(:template) do
     end
   end
 end
-```
+~~~
 
 Conditions can also be applied on outputs:
 
-```ruby
+~~~ruby
 SparkleFormation.new(:template) do
   outputs do
     instance_address do
@@ -183,6 +200,6 @@ SparkleFormation.new(:template) do
     end
   end
 end
-```
+~~~
 
 * [Outputs](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html)
