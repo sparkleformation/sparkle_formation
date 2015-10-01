@@ -247,18 +247,21 @@ class SparkleFormation
             data = Smash.new(:template => [])
             t_wrap = eval_wrapper.new
             t_wrap.part_data(data)
-            begin
-              t_wrap.instance_eval(IO.read(path), path, 1)
-            rescue TypeError
+            if(slim_path.end_with?('.rb'))
+              begin
+                t_wrap.instance_eval(IO.read(path), path, 1)
+              rescue TypeError
+              end
             end
-            data = data[:template].first
+            data = data[:template].first || Smash.new
             unless(data[:name])
-              data[:name] = slim_path.tr('/', '__')
+              data[:name] = slim_path.tr('/', '__').sub(/\.(rb|json)$/, '')
             end
             hash[data[:name]] = data.merge(
               Smash.new(
                 :type => :template,
-                :path => path
+                :path => path,
+                :serialized => !path.end_with?('.rb')
               )
             )
           end
