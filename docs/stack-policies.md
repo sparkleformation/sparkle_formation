@@ -1,3 +1,14 @@
+---
+title: "Stack Policies"
+category: "dsl"
+weight: 8
+anchors:
+  - title: "Template Usage"
+    url: "#template-usage"
+  - title: "Library Usage"
+    url: "#library-usage"
+---
+
 ## Stack Policies
 
 AWS CloudFormation includes support for stack policies. These
@@ -15,7 +26,7 @@ Resource policies can be defined within a SparkleFormation
 template. This allows for policies to be programatically generated
 in the same manner as the stack template itself.
 
-```ruby
+~~~ruby
 template = SparkleFormation.new(:test) do
   resources.my_resource do
     policy do
@@ -24,7 +35,7 @@ template = SparkleFormation.new(:test) do
     end
   end
 end
-```
+~~~
 
 ### Library Usage
 
@@ -32,7 +43,7 @@ SparkleFormation can extract stack policies from a template after
 it has been compiled. Once extracted, the policy can be applied
 to the stack as dictated by the API.
 
-```ruby
+~~~ruby
 template = SparkleFormation.new(:test) do
   resources.my_resource do
     policy do
@@ -43,11 +54,11 @@ template = SparkleFormation.new(:test) do
 end
 
 policy = template.generate_policy
-```
+~~~
 
 This generates a policy data structure:
 
-```ruby
+~~~ruby
 {
   "Statement" => [
     {
@@ -76,4 +87,4 @@ This generates a policy data structure:
     }
   ]
 }
-```
+~~~

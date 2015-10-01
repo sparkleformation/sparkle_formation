@@ -1,3 +1,16 @@
+---
+title: "SparkleFormation DSL"
+category: "dsl"
+weight: 2
+anchors:
+  - title: "Behavior"
+    url: "#behavior"
+  - title: "Key Alteration"
+    url: "#key-alteration"
+  - title: "Data Access"
+    url: "#data-access"
+---
+
 ## SparkleFormation DSL
 
 The SparkleFormation DSL (domain specific language) is based
@@ -23,22 +36,22 @@ of key values.
 The default behavior of SparkleFormation is to camel case all Hash keys.
 This is done via:
 
-```ruby
+~~~ruby
 AttributeStruct.camel_keys = true
-```
+~~~
 
 And results in all Hash keys in the resultant compile Hash being converted
 to a camel cased format:
 
-```ruby
+~~~ruby
 SparkleFormation.new(:test) do
   parameters.creator.default 'spox'
 end
-```
+~~~
 
 The resultant data structure after compiling:
 
-```ruby
+~~~ruby
 {
   "Parameters": {
     "Creator": {
@@ -46,22 +59,22 @@ The resultant data structure after compiling:
     }
   }
 }
-```
+~~~
 
 In some cases it may be desired to have a key _not_
 be automatically camel cased. Camel casing can be
 disabled via a helper method that is attached to the
 Symbol and String instances:
 
-```ruby
+~~~ruby
 SparkleFormation.new(:test) do
   parameters.set!(:creator.disable_camel!).default 'spox'
 end
-```
+~~~
 
 The resultant data structure after compiling:
 
-```ruby
+~~~ruby
 {
   "Parameters": {
     "creator": {
@@ -69,7 +82,7 @@ The resultant data structure after compiling:
     }
   }
 }
-```
+~~~
 
 Depending on the formatting of the target template there
 may be lack of consistency within certain locations. A
@@ -87,7 +100,7 @@ When the camel casing is enabled on AttributeStruct, this is merely
 the default behavior and can be overridden, even from within
 the DSL. For example:
 
-```ruby
+~~~ruby
 SparkleFormation.new(:test) do
   parameters do
     camel_keys_set!(:auto_disable)
@@ -95,11 +108,11 @@ SparkleFormation.new(:test) do
   end
   outputs.creator.value ref!(:creator.disable_camel!)
 end
-```
+~~~
 
 The resultant data structure after compiling:
 
-```ruby
+~~~ruby
 {
   "Parameters": {
     "creator": {
@@ -112,7 +125,7 @@ The resultant data structure after compiling:
     }
   }
 }
-```
+~~~
 
 This example shows how the behavior of the Hash key modification
 can be altered at a specific context within the data structure.
@@ -120,7 +133,7 @@ New values added (as well as nested) will not the camel casing
 modification applied. The behavior can be adjusted at multiple
 depth locations, and that behavior will persist on re-entry:
 
-```ruby
+~~~ruby
 SparkleFormation.new(:test) do
   parameters do
     camel_keys_set!(:auto_disable)
@@ -133,11 +146,11 @@ SparkleFormation.new(:test) do
   parameters.creator.type 'String'
   parameters.author.default 'John Doe'
 end
-```
+~~~
 
 The resultant data structure after compiling:
 
-```ruby
+~~~ruby
 {
   "Parameters": {
     "creator": {
@@ -154,7 +167,8 @@ The resultant data structure after compiling:
     }
   }
 }
-```
+~~~
+
 ### Features
 
 #### Data Access
@@ -175,18 +189,18 @@ can be defined for the block. If provided, AttributeStruct will
 pass the local AttributeStruct instance to the block when it
 is executed:
 
-```ruby
+~~~ruby
 SparkleFormation.new(:test) do
   parameters.creator.default 'spox'
   parameters do |params|
     author.default params.creator.default
   end
 end
-```
+~~~
 
 The resultant data structure after compiling:
 
-```ruby
+~~~ruby
 {
   "Parameters": {
     "Creator": {
@@ -197,25 +211,25 @@ The resultant data structure after compiling:
     }
   }
 }
-```
+~~~
 
 ##### Parent Context Data
 
 It is possible to access the parent context data from the current
 context:
 
-```ruby
+~~~ruby
 SparkleFormation.new(:test) do
   parameters.creator.default 'spox'
   parameters.author do
     default parent!.creator.default
   end
 end
-```
+~~~
 
 The resultant data structure after compiling:
 
-```ruby
+~~~ruby
 {
   "Parameters": {
     "Creator": {
@@ -226,7 +240,7 @@ The resultant data structure after compiling:
     }
   }
 }
-```
+~~~
 
 
 ##### Root Context Data
@@ -234,16 +248,16 @@ The resultant data structure after compiling:
 It is possible to access the root context data from the current
 context:
 
-```ruby
+~~~ruby
 SparkleFormation.new(:test) do
   parameters.creator.default 'spox'
   parameters.author.default root!.parameters.creator.default
 end
-```
+~~~
 
 The resultant data structure after compiling:
 
-```ruby
+~~~ruby
 {
   "Parameters": {
     "Creator": {
@@ -254,25 +268,25 @@ The resultant data structure after compiling:
     }
   }
 }
-```
+~~~
 
 ##### Raw Access
 
 The raw Hash instance holding the data of the current context
 can be reached using the `data!` method:
 
-```ruby
+~~~ruby
 SparkleFormation.new(:test) do
   parameters.creator.default 'spox'
   if(data!['Creator'].default == 'spox')
     parameters.author.default 'xops'
   end
 end
-```
+~~~
 
 The resultant data structure after compiling:
 
-```ruby
+~~~ruby
 {
   "Parameters": {
     "Creator": {
@@ -283,6 +297,7 @@ The resultant data structure after compiling:
     }
   }
 }
-```
+~~~
+
 > NOTE: Because `data!` returns a Hash instance, no automatic formatting
 > (camel case conversions) will be applied to keys when accessing values.

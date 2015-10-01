@@ -1,3 +1,18 @@
+---
+title: "SparklePacks"
+category: "dsl"
+weight: 7
+anchors:
+  - title: "Cheatsheet"
+    url: "#cheatsheet-breakdown"
+  - title: "Requirements"
+    url: "#requirements"
+  - title: "Layout"
+    url: "#layout"
+  - title: "Usage"
+    url: "#usage"
+---
+
 ## SparklePacks
 
 SparklePacks are a way to package and ship SparkleFormation collections
@@ -37,14 +52,14 @@ and file naming are decoupled.
 A SparklePack is simply a directory containing a `sparkleformation`
 subdirectory which contains all distributed building blocks:
 
-```
+~~~
 > tree
 .
 |____sparkleformation
 | |____dynamics
 | |____components
 | |____registry
-```
+~~~
 
 ### Usage
 
@@ -53,14 +68,14 @@ SparklePack based on global configuration and current working directory.
 A customized pack can be provided on instantiation to override this
 behavior:
 
-```ruby
+~~~ruby
 root_pack = SparkleFormation::SparklePack.new(
   :root => PATH_TO_PACK
 )
 sfn = SparkleFormation.new(:my_template, :sparkle => root_pack) do
   # Define template
 end
-```
+~~~
 
 It is also possible to add additional SparklePacks to an existing
 SparkleFormation.
@@ -71,7 +86,7 @@ SparkleFormation.
 
 Building from the previous example, adding a additional pack:
 
-```ruby
+~~~ruby
 root_pack = SparkleFormation::SparklePack.new(
   :root => PATH_TO_PACK
 )
@@ -84,7 +99,7 @@ sfn = SparkleFormation.new(
   :sparkle => root_pack
 )
 sfn.sparkle.add_sparkle(custom_pack)
-```
+~~~
 
 With this `custom_pack` added to the collection, the SparkleFormation
 lookup for building blocks will follow the order:
@@ -95,7 +110,7 @@ lookup for building blocks will follow the order:
 By default new packs added will retain higher precedence than existing
 packs already added:
 
-```ruby
+~~~ruby
 root_pack = SparkleFormation::SparklePack.new(
   :root => PATH_TO_PACK
 )
@@ -112,7 +127,7 @@ sfn = SparkleFormation.new(
 )
 sfn.sparkle.add_sparkle(custom_pack)
 sfn.sparkle.add_sparkle(override_pack)
-```
+~~~
 
 
 In the above example `override_pack` holds the second highest precedence
@@ -126,7 +141,7 @@ following order:
 It is possible to force a pack to the lowest precedence level when
 adding:
 
-```ruby
+~~~ruby
 root_pack = SparkleFormation::SparklePack.new(
   :root => PATH_TO_PACK
 )
@@ -143,7 +158,7 @@ sfn = SparkleFormation.new(
 )
 sfn.sparkle.add_sparkle(custom_pack)
 sfn.sparkle.add_sparkle(base_pack, :low)
-```
+~~~
 
 This example demonstrates how to add a pack at the lowest precedence
 level allowing currently registered SparklePacks to retain their
@@ -163,7 +178,7 @@ SparklePacks are structured such that it is easy to package and
 distrbute them via RubyGems. An example file structure for `my-pack`
 gem:
 
-```
+~~~
 > tree
 .
 |____my-pack.gemspec
@@ -173,19 +188,19 @@ gem:
 | | |____components
 | | |____registry
 | |____my-pack.rb
-```
+~~~
 
 Then register the pack:
 
-```ruby
+~~~ruby
 # ./lib/my-pack.rb
 
 SparkleFormation::SparklePack.register!
-```
+~~~
 
 Once registered, packs can be loaded via name:
 
-```ruby
+~~~ruby
 require 'my-pack'
 root_pack = SparkleFormation::SparklePack.new(:name => 'my-pack')
 
@@ -193,4 +208,4 @@ sfn = SparkleFormation.new(
   :my_template,
   :sparkle => root_pack
 )
-```
+~~~

@@ -1,3 +1,14 @@
+---
+title: "Nested Stacks"
+category: "dsl"
+weight: 6
+anchors:
+  - title: "Shallow Nesting"
+    url: "#shallow-nesting"
+  - title: "Deep Nesting"
+    url: "#deep-nesting"
+---
+
 ## Nested Stacks
 
 Most orchestration API templating systems provide support for a
@@ -14,12 +25,12 @@ The interface for using SparkleFormation's nested stack functionality
 is via the `nest!` helper method. The method accepts a template
 name and will insert the stack resource into the current template:
 
-```ruby
+~~~ruby
 SparkleFormation.new(:root_template) do
   nest!(:networking)
   nest!(:applications)
 end
-```
+~~~
 
 ### Shallow Nesting
 
@@ -46,7 +57,7 @@ order. It will first extract parameter names from the nested stack. If
 the root stack has no matching parameter, the parameter will automatically
 be added to the root stack. For example:
 
-```ruby
+~~~ruby
 SparkleFormation.new(:template_a) do
   ...
   parameters.fubar do
@@ -54,17 +65,17 @@ SparkleFormation.new(:template_a) do
     default 'FOOBAR'
   end
 end
-```
+~~~
 
-```ruby
+~~~ruby
 SparkleFormation.new(:root) do
   nest!(:template_a)
 end
-```
+~~~
 
 when when compiled would result in:
 
-```json
+~~~json
 ...
   "Parameters": {
     "Fubar": {
@@ -80,8 +91,9 @@ when when compiled would result in:
           "Fubar": {
             "Ref": "Fubar"
           }
+
 ...
-```
+~~~
 
 If a second stack is nested and it defines a parameter
 with the same name as a previously defined parameter,
@@ -101,7 +113,7 @@ matches the name of an output defined in a nested stack, SparkleFormation
 will automatically update the nested stack resource parameter to
 use the output value. For example:
 
-```ruby
+~~~ruby
 SparkleFormation.new(:template_a) do
   ...
   outputs.address do
@@ -110,9 +122,9 @@ SparkleFormation.new(:template_a) do
   end
   ...
 end
-```
+~~~
 
-```ruby
+~~~ruby
 SparkleFormation.new(:template_b) do
   ...
   parameters.address do
@@ -120,21 +132,21 @@ SparkleFormation.new(:template_b) do
   end
   ...
 end
-```
+~~~
 
-```ruby
+~~~ruby
 SparkleFormation.new(:root_template) do
   nest!(:template_a)
   nest!(:template_b)
 end
-```
+~~~
 
 When the final template file is compiled SparkleFormation will not
 bubble the `Address` parameter to the root stack. Because `template_b`
 defines an output the a matching name, SparkleFormation automatically
 uses that output value:
 
-```json
+~~~json
 ...
     "TemplateB": {
       "Type": "AWS::CloudFormation::Stack",
@@ -147,7 +159,7 @@ uses that output value:
             ]
           }
 ...
-```
+~~~
 
 Shallow nesting easily exposes the power of nesting stack resources
 while maintaining a single point of access for managing a stack. This
@@ -168,7 +180,7 @@ The method expects a block to be provided. This block handles storage
 of the nested stack template (if required) and any updates to the
 original stack resource.
 
-```ruby
+~~~ruby
 sfn = SparkleFormation.compile(template_path, :sparkle)
 
 sfn.apply_nesting(:shallow) do |stack_name, nested_stack_sfn, original_stack_resource|
@@ -177,7 +189,7 @@ sfn.apply_nesting(:shallow) do |stack_name, nested_stack_sfn, original_stack_res
   original_stack_resource.properites.delete!(:stack)
   original_stack_resource.properties.set!('TemplateURL', template_url)
 end
-```
+~~~
 
 ### Deep Nesting
 
@@ -229,7 +241,7 @@ are added to the stacks to "push" the value down.
 
 This example will illustrate the behavior seen when outputs are "bubbled":
 
-```ruby
+~~~ruby
 SparkleFormation.new(:networking) do
   ...
   outputs.subnet do
@@ -238,39 +250,39 @@ SparkleFormation.new(:networking) do
   end
   ...
 end
-```
+~~~
 
-```ruby
+~~~ruby
 SparkleFormation.new(:infrastructure) do
   ...
   nest!(:networking)
   ...
 end
-```
+~~~
 
-```ruby
+~~~ruby
 SparkleFormation.new(:applications) do
   ...
   nest!(:moneymaker)
   ...
 end
-```
+~~~
 
-```ruby
+~~~ruby
 SparkleFormation.new(:moneymaker) do
   parameters.subnet do
     type 'String'
   end
   ...
 end
-```
+~~~
 
-```ruby
+~~~ruby
 SparkleFormation.new(:root) do
   nest!(:infrastructure)
   nest!(:applications)
 end
-```
+~~~
 
 When the `root` stack is compiled, it will first process the `infrastructure`
 nesting, which will in turn process the `networking` nesting. After processing
@@ -285,7 +297,7 @@ be passed to the `application` stack resource:
 _NOTE: The below example includes the nested stack contents. A real template
 will simply include a URL endpoint for fetching the document._
 
-```json
+~~~json
 {
   "Resources": {
     "Infrastructure": {
@@ -369,7 +381,7 @@ will simply include a URL endpoint for fetching the document._
     }
   }
 }
-```
+~~~
 
 When the `root` template is compiled, it nests the `infrastructure` template, which in turn
 nests the `networking` template. The `Subnet` output is found, registered, and the compilation
@@ -401,7 +413,7 @@ The method expects a block to be provided. This block handles storage
 of the nested stack template (if required) and any updates to the
 original stack resource.
 
-```ruby
+~~~ruby
 sfn = SparkleFormation.compile(template_path, :sparkle)
 
 sfn.apply_nesting(:deep) do |stack_name, nested_stack_sfn, original_stack_resource|
@@ -410,4 +422,4 @@ sfn.apply_nesting(:deep) do |stack_name, nested_stack_sfn, original_stack_resour
   original_stack_resource.properites.delete!(:stack)
   original_stack_resource.properties.set!('TemplateURL', template_url)
 end
-```
+~~~
