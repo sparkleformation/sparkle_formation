@@ -1,3 +1,7 @@
+## v1.0.4
+* Fixes on testing (#66 #67 #68 thanks @matschaffer)
+* Properly handle JSON templates within packs (#72)
+
 ## v1.0.2
 * Support custom values for stack resource type matching
 
