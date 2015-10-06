@@ -40,7 +40,7 @@ action based on load order (last loaded retains highest precedence).
 
 #### Explicit Building Block Methods
 
-The [explicit building block methods](building-blocks.md#name-based-components)
+The [explicit building block methods](building-blocks.html#name-based-components)
  must be used when creating a SparklePack. Usage of implicit methods (like
 `SparkleFormation.build` instead of `SparkleFormation.component`) is currently working but
 should be considered un-supported. The explicit methods also allow
