@@ -23,7 +23,8 @@ for creation, modification, or deletion via a single API call.
 
 SparkleFormation can be used to compose templates for any orchestration
 API that accepts serialized documents to describe resources. This includes
-AWS, Rackspace, OpenStack, GCE, and other similar services.
+[AWS][aws], [Rackspace][rackspace], [OpenStack][openstack], [GCP][gcp], and
+other similar services & providers.
 
 ## Getting Started
 
@@ -34,4 +35,8 @@ generating infrastructure with SparkleFormation, please refer to the
 [sfn][sfn] documentation.
 
 [cfn]: https://aws.amazon.com/cloudformation/
+[aws]: http://aws.amazon.com/
+[rackspace]: http://www.rackspace.com/
+[openstack]: https://www.openstack.org/
+[gcp]: https://cloud.google.com/
 [sfn]: /docs/sfn/
