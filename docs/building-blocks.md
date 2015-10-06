@@ -141,7 +141,7 @@ SparkleFormation includes a lookup of known AWS resources which can be accessed
 using the `dynamic!` method. This lookup is provided simply as a convenience
 to speed development and compact implementations. When a builtin is inserted,
 it will automatically set the `type` of the resource and evaluate an optionally
-provided block within the resource. The following two template below will generate
+provided block within the resource. The following templates will generate
 equivalent results when compiled:
 
 ~~~ruby
