@@ -28,6 +28,7 @@ AWS, Rackspace, OpenStack, GCE, and other similar services.
 ## Table of Contents
 
 - [Getting Started](#getting-started)
+  - [Installation](#installation)
 - [The DSL](sparkleformation-dsl)
   - [Behavior](sparkleformation-dsl#behavior)
   - [Features](sparkleformation-dsl#features)
