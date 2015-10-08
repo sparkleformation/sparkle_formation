@@ -249,7 +249,7 @@ return the context of the referenced resource (if applicable). To make the
 dynamic act as expected, the resource must be returned from the block:
 
 ~~~ruby
-SparkleFormation.dynamic(:bad_dynamic) do |_name, _config|
+SparkleFormation.dynamic(:good_dynamic) do |_name, _config|
   _resource = dynamic!(:ec2_instance, _name)
   outputs do
     address.value attr!("#{_name}_ec2_instance".to_sym, :public_ip)
@@ -263,7 +263,7 @@ will work as expected:
 
 ~~~ruby
 SparkleFormation.new(:successful_template) do
-  dynamic!(:bad_dynamic, :foobar) do
+  dynamic!(:good_dynamic, :foobar) do
     properties.key_name 'default'
   end
 end
@@ -311,7 +311,7 @@ end
 
 ### Templates
 
-Templates are the files that pull all the building block together to produce
+Templates are the files that pull all the building blocks together to produce
 a final data structure to be serialized into a document which can then be
 submitted to an orchestration API. There are three stages of template compilation:
 
