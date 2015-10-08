@@ -117,7 +117,7 @@ root_pack = SparkleFormation::SparklePack.new(
 custom_pack = SparkleFormation::SparklePack.new(
   :root => PATH_TO_PACK
 )
-override_patck = SparkleFormation::SparklePack.new(
+override_pack = SparkleFormation::SparklePack.new(
   :root => PATH_TO_PACK
 )
 
