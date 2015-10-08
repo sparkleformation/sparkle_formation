@@ -148,7 +148,7 @@ root_pack = SparkleFormation::SparklePack.new(
 custom_pack = SparkleFormation::SparklePack.new(
   :root => PATH_TO_PACK
 )
-base_patck = SparkleFormation::SparklePack.new(
+base_pack = SparkleFormation::SparklePack.new(
   :root => PATH_TO_PACK
 )
 
