@@ -73,7 +73,7 @@ SparkleFormation.new(:root) do
 end
 ~~~
 
-when when compiled would result in:
+when compiled would result in:
 
 ~~~json
 ...
@@ -198,7 +198,7 @@ It loses some ease of use but gains greater functionality. Key features/
 restrictions of deep stack nesting:
 
 * No parameter bubbling
-* Supports unlimited nesting depths*
+* Supports unlimited nesting depths
 * Automatic output mapping
   * Automatic output bubbling
 
