@@ -143,7 +143,7 @@ end
 
 When the final template file is compiled SparkleFormation will not
 bubble the `Address` parameter to the root stack. Because `template_b`
-defines an output the a matching name, SparkleFormation automatically
+defines an output with a matching name, SparkleFormation automatically
 uses that output value:
 
 ~~~json
