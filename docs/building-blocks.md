@@ -221,7 +221,7 @@ to use the values returned from the dynamic block to prevent surprises.
 When the `dynamic!` is called and provided a block, the block is evaluated
 within the context returned from the `dynamic!`.
 
-For example, this is a improper implementation of a dynamic:
+For example, this is an improper implementation of a dynamic:
 
 ~~~ruby
 SparkleFormation.dynamic(:bad_dynamic) do |_name, _config|
@@ -258,7 +258,7 @@ SparkleFormation.dynamic(:bad_dynamic) do |_name, _config|
 end
 ~~~
 
-This will ensure the instance resource is the context returned. The blocks produced
+This will ensure the instance resource is the context returned. The blocks provided
 will work as expected:
 
 ~~~ruby
@@ -297,7 +297,7 @@ end
 SfnRegistry.register(:instance_size_default){ 'm3.medium' }
 ~~~
 
-With the value registered holding an array of values it can then be referenced:
+With the value registered, holding an array of values, it can then be referenced:
 
 ~~~ruby
 SparkleFormation.new(:instance_stack) do
