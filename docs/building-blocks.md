@@ -297,7 +297,7 @@ end
 SfnRegistry.register(:instance_size_default){ 'm3.medium' }
 ~~~
 
-With the value registered, holding an array of values, it can then be referenced:
+With the array registered as `registry!(:instance_sizes)`, we can now reference it:
 
 ~~~ruby
 SparkleFormation.new(:instance_stack) do
