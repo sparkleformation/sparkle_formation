@@ -141,7 +141,7 @@ SparkleFormation includes a lookup of known AWS resources which can be accessed
 using the `dynamic!` method. This lookup is provided simply as a convenience
 to speed development and compact implementations. When a builtin is inserted,
 it will automatically set the `type` of the resource and evaluate an optionally
-provided block within the resource. The following two template below will generate
+provided block within the resource. The following templates will generate
 equivalent results when compiled:
 
 ~~~ruby
@@ -215,13 +215,13 @@ which will result in a resource name: `FoobarInstance`
 ##### Dynamic Return Context
 
 When defining custom dynamics, the result of the dynamic block is important.
-Many times a dynamic can be making multiple modifications to a template when
-inserted (addition of parameters, resources, and/or outputs). It is important
-to be aware of the importance of the value returned from the dynamic block to
-prevent surprise for users. When `dynamic!` is called and provided a block, that
-block is evaluated within the context returned from the requested dynamic.
+A dynamic can make multiple modifications to a template when inserted. For
+example, addition of parameters, resources, and/or outputs. It is important
+to use the values returned from the dynamic block to prevent surprises.
+When the `dynamic!` is called and provided a block, the block is evaluated
+within the context returned from the `dynamic!`.
 
-For example, this is a poor implementation of a dynamic:
+For example, this is an improper implementation of a dynamic:
 
 ~~~ruby
 SparkleFormation.dynamic(:bad_dynamic) do |_name, _config|
@@ -246,7 +246,7 @@ end
 The `properties.key_name` will be evaluated within the context of the `outputs`
 because it is the returned value of the dynamic block. Instead the dynamic should
 return the context of the referenced resource (if applicable). To make the
-dynamic act as expected, the resource must be returned from the block:
+dynamic act as expected, the resource must be returned from the block.
 
 ~~~ruby
 SparkleFormation.dynamic(:bad_dynamic) do |_name, _config|
@@ -258,7 +258,7 @@ SparkleFormation.dynamic(:bad_dynamic) do |_name, _config|
 end
 ~~~
 
-This ensures the instance resource is the context returned, and provided blocks
+This will ensure the instance resource is the context returned. The blocks provided
 will work as expected:
 
 ~~~ruby
@@ -297,7 +297,7 @@ end
 SfnRegistry.register(:instance_size_default){ 'm3.medium' }
 ~~~
 
-With the value registered, it can then be referenced:
+With the array registered as `registry!(:instance_sizes)`, we can now reference it:
 
 ~~~ruby
 SparkleFormation.new(:instance_stack) do
@@ -311,9 +311,11 @@ end
 
 ### Templates
 
-Templates are the files that pull all the building block together to produce
-a final data structure to be serialized into a document which can then be
-submitted to an orchestration API. There are three stages of template compilation:
+Templates are the files that pull all the building blocks together to produce
+a final data structure that will be serialized into a document. This data structure
+can be submitted to an orchestration API.
+
+There are three stages of template compilation:
 
 1. Evaluate optional block given on instantiation
 2. Evaluate any loaded components
