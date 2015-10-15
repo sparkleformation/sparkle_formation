@@ -243,7 +243,7 @@ class SparkleFormation
       struct.resources.set!(resource_name) do
         type 'AWS::CloudFormation::Stack'
       end
-      struct.resources.__send__(resource_name).properties.stack instance.compile
+      struct.resources.__send__(resource_name).properties.stack instance.compile(:state => struct._arg_state)
       if(block_given?)
         struct.resources.__send__(resource_name).instance_exec(&block)
       end
