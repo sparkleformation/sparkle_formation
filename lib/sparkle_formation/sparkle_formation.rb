@@ -121,9 +121,13 @@ class SparkleFormation
     # @yield block to execute
     # @return [SparkleStruct] provided base or new struct
     def build(base=nil, &block)
-      struct = base || SparkleStruct.new
-      struct.instance_exec(&block)
-      @_struct = struct
+      if(base || block.nil?)
+        struct = base || SparkleStruct.new
+        struct.instance_exec(&block)
+        @_struct = struct
+      else
+        block
+      end
     end
 
     # Load component
@@ -132,7 +136,6 @@ class SparkleFormation
     # @return [SparkleStruct] resulting struct
     def load_component(path)
       self.instance_eval(IO.read(path), path, 1)
-      @_struct
     end
 
     # Load all dynamics within a directory
@@ -377,7 +380,7 @@ class SparkleFormation
   # @param block [Proc]
   # @return [TrueClass]
   def block(block)
-    @components[:__base__] = self.class.build(&block)
+    @components[:__base__] = block
     @load_order << :__base__
     true
   end
@@ -422,7 +425,7 @@ class SparkleFormation
         compiled.set_state!(args[:state])
       end
       @load_order.each do |key|
-        compiled._merge!(components[key])
+        self.class.build(compiled, &components[key])
       end
       @overrides.each do |override|
         if(override[:args] && !override[:args].empty?)
