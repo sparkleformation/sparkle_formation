@@ -448,7 +448,7 @@ class SparkleFormation
 
   # @return [TrueClass, FalseClass] includes nested stacks
   def nested?
-    !!compile.dump!['Resources'].detect do |r_name, resource|
+    !!compile.dump!.fetch('Resources', {}).detect do |r_name, resource|
       resource['Type'] == 'AWS::CloudFormation::Stack'
     end
   end
