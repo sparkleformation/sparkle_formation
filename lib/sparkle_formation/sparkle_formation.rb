@@ -121,9 +121,13 @@ class SparkleFormation
     # @yield block to execute
     # @return [SparkleStruct] provided base or new struct
     def build(base=nil, &block)
-      struct = base || SparkleStruct.new
-      struct.instance_exec(&block)
-      @_struct = struct
+      if(base || block.nil?)
+        struct = base || SparkleStruct.new
+        struct.instance_exec(&block)
+        @_struct = struct
+      else
+        block
+      end
     end
 
     # Load component
@@ -132,7 +136,6 @@ class SparkleFormation
     # @return [SparkleStruct] resulting struct
     def load_component(path)
       self.instance_eval(IO.read(path), path, 1)
-      @_struct
     end
 
     # Load all dynamics within a directory
@@ -240,7 +243,7 @@ class SparkleFormation
       struct.resources.set!(resource_name) do
         type 'AWS::CloudFormation::Stack'
       end
-      struct.resources.__send__(resource_name).properties.stack instance.compile
+      struct.resources.__send__(resource_name).properties.stack instance.compile(:state => struct._arg_state)
       if(block_given?)
         struct.resources.__send__(resource_name).instance_exec(&block)
       end
@@ -351,7 +354,7 @@ class SparkleFormation
     @compiled = nil
   end
 
-  ALLOWED_GENERATION_PARAMETERS = ['type', 'default']
+  ALLOWED_GENERATION_PARAMETERS = ['type', 'default', 'description', 'multiple']
   VALID_GENERATION_PARAMETER_TYPES = ['String', 'Number']
 
   # Validation parameters used for template generation to ensure they
@@ -377,7 +380,7 @@ class SparkleFormation
   # @param block [Proc]
   # @return [TrueClass]
   def block(block)
-    @components[:__base__] = self.class.build(&block)
+    @components[:__base__] = block
     @load_order << :__base__
     true
   end
@@ -418,17 +421,21 @@ class SparkleFormation
   def compile(args={})
     unless(@compiled)
       compiled = SparkleStruct.new
+      compiled._set_self(self)
       if(args[:state])
         compiled.set_state!(args[:state])
       end
       @load_order.each do |key|
-        compiled._merge!(components[key])
+        self.class.build(compiled, &components[key])
       end
       @overrides.each do |override|
         if(override[:args] && !override[:args].empty?)
           compiled._set_state(override[:args])
         end
         self.class.build(compiled, &override[:block])
+      end
+      if(args[:state])
+        compiled.outputs.compile_state.value MultiJson.dump(args[:state])
       end
       @compiled = compiled
     end
@@ -438,14 +445,14 @@ class SparkleFormation
   # Clear compiled stack if cached and perform compilation again
   #
   # @return [SparkleStruct]
-  def recompile
+  def recompile(args={})
     @compiled = nil
-    compile
+    compile(args)
   end
 
   # @return [TrueClass, FalseClass] includes nested stacks
   def nested?
-    !!compile.dump!['Resources'].detect do |r_name, resource|
+    !!compile.dump!.fetch('Resources', {}).detect do |r_name, resource|
       resource['Type'] == 'AWS::CloudFormation::Stack'
     end
   end
