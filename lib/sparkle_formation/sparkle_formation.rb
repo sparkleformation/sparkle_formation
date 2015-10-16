@@ -354,7 +354,7 @@ class SparkleFormation
     @compiled = nil
   end
 
-  ALLOWED_GENERATION_PARAMETERS = ['type', 'default']
+  ALLOWED_GENERATION_PARAMETERS = ['type', 'default', 'description', 'multiple']
   VALID_GENERATION_PARAMETER_TYPES = ['String', 'Number']
 
   # Validation parameters used for template generation to ensure they
@@ -421,6 +421,7 @@ class SparkleFormation
   def compile(args={})
     unless(@compiled)
       compiled = SparkleStruct.new
+      compiled._set_self(self)
       if(args[:state])
         compiled.set_state!(args[:state])
       end
@@ -433,6 +434,9 @@ class SparkleFormation
         end
         self.class.build(compiled, &override[:block])
       end
+      if(args[:state])
+        compiled.outputs.compile_state.value MultiJson.dump(args[:state])
+      end
       @compiled = compiled
     end
     @compiled
@@ -441,9 +445,9 @@ class SparkleFormation
   # Clear compiled stack if cached and perform compilation again
   #
   # @return [SparkleStruct]
-  def recompile
+  def recompile(args={})
     @compiled = nil
-    compile
+    compile(args)
   end
 
   # @return [TrueClass, FalseClass] includes nested stacks
