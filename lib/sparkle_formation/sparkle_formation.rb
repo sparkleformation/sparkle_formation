@@ -229,6 +229,12 @@ class SparkleFormation
     # @note if symbol is provided for template, double underscores
     #   will be used for directory separator and dashes will match underscores
     def nest(template, struct, *args, &block)
+      options = args.detect{|i| i.is_a?(Hash)}
+      if(options)
+        args.delete(options)
+      else
+        options = {}
+      end
       spath = SparkleFormation.new('stub').sparkle_path
       resource_name = [template.to_s.gsub(/(\/|__|-)/, '_'), *args].compact.join('_').to_sym
       path = template.is_a?(Symbol) ? template.to_s.gsub('__', '/') : template.to_s
@@ -243,7 +249,7 @@ class SparkleFormation
       struct.resources.set!(resource_name) do
         type 'AWS::CloudFormation::Stack'
       end
-      struct.resources.__send__(resource_name).properties.stack instance.compile(:state => struct._arg_state)
+      struct.resources.__send__(resource_name).properties.stack instance.compile(:state => options[:parameters])
       if(block_given?)
         struct.resources.__send__(resource_name).instance_exec(&block)
       end
@@ -312,6 +318,8 @@ class SparkleFormation
   attr_reader :load_order
   # @return [Hash] parameters for stack generation
   attr_reader :parameters
+  # @return [Hash] state hash for compile time parameters
+  attr_reader :compile_state
 
   # Create new instance
   #
@@ -419,11 +427,15 @@ class SparkleFormation
   # @option args [Hash] :state local state parameters
   # @return [SparkleStruct]
   def compile(args={})
+    if(args.has_key?(:state))
+      @compile_state = args[:state]
+      @compiled = nil
+    end
     unless(@compiled)
       compiled = SparkleStruct.new
       compiled._set_self(self)
-      if(args[:state])
-        compiled.set_state!(args[:state])
+      if(compile_state)
+        compiled.set_state!(compile_state)
       end
       @load_order.each do |key|
         self.class.build(compiled, &components[key])
@@ -434,8 +446,8 @@ class SparkleFormation
         end
         self.class.build(compiled, &override[:block])
       end
-      if(args[:state])
-        compiled.outputs.compile_state.value MultiJson.dump(args[:state])
+      if(compile_state)
+        compiled.outputs.compile_state.value MultiJson.dump(compile_state)
       end
       @compiled = compiled
     end
