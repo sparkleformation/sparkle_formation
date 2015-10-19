@@ -246,6 +246,8 @@ class SparkleFormation
         raise ArgumentError.new("Failed to locate nested stack file! (#{template.inspect} -> #{path.inspect})")
       end
       instance = self.instance_eval(IO.read(file), file, 1)
+      instance.parent = struct._self
+      instance.name = resource_name
       struct.resources.set!(resource_name) do
         type 'AWS::CloudFormation::Stack'
       end
@@ -303,7 +305,7 @@ class SparkleFormation
   end
 
   # @return [Symbol] name of formation
-  attr_reader :name
+  attr_accessor :name
   # @return [String] base path
   attr_reader :sparkle_path
   # @return [String] components path
@@ -319,7 +321,10 @@ class SparkleFormation
   # @return [Hash] parameters for stack generation
   attr_reader :parameters
   # @return [Hash] state hash for compile time parameters
-  attr_reader :compile_state
+  attr_accessor :compile_state
+
+  attr_accessor :compile_time_parameter_setter
+  attr_accessor :parent
 
   # Create new instance
   #
@@ -360,6 +365,24 @@ class SparkleFormation
       load_block(block)
     end
     @compiled = nil
+  end
+
+  def compile_time_parameter_setter(&block)
+    if(block)
+      @compile_time_parameter_setter = block
+    else
+      if(@compile_time_parameter_setter)
+        @compile_time_parameter_setter
+      else
+        parent.nil? ? nil : parent.compile_time_parameter_setter
+      end
+    end
+  end
+
+  def set_compile_time_parameters!
+    if(compile_time_parameter_setter)
+      compile_time_parameter_setter.call(self)
+    end
   end
 
   ALLOWED_GENERATION_PARAMETERS = ['type', 'default', 'description', 'multiple']
@@ -432,6 +455,7 @@ class SparkleFormation
       @compiled = nil
     end
     unless(@compiled)
+      set_compile_time_parameters!
       compiled = SparkleStruct.new
       compiled._set_self(self)
       if(compile_state)
