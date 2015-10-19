@@ -1,3 +1,9 @@
+## v0.4.0
+* Add support for compile time parameters
+* Backport SparkleStruct updates
+* Track parent stack within nested stacks
+* Fix nested stack check method which assumed resources hash
+
 ## v0.3.0
 * Update `or!` helper method to take multiple arguments
 * Support non-ref values in `map!` (#19)
