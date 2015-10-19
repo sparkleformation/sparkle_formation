@@ -322,8 +322,9 @@ class SparkleFormation
   attr_reader :parameters
   # @return [Hash] state hash for compile time parameters
   attr_accessor :compile_state
-
+  # @return [Proc] block to call for setting compile time parameters
   attr_accessor :compile_time_parameter_setter
+  # @return [SparkleFormation] parent instance
   attr_accessor :parent
 
   # Create new instance
@@ -357,7 +358,11 @@ class SparkleFormation
       require 'sparkle_formation/aws'
       SfnAws.load!
     end
-    @parameters = set_generation_parameters!(options.fetch(:parameters, {}))
+    @parameters = set_generation_parameters!(
+      options.fetch(:parameters,
+        options.fetch(:compile_time_parameters, {})
+      )
+    )
     @components = SparkleStruct.hashish.new
     @load_order = []
     @overrides = []
@@ -367,6 +372,12 @@ class SparkleFormation
     @compiled = nil
   end
 
+  # Get or set the compile time parameter setting block. If a get
+  # request the ancestor path will be searched to root
+  #
+  # @yield block to set compile time parameters
+  # @yieldparam [SparkleFormation]
+  # @return [Proc, NilClass]
   def compile_time_parameter_setter(&block)
     if(block)
       @compile_time_parameter_setter = block
@@ -379,6 +390,8 @@ class SparkleFormation
     end
   end
 
+  # Set the compile time parameters for the stack if the setter proc
+  # is available
   def set_compile_time_parameters!
     if(compile_time_parameter_setter)
       compile_time_parameter_setter.call(self)
