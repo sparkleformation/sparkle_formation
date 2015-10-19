@@ -44,5 +44,20 @@ class SparkleFormation
       ::SparkleFormation::SparkleStruct
     end
 
+    # Override the state to force helpful error when no value has been
+    # provided
+    #
+    # @param arg [String, Symbol] name of parameter
+    # @return [Object]
+    # @raises [ArgumentError]
+    def _state(arg)
+      result = super
+      unless(result)
+        ::Kernel.raise ::ArgumentError.new "No value provided for compile time parameter: `#{arg}`!"
+      end
+      result
+    end
+    alias_method :state!, :_state
+
   end
 end
