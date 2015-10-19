@@ -52,8 +52,10 @@ class SparkleFormation
     # @raises [ArgumentError]
     def _state(arg)
       result = super
-      unless(result)
-        ::Kernel.raise ::ArgumentError.new "No value provided for compile time parameter: `#{arg}`!"
+      if(@self && result.nil?)
+        if(_self.parameters.keys.map(&:to_s).include?(arg.to_s))
+          ::Kernel.raise ::ArgumentError.new "No value provided for compile time parameter: `#{arg}`!"
+        end
       end
       result
     end
