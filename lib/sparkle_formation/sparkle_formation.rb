@@ -398,7 +398,7 @@ class SparkleFormation
     end
   end
 
-  ALLOWED_GENERATION_PARAMETERS = ['type', 'default', 'description', 'multiple']
+  ALLOWED_GENERATION_PARAMETERS = ['type', 'default', 'description', 'multiple', 'prompt_when_nested']
   VALID_GENERATION_PARAMETER_TYPES = ['String', 'Number']
 
   # Validation parameters used for template generation to ensure they
