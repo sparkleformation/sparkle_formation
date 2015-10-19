@@ -247,7 +247,7 @@ class SparkleFormation
       end
       instance = self.instance_eval(IO.read(file), file, 1)
       instance.parent = struct._self
-      instance.name = resource_name
+      instance.name = Bogo::Utility.camel(resource_name)
       struct.resources.set!(resource_name) do
         type 'AWS::CloudFormation::Stack'
       end
