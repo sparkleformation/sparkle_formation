@@ -666,7 +666,10 @@ class SparkleFormation
           return compile.ref!(output_name)
         end
       end
-      raise ArgumentError.new "Failed to detect available bubbling path for output `#{output_name}`. This may be due to a circular dependency!"
+      raise ArgumentError.new "Failed to detect available bubbling path for output `#{output_name}`. " <<
+        'This may be due to a circular dependency! ' <<
+        "(Output Path: #{outputs[output_name].root_path.map(&:name).join(' > ')} " <<
+        "Requester Path: #{root_path.map(&:name).join(' > ')})"
     end
     result = compile.attr!(bubble_path.first.name, "Outputs.#{output_name}")
     if(drip_path.size > 1)
