@@ -141,8 +141,9 @@ end
 When compile time parameters are present SparkleFormation will automatically adjust the outputs
 of the template to include a `CompileState` output. The output will contain a JSON dump of the
 compile time parameter values used to generate the template. This allows update requests to
-fetch the previous state and seed the compilation of the updated template. Doing this provides consistency
-and removes any requirement of prior knowledge about how a template was used to build a stack.
+fetch the previous state and seed the compilation of the updated template. This approach provides
+consistency and removes any requirement of prior knowledge about how a template was used to build
+a stack.
 
 ### Template Nesting
 
