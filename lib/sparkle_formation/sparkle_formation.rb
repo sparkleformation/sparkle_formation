@@ -110,9 +110,13 @@ class SparkleFormation
     # @yield block to execute
     # @return [SparkleStruct] provided base or new struct
     def build(base=nil, &block)
-      struct = base || SparkleStruct.new
-      struct.instance_exec(&block)
-      struct
+      if(base || block.nil?)
+        struct = base || SparkleStruct.new
+        struct.instance_exec(&block)
+        struct
+      else
+        block
+      end
     end
 
     # Load component
@@ -217,10 +221,20 @@ class SparkleFormation
     # @note if symbol is provided for template, double underscores
     #   will be used for directory separator and dashes will match underscores
     def nest(template, struct, *args, &block)
+      options = args.detect{|i| i.is_a?(Hash)}
+      if(options)
+        args.delete(options)
+      else
+        options = {}
+      end
       to_nest = struct._self.sparkle.get(:template, template)
       resource_name = (args.empty? ? template.to_s.gsub('__', '_') : args.map{|a| Bogo::Utility.snake(a)}.join('_')).to_sym
       nested_template = self.compile(to_nest[:path], :sparkle)
       nested_template.parent = struct._self
+      nested_template.name = Bogo::Utility.camel(resource_name)
+      if(options[:parameters])
+        nested_template.compile_state = options[:parameters]
+      end
       struct.resources.set!(resource_name) do
         type DEFAULT_STACK_RESOURCE
       end
@@ -281,7 +295,7 @@ class SparkleFormation
   include Bogo::Memoization
 
   # @return [Symbol] name of formation
-  attr_reader :name
+  attr_accessor :name
   # @return [Sparkle] parts store
   attr_reader :sparkle
   # @return [String] base path
@@ -302,6 +316,8 @@ class SparkleFormation
   attr_accessor :parent
   # @return [Array<String>] valid stack resource types
   attr_reader :stack_resource_types
+  # @return [Hash] state hash for compile time parameters
+  attr_accessor :compile_state
 
   # Create new instance
   #
@@ -334,7 +350,11 @@ class SparkleFormation
       require 'sparkle_formation/aws'
       SfnAws.load!
     end
-    @parameters = set_generation_parameters!(options.fetch(:parameters, {}))
+    @parameters = set_generation_parameters!(
+      options.fetch(:compile_time_parameters,
+        options.fetch(:parameters, {})
+      )
+    )
     @stack_resource_types = (
       VALID_STACK_RESOURCES +
       options.fetch(:stack_resource_types, [])
@@ -380,8 +400,34 @@ class SparkleFormation
     root == self
   end
 
-  ALLOWED_GENERATION_PARAMETERS = ['type', 'default']
+  ALLOWED_GENERATION_PARAMETERS = ['type', 'default', 'description', 'multiple', 'prompt_when_nested']
   VALID_GENERATION_PARAMETER_TYPES = ['String', 'Number']
+
+  # Get or set the compile time parameter setting block. If a get
+  # request the ancestor path will be searched to root
+  #
+  # @yield block to set compile time parameters
+  # @yieldparam [SparkleFormation]
+  # @return [Proc, NilClass]
+  def compile_time_parameter_setter(&block)
+    if(block)
+      @compile_time_parameter_setter = block
+    else
+      if(@compile_time_parameter_setter)
+        @compile_time_parameter_setter
+      else
+        parent.nil? ? nil : parent.compile_time_parameter_setter
+      end
+    end
+  end
+
+  # Set the compile time parameters for the stack if the setter proc
+  # is available
+  def set_compile_time_parameters!
+    if(compile_time_parameter_setter)
+      compile_time_parameter_setter.call(self)
+    end
+  end
 
   # Validation parameters used for template generation to ensure they
   # are in the expected format
@@ -420,8 +466,7 @@ class SparkleFormation
     args.each do |thing|
       key = File.basename(thing.to_s).sub('.rb', '')
       if(thing.is_a?(String))
-        # TODO: Test this!
-        components[key] = ->{ self.class.load_component(thing) }
+        components[key] = self.class.load_component(thing)
       else
         components[key] = sparkle.get(:component, thing)[:block]
       end
@@ -445,11 +490,16 @@ class SparkleFormation
   # @option args [Hash] :state local state parameters
   # @return [SparkleStruct]
   def compile(args={})
-    unless(@compiled)
+    if(args.has_key?(:state))
+      @compile_state = args[:state]
+      unmemoize(:compile)
+    end
+    memoize(:compile) do
+      set_compile_time_parameters!
       compiled = SparkleStruct.new
       compiled._set_self(self)
-      if(args[:state])
-        compiled.set_state!(args[:state])
+      if(compile_state)
+        compiled.set_state!(compile_state)
       end
       @load_order.each do |key|
         self.class.build(compiled, &components[key])
@@ -460,9 +510,8 @@ class SparkleFormation
         end
         self.class.build(compiled, &override[:block])
       end
-      @compiled = compiled
+      compiled
     end
-    @compiled
   end
 
   # Clear compiled stack if cached and perform compilation again
@@ -611,7 +660,16 @@ class SparkleFormation
       base_sparkle.compile.outputs.set!(output_name).set!(:value, base_sparkle.compile.attr!(ref_sparkle.name, "Outputs.#{output_name}"))
     end
     if(bubble_path.empty?)
-      raise ArgumentError.new "Failed to detect available bubbling path for output `#{output_name}`. This may be due to a circular dependency!"
+      if(drip_path.size == 1)
+        parent = drip_path.first.parent
+        if(parent && parent.compile.parameters.data![output_name])
+          return compile.ref!(output_name)
+        end
+      end
+      raise ArgumentError.new "Failed to detect available bubbling path for output `#{output_name}`. " <<
+        'This may be due to a circular dependency! ' <<
+        "(Output Path: #{outputs[output_name].root_path.map(&:name).join(' > ')} " <<
+        "Requester Path: #{root_path.map(&:name).join(' > ')})"
     end
     result = compile.attr!(bubble_path.first.name, "Outputs.#{output_name}")
     if(drip_path.size > 1)
