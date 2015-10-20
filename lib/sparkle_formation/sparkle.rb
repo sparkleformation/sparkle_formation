@@ -74,6 +74,10 @@ class SparkleFormation
 
           class << self
 
+            def insert(*args, &block)
+              ::SparkleFormation.insert(*args, &block)
+            end
+
             def part_data(data=nil)
               if(data)
                 @data = data
