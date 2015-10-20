@@ -510,6 +510,9 @@ class SparkleFormation
         end
         self.class.build(compiled, &override[:block])
       end
+      if(compile_state)
+        compiled.outputs.compile_state.value MultiJson.dump(compile_state)
+      end
       compiled
     end
   end
