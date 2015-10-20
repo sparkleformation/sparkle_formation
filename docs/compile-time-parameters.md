@@ -44,9 +44,9 @@ end
 
 Declaring compile time parameters is done via the `:compile_time_parameters`
 option when instantiating a new template. This option expects a `Hash` value
-with the compile time parameter names as the key, and the parameter options
-as the value. The available items within the option `Hash` for compile time
-parameters:
+in which the keys are parameter names, and their respective values are a `Hash`
+defining options for the parameter. The available items within the option
+`Hash` for compile time parameters:
 
 * `:type` - Data type of parameter
   * Required: yes
