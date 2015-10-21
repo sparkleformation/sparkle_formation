@@ -4,7 +4,7 @@ category: "dsl"
 weight: 1
 next:
   label: "SparkleFormation DSL"
-  url: "sparkleformation-dsl"
+  url: "sparkleformation-dsl.md"
 ---
 
 # Overview
