@@ -49,29 +49,28 @@ defining options for the parameter. The available items within the option
 `Hash` for compile time parameters:
 
 
-|-----------------------+-------------+-----------------------------------------
 | Option                | Attribute   | Value
-|-----------------------+-------------+-----------------------------------------
+|-----------------------|-------------|-----------------------------------------
 | `:type`               | Description | Data type of parameter
 |                       | Required    | yes
 |                       | Valid       | `:number`, `:string`
 |                       | Default     | none
-|-----------------------+-------------+-----------------------------------------
+|-----------------------|-------------|-----------------------------------------
 | `:description`        | Description | Description of the parameter
 |                       | Required    | no
 |                       | Valid       | `String`
 |                       | Default     | none
-|-----------------------+-------------+-----------------------------------------
+|-----------------------|-------------|-----------------------------------------
 | `:default`            | Description | Default value for parameter
 |                       | Required    | no
 |                       | Valid       | `String`, `Integer`
 |                       | Default     | none
-|-----------------------+-------------+-----------------------------------------
+|-----------------------|-------------|-----------------------------------------
 | `:multiple`           | Description | Accept multiple values
 |                       | Required    | no
 |                       | Valid       | `TrueClass`, `FalseClass`
 |                       | Default     | `false`
-|-----------------------+-------------+-----------------------------------------
+|-----------------------|-------------|-----------------------------------------
 | `:prompt_when_nested` | Description | Prompt for value when template is nested
 |                       | Required    | no
 |                       | Valid       | `TrueClass`, `FalseClass`
