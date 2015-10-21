@@ -1,3 +1,8 @@
+## v1.1.0
+* Add support for compile time parameters
+* Fix usage of deprecated `SparkleFormation.insert` method
+* Propagate parent stack parameter when output required output is in parent stack
+
 ## v1.0.4
 * Fixes on testing (#66 #67 #68 thanks @matschaffer)
 * Properly handle JSON templates within packs (#72)
