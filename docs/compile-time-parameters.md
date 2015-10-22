@@ -48,26 +48,33 @@ in which the keys are parameter names, and their respective values are a `Hash`
 defining options for the parameter. The available items within the option
 `Hash` for compile time parameters:
 
-* `:type` - Data type of parameter
-  * Required: yes
-  * Valid: `:number`, `:string`
-  * Default: none
-* `:description` - Description of the parameter
-  * Required: no
-  * Valid: `String`
-  * Default: none
-* `:default` - Default value for parameter
-  * Required: no
-  * Valid: `String`, `Integer`
-  * Default: none
-* `:multiple` - Accept multiple values
-  * Required: no
-  * Valid: `TrueClass`, `FalseClass`
-  * Default: `false`
-* `:prompt_when_nested` - Prompt for value when template is nested
-  * Required: no
-  * Valid: `TrueClass`, `FalseClass`
-  * Default: `true`
+
+| Option                | Attribute   | Value
+|-----------------------|-------------|-----------------------------------------
+| `:type`               | Description | Data type of parameter
+|                       | Required    | yes
+|                       | Valid       | `:number`, `:string`
+|                       | Default     | none
+|-----------------------|-------------|-----------------------------------------
+| `:description`        | Description | Description of the parameter
+|                       | Required    | no
+|                       | Valid       | `String`
+|                       | Default     | none
+|-----------------------|-------------|-----------------------------------------
+| `:default`            | Description | Default value for parameter
+|                       | Required    | no
+|                       | Valid       | `String`, `Integer`
+|                       | Default     | none
+|-----------------------|-------------|-----------------------------------------
+| `:multiple`           | Description | Accept multiple values
+|                       | Required    | no
+|                       | Valid       | `TrueClass`, `FalseClass`
+|                       | Default     | `false`
+|-----------------------|-------------|-----------------------------------------
+| `:prompt_when_nested` | Description | Prompt for value when template is nested
+|                       | Required    | no
+|                       | Valid       | `TrueClass`, `FalseClass`
+|                       | Default     | `true`
 
 ##### Multiple value support
 
