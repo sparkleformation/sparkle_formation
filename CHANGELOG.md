@@ -1,3 +1,6 @@
+## v1.1.2
+* Inject compile time state into outputs only if data set
+
 ## v1.1.0
 * Add support for compile time parameters
 * Fix usage of deprecated `SparkleFormation.insert` method
