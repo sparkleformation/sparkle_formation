@@ -32,7 +32,7 @@ class SparkleFormation
     # @option args [Hash] :options options for translation
     def initialize(template_hash, args={})
       @original = template_hash.dup
-      @template = MultiJson.load(MultiJson.dump(template_hash)) ## LOL: Lazy deep dup
+      @template = template_hash.to_smash
       @translated = {}
       @logger = args.fetch(:logger, Logger.new($stdout))
       @parameters = args[:parameters] || {}
