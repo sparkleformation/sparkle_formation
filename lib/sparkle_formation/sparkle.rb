@@ -328,7 +328,7 @@ class SparkleFormation
     # Load all sparkle parts
     def load_parts!
       memoize(:load_parts) do
-        Dir.glob(File.join(root, "{#{DIRS.join(',')}}", '*.rb')).each do |file|
+        Dir.glob(File.join(root, "{#{DIRS.join(',')}}", '**', '**', '*.rb')).each do |file|
           wrapper.instance_eval(IO.read(file), file, 1)
         end
         raw_data.each do |key, items|
