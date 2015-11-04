@@ -56,8 +56,24 @@ Dir.glob(File.join(STORE, '**/*.html')).each do |path|
       end.map do |string|
         string.split("\n").map(&:strip).join(' ')
       end
+      update_causes = resource.css('dd p').map(&:text).find_all do |x|
+        x.include?('Update requires')
+      end.map do |x|
+        x = x.downcase
+        if(x.include?('replacement'))
+          :replacement
+        elsif(x.include?('no interruption'))
+          :none
+        elsif(x.include?('interruption'))
+          :interrupt
+        elsif(x.include?('not supported'))
+          :unavailable
+        else
+          :unknown
+        end
+      end
       property_hashes = names.size.times.map do |i|
-        [names[i], {:description => descriptions[i], :required => requires[i], :type => types[i]}]
+        [names[i], {:description => descriptions[i], :required => requires[i], :type => types[i], :update_causes => update_causes[i]}]
       end
       aws_resources[type] = {
         :properties => names,
