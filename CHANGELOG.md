@@ -1,3 +1,8 @@
+## v1.1.4
+* Update resource information extractor (#92)
+* Update builtin aws resource information (#92)
+* Support subdirectories within packs (#94)
+
 ## v1.1.2
 * Inject compile time state into outputs only if data set
 
