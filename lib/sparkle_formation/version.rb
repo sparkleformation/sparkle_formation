@@ -1,4 +1,4 @@
 class SparkleFormation
   # Current library version
-  VERSION = Gem::Version.new('1.1.6')
+  VERSION = Gem::Version.new('1.1.7')
 end
