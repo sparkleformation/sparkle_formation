@@ -1,7 +1,7 @@
 describe SparkleFormation do
 
   before do
-    SparkleFormation.sparkle_path = File.join(File.dirname(__FILE__), 'cloudformation')
+    SparkleFormation.sparkle_path = File.join(File.dirname(__FILE__), 'sparkleformation')
   end
 
   describe 'Dummy template' do

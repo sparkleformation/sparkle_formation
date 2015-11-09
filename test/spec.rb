@@ -13,5 +13,5 @@ Dir.glob(
 end
 
 SparkleFormation.sparkle_path = File.join(
-  File.dirname(__FILE__), 'specs', 'cloudformation'
+  File.dirname(__FILE__), 'specs', 'sparkleformation'
 )

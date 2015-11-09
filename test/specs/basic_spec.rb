@@ -1,7 +1,7 @@
 describe SparkleFormation do
 
   before do
-    SparkleFormation.sparkle_path = File.join(File.dirname(__FILE__), 'cloudformation')
+    SparkleFormation.sparkle_path = File.join(File.dirname(__FILE__), 'sparkleformation')
   end
 
   describe 'Basic Usage' do
@@ -85,6 +85,11 @@ describe SparkleFormation do
         dynamic!(:node, :my)
         resources.my_ec2_instance.properties.image_id map!(:region_map, ref!('AWS::Region'), :ami)
       end.dump.must_equal full_stack
+    end
+
+    it 'should properly traverse ancestors' do
+      full_stack = MultiJson.load(File.read(File.join(File.dirname(__FILE__), 'results', 'traversal.json')))
+      SparkleFormation.compile(:traversal).must_equal full_stack
     end
 
   end
