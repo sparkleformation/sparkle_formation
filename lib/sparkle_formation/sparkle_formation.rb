@@ -267,7 +267,7 @@ class SparkleFormation
           value = _config[key] if key
           if(value)
             if(value.is_a?(Proc))
-              properties[prop_name].to_sym.instance_exec(&value)
+              properties.set!(prop_name, &value)
             else
               properties.set!(prop_name, value)
             end
@@ -735,7 +735,7 @@ class SparkleFormation
         end
       ]
       if(compile.outputs)
-        compile._merge(SparkleStruct.new(outputs_hash))
+        compile._merge(compile._klass_new(outputs_hash))
       else
         compile.outputs output_hash
       end
