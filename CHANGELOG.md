@@ -1,3 +1,6 @@
+## v1.1.6
+* Fix `#root!` helper method usage (#98)
+
 ## v1.1.4
 * Update resource information extractor (#92)
 * Update builtin aws resource information (#92)
