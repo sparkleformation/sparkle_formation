@@ -193,6 +193,18 @@ class SparkleFormation
     # @param struct [SparkleStruct] context for insertion
     # @param args [Object] parameters for dynamic
     # @return [SparkleStruct]
+    def registry(registry_name, struct, *args)
+      result = false
+      reg = struct._self.sparkle.get(:registry, registry_name)
+      struct.instance_exec(*args, &reg[:block])
+    end
+
+    # Insert a dynamic into a context
+    #
+    # @param dynamic_name [String, Symbol] dynamic name
+    # @param struct [SparkleStruct] context for insertion
+    # @param args [Object] parameters for dynamic
+    # @return [SparkleStruct]
     def insert(dynamic_name, struct, *args, &block)
       result = false
       begin
