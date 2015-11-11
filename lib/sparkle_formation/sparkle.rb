@@ -146,9 +146,10 @@ class SparkleFormation
             end
 
           end
-          SfnRegistry = Registry
-
         end
+
+        SfnRegistry = SparkleFormation::Registry
+
         ::Object.constants.each do |const|
           unless(self.const_defined?(const))
             next if const == :Config # prevent warning output
@@ -261,6 +262,9 @@ class SparkleFormation
             unless(data[:name])
               data[:name] = slim_path.tr('/', '__').sub(/\.(rb|json)$/, '')
             end
+            if(hash[data[:name]])
+              raise KeyError.new "Template name is already in use within pack! (`#{data[:name]}`)"
+            end
             hash[data[:name]] = data.merge(
               Smash.new(
                 :type => :template,
@@ -281,7 +285,7 @@ class SparkleFormation
     # @raises [NameError, Error::NotFound]
     def get(type, name)
       unless(TYPES.keys.include?(type.to_s))
-        raise NameError.new "Invalid type requested (#{type})! Valid types: #{TYPES.join(', ')}"
+        raise NameError.new "Invalid type requested (#{type})! Valid types: #{TYPES.keys.join(', ')}"
       end
       result = send(TYPES[type])[name]
       if(result.nil? && TYPES[type] == 'templates')
@@ -334,12 +338,17 @@ class SparkleFormation
         raw_data.each do |key, items|
           items.each do |item|
             if(item[:name])
-              send(TYPES[key])[item.delete(:name)] = item
+              collection = send(TYPES[key])
+              name = item.delete(:name)
             else
               path = item[:block].source_location.first.sub('.rb', '').split(File::SEPARATOR)
               type, name = path.slice(path.size - 2, 2)
-              send(type)[name] = item
+              collection = send(type)
             end
+            if(collection[name])
+              raise KeyError.new "#{key.capitalize} name is already in use within pack! (`#{name}`)"
+            end
+            collection[name] = item
           end
         end
       end
