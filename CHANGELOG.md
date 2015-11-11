@@ -1,3 +1,7 @@
+## v1.1.8
+* Raise error on name collisions within pack (#101)
+* Extract registry items from pack during compile
+
 ## v1.1.6
 * Fix `#root!` helper method usage (#98)
 
