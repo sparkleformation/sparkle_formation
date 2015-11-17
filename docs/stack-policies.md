@@ -88,3 +88,7 @@ This generates a policy data structure:
   ]
 }
 ~~~
+
+_NOTE: For stack policy usage with the [sfn](http://www.sparkleformation.io/docs/sfn)
+command, please refer to the [built-in callbacks](http://www.sparkleformation.io/docs/sfn/callbacks.html#builtin-callbacks)
+documentation._
