@@ -240,7 +240,13 @@ class SparkleFormation
         options = {}
       end
       to_nest = struct._self.sparkle.get(:template, template)
-      resource_name = (args.empty? ? template.to_s.gsub('__', '_') : args.map{|a| Bogo::Utility.snake(a)}.join('_')).to_sym
+      resource_name = template.to_s.gsub('__', '_')
+      unless(args.empty?)
+        resource_name = [
+          options.delete(:overwrite_name) ? nil : resource_name,
+          args.map{|a| Bogo::Utility.snake(a)}.join('_')
+        ].flatten.compact.join('_').to_sym
+      end
       nested_template = self.compile(to_nest[:path], :sparkle)
       nested_template.parent = struct._self
       nested_template.name = Bogo::Utility.camel(resource_name)

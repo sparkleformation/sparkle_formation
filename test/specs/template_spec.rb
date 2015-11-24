@@ -26,6 +26,10 @@ describe SparkleFormation do
       dummy.must_be :is_a?, Hash
       result.to_smash.get('Resources', 'Dummy', 'Properties', 'Stack').to_json.must_equal dummy.to_smash.to_json
       result.to_smash.get('Resources', 'Simple', 'Properties', 'Stack').to_json.must_equal simple.to_smash.to_json
+      result.to_smash.get('Resources', 'DummySecond').wont_be_nil
+      result.to_smash.get('Resources', 'DummySecond', 'Properties', 'Stack').to_json.must_equal dummy.to_smash.to_json
+      result.to_smash.get('Resources', 'Third').wont_be_nil
+      result.to_smash.get('Resources', 'Third', 'Properties', 'Stack').to_json.must_equal dummy.to_smash.to_json
     end
 
   end
