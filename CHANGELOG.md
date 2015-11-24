@@ -1,3 +1,6 @@
+## v1.1.10
+* Join nesting arguments to template name. Allow optional replace.
+
 ## v1.1.8
 * Raise error on name collisions within pack (#101)
 * Extract registry items from pack during compile
