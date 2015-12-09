@@ -1,3 +1,5 @@
+require_relative '../spec'
+
 describe SparkleFormation::Sparkle do
 
   describe 'valid sparkle pack' do
