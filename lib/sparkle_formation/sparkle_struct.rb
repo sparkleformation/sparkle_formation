@@ -61,5 +61,13 @@ class SparkleFormation
     end
     alias_method :state!, :_state
 
+    def puts!(*args)
+      $stdout.puts(*args)
+    end
+
+    def raise!(*args)
+      ::Kernel.raise(*args)
+    end
+
   end
 end
