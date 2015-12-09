@@ -1,3 +1,5 @@
+require_relative '../spec'
+
 describe SparkleFormation do
 
   before do
