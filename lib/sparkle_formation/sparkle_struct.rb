@@ -61,5 +61,15 @@ class SparkleFormation
     end
     alias_method :state!, :_state
 
+    # Override so people can print something instead of creating an attribute called puts
+    def puts(*args)
+      $stdout.puts(*args)
+    end
+
+    # Override so people can raise something instead of creating an attribute called raise
+    def raise(*args)
+      ::Kernel.raise(*args)
+    end
+
   end
 end

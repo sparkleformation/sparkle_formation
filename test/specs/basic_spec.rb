@@ -1,5 +1,13 @@
 describe SparkleFormation do
 
+  def capture_stdout
+    old, $stdout = $stdout, StringIO.new
+    yield
+    $stdout.string
+  ensure
+    $stdout = old
+  end
+
   before do
     SparkleFormation.sparkle_path = File.join(File.dirname(__FILE__), 'sparkleformation')
   end
@@ -90,6 +98,26 @@ describe SparkleFormation do
     it 'should properly traverse ancestors' do
       full_stack = MultiJson.load(File.read(File.join(File.dirname(__FILE__), 'results', 'traversal.json')))
       SparkleFormation.compile(:traversal).must_equal full_stack
+    end
+
+    it 'should call puts' do
+      output = capture_stdout do
+        SparkleFormation.new(:dummy) do
+          puts 111
+          test 111
+        end.dump.must_equal 'Test' => 111
+      end
+      output.must_equal "111\n"
+    end
+
+    it 'should call raise' do
+      e = assert_raises RuntimeError do
+        SparkleFormation.new(:dummy) do
+          raise "111"
+          test 111
+        end.dump
+      end
+      e.message.must_equal "111"
     end
 
   end
