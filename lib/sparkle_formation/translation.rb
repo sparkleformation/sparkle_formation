@@ -253,7 +253,7 @@ class SparkleFormation
     # @param hash [Hash]
     # @param names [Array<Symbol>] enable renaming (:ref, :fn)
     # @return [Hash]
-    # @note remapping references two constants:
+    # @note remapping references to constants:
     #   REF_MAPPING for Ref maps
     #   FN_MAPPING for Fn maps
     def apply_rename(hash, names=[])
