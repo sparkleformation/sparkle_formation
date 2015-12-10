@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'multi_json'
   s.add_dependency 'bogo'
   s.add_development_dependency 'minitest'
+  s.add_development_dependency 'rake'
   s.executables << 'generate_sparkle_docs'
   s.files = Dir['{lib,docs}/**/*'] + %w(sparkle_formation.gemspec README.md CHANGELOG.md LICENSE)
 end

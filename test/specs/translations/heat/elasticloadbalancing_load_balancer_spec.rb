@@ -1,3 +1,5 @@
+require_relative '../../../spec'
+
 describe SparkleFormation::Translation::Heat do
   describe 'ElasticLoadbalancing::LoadBalancer' do
 
