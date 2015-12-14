@@ -285,6 +285,21 @@ class SparkleFormation
     end
     alias_method :system!, :_system
 
+    # Print to stdout
+    #
+    # @param args
+    # @return [NilClass]
+    def _puts(*args)
+      $stdout.puts(*args)
+    end
+    alias_method :puts!, :_puts
+
+    # Raise an exception
+    def _raise(*args)
+      ::Kernel.raise(*args)
+    end
+    alias_method :raise!, :_raise
+
     # @return [TrueClass, FalseClass] resource can be tagged
     def taggable?
       if(defined?(SfnAws))
