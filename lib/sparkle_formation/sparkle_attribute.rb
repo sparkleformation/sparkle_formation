@@ -325,7 +325,12 @@ class SparkleFormation
     # @param args [Object] argument list for dynamic
     # @return [self]
     def dynamic!(name, *args, &block)
-      SparkleFormation.insert(name, self, *args, &block)
+      if args.inspect.include?('#<Sparkle')
+        caller = ::Kernel.caller.first.sub(Dir.pwd, '.')
+        Kernel.raise NameError, "Using struct as argument, use a name at #{caller}"
+      else
+        SparkleFormation.insert(name, self, *args, &block)
+      end
     end
 
     # Registry insertion helper method

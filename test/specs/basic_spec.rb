@@ -122,6 +122,17 @@ describe SparkleFormation do
       e.message.must_equal "111"
     end
 
+    it 'should raise a clear error when hitting method_missing by accident' do
+      e = assert_raises NameError do
+        SparkleFormation.new(:dummy) do
+          dynamic! :ec2_instance, oooppps do
+            test 111
+          end
+        end.dump
+      end
+      e.message.must_equal "Using struct as argument. Use a name! ./test/specs/basic_spec.rb:#{__LINE__ - 5}:in `block (5 levels) in <main>'"
+    end
+
   end
 
 end
