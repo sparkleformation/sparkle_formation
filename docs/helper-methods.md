@@ -11,6 +11,10 @@ anchors:
     url: "#nests"
   - title: "Local System Call"
     url: "#local-system-call"
+  - title: "Output to STDOUT"
+    url: "#output-to-stdout"
+  - title: "Raise Exceptions"
+    url: "#raise-exceptions"
   - title: "AWS Helpers"
     url: "#aws-helpers"
 ---
@@ -93,6 +97,27 @@ execute a command, and return the string output:
 ~~~ruby
 SparkleFormation.new(:test) do
   parameters.creator.default system!('whoami')
+end
+~~~
+
+##### Output to STDOUT
+
+Use the `puts!` helper method to print content to the console:
+
+~~~ruby
+SparkleFormation.new(:test) do
+  puts! 'Hi everybody!'
+  ...
+end
+~~~
+
+##### Raise Exceptions
+
+Use the `raise!` helper method to raise exceptions:
+
+~~~ruby
+SparkleFormation.new(:test) do
+  raise! 'ERROR'
 end
 ~~~
 
