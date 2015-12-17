@@ -44,6 +44,15 @@ class SparkleFormation
       ::SparkleFormation::SparkleStruct
     end
 
+    # Instantiation override properly set origin template
+    #
+    # @return [SparkleStruct]
+    def _klass_new(*args, &block)
+      inst = super
+      inst._set_self(_self)
+      inst
+    end
+
     # Override the state to force helpful error when no value has been
     # provided
     #
