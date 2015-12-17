@@ -36,4 +36,13 @@ describe SparkleFormation do
 
   end
 
+  describe 'Component registry usage' do
+
+    it 'should properly handle multiple registry requests' do
+      result = SparkleFormation.compile('registry_in_component.rb')
+      result['Complete'].must_equal true
+    end
+
+  end
+
 end
