@@ -1,3 +1,7 @@
+## v1.1.12
+* New helper methods added `raise!` and `puts!` (#109)
+* Fix for registry usage within components (#115)
+
 ## v1.1.10
 * Join nesting arguments to template name. Allow optional replace.
 
