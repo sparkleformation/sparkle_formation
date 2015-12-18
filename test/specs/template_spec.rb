@@ -45,4 +45,13 @@ describe SparkleFormation do
 
   end
 
+  describe 'Hash loading within template' do
+
+    it 'should properly load Hash types into struct instances' do
+      result = SparkleFormation.compile('hash_loading_root.rb', :sparkle)
+      result.apply_nesting{|*_| }.wont_be_nil
+    end
+
+  end
+
 end

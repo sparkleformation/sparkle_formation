@@ -48,8 +48,14 @@ class SparkleFormation
     #
     # @return [SparkleStruct]
     def _klass_new(*args, &block)
-      inst = super
+      inst = super()
       inst._set_self(_self)
+      if(args.first.is_a?(::Hash))
+        inst._load(args.first)
+      end
+      if(block)
+        inst.build!(&block)
+      end
       inst
     end
 
