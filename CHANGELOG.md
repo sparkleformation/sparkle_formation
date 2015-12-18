@@ -1,3 +1,6 @@
+## v1.1.14
+* Fix for multi depth hash loading within nested stacks (#118)
+
 ## v1.1.12
 * New helper methods added `raise!` and `puts!` (#109)
 * Fix for registry usage within components (#115)
