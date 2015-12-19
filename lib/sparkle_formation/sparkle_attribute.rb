@@ -300,6 +300,14 @@ class SparkleFormation
     end
     alias_method :raise!, :_raise
 
+    # Lookup a method definition on self
+    # usually used as `puts! method!(:foo).source_location`
+    # @return [Method]
+    def _method(*args)
+      ::Kernel.instance_method(:method).bind(self).call(*args)
+    end
+    alias_method :method!, :_method
+
     # @return [TrueClass, FalseClass] resource can be tagged
     def taggable?
       if(defined?(SfnAws))
