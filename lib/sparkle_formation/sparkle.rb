@@ -214,7 +214,8 @@ class SparkleFormation
       @raw_data = Smash.new(
         :dynamic => [],
         :component => [],
-        :registry => []
+        :registry => [],
+        :template => []
       )
       @wrapper = eval_wrapper.new
       wrapper.part_data(raw_data)
@@ -245,35 +246,7 @@ class SparkleFormation
     # @return [Smash<name:path>]
     def templates
       memoize(:templates) do
-        Smash.new.tap do |hash|
-          Dir.glob(File.join(root, '**', '**', '*.{json,rb}')) do |path|
-            slim_path = path.sub("#{root}/", '')
-            next if DIRS.include?(slim_path.split('/').first)
-            data = Smash.new(:template => [])
-            t_wrap = eval_wrapper.new
-            t_wrap.part_data(data)
-            if(slim_path.end_with?('.rb'))
-              begin
-                t_wrap.instance_eval(IO.read(path), path, 1)
-              rescue TypeError
-              end
-            end
-            data = data[:template].first || Smash.new
-            unless(data[:name])
-              data[:name] = slim_path.tr('/', '__').sub(/\.(rb|json)$/, '')
-            end
-            if(hash[data[:name]])
-              raise KeyError.new "Template name is already in use within pack! (`#{data[:name]}`)"
-            end
-            hash[data[:name]] = data.merge(
-              Smash.new(
-                :type => :template,
-                :path => path,
-                :serialized => !path.end_with?('.rb')
-              )
-            )
-          end
-        end
+        Smash.new
       end
     end
 
@@ -332,8 +305,28 @@ class SparkleFormation
     # Load all sparkle parts
     def load_parts!
       memoize(:load_parts) do
-        Dir.glob(File.join(root, "{#{DIRS.join(',')}}", '**', '**', '*.rb')).each do |file|
-          wrapper.instance_eval(IO.read(file), file, 1)
+        Dir.glob(File.join(root, '**', '**', '*.{json,rb}')).each do |file|
+          slim_path = file.sub("#{root}/", '')
+          if(file.end_with?('.rb'))
+            begin
+              wrapper.instance_eval(IO.read(file), file, 1)
+            rescue TypeError
+            end
+          end
+          if(file.end_with?('.json') || raw_data[:template].first)
+            data = raw_data[:template].pop || Smash.new
+            unless(data[:name])
+              data[:name] = slim_path.tr('/', '__').sub(/\.(rb|json)$/, '')
+            end
+            if(templates[data[:name]])
+              raise KeyError.new "Template name is already in use within pack! (`#{data[:name]}`)"
+            end
+            templates[data[:name]] = data.merge(
+              :type => :template,
+              :path => file,
+              :serialized => !file.end_with?('.rb')
+            )
+          end
         end
         raw_data.each do |key, items|
           items.each do |item|
