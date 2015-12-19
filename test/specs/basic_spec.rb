@@ -122,6 +122,12 @@ describe SparkleFormation do
       e.message.must_equal "111"
     end
 
+    it 'should tag with a hash' do
+      SparkleFormation.new(:dummy) do
+        tags! foo: "Bar"
+      end.dump.must_equal({"Tags" => [{"Key" => "Foo", "Value" => "Bar"}]})
+    end
+
   end
 
 end
