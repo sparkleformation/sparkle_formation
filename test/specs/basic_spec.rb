@@ -122,6 +122,24 @@ describe SparkleFormation do
       e.message.must_equal "111"
     end
 
+    it 'shows builtin dynamics when a dynamic could not be found' do
+      e = assert_raises RuntimeError do
+        SparkleFormation.new(:dummy) do
+          dynamic! :foobar
+        end.dump
+      end
+      e.message.must_include "aws_lambda_function"
+    end
+
+    it 'shows custom dynamics when a dynamic could not be found' do
+      e = assert_raises RuntimeError do
+        SparkleFormation.new(:dummy) do
+          dynamic! :foobar
+        end.dump
+      end
+      e.message.must_include "node"
+    end
+
   end
 
 end
