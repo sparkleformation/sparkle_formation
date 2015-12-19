@@ -128,6 +128,12 @@ describe SparkleFormation do
       end.dump.must_equal({"Tags" => [{"Key" => "Foo", "Value" => "Bar"}]})
     end
 
+    it 'should look up a method' do
+      SparkleFormation.new(:dummy) do
+        test method!(:dynamic!).source_location
+      end.dump["Test"].first.must_include "sparkle_attribute.rb"
+    end
+
   end
 
 end
