@@ -314,12 +314,15 @@ class SparkleFormation
       end
     end
 
-    # Tag a resource with a hash instead of repetetive key value pairs
+    # Set tags on a resource
+    #
+    # @param hash [Hash] Key/value pair tags
+    # @return [SparkleStruct]
     def _tags(hash)
-      tags hash.map { |k, v|
+      tags hash.map do |k, v|
         key = k.is_a?(Symbol) ? _process_key(k, :force) : k
         {'Key' => key, 'Value' => v}
-      }
+      end
     end
     alias_method :tags!, :_tags
 
