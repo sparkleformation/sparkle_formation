@@ -10,6 +10,14 @@ describe SparkleFormation do
     $stdout = old
   end
 
+  def capture_stderr
+    old, $stderr = $stderr, StringIO.new
+    yield
+    $stderr.string
+  ensure
+    $stderr = old
+  end
+
   before do
     SparkleFormation.sparkle_path = File.join(File.dirname(__FILE__), 'sparkleformation')
   end
@@ -120,6 +128,15 @@ describe SparkleFormation do
         end.dump
       end
       e.message.must_equal "111"
+    end
+
+    it 'warns when using ambiguous types' do
+      err = capture_stderr do
+        SparkleFormation.new(:dummy) do
+          dynamic!(:instance, 'xxxx')
+        end.dump
+      end
+      err.must_include "instance is ambiguous, please use a longer from"
     end
 
   end

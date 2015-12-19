@@ -67,6 +67,11 @@ class SparkleFormation
       # @return [String, NilClass]
       def registry_key(key)
         key = key.to_s.tr('_', '')
+
+        if AWS_RESOURCES_AMBIGUOUS.include?(key)
+          warn "#{key} is ambiguous, please use a longer from"
+        end
+
         @@registry.keys.detect do |ref|
           ref = ref.downcase
           snake_parts = ref.split('::')

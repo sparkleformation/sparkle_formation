@@ -4607,3 +4607,5 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
        :update_causes=>:unavailable}},
    :path=>"aws-properties-elasticache-security-group-ingress.html"},
  "AWS::SDB::Domain"=>{:properties=>[], :path=>"aws-properties-simpledb.html"}}
+
+AWS_RESOURCES_AMBIGUOUS = Set.new(AWS_RESOURCES.keys.group_by{|k| k.split('::').last }.select{|k,v| v.size > 1 }.keys.map(&:downcase))
