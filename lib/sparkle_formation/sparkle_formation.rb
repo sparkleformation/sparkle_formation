@@ -194,7 +194,6 @@ class SparkleFormation
     # @param args [Object] parameters for dynamic
     # @return [SparkleStruct]
     def registry(registry_name, struct, *args)
-      result = false
       reg = struct._self.sparkle.get(:registry, registry_name)
       struct.instance_exec(*args, &reg[:block])
     end
