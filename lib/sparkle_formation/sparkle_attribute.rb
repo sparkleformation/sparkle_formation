@@ -314,6 +314,15 @@ class SparkleFormation
       end
     end
 
+    # Tag a resource with a hash instead of repetetive key value pairs
+    def _tags(hash)
+      tags hash.map { |k, v|
+        key = k.is_a?(Symbol) ? _process_key(k, :force) : k
+        {'Key' => key, 'Value' => v}
+      }
+    end
+    alias_method :tags!, :_tags
+
     # @return [TrueClass, FalseClass]
     def rhel?
       !!@platform[:rhel]
