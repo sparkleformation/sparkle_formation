@@ -8,6 +8,9 @@ class SparkleFormation
     include ::SparkleFormation::SparkleAttribute
     # @!parse include ::SparkleFormation::SparkleAttribute
 
+    # @return [SparkleStruct]
+    attr_accessor :_struct_class
+
     # Override initializer to force desired behavior
     def initialize(*_)
       super
@@ -41,7 +44,7 @@ class SparkleFormation
 
     # @return [Class]
     def _klass
-      ::SparkleFormation::SparkleStruct
+      _struct_class || ::SparkleFormation::SparkleStruct
     end
 
     # Instantiation override properly set origin template
@@ -50,6 +53,7 @@ class SparkleFormation
     def _klass_new(*args, &block)
       inst = super()
       inst._set_self(_self)
+      inst._struct_class = _struct_class
       if(args.first.is_a?(::Hash))
         inst._load(args.first)
       end

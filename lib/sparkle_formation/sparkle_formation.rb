@@ -270,7 +270,7 @@ class SparkleFormation
     # @param args [Object] parameters for dynamic
     # @return [SparkleStruct]
     def builtin_insert(dynamic_name, struct, *args, &block)
-      if(defined?(SfnAws) && lookup_key = SfnAws.registry_key(dynamic_name))
+      if(struct._self.provider_resources && lookup_key = struct._self.provider_resources.registry_key(dynamic_name))
         _name, _config = *args
         _config ||= {}
         return unless _name
@@ -280,7 +280,7 @@ class SparkleFormation
         new_resource.type lookup_key
         properties = new_resource.properties
         config_keys = _config.keys.zip(_config.keys.map{|k| snake(k).to_s.tr('_', '')})
-        SfnAws.resource(dynamic_name, :properties).each do |prop_name|
+        struct._self.provider_resources.resource(dynamic_name, :properties).each do |prop_name|
           key = (config_keys.detect{|k| k.last == snake(prop_name).to_s.tr('_', '')} || []).first
           value = _config[key] if key
           if(value)
@@ -336,6 +336,10 @@ class SparkleFormation
   attr_reader :stack_resource_types
   # @return [Hash] state hash for compile time parameters
   attr_accessor :compile_state
+  # @return [Symbol] target provider
+  attr_reader :provider
+  # @return [Class] Provider resources
+  attr_reader :provider_resources
 
   # Create new instance
   #
@@ -366,7 +370,6 @@ class SparkleFormation
     )
     unless(options[:disable_aws_builtins])
       require 'sparkle_formation/aws'
-      SfnAws.load!
     end
     @parameters = set_generation_parameters!(
       options.fetch(:compile_time_parameters,
@@ -381,10 +384,25 @@ class SparkleFormation
     @load_order = []
     @overrides = []
     @parent = options[:parent]
+    @provider = options.fetch(:provider, @parent ? @parent.provider : :aws)
     if(block)
       load_block(block)
     end
     @compiled = nil
+  end
+
+  # Set remote API target for template to allow loading of
+  # provider specific helpers and data if available. Setting
+  # to a false-y value will disable helpers loading
+  #
+  # @param val [String, Symbol, NilClass, FalseClass] remote provider
+  # @return [Symbol, NilClass]
+  def provider=(val)
+    if(val)
+      @provider = Bogo::Utility.snake(val).to_sym
+    else
+      @provider = nil
+    end
   end
 
   # Check if type is a registered stack type
@@ -514,8 +532,20 @@ class SparkleFormation
     end
     memoize(:compile) do
       set_compile_time_parameters!
-      compiled = SparkleStruct.new
+      if(provider && SparkleAttribute.const_defined?(camel(provider)))
+        const = SparkleAttribute.const_get(camel(provider))
+        struct_class = Class.new(SparkleStruct)
+        struct_class.include(const)
+      else
+        struct_class = SparkleStruct
+      end
+      if(Resources.const_defined?(camel(provider)))
+        @provider_resources = Resources.const_get(camel(provider))
+        provider_resources.load!
+      end
+      compiled = struct_class.new
       compiled._set_self(self)
+      compiled._struct_class = struct_class
       if(compile_state)
         compiled.set_state!(compile_state)
       end
