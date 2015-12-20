@@ -361,5 +361,15 @@ class SparkleFormation
       SparkleFormation.nest(template, self, *args, &block)
     end
 
+    # store or retrieve the name of this resource
+    def _resource_name(name=nil)
+      if name
+        @resource_name = name
+      else
+        @resource_name
+      end
+    end
+    alias_method :resource_name!, :_resource_name
+
   end
 end

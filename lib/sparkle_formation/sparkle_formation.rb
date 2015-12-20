@@ -278,6 +278,7 @@ class SparkleFormation
         struct.resources.set!(resource_name)
         new_resource = struct.resources[resource_name]
         new_resource.type lookup_key
+        new_resource.resource_name! resource_name
         properties = new_resource.properties
         config_keys = _config.keys.zip(_config.keys.map{|k| snake(k).to_s.tr('_', '')})
         SfnAws.resource(dynamic_name, :properties).each do |prop_name|

@@ -102,6 +102,28 @@ describe SparkleFormation do
       SparkleFormation.compile(:traversal).must_equal full_stack
     end
 
+    it 'returns a reusable name from dynamic! calls' do
+      SparkleFormation.new(:dummy) do
+        instance = dynamic!(:ec2_instance, :foo_bar) {  }.resource_name!
+        dynamic!(:record_set, :bar_foo).properties do
+          resource_records [attr!(instance, :private_ip)]
+        end
+      end.dump.must_equal(
+        "Resources"=>{
+          "FooBarEc2Instance"=>{
+            "Type"=>"AWS::EC2::Instance"
+          },
+          "BarFooRecordSet"=>{
+            "Type"=>"AWS::Route53::RecordSet",
+            "Properties"=>{
+              "ResourceRecords"=>[
+                {"Fn::GetAtt"=>["FooBarEc2Instance", "PrivateIp"]}
+              ]
+            }
+          }
+        })
+    end
+
     it 'should call puts' do
       output = capture_stdout do
         SparkleFormation.new(:dummy) do
