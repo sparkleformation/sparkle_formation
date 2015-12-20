@@ -275,8 +275,7 @@ class SparkleFormation
         _config ||= {}
         return unless _name
         resource_name = "#{_name}_#{_config.delete(:resource_name_suffix) || dynamic_name}".to_sym
-        struct.resources.set!(resource_name)
-        new_resource = struct.resources[resource_name]
+        new_resource = struct.resources.set!(resource_name)
         new_resource.type lookup_key
         properties = new_resource.properties
         config_keys = _config.keys.zip(_config.keys.map{|k| snake(k).to_s.tr('_', '')})
