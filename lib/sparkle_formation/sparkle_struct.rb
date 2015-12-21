@@ -2,6 +2,7 @@ require 'sparkle_formation'
 require 'attribute_struct/monkey_camels'
 
 class SparkleFormation
+
   # SparkleFormation customized AttributeStruct
   class SparkleStruct < AttributeStruct
 
@@ -83,4 +84,5 @@ class SparkleFormation
     alias_method :state!, :_state
 
   end
+
 end

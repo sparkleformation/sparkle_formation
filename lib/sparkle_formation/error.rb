@@ -2,8 +2,10 @@ require 'sparkle_formation'
 
 class SparkleFormation
 
+  # SparkleFormation specific errors
   class Error < StandardError
 
+    # File not found error
     class NotFound < KeyError
       attr_reader :name
 

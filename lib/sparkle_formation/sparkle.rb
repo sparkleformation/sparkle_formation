@@ -1,6 +1,8 @@
 require 'sparkle_formation'
 
+# Unicorns and rainbows
 class SparkleFormation
+  # Independent collection of SparkleFormation items
   class Sparkle
 
     class << self
@@ -61,6 +63,7 @@ class SparkleFormation
 
     # Wrapper for evaluating sfn files to store within sparkle
     # container and remove global application
+    # rubocop:disable Metrics/MethodLength
     def eval_wrapper
       klass = Class.new(BasicObject)
       klass.class_eval(<<-EOS
@@ -263,9 +266,9 @@ class SparkleFormation
       result = send(TYPES[type])[name]
       if(result.nil? && TYPES[type] == 'templates')
         result = (
-          send(TYPES[type]).detect{|k,v|
+          send(TYPES[type]).detect{|_, v|
             name = name.to_s
-            short_name = v[:path].sub(/#{Regexp.escape(root)}\/?/, '')
+            short_name = v[:path].sub(%r{#{Regexp.escape(root)}/?}, '')
             v[:path] == name ||
             short_name == name ||
             short_name.sub('.rb', '').gsub(File::SEPARATOR, '__').tr('-', '_') == name ||
@@ -296,7 +299,7 @@ class SparkleFormation
     def locate_root
       VALID_ROOT_DIRS.map do |part|
         path = File.expand_path(File.join(Dir.pwd, part))
-        if(File.exists?(path))
+        if(File.exist?(path))
           path
         end
       end.compact.first

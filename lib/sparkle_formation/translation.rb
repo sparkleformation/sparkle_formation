@@ -42,7 +42,7 @@ class SparkleFormation
     # @return [Hash] parameters for template
     def parameters
       Hash[
-        @original.fetch('Parameters', {}).map do |k,v|
+        @original.fetch('Parameters', {}).map do |k, v|
           [k, v.fetch('Default', '')]
         end
       ].merge(@parameters)
@@ -148,7 +148,8 @@ class SparkleFormation
               new_properties[new_key] = property_value
             end
           else
-            logger.warn "Failed to locate property conversion for `#{property_name}` on resource type `#{args[:new_resource]['Type']}`. Passing directly."
+            logger.warn "Failed to locate property conversion for `#{property_name}` on "\
+              "resource type `#{args[:new_resource]['Type']}`. Passing directly."
             new_properties[default_key_format(property_name)] = property_value
           end
         end
@@ -221,7 +222,7 @@ class SparkleFormation
         obj = obj.map{|v| dereference_processor(v, funcs)}
       when Hash
         new_hash = {}
-        obj.each do |k,v|
+        obj.each do |k, v|
           new_hash[k] = dereference_processor(v, funcs)
         end
         obj = apply_function(new_hash, funcs)
@@ -240,7 +241,7 @@ class SparkleFormation
         obj = obj.map{|v| rename_processor(v, names)}
       when Hash
         new_hash = {}
-        obj.each do |k,v|
+        obj.each do |k, v|
           new_hash[k] = rename_processor(v, names)
         end
         obj = apply_rename(new_hash, names)
@@ -257,12 +258,12 @@ class SparkleFormation
     #   REF_MAPPING for Ref maps
     #   FN_MAPPING for Fn maps
     def apply_rename(hash, names=[])
-      k,v = hash.first
+      k, v = hash.first
       if(hash.size == 1)
         if(k.start_with?('Fn::'))
           {self.class.const_get(:FN_MAPPING).fetch(k, k) => attr_mapping(*v)}
         elsif(k == 'Ref')
-          if(resources.has_key?(v))
+          if(resources.key?(v))
             {'get_resource' => v}
           else
             {'get_param' => self.class.const_get(:REF_MAPPING).fetch(v, v)}
@@ -299,7 +300,7 @@ class SparkleFormation
     # @note also allows 'Ref' within funcs to provide mapping
     #   replacements using the REF_MAPPING constant
     def apply_function(hash, funcs=[])
-      k,v = hash.first
+      k, v = hash.first
       if(hash.size == 1 && (k.start_with?('Fn') || k == 'Ref') && (funcs.empty? || funcs.include?(k)))
         case k
         when 'Fn::Join'

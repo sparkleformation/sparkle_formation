@@ -20,6 +20,7 @@ require 'bogo'
 require 'multi_json'
 require 'attribute_struct'
 
+# Unicorns and rainbows
 class SparkleFormation
   autoload :Aws, 'sparkle_formation/aws'
   autoload :Error, 'sparkle_formation/error'
