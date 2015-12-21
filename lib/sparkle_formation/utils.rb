@@ -15,8 +15,9 @@ class SparkleFormation
       def __t_check(val, types)
         types = [types] unless types.is_a?(Array)
         if(types.none?{|t| val.is_a?(t)})
+          ignore_paths = Gem::Specification.find_by_name('sparkle_formation').full_require_paths
           file_name, line_no = ::Kernel.caller.detect do |l|
-            !l.split(':').first.to_s.include?('/sparkle_formation')
+            ignore_paths.none?{|i_path| l.include?(i_path) }
           end.split(':')[0, 2]
           file_name = file_name.to_s.sub(::Dir.pwd, '.')
           ::Kernel.raise TypeError.new "Received invalid value type `#{val.class}`! " \
