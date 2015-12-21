@@ -111,7 +111,7 @@ class SparkleFormation
       # Rackspace translation mapping
       MAP = Heat::MAP
       MAP[:resources]['AWS::EC2::Instance'][:name] = 'Rackspace::Cloud::Server'
-      MAP[:resources]['AWS::EC2::Instance'][:properties]['NetworkInterfaces'] = :rackspace_server_network_interfaces_mapping
+      MAP[:resources]['AWS::EC2::Instance'][:properties]['NetworkInterfaces'] = :rackspace_server_network_interfaces_mapping # rubocop:disable Metrics/LineLength
       MAP[:resources]['AWS::AutoScaling::AutoScalingGroup'].tap do |asg|
         asg[:name] = 'Rackspace::AutoScale::Group'
         asg[:finalizer] = :rackspace_asg_finalizer
@@ -287,6 +287,7 @@ class SparkleFormation
       # @param resource [Hash]
       # @return [Hash] personality hash
       # @todo update chunking to use join!
+      # rubocop:disable Metrics/MethodLength
       def build_personality(resource)
         max_chunk_size = options.fetch(
           :serialization_chunk_size,
@@ -383,7 +384,7 @@ class SparkleFormation
             end
             leftovers = item if item.is_a?(String) && !item.empty?
             unless(file_content.empty?)
-              if(file_content.all?{|o|o.is_a?(String)})
+              if(file_content.all?{|o| o.is_a?(String)})
                 files["/etc/sprkl/#{file_index}.cfg"] = file_content.join
               else
                 file_content.map! do |cont|
@@ -394,8 +395,8 @@ class SparkleFormation
                   end
                 end
                 files["/etc/sprkl/#{file_index}.cfg"] = {
-                  "Fn::Join" => [
-                    "",
+                  'Fn::Join' => [
+                    '',
                     file_content.flatten
                   ]
                 }
@@ -405,14 +406,15 @@ class SparkleFormation
           end
         end
         if(parts.size > num_personality_files)
-          logger.warn "Failed to split files within defined range! (Max files: #{num_personality_files} Actual files: #{parts.size})"
+          logger.warn "Failed to split files within defined range! (Max files: #{num_personality_files} " \
+            "Actual files: #{parts.size})"
           logger.warn 'Appending to last file and hoping for the best!'
           parts = parts.to_a
           extras = parts.slice!(4, parts.length)
           tail_name, tail_contents = parts.pop
           parts = Hash[parts]
           parts[tail_name] = {
-            "Fn::Join" => [
+            'Fn::Join' => [
               '',
               extras.map(&:last).unshift(tail_contents)
             ]
@@ -424,7 +426,7 @@ class SparkleFormation
 
       FN_MAPPING = {
         'Fn::GetAtt' => 'get_attr',
-#        'Fn::Join' => 'list_join'  # @todo why is this not working?
+        # 'Fn::Join' => 'list_join'  # TODO: why is this not working?
       }
 
       FN_ATT_MAPPING = {

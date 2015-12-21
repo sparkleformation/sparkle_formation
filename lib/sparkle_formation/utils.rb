@@ -3,6 +3,7 @@ class SparkleFormation
   # Helper utilities
   module Utils
 
+    # Type check helpers
     module TypeCheckers
 
       # Validate given value is type defined within valid types
@@ -16,9 +17,10 @@ class SparkleFormation
         if(types.none?{|t| val.is_a?(t)})
           file_name, line_no = ::Kernel.caller.detect do |l|
             !l.split(':').first.to_s.include?('/sparkle_formation')
-          end.split(':')[0,2]
+          end.split(':')[0, 2]
           file_name = file_name.to_s.sub(::Dir.pwd, '.')
-          ::Kernel.raise TypeError.new "Received invalid value type `#{val.class}`! (Allowed types: `#{types.join('`, `')}`) -> #{file_name} @ line #{line_no}"
+          ::Kernel.raise TypeError.new "Received invalid value type `#{val.class}`! " \
+            "(Allowed types: `#{types.join('`, `')}`) -> #{file_name} @ line #{line_no}"
         end
       end
 
@@ -47,7 +49,7 @@ class SparkleFormation
       # @param string [String]
       # @return [String]
       def camel(string)
-        string.to_s.split('_').map{|k| "#{k.slice(0,1).upcase}#{k.slice(1,k.length)}"}.join
+        string.to_s.split('_').map{|k| "#{k.slice(0, 1).upcase}#{k.slice(1, k.length)}"}.join
       end
 
       # Snake case (underscore) string
@@ -118,7 +120,7 @@ class SparkleFormation
       # @param k [Object] key
       # @param v [Object] value
       # @return [Object] v
-      def []=(k,v)
+      def []=(k, v)
         init!
         Thread.current[:sparkle_cache][k] = v
       end

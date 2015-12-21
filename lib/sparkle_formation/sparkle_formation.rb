@@ -98,7 +98,7 @@ class SparkleFormation
         container = Sparkle.new(:root => spath)
         path = container.get(:template, path)[:path]
       end
-      formation = self.instance_eval(IO.read(path), path, 1)
+      formation = instance_eval(IO.read(path), path, 1)
       if(args.delete(:sparkle))
         formation
       else
@@ -126,7 +126,7 @@ class SparkleFormation
     # @param path [String] path to component
     # @return [SparkleStruct] resulting struct
     def load_component(path)
-      self.instance_eval(IO.read(path), path, 1)
+      instance_eval(IO.read(path), path, 1)
       @_struct
     end
 
@@ -139,7 +139,7 @@ class SparkleFormation
       Dir.glob(File.join(directory, '*.rb')).each do |dyn|
         dyn = File.expand_path(dyn)
         next if @loaded_dynamics.include?(dyn)
-        self.instance_eval(IO.read(dyn), dyn, 1)
+        instance_eval(IO.read(dyn), dyn, 1)
         @loaded_dynamics << dyn
       end
       @loaded_dynamics.uniq!
@@ -197,7 +197,6 @@ class SparkleFormation
     # @return [SparkleStruct]
     def registry(registry_name, struct, *args)
       __t_stringish(registry_name)
-      result = false
       reg = struct._self.sparkle.get(:registry, registry_name)
       struct.instance_exec(*args, &reg[:block])
     end
@@ -223,7 +222,8 @@ class SparkleFormation
         result = builtin_insert(dynamic_name, struct, *args, &block)
       end
       unless(result)
-        raise "Failed to locate requested dynamic block for insertion: #{dynamic_name} (valid: #{struct._self.sparkle.dynamics.keys.sort.join(', ')})"
+        raise "Failed to locate requested dynamic block for insertion: #{dynamic_name} " \
+          "(valid: #{struct._self.sparkle.dynamics.keys.sort.join(', ')})"
       end
       result
     end
@@ -254,7 +254,7 @@ class SparkleFormation
           args.map{|a| Bogo::Utility.snake(a)}.join('_')
         ].flatten.compact.join('_').to_sym
       end
-      nested_template = self.compile(to_nest[:path], :sparkle)
+      nested_template = compile(to_nest[:path], :sparkle)
       nested_template.parent = struct._self
       nested_template.name = Bogo::Utility.camel(resource_name)
       if(options[:parameters])
@@ -533,7 +533,7 @@ class SparkleFormation
   # @option args [Hash] :state local state parameters
   # @return [SparkleStruct]
   def compile(args={})
-    if(args.has_key?(:state))
+    if(args.key?(:state))
       @compile_state = args[:state]
       unmemoize(:compile)
     end
@@ -599,7 +599,7 @@ class SparkleFormation
   # @return [TrueClass, FalseClass] includes nested stacks
   def nested?(stack_hash=nil)
     stack_hash = compile.dump! unless stack_hash
-    !!stack_hash.fetch('Resources', {}).detect do |r_name, resource|
+    !!stack_hash.fetch('Resources', {}).detect do |_r_name, resource|
       stack_resource_type?(resource['Type'])
     end
   end
@@ -607,7 +607,7 @@ class SparkleFormation
   # @return [TrueClass, FalseClass] includes _only_ nested stacks
   def isolated_nests?(stack_hash=nil)
     stack_hash = compile.dump! unless stack_hash
-    stack_hash.fetch('Resources', {}).all? do |name, resource|
+    stack_hash.fetch('Resources', {}).all? do |_name, resource|
       stack_resource_type?(resource['Type'])
     end
   end
@@ -615,8 +615,8 @@ class SparkleFormation
   # @return [TrueClass, FalseClass] policies defined
   def includes_policies?(stack_hash=nil)
     stack_hash = compile.dump! unless stack_hash
-    stack_hash.fetch('Resources', {}).any? do |name, resource|
-      resource.has_key?('Policy')
+    stack_hash.fetch('Resources', {}).any? do |_name, resource|
+      resource.key?('Policy')
     end
   end
 
@@ -715,7 +715,11 @@ class SparkleFormation
     drip_path = root_path - outputs[output_name].root_path
     bubble_path.each_slice(2) do |base_sparkle, ref_sparkle|
       next unless ref_sparkle
-      base_sparkle.compile.outputs.set!(output_name).set!(:value, base_sparkle.compile.attr!(ref_sparkle.name, "Outputs.#{output_name}"))
+      base_sparkle.compile.outputs.set!(output_name).set!(
+        :value, base_sparkle.compile.attr!(
+          ref_sparkle.name, "Outputs.#{output_name}"
+        )
+      )
     end
     if(bubble_path.empty?)
       if(drip_path.size == 1)
@@ -736,7 +740,7 @@ class SparkleFormation
       drip_path.each_slice(2) do |base_sparkle, ref_sparkle|
         next unless ref_sparkle
         base_sparkle.compile.resources[ref_sparkle.name].properties.parameters.set!(output_name, result)
-        ref_sparkle.compile.parameters.set!(output_name){ type 'String' } # TODO <<<<------ type check and prop
+        ref_sparkle.compile.parameters.set!(output_name){ type 'String' } # TODO: <<<<------ type check and prop
         result = compile.ref!(output_name)
       end
     end
@@ -778,7 +782,7 @@ class SparkleFormation
   def apply_shallow_nesting(*args, &block)
     parameters = compile[:parameters] ? compile[:parameters]._dump : {}
     output_map = {}
-    nested_stacks(:with_resource, :with_name).each do |stack, stack_resource, stack_name|
+    nested_stacks(:with_resource, :with_name).each do |_stack, stack_resource, stack_name|
       remap_nested_parameters(compile, parameters, stack_name, stack_resource, output_map)
     end
     extract_templates(&block)
@@ -872,7 +876,7 @@ class SparkleFormation
 
   # @return [Hash] dumped hash
   def dump
-    MultiJson.load(self.to_json)
+    MultiJson.load(to_json)
   end
 
   # @return [String] dumped hash JSON

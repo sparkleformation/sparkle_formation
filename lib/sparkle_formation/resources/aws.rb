@@ -1,10 +1,13 @@
 require 'sparkle_formation'
 
 class SparkleFormation
+
   # Resources helper
   class Resources
 
+    # AWS specific resources collection
     class Aws < Resources
+
       class << self
 
         include Bogo::Memoization
@@ -25,7 +28,7 @@ class SparkleFormation
         end
 
         # Auto load data when included
-        def included(klass)
+        def included(_klass)
           load!
         end
 
@@ -33,4 +36,5 @@ class SparkleFormation
     end
 
   end
+
 end

@@ -72,7 +72,6 @@ class SparkleFormation
           else
             thing
           end
-
         end
         {'Fn::GetAtt' => args}
       end
@@ -289,8 +288,8 @@ class SparkleFormation
           resource = _self.lookup(self[:type].gsub('::', '_').downcase)
           resource && resource[:properties].include?('Tags')
         else
-          if(self._parent)
-            self._parent.taggable?
+          if(_parent)
+            _parent.taggable?
           end
         end
       end

@@ -12,12 +12,12 @@ class SparkleFormation
         super
         cache = MultiJson.load(MultiJson.dump(translated))
         # top level
-        cache.each do |k,v|
+        cache.each do |k, v|
           translated.delete(k)
           translated[snake(k).to_s] = v
         end
         # params
-        cache.fetch('Parameters', {}).each do |k,v|
+        cache.fetch('Parameters', {}).each do |k, v|
           translated['parameters'][k] = Hash[
             v.map do |key, value|
               if(key == 'Type')
@@ -34,7 +34,7 @@ class SparkleFormation
         # resources
         cache.fetch('Resources', {}).each do |r_name, r_value|
           translated['resources'][r_name] = Hash[
-            r_value.map do |k,v|
+            r_value.map do |k, v|
               [snake(k).to_s, v]
             end
           ]
@@ -42,7 +42,7 @@ class SparkleFormation
         # outputs
         cache.fetch('Outputs', {}).each do |o_name, o_value|
           translated['outputs'][o_name] = Hash[
-            o_value.map do |k,v|
+            o_value.map do |k, v|
               [snake(k).to_s, v]
             end
           ]
@@ -74,6 +74,7 @@ class SparkleFormation
       # @param new_resource [Hash]
       # @param old_resource [Hash]
       # @return [Object]
+      # rubocop:disable Metrics/MethodLength
       def neutron_loadbalancer_finalizer(resource_name, new_resource, old_resource)
         listeners = new_resource['Properties'].delete('listeners') || []
         healthcheck = new_resource['Properties'].delete('health_check')
@@ -92,7 +93,7 @@ class SparkleFormation
                     properties[hot] = healthcheck[aws]
                   end
                 end
-                type, port, path = healthcheck['Target'].split(/(:|\/.*)/).find_all{|x| x != ':'}
+                type, port, path = healthcheck['Target'].split(%r{(:|/.*)}).find_all{|x| x != ':'}
                 properties['type'] = type
                 if(path)
                   properties['url_path'] = path
@@ -240,7 +241,7 @@ class SparkleFormation
                   else
                     args['source'] = {
                       'Fn::Join' => [
-                        "", [
+                        '', [
                           "\"",
                           args['source'],
                           "\""
