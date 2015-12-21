@@ -5,6 +5,7 @@ describe SparkleFormation::SparkleAttribute do
   before do
     @attr = Object.new
     @attr.extend(SparkleFormation::SparkleAttribute)
+    @attr.extend(SparkleFormation::SparkleAttribute::Aws)
     @sfn = SparkleFormation.new(:test)
   end
 

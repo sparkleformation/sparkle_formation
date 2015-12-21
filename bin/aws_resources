@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'json'
+require 'multi_json'
 require 'nokogiri'
 require 'fileutils'
 
@@ -96,6 +96,4 @@ Dir.glob(File.join(STORE, '**/*.html')).each do |path|
   end
 end
 
-require 'pp'
-
-pp aws_resources
+puts MultiJson.dump(aws_resources, :pretty => true)
