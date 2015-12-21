@@ -28,6 +28,7 @@ class SparkleFormation
       # @return [Hash]
       # @note Symbol value will force key processing
       def _cf_ref(thing)
+        __t_stringish(thing)
         thing = _process_key(thing, :force) if thing.is_a?(Symbol)
         {'Ref' => thing}
       end
@@ -41,6 +42,7 @@ class SparkleFormation
       # @param suffix [Object] additional args
       # @return [Hash]
       def _cf_map(thing, key, *suffix)
+        __t_stringish(thing)
         suffix = suffix.map do |item|
           if(item.is_a?(Symbol))
             _process_key(item, :force)
@@ -63,6 +65,7 @@ class SparkleFormation
       # @param [Object] pass through arguments
       # @return [Hash]
       def _cf_attr(*args)
+        __t_stringish(args.first)
         args = args.map do |thing|
           if(thing.is_a?(Symbol))
             _process_key(thing, :force)
@@ -121,7 +124,8 @@ class SparkleFormation
       # @param name [String, Symbol] symbol will be processed
       # @return [Hash]
       def _condition(name)
-        {'Condition' => name.is_a?(Symbol) ? _process_key(name) : name}
+        __t_stringish(name)
+        {'Condition' => name.is_a?(Symbol) ? _process_key(name, :force) : name}
       end
       alias_method :condition!, :_condition
 
