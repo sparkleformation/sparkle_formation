@@ -3,6 +3,43 @@ class SparkleFormation
   # Helper utilities
   module Utils
 
+    module TypeCheckers
+
+      # Validate given value is type defined within valid types
+      #
+      # @param val [Object] value
+      # @param types [Class, Array<Class>] valid types
+      # @return [NilClass]
+      # @raises [TypeError]
+      def __t_check(val, types)
+        types = [types] unless types.is_a?(Array)
+        if(types.none?{|t| val.is_a?(t)})
+          file_name, line_no = ::Kernel.caller.detect do |l|
+            !l.split(':').first.to_s.include?('/sparkle_formation')
+          end.split(':')[0,2]
+          file_name = file_name.to_s.sub(::Dir.pwd, '.')
+          ::Kernel.raise TypeError.new "Received invalid value type `#{val.class}`! (Allowed types: `#{types.join('`, `')}`) -> #{file_name} @ line #{line_no}"
+        end
+      end
+
+      # Validate given value is String or Symbol type
+      #
+      # @return [NilClass]
+      # @raises [TypeError]
+      def __t_stringish(val)
+        __t_check(val, [String, Symbol])
+      end
+
+      # Validate given value is a Hash type
+      #
+      # @return [NilClass]
+      # @raises [TypeError]
+      def __t_hashish(val)
+        __t_check(val, Hash)
+      end
+
+    end
+
     # Animal stylings on strins
     module AnimalStrings
 

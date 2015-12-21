@@ -7,6 +7,8 @@ class SparkleFormation
 
     include ::SparkleFormation::SparkleAttribute
     # @!parse include ::SparkleFormation::SparkleAttribute
+    include ::SparkleFormation::Utils::TypeCheckers
+    # @!parse include ::SparkleFormation::TypeCheckers
 
     # @return [SparkleStruct]
     attr_accessor :_struct_class

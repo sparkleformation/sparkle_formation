@@ -22,6 +22,8 @@ class SparkleFormation
 
   class << self
 
+    include SparkleFormation::Utils::TypeCheckers
+
     # @return [Hashish] loaded dynamics
     def dynamics
       @dynamics ||= SparkleStruct.hashish.new
@@ -194,6 +196,7 @@ class SparkleFormation
     # @param args [Object] parameters for dynamic
     # @return [SparkleStruct]
     def registry(registry_name, struct, *args)
+      __t_stringish(registry_name)
       result = false
       reg = struct._self.sparkle.get(:registry, registry_name)
       struct.instance_exec(*args, &reg[:block])
@@ -206,6 +209,7 @@ class SparkleFormation
     # @param args [Object] parameters for dynamic
     # @return [SparkleStruct]
     def insert(dynamic_name, struct, *args, &block)
+      __t_stringish(dynamic_name)
       result = false
       begin
         dyn = struct._self.sparkle.get(:dynamic, dynamic_name)
@@ -238,6 +242,9 @@ class SparkleFormation
         args.delete(options)
       else
         options = {}
+      end
+      [template, *args].compact.each do |item|
+        __t_stringish(item)
       end
       to_nest = struct._self.sparkle.get(:template, template)
       resource_name = template.to_s.gsub('__', '_')
@@ -273,7 +280,8 @@ class SparkleFormation
       if(struct._self.provider_resources && lookup_key = struct._self.provider_resources.registry_key(dynamic_name))
         _name, _config = *args
         _config ||= {}
-        return unless _name
+        __t_stringish(_name)
+        __t_hashish(_config)
         resource_name = "#{_name}_#{_config.delete(:resource_name_suffix) || dynamic_name}".to_sym
         new_resource = struct.resources.set!(resource_name)
         new_resource.type lookup_key
