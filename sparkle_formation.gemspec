@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.description = 'Ruby DSL for programmatic orchestration API template generation'
   s.license = 'Apache-2.0'
   s.require_path = 'lib'
-  s.add_dependency 'attribute_struct', '>= 0.2.23', '< 0.4'
+  s.add_dependency 'attribute_struct', '>= 0.2.27', '< 0.4'
   s.add_dependency 'multi_json'
   s.add_dependency 'bogo'
   s.add_development_dependency 'minitest'

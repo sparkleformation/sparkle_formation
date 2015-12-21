@@ -147,4 +147,21 @@ describe SparkleFormation::SparkleAttribute do
     @attr.no_value!.must_equal 'Ref' => 'AWS::NoValue'
   end
 
+  it 'should provide resource name for resource block' do
+    result = @sfn.overrides do
+      resources.my_custom_resource do
+        properties do
+          resource_name resource_name!
+          nested do
+            resource_name resource_name!
+          end
+        end
+        my_name resource_name!
+      end
+    end.dump
+    result['Resources']['MyCustomResource']['MyName'].must_equal 'MyCustomResource'
+    result['Resources']['MyCustomResource']['Properties']['ResourceName'].must_equal 'MyCustomResource'
+    result['Resources']['MyCustomResource']['Properties']['Nested']['ResourceName'].must_equal 'MyCustomResource'
+  end
+
 end

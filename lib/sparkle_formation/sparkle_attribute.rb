@@ -7,6 +7,28 @@ class SparkleFormation
 
     autoload :Aws, 'sparkle_formation/sparkle_attribute/aws'
 
+    # Return current resource name
+    #
+    # @return [String]
+    def _resource_name
+      result = nil
+      if(_parent)
+        if(_parent._parent == _root)
+          result = _parent._data.detect do |r_name, r_value|
+            r_value == self
+          end
+          result = result.first if result
+        else
+          result = _parent._resource_name
+        end
+      end
+      unless(result)
+        ::Kernel.raise NameError.new 'Failed to determine current resource name! (Check call location)'
+      end
+      result
+    end
+    alias_method :resource_name!, :_resource_name
+
     # Execute system command
     #
     # @param command [String]
