@@ -1,0 +1,95 @@
+AllCops:
+  DisplayCopNames: true
+  Exclude:
+    - 'examples/**/**/*'
+    - 'test/**/**/*'
+    - 'bin/*'
+
+Style/SpaceAfterControlKeyword:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
+Style/ClosingParenthesisIndentation:
+  Enabled: false
+Style/BlockDelimiters:
+  Enabled: false
+Style/DoubleNegation:
+  Enabled: false
+Lint/AssignmentInCondition:
+  Enabled: false
+Style/UnlessElse:
+  Enabled: false
+Style/EmptyLinesAroundClassBody:
+  Enabled: false
+Style/EmptyLinesAroundModuleBody:
+  Enabled: false
+Style/Next:
+  Enabled: false
+Style/WordArray:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockNesting:
+  Enabled: false
+Lint/HandleExceptions:
+  Enabled: false
+Lint/UnusedMethodArgument:
+  Enabled: false
+Style/LineEndConcatenation:
+  Enabled: false
+Style/ClassVars:
+  Enabled: false
+Style/SpaceInsideBlockBraces:
+  Enabled: false
+Lint/UnderscorePrefixedVariableName:
+  Enabled: false
+Lint/UnusedBlockArgument:
+  Enabled: false
+Style/AccessorMethodName:
+  Enabled: false
+Lint/UselessAssignment:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Style/MultilineBlockChain:
+  Enabled: false
+Style/MultilineOperationIndentation:
+  Enabled: false
+
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+Style/DotPosition:
+  EnforcedStyle: trailing
+Style/HashSyntax:
+  EnforcedStyle: hash_rockets
+Style/RaiseArgs:
+  EnforcedStyle: compact
+Style/RedundantReturn:
+  AllowMultipleReturnValues: true
+Style/RegexpLiteral:
+  EnforcedStyle: mixed
+Style/SignalException:
+  EnforcedStyle: only_raise
+Style/StabbyLambdaParentheses:
+  EnforcedStyle: require_no_parentheses
+Style/SpaceAroundEqualsInParameterDefault:
+  EnforcedStyle: no_space
+Style/SpaceBeforeBlockBraces:
+  EnforcedStyle: no_space
+Style/SpaceInsideHashLiteralBraces:
+  EnforcedStyle: no_space
+Style/FirstParameterIndentation:
+  EnforcedStyle: consistent
+
+Metrics/ClassLength:
+  Max: 1000
+Metrics/ModuleLength:
+  Max: 1000
+Metrics/LineLength:
+  Max: 120
+Metrics/MethodLength:
+  Max: 80
