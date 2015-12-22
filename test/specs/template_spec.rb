@@ -54,4 +54,28 @@ describe SparkleFormation do
 
   end
 
+  describe 'Custom error output' do
+
+    it 'should provide file and line number of error' do
+      e = nil
+      begin
+        SparkleFormation.compile('type_error')
+      rescue => e
+      end
+      e.message.must_be :include?, 'type_error.rb'
+      e.message.must_be :include?, 'line 2'
+    end
+
+    it 'should provide expected error when using sparkle_formation path' do
+      e = nil
+      begin
+        SparkleFormation.compile('path_test')
+      rescue => e
+      end
+      e.message.must_be :include?, 'sparkle_formation/path_test.rb'
+      e.message.must_be :include?, 'line 2'
+    end
+
+  end
+
 end
