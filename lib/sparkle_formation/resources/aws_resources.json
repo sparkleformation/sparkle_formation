@@ -3390,7 +3390,7 @@
         "description": "An arbitrary set of tags (key–value pairs) for this instance.",
         "required": false,
         "type": "String",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "Tenancy": {
         "description": "The tenancy of the instance that you want to launch. This value can be either \"default\" or \"dedicated\". An instance that has a tenancy value of \"dedicated\" runs on single-tenant hardware and can be launched only into a VPC. For more information, see Using EC2 Dedicated Instances Within Your VPC in the Amazon VPC User Guide.",
