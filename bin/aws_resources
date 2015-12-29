@@ -1,10 +1,17 @@
 #!/usr/bin/env ruby
-
+require 'pry'
 require 'multi_json'
 require 'nokogiri'
 require 'fileutils'
 
 STORE = '/tmp/aws-cfn-docs'
+UPDATE_MAPPING = {
+  'replacement' => :replacement,
+  'no interruption' => :none,
+  'interruption' => :interrupt,
+  'not supported' => :unavailable
+}
+
 
 unless(File.directory?(STORE))
   FileUtils.mkdir_p(STORE)
@@ -26,58 +33,69 @@ Dir.glob(File.join(STORE, '**/*.html')).each do |path|
     if(type.include?(' '))
       next
     end
-    resource = file.css('div.variablelist').first
+    resource = file.css('div.section').detect do |section|
+      section.children.any? do |child|
+        child.get_attribute(:class) == 'titlepage' &&
+          child.text.include?('Properties')
+      end
+    end
+    property_information = {}
     if(resource)
-      names = resource.css('dt').css('span').map(&:text).map(&:strip)
-      types = resource.css('dd p').map(&:text).find_all do |x|
-        x.include?('Type')
-      end.map do |x|
-        if(x.downcase.match(/(\s|^)list(\s|$)/))
-          'Array'
-        elsif(x.include?('Type: String'))
-          'String'
-        elsif(x.include?('Type: Boolean'))
-          'Boolean'
-        elsif(x.include?('Type: Integer'))
-          'Number'
-        elsif(x.include?('Type:') && x.include?('JSON') && x.include?('document'))
-          'JSON'
+      resource = resource.css('div.variablelist').first
+      names = resource.children.detect{|r| r.name == 'dl'}.children.find_all{|r| r.name == 'dt'}.map(&:text).map(&:strip)
+      infos = resource.children.detect{|r| r.name == 'dl'}.children.find_all{|r| r.name == 'dd'}
+      # names = resource.css('dt').css('span').map(&:text).map(&:strip)
+      # infos = resource.css('dd')
+      unless(names.size == infos.size)
+        raise "Failed to align resource properties with information - #{type} (#{path})"
+      end
+      names.each_with_index do |name, idx|
+        info = infos[idx]
+        base_type = info.css('p').map(&:text).detect do |x|
+          x.include?('Type')
+        end || 'String'
+        if(base_type.downcase.match(/(\s|^)list(\s|$)/))
+          p_type = 'Array'
+        elsif(base_type.include?('Type: String'))
+          p_type = 'String'
+        elsif(base_type.include?('Type: Boolean'))
+          p_type = 'Boolean'
+        elsif(base_type.include?('Type: Integer'))
+          p_type = 'Number'
+        elsif(base_type.include?('Type:') && base_type.include?('JSON') && base_type.include?('document'))
+          p_type = 'JSON'
         else
-          'Unknown'
+          p_type = 'Unknown'
         end
-      end
-      requires = resource.css('dd p').map(&:text).find_all do |x|
-        x.include?('Required:')
-      end.map do |x|
-        x.include?('No') ? false : true
-      end
-      descriptions = resource.css('dd').map do |dd|
-        dd.css('p').first.text.strip
-      end.map do |string|
-        string.split("\n").map(&:strip).join(' ')
-      end
-      update_causes = resource.css('dd p').map(&:text).find_all do |x|
-        x.include?('Update requires')
-      end.map do |x|
-        x = x.downcase
-        if(x.include?('replacement'))
-          :replacement
-        elsif(x.include?('no interruption'))
-          :none
-        elsif(x.include?('interruption'))
-          :interrupt
-        elsif(x.include?('not supported'))
-          :unavailable
+        required = !!info.css('p').map(&:text).detect do |x|
+          x.include?('Required:') && x.include?('Yes')
+        end
+        description = info.css('p').first.text.strip.split("\n").map(&:strip).join(' ')
+        # update_info = info.css('p').map(&:text).detect do |x|
+        #   x.include?('Update requires')
+        # end.to_s.downcase
+        full_text = info.text.downcase
+        if(full_text.include?('updates are not supported') || full_text.include?('cannot update this property'))
+          update_causes = :unavailable
+        elsif(full_text.include?('update causes interrupt'))
+          update_causes = :interrupt
         else
-          :unknown
+          links = info.css('a').map(&:text).map(&:downcase)
+          update_causes = UPDATE_MAPPING.map do |match, value|
+            value if links.any?{|a| a.include?(match)}
+          end.compact.first || :unknown
         end
-      end
-      property_hashes = names.size.times.map do |i|
-        [names[i], {:description => descriptions[i], :required => requires[i], :type => types[i], :update_causes => update_causes[i]}]
+
+        property_information[name] = {
+          :description => description,
+          :required => required,
+          :type => p_type,
+          :update_causes => update_causes
+        }
       end
       aws_resources[type] = {
         :properties => names,
-        :full_properties => Hash[property_hashes]
+        :full_properties => property_information
       }
     else
       resource = file.css('div.informaltable')
