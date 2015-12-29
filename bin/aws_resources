@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require 'pry'
+
 require 'multi_json'
 require 'nokogiri'
 require 'fileutils'
