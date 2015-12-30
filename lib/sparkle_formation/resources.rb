@@ -66,8 +66,10 @@ class SparkleFormation
       # @param key [String, Symbol]
       # @return [String, NilClass]
       def registry_key(key)
+        o_key = key
         key = key.to_s.tr('_', '')
-        @@registry.keys.detect do |ref|
+        snake_parts = nil
+        result = @@registry.keys.detect do |ref|
           ref = ref.downcase
           snake_parts = ref.split('::')
           until(snake_parts.empty?)
@@ -76,6 +78,18 @@ class SparkleFormation
           end
           !snake_parts.empty?
         end
+        if(result)
+          collisions = @@registry.keys.find_all do |ref|
+            split_ref = ref.downcase.split('::')
+            ref = split_ref.slice(split_ref.size - snake_parts.size, split_ref.size).join('')
+            key == ref
+          end
+          if(collisions.size > 1)
+            raise ArgumentError.new 'Ambiguous dynamic name returned multiple matches! ' \
+              "`#{o_key.inspect}` -> #{collisions.sort.join(', ')}"
+          end
+        end
+        result
       end
 
       # Registry information for given type
