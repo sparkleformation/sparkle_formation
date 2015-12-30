@@ -222,9 +222,11 @@ class SparkleFormation
         result = builtin_insert(dynamic_name, struct, *args, &block)
       end
       unless(result)
-        message = "Failed to locate requested dynamic block for insertion: #{dynamic_name} (valid: #{struct._self.sparkle.dynamics.keys.sort.join(', ')})"
-        if defined?(SfnAws)
-          message << "\nBuiltin dynamics follow the pattern AWS::Lambda::Function = :aws_lambda_function"
+        message = "Failed to locate requested dynamic block for insertion: #{dynamic_name} " \
+          "(valid: #{struct._self.sparkle.dynamics.keys.sort.join(', ')})"
+        if(struct._self.provider_resources.registry.keys.size > 1)
+          t_name = struct._self.provider_resources.registry.keys.first
+          message << "\nBuiltin dynamics pattern `#{t_name}` -> `:#{Bogo::Utility.snake(t_name.gsub('::', '_'))}`"
         end
         raise message
       end

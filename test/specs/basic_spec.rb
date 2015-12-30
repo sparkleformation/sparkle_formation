@@ -140,7 +140,7 @@ describe SparkleFormation do
           dynamic! :foobar
         end.dump
       end
-      e.message.must_include "aws_lambda_function"
+      e.message.must_include 'dynamics pattern'
     end
 
     it 'shows custom dynamics when a dynamic could not be found' do
