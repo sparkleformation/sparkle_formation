@@ -157,7 +157,7 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
        :update_causes=>:replacement},
      "Tags"=>
       {:description=>
-        "An arbitrary set of tags (key–value pairs) for this resource.",
+        "An arbitrary set of tags (key-value pairs) for this resource.",
        :required=>false,
        :type=>"Array",
        :update_causes=>:none}},
@@ -329,7 +329,7 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
        :update_causes=>:replacement},
      "Tags"=>
       {:description=>
-        "An arbitrary set of tags (key–value pairs) for this network interface.",
+        "An arbitrary set of tags (key-value pairs) for this network interface.",
        :required=>false,
        :type=>"Boolean",
        :update_causes=>:none}},
@@ -561,7 +561,7 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
    :full_properties=>
     {"Tags"=>
       {:description=>
-        "An arbitrary set of tags (key–value pairs) for this resource.",
+        "An arbitrary set of tags (key-value pairs) for this resource.",
        :required=>false,
        :type=>"Unknown",
        :update_causes=>:none}},
@@ -617,7 +617,7 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
        :update_causes=>:replacement},
      "EbsOptimized"=>
       {:description=>
-        "Whether the instance is optimized for Amazon Elastic Block Store (Amazon EBS) I/O. If you specify an Amazon EBS-optimized instance type, AWS OpsWorks enables EBS optimization by default. For more information, see Amazon EBS–Optimized Instances in the Amazon EC2 User Guide for Linux Instances.",
+        "Whether the instance is optimized for Amazon Elastic Block Store (Amazon EBS) I/O. If you specify an Amazon EBS-optimized instance type, AWS OpsWorks enables EBS optimization by default. For more information, see Amazon EBS-Optimized Instances in the Amazon EC2 User Guide for Linux Instances.",
        :required=>false,
        :type=>"Boolean",
        :update_causes=>:replacement},
@@ -806,7 +806,7 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
        :update_causes=>:replacement},
      "Tags"=>
       {:description=>
-        "An arbitrary set of tags (key–value pairs) for this resource.",
+        "An arbitrary set of tags (key-value pairs) for this resource.",
        :required=>false,
        :type=>"Unknown",
        :update_causes=>:none}},
@@ -871,7 +871,7 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
        :update_causes=>:replacement},
      "Tags"=>
       {:description=>
-        "An arbitrary set of tags (key–value pairs) for this VPC.",
+        "An arbitrary set of tags (key-value pairs) for this VPC.",
        :required=>false,
        :type=>"Unknown",
        :update_causes=>:none}},
@@ -1642,19 +1642,19 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
        :update_causes=>:none},
      "Failover"=>
       {:description=>
-        "Designates the record set as a PRIMARY or SECONDARY failover record set. When you have more than one resource performing the same function, you can configure Amazon Route 53 to check the health of your resources and use only health resources to respond to DNS queries. You cannot create nonfailover resource record sets that have the same Name and Type property values as failover resource record sets. For more information, see the Failover element in the Amazon Route 53 API Reference.",
+        "Designates the record set as a PRIMARY or SECONDARY failover record set. When you have more than one resource performing the same function, you can configure Amazon Route 53 to check the health of your resources and use only health resources to respond to DNS queries. You cannot create nonfailover resource record sets that have the same Name and Type property values as failover resource record sets. For more information, see the Failover element in the Amazon Route 53 API Reference.",
        :required=>false,
        :type=>"Unknown",
        :update_causes=>:none},
      "GeoLocation"=>
       {:description=>
-        "Describes how Amazon Route 53 responds to DNS queries based on the geographic origin of the query.",
+        "Describes how Amazon Route 53 responds to DNS queries based on the geographic origin of the query.",
        :required=>false,
        :type=>"String",
        :update_causes=>:none},
      "HealthCheckId"=>
       {:description=>
-        "The health check ID that you want to apply to this record set. Amazon Route 53 returns this resource record set in response to a DNS query only while record set is healthy.",
+        "The health check ID that you want to apply to this record set. Amazon Route 53 returns this resource record set in response to a DNS query only while record set is healthy.",
        :required=>false,
        :type=>"Unknown",
        :update_causes=>:none},
@@ -1683,7 +1683,7 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
        :update_causes=>:none},
      "ResourceRecords"=>
       {:description=>
-        "List of resource records to add. Each record should be in the format appropriate for the record type specified by the Type property. For information about different record types and their record formats, see Appendix: Domain Name Format in the Amazon Route 53 Developer Guide.",
+        "List of resource records to add. Each record should be in the format appropriate for the record type specified by the Type property. For information about different record types and their record formats, see Appendix: Domain Name Format in the Amazon Route 53 Developer Guide.",
        :required=>true,
        :type=>"Unknown",
        :update_causes=>:none},
@@ -1749,7 +1749,7 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
    :full_properties=>
     {"Tags"=>
       {:description=>
-        "An arbitrary set of tags (key–value pairs) for this ACL.",
+        "An arbitrary set of tags (key-value pairs) for this ACL.",
        :required=>false,
        :type=>"Unknown",
        :update_causes=>:none},
@@ -1852,7 +1852,7 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
        :update_causes=>:none},
      "HostedZoneTags"=>
       {:description=>
-        "An arbitrary set of tags (key–value pairs) for this hosted zone.",
+        "An arbitrary set of tags (key-value pairs) for this hosted zone.",
        :required=>false,
        :type=>"Array",
        :update_causes=>:none},
@@ -2192,7 +2192,7 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
        :update_causes=>:replacement},
      "Tags"=>
       {:description=>
-        "An arbitrary set of tags (key–value pairs) for this resource.",
+        "An arbitrary set of tags (key-value pairs) for this resource.",
        :required=>false,
        :type=>"Unknown",
        :update_causes=>:none},
@@ -2351,13 +2351,13 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
   {:properties=>["HealthCheckConfig", "HealthCheckTags"],
    :full_properties=>
     {"HealthCheckConfig"=>
-      {:description=>"An Amazon Route 53 health check.",
+      {:description=>"An Amazon Route 53 health check.",
        :required=>true,
        :type=>"Unknown",
        :update_causes=>:none},
      "HealthCheckTags"=>
       {:description=>
-        "An arbitrary set of tags (key–value pairs) for this health check.",
+        "An arbitrary set of tags (key-value pairs) for this health check.",
        :required=>false,
        :type=>"Array",
        :update_causes=>:none}},
@@ -2610,7 +2610,7 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
        :update_causes=>:interrupt},
      "Tags"=>
       {:description=>
-        "An arbitrary set of tags (key–value pairs) for this database instance.",
+        "An arbitrary set of tags (key-value pairs) for this database instance.",
        :required=>false,
        :type=>"String",
        :update_causes=>:none},
@@ -3001,7 +3001,7 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
        :update_causes=>:replacement},
      "Tags"=>
       {:description=>
-        "An arbitrary set of tags (key–value pairs) for this instance.",
+        "An arbitrary set of tags (key-value pairs) for this instance.",
        :required=>false,
        :type=>"String",
        :update_causes=>:replacement},
@@ -3101,7 +3101,7 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
        :update_causes=>:unavailable},
      "Iops"=>
       {:description=>
-        "The number of I/O operations per second (IOPS) that the volume supports. This can be any integer value from 1–4000.",
+        "The number of I/O operations per second (IOPS) that the volume supports. This can be any integer value from 1-4000.",
        :required=>true,
        :type=>"Unknown",
        :update_causes=>:unavailable},
@@ -3124,7 +3124,7 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
        :update_causes=>:unavailable},
      "Tags"=>
       {:description=>
-        "An arbitrary set of tags (key–value pairs) for this volume.",
+        "An arbitrary set of tags (key-value pairs) for this volume.",
        :required=>false,
        :type=>"Unknown",
        :update_causes=>:unavailable},
@@ -3446,7 +3446,7 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
        :update_causes=>:none},
      "Tags"=>
       {:description=>
-        "An arbitrary set of tags (key–value pairs) for this subnet.",
+        "An arbitrary set of tags (key-value pairs) for this subnet.",
        :required=>false,
        :type=>"Unknown",
        :update_causes=>:none},
@@ -3683,7 +3683,7 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
        :update_causes=>:replacement},
      "Tags"=>
       {:description=>
-        "An arbitrary set of tags (key–value pairs) for this environment.",
+        "An arbitrary set of tags (key-value pairs) for this environment.",
        :required=>false,
        :type=>"String",
        :update_causes=>:unknown},
@@ -3776,7 +3776,7 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
        :update_causes=>:replacement},
      "Tags"=>
       {:description=>
-        "An arbitrary set of tags (key–value pairs) for this route table.",
+        "An arbitrary set of tags (key-value pairs) for this route table.",
        :required=>false,
        :type=>"Unknown",
        :update_causes=>:none}},
@@ -3838,7 +3838,7 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
    :full_properties=>
     {"AccessLoggingPolicy"=>
       {:description=>
-        "Captures detailed information for all requests made to your load balancer, such as the time a request was received, client’s IP address, latencies, request path, and server responses.",
+        "Captures detailed information for all requests made to your load balancer, such as the time a request was received, client's IP address, latencies, request path, and server responses.",
        :required=>false,
        :type=>"Unknown",
        :update_causes=>:none},
@@ -4076,7 +4076,7 @@ AWS_RESOURCES = {"AWS::OpsWorks::App"=>
        :update_causes=>:replacement},
      "Tags"=>
       {:description=>
-        "An arbitrary set of tags (key–value pairs) for this option group.",
+        "An arbitrary set of tags (key-value pairs) for this option group.",
        :required=>false,
        :type=>"Unknown",
        :update_causes=>:none}},
