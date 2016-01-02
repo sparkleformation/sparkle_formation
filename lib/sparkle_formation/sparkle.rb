@@ -19,16 +19,15 @@ class SparkleFormation
           idx = caller.index do |item|
             item.end_with?("`register!'")
           end
-          if(idx)
-            file = caller[idx.next].split(':', 2).first
-            path = File.join(File.dirname(file), 'sparkleformation')
-            unless(File.directory?(path))
-              path = nil
-            end
-            unless(name)
-              name = File.basename(caller[idx.next].split(':', 2).first)
-              name.sub!(File.extname(name), '')
-            end
+          idx = idx ? idx.next : 0
+          file = caller[idx].split(':', 2).first
+          path = File.join(File.dirname(file), 'sparkleformation')
+          unless(File.directory?(path))
+            path = nil
+          end
+          unless(name)
+            name = File.basename(caller[idx].split(':', 2).first)
+            name.sub!(File.extname(name), '')
           end
         end
         unless(name)
