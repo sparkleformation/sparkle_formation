@@ -1,4 +1,5 @@
 # v1.2.0
+* Fix pack registration helper method
 * Provide easy access to Kernel.method (#122)
 * Force error on ambiguous dynamic names (#133)
 * Add resource name helper method (#128)
