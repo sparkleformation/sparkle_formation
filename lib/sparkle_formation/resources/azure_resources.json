@@ -1,0 +1,353 @@
+{
+  "Microsoft.Authorization/roleAssignments": {
+    "properties": [
+      "roleDefinitionId",
+      "principalId",
+      "scope"
+    ]
+  },
+  "Microsoft.DevTestLab/labs": {
+    "properties": [
+
+    ]
+  },
+  "Microsoft.DevTestLab/environments": {
+    "properties": [
+      "labId",
+      "vms"
+    ]
+  },
+  "Microsoft.AppService/apiapps": {
+    "properties": [
+      "gateway",
+      "host",
+      "package",
+      "updatePolicy",
+      "accessLevel",
+      "dependencies"
+    ]
+  },
+  "Microsoft.AppService/gateways": {
+    "properties": [
+      "host"
+    ]
+  },
+  "registrations": {
+    "properties": [
+
+    ]
+  },
+  "Microsoft.AppService/gateways/registrations": {
+    "properties": [
+
+    ]
+  },
+  "Microsoft.DataConnect/connectionManagers": {
+    "properties": [
+      "description"
+    ]
+  },
+  "Microsoft.Web/serverfarms": {
+    "properties": [
+      "name",
+      "numberOfWorkers",
+      "sku",
+      "workerSize"
+    ]
+  },
+  "Microsoft.Web/sites/config": {
+    "properties": [
+      "connectionStrings",
+      "phpVersion",
+      "netFrameworkVersion"
+    ]
+  },
+  "Microsoft.Web/sites/extensions": {
+    "properties": [
+      "packageUri",
+      "dbType",
+      "connectionString",
+      "setParameters",
+      "publisher",
+      "type",
+      "typeHandlerVersion",
+      "settings"
+    ]
+  },
+  "Microsoft.Web/sites": {
+    "properties": [
+      "name",
+      "serverFarmId",
+      "hostnames",
+      "enabledHostnames",
+      "hostNameSslStates",
+      "serverFarm"
+    ]
+  },
+  "Microsoft.Web/certificates": {
+    "properties": [
+      "pfxBlob",
+      "password"
+    ]
+  },
+  "Microsoft.Storage/storageAccounts": {
+    "properties": [
+      "accountType"
+    ]
+  },
+  "Microsoft.Network/publicIPAddresses": {
+    "properties": [
+      "publicIPAllocationMethod",
+      "idleTimeoutInMinutes",
+      "dnsSettings"
+    ]
+  },
+  "Microsoft.Network/networkInterfaces": {
+    "properties": [
+      "networkSecurityGroup",
+      "ipConfigurations",
+      "dnsSettings"
+    ]
+  },
+  "Microsoft.Network/virtualNetworks": {
+    "properties": [
+      "addressSpace",
+      "dhcpOptions",
+      "subnets"
+    ]
+  },
+  "Microsoft.Network/loadBalancers": {
+    "properties": [
+      "frontendIPConfigurations",
+      "backendAddressPools",
+      "loadBalancingRules",
+      "probes",
+      "inboundNatRules",
+      "inboundNatPools",
+      "outboundNatRules"
+    ]
+  },
+  "Microsoft.Network/networkSecurityGroups": {
+    "properties": [
+      "securityRules"
+    ]
+  },
+  "Microsoft.Network/routeTables": {
+    "properties": [
+      "routes"
+    ]
+  },
+  "Microsoft.Compute/availabilitySets": {
+    "properties": [
+      "platformUpdateDomainCount",
+      "platformFaultDomainCount"
+    ]
+  },
+  "Microsoft.Compute/virtualMachines": {
+    "properties": [
+      "availabilitySet",
+      "hardwareProfile",
+      "storageProfile",
+      "osProfile",
+      "networkProfile"
+    ]
+  },
+  "Microsoft.Compute/virtualMachineScaleSets": {
+    "properties": [
+      "upgradePolicy",
+      "virtualMachineProfile"
+    ]
+  },
+  "extensions": {
+    "properties": [
+      "publisher",
+      "type",
+      "typeHandlerVersion",
+      "settings"
+    ]
+  },
+  "Microsoft.Cache/Redis": {
+    "properties": [
+      "sku",
+      "shardCount",
+      "enableNonSslPort",
+      "redisConfiguration",
+      "virtualNetwork",
+      "subnet",
+      "staticIP",
+      "redisVersion",
+      "maxMemoryPolicy"
+    ]
+  },
+  "Microsoft.Scheduler/jobCollections": {
+    "properties": [
+      "sku",
+      "quota"
+    ]
+  },
+  "Microsoft.Scheduler/jobCollections/jobs": {
+    "properties": [
+      "startTime",
+      "recurrence",
+      "state",
+      "action"
+    ]
+  },
+  "Microsoft.NotificationHubs/namespaces": {
+    "properties": [
+      "name",
+      "namespaceType"
+    ]
+  },
+  "Microsoft.NotificationHubs/namespaces/notificationHubs": {
+    "properties": [
+      "wnsCredential",
+      "apnsCredential",
+      "gcmCredential",
+      "mpnsCredential",
+      "AdmCredential",
+      "BaiduCredential",
+      "authorizationRules"
+    ]
+  },
+  "secrets": {
+    "properties": [
+
+    ]
+  },
+  "secretsChild": {
+    "properties": [
+
+    ]
+  },
+  "Microsoft.KeyVault/vaults": {
+    "properties": [
+      "sku",
+      "tenantId",
+      "accessPolicies",
+      "enabledForDeployment"
+    ]
+  },
+  "Microsoft.Sql/servers": {
+    "properties": [
+      "version",
+      "administratorLogin",
+      "administratorLoginPassword"
+    ]
+  },
+  "databases": {
+    "properties": [
+
+    ]
+  },
+  "SuccessBricks.ClearDB/databases": {
+    "properties": [
+
+    ]
+  },
+  "firewallrules": {
+    "properties": [
+
+    ]
+  },
+  "Microsoft.Sql/servers/firewallrules": {
+    "properties": [
+
+    ]
+  },
+  "Microsoft.Network/trafficManagerProfiles": {
+    "properties": [
+      "profileStatus",
+      "trafficRoutingMethod",
+      "dnsConfig",
+      "monitorConfig",
+      "endpoints"
+    ]
+  },
+  "Microsoft.Resources/deployments": {
+    "properties": [
+      "mode",
+      "templateLink",
+      "template",
+      "parametersLink",
+      "parameters"
+    ]
+  },
+  "Microsoft.Resources/links": {
+    "properties": [
+      "targetId",
+      "notes"
+    ]
+  },
+  "Microsoft.Authorization/locks": {
+    "properties": [
+      "level",
+      "notes"
+    ]
+  },
+  "microsoft.visualstudio/account": {
+    "properties": [
+      "OperationType",
+      "AccountName"
+    ]
+  },
+  "microsoft.visualstudio/account/project": {
+    "properties": [
+      "ProcessTemplateId",
+      "VersionControlOption"
+    ]
+  },
+  "Microsoft.BizTalkServices/BizTalk": {
+    "properties": [
+      "sku"
+    ]
+  },
+  "Microsoft.BizTalkServices/BizTalk/HybridConnection": {
+    "properties": [
+      "hostName",
+      "port"
+    ]
+  },
+  "Microsoft.Insights/alertrules": {
+    "properties": [
+      "name",
+      "description",
+      "isEnabled",
+      "condition",
+      "action"
+    ]
+  },
+  "Microsoft.Insights/components": {
+    "properties": [
+      "applicationId"
+    ]
+  },
+  "Microsoft.Insights/webtests": {
+    "properties": [
+      "provisioningState",
+      "Name",
+      "Description",
+      "Enabled",
+      "Frequency",
+      "Timeout",
+      "Locations",
+      "Configuration",
+      "SyntheticMonitorId"
+    ]
+  },
+  "Microsoft.Insights/autoscalesettings": {
+    "properties": [
+      "profiles",
+      "enabled",
+      "name",
+      "targetResourceUri"
+    ]
+  },
+  "Microsoft.DocumentDB/databaseAccounts": {
+    "properties": [
+      "name",
+      "databaseAccountOfferType",
+      "consistencyPolicy"
+    ]
+  }
+}
