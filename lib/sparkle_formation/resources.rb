@@ -5,6 +5,12 @@ class SparkleFormation
   class Resources
 
     autoload :Aws, 'sparkle_formation/resources/aws'
+    autoload :Azure, 'sparkle_formation/resources/azure'
+
+    # Characters to be removed from supplied key on matching
+    RESOURCE_TYPE_TR = '_'
+    # String to split for resource namespacing
+    RESOURCE_TYPE_NAMESPACE_SPLITTER = '::'
 
     class << self
 
@@ -67,11 +73,11 @@ class SparkleFormation
       # @return [String, NilClass]
       def registry_key(key)
         o_key = key
-        key = key.to_s.tr('_', '')
+        key = key.to_s.tr(self.const_get(:RESOURCE_TYPE_TR), '')
         snake_parts = nil
         result = @@registry.keys.detect do |ref|
           ref = ref.downcase
-          snake_parts = ref.split('::')
+          snake_parts = ref.split(self.const_get(:RESOURCE_TYPE_NAMESPACE_SPLITTER))
           until(snake_parts.empty?)
             break if snake_parts.join('') == key
             snake_parts.shift
@@ -80,7 +86,7 @@ class SparkleFormation
         end
         if(result)
           collisions = @@registry.keys.find_all do |ref|
-            split_ref = ref.downcase.split('::')
+            split_ref = ref.downcase.split(self.const_get(:RESOURCE_TYPE_NAMESPACE_SPLITTER))
             ref = split_ref.slice(split_ref.size - snake_parts.size, split_ref.size).join('')
             key == ref
           end
