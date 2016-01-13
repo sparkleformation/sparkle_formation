@@ -45,6 +45,17 @@ class SparkleFormation
       end
     end
 
+    # Override to inspect result value and fetch root if value is a
+    # FunctionStruct
+    def method_missing(sym, *args, &block)
+      result = super(*[sym, *args], &block)
+      if(result.is_a?(::SparkleFormation::FunctionStruct))
+        @table[_process_key(sym)] = result._root
+      else
+        result
+      end
+    end
+
     # @return [Class]
     def _klass
       _struct_class || ::SparkleFormation::SparkleStruct
@@ -84,5 +95,4 @@ class SparkleFormation
     alias_method :state!, :_state
 
   end
-
 end

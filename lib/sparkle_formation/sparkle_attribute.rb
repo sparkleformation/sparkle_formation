@@ -6,6 +6,7 @@ class SparkleFormation
   module SparkleAttribute
 
     autoload :Aws, 'sparkle_formation/sparkle_attribute/aws'
+    autoload :Azure, 'sparkle_formation/sparkle_attribute/azure'
 
     # Return current resource name
     #

@@ -558,6 +558,9 @@ class SparkleFormation
       compiled = struct_class.new
       compiled._set_self(self)
       compiled._struct_class = struct_class
+      if(struct_class.const_defined?(:CAMEL_STYLE))
+        compiled._camel_style = struct_class.const_get(:CAMEL_STYLE)
+      end
       if(compile_state)
         compiled.set_state!(compile_state)
       end
