@@ -78,6 +78,10 @@ class SparkleFormation
         args = _fn_args.map do |arg|
           if(arg.respond_to?(:_dump))
             arg._dump
+          elsif(arg.is_a?(::Symbol))
+            "'#{::Bogo::Utility.camel(arg.to_s, false)}'"
+          elsif(arg.is_a?(::String))
+            "'#{arg}'"
           else
             arg.inspect
           end
