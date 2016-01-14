@@ -45,15 +45,30 @@ class SparkleFormation
       end
     end
 
+    # Process value in search for FunctionStruct objects. If found replace with
+    # the root item of the structure
+    #
+    # @param item [Object]
+    # @return [Object]
+    def function_bubbler(item)
+      if(item.is_a?(::Enumerable))
+        item.class[
+          *item.map do |entry|
+            function_bubbler(entry)
+          end
+        ]
+      elsif(item.is_a?(::SparkleFormation::FunctionStruct))
+        item._root
+      else
+        item
+      end
+    end
+
     # Override to inspect result value and fetch root if value is a
     # FunctionStruct
     def method_missing(sym, *args, &block)
       result = super(*[sym, *args], &block)
-      if(result.is_a?(::SparkleFormation::FunctionStruct))
-        @table[_process_key(sym)] = result._root
-      else
-        result
-      end
+      @table[_process_key(sym)] = function_bubbler(result)
     end
 
     # @return [Class]
