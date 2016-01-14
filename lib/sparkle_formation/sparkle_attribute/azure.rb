@@ -74,7 +74,7 @@ class SparkleFormation
         'providers',
         'reference',
         'resourceGroup',
-        'resourceId',
+#        'resourceId',
         'subscription'
       ]
 
@@ -93,6 +93,43 @@ class SparkleFormation
         alias_method "_#{f_name}".to_sym, :_fn_format
         alias_method "#{f_name}!".to_sym, :_fn_format
       end
+
+      def _resource_id(*args)
+        if(args.size > 1)
+          ::SparkleFormation::FunctionStruct.new(:resource_id, *args)
+        else
+          r_name = args.first
+          resource = _root.resources.set!(r_name)
+          if(resource.nil?)
+            ::Kernel.raise 'ACK'
+          else
+            ::SparkleFormation::FunctionStruct.new(
+              :resource_id,
+              resource.type,
+              resource.resource_name!
+            )
+          end
+        end
+      end
+      alias_method :resource_id!, :_resource_id
+
+      def _depends_on(*args)
+        args = args.map do |item|
+          case item
+          when ::Symbol
+            resource = _root.resources.set!(item)
+            if(resource.nil?)
+              ::Kernel.raise 'ACK'
+            else
+              [resource.type, resource.resource_name!].join('/')
+            end
+          else
+            item
+          end
+        end
+        set!(:depends_on, args)
+      end
+      alias_method :depends_on!, :_depends_on
 
     end
   end
