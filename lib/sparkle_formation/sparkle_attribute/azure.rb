@@ -96,7 +96,7 @@ class SparkleFormation
 
       def _resource_id(*args)
         if(args.size > 1)
-          ::SparkleFormation::FunctionStruct.new(:resource_id, *args)
+          ::SparkleFormation::FunctionStruct.new('resourceId', *args)
         else
           r_name = args.first
           resource = _root.resources.set!(r_name)
@@ -104,7 +104,7 @@ class SparkleFormation
             ::Kernel.raise 'ACK'
           else
             ::SparkleFormation::FunctionStruct.new(
-              :resource_id,
+              'resourceId',
               resource.type,
               resource.resource_name!
             )
