@@ -87,7 +87,9 @@ class SparkleFormation
         ::SparkleFormation::FunctionStruct.new(src, *args)
       end
 
-      AZURE_FUNCTIONS.each do |f_name|
+      AZURE_FUNCTIONS.map do |f_name|
+        ::Bogo::Utility.snake(f_name)
+      end.each do |f_name|
         alias_method "_#{f_name}".to_sym, :_fn_format
         alias_method "#{f_name}!".to_sym, :_fn_format
       end
