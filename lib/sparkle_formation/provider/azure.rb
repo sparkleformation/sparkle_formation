@@ -150,7 +150,7 @@ class SparkleFormation
               template.resources._set(stack_name).properties.parameters._set(pname).value template._stack_output(*output_map[check_name])
             else
               parameters._set(check_name, pval)
-              template.resources._set(stack_name).properties.parameters._set(pname).value template._parameter(check_name))
+              template.resources._set(stack_name).properties.parameters._set(pname).value template._parameter(check_name)
             end
           end
         end
