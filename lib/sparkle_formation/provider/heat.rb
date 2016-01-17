@@ -13,6 +13,10 @@ class SparkleFormation
           :VALID_STACK_RESOURCES,
           'OS::Heat::Stack'
         )
+        klass.const_set(
+          :STACK_SERIALIZATION_FORMAT,
+          :yaml
+        )
       end
 
       # Generate policy for stack
