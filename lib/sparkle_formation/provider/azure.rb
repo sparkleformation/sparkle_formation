@@ -112,7 +112,7 @@ class SparkleFormation
           drip_path.each_slice(2) do |base_sparkle, ref_sparkle|
             next unless ref_sparkle
             base_sparkle.compile.resources[ref_sparkle.name].properties.parameters.value._set(output_name, result)
-            ref_sparkle.compile.parameters._set(output_name).value.type 'string' # TODO: <<<<------ type check and prop
+            ref_sparkle.compile.parameters._set(output_name).type 'string' # TODO: <<<<------ type check and prop
             result = compile._parameter(output_name)
           end
         end
@@ -150,7 +150,7 @@ class SparkleFormation
               template.resources._set(stack_name).properties.parameters._set(pname).value template._stack_output(*output_map[check_name])
             else
               parameters._set(check_name, pval)
-              template.resources._set(stack_name).properties.parameters._set(pname, template._parameter(check_name))
+              template.resources._set(stack_name).properties.parameters._set(pname).value template._parameter(check_name))
             end
           end
         end
