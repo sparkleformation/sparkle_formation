@@ -396,7 +396,7 @@ class SparkleFormation
     @load_order = []
     @overrides = []
     @parent = options[:parent]
-    @provider = options.fetch(:provider, @parent ? @parent.provider : :aws)
+    self.provider = options.fetch(:provider, @parent ? @parent.provider : :aws)
     if(block)
       load_block(block)
     end
@@ -412,6 +412,11 @@ class SparkleFormation
   def provider=(val)
     if(val)
       @provider = Bogo::Utility.snake(val).to_sym
+      provider_klass = Bogo::Utility.camel(@provider.to_s)
+      if(Provider.defined?(provider_klass))
+        extend Provider.const_get(provider_klass)
+      end
+      @provider
     else
       @provider = nil
     end
@@ -590,71 +595,65 @@ class SparkleFormation
 
   # @return [Array<SparkleFormation>]
   def nested_stacks(*args)
-    compile.resources.keys!.map do |key|
-      if(stack_resource_type?(compile.resources[key].type))
-        result = [compile.resources[key].properties.stack]
-        if(args.include?(:with_resource))
-          result.push(compile[:resources][key])
+    if(compile[:resources])
+      compile.resources.keys!.map do |key|
+        if(stack_resource_type?(compile.resources[key].type))
+          result = [compile.resources[key].properties.stack]
+          if(args.include?(:with_resource))
+            result.push(compile[:resources][key])
+          end
+          if(args.include?(:with_name))
+            result.push(key)
+          end
+          result.size == 1 ? result.first : result
         end
-        if(args.include?(:with_name))
-          result.push(key)
-        end
-        result.size == 1 ? result.first : result
-      end
-    end.compact
+      end.compact
+    else
+      []
+    end
   end
 
   # @return [TrueClass, FalseClass] includes nested stacks
   def nested?(stack_hash=nil)
-    stack_hash = compile.dump! unless stack_hash
-    !!stack_hash.fetch('Resources', {}).detect do |_r_name, resource|
-      stack_resource_type?(resource['Type'])
+    if(stack_hash)
+      raise Error::Deprecated.new "Hash parameter no longer valid for this method (`#{self.class}##{__callee__}`)"
+    end
+    unless(compile.resources.nil?)
+      compile.resources._data.any? do |r_name, r_value|
+        stack_resource_type?(r_value.type)
+      end
     end
   end
 
   # @return [TrueClass, FalseClass] includes _only_ nested stacks
   def isolated_nests?(stack_hash=nil)
-    stack_hash = compile.dump! unless stack_hash
-    stack_hash.fetch('Resources', {}).all? do |_name, resource|
-      stack_resource_type?(resource['Type'])
+    if(stack_hash)
+      raise Error::Deprecated.new "Hash parameter no longer valid for this method (`#{self.class}##{__callee__}`)"
+    end
+    unless(compile.resources.nil?)
+      compile.resources._data.all? do |r_name, r_value|
+        stack_resource_type?(r_value.type)
+      end
     end
   end
 
   # @return [TrueClass, FalseClass] policies defined
   def includes_policies?(stack_hash=nil)
-    stack_hash = compile.dump! unless stack_hash
-    stack_hash.fetch('Resources', {}).any? do |_name, resource|
-      resource.key?('Policy')
+    if(stack_hash)
+      raise Error::Deprecated.new "Hash parameter no longer valid for this method (`#{self.class}##{__callee__}`)"
+    end
+    unless(compile.resources.nil?)
+      compile.resources._data.any? do |r_name, r_value|
+        !r_value.policy.nil?
+      end
     end
   end
 
   # Generate policy for stack
   #
   # @return [Hash]
-  # @todo this is very AWS specific, so make this easy for swapping
   def generate_policy
-    statements = []
-    compile.resources.keys!.each do |r_name|
-      r_object = compile.resources[r_name]
-      if(r_object['Policy'])
-        r_object['Policy'].keys!.each do |effect|
-          statements.push(
-            'Effect' => effect.to_s.capitalize,
-            'Action' => [r_object['Policy'][effect]].flatten.compact.map{|i| "Update:#{i}"},
-            'Resource' => "LogicalResourceId/#{r_name}",
-            'Principal' => '*'
-          )
-        end
-        r_object.delete!('Policy')
-      end
-    end
-    statements.push(
-      'Effect' => 'Allow',
-      'Action' => 'Update:*',
-      'Resource' => '*',
-      'Principal' => '*'
-    )
-    Smash.new('Statement' => statements)
+    Smash.new
   end
 
   # Apply nesting logic to stack
@@ -681,22 +680,6 @@ class SparkleFormation
   # @yieldreturn [Hash] key/values to be merged into resource properties
   # @return [Hash] dumped stack
   def apply_deep_nesting(*args, &block)
-    outputs = collect_outputs
-    nested_stacks(:with_resource).each do |stack, resource|
-      unless(stack.nested_stacks.empty?)
-        stack.apply_deep_nesting(*args)
-      end
-      stack.compile.parameters.keys!.each do |parameter_name|
-        if(output_name = output_matched?(parameter_name, outputs.keys))
-          next if outputs[output_name] == stack
-          stack_output = stack.make_output_available(output_name, outputs)
-          resource.properties.parameters.set!(parameter_name, stack_output)
-        end
-      end
-    end
-    if(block_given?)
-      extract_templates(&block)
-    end
     compile.dump!
   end
 
@@ -719,40 +702,7 @@ class SparkleFormation
   # @param outputs [Hash] listing of outputs
   # @reutrn [Hash] reference to output value (used for setting parameter)
   def make_output_available(output_name, outputs)
-    bubble_path = outputs[output_name].root_path - root_path
-    drip_path = root_path - outputs[output_name].root_path
-    bubble_path.each_slice(2) do |base_sparkle, ref_sparkle|
-      next unless ref_sparkle
-      base_sparkle.compile.outputs.set!(output_name).set!(
-        :value, base_sparkle.compile.attr!(
-          ref_sparkle.name, "Outputs.#{output_name}"
-        )
-      )
-    end
-    if(bubble_path.empty?)
-      if(drip_path.size == 1)
-        parent = drip_path.first.parent
-        if(parent && parent.compile.parameters.data![output_name])
-          return compile.ref!(output_name)
-        end
-      end
-      raise ArgumentError.new "Failed to detect available bubbling path for output `#{output_name}`. " <<
-        'This may be due to a circular dependency! ' <<
-        "(Output Path: #{outputs[output_name].root_path.map(&:name).join(' > ')} " <<
-        "Requester Path: #{root_path.map(&:name).join(' > ')})"
-    end
-    result = compile.attr!(bubble_path.first.name, "Outputs.#{output_name}")
-    if(drip_path.size > 1)
-      parent = drip_path.first.parent
-      drip_path.unshift(parent) if parent
-      drip_path.each_slice(2) do |base_sparkle, ref_sparkle|
-        next unless ref_sparkle
-        base_sparkle.compile.resources[ref_sparkle.name].properties.parameters.set!(output_name, result)
-        ref_sparkle.compile.parameters.set!(output_name){ type 'String' } # TODO: <<<<------ type check and prop
-        result = compile.ref!(output_name)
-      end
-    end
-    result
+    {}
   end
 
   # Extract and process nested stacks
@@ -788,32 +738,13 @@ class SparkleFormation
   # @yieldreturn [String] Remote URL storage for template
   # @return [Hash]
   def apply_shallow_nesting(*args, &block)
-    parameters = compile[:parameters] ? compile[:parameters]._dump : {}
-    output_map = {}
-    nested_stacks(:with_resource, :with_name).each do |_stack, stack_resource, stack_name|
-      remap_nested_parameters(compile, parameters, stack_name, stack_resource, output_map)
-    end
-    extract_templates(&block)
-    compile.parameters parameters
-    if(args.include?(:bubble_outputs))
-      outputs_hash = Hash[
-        output_map do |name, value|
-          [name, {'Value' => {'Fn::GetAtt' => value}}]
-        end
-      ]
-      if(compile.outputs)
-        compile._merge(compile._klass_new(outputs_hash))
-      else
-        compile.outputs output_hash
-      end
-    end
     compile.dump!
   end
 
   # @return [Smash<output_name:SparkleFormation>]
   def collect_outputs(*args)
     if(args.include?(:force) || root?)
-      if(compile.outputs)
+      unless(compile.outputs.nil?)
         outputs = Smash[
           compile.outputs.keys!.zip(
             [self] * compile.outputs.keys!.size
@@ -846,39 +777,6 @@ class SparkleFormation
   # @note if parameter has includes `StackUnique` a new parameter will
   #   be added to container stack and it will not use outputs
   def remap_nested_parameters(template, parameters, stack_name, stack_resource, output_map)
-    stack_parameters = stack_resource.properties.stack.compile.parameters
-    unless(stack_parameters.nil?)
-      stack_parameters._dump.each do |pname, pval|
-        if(pval['StackUnique'])
-          check_name = [stack_name, pname].join
-        else
-          check_name = pname
-        end
-        if(parameters.keys.include?(check_name))
-          if(parameters[check_name]['Type'] == 'CommaDelimitedList')
-            new_val = {'Fn::Join' => [',', {'Ref' => check_name}]}
-          else
-            new_val = {'Ref' => check_name}
-          end
-          template.resources.set!(stack_name).properties.parameters.set!(pname, new_val)
-        elsif(output_map[check_name])
-          template.resources.set!(stack_name).properties.parameters.set!(pname, 'Fn::GetAtt' => output_map[check_name])
-        else
-          if(pval['Type'] == 'CommaDelimitedList')
-            new_val = {'Fn::Join' => [',', {'Ref' => check_name}]}
-          else
-            new_val = {'Ref' => check_name}
-          end
-          template.resources.set!(stack_name).properties.parameters.set!(pname, new_val)
-          parameters[check_name] = pval
-        end
-      end
-    end
-    unless(stack_resource.properties.stack.compile.outputs.nil?)
-      stack_resource.properties.stack.compile.outputs.keys!.each do |oname|
-        output_map[oname] = [stack_name, "Outputs.#{oname}"]
-      end
-    end
     true
   end
 
