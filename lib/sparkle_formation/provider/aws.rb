@@ -2,6 +2,7 @@ require 'sparkle_formation'
 
 class SparkleFormation
   module Provider
+    # AWS specific implementation
     module Aws
 
       def self.included(klass)
@@ -179,7 +180,9 @@ class SparkleFormation
               end
               template.resources.set!(stack_name).properties.parameters.set!(pname, new_val)
             elsif(output_map[check_name])
-              template.resources.set!(stack_name).properties.parameters.set!(pname, 'Fn::GetAtt' => output_map[check_name])
+              template.resources.set!(stack_name).properties.parameters.set!(
+                pname, 'Fn::GetAtt' => output_map[check_name]
+              )
             else
               if(pval['Type'] == 'CommaDelimitedList')
                 new_val = {'Fn::Join' => [',', {'Ref' => check_name}]}

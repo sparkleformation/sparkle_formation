@@ -26,7 +26,7 @@ class SparkleFormation
                 'azure_resources.json'
               )
             )
-           true
+            true
           end
         end
 

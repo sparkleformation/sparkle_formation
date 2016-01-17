@@ -73,11 +73,13 @@ class SparkleFormation
       # @return [String, NilClass]
       def registry_key(key)
         o_key = key
-        key = key.to_s.tr(self.const_get(:RESOURCE_TYPE_TR), '')
+        key = key.to_s.tr(self.const_get(:RESOURCE_TYPE_TR), '') # rubocop:disable Style/RedundantSelf
         snake_parts = nil
         result = @@registry.keys.detect do |ref|
           ref = ref.downcase
-          snake_parts = ref.split(self.const_get(:RESOURCE_TYPE_NAMESPACE_SPLITTER))
+          snake_parts = ref.split(
+            self.const_get(:RESOURCE_TYPE_NAMESPACE_SPLITTER) # rubocop:disable Style/RedundantSelf
+          )
           until(snake_parts.empty?)
             break if snake_parts.join('') == key
             snake_parts.shift
@@ -86,7 +88,9 @@ class SparkleFormation
         end
         if(result)
           collisions = @@registry.keys.find_all do |ref|
-            split_ref = ref.downcase.split(self.const_get(:RESOURCE_TYPE_NAMESPACE_SPLITTER))
+            split_ref = ref.downcase.split(
+              self.const_get(:RESOURCE_TYPE_NAMESPACE_SPLITTER) # rubocop:disable Style/RedundantSelf
+            )
             ref = split_ref.slice(split_ref.size - snake_parts.size, split_ref.size).join('')
             key == ref
           end

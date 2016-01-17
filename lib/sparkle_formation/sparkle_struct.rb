@@ -55,7 +55,7 @@ class SparkleFormation
         item.class[
           *item.map do |entry|
             function_bubbler(entry)
-          end
+          end.flatten
         ]
       elsif(item.is_a?(::SparkleFormation::FunctionStruct))
         item._root

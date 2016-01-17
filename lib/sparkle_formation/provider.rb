@@ -1,6 +1,7 @@
 require 'sparkle_formation'
 
 class SparkleFormation
+  # Provider specific implementation namespace
   module Provider
 
     autoload :Aws, 'sparkle_formation/provider/aws'

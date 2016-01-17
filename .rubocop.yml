@@ -59,6 +59,10 @@ Style/MultilineBlockChain:
   Enabled: false
 Style/MultilineOperationIndentation:
   Enabled: false
+Lint/NestedMethodDefinition:
+  Enabled: false
+Style/EmptyLiteral:
+  Enabled: false
 
 Style/AlignParameters:
   EnforcedStyle: with_fixed_indentation

@@ -299,6 +299,7 @@ class SparkleFormation
       # @param hash [Hash] Key/value pair tags
       # @return [SparkleStruct]
       def _tags(hash)
+        __t_hashish(hash)
         _set('Tags',
           hash.map{ |k, v|
             key = k.is_a?(Symbol) ? _process_key(k, :force) : k

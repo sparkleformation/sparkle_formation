@@ -2,6 +2,7 @@ require 'sparkle_formation'
 
 class SparkleFormation
   module Provider
+    # Heat specific implementation
     module Heat
 
       def self.included(klass)
@@ -46,7 +47,7 @@ class SparkleFormation
             if(output_name = output_matched?(parameter_name, outputs.keys))
               next if outputs[output_name] == stack
               stack_output = stack.make_output_available(output_name, outputs)
-              resource.properties.parameters._set(parameter_name, stack_output
+              resource.properties.parameters._set(parameter_name, stack_output)
             end
           end
         end
@@ -149,7 +150,7 @@ class SparkleFormation
               check_name = pname
             end
             if(!parameters._set(check_name).nil?)
-              template.resources._set(stack_name).properties.parameters._set(pname) template._parameter(check_name)
+              template.resources._set(stack_name).properties.parameters._set(pname, template._parameter(check_name))
             elsif(output_map[check_name])
               template.resources._set(stack_name).properties.parameters._set(pname)
               template._stack_output(*output_map[check_name])

@@ -2,6 +2,7 @@ require 'sparkle_formation'
 
 class SparkleFormation
   module Provider
+    # Azure specific implementation
     module Azure
 
       def self.included(klass)
@@ -145,12 +146,18 @@ class SparkleFormation
               check_name = pname
             end
             if(!parameters._set(check_name).nil?)
-              template.resources._set(stack_name).properties.parameters._set(pname).value template._parameter(check_name)
+              template.resources._set(stack_name).properties.parameters._set(pname).value(
+                template._parameter(check_name)
+              )
             elsif(output_map[check_name])
-              template.resources._set(stack_name).properties.parameters._set(pname).value template._stack_output(*output_map[check_name])
+              template.resources._set(stack_name).properties.parameters._set(pname).value(
+                template._stack_output(*output_map[check_name])
+              )
             else
               parameters._set(check_name, pval)
-              template.resources._set(stack_name).properties.parameters._set(pname).value template._parameter(check_name)
+              template.resources._set(stack_name).properties.parameters._set(pname).value(
+                template._parameter(check_name)
+              )
             end
           end
         end

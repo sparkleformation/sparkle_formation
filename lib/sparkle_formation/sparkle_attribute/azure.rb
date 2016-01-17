@@ -43,7 +43,6 @@ class SparkleFormation
           alias_method :_dump, :_azure_dump
           alias_method :dump!, :_azure_dump
         end
-
       end
 
       # Valid azure builtin functions
@@ -74,7 +73,6 @@ class SparkleFormation
         'providers',
         'reference',
         'resourceGroup',
-#        'resourceId',
         'subscription'
       ]
 
