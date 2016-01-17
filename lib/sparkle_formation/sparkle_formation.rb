@@ -217,18 +217,17 @@ class SparkleFormation
         if(block_given?)
           result.instance_exec(&block)
         end
-        result = struct
       rescue Error::NotFound::Dynamic
         result = builtin_insert(dynamic_name, struct, *args, &block)
-      end
-      unless(result)
-        message = "Failed to locate requested dynamic block for insertion: #{dynamic_name} " \
+        unless(result)
+          message = "Failed to locate requested dynamic block for insertion: #{dynamic_name} " \
           "(valid: #{struct._self.sparkle.dynamics.keys.sort.join(', ')})"
-        if(struct._self.provider_resources && struct._self.provider_resources.registry.keys.size > 1)
-          t_name = struct._self.provider_resources.registry.keys.first
-          message << "\nBuiltin dynamics pattern `#{t_name}` -> `:#{Bogo::Utility.snake(t_name.gsub('::', '_'))}`"
+          if(struct._self.provider_resources && struct._self.provider_resources.registry.keys.size > 1)
+            t_name = struct._self.provider_resources.registry.keys.first
+            message << "\nBuiltin dynamics pattern `#{t_name}` -> `:#{Bogo::Utility.snake(t_name.gsub('::', '_'))}`"
+          end
+          raise message
         end
-        raise message
       end
       result
     end

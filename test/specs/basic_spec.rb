@@ -138,6 +138,14 @@ describe SparkleFormation do
       e.message.must_include "node"
     end
 
+    it 'returns values from dynamics' do
+      e = nil
+      SparkleFormation.new(:dummy) do
+        e = dynamic!(:node, :test).resource_name!
+      end.dump
+      e.must_equal "TestEc2Instance"
+    end
+
   end
 
 end
