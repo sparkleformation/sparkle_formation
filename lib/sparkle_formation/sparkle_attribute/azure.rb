@@ -131,6 +131,16 @@ class SparkleFormation
       end
       alias_method :depends_on!, :_depends_on
 
+      # Reference output value from nested stack
+      #
+      # @param stack_name [String, Symbol] logical resource name of stack
+      # @apram output_name [String, Symbol] stack output name
+      def _stack_output(stack_name, output_name)
+        stack_name = _process_key(stack_name) if stack_name.is_a?(::Symbol)
+        output_name = _process_key(output_name) if output_name.is_a?(::Symbol)
+        _reference(stack_name).set!(output_name).value
+      end
+
     end
   end
 end
