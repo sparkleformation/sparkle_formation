@@ -134,7 +134,8 @@ class SparkleFormation
       # Reference output value from nested stack
       #
       # @param stack_name [String, Symbol] logical resource name of stack
-      # @apram output_name [String, Symbol] stack output name
+      # @param output_name [String, Symbol] stack output name
+      # @return [Hash]
       def _stack_output(stack_name, output_name)
         stack_name = _process_key(stack_name) if stack_name.is_a?(::Symbol)
         output_name = _process_key(output_name) if output_name.is_a?(::Symbol)
