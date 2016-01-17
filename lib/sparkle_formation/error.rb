@@ -22,6 +22,10 @@ class SparkleFormation
       class Template < NotFound; end
 
     end
+
+    # Deprecation error
+    class Deprecated < Error; end
+
   end
 
 end
