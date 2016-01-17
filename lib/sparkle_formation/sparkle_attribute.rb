@@ -7,6 +7,7 @@ class SparkleFormation
 
     autoload :Aws, 'sparkle_formation/sparkle_attribute/aws'
     autoload :Azure, 'sparkle_formation/sparkle_attribute/azure'
+    autoload :Heat, 'sparkle_formation/sparkle_attribute/heat'
 
     # Return current resource name
     #
