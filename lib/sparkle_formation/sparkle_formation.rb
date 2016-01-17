@@ -19,6 +19,8 @@ class SparkleFormation
   DEFAULT_STACK_RESOURCE = 'AWS::CloudFormation::Stack'
   # @return [Array<String>] collection of valid stack resource types
   VALID_STACK_RESOURCES = [DEFAULT_STACK_RESOURCE]
+  # @return [Symbol] required serialization format
+  STACK_SERIALIZATION_FORMAT = :json
 
   class << self
 
@@ -413,7 +415,7 @@ class SparkleFormation
     if(val)
       @provider = Bogo::Utility.snake(val).to_sym
       provider_klass = Bogo::Utility.camel(@provider.to_s)
-      if(Provider.defined?(provider_klass))
+      if(Provider.const_defined?(provider_klass))
         extend Provider.const_get(provider_klass)
       end
       @provider
