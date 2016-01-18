@@ -8,6 +8,11 @@ class SparkleFormation
     # Heat specific helper implementations
     module Heat
 
+      # Set customized struct behavior
+      def self.included(klass)
+        klass.const_set(:CAMEL_KEYS, false)
+      end
+
       # get_attr generator
       #
       # @param [Object] pass through arguments
