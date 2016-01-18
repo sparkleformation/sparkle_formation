@@ -1,10 +1,17 @@
 #!/usr/bin/env ruby
 
-require 'multi_json'
-require 'nokogiri'
-require 'fileutils'
+%w(multi_json nokogiri fileutils).each do |lib|
+  begin
+    require lib
+  rescue LoadError
+    $stderr.puts "Failed to load required library: `#{lib}` !"
+    $stderr.puts "  > gem install #{lib}"
+    exit -1
+  end
+end
 
 STORE = '/tmp/aws-cfn-docs'
+
 UPDATE_MAPPING = {
   'replacement' => :replacement,
   'no interruption' => :none,
@@ -44,8 +51,6 @@ Dir.glob(File.join(STORE, '**/*.html')).each do |path|
       resource = resource.css('div.variablelist').first
       names = resource.children.detect{|r| r.name == 'dl'}.children.find_all{|r| r.name == 'dt'}.map(&:text).map(&:strip)
       infos = resource.children.detect{|r| r.name == 'dl'}.children.find_all{|r| r.name == 'dd'}
-      # names = resource.css('dt').css('span').map(&:text).map(&:strip)
-      # infos = resource.css('dd')
       unless(names.size == infos.size)
         raise "Failed to align resource properties with information - #{type} (#{path})"
       end
@@ -71,9 +76,6 @@ Dir.glob(File.join(STORE, '**/*.html')).each do |path|
           x.include?('Required:') && x.include?('Yes')
         end
         description = info.css('p').first.text.strip.split("\n").map(&:strip).join(' ')
-        # update_info = info.css('p').map(&:text).detect do |x|
-        #   x.include?('Update requires')
-        # end.to_s.downcase
         full_text = info.text.downcase
         if(full_text.include?('updates are not supported') || full_text.include?('cannot update this property'))
           update_causes = :unavailable
