@@ -237,4 +237,32 @@ describe SparkleFormation::SparkleAttribute::Azure do
 
   end
 
+  describe 'Complex function usage' do
+
+    it 'should allow nesting helper method functions' do
+      @sfn.overrides do
+        value add!(parameters!(:one), parameters!(:two))
+      end
+      @sfn.dump.must_equal 'value' => "[add(parameters('one'), parameters('two'))]"
+    end
+
+    it 'should allow method chaining' do
+      @sfn.overrides do
+        value deployment!.properties.index(1)
+      end
+      @sfn.dump.must_equal 'value' => '[deployment.properties.index(1)]'
+    end
+
+    it 'should allow complex method chaining' do
+      @sfn.overrides do
+        value add!(
+          int!(parameters!(:first_value)),
+          int!(providers!('namespace', 'type').apiVersion[0])
+        )
+      end
+      @sfn.dump.must_equal 'value' => "[add(int(parameters('firstValue')), int(providers('namespace', 'type').apiVersion[0]))]"
+    end
+
+  end
+
 end
