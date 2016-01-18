@@ -99,7 +99,7 @@ class SparkleFormation
           r_name = args.first
           resource = _root.resources.set!(r_name)
           if(resource.nil?)
-            ::Kernel.raise 'ACK'
+            ::Kernel.raise ::SparkleFormation::Error::NotFound::Resource.new(:name => r_name)
           else
             ::SparkleFormation::FunctionStruct.new(
               'resourceId',
