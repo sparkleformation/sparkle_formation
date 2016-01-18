@@ -18,6 +18,11 @@ class SparkleFormation
       include SparkleFormation::Utils::AnimalStrings
       # @!parse include SparkleFormation::Utils::AnimalStrings
 
+      # @return [String] base registry key
+      def base_key
+        Bogo::Utility.snake(self.name.split('::').last) # rubocop:disable Style/RedundantSelf
+      end
+
       # Register resource
       #
       # @param type [String] Orchestration resource type
@@ -27,7 +32,8 @@ class SparkleFormation
         unless(class_variable_defined?(:@@registry))
           @@registry = AttributeStruct.hashish.new
         end
-        @@registry[type] = hash
+        @@registry[base_key] ||= AttributeStruct.hashish.new
+        @@registry[base_key][type] = hash
         true
       end
 
@@ -76,7 +82,7 @@ class SparkleFormation
         o_key = key
         key = key.to_s.tr(self.const_get(:RESOURCE_TYPE_TR), '') # rubocop:disable Style/RedundantSelf
         snake_parts = nil
-        result = @@registry.keys.detect do |ref|
+        result = @@registry[base_key].keys.detect do |ref|
           ref = ref.downcase
           snake_parts = ref.split(
             self.const_get(:RESOURCE_TYPE_NAMESPACE_SPLITTER) # rubocop:disable Style/RedundantSelf
@@ -88,7 +94,7 @@ class SparkleFormation
           !snake_parts.empty?
         end
         if(result)
-          collisions = @@registry.keys.find_all do |ref|
+          collisions = @@registry[base_key].keys.find_all do |ref|
             split_ref = ref.downcase.split(
               self.const_get(:RESOURCE_TYPE_NAMESPACE_SPLITTER) # rubocop:disable Style/RedundantSelf
             )
@@ -108,16 +114,15 @@ class SparkleFormation
       # @param key [String, Symbol]
       # @return [Hashish, NilClass]
       def lookup(key)
-        @@registry[registry_key(key)]
+        @@registry[base_key][registry_key(key)]
       end
 
       # @return [Hashish] currently loaded AWS registry
       def registry
-        if(class_variable_defined?(:@@registry))
-          @@registry
-        else
+        unless(class_variable_defined?(:@@registry))
           @@registry = AttributeStruct.hashish.new
         end
+        @@registry[base_key]
       end
 
     end
