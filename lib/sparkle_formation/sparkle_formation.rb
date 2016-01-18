@@ -226,7 +226,7 @@ class SparkleFormation
       unless(result)
         message = "Failed to locate requested dynamic block for insertion: #{dynamic_name} " \
           "(valid: #{struct._self.sparkle.dynamics.keys.sort.join(', ')})"
-        if(struct._self.provider_resources.registry.keys.size > 1)
+        if(struct._self.provider_resources && struct._self.provider_resources.registry.keys.size > 1)
           t_name = struct._self.provider_resources.registry.keys.first
           message << "\nBuiltin dynamics pattern `#{t_name}` -> `:#{Bogo::Utility.snake(t_name.gsub('::', '_'))}`"
         end
@@ -565,6 +565,9 @@ class SparkleFormation
       compiled = struct_class.new
       compiled._set_self(self)
       compiled._struct_class = struct_class
+      if(struct_class.const_defined?(:CAMEL_KEYS))
+        compiled._camel_keys = struct_class.const_get(:CAMEL_KEYS)
+      end
       if(struct_class.const_defined?(:CAMEL_STYLE))
         compiled._camel_style = struct_class.const_get(:CAMEL_STYLE)
       end
