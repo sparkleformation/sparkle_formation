@@ -53,6 +53,7 @@ class SparkleFormation
         'int',
         'length',
         'mod',
+        'mul',
         'sub',
         'base64',
         'concat',
@@ -92,6 +93,12 @@ class SparkleFormation
         alias_method "#{f_name}!".to_sym, :_fn_format
       end
 
+      # Customized resourceId generator that will perform automatic
+      # lookup on defined resources for building the function if Symbol
+      # type is provided
+      #
+      # @param args [Object]
+      # @return [FunctionStruct]
       def _resource_id(*args)
         if(args.size > 1)
           ::SparkleFormation::FunctionStruct.new('resourceId', *args)
@@ -111,13 +118,19 @@ class SparkleFormation
       end
       alias_method :resource_id!, :_resource_id
 
+      # Customized dependsOn generator. Will automatically build resource
+      # reference value using defined resources for Symbol type values. Sets
+      # directly into current context.
+      #
+      # @param args [Object]
+      # @return [Array<String>]
       def _depends_on(*args)
         args = args.map do |item|
           case item
           when ::Symbol
             resource = _root.resources.set!(item)
             if(resource.nil?)
-              ::Kernel.raise 'ACK'
+              ::Kernel.raise ::SparkleFormation::Error::NotFound::Resource.new(:name => item)
             else
               [resource.type, resource.resource_name!].join('/')
             end
@@ -135,10 +148,13 @@ class SparkleFormation
       # @param output_name [String, Symbol] stack output name
       # @return [Hash]
       def _stack_output(stack_name, output_name)
-        stack_name = _process_key(stack_name) if stack_name.is_a?(::Symbol)
-        output_name = _process_key(output_name) if output_name.is_a?(::Symbol)
-        _reference(stack_name).set!(output_name).value
+        stack_name = __attribute_key(stack_name)
+        output_name = __attribute_key(output_name)
+        o_root = _reference(stack_name)
+        o_root.set!(output_name).value
+        o_root
       end
+      alias_method :stack_output!, :_stack_output
 
     end
   end
