@@ -16,10 +16,14 @@ class SparkleFormation
         @name = opts[:name] if opts
       end
 
+      # Pack related items
       class Dynamic < NotFound; end
       class Component < NotFound; end
       class Registry < NotFound; end
       class Template < NotFound; end
+
+      # Template internals
+      class Resource < NotFound; end
 
     end
 
