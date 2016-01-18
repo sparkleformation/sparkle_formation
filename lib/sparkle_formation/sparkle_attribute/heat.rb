@@ -20,11 +20,7 @@ class SparkleFormation
       def _get_attr(*args)
         __t_stringish(args.first)
         args = args.map do |thing|
-          if(thing.is_a?(::Symbol))
-            _process_key(thing, :force)
-          else
-            thing
-          end
+          __attribute_key(thing)
         end
         {'get_attr' => args}
       end
@@ -64,13 +60,9 @@ class SparkleFormation
       def _get_param(*args)
         __t_stringish(args.first)
         args = args.map do |thing|
-          if(thing.is_a?(::Symbol))
-            _process_key(thing, :force)
-          else
-            thing
-          end
+          __attribute_key(thing)
         end
-        {'get_param' => args}
+        {'get_param' => args.size == 1 ? args.first : args}
       end
       alias_method :_param, :_get_param
       alias_method :param!, :_get_param
@@ -81,8 +73,7 @@ class SparkleFormation
       # @return [Hash]
       def _get_resource(r_name)
         __t_stringish(r_name)
-        r_name = r_name.is_a?(Symbol) ? _process_key(r_name, :force) : r_name
-        {'get_resource' => r_name}
+        {'get_resource' => __attribute_key(r_name)}
       end
       alias_method :_resource, :_get_resource
       alias_method :resource!, :_get_resource
@@ -115,7 +106,8 @@ class SparkleFormation
         __t_hashish(params)
         {'str_replace' => {'template' => template, 'params' => params}}
       end
-      alias_method :str_replace!, :_str_replace
+      alias_method :_replace, :_str_replace
+      alias_method :replace!, :_str_replace
 
       # str_split generator
       #
@@ -162,7 +154,7 @@ class SparkleFormation
       # @param [Symbol, String, Array<Symbol, String>] resource names
       # @return [Array<String>]
       def _depends_on(*args)
-        _set('depends_on', [args].flatten.compact.map{|s| _process_key(s, s.is_a?(::Symbol))})
+        _set('depends_on', [args].flatten.compact.map{|s| __attribute_key(s) })
       end
       alias_method :depends_on!, :_depends_on
 
@@ -173,8 +165,8 @@ class SparkleFormation
       # @return [Hash]
       def _stack_output(stack_name, output_name)
         _attr(
-          _process_key(stack_name, stack_name.is_a?(::Symbol)),
-          _process_key(output_name, output_name.is_a?(::Symbol))
+          __attribute_key(stack_name),
+          __attribute_key(output_name)
         )
       end
       alias_method :stack_output!, :_stack_output
