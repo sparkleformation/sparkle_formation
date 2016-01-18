@@ -9,7 +9,7 @@ describe SparkleFormation::SparkleAttribute::Aws do
     klass.include(SparkleFormation::Utils::TypeCheckers)
     @attr = klass.new
     @attr._camel_keys = true
-    @sfn = SparkleFormation.new(:test)
+    @sfn = SparkleFormation.new(:test, :provider => :aws)
   end
 
   it 'should generate Fn::Join' do
