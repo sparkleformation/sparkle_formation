@@ -2,14 +2,6 @@ require_relative '../spec'
 
 describe SparkleFormation do
 
-  def capture_stdout
-    old, $stdout = $stdout, StringIO.new
-    yield
-    $stdout.string
-  ensure
-    $stdout = old
-  end
-
   before do
     SparkleFormation.sparkle_path = File.join(File.dirname(__FILE__), 'sparkleformation')
   end
@@ -120,12 +112,6 @@ describe SparkleFormation do
         end.dump
       end
       e.message.must_equal "111"
-    end
-
-    it 'should tag with a hash' do
-      SparkleFormation.new(:dummy) do
-        tags! foo: "Bar"
-      end.dump.must_equal({"Tags" => [{"Key" => "Foo", "Value" => "Bar"}]})
     end
 
     it 'should look up a method' do
