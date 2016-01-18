@@ -237,7 +237,7 @@ describe SparkleFormation::SparkleAttribute::Azure do
 
   end
 
-  describe 'Complex function usage' do
+  describe 'Complex intrinsic function usage' do
 
     it 'should allow nesting helper method functions' do
       @sfn.overrides do
@@ -261,6 +261,75 @@ describe SparkleFormation::SparkleAttribute::Azure do
         )
       end
       @sfn.dump.must_equal 'value' => "[add(int(parameters('firstValue')), int(providers('namespace', 'type').apiVersion[0]))]"
+    end
+
+  end
+
+  describe 'Setting intrinsic function values' do
+
+    it 'should set the root function structure' do
+      @sfn.overrides do
+        value deployment!.first.second.third.fourth
+      end
+      @sfn.dump.must_equal 'value' => '[deployment.first.second.third.fourth]'
+    end
+
+    it 'should set the root function structure in arrays' do
+      @sfn.overrides do
+        value [
+          :one,
+          :two,
+          deployment!.first.second.third
+        ]
+      end
+      @sfn.dump.must_equal 'value' => ['one', 'two', '[deployment.first.second.third]']
+    end
+
+    it 'should set the root function structure in hashes' do
+      @sfn.overrides do
+        value(
+          :thing => deployment!.first.second.third
+        )
+      end
+      @sfn.dump.must_equal(
+        'value' => {
+          'thing' => '[deployment.first.second.third]'
+        }
+      )
+    end
+
+    it 'should set the root function structure in nested array hashes' do
+      @sfn.overrides do
+        value [
+          :thing1,
+          {:thing2 => deployment!.first.second.third}
+        ]
+      end
+      @sfn.dump.must_equal(
+        'value' => [
+          'thing1',
+          {'thing2' => '[deployment.first.second.third]'}
+        ]
+      )
+    end
+
+    it 'should set the root function structure in nested hash arrays' do
+      @sfn.overrides do
+        value(
+          :thing1 => [
+            :thing1,
+            {:thing2 => deployment!.first.second.third}
+          ]
+        )
+      end
+      @sfn.dump.must_equal(
+        'value' => {
+          'thing1' => [
+            'thing1',
+            {'thing2' => '[deployment.first.second.third]'}
+          ]
+        }
+      )
     end
 
   end
