@@ -34,6 +34,17 @@ describe SparkleFormation do
       result.to_smash.get('Resources', 'Third', 'Properties', 'Stack').to_json.must_equal dummy.to_smash.to_json
     end
 
+    it 'should pass loaded packs to nested templates' do
+      template = SparkleFormation.compile('pack-nester.rb', :sparkle)
+      template.sparkle.add_sparkle(
+        SparkleFormation::Sparkle.new(
+          :root => File.join(File.dirname(__FILE__), 'packs/valid_pack')
+        )
+      )
+      result = template.dump.to_smash
+      result.get('Resources', 'PackTemplate', 'Properties', 'Stack', 'Testing').must_equal true
+    end
+
   end
 
   describe 'Component registry usage' do
