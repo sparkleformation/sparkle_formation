@@ -1,3 +1,11 @@
+# UNRELEASED
+
+* Extraction and isolation of provider specific functionalities
+* Added provider support for Azure
+* Added provider support for Heat
+* Added provider support for Rackspace
+* Enforce minimum supported Ruby version
+
 # v1.2.0
 * Fix pack registration helper method
 * Provide easy access to Kernel.method (#122)
