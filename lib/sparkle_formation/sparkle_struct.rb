@@ -52,11 +52,19 @@ class SparkleFormation
     # @return [Object]
     def function_bubbler(item)
       if(item.is_a?(::Enumerable))
-        item.class[
-          *item.map do |entry|
-            function_bubbler(entry)
-          end.flatten
-        ]
+        if(item.respond_to?(:keys))
+          item.class[
+            *item.map do |entry|
+              function_bubbler(entry)
+            end.flatten(1)
+          ]
+        else
+          item.class[
+            *item.map do |entry|
+              function_bubbler(entry)
+            end
+          ]
+        end
       elsif(item.is_a?(::SparkleFormation::FunctionStruct))
         item._root
       else
