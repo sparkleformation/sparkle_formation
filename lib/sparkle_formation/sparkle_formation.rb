@@ -270,6 +270,13 @@ class SparkleFormation
       struct.resources.set!(resource_name) do
         type DEFAULT_STACK_RESOURCE
       end
+      unless(struct._self.sparkle.empty?)
+        struct._self.sparkle.size.times do |idx|
+          nested_template.sparkle.add_sparkle(
+            struct._self.sparkle.sparkle_at(idx)
+          )
+        end
+      end
       struct.resources[resource_name].properties.stack nested_template
       if(block_given?)
         struct.resources[resource_name].instance_exec(&block)
