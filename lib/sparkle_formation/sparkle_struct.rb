@@ -102,7 +102,11 @@ class SparkleFormation
       result = super
       if(@self && result.nil?)
         if(_self.parameters.keys.map(&:to_s).include?(arg.to_s))
-          ::Kernel.raise ::ArgumentError.new "No value provided for compile time parameter: `#{arg}`!"
+          unless(_self.parameters[arg.to_sym].key?(:default))
+            ::Kernel.raise ::ArgumentError.new "No value provided for compile time parameter: `#{arg}`!"
+          else
+            result = _self.parameters[arg.to_sym][:default]
+          end
         end
       end
       result
