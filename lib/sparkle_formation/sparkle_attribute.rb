@@ -6,6 +6,8 @@ class SparkleFormation
   module SparkleAttribute
 
     autoload :Aws, 'sparkle_formation/sparkle_attribute/aws'
+    autoload :Azure, 'sparkle_formation/sparkle_attribute/azure'
+    autoload :Heat, 'sparkle_formation/sparkle_attribute/heat'
 
     # Return current resource name
     #
@@ -88,26 +90,18 @@ class SparkleFormation
       SparkleFormation.nest(template, self, *args, &block)
     end
 
-    # TODO: Deprecate or re-imagine
-
-    # @return [TrueClass, FalseClass]
-    def rhel?
-      !!@platform[:rhel]
-    end
-
-    # @return [TrueClass, FalseClass]
-    def debian?
-      !!@platform[:debian]
-    end
-
-    # Set the destination platform
+    # Format the provided key. If symbol type is provided
+    # formatting is forced. Otherwise the default formatting
+    # is applied
     #
-    # @param plat [String, Symbol] one of :rhel or :debian
-    # @return [TrueClass]
-    def _platform=(plat)
-      @platform || __hashish
-      @platform.clear
-      @platform[plat.to_sym] = true
+    # @param key [String, Symbol] given key
+    # @return [String] formatted key
+    def __attribute_key(key)
+      if(key.is_a?(::Symbol) || key.is_a?(::String))
+        _process_key(key, key.is_a?(::Symbol))
+      else
+        key
+      end
     end
 
   end

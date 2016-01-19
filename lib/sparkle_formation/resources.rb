@@ -5,11 +5,23 @@ class SparkleFormation
   class Resources
 
     autoload :Aws, 'sparkle_formation/resources/aws'
+    autoload :Azure, 'sparkle_formation/resources/azure'
+    autoload :Heat, 'sparkle_formation/resources/heat'
+
+    # Characters to be removed from supplied key on matching
+    RESOURCE_TYPE_TR = '_'
+    # String to split for resource namespacing
+    RESOURCE_TYPE_NAMESPACE_SPLITTER = '::'
 
     class << self
 
       include SparkleFormation::Utils::AnimalStrings
       # @!parse include SparkleFormation::Utils::AnimalStrings
+
+      # @return [String] base registry key
+      def base_key
+        Bogo::Utility.snake(self.name.split('::').last) # rubocop:disable Style/RedundantSelf
+      end
 
       # Register resource
       #
@@ -20,7 +32,8 @@ class SparkleFormation
         unless(class_variable_defined?(:@@registry))
           @@registry = AttributeStruct.hashish.new
         end
-        @@registry[type] = hash
+        @@registry[base_key] ||= AttributeStruct.hashish.new
+        @@registry[base_key][type] = hash
         true
       end
 
@@ -67,11 +80,13 @@ class SparkleFormation
       # @return [String, NilClass]
       def registry_key(key)
         o_key = key
-        key = key.to_s.tr('_', '')
+        key = key.to_s.tr(self.const_get(:RESOURCE_TYPE_TR), '') # rubocop:disable Style/RedundantSelf
         snake_parts = nil
-        result = @@registry.keys.detect do |ref|
+        result = @@registry[base_key].keys.detect do |ref|
           ref = ref.downcase
-          snake_parts = ref.split('::')
+          snake_parts = ref.split(
+            self.const_get(:RESOURCE_TYPE_NAMESPACE_SPLITTER) # rubocop:disable Style/RedundantSelf
+          )
           until(snake_parts.empty?)
             break if snake_parts.join('') == key
             snake_parts.shift
@@ -79,8 +94,10 @@ class SparkleFormation
           !snake_parts.empty?
         end
         if(result)
-          collisions = @@registry.keys.find_all do |ref|
-            split_ref = ref.downcase.split('::')
+          collisions = @@registry[base_key].keys.find_all do |ref|
+            split_ref = ref.downcase.split(
+              self.const_get(:RESOURCE_TYPE_NAMESPACE_SPLITTER) # rubocop:disable Style/RedundantSelf
+            )
             ref = split_ref.slice(split_ref.size - snake_parts.size, split_ref.size).join('')
             key == ref
           end
@@ -97,16 +114,15 @@ class SparkleFormation
       # @param key [String, Symbol]
       # @return [Hashish, NilClass]
       def lookup(key)
-        @@registry[registry_key(key)]
+        @@registry[base_key][registry_key(key)]
       end
 
       # @return [Hashish] currently loaded AWS registry
       def registry
-        if(class_variable_defined?(:@@registry))
-          @@registry
-        else
+        unless(class_variable_defined?(:@@registry))
           @@registry = AttributeStruct.hashish.new
         end
+        @@registry[base_key]
       end
 
     end

@@ -29,8 +29,7 @@ class SparkleFormation
       # @note Symbol value will force key processing
       def _cf_ref(thing)
         __t_stringish(thing)
-        thing = _process_key(thing, :force) if thing.is_a?(Symbol)
-        {'Ref' => thing}
+        {'Ref' => __attribute_key(thing)}
       end
       alias_method :_ref, :_cf_ref
       alias_method :ref!, :_cf_ref
@@ -50,7 +49,7 @@ class SparkleFormation
             item
           end
         end
-        thing = _process_key(thing, :force) if thing.is_a?(Symbol)
+        thing = __attribute_key(thing)
         if(key.is_a?(Symbol))
           key = ref!(key)
         end
@@ -65,7 +64,9 @@ class SparkleFormation
       # @param [Object] pass through arguments
       # @return [Hash]
       def _cf_attr(*args)
-        __t_stringish(args.first)
+        r_name = args.first
+        args = args.slice(1, args.size)
+        __t_stringish(r_name)
         args = args.map do |thing|
           if(thing.is_a?(Symbol))
             _process_key(thing, :force)
@@ -73,7 +74,7 @@ class SparkleFormation
             thing
           end
         end
-        {'Fn::GetAtt' => args}
+        {'Fn::GetAtt' => [__attribute_key(r_name), *args]}
       end
       alias_method :_cf_get_att, :_cf_attr
       alias_method :get_att!, :_cf_attr
@@ -124,7 +125,7 @@ class SparkleFormation
       # @return [Hash]
       def _condition(name)
         __t_stringish(name)
-        {'Condition' => name.is_a?(Symbol) ? _process_key(name, :force) : name}
+        {'Condition' => __attribute_key(name)}
       end
       alias_method :condition!, :_condition
 
@@ -146,8 +147,7 @@ class SparkleFormation
       # @param false_value [Object]
       # @return [Hash]
       def _if(cond, true_value, false_value)
-        cond = cond.is_a?(Symbol) ? _process_key(cond) : cond
-        {'Fn::If' => _array(cond, true_value, false_value)}
+        {'Fn::If' => _array(__attribute_key(cond), true_value, false_value)}
       end
       alias_method :if!, :_if
 
@@ -269,7 +269,7 @@ class SparkleFormation
       # @param [Symbol, String, Array<Symbol, String>] resource names
       # @return [Array<String>]
       def _depends_on(*args)
-        _set('DependsOn', [args].flatten.compact.map{|s| _process_key(s)})
+        _set('DependsOn', [args].flatten.compact.map{|s| __attribute_key(s)})
       end
       alias_method :depends_on!, :_depends_on
 
@@ -278,7 +278,7 @@ class SparkleFormation
       # @param stack_name [String, Symbol] logical resource name of stack
       # @apram output_name [String, Symbol] stack output name
       def _stack_output(stack_name, output_name)
-        _cf_attr(_process_key(stack_name), "Outputs.#{_process_key(output_name)}")
+        _cf_attr(_process_key(stack_name), "Outputs.#{__attribute_key(output_name)}")
       end
       alias_method :stack_output!, :_stack_output
 
@@ -299,10 +299,10 @@ class SparkleFormation
       # @param hash [Hash] Key/value pair tags
       # @return [SparkleStruct]
       def _tags(hash)
+        __t_hashish(hash)
         _set('Tags',
           hash.map{ |k, v|
-            key = k.is_a?(Symbol) ? _process_key(k, :force) : k
-            {'Key' => key, 'Value' => v}
+            {'Key' => __attribute_key(k), 'Value' => v}
           }
         )
       end

@@ -1,0 +1,4994 @@
+{
+  "OS::Barbican::Order": {
+    "properties": [
+      "algorithm",
+      "bit_length",
+      "ca_id",
+      "expiration",
+      "mode",
+      "name",
+      "pass_phrase",
+      "payload_content_type",
+      "profile",
+      "request_data",
+      "request_type",
+      "source_container_ref",
+      "subject_dn",
+      "type"
+    ],
+    "full_properties": {
+      "type": {
+        "description": "The type of the order.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "algorithm": {
+        "description": "The algorithm type used to generate the secret.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "bit_length": {
+        "description": "The bit-length of the secret.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "ca_id": {
+        "description": "The identifier of the CA to use.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "expiration": {
+        "description": "The expiration date for the secret in ISO-8601 format.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "mode": {
+        "description": "The type/mode of the algorithm associated with the secret information.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Human readable name for the secret.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "pass_phrase": {
+        "description": "The passphrase the created key.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "payload_content_type": {
+        "description": "The type/format the secret data is provided in.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "profile": {
+        "description": "The profile of certificate to use.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "request_data": {
+        "description": "The content of the CSR.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "request_type": {
+        "description": "The type of the certificate request.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "source_container_ref": {
+        "description": "The source of certificate request.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "subject_dn": {
+        "description": "The subject of the certificate request.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Barbican::Secret": {
+    "properties": [
+      "algorithm",
+      "bit_length",
+      "expiration",
+      "mode",
+      "name",
+      "payload",
+      "payload_content_encoding",
+      "payload_content_type",
+      "secret_type"
+    ],
+    "full_properties": {
+      "algorithm": {
+        "description": "The algorithm type used to generate the secret.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "bit_length": {
+        "description": "The bit-length of the secret.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "expiration": {
+        "description": "The expiration date for the secret in ISO-8601 format.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "mode": {
+        "description": "The type/mode of the algorithm associated with the secret information.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Human readable name for the secret.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "payload": {
+        "description": "The unencrypted plain text of the secret.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "payload_content_encoding": {
+        "description": "The encoding format used to provide the payload data.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "payload_content_type": {
+        "description": "The type/format the secret data is provided in.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "secret_type": {
+        "description": "The type of the secret.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Ceilometer::Alarm": {
+    "properties": [
+      "alarm_actions",
+      "comparison_operator",
+      "description",
+      "enabled",
+      "evaluation_periods",
+      "insufficient_data_actions",
+      "matching_metadata",
+      "meter_name",
+      "ok_actions",
+      "period",
+      "query",
+      "repeat_actions",
+      "severity",
+      "statistic",
+      "threshold",
+      "time_constraints"
+    ],
+    "full_properties": {
+      "meter_name": {
+        "description": "Meter name watched by the alarm.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "threshold": {
+        "description": "Threshold to evaluate against.",
+        "required": true,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "alarm_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "comparison_operator": {
+        "description": "Operator used to compare specified statistic with threshold.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "True if alarm evaluation/actioning is enabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "evaluation_periods": {
+        "description": "Number of periods to evaluate over.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "insufficient_data_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "matching_metadata": {
+        "description": "Meter should match this resource metadata (key=value) additionally to the meter_name.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "ok_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "period": {
+        "description": "Period (seconds) to evaluate over.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "query": {
+        "description": "A list of query factors, each comparing a Sample attribute with a value. Implicitly combined with matching_metadata, if any.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "repeat_actions": {
+        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "severity": {
+        "description": "Severity of the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "statistic": {
+        "description": "Meter statistic to evaluate.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "time_constraints": {
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression,whereas its duration is given in seconds.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Ceilometer::CombinationAlarm": {
+    "properties": [
+      "alarm_actions",
+      "alarm_ids",
+      "description",
+      "enabled",
+      "insufficient_data_actions",
+      "ok_actions",
+      "operator",
+      "repeat_actions",
+      "severity",
+      "time_constraints"
+    ],
+    "full_properties": {
+      "alarm_ids": {
+        "description": "List of alarm identifiers to combine.",
+        "required": true,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "alarm_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "True if alarm evaluation/actioning is enabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "insufficient_data_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "operator": {
+        "description": "Operator used to combine the alarms.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "repeat_actions": {
+        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "severity": {
+        "description": "Severity of the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "time_constraints": {
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression,whereas its duration is given in seconds.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Ceilometer::GnocchiAggregationByMetricsAlarm": {
+    "properties": [
+      "aggregation_method",
+      "alarm_actions",
+      "comparison_operator",
+      "description",
+      "enabled",
+      "evaluation_periods",
+      "granularity",
+      "insufficient_data_actions",
+      "metrics",
+      "ok_actions",
+      "repeat_actions",
+      "severity",
+      "threshold",
+      "time_constraints"
+    ],
+    "full_properties": {
+      "metrics": {
+        "description": "A list of metric ids.",
+        "required": true,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "threshold": {
+        "description": "Threshold to evaluate against.",
+        "required": true,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "aggregation_method": {
+        "description": "The aggregation method to compare to the threshold",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "alarm_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "comparison_operator": {
+        "description": "Operator used to compare specified statistic with threshold.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "True if alarm evaluation/actioning is enabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "evaluation_periods": {
+        "description": "Number of periods to evaluate over.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "granularity": {
+        "description": "The time range in seconds.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "insufficient_data_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "repeat_actions": {
+        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "severity": {
+        "description": "Severity of the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "time_constraints": {
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression,whereas its duration is given in seconds.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Ceilometer::GnocchiAggregationByResourcesAlarm": {
+    "properties": [
+      "aggregation_method",
+      "alarm_actions",
+      "comparison_operator",
+      "description",
+      "enabled",
+      "evaluation_periods",
+      "granularity",
+      "insufficient_data_actions",
+      "metric",
+      "ok_actions",
+      "query",
+      "repeat_actions",
+      "resource_type",
+      "severity",
+      "threshold",
+      "time_constraints"
+    ],
+    "full_properties": {
+      "metric": {
+        "description": "Metric name watched by the alarm.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "query": {
+        "description": "The query to filter the metrics",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "resource_type": {
+        "description": "Resource type",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "threshold": {
+        "description": "Threshold to evaluate against.",
+        "required": true,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "aggregation_method": {
+        "description": "The aggregation method to compare to the threshold",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "alarm_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "comparison_operator": {
+        "description": "Operator used to compare specified statistic with threshold.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "True if alarm evaluation/actioning is enabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "evaluation_periods": {
+        "description": "Number of periods to evaluate over.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "granularity": {
+        "description": "The time range in seconds.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "insufficient_data_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "repeat_actions": {
+        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "severity": {
+        "description": "Severity of the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "time_constraints": {
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression,whereas its duration is given in seconds.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Ceilometer::GnocchiResourcesAlarm": {
+    "properties": [
+      "aggregation_method",
+      "alarm_actions",
+      "comparison_operator",
+      "description",
+      "enabled",
+      "evaluation_periods",
+      "granularity",
+      "insufficient_data_actions",
+      "metric",
+      "ok_actions",
+      "repeat_actions",
+      "resource_id",
+      "resource_type",
+      "severity",
+      "threshold",
+      "time_constraints"
+    ],
+    "full_properties": {
+      "metric": {
+        "description": "Metric name watched by the alarm.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "resource_id": {
+        "description": "Id of a resource",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "resource_type": {
+        "description": "Resource type",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "threshold": {
+        "description": "Threshold to evaluate against.",
+        "required": true,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "aggregation_method": {
+        "description": "The aggregation method to compare to the threshold",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "alarm_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "comparison_operator": {
+        "description": "Operator used to compare specified statistic with threshold.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "True if alarm evaluation/actioning is enabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "evaluation_periods": {
+        "description": "Number of periods to evaluate over.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "granularity": {
+        "description": "The time range in seconds.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "insufficient_data_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "repeat_actions": {
+        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "severity": {
+        "description": "Severity of the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "time_constraints": {
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression,whereas its duration is given in seconds.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Cinder::EncryptedVolumeType": {
+    "properties": [
+      "cipher",
+      "control_location",
+      "key_size",
+      "provider",
+      "volume_type"
+    ],
+    "full_properties": {
+      "provider": {
+        "description": "The class that provides encryption support. For example, nova.volume.encryptors.luks.LuksEncryptor.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "volume_type": {
+        "description": "Name or id of volume type (OS::Cinder::VolumeType).",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "cipher": {
+        "description": "The encryption algorithm or mode. For example, aes-xts-plain64.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "control_location": {
+        "description": "Notional service where encryption is performed For example, front-end. For Nova.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "key_size": {
+        "description": "Size of encryption key, in bits. For example, 128 or 256.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Cinder::Volume": {
+    "properties": [
+      "availability_zone",
+      "backup_id",
+      "description",
+      "image",
+      "metadata",
+      "multiattach",
+      "name",
+      "read_only",
+      "scheduler_hints",
+      "size",
+      "snapshot_id",
+      "source_volid",
+      "volume_type"
+    ],
+    "full_properties": {
+      "availability_zone": {
+        "description": "The availability zone in which the volume will be created.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "backup_id": {
+        "description": "If specified, the backup to create the volume from.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "A description of the volume.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "image": {
+        "description": "If specified, the name or ID of the image to create the volume from.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "metadata": {
+        "description": "Key/value pairs to associate with the volume.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "multiattach": {
+        "description": "Whether allow the volume to be attached more than once. This property is only supported from Cinder API v2.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "A name used to distinguish the volume.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "read_only": {
+        "description": "Enables or disables read-only access mode of volume.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "scheduler_hints": {
+        "description": "Arbitrary key-value pairs specified by the client to help the Cinder scheduler creating a volume.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "size": {
+        "description": "The size of the volume in GB. On update only increase in size is supported.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "snapshot_id": {
+        "description": "If specified, the snapshot to create the volume from.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "source_volid": {
+        "description": "If specified, the volume to use as source.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "volume_type": {
+        "description": "If specified, the type of volume to use, mapping to a specific backend.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Cinder::VolumeAttachment": {
+    "properties": [
+      "instance_uuid",
+      "mountpoint",
+      "volume_id"
+    ],
+    "full_properties": {
+      "instance_uuid": {
+        "description": "The ID of the server to which the volume attaches.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "volume_id": {
+        "description": "The ID of the volume to be attached.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "mountpoint": {
+        "description": "The location where the volume is exposed on the instance. This assignment may not be honored and it is advised that the path /dev/disk/by-id/virtio-<VolumeId> be used instead.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Cinder::VolumeType": {
+    "properties": [
+      "description",
+      "is_public",
+      "metadata",
+      "name",
+      "projects"
+    ],
+    "full_properties": {
+      "name": {
+        "description": "Name of the volume type.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of the volume type.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "is_public": {
+        "description": "Whether the volume type is accessible to the public.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "metadata": {
+        "description": "The extra specs key and value pairs of the volume type.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "projects": {
+        "description": "Projects to add volume type access to. NOTE: This property is only supported since Cinder API V2.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Designate::Domain": {
+    "properties": [
+      "description",
+      "email",
+      "name",
+      "ttl"
+    ],
+    "full_properties": {
+      "email": {
+        "description": "Domain email.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Domain name.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "description": {
+        "description": "Description of domain.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "ttl": {
+        "description": "Time To Live (Seconds).",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Designate::Record": {
+    "properties": [
+      "data",
+      "description",
+      "domain",
+      "name",
+      "priority",
+      "ttl",
+      "type"
+    ],
+    "full_properties": {
+      "data": {
+        "description": "DNS record data, varies based on the type of record. For more details, please refer rfc 1035.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "domain": {
+        "description": "DNS Domain id or name.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Record name.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "type": {
+        "description": "DNS Record type.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of record.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "priority": {
+        "description": "DNS record priority. It is considered only for MX and SRV types, otherwise, it is ignored.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "ttl": {
+        "description": "Time To Live (Seconds).",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Glance::Image": {
+    "properties": [
+      "container_format",
+      "disk_format",
+      "id",
+      "is_public",
+      "location",
+      "min_disk",
+      "min_ram",
+      "name",
+      "protected"
+    ],
+    "full_properties": {
+      "container_format": {
+        "description": "Container format of image.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "disk_format": {
+        "description": "Disk format of image.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "location": {
+        "description": "URL where the data for this image already resides. For example, if the image data is stored in swift, you could specify “swift://example.com/container/obj”.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "id": {
+        "description": "The image ID. Glance will generate a UUID if not specified.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "is_public": {
+        "description": "Scope of image accessibility. Public or private. Default value is False means private.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "min_disk": {
+        "description": "Amount of disk space (in GB) required to boot image. Default value is 0 if not specified and means no limit on the disk size.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "min_ram": {
+        "description": "Amount of ram (in MB) required to boot image. Default value is 0 if not specified and means no limit on the ram size.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name for the image. The name of an image is not unique to a Image Service node.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "protected": {
+        "description": "Whether the image can be deleted. If the value is True, the image is protected and cannot be deleted.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::AccessPolicy": {
+    "properties": [
+      "AllowedResources"
+    ],
+    "full_properties": {
+      "AllowedResources": {
+        "description": "Resources that users are allowed to access by the DescribeStackResource API.",
+        "required": true,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::AutoScalingGroup": {
+    "properties": [
+      "cooldown",
+      "desired_capacity",
+      "max_size",
+      "min_size",
+      "resource",
+      "rolling_updates"
+    ],
+    "full_properties": {
+      "max_size": {
+        "description": "Maximum number of resources in the group.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "min_size": {
+        "description": "Minimum number of resources in the group.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "resource": {
+        "description": "Resource definition for the resources in the group, in HOT format. The value of this property is the definition of a resource just as if it had been declared in the template itself.",
+        "required": true,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "cooldown": {
+        "description": "Cooldown period, in seconds.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "desired_capacity": {
+        "description": "Desired initial number of resources.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "rolling_updates": {
+        "description": "Policy for rolling updates for this scaling group.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Heat::CloudConfig": {
+    "properties": [
+      "cloud_config"
+    ],
+    "full_properties": {
+      "cloud_config": {
+        "description": "Map representing the cloud-config data structure which will be formatted as YAML.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::InstanceGroup": {
+    "properties": [
+      "AvailabilityZones",
+      "LaunchConfigurationName",
+      "LoadBalancerNames",
+      "Size",
+      "Tags"
+    ],
+    "full_properties": {
+      "AvailabilityZones": {
+        "description": "Not Implemented.",
+        "required": true,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "LaunchConfigurationName": {
+        "description": "The reference to a LaunchConfiguration resource.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "Size": {
+        "description": "Desired number of instances.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "LoadBalancerNames": {
+        "description": "List of LoadBalancer resources.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "Tags": {
+        "description": "Tags to attach to this group.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::MultipartMime": {
+    "properties": [
+      "parts"
+    ],
+    "full_properties": {
+      "parts": {
+        "description": "Parts belonging to this message.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::None": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "OS::Heat::RandomString": {
+    "properties": [
+      "character_classes",
+      "character_sequences",
+      "length",
+      "salt"
+    ],
+    "full_properties": {
+      "character_classes": {
+        "description": "A list of character class and their constraints to generate the random string from.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "character_sequences": {
+        "description": "A list of character sequences and their constraints to generate the random string from.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "length": {
+        "description": "Length of the string to generate.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "salt": {
+        "description": "Value which can be set or changed on stack update to trigger the resource for replacement with a new random string. The salt value itself is ignored by the random generator.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::ResourceChain": {
+    "properties": [
+      "concurrent",
+      "resource_properties",
+      "resources"
+    ],
+    "full_properties": {
+      "resources": {
+        "description": "The list of resource types to create. This list may contain type names or aliases defined in the resource registry. Specific template names are not supported.",
+        "required": true,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "concurrent": {
+        "description": "If true, the resources in the chain will be created concurrently. If false or omitted, each resource will be treated as having a dependency on the previous resource in the list.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "resource_properties": {
+        "description": "Properties to pass to each resource being created in the chain.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::ResourceGroup": {
+    "properties": [
+      "count",
+      "index_var",
+      "removal_policies",
+      "resource_def"
+    ],
+    "full_properties": {
+      "resource_def": {
+        "description": "Resource definition for the resources in the group. The value of this property is the definition of a resource just as if it had been declared in the template itself.",
+        "required": true,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "count": {
+        "description": "The number of resources to create.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "index_var": {
+        "description": "A variable that this resource will use to replace with the current index of a given resource in the group. Can be used, for example, to customize the name property of grouped servers in order to differentiate them when listed with nova client.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "removal_policies": {
+        "description": "Policies for removal of resources on update",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Heat::ScalingPolicy": {
+    "properties": [
+      "adjustment_type",
+      "auto_scaling_group_id",
+      "cooldown",
+      "min_adjustment_step",
+      "scaling_adjustment"
+    ],
+    "full_properties": {
+      "adjustment_type": {
+        "description": "Type of adjustment (absolute or percentage).",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "auto_scaling_group_id": {
+        "description": "AutoScaling group ID to apply policy to.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "scaling_adjustment": {
+        "description": "Size of adjustment.",
+        "required": true,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "cooldown": {
+        "description": "Cooldown period, in seconds.",
+        "required": false,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "min_adjustment_step": {
+        "description": "Minimum number of resources that are added or removed when the AutoScaling group scales up or down. This can be used only when specifying percent_change_in_capacity for the adjustment_type property.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Heat::SoftwareComponent": {
+    "properties": [
+      "configs",
+      "inputs",
+      "options",
+      "outputs"
+    ],
+    "full_properties": {
+      "configs": {
+        "description": "The list of configurations for the different lifecycle actions of the represented software component.",
+        "required": true,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "inputs": {
+        "description": "Schema representing the inputs that this software config is expecting.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "options": {
+        "description": "Map containing options specific to the configuration management tool used by this resource.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "outputs": {
+        "description": "Schema representing the outputs that this software config will produce.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::SoftwareConfig": {
+    "properties": [
+      "config",
+      "group",
+      "inputs",
+      "options",
+      "outputs"
+    ],
+    "full_properties": {
+      "config": {
+        "description": "Configuration script or manifest which specifies what actual configuration is performed.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "group": {
+        "description": "Namespace to group this software config by when delivered to a server. This may imply what configuration tool is going to perform the configuration.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "inputs": {
+        "description": "Schema representing the inputs that this software config is expecting.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "options": {
+        "description": "Map containing options specific to the configuration management tool used by this resource.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "outputs": {
+        "description": "Schema representing the outputs that this software config will produce.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::SoftwareDeployment": {
+    "properties": [
+      "actions",
+      "config",
+      "input_values",
+      "name",
+      "server",
+      "signal_transport"
+    ],
+    "full_properties": {
+      "server": {
+        "description": "ID of resource to apply configuration to. Normally this should be a Nova server ID.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "actions": {
+        "description": "Which lifecycle actions of the deployment resource will result in this deployment being triggered.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "config": {
+        "description": "ID of software configuration resource to execute when applying to the server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "input_values": {
+        "description": "Input values to apply to the software configuration on this server.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of the derived config associated with this deployment. This is used to apply a sort order to the list of configurations currently deployed to a server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "signal_transport": {
+        "description": "How the server should signal to heat with the deployment output values. CFN_SIGNAL will allow an HTTP POST to a CFN keypair signed URL. TEMP_URL_SIGNAL will create a Swift TempURL to be signaled via HTTP PUT. HEAT_SIGNAL will allow calls to the Heat API resource-signal using the provided keystone credentials. ZAQAR_SIGNAL will create a dedicated zaqar queue to be signaled using the provided keystone credentials. NO_SIGNAL will result in the resource going to the COMPLETE state without waiting for any signal.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::SoftwareDeploymentGroup": {
+    "properties": [
+      "actions",
+      "config",
+      "input_values",
+      "name",
+      "servers",
+      "signal_transport"
+    ],
+    "full_properties": {
+      "actions": {
+        "description": "Which lifecycle actions of the deployment resource will result in this deployment being triggered.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "config": {
+        "description": "ID of software configuration resource to execute when applying to the server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "input_values": {
+        "description": "Input values to apply to the software configuration on this server.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of the derived config associated with this deployment. This is used to apply a sort order to the list of configurations currently deployed to a server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "servers": {
+        "description": "A map of Nova names and IDs to apply configuration to.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "signal_transport": {
+        "description": "How the server should signal to heat with the deployment output values. CFN_SIGNAL will allow an HTTP POST to a CFN keypair signed URL. TEMP_URL_SIGNAL will create a Swift TempURL to be signaled via HTTP PUT. HEAT_SIGNAL will allow calls to the Heat API resource-signal using the provided keystone credentials. ZAQAR_SIGNAL will create a dedicated zaqar queue to be signaled using the provided keystone credentials. NO_SIGNAL will result in the resource going to the COMPLETE state without waiting for any signal.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::Stack": {
+    "properties": [
+      "context",
+      "parameters",
+      "template",
+      "timeout"
+    ],
+    "full_properties": {
+      "template": {
+        "description": "Template that specifies the stack to be created as a resource.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "context": {
+        "description": "Context for this stack.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "parameters": {
+        "description": "Set of parameters passed to this stack.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "timeout": {
+        "description": "Number of minutes to wait for this stack creation.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Heat::StructuredConfig": {
+    "properties": [
+      "config",
+      "group",
+      "inputs",
+      "options",
+      "outputs"
+    ],
+    "full_properties": {
+      "config": {
+        "description": "Map representing the configuration data structure which will be serialized to JSON format.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "group": {
+        "description": "Namespace to group this software config by when delivered to a server. This may imply what configuration tool is going to perform the configuration.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "inputs": {
+        "description": "Schema representing the inputs that this software config is expecting.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "options": {
+        "description": "Map containing options specific to the configuration management tool used by this resource.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "outputs": {
+        "description": "Schema representing the outputs that this software config will produce.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::StructuredDeployment": {
+    "properties": [
+      "actions",
+      "config",
+      "input_key",
+      "input_values",
+      "input_values_validate",
+      "name",
+      "server",
+      "signal_transport"
+    ],
+    "full_properties": {
+      "server": {
+        "description": "ID of resource to apply configuration to. Normally this should be a Nova server ID.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "actions": {
+        "description": "Which lifecycle actions of the deployment resource will result in this deployment being triggered.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "config": {
+        "description": "ID of software configuration resource to execute when applying to the server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "input_key": {
+        "description": "Name of key to use for substituting inputs during deployment",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "input_values": {
+        "description": "Input values to apply to the software configuration on this server.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "input_values_validate": {
+        "description": "Perform a check on the input values passed to verify that each required input has a corresponding value. When the property is set to STRICT and no value is passed, an exception is raised.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name of the derived config associated with this deployment. This is used to apply a sort order to the list of configurations currently deployed to a server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "signal_transport": {
+        "description": "How the server should signal to heat with the deployment output values. CFN_SIGNAL will allow an HTTP POST to a CFN keypair signed URL. TEMP_URL_SIGNAL will create a Swift TempURL to be signaled via HTTP PUT. HEAT_SIGNAL will allow calls to the Heat API resource-signal using the provided keystone credentials. ZAQAR_SIGNAL will create a dedicated zaqar queue to be signaled using the provided keystone credentials. NO_SIGNAL will result in the resource going to the COMPLETE state without waiting for any signal.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::StructuredDeploymentGroup": {
+    "properties": [
+      "actions",
+      "config",
+      "input_key",
+      "input_values",
+      "input_values_validate",
+      "name",
+      "servers",
+      "signal_transport"
+    ],
+    "full_properties": {
+      "actions": {
+        "description": "Which lifecycle actions of the deployment resource will result in this deployment being triggered.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "config": {
+        "description": "ID of software configuration resource to execute when applying to the server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "input_key": {
+        "description": "Name of key to use for substituting inputs during deployment",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "input_values": {
+        "description": "Input values to apply to the software configuration on this server.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "input_values_validate": {
+        "description": "Perform a check on the input values passed to verify that each required input has a corresponding value. When the property is set to STRICT and no value is passed, an exception is raised.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name of the derived config associated with this deployment. This is used to apply a sort order to the list of configurations currently deployed to a server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "servers": {
+        "description": "A map of Nova names and IDs to apply configuration to.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "signal_transport": {
+        "description": "How the server should signal to heat with the deployment output values. CFN_SIGNAL will allow an HTTP POST to a CFN keypair signed URL. TEMP_URL_SIGNAL will create a Swift TempURL to be signaled via HTTP PUT. HEAT_SIGNAL will allow calls to the Heat API resource-signal using the provided keystone credentials. ZAQAR_SIGNAL will create a dedicated zaqar queue to be signaled using the provided keystone credentials. NO_SIGNAL will result in the resource going to the COMPLETE state without waiting for any signal.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::SwiftSignal": {
+    "properties": [
+      "count",
+      "handle",
+      "timeout"
+    ],
+    "full_properties": {
+      "handle": {
+        "description": "URL of TempURL where resource will signal completion and optionally upload data.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "timeout": {
+        "description": "The maximum number of seconds to wait for the resource to signal completion.  Once the timeout is reached, creation of the signal resource will fail.",
+        "required": true,
+        "type": "number",
+        "update_causes": "replacement"
+      },
+      "count": {
+        "description": "The number of success signals that must be received before the stack creation process continues.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::SwiftSignalHandle": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "OS::Heat::TestResource": {
+    "properties": [
+      "action_wait_secs",
+      "client_name",
+      "entity_name",
+      "fail",
+      "update_replace",
+      "value",
+      "wait_secs"
+    ],
+    "full_properties": {
+      "action_wait_secs": {
+        "description": "Options for simulating waiting.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "client_name": {
+        "description": "Client to poll.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "entity_name": {
+        "description": "Client entity to poll.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "fail": {
+        "description": "Value which can be set to fail the resource operation to test failure scenarios.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "update_replace": {
+        "description": "Value which can be set to trigger update replace for the particular resource",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "value": {
+        "description": "The input string to be stored.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "wait_secs": {
+        "description": "Seconds to wait after an action (-1 is infinite)",
+        "required": false,
+        "type": "number",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Heat::UpdateWaitConditionHandle": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "OS::Heat::WaitCondition": {
+    "properties": [
+      "count",
+      "handle",
+      "timeout"
+    ],
+    "full_properties": {
+      "handle": {
+        "description": "A reference to the wait condition handle used to signal this wait condition.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "timeout": {
+        "description": "The number of seconds to wait for the correct number of signals to arrive.",
+        "required": true,
+        "type": "number",
+        "update_causes": "replacement"
+      },
+      "count": {
+        "description": "The number of success signals that must be received before the stack creation process continues.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Heat::WaitConditionHandle": {
+    "properties": [
+      "signal_transport"
+    ],
+    "full_properties": {
+      "signal_transport": {
+        "description": "How the client will signal the wait condition. CFN_SIGNAL will allow an HTTP POST to a CFN keypair signed URL. TEMP_URL_SIGNAL will create a Swift TempURL to be signalled via HTTP PUT. HEAT_SIGNAL will allow calls to the Heat API resource-signal using the provided keystone credentials. ZAQAR_SIGNAL will create a dedicated zaqar queue to be signalled using the provided keystone credentials. TOKEN_SIGNAL will allow and HTTP POST to a Heat API endpoint with the provided keystone token. NO_SIGNAL will result in the resource going to a signalled state without waiting for any signal.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Keystone::Endpoint": {
+    "properties": [
+      "enabled",
+      "interface",
+      "name",
+      "region",
+      "service",
+      "url"
+    ],
+    "full_properties": {
+      "interface": {
+        "description": "Interface type of keystone service endpoint.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "service": {
+        "description": "Name or Id of keystone service.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "url": {
+        "description": "URL of keystone service endpoint.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "This endpoint is enabled or disabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of keystone endpoint.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "region": {
+        "description": "Name or Id of keystone region.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Keystone::Group": {
+    "properties": [
+      "description",
+      "domain",
+      "name",
+      "roles"
+    ],
+    "full_properties": {
+      "description": {
+        "description": "Description of keystone group.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "domain": {
+        "description": "Name or id of keystone domain.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of keystone group.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "roles": {
+        "description": "List of role assignments.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Keystone::GroupRoleAssignment": {
+    "properties": [
+      "group",
+      "roles"
+    ],
+    "full_properties": {
+      "group": {
+        "description": "Name or id of keystone group.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "roles": {
+        "description": "List of role assignments.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Keystone::Project": {
+    "properties": [
+      "description",
+      "domain",
+      "enabled",
+      "name",
+      "parent"
+    ],
+    "full_properties": {
+      "description": {
+        "description": "Description of keystone project.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "domain": {
+        "description": "Name or id of keystone domain.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "This project is enabled or disabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of keystone project.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "parent": {
+        "description": "The name or ID of parent of this keystone project in hierarchy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Keystone::Region": {
+    "properties": [
+      "description",
+      "enabled",
+      "id",
+      "parent_region"
+    ],
+    "full_properties": {
+      "description": {
+        "description": "Description of keystone region.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "This region is enabled or disabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "id": {
+        "description": "The user-defined region ID and should unique to the OpenStack deployment. While creating the region, heat will url encode this ID.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "parent_region": {
+        "description": "If the region is hierarchically a child of another region, set this parameter to the ID of the parent region.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Keystone::Role": {
+    "properties": [
+      "name"
+    ],
+    "full_properties": {
+      "name": {
+        "description": "Name of keystone role.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Keystone::Service": {
+    "properties": [
+      "description",
+      "enabled",
+      "name",
+      "type"
+    ],
+    "full_properties": {
+      "type": {
+        "description": "Type of keystone Service.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of keystone service.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "This service is enabled or disabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of keystone service.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Keystone::User": {
+    "properties": [
+      "default_project",
+      "description",
+      "domain",
+      "email",
+      "enabled",
+      "groups",
+      "name",
+      "password",
+      "roles"
+    ],
+    "full_properties": {
+      "default_project": {
+        "description": "Default project of keystone user.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of keystone user.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "domain": {
+        "description": "Name of keystone domain.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "email": {
+        "description": "Email address of keystone user.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "Keystone user is enabled or disabled",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "groups": {
+        "description": "keystone user groups.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of keystone user.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "password": {
+        "description": "Password of keystone user.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "roles": {
+        "description": "List of role assignments.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Keystone::UserRoleAssignment": {
+    "properties": [
+      "roles",
+      "user"
+    ],
+    "full_properties": {
+      "user": {
+        "description": "Name or id of keystone user.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "roles": {
+        "description": "List of role assignments.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Magnum::Bay": {
+    "properties": [
+      "bay_create_timeout",
+      "baymodel",
+      "discovery_url",
+      "master_count",
+      "name",
+      "node_count"
+    ],
+    "full_properties": {
+      "baymodel": {
+        "description": "The name or ID of the bay model.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "bay_create_timeout": {
+        "description": "Timeout for creating the bay in minutes. Set to 0 for no timeout.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "discovery_url": {
+        "description": "Specifies a custom discovery url for node discovery.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "master_count": {
+        "description": "The number of master nodes for this bay.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "The bay name.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "node_count": {
+        "description": "The node count for this bay.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Magnum::BayModel": {
+    "properties": [
+      "coe",
+      "dns_nameserver",
+      "docker_volume_size",
+      "external_network",
+      "fixed_network",
+      "flavor",
+      "http_proxy",
+      "https_proxy",
+      "image",
+      "keypair",
+      "labels",
+      "master_flavor",
+      "name",
+      "network_driver",
+      "no_proxy",
+      "ssh_authorized_key",
+      "tls_disabled"
+    ],
+    "full_properties": {
+      "coe": {
+        "description": "The Container Orchestration Engine for this bay model.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "external_network": {
+        "description": "The external network to attach the Bay.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "image": {
+        "description": "The image name or UUID to use as a base image for this baymodel.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "keypair": {
+        "description": "The name or id of the nova ssh keypair.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "dns_nameserver": {
+        "description": "The DNS nameserver address.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "docker_volume_size": {
+        "description": "The size in GB of the docker volume.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "fixed_network": {
+        "description": "The fixed network to attach the Bay.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "flavor": {
+        "description": "The flavor of this bay model.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "http_proxy": {
+        "description": "The http_proxy address to use for nodes in bay.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "https_proxy": {
+        "description": "The https_proxy address to use for nodes in bay.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "labels": {
+        "description": "Arbitrary labels in the form of key=value pairs to associate with a baymodel.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "master_flavor": {
+        "description": "The flavor of the master node for this bay model.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "The bay model name.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "network_driver": {
+        "description": "The name of the driver used for instantiating container networks. By default, Magnum will choose the pre-configured network driver based on COE type.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "no_proxy": {
+        "description": "A comma separated list of addresses for which proxies should not be used in the bay.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "ssh_authorized_key": {
+        "description": "The SSH Authorized Key.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "tls_disabled": {
+        "description": "Disable TLS in the Bay.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Manila::SecurityService": {
+    "properties": [
+      "description",
+      "dns_ip",
+      "domain",
+      "name",
+      "password",
+      "server",
+      "type",
+      "user"
+    ],
+    "full_properties": {
+      "type": {
+        "description": "Security service type.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "description": {
+        "description": "Security service description.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "dns_ip": {
+        "description": "DNS IP address used inside tenant’s network.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "domain": {
+        "description": "Security service domain.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Security service name.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "password": {
+        "description": "Password used by user.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "server": {
+        "description": "Security service IP address or hostname.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "user": {
+        "description": "Security service user or group used by tenant.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Manila::Share": {
+    "properties": [
+      "access_rules",
+      "description",
+      "is_public",
+      "metadata",
+      "name",
+      "share_network",
+      "share_protocol",
+      "share_type",
+      "size",
+      "snapshot"
+    ],
+    "full_properties": {
+      "share_protocol": {
+        "description": "Share protocol supported by shared filesystem.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "size": {
+        "description": "Share storage size in GB.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "access_rules": {
+        "description": "A list of access rules that define access from IP to Share.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Share description.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "is_public": {
+        "description": "Defines if shared filesystem is public or private.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "metadata": {
+        "description": "Metadata key-values defined for share.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Share name.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "share_network": {
+        "description": "Name or ID of shared network defined for shared filesystem.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "share_type": {
+        "description": "Name or ID of shared filesystem type. Types defines some share filesystem profiles that will be used for share creation.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "snapshot": {
+        "description": "Name or ID of shared file system snapshot that will be restored and created as a new share.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Manila::ShareNetwork": {
+    "properties": [
+      "description",
+      "name",
+      "neutron_network",
+      "neutron_subnet",
+      "nova_network",
+      "security_services"
+    ],
+    "full_properties": {
+      "description": {
+        "description": "Share network description.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of the share network.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "neutron_network": {
+        "description": "Neutron network id.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "neutron_subnet": {
+        "description": "Neutron subnet id.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "nova_network": {
+        "description": "Nova network id.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "security_services": {
+        "description": "A list of security services IDs or names.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Manila::ShareType": {
+    "properties": [
+      "driver_handles_share_servers",
+      "extra_specs",
+      "is_public",
+      "name"
+    ],
+    "full_properties": {
+      "driver_handles_share_servers": {
+        "description": "Required extra specification. Defines if share drivers handles share servers.",
+        "required": true,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name of the share type.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "extra_specs": {
+        "description": "Extra specs key-value pairs defined for share type.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "is_public": {
+        "description": "Defines if share type is accessible to the public.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Mistral::CronTrigger": {
+    "properties": [
+      "count",
+      "first_time",
+      "name",
+      "pattern",
+      "workflow"
+    ],
+    "full_properties": {
+      "workflow": {
+        "description": "Workflow to execute.",
+        "required": true,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "count": {
+        "description": "Remaining executions.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "first_time": {
+        "description": "Time of the first execution in format “YYYY-MM-DD HH:MM”.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name of the cron trigger.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "pattern": {
+        "description": "Cron expression.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Mistral::Workflow": {
+    "properties": [
+      "description",
+      "input",
+      "name",
+      "output",
+      "params",
+      "task_defaults",
+      "tasks",
+      "type",
+      "use_request_body_as_input"
+    ],
+    "full_properties": {
+      "tasks": {
+        "description": "Dictionary containing workflow tasks.",
+        "required": true,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "type": {
+        "description": "Workflow type.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Workflow description.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "input": {
+        "description": "Dictionary which contains input for workflow.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Workflow name.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "output": {
+        "description": "Any data structure arbitrarily containing YAQL expressions that defines workflow output. May be nested.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "params": {
+        "description": "Workflow additional parameters. If Workflow is reverse typed, params requires ‘task_name’, which defines initial task.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "task_defaults": {
+        "description": "Default settings for some of task attributes defined at workflow level.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "use_request_body_as_input": {
+        "description": "Defines the method in which the request body for signaling a workflow would be parsed. In case this property is set to True, the body would be parsed as a simple json where each key is a workflow input, in other cases body would be parsed expecting a specific json format with two keys: “input” and “params”",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::Firewall": {
+    "properties": [
+      "admin_state_up",
+      "description",
+      "firewall_policy_id",
+      "name",
+      "shared",
+      "value_specs"
+    ],
+    "full_properties": {
+      "firewall_policy_id": {
+        "description": "The ID of the firewall policy that this firewall is associated with.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "admin_state_up": {
+        "description": "Administrative state of the firewall. If false (down), firewall does not forward packets and will drop all traffic to/from VMs behind the firewall.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the firewall.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name for the firewall.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "shared": {
+        "description": "Whether this firewall should be shared across all tenants. NOTE: The default policy setting in Neutron restricts usage of this property to administrative users only.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "value_specs": {
+        "description": "Extra parameters to include in the request. Parameters are often specific to installed hardware or extensions.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::FirewallPolicy": {
+    "properties": [
+      "audited",
+      "description",
+      "firewall_rules",
+      "name",
+      "shared"
+    ],
+    "full_properties": {
+      "firewall_rules": {
+        "description": "An ordered list of firewall rules to apply to the firewall.",
+        "required": true,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "audited": {
+        "description": "Whether this policy should be audited. When set to True, each time the firewall policy or the associated firewall rules are changed, this attribute will be set to False and will have to be explicitly set to True through an update operation.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the firewall policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name for the firewall policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "shared": {
+        "description": "Whether this policy should be shared across all tenants.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::FirewallRule": {
+    "properties": [
+      "action",
+      "description",
+      "destination_ip_address",
+      "destination_port",
+      "enabled",
+      "ip_version",
+      "name",
+      "protocol",
+      "shared",
+      "source_ip_address",
+      "source_port"
+    ],
+    "full_properties": {
+      "action": {
+        "description": "Action to be performed on the traffic matching the rule.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the firewall rule.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "destination_ip_address": {
+        "description": "Destination IP address or CIDR.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "destination_port": {
+        "description": "Destination port number or a range.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "Whether this rule should be enabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "ip_version": {
+        "description": "Internet protocol version.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name for the firewall rule.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "protocol": {
+        "description": "Protocol for the firewall rule.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "shared": {
+        "description": "Whether this rule should be shared across all tenants.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "source_ip_address": {
+        "description": "Source IP address or CIDR.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "source_port": {
+        "description": "Source port number or a range.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::FloatingIP": {
+    "properties": [
+      "fixed_ip_address",
+      "floating_ip_address",
+      "floating_network",
+      "port_id",
+      "value_specs"
+    ],
+    "full_properties": {
+      "floating_network": {
+        "description": "Network to allocate floating IP from.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "fixed_ip_address": {
+        "description": "IP address to use if the port has multiple addresses.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "floating_ip_address": {
+        "description": "IP address of the floating IP. NOTE: The default policy setting in Neutron restricts usage of this property to administrative users only.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "port_id": {
+        "description": "ID of an existing port with at least one IP address to associate with this floating IP.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "value_specs": {
+        "description": "Extra parameters to include in the “floatingip” object in the creation request. Parameters are often specific to installed hardware or extensions.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::FloatingIPAssociation": {
+    "properties": [
+      "fixed_ip_address",
+      "floatingip_id",
+      "port_id"
+    ],
+    "full_properties": {
+      "floatingip_id": {
+        "description": "ID of the floating IP to associate.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "port_id": {
+        "description": "ID of an existing port with at least one IP address to associate with this floating IP.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "fixed_ip_address": {
+        "description": "IP address to use if the port has multiple addresses.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::HealthMonitor": {
+    "properties": [
+      "admin_state_up",
+      "delay",
+      "expected_codes",
+      "http_method",
+      "max_retries",
+      "timeout",
+      "type",
+      "url_path"
+    ],
+    "full_properties": {
+      "delay": {
+        "description": "The minimum time in seconds between regular connections of the member.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "max_retries": {
+        "description": "Number of permissible connection failures before changing the member status to INACTIVE.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "timeout": {
+        "description": "Maximum number of seconds for a monitor to wait for a connection to be established before it times out.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "type": {
+        "description": "One of predefined health monitor types.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "admin_state_up": {
+        "description": "The administrative state of the health monitor.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "expected_codes": {
+        "description": "The list of HTTP status codes expected in response from the member to declare it healthy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "http_method": {
+        "description": "The HTTP method used for requests by the monitor of type HTTP.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "url_path": {
+        "description": "The HTTP path used in the HTTP request used by the monitor to test a member health.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::IKEPolicy": {
+    "properties": [
+      "auth_algorithm",
+      "description",
+      "encryption_algorithm",
+      "ike_version",
+      "lifetime",
+      "name",
+      "pfs",
+      "phase1_negotiation_mode"
+    ],
+    "full_properties": {
+      "auth_algorithm": {
+        "description": "Authentication hash algorithm for the ike policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "description": {
+        "description": "Description for the ike policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "encryption_algorithm": {
+        "description": "Encryption algorithm for the ike policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "ike_version": {
+        "description": "Version for the ike policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "lifetime": {
+        "description": "Safety assessment lifetime configuration for the ike policy.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name for the ike policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "pfs": {
+        "description": "Perfect forward secrecy in lowercase for the ike policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "phase1_negotiation_mode": {
+        "description": "Negotiation mode for the ike policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::IPsecPolicy": {
+    "properties": [
+      "auth_algorithm",
+      "description",
+      "encapsulation_mode",
+      "encryption_algorithm",
+      "lifetime",
+      "name",
+      "pfs",
+      "transform_protocol"
+    ],
+    "full_properties": {
+      "auth_algorithm": {
+        "description": "Authentication hash algorithm for the ipsec policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "description": {
+        "description": "Description for the ipsec policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "encapsulation_mode": {
+        "description": "Encapsulation mode for the ipsec policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "encryption_algorithm": {
+        "description": "Encryption algorithm for the ipsec policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "lifetime": {
+        "description": "Safety assessment lifetime configuration for the ipsec policy.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name for the ipsec policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "pfs": {
+        "description": "Perfect forward secrecy for the ipsec policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "transform_protocol": {
+        "description": "Transform protocol for the ipsec policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::IPsecSiteConnection": {
+    "properties": [
+      "admin_state_up",
+      "description",
+      "dpd",
+      "ikepolicy_id",
+      "initiator",
+      "ipsecpolicy_id",
+      "mtu",
+      "name",
+      "peer_address",
+      "peer_cidrs",
+      "peer_id",
+      "psk",
+      "vpnservice_id"
+    ],
+    "full_properties": {
+      "ikepolicy_id": {
+        "description": "Unique identifier for the ike policy associated with the ipsec site connection.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "ipsecpolicy_id": {
+        "description": "Unique identifier for the ipsec policy associated with the ipsec site connection.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "peer_address": {
+        "description": "Remote branch router public IPv4 address or IPv6 address or FQDN.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "peer_cidrs": {
+        "description": "Remote subnet(s) in CIDR format.",
+        "required": true,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "peer_id": {
+        "description": "Remote branch router identity.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "psk": {
+        "description": "Pre-shared key string for the ipsec site connection.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "vpnservice_id": {
+        "description": "Unique identifier for the vpn service associated with the ipsec site connection.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "admin_state_up": {
+        "description": "Administrative state for the ipsec site connection.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the ipsec site connection.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "dpd": {
+        "description": "Dead Peer Detection protocol configuration for the ipsec site connection.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "initiator": {
+        "description": "Initiator state in lowercase for the ipsec site connection.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "mtu": {
+        "description": "Maximum transmission unit size (in bytes) for the ipsec site connection.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name for the ipsec site connection.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::LoadBalancer": {
+    "properties": [
+      "members",
+      "pool_id",
+      "protocol_port"
+    ],
+    "full_properties": {
+      "pool_id": {
+        "description": "The ID of the load balancing pool.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "protocol_port": {
+        "description": "Port number on which the servers are running on the members.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "members": {
+        "description": "The list of Nova server IDs load balanced.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::MeteringLabel": {
+    "properties": [
+      "description",
+      "name",
+      "shared"
+    ],
+    "full_properties": {
+      "description": {
+        "description": "Description of the metering label.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name of the metering label.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "shared": {
+        "description": "Whether the metering label should be shared across all tenants.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::MeteringRule": {
+    "properties": [
+      "direction",
+      "excluded",
+      "metering_label_id",
+      "remote_ip_prefix"
+    ],
+    "full_properties": {
+      "metering_label_id": {
+        "description": "The metering label ID to associate with this metering rule.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "remote_ip_prefix": {
+        "description": "Indicates remote IP prefix to be associated with this metering rule.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "direction": {
+        "description": "The direction in which metering rule is applied, either ingress or egress.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "excluded": {
+        "description": "Specify whether the remote_ip_prefix will be excluded or not from traffic counters of the metering label. For example to not count the traffic of a specific IP address of a range.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::Net": {
+    "properties": [
+      "admin_state_up",
+      "dhcp_agent_ids",
+      "name",
+      "port_security_enabled",
+      "qos_policy",
+      "shared",
+      "tenant_id",
+      "value_specs"
+    ],
+    "full_properties": {
+      "admin_state_up": {
+        "description": "A boolean value specifying the administrative status of the network.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "dhcp_agent_ids": {
+        "description": "The IDs of the DHCP agent to schedule the network. Note that the default policy setting in Neutron restricts usage of this property to administrative users only.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "A string specifying a symbolic name for the network, which is not required to be unique.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "port_security_enabled": {
+        "description": "Flag to enable/disable port security on the network. It provides the default value for the attribute of the ports created on this network",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "qos_policy": {
+        "description": "The name or ID of QoS policy to attach to this network.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "shared": {
+        "description": "Whether this network should be shared across all tenants. Note that the default policy setting restricts usage of this attribute to administrative users only.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "tenant_id": {
+        "description": "The ID of the tenant which will own the network. Only administrative users can set the tenant identifier; this cannot be changed using authorization policies.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "value_specs": {
+        "description": "Extra parameters to include in the request. Parameters are often specific to installed hardware or extensions.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::NetworkGateway": {
+    "properties": [
+      "connections",
+      "devices",
+      "name"
+    ],
+    "full_properties": {
+      "devices": {
+        "description": "Device info for this network gateway.",
+        "required": true,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "connections": {
+        "description": "Connection info for this network gateway.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "The name of the network gateway.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::Pool": {
+    "properties": [
+      "admin_state_up",
+      "description",
+      "lb_method",
+      "monitors",
+      "name",
+      "protocol",
+      "provider",
+      "subnet",
+      "vip"
+    ],
+    "full_properties": {
+      "lb_method": {
+        "description": "The algorithm used to distribute load between the members of the pool.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "protocol": {
+        "description": "Protocol for balancing.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "subnet": {
+        "description": "The subnet for the port on which the members of the pool will be connected.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "vip": {
+        "description": "IP address and port of the pool.",
+        "required": true,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "admin_state_up": {
+        "description": "The administrative state of this pool.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of the pool.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "monitors": {
+        "description": "List of health monitors associated with the pool.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of the pool.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "provider": {
+        "description": "LBaaS provider to implement this load balancer instance.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::PoolMember": {
+    "properties": [
+      "address",
+      "admin_state_up",
+      "pool_id",
+      "protocol_port",
+      "weight"
+    ],
+    "full_properties": {
+      "address": {
+        "description": "IP address of the pool member on the pool network.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "pool_id": {
+        "description": "The ID of the load balancing pool.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "protocol_port": {
+        "description": "TCP port on which the pool member listens for requests or connections.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "admin_state_up": {
+        "description": "The administrative state of the pool member.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "weight": {
+        "description": "Weight of pool member in the pool (default to 1).",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::Port": {
+    "properties": [
+      "device_id",
+      "device_owner",
+      "fixed_ips",
+      "name",
+      "network",
+      "replacement_policy",
+      "security_groups"
+    ],
+    "full_properties": {
+      "network": {
+        "description": "Network this port belongs to. If you plan to use current port to assign Floating IP, you should specify fixed_ips with subnet.  Note if this changes to a different network update, the port will be replaced",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "device_id": {
+        "description": "Device ID of this port.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "device_owner": {
+        "description": "Name of the network owning the port. The value is typically network:floatingip or network:router_interface or network:dhcp",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "fixed_ips": {
+        "description": "Desired IPs for this port.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "A symbolic name for this port.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "replacement_policy": {
+        "description": "Policy on how to respond to a stack-update for this resource. REPLACE_ALWAYS will replace the port regardless of any property changes. AUTO will update the existing port for any changed update-allowed property.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "security_groups": {
+        "description": "Security group IDs to associate with this port.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::ProviderNet": {
+    "properties": [
+      "admin_state_up",
+      "name",
+      "network_type",
+      "physical_network",
+      "segmentation_id",
+      "shared"
+    ],
+    "full_properties": {
+      "network_type": {
+        "description": "A string specifying the provider network type for the network.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "physical_network": {
+        "description": "A string specifying physical network mapping for the network.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "admin_state_up": {
+        "description": "A boolean value specifying the administrative status of the network.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "A string specifying a symbolic name for the network, which is not required to be unique.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "segmentation_id": {
+        "description": "A string specifying the segmentation id for the network.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "shared": {
+        "description": "Whether this network should be shared across all tenants.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::QoSBandwidthLimitRule": {
+    "properties": [
+      "max_burst_kbps",
+      "max_kbps",
+      "policy",
+      "tenant_id"
+    ],
+    "full_properties": {
+      "max_kbps": {
+        "description": "Max bandwidth in kbps.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "policy": {
+        "description": "ID or name of the QoS policy.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "max_burst_kbps": {
+        "description": "Max burst bandwidth in kbps.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "tenant_id": {
+        "description": "The owner tenant ID of this rule.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::QoSPolicy": {
+    "properties": [
+      "description",
+      "name",
+      "shared",
+      "tenant_id"
+    ],
+    "full_properties": {
+      "name": {
+        "description": "The name for the QoS policy.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "The description for the QoS policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "shared": {
+        "description": "Whether this QoS policy should be shared to other tenants.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "tenant_id": {
+        "description": "The owner tenant ID of this QoS policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::Router": {
+    "properties": [
+      "admin_state_up",
+      "distributed",
+      "external_gateway_info",
+      "ha",
+      "l3_agent_ids",
+      "name",
+      "value_specs"
+    ],
+    "full_properties": {
+      "admin_state_up": {
+        "description": "The administrative state of the router.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "distributed": {
+        "description": "Indicates whether or not to create a distributed router. NOTE: The default policy setting in Neutron restricts usage of this property to administrative users only. This property can not be used in conjunction with the L3 agent ID.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "external_gateway_info": {
+        "description": "External network gateway configuration for a router.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "ha": {
+        "description": "Indicates whether or not to create a highly available router. NOTE: The default policy setting in Neutron restricts usage of this property to administrative users only. And now neutron do not support distributed and ha at the same time.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "l3_agent_ids": {
+        "description": "ID list of the L3 agent. User can specify multi-agents for highly available router. NOTE: The default policy setting in Neutron restricts usage of this property to administrative users only.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "The name of the router.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "value_specs": {
+        "description": "Extra parameters to include in the creation request.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::RouterInterface": {
+    "properties": [
+      "port",
+      "router",
+      "subnet"
+    ],
+    "full_properties": {
+      "router": {
+        "description": "The router.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "port": {
+        "description": "The port, either subnet or port should be specified.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "subnet": {
+        "description": "The subnet, either subnet or port should be specified.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::SecurityGroup": {
+    "properties": [
+      "description",
+      "name",
+      "rules"
+    ],
+    "full_properties": {
+      "description": {
+        "description": "Description of the security group.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "A string specifying a symbolic name for the security group, which is not required to be unique.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "rules": {
+        "description": "List of security group rules.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::Subnet": {
+    "properties": [
+      "allocation_pools",
+      "cidr",
+      "dns_nameservers",
+      "enable_dhcp",
+      "gateway_ip",
+      "host_routes",
+      "ip_version",
+      "ipv6_address_mode",
+      "ipv6_ra_mode",
+      "name",
+      "network",
+      "prefixlen",
+      "subnetpool",
+      "tenant_id",
+      "value_specs"
+    ],
+    "full_properties": {
+      "network": {
+        "description": "The ID of the attached network.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "allocation_pools": {
+        "description": "The start and end addresses for the allocation pools.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "cidr": {
+        "description": "The CIDR.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "dns_nameservers": {
+        "description": "A specified set of DNS name servers to be used.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "enable_dhcp": {
+        "description": "Set to true if DHCP is enabled and false if DHCP is disabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "gateway_ip": {
+        "description": "The gateway IP address. Set to any of [ null | ~ | “” ] to create/update a subnet without a gateway. If omitted when creation, neutron will assign the first free IP address within the subnet to the gateway automatically. If remove this from template when update, the old gateway IP address will be detached.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "host_routes": {
+        "description": "List value expected.",
+        "required": false,
+        "type": "can",
+        "update_causes": "unknown"
+      },
+      "ip_version": {
+        "description": "The IP version, which is 4 or 6.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "ipv6_address_mode": {
+        "description": "IPv6 address mode. dhcpv6-stateful, dhcpv6-stateless, or slaac.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "ipv6_ra_mode": {
+        "description": "IPv6 RA (Router Advertisement) mode. dhcpv6-stateful, dhcpv6-stateless, or slaac.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "The name of the subnet.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "prefixlen": {
+        "description": "Prefix length for subnet allocation from subnet pool.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "subnetpool": {
+        "description": "The name or ID of the subnet pool.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "tenant_id": {
+        "description": "The ID of the tenant who owns the network. Only administrative users can specify a tenant ID other than their own.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "value_specs": {
+        "description": "Extra parameters to include in the request.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::SubnetPool": {
+    "properties": [
+      "address_scope",
+      "default_prefixlen",
+      "default_quota",
+      "is_default",
+      "max_prefixlen",
+      "min_prefixlen",
+      "name",
+      "prefixes",
+      "shared",
+      "tenant_id"
+    ],
+    "full_properties": {
+      "prefixes": {
+        "description": "List of subnet prefixes to assign.",
+        "required": true,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "address_scope": {
+        "description": "An address scope ID to assign to the subnet pool.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "default_prefixlen": {
+        "description": "The size of the prefix to allocate when the cidr or prefixlen attributes are not specified while creating a subnet.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "default_quota": {
+        "description": "A per-tenant quota on the prefix space that can be allocated from the subnet pool for tenant subnets.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "is_default": {
+        "description": "Whether this is default IPv4/IPv6 subnet pool.There can only be one default subnet pool for each IP family.Note that the default policy setting restricts administrative users to set this to True",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "max_prefixlen": {
+        "description": "Maximum prefix size that can be allocated from the subnet pool.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "min_prefixlen": {
+        "description": "Smallest prefix size that can be allocated from the subnet pool.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of the subnet pool.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "shared": {
+        "description": "Whether the subnet pool will be shared across all tenants.Note that the default policy setting restricts usage of this attribute to administrative users only.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "tenant_id": {
+        "description": "The ID of the tenant who owns the subnet pool. Only administrative users can specify a tenant ID other than their own.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::VPNService": {
+    "properties": [
+      "admin_state_up",
+      "description",
+      "name",
+      "router",
+      "subnet"
+    ],
+    "full_properties": {
+      "router": {
+        "description": "The router to which the vpn service will be inserted.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "subnet": {
+        "description": "Subnet in which the vpn service will be created.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "admin_state_up": {
+        "description": "Administrative state for the vpn service.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the vpn service.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name for the vpn service.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Nova::Flavor": {
+    "properties": [
+      "disk",
+      "ephemeral",
+      "extra_specs",
+      "is_public",
+      "ram",
+      "rxtx_factor",
+      "swap",
+      "vcpus"
+    ],
+    "full_properties": {
+      "ram": {
+        "description": "Memory in MB for the flavor.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "vcpus": {
+        "description": "Number of VCPUs for the flavor.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "disk": {
+        "description": "Size of local disk in GB. The “0” size is a special case that uses the native base image size as the size of the ephemeral root volume.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "ephemeral": {
+        "description": "Size of a secondary ephemeral data disk in GB.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "extra_specs": {
+        "description": "Key/Value pairs to extend the capabilities of the flavor.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "is_public": {
+        "description": "Scope of flavor accessibility. Public or private.Default value is True, means public, shared across all projects.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "rxtx_factor": {
+        "description": "RX/TX factor.",
+        "required": false,
+        "type": "number",
+        "update_causes": "replacement"
+      },
+      "swap": {
+        "description": "Swap space in MB.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Nova::FloatingIP": {
+    "properties": [
+      "pool"
+    ],
+    "full_properties": {
+      "pool": {
+        "description": "Allocate a floating IP from a given floating IP pool.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Nova::FloatingIPAssociation": {
+    "properties": [
+      "floating_ip",
+      "server_id"
+    ],
+    "full_properties": {
+      "floating_ip": {
+        "description": "ID of the floating IP to assign to the server.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "server_id": {
+        "description": "Server to assign floating IP to.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Nova::HostAggregate": {
+    "properties": [
+      "availability_zone",
+      "hosts",
+      "metadata",
+      "name"
+    ],
+    "full_properties": {
+      "availability_zone": {
+        "description": "Name for the availability zone.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name for the aggregate.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "hosts": {
+        "description": "List of hosts to join aggregate.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "metadata": {
+        "description": "Arbitrary key/value metadata to store information for aggregate.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Nova::KeyPair": {
+    "properties": [
+      "name",
+      "public_key",
+      "save_private_key"
+    ],
+    "full_properties": {
+      "name": {
+        "description": "The name of the key pair.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "public_key": {
+        "description": "The optional public key. This allows users to supply the public key from a pre-existing key pair. If not supplied, a new key pair will be generated.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "save_private_key": {
+        "description": "True if the system should remember a generated private key; False otherwise.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Nova::Server": {
+    "properties": [
+      "admin_pass",
+      "availability_zone",
+      "block_device_mapping",
+      "block_device_mapping_v2",
+      "config_drive",
+      "diskConfig",
+      "flavor",
+      "flavor_update_policy",
+      "image",
+      "image_update_policy",
+      "key_name",
+      "metadata",
+      "name",
+      "networks",
+      "personality",
+      "reservation_id",
+      "scheduler_hints",
+      "security_groups",
+      "software_config_transport",
+      "user_data",
+      "user_data_format"
+    ],
+    "full_properties": {
+      "flavor": {
+        "description": "The ID or name of the flavor to boot onto.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "admin_pass": {
+        "description": "The administrator password for the server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "availability_zone": {
+        "description": "Name of the availability zone for server placement.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "block_device_mapping": {
+        "description": "Block device mappings for this server.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "block_device_mapping_v2": {
+        "description": "Block device mappings v2 for this server.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "config_drive": {
+        "description": "If True, enable config drive on the server.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "diskConfig": {
+        "description": "Control how the disk is partitioned when the server is created.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "flavor_update_policy": {
+        "description": "Policy on how to apply a flavor update; either by requesting a server resize or by replacing the entire server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "image": {
+        "description": "The ID or name of the image to boot with.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "image_update_policy": {
+        "description": "Policy on how to apply an image-id update; either by requesting a server rebuild or by replacing the entire server",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "key_name": {
+        "description": "Name of keypair to inject into the server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "metadata": {
+        "description": "Arbitrary key/value metadata to store for this server. Both keys and values must be 255 characters or less.  Non-string values will be serialized to JSON (and the serialized string must be 255 characters or less).",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Server name.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "networks": {
+        "description": "An ordered list of nics to be added to this server, with information about connected networks, fixed ips, port etc.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "personality": {
+        "description": "A map of files to create/overwrite on the server upon boot. Keys are file names and values are the file contents.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "reservation_id": {
+        "description": "A UUID for the set of servers being requested.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "scheduler_hints": {
+        "description": "Arbitrary key-value pairs specified by the client to help boot a server.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "security_groups": {
+        "description": "List of security group names or IDs. Cannot be used if neutron ports are associated with this server; assign security groups to the ports instead.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "software_config_transport": {
+        "description": "How the server should receive the metadata required for software configuration. POLL_SERVER_CFN will allow calls to the cfn API action DescribeStackResource authenticated with the provided keypair. POLL_SERVER_HEAT will allow calls to the Heat API resource-show using the provided keystone credentials. POLL_TEMP_URL will create and populate a Swift TempURL with metadata for polling. ZAQAR_MESSAGE will create a dedicated zaqar queue and post the metadata for polling.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "user_data": {
+        "description": "User data script to be executed by cloud-init.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "user_data_format": {
+        "description": "How the user_data should be formatted for the server. For HEAT_CFNTOOLS, the user_data is bundled as part of the heat-cfntools cloud-init boot configuration data. For RAW the user_data is passed to Nova unmodified. For SOFTWARE_CONFIG user_data is bundled as part of the software config data, and metadata is derived from any associated SoftwareDeployment resources.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Nova::ServerGroup": {
+    "properties": [
+      "name",
+      "policies"
+    ],
+    "full_properties": {
+      "name": {
+        "description": "Server Group name.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "policies": {
+        "description": "A list of string policies to apply. Defaults to anti-affinity.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Sahara::Cluster": {
+    "properties": [
+      "cluster_template_id",
+      "default_image_id",
+      "hadoop_version",
+      "key_name",
+      "name",
+      "neutron_management_network",
+      "plugin_name",
+      "shares",
+      "use_autoconfig"
+    ],
+    "full_properties": {
+      "cluster_template_id": {
+        "description": "ID of the Cluster Template used for Node Groups and configurations.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "hadoop_version": {
+        "description": "Version of Hadoop running on instances.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "plugin_name": {
+        "description": "Plugin name.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "default_image_id": {
+        "description": "Default name or UUID of the image used to boot Hadoop nodes.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "key_name": {
+        "description": "Keypair added to instances to make them accessible for user.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Hadoop cluster name.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "neutron_management_network": {
+        "description": "Name or UUID of network.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "shares": {
+        "description": "List of manila shares to be mounted.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "use_autoconfig": {
+        "description": "Configure most important configs automatically.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Sahara::ClusterTemplate": {
+    "properties": [
+      "anti_affinity",
+      "cluster_configs",
+      "default_image_id",
+      "description",
+      "hadoop_version",
+      "name",
+      "neutron_management_network",
+      "node_groups",
+      "plugin_name",
+      "shares",
+      "use_autoconfig"
+    ],
+    "full_properties": {
+      "hadoop_version": {
+        "description": "Version of Hadoop running on instances.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "plugin_name": {
+        "description": "Plugin name.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "anti_affinity": {
+        "description": "List of processes to enable anti-affinity for.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "cluster_configs": {
+        "description": "Cluster configs dictionary.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "default_image_id": {
+        "description": "ID of the default image to use for the template.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of the Sahara Group Template.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name for the Sahara Cluster Template.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "neutron_management_network": {
+        "description": "Name or UUID of network.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "node_groups": {
+        "description": "Node groups.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "shares": {
+        "description": "List of manila shares to be mounted.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "use_autoconfig": {
+        "description": "Configure most important configs automatically.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Sahara::DataSource": {
+    "properties": [
+      "credentials",
+      "description",
+      "name",
+      "type",
+      "url"
+    ],
+    "full_properties": {
+      "type": {
+        "description": "Type of the data source.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "url": {
+        "description": "URL for the data source.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "credentials": {
+        "description": "Credentials used for swift. Not required if sahara is configured to use proxy users and delegated trusts for access.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of the data source.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of the data source.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Sahara::ImageRegistry": {
+    "properties": [
+      "description",
+      "image",
+      "tags",
+      "username"
+    ],
+    "full_properties": {
+      "image": {
+        "description": "ID or name of the image to register.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "username": {
+        "description": "Username of privileged user in the image.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of the image.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "tags": {
+        "description": "Tags to add to the image.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Sahara::JobBinary": {
+    "properties": [
+      "credentials",
+      "description",
+      "name",
+      "url"
+    ],
+    "full_properties": {
+      "url": {
+        "description": "URL for the job binary. Must be in the format swift://<container>/<path> or internal-db://<uuid>",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "credentials": {
+        "description": "Credentials used for swift. Not required if sahara is configured to use proxy users and delegated trusts for access.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of the job binary.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of the job binary.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Sahara::NodeGroupTemplate": {
+    "properties": [
+      "auto_security_group",
+      "availability_zone",
+      "description",
+      "flavor",
+      "floating_ip_pool",
+      "hadoop_version",
+      "image_id",
+      "is_proxy_gateway",
+      "name",
+      "node_configs",
+      "node_processes",
+      "plugin_name",
+      "security_groups",
+      "shares",
+      "use_autoconfig",
+      "volume_local_to_instance",
+      "volume_type",
+      "volumes_availability_zone",
+      "volumes_per_node",
+      "volumes_size"
+    ],
+    "full_properties": {
+      "flavor": {
+        "description": "Name or ID Nova flavor for the nodes.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "hadoop_version": {
+        "description": "Version of Hadoop running on instances.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "node_processes": {
+        "description": "List of processes to run on every node.",
+        "required": true,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "plugin_name": {
+        "description": "Plugin name.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "auto_security_group": {
+        "description": "Defines whether auto-assign security group to this Node Group template.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "availability_zone": {
+        "description": "Availability zone to create servers in.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of the Node Group Template.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "floating_ip_pool": {
+        "description": "Name or UUID of the Neutron floating IP network or name of the Nova floating ip pool to use. Should not be provided when used with Nova-network that auto-assign floating IPs.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "image_id": {
+        "description": "ID of the image to use for the template.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "is_proxy_gateway": {
+        "description": "Provide access to nodes using other nodes of the cluster as proxy gateways.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name for the Sahara Node Group Template.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "node_configs": {
+        "description": "Dictionary of node configurations.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "security_groups": {
+        "description": "List of security group names or IDs to assign to this Node Group template.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "shares": {
+        "description": "List of manila shares to be mounted.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "use_autoconfig": {
+        "description": "Configure most important configs automatically.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "volume_local_to_instance": {
+        "description": "Create volumes on the same physical port as an instance.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "volume_type": {
+        "description": "Type of the volume to create on Cinder backend.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "volumes_availability_zone": {
+        "description": "Availability zone to create volumes in.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "volumes_per_node": {
+        "description": "Volumes per node.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "volumes_size": {
+        "description": "Size of the volumes, in GB.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Senlin::Cluster": {
+    "properties": [
+      "desired_capacity",
+      "max_size",
+      "metadata",
+      "min_size",
+      "name",
+      "profile",
+      "timeout"
+    ],
+    "full_properties": {
+      "profile": {
+        "description": "The name or id of the Senlin profile.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "desired_capacity": {
+        "description": "Desired initial number of resources in cluster.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "max_size": {
+        "description": "Maximum number of resources in the cluster. -1 means unlimited.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "metadata": {
+        "description": "Metadata key-values defined for cluster.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "min_size": {
+        "description": "Minimum number of resources in the cluster.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name of the cluster. By default, physical resource name is used.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "timeout": {
+        "description": "The number of seconds to wait for the cluster actions.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Senlin::Profile": {
+    "properties": [
+      "metadata",
+      "name",
+      "spec"
+    ],
+    "full_properties": {
+      "spec": {
+        "description": "The spec template content for Senlin profile, should be either in YAML or JSON format.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "metadata": {
+        "description": "Metadata key-values defined for profile.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of the senlin profile. By default, physical resource name is used.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Swift::Container": {
+    "properties": [
+      "PurgeOnDelete",
+      "X-Account-Meta",
+      "X-Container-Meta",
+      "X-Container-Read",
+      "X-Container-Write",
+      "name"
+    ],
+    "full_properties": {
+      "PurgeOnDelete": {
+        "description": "If True, delete any objects in the container when the container is deleted. Otherwise, deleting a non-empty container will result in an error.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "X-Account-Meta": {
+        "description": "A map of user-defined meta data to associate with the account. Each key in the map will set the header X-Account-Meta-{key} with the corresponding value.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "X-Container-Meta": {
+        "description": "A map of user-defined meta data to associate with the container. Each key in the map will set the header X-Container-Meta-{key} with the corresponding value.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "X-Container-Read": {
+        "description": "Specify the ACL permissions on who can read objects in the container.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "X-Container-Write": {
+        "description": "Specify the ACL permissions on who can write objects to the container.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name for the container. If not specified, a unique name will be generated.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Trove::Cluster": {
+    "properties": [
+      "datastore_type",
+      "datastore_version",
+      "instances",
+      "name"
+    ],
+    "full_properties": {
+      "datastore_type": {
+        "description": "Name of registered datastore type.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "datastore_version": {
+        "description": "Name of the registered datastore version. It must exist for provided datastore type. Defaults to using single active version. If several active versions exist for provided datastore type, explicit value for this parameter must be specified.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "instances": {
+        "description": "List of database instances.",
+        "required": true,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name of the cluster to create.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Trove::Instance": {
+    "properties": [
+      "availability_zone",
+      "databases",
+      "datastore_type",
+      "datastore_version",
+      "flavor",
+      "name",
+      "networks",
+      "replica_count",
+      "replica_of",
+      "restore_point",
+      "size",
+      "users"
+    ],
+    "full_properties": {
+      "flavor": {
+        "description": "Reference to a flavor for creating DB instance.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "size": {
+        "description": "Database volume size in GB.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "availability_zone": {
+        "description": "Name of the availability zone for DB instance.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "databases": {
+        "description": "List of databases to be created on DB instance creation.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "datastore_type": {
+        "description": "Name of registered datastore type.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "datastore_version": {
+        "description": "Name of the registered datastore version. It must exist for provided datastore type. Defaults to using single active version. If several active versions exist for provided datastore type, explicit value for this parameter must be specified.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name of the DB instance to create.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "networks": {
+        "description": "List of network interfaces to create on instance.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "replica_count": {
+        "description": "The number of replicas to be created.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "replica_of": {
+        "description": "Identifier of the source instance to replicate.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "restore_point": {
+        "description": "DB instance restore point.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "users": {
+        "description": "List of users to be created on DB instance creation.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Zaqar::Queue": {
+    "properties": [
+      "metadata",
+      "name"
+    ],
+    "full_properties": {
+      "name": {
+        "description": "Name of the queue instance to create.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "metadata": {
+        "description": "Arbitrary key/value metadata to store contextual information about this queue.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      }
+    }
+  }
+}

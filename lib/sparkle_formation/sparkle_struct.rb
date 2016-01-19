@@ -45,6 +45,40 @@ class SparkleFormation
       end
     end
 
+    # Process value in search for FunctionStruct objects. If found replace with
+    # the root item of the structure
+    #
+    # @param item [Object]
+    # @return [Object]
+    def function_bubbler(item)
+      if(item.is_a?(::Enumerable))
+        if(item.respond_to?(:keys))
+          item.class[
+            *item.map do |entry|
+              function_bubbler(entry)
+            end.flatten(1)
+          ]
+        else
+          item.class[
+            *item.map do |entry|
+              function_bubbler(entry)
+            end
+          ]
+        end
+      elsif(item.is_a?(::SparkleFormation::FunctionStruct))
+        item._root
+      else
+        item
+      end
+    end
+
+    # Override to inspect result value and fetch root if value is a
+    # FunctionStruct
+    def method_missing(sym, *args, &block)
+      result = super(*[sym, *args], &block)
+      @table[_process_key(sym)] = function_bubbler(result)
+    end
+
     # @return [Class]
     def _klass
       _struct_class || ::SparkleFormation::SparkleStruct
@@ -76,7 +110,11 @@ class SparkleFormation
       result = super
       if(@self && result.nil?)
         if(_self.parameters.keys.map(&:to_s).include?(arg.to_s))
-          ::Kernel.raise ::ArgumentError.new "No value provided for compile time parameter: `#{arg}`!"
+          unless(_self.parameters[arg.to_sym].key?(:default))
+            ::Kernel.raise ::ArgumentError.new "No value provided for compile time parameter: `#{arg}`!"
+          else
+            result = _self.parameters[arg.to_sym][:default]
+          end
         end
       end
       result
@@ -84,5 +122,4 @@ class SparkleFormation
     alias_method :state!, :_state
 
   end
-
 end

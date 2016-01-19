@@ -1,13 +1,15 @@
-require_relative '../spec'
+require_relative '../../spec'
 
-describe SparkleFormation::SparkleAttribute do
+describe SparkleFormation::SparkleAttribute::Aws do
 
   before do
-    @attr = Object.new
-    @attr.extend(SparkleFormation::SparkleAttribute)
-    @attr.extend(SparkleFormation::SparkleAttribute::Aws)
-    @attr.extend(SparkleFormation::Utils::TypeCheckers)
-    @sfn = SparkleFormation.new(:test)
+    klass = Class.new(AttributeStruct)
+    klass.include(SparkleFormation::SparkleAttribute)
+    klass.include(SparkleFormation::SparkleAttribute::Aws)
+    klass.include(SparkleFormation::Utils::TypeCheckers)
+    @attr = klass.new
+    @attr._camel_keys = true
+    @sfn = SparkleFormation.new(:test, :provider => :aws)
   end
 
   it 'should generate Fn::Join' do
@@ -75,7 +77,7 @@ describe SparkleFormation::SparkleAttribute do
   end
 
   it 'should generate a condition with consistent format when string' do
-    @attr.condition!('test_name').must_equal 'Condition' => 'test_name'
+    @attr.condition!('test_name'._no_hump).must_equal 'Condition' => 'test_name'
   end
 
   it 'should generate a condition with camelized name when symbol' do
@@ -93,7 +95,7 @@ describe SparkleFormation::SparkleAttribute do
   it 'should define an if condition' do
     result = @sfn.overrides do
       test if!(:my_condition, 'true', 'false')
-      test_string if!('my_condition', 'true', 'false')
+      test_string if!('my_condition'._no_hump, 'true', 'false')
     end.dump
     result['Test'].must_equal 'Fn::If' => ['MyCondition', 'true', 'false']
     result['TestString'].must_equal 'Fn::If' => ['my_condition', 'true', 'false']
@@ -120,7 +122,7 @@ describe SparkleFormation::SparkleAttribute do
   it 'should define a `not`' do
     result = @sfn.overrides do
       test not!(:test_one)
-      test_string not!('test_one')
+      test_string not!('test_one'._no_hump)
       test_direct not!(condition!(:test_one))
     end.dump
     result['Test'].must_equal 'Fn::Not' => [{'Condition' => 'TestOne'}]
@@ -145,6 +147,53 @@ describe SparkleFormation::SparkleAttribute do
 
   it 'should generate a `no value`' do
     @attr.no_value!.must_equal 'Ref' => 'AWS::NoValue'
+  end
+
+  it 'should generate a region ref' do
+    @attr.region!.must_equal 'Ref' => 'AWS::Region'
+  end
+
+  it 'should generate a notification arns ref' do
+    @attr.notification_arns!.must_equal 'Ref' => 'AWS::NotificationARNs'
+  end
+
+  it 'should generate an account ID ref' do
+    @attr.account_id!.must_equal 'Ref' => 'AWS::AccountId'
+  end
+
+  it 'should generate a stack ID ref' do
+    @attr.stack_id!.must_equal 'Ref' => 'AWS::StackId'
+  end
+
+  it 'should generate a stack name ref' do
+    @attr.stack_name!.must_equal 'Ref' => 'AWS::StackName'
+  end
+
+  it 'should generate a depends on array' do
+    @attr.depends_on!('ResourceOne', :resource_two).must_equal ['ResourceOne', 'ResourceTwo']
+    @attr._dump.must_equal 'DependsOn' => ['ResourceOne', 'ResourceTwo']
+  end
+
+  it 'should generate a stack output attribute' do
+    @attr.stack_output!(:stack_resource, :output_name).must_equal(
+      'Fn::GetAtt' => ['StackResource', 'Outputs.OutputName']
+    )
+    @attr.stack_output!('stack_resource', 'output_name').must_equal(
+      'Fn::GetAtt' => ['StackResource', 'Outputs.OutputName']
+    )
+  end
+
+  it 'should generate a hash of tags' do
+    @attr.tags!(:foo => 'bar').must_equal([
+      'Key' => 'Foo',
+      'Value' => 'bar'
+    ])
+    @attr._dump.must_equal(
+      'Tags' => [
+        'Key' => 'Foo',
+        'Value' => 'bar'
+      ]
+    )
   end
 
   it 'should provide resource name for resource block' do

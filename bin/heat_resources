@@ -1,8 +1,14 @@
 #!/usr/bin/env ruby
 
-require 'json'
-require 'nokogiri'
-require 'fileutils'
+%w(multi_json nokogiri fileutils).each do |lib|
+  begin
+    require lib
+  rescue LoadError
+    $stderr.puts "Failed to load required library: `#{lib}` !"
+    $stderr.puts "  > gem install #{lib}"
+    exit -1
+  end
+end
 
 STORE = '/tmp/openstack-heat-docs'
 
@@ -18,16 +24,43 @@ end
 
 file = Nokogiri::HTML(File.open(File.join(STORE, 'openstack.html'), 'r'))
 
-resources = Hash[
-  file.css('div.section[id*="json"]').css('pre.literal-block').map do |node|
-    [
-      node.text.scan(/Type":.*"(.+?)"/).flatten.first,
-      node.text.scan(/Properties.*?\{(.+)$/m).flatten.first.
-      strip.split("\n").map{|z| z.split(' ')}.flatten.find_all{|z| !z.scan(/^[A-Za-z0-9_"]+:$/).empty?}.map{|z| z.tr('":', '')}
-    ]
+heat_resources = {}
+
+file.css('div#openstack-resource-types').children.each do |resource|
+  next unless resource.get_attribute(:class) == 'section'
+  resource_name = resource.get_attribute(:id)
+  properties = {}
+  required_properties = resource.css("div[id='#{resource_name}-props-req']")
+  optional_properties = resource.css("div[id='#{resource_name}-props-opt']")
+  [required_properties, optional_properties].each_with_index do |property_list, idx|
+    if(property_list)
+      property_list.children.each do |prop|
+        next unless prop.get_attribute(:id).to_s.start_with?("#{resource_name}-prop-")
+        property_name = prop.get_attribute(:id).to_s.sub("#{resource_name}-prop-", '')
+        p_data = prop.children.find_all do |element|
+          element.name == 'p'
+        end
+        update_text = p_data[2].text.downcase
+        if(update_text.include?('without replacement'))
+          update_causes = :none
+        elsif(update_text.include?('replacement'))
+          update_causes = :replacement
+        else
+          update_causes = :unknown
+        end
+        properties[property_name] = {
+          :description => p_data.first.text.strip.split("\n").map(&:strip).join(' '),
+          :required => idx == 0,
+          :type => p_data[1].text.strip.split(' ').first.to_s.downcase,
+          :update_causes => update_causes
+        }
+      end
+    end
   end
-]
+  heat_resources[resource_name] = {
+    :properties => properties.keys.sort,
+    :full_properties => properties
+  }
+end
 
-require 'pp'
-
-pp resources
+puts MultiJson.dump(heat_resources, :pretty => true)

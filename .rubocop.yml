@@ -59,6 +59,24 @@ Style/MultilineBlockChain:
   Enabled: false
 Style/MultilineOperationIndentation:
   Enabled: false
+Lint/NestedMethodDefinition:
+  Enabled: false
+Style/EmptyLiteral:
+  Enabled: false
+Style/Alias:
+  Enabled: false
+Style/ConditionalAssignment:
+  Enabled: false
+Style/MutableConstant:
+  Enabled: false
+Style/StringLiterals:
+  Enabled: false
+Style/IfInsideElse:
+  Enabled: false
+Performance/RedundantBlockCall:
+  Enabled: false
+Performance/FlatMap:
+  Enabled: false
 
 Style/AlignParameters:
   EnforcedStyle: with_fixed_indentation
