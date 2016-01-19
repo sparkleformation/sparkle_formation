@@ -75,6 +75,8 @@ Style/IfInsideElse:
   Enabled: false
 Performance/RedundantBlockCall:
   Enabled: false
+Performance/FlatMap:
+  Enabled: false
 
 Style/AlignParameters:
   EnforcedStyle: with_fixed_indentation
