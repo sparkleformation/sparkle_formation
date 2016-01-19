@@ -1,0 +1,2561 @@
+{
+  "OS::Cinder::Volume": {
+    "properties": [
+      "availability_zone",
+      "backup_id",
+      "description",
+      "image",
+      "metadata",
+      "multiattach",
+      "name",
+      "read_only",
+      "scheduler_hints",
+      "size",
+      "snapshot_id",
+      "source_volid",
+      "volume_type"
+    ],
+    "full_properties": {
+      "availability_zone": {
+        "description": "The availability zone in which the volume will be created.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "backup_id": {
+        "description": "If specified, the backup to create the volume from.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "A description of the volume.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "image": {
+        "description": "If specified, the name or ID of the image to create the volume from.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "metadata": {
+        "description": "Key/value pairs to associate with the volume.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "multiattach": {
+        "description": "Whether allow the volume to be attached more than once. This property is only supported from Cinder API v2.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "A name used to distinguish the volume.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "read_only": {
+        "description": "Enables or disables read-only access mode of volume.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "scheduler_hints": {
+        "description": "Arbitrary key-value pairs specified by the client to help the Cinder scheduler creating a volume.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "size": {
+        "description": "The size of the volume in GB. On update only increase in size is supported.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "snapshot_id": {
+        "description": "If specified, the snapshot to create the volume from.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "source_volid": {
+        "description": "If specified, the volume to use as source.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "volume_type": {
+        "description": "If specified, the type of volume to use, mapping to a specific backend.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Cinder::VolumeAttachment": {
+    "properties": [
+      "instance_uuid",
+      "mountpoint",
+      "volume_id"
+    ],
+    "full_properties": {
+      "instance_uuid": {
+        "description": "The ID of the server to which the volume attaches.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "volume_id": {
+        "description": "The ID of the volume to be attached.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "mountpoint": {
+        "description": "The location where the volume is exposed on the instance. This assignment may not be honored and it is advised that the path /dev/disk/by-id/virtio-<VolumeId> be used instead.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Heat::CloudConfig": {
+    "properties": [
+      "cloud_config"
+    ],
+    "full_properties": {
+      "cloud_config": {
+        "description": "Map representing the cloud-config data structure which will be formatted as YAML.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::MultipartMime": {
+    "properties": [
+      "parts"
+    ],
+    "full_properties": {
+      "parts": {
+        "description": "Parts belonging to this message.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::None": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "OS::Heat::RandomString": {
+    "properties": [
+      "character_classes",
+      "character_sequences",
+      "length",
+      "salt"
+    ],
+    "full_properties": {
+      "character_classes": {
+        "description": "A list of character class and their constraints to generate the random string from.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "character_sequences": {
+        "description": "A list of character sequences and their constraints to generate the random string from.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "length": {
+        "description": "Length of the string to generate.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "salt": {
+        "description": "Value which can be set or changed on stack update to trigger the resource for replacement with a new random string . The salt value itself is ignored by the random generator.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::ResourceChain": {
+    "properties": [
+      "concurrent",
+      "resource_properties",
+      "resources"
+    ],
+    "full_properties": {
+      "resources": {
+        "description": "The list of resource types to create. This list may contain type names or aliases defined in the resource registry. Specific template names are not supported.",
+        "required": true,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "concurrent": {
+        "description": "If true, the resources in the chain will be created concurrently. If false or omitted, each resource will be treated as having a dependency on the previous resource in the list.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "resource_properties": {
+        "description": "Properties to pass to each resource being created in the chain.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::ResourceGroup": {
+    "properties": [
+      "count",
+      "index_var",
+      "removal_policies",
+      "resource_def"
+    ],
+    "full_properties": {
+      "resource_def": {
+        "description": "Resource definition for the resources in the group. The value of this property is the definition of a resource just as if it had been declared in the template itself.",
+        "required": true,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "count": {
+        "description": "The number of resources to create.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "index_var": {
+        "description": "A variable that this resource will use to replace with the current index of a given resource in the group. Can be used, for example, to customize the name property of grouped servers in order to differentiate them when listed with nova client.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "removal_policies": {
+        "description": "Policies for removal of resources on update",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Heat::SoftwareConfig": {
+    "properties": [
+      "config",
+      "group",
+      "inputs",
+      "options",
+      "outputs"
+    ],
+    "full_properties": {
+      "config": {
+        "description": "Configuration script or manifest which specifies what actual configuration is performed.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "group": {
+        "description": "Namespace to group this software config by when delivered to a server. This may imply what configuration tool is going to perform the configuration.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "inputs": {
+        "description": "Schema representing the inputs that this software config is expecting.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "options": {
+        "description": "Map containing options specific to the configuration management tool used by this resource.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "outputs": {
+        "description": "Schema representing the outputs that this software config will produce.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::SoftwareDeployment": {
+    "properties": [
+      "actions",
+      "config",
+      "input_values",
+      "name",
+      "server",
+      "signal_transport"
+    ],
+    "full_properties": {
+      "server": {
+        "description": "ID of resource to apply configuration to. Normally this should be a Nova server ID.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "actions": {
+        "description": "Which lifecycle actions of the deployment resource will result in this deployment being triggered.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "config": {
+        "description": "ID of software configuration resource to execute when applying to the server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "input_values": {
+        "description": "Input values to apply to the software configuration on this server.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of the derived config associated with this deployment. This is used to apply a sort order to the list of configurations currently deployed to a server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "signal_transport": {
+        "description": "How the server should signal to heat with the deployment output values. CFN_SIGNAL will allow an HTTP POST to a CFN keypair signed URL. TEMP_URL_SIGNAL will create a Swift TempURL to be signaled via HTTP PUT. HEAT_SIGNAL will allow calls to the Heat API resource-signal using the provided keystone credentials. ZAQAR_SIGNAL will create a dedicated zaqar queue to be signaled using the provided keystone credentials. NO_SIGNAL will result in the resource going to the COMPLETE state without waiting for any signal.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::SoftwareDeploymentGroup": {
+    "properties": [
+      "actions",
+      "config",
+      "input_values",
+      "name",
+      "servers",
+      "signal_transport"
+    ],
+    "full_properties": {
+      "actions": {
+        "description": "Which lifecycle actions of the deployment resource will result in this deployment being triggered.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "config": {
+        "description": "ID of software configuration resource to execute when applying to the server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "input_values": {
+        "description": "Input values to apply to the software configuration on this server.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of the derived config associated with this deployment. This is used to apply a sort order to the list of configurations currently deployed to a server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "servers": {
+        "description": "A map of Nova names and IDs to apply configuration to.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "signal_transport": {
+        "description": "How the server should signal to heat with the deployment output values. CFN_SIGNAL will allow an HTTP POST to a CFN keypair signed URL. TEMP_URL_SIGNAL will create a Swift TempURL to be signaled via HTTP PUT. HEAT_SIGNAL will allow calls to the Heat API resource-signal using the provided keystone credentials. ZAQAR_SIGNAL will create a dedicated zaqar queue to be signaled using the provided keystone credentials. NO_SIGNAL will result in the resource going to the COMPLETE state without waiting for any signal.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::SoftwareDeployments": {
+    "properties": [
+      "actions",
+      "config",
+      "input_values",
+      "name",
+      "servers",
+      "signal_transport"
+    ],
+    "full_properties": {
+      "actions": {
+        "description": "Which lifecycle actions of the deployment resource will result in this deployment being triggered.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "config": {
+        "description": "ID of software configuration resource to execute when applying to the server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "input_values": {
+        "description": "Input values to apply to the software configuration on this server.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of the derived config associated with this deployment. This is used to apply a sort order to the list of configurations currently deployed to a server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "servers": {
+        "description": "A map of Nova names and IDs to apply configuration to.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "signal_transport": {
+        "description": "How the server should signal to heat with the deployment output values. CFN_SIGNAL will allow an HTTP POST to a CFN keypair signed URL. TEMP_URL_SIGNAL will create a Swift TempURL to be signaled via HTTP PUT. HEAT_SIGNAL will allow calls to the Heat API resource-signal using the provided keystone credentials. ZAQAR_SIGNAL will create a dedicated zaqar queue to be signaled using the provided keystone credentials. NO_SIGNAL will result in the resource going to the COMPLETE state without waiting for any signal.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::Stack": {
+    "properties": [
+      "context",
+      "parameters",
+      "template",
+      "timeout"
+    ],
+    "full_properties": {
+      "template": {
+        "description": "Template that specifies the stack to be created as a resource.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "context": {
+        "description": "Context for this stack.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "parameters": {
+        "description": "Set of parameters passed to this stack.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "timeout": {
+        "description": "Number of minutes to wait for this stack creation.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Heat::SwiftSignal": {
+    "properties": [
+      "count",
+      "handle",
+      "timeout"
+    ],
+    "full_properties": {
+      "handle": {
+        "description": "URL of TempURL where resource will signal completion and optionally upload data.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "timeout": {
+        "description": "The maximum number of seconds to wait for the resource to signal completion.  Once the timeout is reached, creation of the signal resource will fail.",
+        "required": true,
+        "type": "number",
+        "update_causes": "replacement"
+      },
+      "count": {
+        "description": "The number of success signals that must be received before the stack creation process continues.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::SwiftSignalHandle": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "OS::Heat::TestResource": {
+    "properties": [
+      "action_wait_secs",
+      "client_name",
+      "entity_name",
+      "fail",
+      "update_replace",
+      "value",
+      "wait_secs"
+    ],
+    "full_properties": {
+      "action_wait_secs": {
+        "description": "Options for simulating waiting.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "client_name": {
+        "description": "Client to poll.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "entity_name": {
+        "description": "Client entity to poll.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "fail": {
+        "description": "Value which can be set to fail the resource operation to test failure scenarios.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "update_replace": {
+        "description": "Value which can be set to trigger update replace for the particular resource",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "value": {
+        "description": "The input string to be stored.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "wait_secs": {
+        "description": "Seconds to wait after an action (-1 is infinite)",
+        "required": false,
+        "type": "number",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::Net": {
+    "properties": [
+      "admin_state_up",
+      "dhcp_agent_ids",
+      "name",
+      "port_security_enabled",
+      "qos_policy",
+      "shared",
+      "tenant_id",
+      "value_specs"
+    ],
+    "full_properties": {
+      "admin_state_up": {
+        "description": "A boolean value specifying the administrative status of the network.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "dhcp_agent_ids": {
+        "description": "The IDs of the DHCP agent to schedule the network. Note that the default policy setting in Neutron restricts usage of this property to administrative users only.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "A string specifying a symbolic name for the network, which is not required to be unique.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "port_security_enabled": {
+        "description": "Flag to enable/disable port security on the network. It provides the default value for the attribute of the ports created on this network",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "qos_policy": {
+        "description": "The name or ID of QoS policy to attach to this network.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "shared": {
+        "description": "Whether this network should be shared across all tenants. Note that the default policy setting restricts usage of this attribute to administrative users only.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "tenant_id": {
+        "description": "The ID of the tenant which will own the network. Only administrative users can set the tenant identifier; this cannot be changed using authorization policies.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "value_specs": {
+        "description": "Extra parameters to include in the “network” object in the creation request. Parameters are often specific to installed hardware or extensions.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::Port": {
+    "properties": [
+      "device_id",
+      "device_owner",
+      "fixed_ips",
+      "name",
+      "network",
+      "replacement_policy",
+      "security_groups"
+    ],
+    "full_properties": {
+      "network": {
+        "description": "Network this port belongs to. If you plan to use current port to assign Floating IP, you should specify fixed_ips with subnet.  Note if this changes to a different network update, the port will be replaced",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "device_id": {
+        "description": "Device ID of this port.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "device_owner": {
+        "description": "Name of the network owning the port. The value is typically network:floatingip or network:router_interface or network:dhcp",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "fixed_ips": {
+        "description": "Desired IPs for this port.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "A symbolic name for this port.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "replacement_policy": {
+        "description": "Policy on how to respond to a stack-update for this resource. REPLACE_ALWAYS will replace the port regardless of any property changes. AUTO will update the existing port for any changed update-allowed property.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "security_groups": {
+        "description": "Security group IDs to associate with this port.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::QoSBandwidthLimitRule": {
+    "properties": [
+      "max_burst_kbps",
+      "max_kbps",
+      "policy",
+      "tenant_id"
+    ],
+    "full_properties": {
+      "max_kbps": {
+        "description": "Max bandwidth in kbps.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "policy": {
+        "description": "ID or name of the QoS policy.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "max_burst_kbps": {
+        "description": "Max burst bandwidth in kbps.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "tenant_id": {
+        "description": "The owner tenant ID of this rule.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::QoSPolicy": {
+    "properties": [
+      "description",
+      "name",
+      "shared",
+      "tenant_id"
+    ],
+    "full_properties": {
+      "name": {
+        "description": "The name for the QoS policy.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "The description for the QoS policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "shared": {
+        "description": "Whether this QoS policy should be shared to other tenants.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "tenant_id": {
+        "description": "The owner tenant ID of this QoS policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::SecurityGroup": {
+    "properties": [
+      "description",
+      "name",
+      "rules"
+    ],
+    "full_properties": {
+      "description": {
+        "description": "Description of the security group.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "A string specifying a symbolic name for the security group, which is not required to be unique.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "rules": {
+        "description": "List of security group rules.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::Subnet": {
+    "properties": [
+      "allocation_pools",
+      "cidr",
+      "dns_nameservers",
+      "enable_dhcp",
+      "gateway_ip",
+      "host_routes",
+      "ip_version",
+      "ipv6_address_mode",
+      "ipv6_ra_mode",
+      "name",
+      "network",
+      "prefixlen",
+      "subnetpool",
+      "tenant_id",
+      "value_specs"
+    ],
+    "full_properties": {
+      "network": {
+        "description": "The ID of the attached network.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "allocation_pools": {
+        "description": "The start and end addresses for the allocation pools.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "cidr": {
+        "description": "The CIDR.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "dns_nameservers": {
+        "description": "A specified set of DNS name servers to be used.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "enable_dhcp": {
+        "description": "Set to true if DHCP is enabled and false if DHCP is disabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "gateway_ip": {
+        "description": "The gateway IP address. Set to any of [ null | ~ | “” ] to create/update a subnet without a gateway. If omitted when creation, neutron will assign the first free IP address within the subnet to the gateway automatically. If remove this from template when update, the old gateway IP address will be detached.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "host_routes": {
+        "description": "List value expected.",
+        "required": false,
+        "type": "can",
+        "update_causes": "unknown"
+      },
+      "ip_version": {
+        "description": "The IP version, which is 4 or 6.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "ipv6_address_mode": {
+        "description": "IPv6 address mode. dhcpv6-stateful, dhcpv6-stateless, or slaac.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "ipv6_ra_mode": {
+        "description": "IPv6 RA (Router Advertisement) mode. dhcpv6-stateful, dhcpv6-stateless, or slaac.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "The name of the subnet.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "prefixlen": {
+        "description": "Prefix length for subnet allocation from subnet pool.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "subnetpool": {
+        "description": "The name or ID of the subnet pool.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "tenant_id": {
+        "description": "The ID of the tenant who owns the network. Only administrative users can specify a tenant ID other than their own.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "value_specs": {
+        "description": "Extra parameters to include in the request.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::SubnetPool": {
+    "properties": [
+      "address_scope",
+      "default_prefixlen",
+      "default_quota",
+      "is_default",
+      "max_prefixlen",
+      "min_prefixlen",
+      "name",
+      "prefixes",
+      "shared",
+      "tenant_id"
+    ],
+    "full_properties": {
+      "prefixes": {
+        "description": "List of subnet prefixes to assign.",
+        "required": true,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "address_scope": {
+        "description": "An address scope ID to assign to the subnet pool.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "default_prefixlen": {
+        "description": "The size of the prefix to allocate when the cidr or prefixlen attributes are not specified while creating a subnet.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "default_quota": {
+        "description": "A per-tenant quota on the prefix space that can be allocated from the subnet pool for tenant subnets.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "is_default": {
+        "description": "Whether this is default IPv4/IPv6 subnet pool.There can only be one default subnet pool for each IP family.Note that the default policy setting restricts administrative users to set this to True",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "max_prefixlen": {
+        "description": "Maximum prefix size that can be allocated from the subnet pool.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "min_prefixlen": {
+        "description": "Smallest prefix size that can be allocated from the subnet pool.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of the subnet pool.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "shared": {
+        "description": "Whether the subnet pool will be shared across all tenants.Note that the default policy setting restricts usage of this attribute to administrative users only.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "tenant_id": {
+        "description": "The ID of the tenant who owns the subnet pool. Only administrative users can specify a tenant ID other than their own.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Nova::HostAggregate": {
+    "properties": [
+      "availability_zone",
+      "hosts",
+      "metadata",
+      "name"
+    ],
+    "full_properties": {
+      "availability_zone": {
+        "description": "Name for the availability zone.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name for the aggregate.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "hosts": {
+        "description": "List of hosts to join aggregate.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "metadata": {
+        "description": "Arbitrary key/value metadata to store information for aggregate.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Nova::KeyPair": {
+    "properties": [
+      "name",
+      "public_key",
+      "save_private_key"
+    ],
+    "full_properties": {
+      "name": {
+        "description": "The name of the key pair.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "public_key": {
+        "description": "The optional public key. This allows users to supply the public key from a pre-existing key pair. If not supplied, a new key pair will be generated.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "save_private_key": {
+        "description": "True if the system should remember a generated private key; False otherwise.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Nova::Server": {
+    "properties": [
+      "admin_pass",
+      "availability_zone",
+      "block_device_mapping",
+      "block_device_mapping_v2",
+      "config_drive",
+      "diskConfig",
+      "flavor",
+      "flavor_update_policy",
+      "image",
+      "image_update_policy",
+      "key_name",
+      "metadata",
+      "name",
+      "networks",
+      "personality",
+      "reservation_id",
+      "scheduler_hints",
+      "security_groups",
+      "software_config_transport",
+      "user_data",
+      "user_data_format"
+    ],
+    "full_properties": {
+      "flavor": {
+        "description": "The ID or name of the flavor to boot onto.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "admin_pass": {
+        "description": "The administrator password for the server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "availability_zone": {
+        "description": "Name of the availability zone for server placement.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "block_device_mapping": {
+        "description": "Block device mappings for this server.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "block_device_mapping_v2": {
+        "description": "Block device mappings v2 for this server.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "config_drive": {
+        "description": "If True, enable config drive on the server.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "diskConfig": {
+        "description": "Control how the disk is partitioned when the server is created.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "flavor_update_policy": {
+        "description": "Policy on how to apply a flavor update; either by requesting a server resize or by replacing the entire server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "image": {
+        "description": "The ID or name of the image to boot with.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "image_update_policy": {
+        "description": "Policy on how to apply an image-id update; either by requesting a server rebuild or by replacing the entire server",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "key_name": {
+        "description": "Name of keypair to inject into the server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "metadata": {
+        "description": "Arbitrary key/value metadata to store for this server. Both keys and values must be 255 characters or less.  Non-string values will be serialized to JSON (and the serialized string must be 255 characters or less).",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Server name.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "networks": {
+        "description": "An ordered list of nics to be added to this server, with information about connected networks, fixed ips, port etc.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "personality": {
+        "description": "A map of files to create/overwrite on the server upon boot. Keys are file names and values are the file contents.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "reservation_id": {
+        "description": "A UUID for the set of servers being requested.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "scheduler_hints": {
+        "description": "Arbitrary key-value pairs specified by the client to help boot a server.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "security_groups": {
+        "description": "List of security group names or IDs. Cannot be used if neutron ports are associated with this server; assign security groups to the ports instead.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "software_config_transport": {
+        "description": "How the server should receive the metadata required for software configuration. POLL_SERVER_CFN will allow calls to the cfn API action DescribeStackResource authenticated with the provided keypair. POLL_SERVER_HEAT will allow calls to the Heat API resource-show using the provided keystone credentials. POLL_TEMP_URL will create and populate a Swift TempURL with metadata for polling. ZAQAR_MESSAGE will create a dedicated zaqar queue and post the metadata for polling.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "user_data": {
+        "description": "User data script to be executed by cloud-init.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "user_data_format": {
+        "description": "How the user_data should be formatted for the server. For HEAT_CFNTOOLS, the user_data is bundled as part of the heat-cfntools cloud-init boot configuration data. For RAW the user_data is passed to Nova unmodified. For SOFTWARE_CONFIG user_data is bundled as part of the software config data, and metadata is derived from any associated SoftwareDeployment resources.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Senlin::Cluster": {
+    "properties": [
+      "desired_capacity",
+      "max_size",
+      "metadata",
+      "min_size",
+      "name",
+      "profile",
+      "timeout"
+    ],
+    "full_properties": {
+      "profile": {
+        "description": "The name or id of the Senlin profile.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "desired_capacity": {
+        "description": "Desired initial number of resources in cluster.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "max_size": {
+        "description": "Maximum number of resources in the cluster. -1 means unlimited.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "metadata": {
+        "description": "Metadata key-values defined for cluster.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "min_size": {
+        "description": "Minimum number of resources in the cluster.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name of the cluster. By default, physical resource name is used.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "timeout": {
+        "description": "The number of seconds to wait for the cluster actions.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Senlin::Profile": {
+    "properties": [
+      "metadata",
+      "name",
+      "spec"
+    ],
+    "full_properties": {
+      "spec": {
+        "description": "The spec template content for Senlin profile, should be either in YAML or JSON format.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "metadata": {
+        "description": "Metadata key-values defined for profile.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of the senlin profile. By default, physical resource name is used.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Swift::Container": {
+    "properties": [
+      "PurgeOnDelete",
+      "name"
+    ],
+    "full_properties": {
+      "PurgeOnDelete": {
+        "description": "If True, delete any objects in the container when the container is deleted. Otherwise, deleting a non-empty container will result in an error.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name for the container. If not specified, a unique name will be generated.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Trove::Instance": {
+    "properties": [
+      "availability_zone",
+      "databases",
+      "datastore_type",
+      "datastore_version",
+      "flavor",
+      "name",
+      "networks",
+      "replica_count",
+      "replica_of",
+      "restore_point",
+      "size",
+      "users"
+    ],
+    "full_properties": {
+      "flavor": {
+        "description": "Reference to a flavor for creating DB instance.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "size": {
+        "description": "Database volume size in GB.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "availability_zone": {
+        "description": "Name of the availability zone for DB instance.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "databases": {
+        "description": "List of databases to be created on DB instance creation.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "datastore_type": {
+        "description": "Name of registered datastore type.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "datastore_version": {
+        "description": "Name of the registered datastore version. It must exist for provided datastore type. Defaults to using single active version. If several active versions exist for provided datastore type, explicit value for this parameter must be specified.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name of the DB instance to create.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "networks": {
+        "description": "List of network interfaces to create on instance.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "replica_count": {
+        "description": "The number of replicas to be created.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "replica_of": {
+        "description": "Identifier of the source instance to replicate.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "restore_point": {
+        "description": "DB instance restore point.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "users": {
+        "description": "List of users to be created on DB instance creation.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Zaqar::Queue": {
+    "properties": [
+      "metadata",
+      "name"
+    ],
+    "full_properties": {
+      "name": {
+        "description": "Name of the queue instance to create.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "metadata": {
+        "description": "Arbitrary key/value metadata to store contextual information about this queue.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      }
+    }
+  },
+  "Rackspace::AutoScale::Group": {
+    "properties": [
+      "groupConfiguration",
+      "launchConfiguration"
+    ],
+    "full_properties": {
+      "groupConfiguration": {
+        "description": "Group configuration.",
+        "required": true,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "launchConfiguration": {
+        "description": "Launch configuration.",
+        "required": true,
+        "type": "map",
+        "update_causes": "none"
+      }
+    }
+  },
+  "Rackspace::AutoScale::ScalingPolicy": {
+    "properties": [
+      "args",
+      "change",
+      "changePercent",
+      "cooldown",
+      "desiredCapacity",
+      "group",
+      "name",
+      "type"
+    ],
+    "full_properties": {
+      "group": {
+        "description": "Scaling group ID that this policy belongs to.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name of this scaling policy.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "type": {
+        "description": "Type of this scaling policy. Specifies how the policy is executed.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "args": {
+        "description": "Type-specific arguments for the policy.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "change": {
+        "description": "Amount to add to or remove from current number of instances. Incompatible with changePercent and desiredCapacity.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "changePercent": {
+        "description": "Percentage-based change to add or remove from current number of instances. Incompatible with change and desiredCapacity.",
+        "required": false,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "cooldown": {
+        "description": "Number of seconds after a policy execution during which further executions are disabled.",
+        "required": false,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "desiredCapacity": {
+        "description": "Absolute number to set the number of instances to. Incompatible with change and changePercent.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      }
+    }
+  },
+  "Rackspace::AutoScale::WebHook": {
+    "properties": [
+      "metadata",
+      "name",
+      "policy"
+    ],
+    "full_properties": {
+      "name": {
+        "description": "The name of this webhook.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "policy": {
+        "description": "The policy that this webhook should apply to, in {group_id}:{policy_id} format. Generally a Ref to a Policy resource.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "metadata": {
+        "description": "Arbitrary key/value metadata for this webhook.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      }
+    }
+  },
+  "Rackspace::Cloud::AssociateSharedIP": {
+    "properties": [
+      "servers",
+      "shared_ip"
+    ],
+    "full_properties": {
+      "servers": {
+        "description": "List of servers to associate a shared IP.",
+        "required": true,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "shared_ip": {
+        "description": "ID of the shared IP.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "Rackspace::Cloud::BackupConfig": {
+    "properties": [
+      "BackupConfigurationName",
+      "DayOfWeekId",
+      "Enabled",
+      "Exclusions",
+      "Frequency",
+      "HourInterval",
+      "Inclusions",
+      "IsActive",
+      "NotifyFailure",
+      "NotifyRecipients",
+      "NotifySuccess",
+      "StartTimeAmPm",
+      "StartTimeHour",
+      "StartTimeMinute",
+      "TimeZoneId",
+      "VersionRetention",
+      "host_ip_address"
+    ],
+    "full_properties": {
+      "BackupConfigurationName": {
+        "description": "Cloud backup configuration name.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "DayOfWeekId": {
+        "description": "Indicates the day of the week. Valid values are 0 through 6, with 0 representing Sunday and 6 representing Saturday. null is also a valid value when the Frequency value is “Manually” ,”Hourly”, or “Daily”.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "HourInterval": {
+        "description": "Indicates the hour. Valid values are 1 through 23, as well as null when the Frequency value is “Manually” ,”Daily”, or “Weekly”.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "Inclusions": {
+        "description": "Indicates the list of files and folders to back up.",
+        "required": true,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "NotifyFailure": {
+        "description": "Indicates if emails are sent after a failed backup. Valid values are true or false.",
+        "required": true,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "NotifyRecipients": {
+        "description": "Indicates the email address to notify in case of backup success or failure.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "StartTimeAmPm": {
+        "description": "Indicates AM or PM. Valid values are “AM” or “PM”, as well as null when the Frequency value is “Manually” or “Hourly”.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "StartTimeHour": {
+        "description": "Indicates the hour when the backup runs. Valid values are 1 through 12, as well as null when the Frequency value is “Manually” or “Hourly”.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "StartTimeMinute": {
+        "description": "Indicates the minute when the backup runs. Valid values are 0 through 59, as well as null when the Frequency value is “Manually” or “Hourly”.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "TimeZoneId": {
+        "description": "Specifies the time zone where the backup runs, for example “Eastern Standard Time”.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "host_ip_address": {
+        "description": "Cloud server ip address.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "Enabled": {
+        "description": "Indicates backup configuration is enabled or not.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "Exclusions": {
+        "description": "Indicates the list of files and folders not to back up.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "Frequency": {
+        "description": "Frequency of backup schedule. Valid values are Manually, Hourly, Daily, and Weekly.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "IsActive": {
+        "description": "Indicates backup configuration is active.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "NotifySuccess": {
+        "description": "Indicates if emails are sent after a successful backup. Valid values are true or false.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "VersionRetention": {
+        "description": "Indicates how many days backup revisions are maintained. Valid values are 0, 30 , and 60. 0 means indefinite.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      }
+    }
+  },
+  "Rackspace::Cloud::BigData": {
+    "properties": [
+      "clusterLogin",
+      "clusterName",
+      "flavor",
+      "numSlaveNodes",
+      "publicKey",
+      "publicKeyName",
+      "stackId"
+    ],
+    "full_properties": {
+      "clusterLogin": {
+        "description": "Cluster SSH login.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "clusterName": {
+        "description": "Rackspace Cloud Big Data Cluster Name.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "flavor": {
+        "description": "Rackspace Cloud Big Data Flavor ID to be used for cluster slavenodes.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "publicKey": {
+        "description": "Cluster public key used to SSH into cluster nodes.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "publicKeyName": {
+        "description": "Cluster public key name. This key name will be used along with the publicKey by the Cloud Big Data system to install SSH keys on to CBD clusters for user access. If the key name already exists, it will not be overwritten and the existing key will be used instead.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "stackId": {
+        "description": "Rackspace Cloud Big Data Stack ID.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "numSlaveNodes": {
+        "description": "How many slave nodes to create in the cluster.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "Rackspace::Cloud::CDN": {
+    "properties": [
+      "caching",
+      "domains",
+      "flavor_id",
+      "log_delivery",
+      "name",
+      "origins",
+      "restrictions"
+    ],
+    "full_properties": {
+      "domains": {
+        "description": "Specifies a list of domains used by users to access their website.",
+        "required": true,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "flavor_id": {
+        "description": "Specifies the CDN provider flavor to use.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Specifies the name of the service.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "origins": {
+        "description": "Specifies a list of origin domains or IP addresses where the original assets are stored.",
+        "required": true,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "caching": {
+        "description": "Specifies the TTL rules for the assets under this service. Supports wildcards for fine-grained control.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "log_delivery": {
+        "description": "Specifies whether to enable log delivery to a Cloud Files container. You can use access log delivery to analyze the number of requests for each object, the client IP address, and time-based usage patterns (such as monthly or seasonal usage). Logs are stored in a Cloud Files container named CDN_ACCESS_LOGS. If this container does not exist, it is created.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "restrictions": {
+        "description": "Specifies the restrictions that define who can access assets (content from the CDN cache).",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "Rackspace::Cloud::ChefSolo": {
+    "properties": [
+      "Berksfile",
+      "Berksfile.lock",
+      "Cheffile",
+      "chef_version",
+      "clients",
+      "data_bags",
+      "environments",
+      "host",
+      "kitchen",
+      "node",
+      "private_key",
+      "roles",
+      "username",
+      "users"
+    ],
+    "full_properties": {
+      "host": {
+        "description": "The host to run chef-solo on.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "private_key": {
+        "description": "The ssh key to connect to the host with.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "username": {
+        "description": "The username to connect to the host with.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "Berksfile.lock": {
+        "description": "The Berksfile.lock to use with berkshelf to specify cookbook versions for the chef run.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "chef_version": {
+        "description": "The version of chef to install on the host.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "clients": {
+        "description": "Clients to be written to the kitchen for the chef run.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "data_bags": {
+        "description": "Data_bags to write to the kitchen during the chef run.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "environments": {
+        "description": "Environments to be written to the kitchen for the chef run.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "kitchen": {
+        "description": "A git url to the kitchen to clone. This can be used in place of a Berks or Chef file to install cookbooks on the host.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "node": {
+        "description": "The node file for the chef run. May have a run_list, attributes, etc.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "roles": {
+        "description": "Roles to be written to the kitchen for the chef run.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "users": {
+        "description": "Users to be written to the kitchen for the chef run.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "Berksfile": {
+        "description": "The Berksfile to use with berkshelf to download cookbooks on the host for the chef run.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "Cheffile": {
+        "description": "The Cheffile to use with librarian-chef to download cookbooks on the host for the chef run.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "Rackspace::Cloud::CloudFilesCDN": {
+    "properties": [
+      "container",
+      "ttl"
+    ],
+    "full_properties": {
+      "container": {
+        "description": "Target container to enable CDN for.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "ttl": {
+        "description": "Specifies the Time To Live (TTL) in seconds for an object to be cached in the CDN.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "Rackspace::Cloud::DNS": {
+    "properties": [
+      "comment",
+      "emailAddress",
+      "name",
+      "records",
+      "ttl"
+    ],
+    "full_properties": {
+      "emailAddress": {
+        "description": "Email address to use for contacting the domain administrator.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Specifies the name for the domain or subdomain. Must be a valid domain name.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "comment": {
+        "description": "Optional free form text comment",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "records": {
+        "description": "Domain records",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ttl": {
+        "description": "How long other servers should cache recorddata.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      }
+    }
+  },
+  "Rackspace::Cloud::LoadBalancer": {
+    "properties": [
+      "accessList",
+      "algorithm",
+      "connectionLogging",
+      "connectionThrottle",
+      "contentCaching",
+      "errorPage",
+      "halfClosed",
+      "healthMonitor",
+      "httpsRedirect",
+      "metadata",
+      "name",
+      "nodes",
+      "port",
+      "protocol",
+      "sessionPersistence",
+      "sslTermination",
+      "timeout",
+      "virtualIps"
+    ],
+    "full_properties": {
+      "nodes": {
+        "description": "List value expected.",
+        "required": true,
+        "type": "can",
+        "update_causes": "unknown"
+      },
+      "port": {
+        "description": "Integer value expected.",
+        "required": true,
+        "type": "can",
+        "update_causes": "unknown"
+      },
+      "protocol": {
+        "description": "String value expected.",
+        "required": true,
+        "type": "can",
+        "update_causes": "unknown"
+      },
+      "virtualIps": {
+        "description": "List value expected.",
+        "required": true,
+        "type": "updates",
+        "update_causes": "unknown"
+      },
+      "accessList": {
+        "description": "List value expected.",
+        "required": false,
+        "type": "updates",
+        "update_causes": "unknown"
+      },
+      "algorithm": {
+        "description": "String value expected.",
+        "required": false,
+        "type": "can",
+        "update_causes": "unknown"
+      },
+      "connectionLogging": {
+        "description": "Boolean value expected.",
+        "required": false,
+        "type": "can",
+        "update_causes": "unknown"
+      },
+      "connectionThrottle": {
+        "description": "Map value expected.",
+        "required": false,
+        "type": "can",
+        "update_causes": "unknown"
+      },
+      "contentCaching": {
+        "description": "String value expected.",
+        "required": false,
+        "type": "can",
+        "update_causes": "unknown"
+      },
+      "errorPage": {
+        "description": "String value expected.",
+        "required": false,
+        "type": "can",
+        "update_causes": "unknown"
+      },
+      "halfClosed": {
+        "description": "Boolean value expected.",
+        "required": false,
+        "type": "can",
+        "update_causes": "unknown"
+      },
+      "healthMonitor": {
+        "description": "Map value expected.",
+        "required": false,
+        "type": "can",
+        "update_causes": "unknown"
+      },
+      "httpsRedirect": {
+        "description": "Enables or disables HTTP to HTTPS redirection for the load balancer. When enabled, any HTTP request returns status code 301 (Moved Permanently), and the requester is redirected to the requested URL via the HTTPS protocol on port 443. Only available for HTTPS protocol (port=443), or HTTP protocol with a properly configured SSL termination (secureTrafficOnly=true, securePort=443).",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "metadata": {
+        "description": "Map value expected.",
+        "required": false,
+        "type": "can",
+        "update_causes": "unknown"
+      },
+      "name": {
+        "description": "String value expected.",
+        "required": false,
+        "type": "can",
+        "update_causes": "unknown"
+      },
+      "sessionPersistence": {
+        "description": "String value expected.",
+        "required": false,
+        "type": "can",
+        "update_causes": "unknown"
+      },
+      "sslTermination": {
+        "description": "Map value expected.",
+        "required": false,
+        "type": "can",
+        "update_causes": "unknown"
+      },
+      "timeout": {
+        "description": "Number value expected.",
+        "required": false,
+        "type": "can",
+        "update_causes": "unknown"
+      }
+    }
+  },
+  "Rackspace::Cloud::SharedIP": {
+    "properties": [
+      "network_id",
+      "ports"
+    ],
+    "full_properties": {
+      "ports": {
+        "description": "Provide list of ports that share an IP.",
+        "required": true,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "network_id": {
+        "description": "ID of network to create shared_ip.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "Rackspace::Cloud::WinServer": {
+    "properties": [
+      "admin_pass",
+      "availability_zone",
+      "block_device_mapping",
+      "block_device_mapping_v2",
+      "config_drive",
+      "diskConfig",
+      "flavor",
+      "flavor_update_policy",
+      "image",
+      "image_update_policy",
+      "key_name",
+      "metadata",
+      "name",
+      "networks",
+      "personality",
+      "reservation_id",
+      "save_admin_pass",
+      "scheduler_hints",
+      "security_groups",
+      "software_config_transport",
+      "user_data",
+      "user_data_format"
+    ],
+    "full_properties": {
+      "flavor": {
+        "description": "The ID or name of the flavor to boot onto.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "admin_pass": {
+        "description": "The administrator password for the server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "availability_zone": {
+        "description": "Name of the availability zone for server placement.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "block_device_mapping": {
+        "description": "Block device mappings for this server.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "block_device_mapping_v2": {
+        "description": "Block device mappings v2 for this server.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "config_drive": {
+        "description": "If True, enable config drive on the server.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "diskConfig": {
+        "description": "Control how the disk is partitioned when the server is created.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "flavor_update_policy": {
+        "description": "Policy on how to apply a flavor update; either by requesting a server resize or by replacing the entire server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "image": {
+        "description": "The ID or name of the image to boot with.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "image_update_policy": {
+        "description": "Policy on how to apply an image-id update; either by requesting a server rebuild or by replacing the entire server",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "key_name": {
+        "description": "Name of keypair to inject into the server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "metadata": {
+        "description": "Arbitrary key/value metadata to store for this server. Both keys and values must be 255 characters or less.  Non-string values will be serialized to JSON (and the serialized string must be 255 characters or less).",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Server name.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "networks": {
+        "description": "An ordered list of nics to be added to this server, with information about connected networks, fixed ips, port etc.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "personality": {
+        "description": "A map of files to create/overwrite on the server upon boot. Keys are file names and values are the file contents.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "reservation_id": {
+        "description": "A UUID for the set of servers being requested.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "save_admin_pass": {
+        "description": "True if the system should remember the admin password; False otherwise.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "scheduler_hints": {
+        "description": "Arbitrary key-value pairs specified by the client to help boot a server.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "security_groups": {
+        "description": "List of security group names or IDs. Cannot be used if neutron ports are associated with this server; assign security groups to the ports instead.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "software_config_transport": {
+        "description": "How the server should receive the metadata required for software configuration. POLL_SERVER_CFN will allow calls to the cfn API action DescribeStackResource authenticated with the provided keypair. POLL_SERVER_HEAT will allow calls to the Heat API resource-show using the provided keystone credentials. POLL_TEMP_URL will create and populate a Swift TempURL with metadata for polling. ZAQAR_MESSAGE will create a dedicated zaqar queue and post the metadata for polling.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "user_data": {
+        "description": "User data script to be executed by cloud-init.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "user_data_format": {
+        "description": "How the user_data should be formatted for the server. For HEAT_CFNTOOLS, the user_data is bundled as part of the heat-cfntools cloud-init boot configuration data. For RAW the user_data is passed to Nova unmodified. For SOFTWARE_CONFIG user_data is bundled as part of the software config data, and metadata is derived from any associated SoftwareDeployment resources.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "Rackspace::CloudMonitoring::AgentToken": {
+    "properties": [
+      "label"
+    ],
+    "full_properties": {
+      "label": {
+        "description": "A friendly label for this resource",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "Rackspace::CloudMonitoring::Alarm": {
+    "properties": [
+      "check",
+      "criteria",
+      "disabled",
+      "label",
+      "metadata",
+      "plan"
+    ],
+    "full_properties": {
+      "check": {
+        "description": "The check to alert on",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "plan": {
+        "description": "The notification plan to execute when the state changes",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "criteria": {
+        "description": "The alarm DSL for describing alerting conditions and their output states",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "disabled": {
+        "description": "Disable processing and alerts on this alarm",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "label": {
+        "description": "A friendly label for this resource",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "metadata": {
+        "description": "Arbitrary key/value pairs that are passed during the alerting phase. Both keys and values must be 255 characters or less. Non-string values will be serialized to JSON (and the serialized string must be 255 characters or less).",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      }
+    }
+  },
+  "Rackspace::CloudMonitoring::Check": {
+    "properties": [
+      "details",
+      "disabled",
+      "entity",
+      "label",
+      "metadata",
+      "monitoring_zones_poll",
+      "period",
+      "target_alias",
+      "target_hostname",
+      "target_receiver",
+      "timeout",
+      "type"
+    ],
+    "full_properties": {
+      "entity": {
+        "description": "The id of the entity for which to create the check. This can either be the id of a configured monitoring entity, a cloud server or a cloud database instance.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "type": {
+        "description": "The specific type of resource",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "details": {
+        "description": "A hash of type-specific details",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "disabled": {
+        "description": "Disables the check",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "label": {
+        "description": "A friendly label for this resource",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "metadata": {
+        "description": "Arbitrary key/value pairs that are passed during the alerting phase. Both keys and values must be 255 characters or less. Non-string values will be serialized to JSON (and the serialized string must be 255 characters or less).",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "monitoring_zones_poll": {
+        "description": "List of monitoring zones to poll from. Note: This argument is only required for remote (non-agent) checks",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "period": {
+        "description": "The period in seconds for a check. The value must be greater than the minimum period set on your account.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "target_alias": {
+        "description": "A key in the entity’s ‘ip_addresses’ hash used to resolve this check to an IP address. This parameter is mutually exclusive with target_hostname.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "target_hostname": {
+        "description": "The hostname this check should target. This parameter is mutually exclusive with target_alias. Value must be a Valid FQDN, IPv4 or IPv6 address",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "target_receiver": {
+        "description": "Determines how to resolve the check target.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "timeout": {
+        "description": "The timeout in seconds for a check. This has to be less than the period.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      }
+    }
+  },
+  "Rackspace::CloudMonitoring::Entity": {
+    "properties": [
+      "agent_id",
+      "ip_addresses",
+      "label",
+      "metadata"
+    ],
+    "full_properties": {
+      "agent_id": {
+        "description": "Agent to which this entity is bound",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "ip_addresses": {
+        "description": "IP addresses that can be referenced by checks on this entity. Keys must be between 1 and 64 characters long. Values must be valid IPv4 or IPv6 addresses.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "label": {
+        "description": "A friendly label for this resource",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "metadata": {
+        "description": "Arbitrary key/value pairs that are passed during the alerting phase. Both keys and values must be 255 characters or less. Non-string values will be serialized to JSON (and the serialized string must be 255 characters or less).",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      }
+    }
+  },
+  "Rackspace::CloudMonitoring::Notification": {
+    "properties": [
+      "details",
+      "label",
+      "type"
+    ],
+    "full_properties": {
+      "type": {
+        "description": "The specific type of resource",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "details": {
+        "description": "A hash of type-specific details",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "label": {
+        "description": "A friendly label for this resource",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "Rackspace::CloudMonitoring::NotificationPlan": {
+    "properties": [
+      "critical_state",
+      "label",
+      "ok_state",
+      "warning_state"
+    ],
+    "full_properties": {
+      "critical_state": {
+        "description": "The notification list to send to when the state is CRITICAL.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "label": {
+        "description": "A friendly label for this resource",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "ok_state": {
+        "description": "The notification list to send to when the state is OK.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "warning_state": {
+        "description": "The notification list to send to when the state is WARNING.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      }
+    }
+  },
+  "Rackspace::CloudMonitoring::PlanNotifications": {
+    "properties": [
+      "critical_state",
+      "ok_state",
+      "plan",
+      "warning_state"
+    ],
+    "full_properties": {
+      "plan": {
+        "description": "The notification plan to add notifications to",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "critical_state": {
+        "description": "The notification list to send to when the state is CRITICAL.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_state": {
+        "description": "The notification list to send to when the state is OK.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "warning_state": {
+        "description": "The notification list to send to when the state is WARNING.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      }
+    }
+  },
+  "Rackspace::Neutron::SecurityGroupAttachment": {
+    "properties": [
+      "port",
+      "security_group"
+    ],
+    "full_properties": {
+      "port": {
+        "description": "The ID of the port to attach a security group.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "security_group": {
+        "description": "The ID of the security group to be attached.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "Rackspace::RackConnect::PoolNode": {
+    "properties": [
+      "pool",
+      "server_id"
+    ],
+    "full_properties": {
+      "pool": {
+        "description": "The id of the pool.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "server_id": {
+        "description": "The id of the server to be added.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "Rackspace::RackConnect::PublicIP": {
+    "properties": [
+      "server_id"
+    ],
+    "full_properties": {
+      "server_id": {
+        "description": "The id of the server to be added.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  }
+}

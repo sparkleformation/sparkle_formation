@@ -37,10 +37,11 @@ file.css('div#openstack-resource-types').children.each do |resource|
       property_list.children.each do |prop|
         next unless prop.get_attribute(:id).to_s.start_with?("#{resource_name}-prop-")
         property_name = prop.get_attribute(:id).to_s.sub("#{resource_name}-prop-", '')
+        next if property_name.include?('-')
         p_data = prop.children.find_all do |element|
           element.name == 'p'
         end
-        update_text = p_data[2].text.downcase
+        update_text = p_data[2] ? p_data[2].text.downcase : ''
         if(update_text.include?('without replacement'))
           update_causes = :none
         elsif(update_text.include?('replacement'))

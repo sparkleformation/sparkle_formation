@@ -7,6 +7,7 @@ class SparkleFormation
     autoload :Aws, 'sparkle_formation/resources/aws'
     autoload :Azure, 'sparkle_formation/resources/azure'
     autoload :Heat, 'sparkle_formation/resources/heat'
+    autoload :Rackspace, 'sparkle_formation/resources/rackspace'
 
     # Characters to be removed from supplied key on matching
     RESOURCE_TYPE_TR = '_'
