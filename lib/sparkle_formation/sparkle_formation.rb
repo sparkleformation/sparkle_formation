@@ -387,7 +387,8 @@ class SparkleFormation
         }
       )
     )
-    unless(options[:disable_aws_builtins])
+    self.provider = options.fetch(:provider, @parent ? @parent.provider : :aws)
+    if(provider == :aws || !options[:disable_aws_builtins])
       require 'sparkle_formation/aws'
     end
     @parameters = set_generation_parameters!(
@@ -403,7 +404,6 @@ class SparkleFormation
     @load_order = []
     @overrides = []
     @parent = options[:parent]
-    self.provider = options.fetch(:provider, @parent ? @parent.provider : :aws)
     if(block)
       load_block(block)
     end
@@ -413,11 +413,6 @@ class SparkleFormation
   # @return [String] provider stack resource type
   def stack_resource_type
     DEFAULT_STACK_RESOURCE
-  end
-
-  # @return [Array<String>] valid types defining a stack resource
-  def valid_stack_resource_types
-    stack_resource_types || [stack_resource_type]
   end
 
   # Set remote API target for template to allow loading of
