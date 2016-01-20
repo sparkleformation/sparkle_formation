@@ -19,8 +19,6 @@ class SparkleFormation
   DEFAULT_STACK_RESOURCE = 'AWS::CloudFormation::Stack'
   # @return [Array<String>] collection of valid stack resource types
   VALID_STACK_RESOURCES = [DEFAULT_STACK_RESOURCE]
-  # @return [Symbol] required serialization format
-  STACK_SERIALIZATION_FORMAT = :json
 
   class << self
 
@@ -268,7 +266,7 @@ class SparkleFormation
         nested_template.compile_state = options[:parameters]
       end
       struct.resources.set!(resource_name) do
-        type DEFAULT_STACK_RESOURCE
+        type struct._self.stack_resource_type
       end
       unless(struct._self.sparkle.empty?)
         struct._self.sparkle.size.times do |idx|
@@ -397,10 +395,10 @@ class SparkleFormation
         options.fetch(:parameters, {})
       )
     )
-    @stack_resource_types = (
-      VALID_STACK_RESOURCES +
-      options.fetch(:stack_resource_types, [])
-    ).uniq
+    @stack_resource_types = [
+      stack_resource_type,
+      *options.fetch(:stack_resource_types, [])
+    ].compact.uniq
     @components = Smash.new
     @load_order = []
     @overrides = []
@@ -410,6 +408,16 @@ class SparkleFormation
       load_block(block)
     end
     @compiled = nil
+  end
+
+  # @return [String] provider stack resource type
+  def stack_resource_type
+    DEFAULT_STACK_RESOURCE
+  end
+
+  # @return [Array<String>] valid types defining a stack resource
+  def valid_stack_resource_types
+    stack_resource_types || [stack_resource_type]
   end
 
   # Set remote API target for template to allow loading of

@@ -5,19 +5,9 @@ class SparkleFormation
     # Heat specific implementation
     module Heat
 
-      def self.included(klass)
-        klass.const_set(
-          :DEFAULT_STACK_RESOURCE,
-          'OS::Heat::Stack'
-        )
-        klass.const_set(
-          :VALID_STACK_RESOURCES,
-          'OS::Heat::Stack'
-        )
-        klass.const_set(
-          :STACK_SERIALIZATION_FORMAT,
-          :yaml
-        )
+      # @return [String] Type string for OpenStack HEAT stack resource
+      def stack_resource_type
+        'OS::Heat::Stack'
       end
 
       # Generate policy for stack

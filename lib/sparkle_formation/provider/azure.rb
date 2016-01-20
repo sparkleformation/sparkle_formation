@@ -5,15 +5,9 @@ class SparkleFormation
     # Azure specific implementation
     module Azure
 
-      def self.included(klass)
-        klass.const_set(
-          :DEFAULT_STACK_RESOURCE,
-          'Microsoft.Resources/deployments'
-        )
-        klass.const_set(
-          :VALID_STACK_RESOURCES,
-          'Microsoft.Resources/deployments'
-        )
+      # @return [String] Type string for Azure Resource Manager stack resource
+      def stack_resource_type
+        'Microsoft.Resources/deployments'
       end
 
       # Generate policy for stack

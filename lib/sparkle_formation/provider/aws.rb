@@ -5,15 +5,9 @@ class SparkleFormation
     # AWS specific implementation
     module Aws
 
-      def self.included(klass)
-        klass.const_set(
-          :DEFAULT_STACK_RESOURCE,
-          'AWS::CloudFormation::Stack'
-        )
-        klass.const_set(
-          :VALID_STACK_RESOURCES,
-          'AWS::CloudFormation::Stack'
-        )
+      # @return [String] Type string for AWS CFN stack resource
+      def stack_resource_type
+        'AWS::CloudFormation::Stack'
       end
 
       # Generate policy for stack
