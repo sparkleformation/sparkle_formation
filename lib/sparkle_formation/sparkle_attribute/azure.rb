@@ -151,7 +151,7 @@ class SparkleFormation
         stack_name = __attribute_key(stack_name)
         output_name = __attribute_key(output_name)
         o_root = _reference(stack_name)
-        o_root.set!(output_name).value
+        o_root.outputs.set!(output_name).value
         o_root
       end
       alias_method :stack_output!, :_stack_output
