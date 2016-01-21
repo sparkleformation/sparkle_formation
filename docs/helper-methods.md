@@ -16,7 +16,7 @@ anchors:
   - title: "Raise Exceptions"
     url: "#raise-exceptions"
   - title: "Provider specific helpers"
-    url: "#provider-specific-heleprs"
+    url: "#provider-specific-helpers"
 ---
 
 ## Helper methods
