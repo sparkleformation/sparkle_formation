@@ -8,6 +8,8 @@ class SparkleFormation
     # Rackspace specific helper implementations
     module Rackspace
 
+      # @!parse include SparkleFormation::SparkleAttribute::Heat
+
       # Set customized struct behavior
       def self.included(klass)
         klass.include SparkleFormation::SparkleAttribute::Heat
