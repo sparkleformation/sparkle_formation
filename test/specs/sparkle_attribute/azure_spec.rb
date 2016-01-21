@@ -87,13 +87,13 @@ describe SparkleFormation::SparkleAttribute::Azure do
 
     it 'should generate stack output reference' do
       @attr.stack_output!(:stack_name, :output_name)._dump.must_equal(
-        "[reference('stackName').outputName.value]"
+        "[reference('stackName').outputs.outputName.value]"
       )
     end
 
     it 'should accept no hump flagging' do
       @attr.stack_output!('stack_name'._no_hump, 'output_name')._dump.must_equal(
-        "[reference('stack_name').outputName.value]"
+        "[reference('stack_name').outputs.outputName.value]"
       )
     end
 
