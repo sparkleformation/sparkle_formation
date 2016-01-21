@@ -17,6 +17,9 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rubocop'
+  s.add_development_dependency 'yard'
+  s.add_development_dependency 'redcarpet', '~> 2.0'
+  s.add_development_dependency 'github-markup'
   s.executables << 'generate_sparkle_docs'
   s.files = Dir['{lib,docs}/**/*'] + %w(sparkle_formation.gemspec README.md CHANGELOG.md LICENSE)
 end
