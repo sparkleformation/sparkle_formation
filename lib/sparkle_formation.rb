@@ -28,6 +28,7 @@ class SparkleFormation
   autoload :Provider, 'sparkle_formation/provider'
   autoload :Resources, 'sparkle_formation/resources'
   autoload :Sparkle, 'sparkle_formation/sparkle'
+  autoload :SparklePack, 'sparkle_formation/sparkle'
   autoload :SparkleCollection, 'sparkle_formation/sparkle_collection'
   autoload :SparkleAttribute, 'sparkle_formation/sparkle_attribute'
   autoload :SparkleStruct, 'sparkle_formation/sparkle_struct'
