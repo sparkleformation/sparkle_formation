@@ -101,9 +101,19 @@
 </dl>
 <div class="clear"></div>
 
-<div id="subclasses">
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>File not found error</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div id="subclasses">
   <h2>Direct Known Subclasses</h2>
-  <p class="children"><span class='object_link'><a href="NotFound/Component.html" title="SparkleFormation::Error::NotFound::Component (class)">Component</a></span>, <span class='object_link'><a href="NotFound/Dynamic.html" title="SparkleFormation::Error::NotFound::Dynamic (class)">Dynamic</a></span>, <span class='object_link'><a href="NotFound/Registry.html" title="SparkleFormation::Error::NotFound::Registry (class)">Registry</a></span>, <span class='object_link'><a href="NotFound/Template.html" title="SparkleFormation::Error::NotFound::Template (class)">Template</a></span></p>
+  <p class="children"><span class='object_link'><a href="NotFound/Component.html" title="SparkleFormation::Error::NotFound::Component (class)">Component</a></span>, <span class='object_link'><a href="NotFound/Dynamic.html" title="SparkleFormation::Error::NotFound::Dynamic (class)">Dynamic</a></span>, <span class='object_link'><a href="NotFound/Registry.html" title="SparkleFormation::Error::NotFound::Registry (class)">Registry</a></span>, <span class='object_link'><a href="NotFound/Resource.html" title="SparkleFormation::Error::NotFound::Resource (class)">Resource</a></span>, <span class='object_link'><a href="NotFound/Template.html" title="SparkleFormation::Error::NotFound::Template (class)">Template</a></span></p>
 </div>
 <h2>Defined Under Namespace</h2>
 <p class="children">
@@ -111,7 +121,7 @@
     
   
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="NotFound/Component.html" title="SparkleFormation::Error::NotFound::Component (class)">Component</a></span>, <span class='object_link'><a href="NotFound/Dynamic.html" title="SparkleFormation::Error::NotFound::Dynamic (class)">Dynamic</a></span>, <span class='object_link'><a href="NotFound/Registry.html" title="SparkleFormation::Error::NotFound::Registry (class)">Registry</a></span>, <span class='object_link'><a href="NotFound/Template.html" title="SparkleFormation::Error::NotFound::Template (class)">Template</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="NotFound/Component.html" title="SparkleFormation::Error::NotFound::Component (class)">Component</a></span>, <span class='object_link'><a href="NotFound/Dynamic.html" title="SparkleFormation::Error::NotFound::Dynamic (class)">Dynamic</a></span>, <span class='object_link'><a href="NotFound/Registry.html" title="SparkleFormation::Error::NotFound::Registry (class)">Registry</a></span>, <span class='object_link'><a href="NotFound/Resource.html" title="SparkleFormation::Error::NotFound::Resource (class)">Resource</a></span>, <span class='object_link'><a href="NotFound/Template.html" title="SparkleFormation::Error::NotFound::Template (class)">Template</a></span>
     
   
 </p>
@@ -220,15 +230,15 @@
       <pre class="lines">
 
 
-10
-11
 12
 13
 14
-15</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/error.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/error.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_detect'>detect</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span><span class='rbrace'>}</span>
@@ -273,12 +283,12 @@
       <pre class="lines">
 
 
-8
-9
-10</pre>
+10
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/error.rb', line 8</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/error.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -294,9 +304,9 @@
 </div>
 
     <div id="footer">
-  Generated on Fri Sep  4 08:58:22 2015 by
+  Generated on Thu Jan 21 14:37:03 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.1.2).
+  0.8.7.6 (ruby-2.2.3).
 </div>
 
   </body>

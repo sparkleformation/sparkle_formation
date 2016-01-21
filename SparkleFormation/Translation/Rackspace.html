@@ -188,7 +188,7 @@ require one of the files for injecting into cloud init)</p>
         </dt>
         <dd><pre class="code"><span class='lbrace'>{</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::GetAtt</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>get_attr</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-<span class='comment'>#        &#39;Fn::Join&#39; =&gt; &#39;list_join&#39;  # @todo why is this not working?
+  <span class='comment'># &#39;Fn::Join&#39; =&gt; &#39;list_join&#39;  # TODO: why is this not working?
 </span><span class='rbrace'>}</span></pre></dd>
       
         <dt id="FN_ATT_MAPPING-constant" class="">FN_ATT_MAPPING =
@@ -876,6 +876,8 @@ runcmd:
 
 <p>Build server personality structure</p>
 
+<p>rubocop:disable Metrics/MethodLength</p>
+
 
   </div>
 </div>
@@ -920,7 +922,6 @@ runcmd:
       <pre class="lines">
 
 
-290
 291
 292
 293
@@ -1053,10 +1054,12 @@ runcmd:
 420
 421
 422
-423</pre>
+423
+424
+425</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation/rackspace.rb', line 290</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/translation/rackspace.rb', line 291</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_build_personality'>build_personality</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_max_chunk_size'>max_chunk_size</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span>
@@ -1154,7 +1157,7 @@ runcmd:
       <span class='kw'>end</span>
       <span class='id identifier rubyid_leftovers'>leftovers</span> <span class='op'>=</span> <span class='id identifier rubyid_item'>item</span> <span class='kw'>if</span> <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
       <span class='kw'>unless</span><span class='lparen'>(</span><span class='id identifier rubyid_file_content'>file_content</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span>
-        <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_file_content'>file_content</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+        <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_file_content'>file_content</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='rparen'>)</span>
           <span class='id identifier rubyid_files'>files</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/etc/sprkl/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_file_index'>file_index</span><span class='embexpr_end'>}</span><span class='tstring_content'>.cfg</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_file_content'>file_content</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span>
         <span class='kw'>else</span>
           <span class='id identifier rubyid_file_content'>file_content</span><span class='period'>.</span><span class='id identifier rubyid_map!'>map!</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_cont'>cont</span><span class='op'>|</span>
@@ -1165,8 +1168,8 @@ runcmd:
             <span class='kw'>end</span>
           <span class='kw'>end</span>
           <span class='id identifier rubyid_files'>files</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/etc/sprkl/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_file_index'>file_index</span><span class='embexpr_end'>}</span><span class='tstring_content'>.cfg</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span>
-            <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Fn::Join</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span>
-              <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+            <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::Join</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span>
+              <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
               <span class='id identifier rubyid_file_content'>file_content</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span>
             <span class='rbracket'>]</span>
           <span class='rbrace'>}</span>
@@ -1176,14 +1179,15 @@ runcmd:
     <span class='kw'>end</span>
   <span class='kw'>end</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_parts'>parts</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_num_personality_files'>num_personality_files</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_warn'>warn</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed to split files within defined range! (Max files: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_num_personality_files'>num_personality_files</span><span class='embexpr_end'>}</span><span class='tstring_content'> Actual files: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_parts'>parts</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_warn'>warn</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed to split files within defined range! (Max files: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_num_personality_files'>num_personality_files</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span> \
+      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Actual files: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_parts'>parts</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
     <span class='id identifier rubyid_logger'>logger</span><span class='period'>.</span><span class='id identifier rubyid_warn'>warn</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Appending to last file and hoping for the best!</span><span class='tstring_end'>&#39;</span></span>
     <span class='id identifier rubyid_parts'>parts</span> <span class='op'>=</span> <span class='id identifier rubyid_parts'>parts</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span>
     <span class='id identifier rubyid_extras'>extras</span> <span class='op'>=</span> <span class='id identifier rubyid_parts'>parts</span><span class='period'>.</span><span class='id identifier rubyid_slice!'>slice!</span><span class='lparen'>(</span><span class='int'>4</span><span class='comma'>,</span> <span class='id identifier rubyid_parts'>parts</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_tail_name'>tail_name</span><span class='comma'>,</span> <span class='id identifier rubyid_tail_contents'>tail_contents</span> <span class='op'>=</span> <span class='id identifier rubyid_parts'>parts</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span>
     <span class='id identifier rubyid_parts'>parts</span> <span class='op'>=</span> <span class='const'>Hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_parts'>parts</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_parts'>parts</span><span class='lbracket'>[</span><span class='id identifier rubyid_tail_name'>tail_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span>
-      <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Fn::Join</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span>
+      <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::Join</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span>
         <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
         <span class='id identifier rubyid_extras'>extras</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:last</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_unshift'>unshift</span><span class='lparen'>(</span><span class='id identifier rubyid_tail_contents'>tail_contents</span><span class='rparen'>)</span>
       <span class='rbracket'>]</span>
@@ -2146,9 +2150,9 @@ resource name as label identifier.</p>
 </div>
 
     <div id="footer">
-  Generated on Fri Sep  4 08:58:25 2015 by
+  Generated on Thu Jan 21 14:37:05 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.1.2).
+  0.8.7.6 (ruby-2.2.3).
 </div>
 
   </body>

@@ -80,130 +80,36 @@ helper functions for commonly generated data structures, builtin
 logic for handling template nesting, and most importantly:
 conjouring magic (to get unicorns).</p>
 
+<h2>Using SparkleFormation</h2>
+
+<p>SparkleFormation is a library and not intended for &quot;direct use&quot;. If
+you are looking to build infrastructure stacks via orchestration APIs
+using SparkleFormation templates, please see the reference application
+implementation:</p>
+
+<ul>
+<li><a href="http://www.sparkleformation.io/docs/sfn">SparkleFormation CLI (sfn)</a></li>
+</ul>
+
 <h2>Documentation</h2>
 
 <ul>
-<li><a href="https://sparkleformation.github.io/sparkle_formation">Library Documentation</a></li>
-<li><a href="https://sparkleformation.github.io/sparkle_formation/UserDocs">User Documentation</a></li>
-</ul>
-
-<h2>Overview</h2>
-
-<p>Many template orchestration APIs accept serialized templates defining
-infrastructure resources and configurations. Interacting directly with
-these services via data serialization formats (JSON, YAML, etc) can be
-difficult for humans. SparkleFormation allows humans to programmatically
-define templates in Ruby. These are then exported into the desired
-serialization format, ready to send to the target orchestration API.</p>
-
-<h2>What&#39;s it look like?</h2>
-
-<p>Below is a simple example of an AWS CloudFormation template defined within
-SparkleFormation. It creates a single EC2 resource:</p>
-
-<pre class="code ruby"><code class="ruby"><span class='const'>SparkleFormation</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ec2_example</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
-  <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>AWS CloudFormation Sample Template ...</span><span class='tstring_end'>&quot;</span></span>
-
-  <span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_key_name'>key_name</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Name of EC2 key pair</span><span class='tstring_end'>&#39;</span></span>
-    <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>String</span><span class='tstring_end'>&#39;</span></span>
-  <span class='kw'>end</span>
-
-  <span class='id identifier rubyid_mappings'>mappings</span><span class='period'>.</span><span class='id identifier rubyid_region_map'>region_map</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_set!'>set!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>us-east-1</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid__no_hump'>_no_hump</span><span class='comma'>,</span> <span class='symbol'>:ami</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ami-7f418316</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_set!'>set!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>us-west-1</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid__no_hump'>_no_hump</span><span class='comma'>,</span> <span class='symbol'>:ami</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ami-951945d0</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_set!'>set!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>us-west-2</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid__no_hump'>_no_hump</span><span class='comma'>,</span> <span class='symbol'>:ami</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ami-16fd7026</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_set!'>set!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>eu-west-1</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid__no_hump'>_no_hump</span><span class='comma'>,</span> <span class='symbol'>:ami</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ami-24506250</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_set!'>set!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>sa-east-1</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid__no_hump'>_no_hump</span><span class='comma'>,</span> <span class='symbol'>:ami</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ami-3e3be423</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_set!'>set!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ap-southeast-1</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid__no_hump'>_no_hump</span><span class='comma'>,</span> <span class='symbol'>:ami</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ami-74dda626</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_set!'>set!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ap-northeast-1</span><span class='tstring_end'>&#39;</span></span><span class='period'>.</span><span class='id identifier rubyid__no_hump'>_no_hump</span><span class='comma'>,</span> <span class='symbol'>:ami</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ami-dcfa4edd</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='kw'>end</span>
-
-  <span class='id identifier rubyid_dynamic!'>dynamic!</span><span class='lparen'>(</span><span class='symbol'>:ec2_instance</span><span class='comma'>,</span> <span class='symbol'>:foobar</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_properties'>properties</span> <span class='kw'>do</span>
-      <span class='id identifier rubyid_key_name'>key_name</span> <span class='id identifier rubyid_ref!'>ref!</span><span class='lparen'>(</span><span class='symbol'>:key_name</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_image_id'>image_id</span> <span class='id identifier rubyid_map!'>map!</span><span class='lparen'>(</span><span class='symbol'>:region_map</span><span class='comma'>,</span> <span class='id identifier rubyid_region!'>region!</span><span class='comma'>,</span> <span class='symbol'>:ami</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_user_data'>user_data</span> <span class='id identifier rubyid_base64!'>base64!</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>80</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-    <span class='kw'>end</span>
-  <span class='kw'>end</span>
-
-  <span class='id identifier rubyid_outputs'>outputs</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_instance_id'>instance_id</span> <span class='kw'>do</span>
-      <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>InstanceId of the newly created EC2 instance</span><span class='tstring_end'>&#39;</span></span>
-      <span class='id identifier rubyid_value'>value</span> <span class='id identifier rubyid_ref!'>ref!</span><span class='lparen'>(</span><span class='symbol'>:foobar_ec2_instance</span><span class='rparen'>)</span>
-    <span class='kw'>end</span>
-    <span class='id identifier rubyid_az'>az</span> <span class='kw'>do</span>
-      <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Availability Zone of the newly created EC2 instance</span><span class='tstring_end'>&#39;</span></span>
-      <span class='id identifier rubyid_value'>value</span> <span class='id identifier rubyid_attr!'>attr!</span><span class='lparen'>(</span><span class='symbol'>:foobar_ec2_instance</span><span class='comma'>,</span> <span class='symbol'>:availability_zone</span><span class='rparen'>)</span>
-    <span class='kw'>end</span>
-    <span class='id identifier rubyid_public_ip'>public_ip</span> <span class='kw'>do</span>
-      <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Public IP address of the newly created EC2 instance</span><span class='tstring_end'>&#39;</span></span>
-      <span class='id identifier rubyid_value'>value</span> <span class='id identifier rubyid_attr!'>attr!</span><span class='lparen'>(</span><span class='symbol'>:foobar_ec2_instance</span><span class='comma'>,</span> <span class='symbol'>:public_ip</span><span class='rparen'>)</span>
-    <span class='kw'>end</span>
-    <span class='id identifier rubyid_private_ip'>private_ip</span> <span class='kw'>do</span>
-      <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Private IP address of the newly created EC2 instance</span><span class='tstring_end'>&#39;</span></span>
-      <span class='id identifier rubyid_value'>value</span> <span class='id identifier rubyid_attr!'>attr!</span><span class='lparen'>(</span><span class='symbol'>:foobar_ec2_instance</span><span class='comma'>,</span> <span class='symbol'>:private_ip</span><span class='rparen'>)</span>
-    <span class='kw'>end</span>
-    <span class='id identifier rubyid_public_dns'>public_dns</span> <span class='kw'>do</span>
-      <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Public DNSName of the newly created EC2 instance</span><span class='tstring_end'>&#39;</span></span>
-      <span class='id identifier rubyid_value'>value</span> <span class='id identifier rubyid_attr!'>attr!</span><span class='lparen'>(</span><span class='symbol'>:foobar_ec2_instance</span><span class='comma'>,</span> <span class='symbol'>:public_dns_name</span><span class='rparen'>)</span>
-    <span class='kw'>end</span>
-    <span class='id identifier rubyid_private_dns'>private_dns</span> <span class='kw'>do</span>
-      <span class='id identifier rubyid_description'>description</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Private DNSName of the newly created EC2 instance</span><span class='tstring_end'>&#39;</span></span>
-      <span class='id identifier rubyid_value'>value</span> <span class='id identifier rubyid_attr!'>attr!</span><span class='lparen'>(</span><span class='symbol'>:foobar_ec2_instance</span><span class='comma'>,</span> <span class='symbol'>:private_dns_name</span><span class='rparen'>)</span>
-    <span class='kw'>end</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span>
-</code></pre>
-
-<p>And once compiled we get a nice Hash that we can then convert to JSON which
-is ready to send to the AWS CloudFormation API:</p>
-
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>sparkle_formation</span><span class='tstring_end'>&#39;</span></span>
-<span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>json</span><span class='tstring_end'>&#39;</span></span>
-
-<span class='id identifier rubyid_puts'>puts</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_pretty_generate'>pretty_generate</span><span class='lparen'>(</span>
-  <span class='const'>SparkleFormation</span><span class='period'>.</span><span class='id identifier rubyid_compile'>compile</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ec2_example.rb</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-<span class='rparen'>)</span>
-</code></pre>
-
-<p>Easy!</p>
-
-<h2>Reusability features</h2>
-
-<p>SparkleFormation provides a number of features facilitating code reuse and
-logical structuring. These features help aid developers in applying DRY
-concepts to infrastructure codebases easing maintainability.</p>
-
-<blockquote>
-<p><a href="https://sparkleformation.github.io/sparkle_formation/UserDocs/building-blocks.html">Learn more!</a></p>
-</blockquote>
-
-<h2>SparkleFormation Implementations</h2>
-
-<p>SparkleFormation itself is simply a library for building complex template
-documents in Ruby. It does not provide any integrations with remote API
-services. For interacting with remote services using the SparkleFormation
-library, see the SparkleFormation CLI application:</p>
-
-<ul>
-<li><a href="https://github.com/sparkleformation/sfn">SparkleFormation CLI (sfn)</a></li>
+<li><a href="http://www.sparkleformation.io/docs/sparkle_formation/">SparkleFormation Library Documentation</a></li>
 </ul>
 
 <h1>Infos</h1>
 
 <ul>
-<li>Documentation: <a href="http://sparkleformation.github.io/sparkle_formation">http://sparkleformation.github.io/sparkle_formation</a></li>
-<li>User Documentation: <a href="http://sparkleformation.github.io/sparkle_formation/UserDocs/README.html">http://sparkleformation.github.io/sparkle_formation/UserDocs/README.html</a></li>
+<li>Documentation: <a href="http://www.sparkleformation.io/docs/sparkle_formation">http://www.sparkleformation.io/docs/sparkle_formation</a></li>
 <li>Repository: <a href="https://github.com/sparkleformation/sparkle_formation">https://github.com/sparkleformation/sparkle_formation</a></li>
 <li>IRC: Freenode @ #sparkleformation</li>
 </ul>
 </div></div>
 
     <div id="footer">
-  Generated on Fri Sep  4 08:58:21 2015 by
+  Generated on Thu Jan 21 14:37:02 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.1.2).
+  0.8.7.6 (ruby-2.2.3).
 </div>
 
   </body>
