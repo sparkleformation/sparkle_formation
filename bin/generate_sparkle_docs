@@ -1,18 +1,33 @@
 #!/usr/bin/env ruby
 require 'fileutils'
 
-unless(system("yardoc"))
-  $stderr.puts 'ACK: Failed to create docs!'
-  exit -1
+['yard', 'redcarpet', 'github-markup'].each do |item|
+  begin
+    require item
+  rescue LoadError
+    $stderr.puts "Failed to load required library `#{item}`. To fix: `gem install #{item}` or include within bundle"
+    exit -1
+  end
 end
 
-FileUtils.mkdir_p('doc/UserDocs')
+doc_path = File.join(Dir.pwd, 'doc')
+FileUtils.mkdir_p(doc_path)
 
-Dir.glob('docs/**/*').each do |path|
+Dir.chdir(File.dirname(File.dirname(__FILE__))) do
+  unless(system("yardoc -o #{doc_path}"))
+    $stderr.puts 'Failed to successfully run `yardoc`. Unable to generate documentation!'
+    exit -1
+  end
+end
+
+user_docs_path = File.join(Dir.pwd, 'doc', 'UserDocs')
+FileUtils.mkdir_p(user_docs_path)
+
+Dir.glob(File.join(File.dirname(File.dirname(__FILE__)), 'docs', '**', '*')) do |path|
   next unless File.file?(path)
   content = File.read(path)
   rel_path = path.sub(/.*?docs\//, '')
-  new_path = File.join('doc/UserDocs', rel_path)
+  new_path = File.join(user_docs_path, rel_path)
   user_doc_root = (['..'] * rel_path.scan('/').size).join('/')
   unless(user_doc_root.to_s.empty?)
     user_doc_root << '/'
