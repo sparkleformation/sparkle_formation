@@ -15,8 +15,8 @@ anchors:
     url: "#output-to-stdout"
   - title: "Raise Exceptions"
     url: "#raise-exceptions"
-  - title: "AWS Helpers"
-    url: "#aws-helpers"
+  - title: "Provider specific helpers"
+    url: "#provider-specific-heleprs"
 ---
 
 ## Helper methods
@@ -123,60 +123,37 @@ end
 
 ### Generation Helpers
 
-#### AWS Helpers
+#### Provider specific helpers
 
-Data generation helpers are available for all the AWS
-intrinsic functions and pseudo parameters:
-
-
-##### Base intrinsic functions
-
-* `base64!(VAL)`
-* `find_in_map!(A, B, C)`
-* `attr!(RESOURCE, ATTRIBUTE)`
-* `azs!(REGION)`
-* `join!(VAL1, VAL2, ...)`
-* `select!(INDEX, ITEM)`
-* `ref!(NAME)`
-
-##### Pseudo Parameters
-
-* `account_id!`
-* `notification_arns!`
-* `no_value!`
-* `region!`
-* `stack_id!`
-* `stack_name!`
-
-##### Conditional functions
-
-AWS CFN supports runtime conditions. Helpers for building conditions:
-
-* `and!(VAL1, VAL2, ...)`
-* `equals!(VAL1, VAL2)`
-* `not!(VAL)`
-* `or!(VAL1, VAL2, ...)`
-* `condition!(CONDITION_NAME)`
-
-Helpers for using conditions:
-
-* `if!(CONDITION_NAME)`
+SparkleFormation includes provider specific helpers based on the
+provider defined when instantiating the SparkleFormation template
+instance. For example:
 
 ~~~ruby
-SparkleFormation.new(:test) do
-...
-  some_value if!(:my_condition, TRUE_VALUE, FALSE_VALUE)
-...
+SparkleFormation.new(:my_stack, :provider => :aws) do
+  ...
+  output.instance_id.value ref!(:my_instance)
 end
 ~~~
 
-* `on_condition!(CONDITION_NAME)`
+will make the AWS specific helper functions available within this
+template instance. If the provider specified Azure, then the Azure
+specific helper methods would be available:
 
 ~~~ruby
-SparkleFormation.new(:test) do
-...
-  resources.my_cool_resource do
-    on_condition!(:stack_is_cool)
-...
+SparkleFormation.new(:my_stack, :provider => :azure) do
+  ...
+  outputs.instance_id do
+    type 'string'
+    value reference_id(:my_instance)
+  end
 end
 ~~~
+
+To see all the available helpers for specific providers, refer
+to the library documentation:
+
+* [AWS helpers](http://sparkleformation.github.io/sparkle_formation/SparkleFormation/SparkleAttribute/Aws.html)
+* [Azure helpers](http://sparkleformation.github.io/sparkle_formation/SparkleFormation/SparkleAttribute/Azure.html)
+* [HEAT helpers](http://sparkleformation.github.io/sparkle_formation/SparkleFormation/SparkleAttribute/Heat.html)
+* [Rackspace helpers](http://sparkleformation.github.io/sparkle_formation/SparkleFormation/SparkleAttribute/Rackspace.html)
