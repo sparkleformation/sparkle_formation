@@ -99,7 +99,7 @@ class SparkleFormation
     # @return [String] formatted key
     def __attribute_key(key)
       if(key.is_a?(::Symbol) || key.is_a?(::String))
-        _process_key(key, key.is_a?(::Symbol))
+        _process_key(key, key.is_a?(::Symbol) ? :force : nil)
       else
         key
       end
