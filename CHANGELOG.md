@@ -1,9 +1,10 @@
-# UNRELEASED
-
-* Extraction and isolation of provider specific functionalities
-* Added provider support for Azure
-* Added provider support for Heat
-* Added provider support for Rackspace
+# v2.0.0
+* Fix sparkle pack usage in nested stacks (#140)
+* Update value processing in attribute helpers for consistent behavior
+* Extraction and isolation of provider specific functionalities (#138)
+* Added provider support for Azure (#138)
+* Added provider support for Heat (#138)
+* Added provider support for Rackspace (#139)
 * Enforce minimum supported Ruby version
 
 # v1.2.0
