@@ -4,17 +4,73 @@
       "roleDefinitionId",
       "principalId",
       "scope"
+    ],
+    "full_properties": {
+      "roleDefinitionId": {
+        "description": "Microsoft.Authorization/roleAssignments: roleDefinitionId - id of the role to be used in the role assignment",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "principalId": {
+        "description": "Microsoft.Authorization/roleAssignments: principalId - specifies the principal Id.  This maps to the id inside the directory and can point to a user, service principal, or security group",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "scope": {
+        "description": "Microsoft.Authorization/roleAssignments: scope - specifies the scope at which this role assignment applies to",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-10-01-preview",
+    "required": [
+      "name",
+      "type",
+      "apiVersion",
+      "properties"
     ]
   },
   "Microsoft.DevTestLab/labs": {
     "properties": [
 
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-05-21-preview",
+    "required": [
+      "type",
+      "apiVersion",
+      "location"
     ]
   },
   "Microsoft.DevTestLab/environments": {
     "properties": [
       "labId",
       "vms"
+    ],
+    "full_properties": {
+      "labId": {
+        "description": "Microsoft.DevTestLab/environments - Lab ID",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "vms": {
+        "description": "Microsoft.DevTestLab/environments - VMs",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-05-21-preview",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.AppService/apiapps": {
@@ -25,26 +81,129 @@
       "updatePolicy",
       "accessLevel",
       "dependencies"
+    ],
+    "full_properties": {
+      "gateway": {
+        "description": "Microsoft.AppService/apiapps: Reference to a gateway resource",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "host": {
+        "description": "Microsoft.AppService/apiapps: Reference to a hosting web site resource",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "package": {
+        "description": "Microsoft.AppService/apiapps: API App NuGet gallery package",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "updatePolicy": {
+        "description": "Microsoft.AppService/apiapps: Update policy for the API App instance",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "accessLevel": {
+        "description": "Microsoft.AppService/apiapps: Access level of the API App instance",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "dependencies": {
+        "description": "Microsoft.AppService/apiapps: Collection of references to dependent API Apps instances",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": null,
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.AppService/gateways": {
     "properties": [
       "host"
+    ],
+    "full_properties": {
+      "host": {
+        "description": "Microsoft.AppService/gateways: Reference to a hosting web site resource",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": null,
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   },
   "registrations": {
     "properties": [
-
+      "resource"
+    ],
+    "full_properties": {
+      "resource": {
+        "description": "Microsoft.AppService/gateways/registrations: Reference to a resource to be registered",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": null,
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
     ]
   },
   "Microsoft.AppService/gateways/registrations": {
     "properties": [
-
+      "resource"
+    ],
+    "full_properties": {
+      "resource": {
+        "description": "Microsoft.AppService/gateways/registrations: Reference to a resource to be registered",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": null,
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
     ]
   },
   "Microsoft.DataConnect/connectionManagers": {
     "properties": [
       "description"
+    ],
+    "full_properties": {
+      "description": {
+        "description": "Microsoft.DataConnect/connectionManagers: The description of the connectionManager.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-08-01-preview",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.Web/serverfarms": {
@@ -53,6 +212,39 @@
       "numberOfWorkers",
       "sku",
       "workerSize"
+    ],
+    "full_properties": {
+      "name": {
+        "description": "Microsoft.Web/serverfarms: Name of the server farm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "numberOfWorkers": {
+        "description": "Microsoft.Web/serverfarms: The instance count, which is the number of virtual machines dedicated to the farm. Supported values are 1-10.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "sku": {
+        "description": "Microsoft.Web/serverfarms: Server farm sku.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "workerSize": {
+        "description": "Microsoft.Web/serverfarms: The instance size.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-06-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.Web/sites/config": {
@@ -60,6 +252,32 @@
       "connectionStrings",
       "phpVersion",
       "netFrameworkVersion"
+    ],
+    "full_properties": {
+      "connectionStrings": {
+        "description": "Microsoft.Web/sites/config: Connection strings",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "phpVersion": {
+        "description": "Microsoft.Web/sites/config: PHP version (an empty string disables PHP).",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "netFrameworkVersion": {
+        "description": "Microsoft.Web/sites/config: The .Net Framework version.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-06-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
     ]
   },
   "Microsoft.Web/sites/extensions": {
@@ -72,6 +290,62 @@
       "type",
       "typeHandlerVersion",
       "settings"
+    ],
+    "full_properties": {
+      "packageUri": {
+        "description": "Microsoft.Web/sites/extensions: uri of package",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "dbType": {
+        "description": "Microsoft.Web/sites/extensions: type of database",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "connectionString": {
+        "description": "Microsoft.Web/sites/extensions: connection string",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "setParameters": {
+        "description": "Microsoft.Web/sites/extensions: parameters",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "publisher": {
+        "description": "Microsoft.Compute/extensions - Publisher",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "type": {
+        "description": "Microsoft.Compute/extensions - Type",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "typeHandlerVersion": {
+        "description": "Microsoft.Compute/extensions - Type handler version",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "settings": {
+        "description": "Microsoft.Compute/extensions - Settings",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-06-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
     ]
   },
   "Microsoft.Web/sites": {
@@ -82,17 +356,98 @@
       "enabledHostnames",
       "hostNameSslStates",
       "serverFarm"
+    ],
+    "full_properties": {
+      "name": {
+        "description": "Microsoft.Web/sites: The name of web site.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "serverFarmId": {
+        "description": "Microsoft.Web/sites: The resource Id of server farm site belongs to.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "hostnames": {
+        "description": "Microsoft.Web/sites: An array of strings that contains the public hostnames for the site, including custom domains.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "enabledHostnames": {
+        "description": "Microsoft.Web/sites: An array of strings that contains enabled hostnames for the site. By default, these are <SiteName>.azurewebsites.net and <SiteName>.scm.azurewebsites.net.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "hostNameSslStates": {
+        "description": "Microsoft.Web/sites: Container for SSL states.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "serverFarm": {
+        "description": "Microsoft.Web/sites: The name of server farm site belongs to.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-06-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.Web/certificates": {
     "properties": [
       "pfxBlob",
       "password"
+    ],
+    "full_properties": {
+      "pfxBlob": {
+        "description": "Microsoft.Web/certificates: A base64Binary value that contains the PfxBlob of the certificate.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "password": {
+        "description": "Microsoft.Web/certficates: A string that contains the password for the certificate.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-06-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.Storage/storageAccounts": {
     "properties": [
       "accountType"
+    ],
+    "full_properties": {
+      "accountType": {
+        "description": "Microsoft.Storage/storageAccounts: The type of this account.",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-06-15",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.Network/publicIPAddresses": {
@@ -100,6 +455,34 @@
       "publicIPAllocationMethod",
       "idleTimeoutInMinutes",
       "dnsSettings"
+    ],
+    "full_properties": {
+      "publicIPAllocationMethod": {
+        "description": "Microsoft.Network/publicIPAddresses: Public IP allocation method",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "idleTimeoutInMinutes": {
+        "description": "Microsoft.Network/publicIPAddresses: Idle timeout in minutes",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "dnsSettings": {
+        "description": "Microsoft.Network/publicIPAddresses: DNS settings",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-06-15",
+    "required": [
+      "type",
+      "apiVersion",
+      "name",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.Network/networkInterfaces": {
@@ -107,6 +490,34 @@
       "networkSecurityGroup",
       "ipConfigurations",
       "dnsSettings"
+    ],
+    "full_properties": {
+      "networkSecurityGroup": {
+        "description": "Microsoft.Network/networkInterfaces: Network security group",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "ipConfigurations": {
+        "description": "Microsoft.Network/networkInterfaces: IP configurations",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "dnsSettings": {
+        "description": "Microsoft.Network/networkInterfaces: DNS settings",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-06-15",
+    "required": [
+      "type",
+      "apiVersion",
+      "name",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.Network/virtualNetworks": {
@@ -114,6 +525,34 @@
       "addressSpace",
       "dhcpOptions",
       "subnets"
+    ],
+    "full_properties": {
+      "addressSpace": {
+        "description": "Microsoft.Network/virtualNetworks: Address space",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "dhcpOptions": {
+        "description": "Microsoft.Network/virtualNetworks: DHCP options",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "subnets": {
+        "description": "Microsoft.Network/virtualNetworks: Subnets",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-06-15",
+    "required": [
+      "type",
+      "apiVersion",
+      "name",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.Network/loadBalancers": {
@@ -125,22 +564,127 @@
       "inboundNatRules",
       "inboundNatPools",
       "outboundNatRules"
+    ],
+    "full_properties": {
+      "frontendIPConfigurations": {
+        "description": "Microsoft.Network/loadBalancers: Frontend IP configurations",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "backendAddressPools": {
+        "description": "Microsoft.Network/loadBalancers: Backend address pools",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "loadBalancingRules": {
+        "description": "Microsoft.Network/loadBalancers: Load balancing rules",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "probes": {
+        "description": "Microsoft.Network/loadBalancers: Probes",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "inboundNatRules": {
+        "description": "Microsoft.Network/loadBalancers: Inbound NAT rules",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "inboundNatPools": {
+        "description": "Microsoft.Network/loadBalancers: Inbound NAT pools",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "outboundNatRules": {
+        "description": "Microsoft.Network/loadBalancers: Outbound NAT rules",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-06-15",
+    "required": [
+      "type",
+      "apiVersion",
+      "name",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.Network/networkSecurityGroups": {
     "properties": [
       "securityRules"
+    ],
+    "full_properties": {
+      "securityRules": {
+        "description": "Microsoft.Network/networkSecurityGroups: Security rules",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-06-15",
+    "required": [
+      "type",
+      "apiVersion",
+      "name",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.Network/routeTables": {
     "properties": [
       "routes"
+    ],
+    "full_properties": {
+      "routes": {
+        "description": "Microsoft.Network/routeTables: Routes",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-06-15",
+    "required": [
+      "type",
+      "apiVersion",
+      "name",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.Compute/availabilitySets": {
     "properties": [
       "platformUpdateDomainCount",
       "platformFaultDomainCount"
+    ],
+    "full_properties": {
+      "platformUpdateDomainCount": {
+        "description": "Microsoft.Compute/availabilitySets - Platform update domain count",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "platformFaultDomainCount": {
+        "description": "Microsoft.Compute/availabilitySets - Platform fault domain count",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-06-15",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.Compute/virtualMachines": {
@@ -150,12 +694,74 @@
       "storageProfile",
       "osProfile",
       "networkProfile"
+    ],
+    "full_properties": {
+      "availabilitySet": {
+        "description": "Microsoft.Compute/virtualMachines - Availability set",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "hardwareProfile": {
+        "description": "Microsoft.Compute/virtualMachines - Hardware profile",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "storageProfile": {
+        "description": "Microsoft.Compute/virtualMachines - Storage profile",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "osProfile": {
+        "description": "Mirosoft.Compute/virtualMachines - Operating system profile",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "networkProfile": {
+        "description": "Microsoft.Compute/virtualMachines - Network profile",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-06-15",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.Compute/virtualMachineScaleSets": {
     "properties": [
       "upgradePolicy",
       "virtualMachineProfile"
+    ],
+    "full_properties": {
+      "upgradePolicy": {
+        "description": "Microsoft.Compute/virtualMachineScaleSets - Upgrade policy",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "virtualMachineProfile": {
+        "description": "Microsoft.Compute/virtualMachineScaleSets - Virtual machine policy",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-06-15",
+    "required": [
+      "name",
+      "apiVersion",
+      "type",
+      "sku",
+      "properties",
+      "location"
     ]
   },
   "extensions": {
@@ -164,6 +770,38 @@
       "type",
       "typeHandlerVersion",
       "settings"
+    ],
+    "full_properties": {
+      "publisher": {
+        "description": "Microsoft.Compute/extensionsChild - Publisher",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "type": {
+        "description": "Microsoft.Compute/extensionsChild - Type",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "typeHandlerVersion": {
+        "description": "Microsoft.Compute/extensionsChild - Type handler version",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "settings": {
+        "description": "Microsoft.Compute/extensionsChild - Settings",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-06-15",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
     ]
   },
   "Microsoft.Cache/Redis": {
@@ -177,12 +815,97 @@
       "staticIP",
       "redisVersion",
       "maxMemoryPolicy"
+    ],
+    "full_properties": {
+      "sku": {
+        "description": "Microsoft.Cache/Redis: sku",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "shardCount": {
+        "description": "Microsoft.Cache/Redis: (only if using clustering) number of shards in the redis cluster",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "enableNonSslPort": {
+        "description": "Microsoft.Cache/Redis enableNonSslPort. Enables less secure direct access to redis on port 6379 WITHOUT SSL tunneling.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "redisConfiguration": {
+        "description": "Microsoft.Cache/Redis/redisConfiguration",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "virtualNetwork": {
+        "description": "Microsoft.Cache/Redis (optional) the ARM resource ID of a Classic Virtual Network for the redis cache to join",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "subnet": {
+        "description": "Microsoft.Cache/Redis (required with virtualNetwork) the name of an existing subnet for the redis cache to join",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "staticIP": {
+        "description": "Microsoft.Cache/Redis (required with virtualNetwork) the static IP address to allocate to the redis cache",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "redisVersion": {
+        "description": "Microsoft.Cache/Redis: version of Redis",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "maxMemoryPolicy": {
+        "description": "Microsoft.Cache/Redis: maxMemoryPolicy. How Redis will select what to remove when maxmemory is reached. Default: VolatileLRU.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-04-01-preview",
+    "required": [
+      "name",
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.Scheduler/jobCollections": {
     "properties": [
       "sku",
       "quota"
+    ],
+    "full_properties": {
+      "sku": {
+        "description": "Microsoft.Scheduler/jobCollections: Job Collection sku",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "quota": {
+        "description": "Microsoft.Scheduler/jobCollections/quota",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-08-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.Scheduler/jobCollections/jobs": {
@@ -191,12 +914,64 @@
       "recurrence",
       "state",
       "action"
+    ],
+    "full_properties": {
+      "startTime": {
+        "description": "Microsoft.Scheduler/jobCollections/jobs: For simple scheduler startTime will be the first occurrence and for complex schedules the job will start no sooner than startTime.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "recurrence": {
+        "description": "Microsoft.Scheduler/jobCollections/jobs: The recurrence schedule the job will execute.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "state": {
+        "description": "Microsoft.Scheduler/jobCollections/jobs: Running state of the job.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "action": {
+        "description": "Microsoft.Scheduler/jobCollections/jobs: Action to perform on the prescribed schedule",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-08-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
     ]
   },
   "Microsoft.NotificationHubs/namespaces": {
     "properties": [
       "name",
       "namespaceType"
+    ],
+    "full_properties": {
+      "name": {
+        "description": "Microsoft.NotificationHubs/namespaces: The name of the namespace.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "namespaceType": {
+        "description": "Microsoft.NotificationHubs/namespaces: The type of the namespace",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-09-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
     ]
   },
   "Microsoft.NotificationHubs/namespaces/notificationHubs": {
@@ -208,16 +983,56 @@
       "AdmCredential",
       "BaiduCredential",
       "authorizationRules"
-    ]
-  },
-  "secrets": {
-    "properties": [
-
-    ]
-  },
-  "secretsChild": {
-    "properties": [
-
+    ],
+    "full_properties": {
+      "wnsCredential": {
+        "description": "Microsoft.NotificationHubs/namespaces/notificationHubs: WNS credentials for a Notification Hub.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "apnsCredential": {
+        "description": "Microsoft.NotificationHubs/namespaces/notificationHubs: APNS credentials for a Notification Hub.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "gcmCredential": {
+        "description": "Microsoft.NotificationHubs/namespaces/notificationHubs: GCM credentials for a Notification Hub.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "mpnsCredential": {
+        "description": "Microsoft.NotificationHubs/namespaces/notificationHubs: MPNS credentials for a Notification Hub.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "AdmCredential": {
+        "description": "Microsoft.NotificationHubs/namespaces/notificationHubs: ADM credentials for a Notification Hub.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "BaiduCredential": {
+        "description": "Microsoft.NotificationHubs/namespaces/notificationHubs: Baidu credentials for a Notification Hub.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "authorizationRules": {
+        "description": "Microsoft.NotificationHubs/namespaces/notificationHubs: Authorization Rules for a Notification Hub.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-09-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
     ]
   },
   "Microsoft.KeyVault/vaults": {
@@ -226,6 +1041,38 @@
       "tenantId",
       "accessPolicies",
       "enabledForDeployment"
+    ],
+    "full_properties": {
+      "sku": {
+        "description": "Microsoft.KeyVault/vaults: Sku",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "tenantId": {
+        "description": "Microsoft.KeyVault/vaults: The tenant ID of the Azure Active Directory Tenant to use for authorization.",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "accessPolicies": {
+        "description": "Microsoft.KeyVault/vaults: Access policies",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "enabledForDeployment": {
+        "description": "Microsoft.KeyVault/vaults: Enabled for deployment",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-06-01",
+    "required": [
+      "apiVersion",
+      "properties",
+      "type"
     ]
   },
   "Microsoft.Sql/servers": {
@@ -233,26 +1080,112 @@
       "version",
       "administratorLogin",
       "administratorLoginPassword"
+    ],
+    "full_properties": {
+      "version": {
+        "description": "Microsoft.Sql/server: Azure SQL DB server version",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "administratorLogin": {
+        "description": "Microsoft.Sql/server: administrator login name",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "administratorLoginPassword": {
+        "description": "Microsoft.Sql/server: administrator login password",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-04-01-preview",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   },
   "databases": {
     "properties": [
 
+    ],
+    "full_properties": {
+    },
+    "api_version": "2014-04-01-preview",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
     ]
   },
   "SuccessBricks.ClearDB/databases": {
     "properties": [
 
+    ],
+    "full_properties": {
+    },
+    "api_version": "2014-04-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "plan",
+      "location"
     ]
   },
   "firewallrules": {
     "properties": [
-
+      "endIpAddress",
+      "startIpAddress"
+    ],
+    "full_properties": {
+      "endIpAddress": {
+        "description": "Microsoft.Sql/server/firewallrules: ending IP address",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "startIpAddress": {
+        "description": "Microsoft.Sql/server/firewallrules: starting IP address",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-04-01-preview",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
     ]
   },
   "Microsoft.Sql/servers/firewallrules": {
     "properties": [
-
+      "endIpAddress",
+      "startIpAddress"
+    ],
+    "full_properties": {
+      "endIpAddress": {
+        "description": "Microsoft.Sql/server/firewallrules: ending IP address",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "startIpAddress": {
+        "description": "Microsoft.Sql/server/firewallrules: starting IP address",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-04-01-preview",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
     ]
   },
   "Microsoft.Network/trafficManagerProfiles": {
@@ -262,6 +1195,45 @@
       "dnsConfig",
       "monitorConfig",
       "endpoints"
+    ],
+    "full_properties": {
+      "profileStatus": {
+        "description": "The status of the profile (Enabled/Disabled)",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "trafficRoutingMethod": {
+        "description": "The traffic routing method (Performance/Priority/Weighted",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "dnsConfig": {
+        "description": "DNS configuration settings for the profile",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "monitorConfig": {
+        "description": "Microsoft.Network/trafficManagerProfiles Configuration for monitoring (probing) of endpoints in this profile",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "endpoints": {
+        "description": "The endpoints over which this profile will route traffic",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-11-01",
+    "required": [
+      "apiVersion",
+      "type",
+      "location",
+      "properties"
     ]
   },
   "Microsoft.Resources/deployments": {
@@ -271,41 +1243,198 @@
       "template",
       "parametersLink",
       "parameters"
+    ],
+    "full_properties": {
+      "mode": {
+        "description": "Deployment mode",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "templateLink": {
+        "description": "Deployment template link",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "template": {
+        "description": "Deployment template",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "parametersLink": {
+        "description": "Deployment parameters link",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "parameters": {
+        "description": "Deployment parameters",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-01-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "name",
+      "properties"
     ]
   },
   "Microsoft.Resources/links": {
     "properties": [
       "targetId",
       "notes"
+    ],
+    "full_properties": {
+      "targetId": {
+        "description": "Target resource id to link to",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "notes": {
+        "description": "Notes for this link",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-01-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "name",
+      "properties"
     ]
   },
   "Microsoft.Authorization/locks": {
     "properties": [
       "level",
       "notes"
+    ],
+    "full_properties": {
+      "level": {
+        "description": "Microsoft.Authorization/locks: level - specifies the type of lock to apply to the scope.  CanNotDelete allows modification but prevents deletion, ReadOnly prevents modification or deletion.",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "notes": {
+        "description": "Microsoft.Authorization/locks: notes - user defined notes for the lock",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-01-01",
+    "required": [
+      "name",
+      "type",
+      "apiVersion",
+      "properties"
     ]
   },
   "microsoft.visualstudio/account": {
     "properties": [
       "OperationType",
       "AccountName"
+    ],
+    "full_properties": {
+      "OperationType": {
+        "description": "microsoft.visualstudio/account: Type of operation being performed on the account, which can be either Create or Link.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "AccountName": {
+        "description": "microsoft.visualstudio/account: Name of the Visual Studio Online account",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-02-26",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   },
   "microsoft.visualstudio/account/project": {
     "properties": [
       "ProcessTemplateId",
       "VersionControlOption"
+    ],
+    "full_properties": {
+      "ProcessTemplateId": {
+        "description": "microsoft.visualstudio/account/project: Process template guid for the project",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "VersionControlOption": {
+        "description": "microsoft.visualstudio/account/project: Version control type for the project, currently TfsVc and Git",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-02-26",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
     ]
   },
   "Microsoft.BizTalkServices/BizTalk": {
     "properties": [
       "sku"
+    ],
+    "full_properties": {
+      "sku": {
+        "description": "BizTalk SKU",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-04-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.BizTalkServices/BizTalk/HybridConnection": {
     "properties": [
       "hostName",
       "port"
+    ],
+    "full_properties": {
+      "hostName": {
+        "description": "Microsoft.BizTalkServices/BizTalk/HybridConnection: Hostname of the machine to which hybrid connection is to be established",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "port": {
+        "description": "Microsoft.BizTalkServices/BizTalk/HybridConnection: Port number of the machine to which hybrid connection is to be established",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-04-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
     ]
   },
   "Microsoft.Insights/alertrules": {
@@ -315,11 +1444,65 @@
       "isEnabled",
       "condition",
       "action"
+    ],
+    "full_properties": {
+      "name": {
+        "description": "Microsoft.Insights/alertrules: Name of the alert rule.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "description": {
+        "description": "Microsoft.Insights/alertrules: Description of the alert rule that will be included in the alert email.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "isEnabled": {
+        "description": "Microsoft.Insights/alertrules: Indicates whether the alert rule is enabled.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "condition": {
+        "description": "Microsoft.Insights/alertrules: The condition that results in the alert rule being activated.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "action": {
+        "description": "Microsoft.Insights/alertrules: The action that is performed when the alert rule becomes active, and when an alert condition is resolved.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-04-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.Insights/components": {
     "properties": [
       "applicationId"
+    ],
+    "full_properties": {
+      "applicationId": {
+        "description": "Microsoft.Insights/components: applicationId",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-04-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.Insights/webtests": {
@@ -333,6 +1516,69 @@
       "Locations",
       "Configuration",
       "SyntheticMonitorId"
+    ],
+    "full_properties": {
+      "provisioningState": {
+        "description": "Microsoft.Insights/webtests: provisioning state.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "Name": {
+        "description": "Microsoft.Insights/webtests: name of the webtest.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "Description": {
+        "description": "Microsoft.Insights/webtests: description of the webtest.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "Enabled": {
+        "description": "Microsoft.Insights/webtests: Is the webtest enabled.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "Frequency": {
+        "description": "Microsoft.Insights/webtests: Frequency of the webtest.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "Timeout": {
+        "description": "Microsoft.Insights/webtests: Timeout for the webtest.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "Locations": {
+        "description": "Microsoft.Insights/webtests: Locations of the webtest.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "Configuration": {
+        "description": "Microsoft.Insights/webtests: Configuration for the webtest.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "SyntheticMonitorId": {
+        "description": "Microsoft.Insights/webtests: Synthetic monitor id.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-04-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.Insights/autoscalesettings": {
@@ -341,6 +1587,39 @@
       "enabled",
       "name",
       "targetResourceUri"
+    ],
+    "full_properties": {
+      "profiles": {
+        "description": "Microsoft.Insights/autoscalesettings: Contains a collection of automatic scaling profiles that specify different scaling parameters for different time periods. A maximum of 20 profiles can be specified.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "enabled": {
+        "description": "Microsoft.Insights/autoscalesettings: Specifies whether automatic scaling is enabled for the resource.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "name": {
+        "description": "Microsoft.Insights/autoscalesettings: The name of the autoscale setting.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "targetResourceUri": {
+        "description": "Microsoft.Insights/autoscalesettings: The resource identifier of the resource that the autoscale setting should be added to.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-04-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   },
   "Microsoft.DocumentDB/databaseAccounts": {
@@ -348,6 +1627,33 @@
       "name",
       "databaseAccountOfferType",
       "consistencyPolicy"
+    ],
+    "full_properties": {
+      "name": {
+        "description": "Microsoft.DocumentDB/databaseAccounts: Name of the database account.",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "databaseAccountOfferType": {
+        "description": "Microsoft.DocumentDB/databaseAccounts: Database account offer type",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "consistencyPolicy": {
+        "description": "Microsoft.DocumentDB/databaseAccounts: Consistency policy",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-04-08",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
     ]
   }
 }
