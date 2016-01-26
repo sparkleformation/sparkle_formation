@@ -9,7 +9,7 @@ class SparkleFormation
     class Azure < Resources
 
       # String to split for resource namespacing
-      RESOURCE_TYPE_NAMESPACE_SPLITTER = '/'
+      RESOURCE_TYPE_NAMESPACE_SPLITTER = ['.', '/']
 
       class << self
 
