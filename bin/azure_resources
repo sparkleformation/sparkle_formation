@@ -1,0 +1,96 @@
+#!/usr/bin/env ruby
+
+%w(multi_json fileutils bogo).each do |lib|
+  begin
+    require lib
+  rescue LoadError
+    $stderr.puts "Failed to load required library: `#{lib}` !"
+    $stderr.puts "  > gem install #{lib}"
+    exit -1
+  end
+end
+
+STORE = '/tmp/azure-schemas'
+
+UPDATE_MAPPING = {}
+
+unless(File.directory?(STORE))
+  FileUtils.mkdir_p(STORE)
+  Dir.chdir(STORE) do
+    unless(system('wget https://github.com/Azure/azure-resource-manager-schemas/archive/master.tar.gz'))
+      puts 'FAILED: Documentation fetching failed!'
+      exit -1
+    end
+    unless(system('tar xzf master.tar.gz'))
+      puts 'FAILED: Documentation unpacking failed!'
+      exit -1
+    end
+  end
+end
+
+schema_files = Dir.glob(File.join(STORE, 'azure-resource-manager-schemas-master', 'schemas', '**', '**', '*.json'))
+schema_contents = schema_files.map do |s_path|
+  File.read(s_path).sub(/^[^\{]*/, '')
+end
+schemas = schema_contents.map do |s_content|
+  MultiJson.load(s_content).to_smash
+end
+
+resource_definitions = schemas.find_all do |schema|
+  schema.keys.include?('resourceDefinitions')
+end.inject(Smash.new) do |memo, schema|
+  memo.deep_merge(schema['resourceDefinitions'])
+end
+
+definitions = schemas.find_all do |schema|
+  schema.keys.include?('definitions')
+end.inject(Smash.new) do |memo, schema|
+  memo.deep_merge(schema['definitions'])
+end
+
+ref_replacer = lambda do |item|
+  if(item.is_a?(Hash) && item.size == 1 && item.keys.first == '$ref' && item.values.first.start_with?('#/definitions'))
+    def_name = item.values.first.sub('#/definitions/', '')
+    definitions[def_name] || raise("Failed to locate definition! `#{def_name}`")
+  elsif(item.is_a?(::Enumerable))
+    if(item.respond_to?(:keys))
+      item.class[
+        *item.map do |entry|
+          ref_replacer.call(entry)
+        end.flatten(1)
+      ]
+    else
+      item.class[
+        *item.map do |entry|
+          ref_replacer.call(entry)
+        end
+      ]
+    end
+  else
+    item
+  end
+end
+
+resource_definitions = ref_replacer.call(resource_definitions)
+azure_resources = Smash[
+  resource_definitions.map do |k, v|
+    resource_name = v.fetch(:properties, :type, :enum, []).first
+    next unless resource_name
+    [resource_name,
+      :properties => v.fetch(:properties, :properties, :properties, {}).keys,
+      :full_properties => Smash[
+        v.fetch(:properties, :properties, :properties, {}).map do |prop_key, prop_val|
+          [prop_key,
+            :description => prop_val[:description],
+            :required => v.fetch(:properties, :properties, :required, []).include?(prop_key),
+            :type => prop_val[:type],
+            :update_causes => 'unknown']
+        end
+      ],
+      :api_version => v.fetch(:properties, :apiVersion, :enum, []).sort.last,
+      :required => v[:required]
+    ]
+  end.compact
+]
+
+puts MultiJson.dump(azure_resources, :pretty => true)
