@@ -146,6 +146,12 @@ describe SparkleFormation do
       e.must_equal "TestEc2Instance"
     end
 
+    it 'properly locates dynamic' do
+      SparkleFormation.new(:dummy, :provider => :azure) do
+        dynamic!(:network_virtual_networks, :test)
+      end.dump
+    end
+
   end
 
 end

@@ -85,9 +85,7 @@ class SparkleFormation
         snake_parts = nil
         result = @@registry[base_key].keys.detect do |ref|
           ref = ref.downcase
-          snake_parts = ref.split(
-            self.const_get(:RESOURCE_TYPE_NAMESPACE_SPLITTER) # rubocop:disable Style/RedundantSelf
-          )
+          snake_parts = ref.split(resource_type_splitter)
           until(snake_parts.empty?)
             break if snake_parts.join('') == key
             snake_parts.shift
@@ -96,9 +94,7 @@ class SparkleFormation
         end
         if(result)
           collisions = @@registry[base_key].keys.find_all do |ref|
-            split_ref = ref.downcase.split(
-              self.const_get(:RESOURCE_TYPE_NAMESPACE_SPLITTER) # rubocop:disable Style/RedundantSelf
-            )
+            split_ref = ref.downcase.split(resource_type_splitter)
             ref = split_ref.slice(split_ref.size - snake_parts.size, split_ref.size).join('')
             key == ref
           end
@@ -108,6 +104,16 @@ class SparkleFormation
           end
         end
         result
+      end
+
+      # @return [Regexp] value for resource splitting
+      # rubocop:disable Style/RedundantSelf
+      def resource_type_splitter
+        Regexp.new(
+          [self.const_get(:RESOURCE_TYPE_NAMESPACE_SPLITTER)].flatten.compact.map{|value|
+            Regexp.escape(value)
+          }.join('|')
+        )
       end
 
       # Registry information for given type

@@ -224,7 +224,12 @@ class SparkleFormation
           "(valid: #{struct._self.sparkle.dynamics.keys.sort.join(', ')})"
           if(struct._self.provider_resources && struct._self.provider_resources.registry.keys.size > 1)
             t_name = struct._self.provider_resources.registry.keys.first
-            message << "\nBuiltin dynamics pattern `#{t_name}` -> `:#{Bogo::Utility.snake(t_name.gsub('::', '_'))}`"
+            valid_t_name = Bogo::Utility.snake(
+              t_name.split(
+                struct._self.provider_resources.resource_type_splitter
+              ).join('_')
+            )
+            message << "\nBuiltin dynamics pattern `#{t_name}` -> `:#{Bogo::Utility.snake(valid_t_name)}`"
           end
           raise message
         end
