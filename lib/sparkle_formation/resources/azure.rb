@@ -35,6 +35,23 @@ class SparkleFormation
           load!
         end
 
+        # Automatically add api version information and location if
+        # required by resource and not provided
+        #
+        # @param struct [SparkleStruct]
+        # @param lookup_key [String]
+        # @return [SparkleStruct]
+        def resource_customizer(struct, lookup_key)
+          info = registry[lookup_key]
+          if(info[:required].include?('apiVersion') && struct.api_version.nil?)
+            struct.api_version info[:api_version]
+          end
+          if(info[:required].include?('location') && struct.location.nil?)
+            struct.location struct.resource_group!.location
+          end
+          struct
+        end
+
       end
 
     end
