@@ -132,6 +132,16 @@ class SparkleFormation
         @@registry[base_key]
       end
 
+      # Simple hook method to allow resource customization if the specific
+      # provider requires/offers extra setup
+      #
+      # @param struct [SparkleStruct]
+      # @param lookup_key [String]
+      # @return [SparkleStruct]
+      def resource_customizer(struct, lookup_key)
+        struct
+      end
+
     end
   end
 end

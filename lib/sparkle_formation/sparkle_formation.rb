@@ -315,6 +315,7 @@ class SparkleFormation
           end
         end
         new_resource.instance_exec(&block) if block
+        struct._self.provider_resources.resource_customizer(struct, lookup_key)
         new_resource
       end
     end
