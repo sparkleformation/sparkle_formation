@@ -75,6 +75,9 @@ class SparkleFormation
     # Override to inspect result value and fetch root if value is a
     # FunctionStruct
     def method_missing(sym, *args, &block)
+      if(sym.to_s.start_with?('_') || sym.to_s.end_with?('!'))
+        ::Kernel.raise ::NoMethodError.new "Undefined method `#{sym}` for #{_klass.name}"
+      end
       result = super(*[sym, *args], &block)
       @table[_process_key(sym)] = function_bubbler(result)
     end
