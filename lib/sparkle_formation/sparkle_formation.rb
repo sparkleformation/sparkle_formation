@@ -570,6 +570,9 @@ class SparkleFormation
         const = SparkleAttribute.const_get(camel(provider))
         struct_class = Class.new(SparkleStruct)
         struct_class.include(const)
+        struct_name = [SparkleStruct.name, camel(provider)].join('::')
+        struct_class.define_singleton_method(:name){ struct_name }
+        struct_class.define_singleton_method(:to_s){ struct_name }
       else
         struct_class = SparkleStruct
       end
