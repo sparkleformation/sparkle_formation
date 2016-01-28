@@ -1,3 +1,12 @@
+# v2.0.2
+* Provide useful return value from `#dynamic!` (#137)
+* Implement proper Azure resource generator (#141)
+* Update internal Azure resource list (#141)
+* Support provider specific resource splitting (#142)
+* Allow provider specific resource modification on builtin inserts (#143)
+* Enforce helper method convention. Always error if convention used and helper not found (#144)
+* Always include parens on root of FunctionStruct dumps
+
 # v2.0.0
 * Fix sparkle pack usage in nested stacks (#140)
 * Update value processing in attribute helpers for consistent behavior
