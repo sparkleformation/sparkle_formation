@@ -53,7 +53,7 @@ describe SparkleFormation::SparkleStruct do
     it 'should force root on FunctionStruct instances' do
       @struct.my_key SparkleFormation::FunctionStruct.new(:foobar).chained.method_value(42)
       @struct._dump.must_equal(
-        'MyKey' => '[foobar.chained.method_value(42)]'
+        'MyKey' => '[foobar().chained.method_value(42)]'
       )
     end
 

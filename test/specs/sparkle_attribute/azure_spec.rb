@@ -196,7 +196,7 @@ describe SparkleFormation::SparkleAttribute::Azure do
     end
 
     it 'should generate deployment function' do
-      @attr.deployment!._dump.must_equal '[deployment]'
+      @attr.deployment!._dump.must_equal '[deployment()]'
     end
 
     it 'should generate parameters function' do
@@ -224,7 +224,7 @@ describe SparkleFormation::SparkleAttribute::Azure do
     end
 
     it 'should generate resourceGroup function' do
-      @attr.resource_group!._dump.must_equal '[resourceGroup]'
+      @attr.resource_group!._dump.must_equal '[resourceGroup()]'
     end
 
     it 'should generate resourceId function' do
@@ -232,7 +232,7 @@ describe SparkleFormation::SparkleAttribute::Azure do
     end
 
     it 'should generate a subscription function' do
-      @attr.subscription!._dump.must_equal '[subscription]'
+      @attr.subscription!._dump.must_equal '[subscription()]'
     end
 
   end
@@ -250,7 +250,7 @@ describe SparkleFormation::SparkleAttribute::Azure do
       @sfn.overrides do
         value deployment!.properties.index(1)
       end
-      @sfn.dump.must_equal 'value' => '[deployment.properties.index(1)]'
+      @sfn.dump.must_equal 'value' => '[deployment().properties.index(1)]'
     end
 
     it 'should allow complex method chaining' do
@@ -271,7 +271,7 @@ describe SparkleFormation::SparkleAttribute::Azure do
       @sfn.overrides do
         value deployment!.first.second.third.fourth
       end
-      @sfn.dump.must_equal 'value' => '[deployment.first.second.third.fourth]'
+      @sfn.dump.must_equal 'value' => '[deployment().first.second.third.fourth]'
     end
 
     it 'should set the root function structure in arrays' do
@@ -282,7 +282,7 @@ describe SparkleFormation::SparkleAttribute::Azure do
           deployment!.first.second.third
         ]
       end
-      @sfn.dump.must_equal 'value' => ['one', 'two', '[deployment.first.second.third]']
+      @sfn.dump.must_equal 'value' => ['one', 'two', '[deployment().first.second.third]']
     end
 
     it 'should set the root function structure in hashes' do
@@ -293,7 +293,7 @@ describe SparkleFormation::SparkleAttribute::Azure do
       end
       @sfn.dump.must_equal(
         'value' => {
-          'thing' => '[deployment.first.second.third]'
+          'thing' => '[deployment().first.second.third]'
         }
       )
     end
@@ -308,7 +308,7 @@ describe SparkleFormation::SparkleAttribute::Azure do
       @sfn.dump.must_equal(
         'value' => [
           'thing1',
-          {'thing2' => '[deployment.first.second.third]'}
+          {'thing2' => '[deployment().first.second.third]'}
         ]
       )
     end
@@ -326,7 +326,7 @@ describe SparkleFormation::SparkleAttribute::Azure do
         'value' => {
           'thing1' => [
             'thing1',
-            {'thing2' => '[deployment.first.second.third]'}
+            {'thing2' => '[deployment().first.second.third]'}
           ]
         }
       )
