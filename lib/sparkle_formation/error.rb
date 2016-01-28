@@ -16,6 +16,15 @@ class SparkleFormation
         @name = opts[:name] if opts
       end
 
+      # @return [String] customized message including name
+      def to_s
+        if(name)
+          "Failed to locate item named: `#{name}`"
+        else
+          'Failed to locate item'
+        end
+      end
+
       # Pack related items
       class Dynamic < NotFound; end
       class Component < NotFound; end
