@@ -86,9 +86,12 @@ class SparkleFormation
             arg.inspect
           end
         end.join(', ')
+        unless(_fn_name.to_s.empty?)
+          function_name = args.empty? ? "#{_fn_name}()" : "#{_fn_name}(#{args})"
+        end
         internal = _eval_join(
           *[
-            args.empty? ? _fn_name : "#{_fn_name}(#{args})",
+            function_name,
             suffix
           ].compact
         )
