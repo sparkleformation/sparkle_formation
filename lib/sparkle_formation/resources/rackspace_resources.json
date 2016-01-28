@@ -183,7 +183,7 @@
         "update_causes": "replacement"
       },
       "salt": {
-        "description": "Value which can be set or changed on stack update to trigger the resource for replacement with a new random string . The salt value itself is ignored by the random generator.",
+        "description": "Value which can be set or changed on stack update to trigger the resource for replacement with a new random string. The salt value itself is ignored by the random generator.",
         "required": false,
         "type": "string",
         "update_causes": "replacement"
@@ -559,6 +559,40 @@
       }
     }
   },
+  "OS::Neutron::AddressScope": {
+    "properties": [
+      "ip_version",
+      "name",
+      "shared",
+      "tenant_id"
+    ],
+    "full_properties": {
+      "name": {
+        "description": "The name for the address scope.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "ip_version": {
+        "description": "Address family of the address scope, which is 4 or 6.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "shared": {
+        "description": "Whether the address scope should be shared to other tenants. Note that the default policy setting restricts usage of this attribute to administrative users only, and restricts changing of shared address scope to unshared with update.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "tenant_id": {
+        "description": "The owner tenant ID of the address scope. Only administrative users can specify a tenant ID other than their own.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
   "OS::Neutron::Net": {
     "properties": [
       "admin_state_up",
@@ -614,7 +648,7 @@
         "update_causes": "replacement"
       },
       "value_specs": {
-        "description": "Extra parameters to include in the “network” object in the creation request. Parameters are often specific to installed hardware or extensions.",
+        "description": "Extra parameters to include in the request. Parameters are often specific to installed hardware or extensions.",
         "required": false,
         "type": "map",
         "update_causes": "none"
@@ -673,74 +707,6 @@
         "required": false,
         "type": "list",
         "update_causes": "none"
-      }
-    }
-  },
-  "OS::Neutron::QoSBandwidthLimitRule": {
-    "properties": [
-      "max_burst_kbps",
-      "max_kbps",
-      "policy",
-      "tenant_id"
-    ],
-    "full_properties": {
-      "max_kbps": {
-        "description": "Max bandwidth in kbps.",
-        "required": true,
-        "type": "integer",
-        "update_causes": "none"
-      },
-      "policy": {
-        "description": "ID or name of the QoS policy.",
-        "required": true,
-        "type": "string",
-        "update_causes": "replacement"
-      },
-      "max_burst_kbps": {
-        "description": "Max burst bandwidth in kbps.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "none"
-      },
-      "tenant_id": {
-        "description": "The owner tenant ID of this rule.",
-        "required": false,
-        "type": "string",
-        "update_causes": "replacement"
-      }
-    }
-  },
-  "OS::Neutron::QoSPolicy": {
-    "properties": [
-      "description",
-      "name",
-      "shared",
-      "tenant_id"
-    ],
-    "full_properties": {
-      "name": {
-        "description": "The name for the QoS policy.",
-        "required": true,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "description": {
-        "description": "The description for the QoS policy.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "shared": {
-        "description": "Whether this QoS policy should be shared to other tenants.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "none"
-      },
-      "tenant_id": {
-        "description": "The owner tenant ID of this QoS policy.",
-        "required": false,
-        "type": "string",
-        "update_causes": "replacement"
       }
     }
   },
@@ -876,116 +842,6 @@
       },
       "value_specs": {
         "description": "Extra parameters to include in the request.",
-        "required": false,
-        "type": "map",
-        "update_causes": "none"
-      }
-    }
-  },
-  "OS::Neutron::SubnetPool": {
-    "properties": [
-      "address_scope",
-      "default_prefixlen",
-      "default_quota",
-      "is_default",
-      "max_prefixlen",
-      "min_prefixlen",
-      "name",
-      "prefixes",
-      "shared",
-      "tenant_id"
-    ],
-    "full_properties": {
-      "prefixes": {
-        "description": "List of subnet prefixes to assign.",
-        "required": true,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "address_scope": {
-        "description": "An address scope ID to assign to the subnet pool.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "default_prefixlen": {
-        "description": "The size of the prefix to allocate when the cidr or prefixlen attributes are not specified while creating a subnet.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "none"
-      },
-      "default_quota": {
-        "description": "A per-tenant quota on the prefix space that can be allocated from the subnet pool for tenant subnets.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "none"
-      },
-      "is_default": {
-        "description": "Whether this is default IPv4/IPv6 subnet pool.There can only be one default subnet pool for each IP family.Note that the default policy setting restricts administrative users to set this to True",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "none"
-      },
-      "max_prefixlen": {
-        "description": "Maximum prefix size that can be allocated from the subnet pool.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "none"
-      },
-      "min_prefixlen": {
-        "description": "Smallest prefix size that can be allocated from the subnet pool.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "none"
-      },
-      "name": {
-        "description": "Name of the subnet pool.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "shared": {
-        "description": "Whether the subnet pool will be shared across all tenants.Note that the default policy setting restricts usage of this attribute to administrative users only.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "replacement"
-      },
-      "tenant_id": {
-        "description": "The ID of the tenant who owns the subnet pool. Only administrative users can specify a tenant ID other than their own.",
-        "required": false,
-        "type": "string",
-        "update_causes": "replacement"
-      }
-    }
-  },
-  "OS::Nova::HostAggregate": {
-    "properties": [
-      "availability_zone",
-      "hosts",
-      "metadata",
-      "name"
-    ],
-    "full_properties": {
-      "availability_zone": {
-        "description": "Name for the availability zone.",
-        "required": true,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "name": {
-        "description": "Name for the aggregate.",
-        "required": true,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "hosts": {
-        "description": "List of hosts to join aggregate.",
-        "required": false,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "metadata": {
-        "description": "Arbitrary key/value metadata to store information for aggregate.",
         "required": false,
         "type": "map",
         "update_causes": "none"
@@ -1169,88 +1025,6 @@
         "required": false,
         "type": "string",
         "update_causes": "replacement"
-      }
-    }
-  },
-  "OS::Senlin::Cluster": {
-    "properties": [
-      "desired_capacity",
-      "max_size",
-      "metadata",
-      "min_size",
-      "name",
-      "profile",
-      "timeout"
-    ],
-    "full_properties": {
-      "profile": {
-        "description": "The name or id of the Senlin profile.",
-        "required": true,
-        "type": "string",
-        "update_causes": "replacement"
-      },
-      "desired_capacity": {
-        "description": "Desired initial number of resources in cluster.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "replacement"
-      },
-      "max_size": {
-        "description": "Maximum number of resources in the cluster. -1 means unlimited.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "replacement"
-      },
-      "metadata": {
-        "description": "Metadata key-values defined for cluster.",
-        "required": false,
-        "type": "map",
-        "update_causes": "replacement"
-      },
-      "min_size": {
-        "description": "Minimum number of resources in the cluster.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "replacement"
-      },
-      "name": {
-        "description": "Name of the cluster. By default, physical resource name is used.",
-        "required": false,
-        "type": "string",
-        "update_causes": "replacement"
-      },
-      "timeout": {
-        "description": "The number of seconds to wait for the cluster actions.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "replacement"
-      }
-    }
-  },
-  "OS::Senlin::Profile": {
-    "properties": [
-      "metadata",
-      "name",
-      "spec"
-    ],
-    "full_properties": {
-      "spec": {
-        "description": "The spec template content for Senlin profile, should be either in YAML or JSON format.",
-        "required": true,
-        "type": "string",
-        "update_causes": "replacement"
-      },
-      "metadata": {
-        "description": "Metadata key-values defined for profile.",
-        "required": false,
-        "type": "map",
-        "update_causes": "none"
-      },
-      "name": {
-        "description": "Name of the senlin profile. By default, physical resource name is used.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
       }
     }
   },

@@ -1748,6 +1748,7 @@
   "OS::Heat::TestResource": {
     "properties": [
       "action_wait_secs",
+      "attr_wait_secs",
       "client_name",
       "entity_name",
       "fail",
@@ -1760,6 +1761,12 @@
         "description": "Options for simulating waiting.",
         "required": false,
         "type": "map",
+        "update_causes": "none"
+      },
+      "attr_wait_secs": {
+        "description": "Number value for timeout during resolving output value.",
+        "required": false,
+        "type": "number",
         "update_causes": "none"
       },
       "client_name": {
@@ -2225,6 +2232,8 @@
       "name",
       "network_driver",
       "no_proxy",
+      "public",
+      "registry_enabled",
       "ssh_authorized_key",
       "tls_disabled"
     ],
@@ -2319,6 +2328,18 @@
         "type": "string",
         "update_causes": "replacement"
       },
+      "public": {
+        "description": "Make the baymodel public.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "registry_enabled": {
+        "description": "Enable the docker registry in the bay.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
       "ssh_authorized_key": {
         "description": "The SSH Authorized Key.",
         "required": false,
@@ -2326,7 +2347,7 @@
         "update_causes": "replacement"
       },
       "tls_disabled": {
-        "description": "Disable TLS in the Bay.",
+        "description": "Disable TLS in the bay.",
         "required": false,
         "type": "boolean",
         "update_causes": "replacement"
@@ -2660,6 +2681,40 @@
         "required": false,
         "type": "boolean",
         "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::AddressScope": {
+    "properties": [
+      "ip_version",
+      "name",
+      "shared",
+      "tenant_id"
+    ],
+    "full_properties": {
+      "name": {
+        "description": "The name for the address scope.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "ip_version": {
+        "description": "Address family of the address scope, which is 4 or 6.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "shared": {
+        "description": "Whether the address scope should be shared to other tenants. Note that the default policy setting restricts usage of this attribute to administrative users only, and restricts changing of shared address scope to unshared with update.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "tenant_id": {
+        "description": "The owner tenant ID of the address scope. Only administrative users can specify a tenant ID other than their own.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
       }
     }
   },
@@ -3638,6 +3693,47 @@
       },
       "tenant_id": {
         "description": "The owner tenant ID of this QoS policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::RBACPolicy": {
+    "properties": [
+      "action",
+      "object_id",
+      "object_type",
+      "target_tenant",
+      "tenant_id"
+    ],
+    "full_properties": {
+      "action": {
+        "description": "Action for the RBAC policy.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "object_id": {
+        "description": "ID or name of the RBAC object.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "object_type": {
+        "description": "Type of the object that RBAC policy affects.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "target_tenant": {
+        "description": "ID of the tenant to which the RBAC policy will be enforced.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "tenant_id": {
+        "description": "The owner tenant ID. Only required if the caller has an administrative role and wants to create a RBAC for another tenant.",
         "required": false,
         "type": "string",
         "update_causes": "replacement"
@@ -4732,43 +4828,43 @@
         "description": "The name or id of the Senlin profile.",
         "required": true,
         "type": "string",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "desired_capacity": {
         "description": "Desired initial number of resources in cluster.",
         "required": false,
         "type": "integer",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "max_size": {
         "description": "Maximum number of resources in the cluster. -1 means unlimited.",
         "required": false,
         "type": "integer",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "metadata": {
         "description": "Metadata key-values defined for cluster.",
         "required": false,
         "type": "map",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "min_size": {
         "description": "Minimum number of resources in the cluster.",
         "required": false,
         "type": "integer",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "name": {
         "description": "Name of the cluster. By default, physical resource name is used.",
         "required": false,
         "type": "string",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "timeout": {
         "description": "The number of seconds to wait for the cluster actions.",
         "required": false,
         "type": "integer",
-        "update_causes": "replacement"
+        "update_causes": "none"
       }
     }
   },
@@ -4802,10 +4898,6 @@
   "OS::Swift::Container": {
     "properties": [
       "PurgeOnDelete",
-      "X-Account-Meta",
-      "X-Container-Meta",
-      "X-Container-Read",
-      "X-Container-Write",
       "name"
     ],
     "full_properties": {
@@ -4813,30 +4905,6 @@
         "description": "If True, delete any objects in the container when the container is deleted. Otherwise, deleting a non-empty container will result in an error.",
         "required": false,
         "type": "boolean",
-        "update_causes": "replacement"
-      },
-      "X-Account-Meta": {
-        "description": "A map of user-defined meta data to associate with the account. Each key in the map will set the header X-Account-Meta-{key} with the corresponding value.",
-        "required": false,
-        "type": "map",
-        "update_causes": "replacement"
-      },
-      "X-Container-Meta": {
-        "description": "A map of user-defined meta data to associate with the container. Each key in the map will set the header X-Container-Meta-{key} with the corresponding value.",
-        "required": false,
-        "type": "map",
-        "update_causes": "replacement"
-      },
-      "X-Container-Read": {
-        "description": "Specify the ACL permissions on who can read objects in the container.",
-        "required": false,
-        "type": "string",
-        "update_causes": "replacement"
-      },
-      "X-Container-Write": {
-        "description": "Specify the ACL permissions on who can write objects to the container.",
-        "required": false,
-        "type": "string",
         "update_causes": "replacement"
       },
       "name": {

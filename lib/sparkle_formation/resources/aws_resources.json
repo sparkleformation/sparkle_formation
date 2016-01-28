@@ -732,7 +732,7 @@
     ],
     "full_properties": {
       "AmiId": {
-        "description": "The ID of the custom Amazon Machine Image (AMI) to be used to create the instance. The AMI should be based on one of the standard AWS OpsWorks APIs.",
+        "description": "The ID of the custom Amazon Machine Image (AMI) to be used to create the instance. For more information about custom AMIs, see Using Custom AMIs in the AWS OpsWorks User Guide.",
         "required": false,
         "type": "String",
         "update_causes": "unavailable"
@@ -2706,6 +2706,7 @@
       "SnapshotName",
       "SnapshotRetentionLimit",
       "SnapshotWindow",
+      "Tags",
       "VpcSecurityGroupIds"
     ],
     "full_properties": {
@@ -2821,6 +2822,12 @@
         "description": "For Redis cache clusters, the daily time range (in UTC) during which ElastiCache will begin taking a daily snapshot of your node group. For example, you can specify 05:00-09:00.",
         "required": false,
         "type": "String",
+        "update_causes": "none"
+      },
+      "Tags": {
+        "description": "An arbitrary set of tags (key–value pairs) for this cache cluster.",
+        "required": false,
+        "type": "Unknown",
         "update_causes": "none"
       },
       "VpcSecurityGroupIds": {
@@ -4950,8 +4957,8 @@
         "update_causes": "none"
       },
       "Egress": {
-        "description": "Whether this rule applies to egress traffic from the subnet (\"true\") or ingress traffic to the subnet (\"false\").",
-        "required": true,
+        "description": "Whether this rule applies to egress traffic from the subnet (true) or ingress traffic to the subnet (false). By default, AWS CloudFormation specifies false.",
+        "required": false,
         "type": "Boolean",
         "update_causes": "replacement"
       },
