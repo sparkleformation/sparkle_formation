@@ -377,6 +377,8 @@ class SparkleFormation
   attr_reader :provider_resources
   # @return [String] local path to template
   attr_accessor :template_path
+  # @return [Array<String>] black listed templates
+  attr_reader :blacklisted_templates
 
   # Create new instance
   #
@@ -422,6 +424,7 @@ class SparkleFormation
       stack_resource_type,
       *options.fetch(:stack_resource_types, [])
     ].compact.uniq
+    @blacklisted_templates = [name]
     @components = Smash.new
     @load_order = []
     @overrides = []
@@ -447,14 +450,17 @@ class SparkleFormation
   # @param options [Hash]
   # @return [self]
   def seed_self
-    options = @seed
-    if(options[:inherit] && options[:layering].to_s == 'merge')
-      raise ArgumentError.new 'Cannot merge and inherit!'
-    end
-    if(options[:inherit])
-      inherit_from(options[:inherit])
-    elsif(options[:layering].to_s == 'merge')
-      merge_previous!
+    memoize(:seed) do
+      options = @seed
+      if(options[:inherit] && options[:layering].to_s == 'merge')
+        raise ArgumentError.new 'Cannot merge and inherit!'
+      end
+      if(options[:inherit])
+        inherit_from(options[:inherit])
+      elsif(options[:layering].to_s == 'merge')
+        merge_previous!
+      end
+      true
     end
     self
   end
@@ -475,10 +481,18 @@ class SparkleFormation
   # @param template_name [String] name of template to inherit
   # @return [self]
   def inherit_from(template_name)
+    if(blacklisted_templates.map(&:to_s).include?(template_name.to_s))
+      raise Error::CircularInheritance.new "Circular inheritance detected between templates `#{template_name}` and `#{name}`"
+    end
     template = self.class.compile(sparkle.get(:template, template_name)[:path], :sparkle)
+    template.blacklisted_templates.replace (template.blacklisted_templates + blacklisted_templates).map(&:to_s).uniq
     extract_template_data(template)
   end
 
+  # Extract information from given template and integrate with current instance
+  #
+  # @param template [SparkleFormation]
+  # @return [self]
   def extract_template_data(template)
     if(provider != template.provider)
       raise TypeError.new "This template `#{name}` cannot inherit template `#{template.name}`! Provider mismatch: `#{provider}` != `#{template.provider}`"
@@ -487,6 +501,7 @@ class SparkleFormation
       template.sparkle.add_sparkle(sparkle.sparkle_at(idx))
     end
     template.seed_self
+    blacklisted_templates.replace (blacklisted_templates + template.blacklisted_templates).map(&:to_s).uniq
     @parameters = template.parameters
     @overrides = template.raw_overrides + raw_overrides
     new_components = template.components
