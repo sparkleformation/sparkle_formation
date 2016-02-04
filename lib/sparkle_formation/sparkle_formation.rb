@@ -459,14 +459,29 @@ class SparkleFormation
     self
   end
 
+  # Merge previous layer template structure
+  #
+  # @return [self]
+  def merge_previous!
+    my_index = sparkle.get(:template, name).spectrum.find_index do |item|
+      item[:path] == template_path
+    end
+    template = self.class.compile(sparkle.get(:template, name).layer_at(my_index - 1)[:path], :sparkle)
+    extract_template_data(template)
+  end
+
   # Inhert template structure
   #
   # @param template_name [String] name of template to inherit
   # @return [self]
   def inherit_from(template_name)
     template = self.class.compile(sparkle.get(:template, template_name)[:path], :sparkle)
+    extract_template_data(template)
+  end
+
+  def extract_template_data(template)
     if(provider != template.provider)
-      raise TypeError.new "This template `#{name}` cannot inherit template `#{template_name}`! Provider mismatch: `#{provider}` != `#{template_provider}`"
+      raise TypeError.new "This template `#{name}` cannot inherit template `#{template.name}`! Provider mismatch: `#{provider}` != `#{template.provider}`"
     end
     sparkle.size.times do |idx|
       template.sparkle.add_sparkle(sparkle.sparkle_at(idx))
@@ -477,7 +492,7 @@ class SparkleFormation
     new_components = template.components
     new_load_order = template.load_order
     components.each do |comp_key, comp_value|
-      comp_key = "#{comp_key}_#{name}_child"
+      comp_key = "#{comp_key}_#{Smash.new(:name => name, :path => template_path).checksum}_child"
       new_load_order << comp_key
       new_components[comp_key] = comp_value
     end
