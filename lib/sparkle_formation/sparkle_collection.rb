@@ -109,7 +109,10 @@ class SparkleFormation
       memoize("templates_#{checksum}") do
         Smash.new.tap do |hsh|
           sparkles.each do |sprkl|
-            hsh.merge!(sprkl.templates)
+            sprkl.templates.each_pair do |c_name, c_value|
+              hsh[c_name] ||= Rainbow.new(c_name, :template)
+              hsh[c_name].add_layer(c_value)
+            end
           end
         end
       end
@@ -134,9 +137,8 @@ class SparkleFormation
           Bogo::Utility.camel(type)
         )
         raise error_klass.new(:name => name)
-      else
-        result.respond_to?(:monochrome) ? result.monochrome : result
       end
+      result
     end
 
     protected
