@@ -6,6 +6,8 @@ class SparkleFormation
   # leak on long running processes with long lasting collections
   class SparkleCollection < Sparkle
 
+    autoload :Rainbow, 'sparkle_formation/sparkle_collection/rainbow'
+
     # Create a new collection of sparkles
     #
     # @return [self]
@@ -68,7 +70,10 @@ class SparkleFormation
       memoize("components_#{checksum}") do
         Smash.new.tap do |hsh|
           sparkles.each do |sprkl|
-            hsh.merge!(sprkl.components)
+            sprkl.components.each_pair do |c_name, c_value|
+              hsh[c_name] ||= Rainbow.new(c_name, :component)
+              hsh[c_name].add_layer(c_value)
+            end
           end
         end
       end
@@ -79,7 +84,10 @@ class SparkleFormation
       memoize("dynamics_#{checksum}") do
         Smash.new.tap do |hsh|
           sparkles.each do |sprkl|
-            hsh.merge!(sprkl.dynamics)
+            sprkl.dynamics.each_pair do |c_name, c_value|
+              hsh[c_name] ||= Rainbow.new(c_name, :dynamics)
+              hsh[c_name].add_layer(c_value)
+            end
           end
         end
       end
@@ -113,19 +121,22 @@ class SparkleFormation
     # @param name [String, Symbol] name of item
     # @return [Smash] requested item
     # @raises [NameError, Error::NotFound]
-    def get(*args)
+    def get(type, name)
       result = nil
       error = nil
-      sparkles.each do |sprkl|
-        begin
-          result = sprkl.get(*args)
-        rescue Error::NotFound => error
-        end
+      type = 'templates' if type.to_s == 'template'
+      type = 'dynamics' if type.to_s == 'dynamic'
+      type = 'components' if type.to_s == 'component'
+      result = send(type)[name]
+      if(result.respond_to?(:monochrome))
+        result = result.monochrome
+      else
+        result
       end
       if(result)
         result
       else
-        raise error
+        raise Error::NotFound::Dynamic.new(:name => name)
       end
     end
 

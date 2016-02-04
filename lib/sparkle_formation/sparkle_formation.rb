@@ -213,7 +213,17 @@ class SparkleFormation
       begin
         dyn = struct._self.sparkle.get(:dynamic, dynamic_name)
         raise dyn if dyn.is_a?(Exception)
-        result = struct.instance_exec(*args, &dyn[:block])
+        dyn.each do |dynamic_item|
+          if(result)
+            opts = args.detect{|i| i.is_a?(Hash)}
+            if(opts)
+              opts[:previous_layer_result] = result
+            else
+              args.push(:previous_layer_result => result)
+            end
+          end
+          result = struct.instance_exec(*args, &dynamic_item[:block])
+        end
         if(block_given?)
           result.instance_exec(&block)
         end
