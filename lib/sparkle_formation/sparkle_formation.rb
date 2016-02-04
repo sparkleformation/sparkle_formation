@@ -213,7 +213,7 @@ class SparkleFormation
       begin
         dyn = struct._self.sparkle.get(:dynamic, dynamic_name)
         raise dyn if dyn.is_a?(Exception)
-        dyn.each do |dynamic_item|
+        dyn.monochrome.each do |dynamic_item|
           if(result)
             opts = args.detect{|i| i.is_a?(Hash)}
             if(opts)
@@ -389,19 +389,23 @@ class SparkleFormation
   def initialize(name, options={}, &block)
     @name = name.to_sym
     @component_paths = []
-    @sparkle = SparkleCollection.new
-    @sparkle.set_root(
-      Sparkle.new(
-        Smash.new.tap{|h|
-          s_path = options.fetch(:sparkle_path,
-            self.class.custom_paths[:sparkle_path]
-          )
-          if(s_path)
-            h[:root] = s_path
-          end
-        }
+    if(options[:sparkle_collection])
+      @sparkle = options[:sparkle_collection]
+    else
+      @sparkle = SparkleCollection.new
+      @sparkle.set_root(
+        Sparkle.new(
+          Smash.new.tap{|h|
+            s_path = options.fetch(:sparkle_path,
+              self.class.custom_paths[:sparkle_path]
+            )
+            if(s_path)
+              h[:root] = s_path
+            end
+          }
+        )
       )
-    )
+    end
     self.provider = options.fetch(:provider, @parent ? @parent.provider : :aws)
     if(provider == :aws || !options[:disable_aws_builtins])
       require 'sparkle_formation/aws'
@@ -419,10 +423,59 @@ class SparkleFormation
     @load_order = []
     @overrides = []
     @parent = options[:parent]
+    @seed = Smash.new(
+      :inherit => options[:inherit],
+      :layering => options[:layering]
+    )
     if(block)
       load_block(block)
     end
     @compiled = nil
+  end
+
+  # @return [Array<Proc>]
+  def raw_overrides
+    @overrides
+  end
+
+  # Update underlying data structures based on inherit
+  # or layering behavior if defined for this template
+  #
+  # @param options [Hash]
+  # @return [self]
+  def seed_self(options)
+    if(options[:inherit] && options[:layering].to_s == 'merge')
+      raise ArgumentError.new 'Cannot merge and inherit!'
+    end
+    if(options[:inherit])
+      inherit_from(options[:inherit])
+    elsif(options[:layering].to_s == 'merge')
+      merge_previous!
+    end
+    self
+  end
+
+  # Inhert template structure
+  #
+  # @param template_name [String] name of template to inherit
+  # @return [self]
+  def inherit_from(template_name)
+    template = self.class.compile(sparkle.get(:template, template_name)[:path], :sparkle)
+    if(provider != template.provider)
+      raise TypeError.new "This template `#{name}` cannot inherit template `#{template_name}`! Provider mismatch: `#{provider}` != `#{template_provider}`"
+    end
+    @parameters = template.parameters
+    @overrides = template.raw_overrides + raw_overrides
+    new_components = template.components
+    new_load_order = template.load_order
+    components.each do |comp_key, comp_value|
+      comp_key = "#{comp_key}_child"
+      new_load_order << comp_key
+      new_components[comp_key] = comp_value
+    end
+    @components = new_components
+    @load_order = new_load_order
+    self
   end
 
   # @return [String] provider stack resource type
@@ -547,10 +600,14 @@ class SparkleFormation
       key = File.basename(thing.to_s).sub('.rb', '')
       if(thing.is_a?(String))
         components[key] = self.class.load_component(thing)
+        @load_order << key
       else
-        components[key] = sparkle.get(:component, thing)[:block]
+        sparkle.get(:component, thing).monochrome.each_with_index do |comp, idx|
+          c_key = "#{key}_#{idx}"
+          components[c_key] = comp[:block]
+          @load_order << c_key
+        end
       end
-      @load_order << key
     end
     self
   end
@@ -575,6 +632,9 @@ class SparkleFormation
       unmemoize(:compile)
     end
     memoize(:compile) do
+      # NOTE: this is where we inject inherit or layering
+      seed_self(@seed)
+
       set_compile_time_parameters!
       if(provider && SparkleAttribute.const_defined?(camel(provider)))
         const = SparkleAttribute.const_get(camel(provider))
