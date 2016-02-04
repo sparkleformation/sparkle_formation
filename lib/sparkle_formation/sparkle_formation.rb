@@ -99,6 +99,7 @@ class SparkleFormation
         path = container.get(:template, path)[:path]
       end
       formation = instance_eval(IO.read(path), path, 1)
+      formation.template_path = path
       if(args.delete(:sparkle))
         formation
       else
@@ -374,6 +375,8 @@ class SparkleFormation
   attr_reader :provider
   # @return [Class] Provider resources
   attr_reader :provider_resources
+  # @return [String] local path to template
+  attr_accessor :template_path
 
   # Create new instance
   #
@@ -443,7 +446,8 @@ class SparkleFormation
   #
   # @param options [Hash]
   # @return [self]
-  def seed_self(options)
+  def seed_self
+    options = @seed
     if(options[:inherit] && options[:layering].to_s == 'merge')
       raise ArgumentError.new 'Cannot merge and inherit!'
     end
@@ -464,12 +468,16 @@ class SparkleFormation
     if(provider != template.provider)
       raise TypeError.new "This template `#{name}` cannot inherit template `#{template_name}`! Provider mismatch: `#{provider}` != `#{template_provider}`"
     end
+    sparkle.size.times do |idx|
+      template.sparkle.add_sparkle(sparkle.sparkle_at(idx))
+    end
+    template.seed_self
     @parameters = template.parameters
     @overrides = template.raw_overrides + raw_overrides
     new_components = template.components
     new_load_order = template.load_order
     components.each do |comp_key, comp_value|
-      comp_key = "#{comp_key}_child"
+      comp_key = "#{comp_key}_#{name}_child"
       new_load_order << comp_key
       new_components[comp_key] = comp_value
     end
@@ -633,7 +641,7 @@ class SparkleFormation
     end
     memoize(:compile) do
       # NOTE: this is where we inject inherit or layering
-      seed_self(@seed)
+      seed_self
 
       set_compile_time_parameters!
       if(provider && SparkleAttribute.const_defined?(camel(provider)))
