@@ -1,5 +1,5 @@
 require 'sparkle_formation'
-
+require 'forwardable'
 
 class SparkleFormation
 
@@ -10,6 +10,10 @@ class SparkleFormation
     # have higher precedence than those below. This can be used for
     # properly generating the end result based on merging or knockout rules.
     class Rainbow
+
+      extend Forwardable
+
+      def_delegators :top, *(Smash.public_instance_methods - Object.public_instance_methods)
 
       # @return [String]
       attr_reader :name
@@ -66,6 +70,10 @@ class SparkleFormation
         end
       end
 
+      # @return [Hash]
+      def top
+        spectrum.last
+      end
     end
 
   end
