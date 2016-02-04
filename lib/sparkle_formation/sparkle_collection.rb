@@ -122,21 +122,20 @@ class SparkleFormation
     # @return [Smash] requested item
     # @raises [NameError, Error::NotFound]
     def get(type, name)
+      type_name = Sparkle::TYPES[type.to_s]
+      unless(type_name)
+        raise ArgumentError.new "Unknown file type requested from collection `#{type}`"
+      end
       result = nil
       error = nil
-      type = 'templates' if type.to_s == 'template'
-      type = 'dynamics' if type.to_s == 'dynamic'
-      type = 'components' if type.to_s == 'component'
-      result = send(type)[name]
-      if(result.respond_to?(:monochrome))
-        result = result.monochrome
+      result = send(type_name)[name]
+      unless(result)
+        error_klass = Error::NotFound.const_get(
+          Bogo::Utility.camel(type)
+        )
+        raise error_klass.new(:name => name)
       else
-        result
-      end
-      if(result)
-        result
-      else
-        raise Error::NotFound::Dynamic.new(:name => name)
+        result.respond_to?(:monochrome) ? result.monochrome : result
       end
     end
 
