@@ -482,10 +482,12 @@ class SparkleFormation
   # @return [self]
   def inherit_from(template_name)
     if(blacklisted_templates.map(&:to_s).include?(template_name.to_s))
-      raise Error::CircularInheritance.new "Circular inheritance detected between templates `#{template_name}` and `#{name}`"
+      raise Error::CircularInheritance.new "Circular inheritance detected between templates `#{template_name}` and `#{name}`" # rubocop:disable Metrics/LineLength
     end
     template = self.class.compile(sparkle.get(:template, template_name)[:path], :sparkle)
-    template.blacklisted_templates.replace (template.blacklisted_templates + blacklisted_templates).map(&:to_s).uniq
+    template.blacklisted_templates.replace(
+      (template.blacklisted_templates + blacklisted_templates).map(&:to_s).uniq
+    )
     extract_template_data(template)
   end
 
@@ -495,13 +497,15 @@ class SparkleFormation
   # @return [self]
   def extract_template_data(template)
     if(provider != template.provider)
-      raise TypeError.new "This template `#{name}` cannot inherit template `#{template.name}`! Provider mismatch: `#{provider}` != `#{template.provider}`"
+      raise TypeError.new "This template `#{name}` cannot inherit template `#{template.name}`! Provider mismatch: `#{provider}` != `#{template.provider}`" # rubocop:disable Metrics/LineLength
     end
     sparkle.size.times do |idx|
       template.sparkle.add_sparkle(sparkle.sparkle_at(idx))
     end
     template.seed_self
-    blacklisted_templates.replace (blacklisted_templates + template.blacklisted_templates).map(&:to_s).uniq
+    blacklisted_templates.replace(
+      (blacklisted_templates + template.blacklisted_templates).map(&:to_s).uniq
+    )
     @parameters = template.parameters
     @overrides = template.raw_overrides + raw_overrides
     new_components = template.components
