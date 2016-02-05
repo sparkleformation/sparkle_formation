@@ -16,6 +16,17 @@ class SparkleFormation
       @sparkles = []
     end
 
+    # Apply collection settings to this collection
+    #
+    # @param collection [SparkleFormation::Collection]
+    # @return [self]
+    # @note will overwrite existing set packs
+    def apply(collection)
+      @root = collection.sparkles.last
+      @sparkles = collection.sparkles.slice(0, collection.sparkles.length - 1) || []
+      self
+    end
+
     # Set the root sparkle which forces highest precedence
     #
     # @param sparkle [Sparkle]
@@ -132,6 +143,17 @@ class SparkleFormation
       result = nil
       error = nil
       result = send(type_name)[name]
+      if(result.nil? && type_name == 'templates')
+        t_direct = sparkles.map do |pack|
+          begin
+            pack.get(:template, name)
+          rescue Error::NotFound
+          end
+        end.compact.last
+        if(t_direct)
+          result = send(type_name)[t_direct[:name]]
+        end
+      end
       unless(result)
         error_klass = Error::NotFound.const_get(
           Bogo::Utility.camel(type)
