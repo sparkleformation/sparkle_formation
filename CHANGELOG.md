@@ -1,3 +1,8 @@
+# v2.1.2
+* Add helper for copying SparkleFormation::Collection settings
+* Use collections helper to ensure expected pack ordering
+* Add support for template location via path within SparkleFormation::Collection
+
 # v2.1.0
 * Add template inheritance support (#145)
 * Add layer merging support for templates, components, and dynamics (#145)
