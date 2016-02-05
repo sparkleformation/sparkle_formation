@@ -23,7 +23,7 @@ class SparkleFormation
     # @note will overwrite existing set packs
     def apply(collection)
       @root = collection.sparkles.last
-      @sparkles = collection.sparkles.slice(0, collection.sparkles.length - 1)
+      @sparkles = collection.sparkles.slice(0, collection.sparkles.length - 1) || []
       self
     end
 

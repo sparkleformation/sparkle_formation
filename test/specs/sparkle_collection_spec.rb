@@ -53,6 +53,19 @@ describe SparkleFormation::SparkleCollection do
       collection.templates.wont_be :empty?
     end
 
+    it 'should apply empty settings to other collection' do
+      new_collection = SparkleFormation::SparkleCollection.new
+      new_collection.apply(collection)
+      new_collection.send(:sparkles).must_equal collection.send(:sparkles)
+    end
+
+    it 'should apply settings to other collection' do
+      collection.set_root(root_pack).add_sparkle(extra_pack)
+      new_collection = SparkleFormation::SparkleCollection.new
+      new_collection.apply(collection)
+      new_collection.send(:sparkles).must_equal collection.send(:sparkles)
+    end
+
   end
 
   describe SparkleFormation::SparkleCollection::Rainbow do
