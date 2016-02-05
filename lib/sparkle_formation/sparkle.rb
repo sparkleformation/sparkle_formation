@@ -110,11 +110,14 @@ class SparkleFormation
               ).last
             end
 
-            def component(name, &block)
+            def component(name, args={}, &block)
               part_data[:component].push(
                 ::Smash.new(
                   :name => name,
                   :block => block,
+                  :args => Smash[
+                    args.map(&:to_a)
+                  ],
                   :type => :component
                 )
               ).last

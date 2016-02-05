@@ -6,6 +6,8 @@ class SparkleFormation
   # leak on long running processes with long lasting collections
   class SparkleCollection < Sparkle
 
+    autoload :Rainbow, 'sparkle_formation/sparkle_collection/rainbow'
+
     # Create a new collection of sparkles
     #
     # @return [self]
@@ -68,7 +70,10 @@ class SparkleFormation
       memoize("components_#{checksum}") do
         Smash.new.tap do |hsh|
           sparkles.each do |sprkl|
-            hsh.merge!(sprkl.components)
+            sprkl.components.each_pair do |c_name, c_value|
+              hsh[c_name] ||= Rainbow.new(c_name, :component)
+              hsh[c_name].add_layer(c_value)
+            end
           end
         end
       end
@@ -79,7 +84,10 @@ class SparkleFormation
       memoize("dynamics_#{checksum}") do
         Smash.new.tap do |hsh|
           sparkles.each do |sprkl|
-            hsh.merge!(sprkl.dynamics)
+            sprkl.dynamics.each_pair do |c_name, c_value|
+              hsh[c_name] ||= Rainbow.new(c_name, :dynamic)
+              hsh[c_name].add_layer(c_value)
+            end
           end
         end
       end
@@ -101,7 +109,10 @@ class SparkleFormation
       memoize("templates_#{checksum}") do
         Smash.new.tap do |hsh|
           sparkles.each do |sprkl|
-            hsh.merge!(sprkl.templates)
+            sprkl.templates.each_pair do |c_name, c_value|
+              hsh[c_name] ||= Rainbow.new(c_name, :template)
+              hsh[c_name].add_layer(c_value)
+            end
           end
         end
       end
@@ -113,20 +124,21 @@ class SparkleFormation
     # @param name [String, Symbol] name of item
     # @return [Smash] requested item
     # @raises [NameError, Error::NotFound]
-    def get(*args)
+    def get(type, name)
+      type_name = Sparkle::TYPES[type.to_s]
+      unless(type_name)
+        raise ArgumentError.new "Unknown file type requested from collection `#{type}`"
+      end
       result = nil
       error = nil
-      sparkles.each do |sprkl|
-        begin
-          result = sprkl.get(*args)
-        rescue Error::NotFound => error
-        end
+      result = send(type_name)[name]
+      unless(result)
+        error_klass = Error::NotFound.const_get(
+          Bogo::Utility.camel(type)
+        )
+        raise error_klass.new(:name => name)
       end
-      if(result)
-        result
-      else
-        raise error
-      end
+      result
     end
 
     protected

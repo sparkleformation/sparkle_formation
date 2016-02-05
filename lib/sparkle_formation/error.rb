@@ -5,6 +5,9 @@ class SparkleFormation
   # SparkleFormation specific errors
   class Error < StandardError
 
+    # Inheritance error
+    class CircularInheritance < Error; end
+
     # File not found error
     class NotFound < KeyError
       attr_reader :name

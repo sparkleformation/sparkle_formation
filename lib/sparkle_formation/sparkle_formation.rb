@@ -94,11 +94,14 @@ class SparkleFormation
     # @return [Hashish, SparkleStruct]
     def compile(path, *args)
       opts = args.detect{|i| i.is_a?(Hash) } || {}
-      if(spath = (opts.delete(:sparkle_path) || SparkleFormation.sparkle_path))
-        container = Sparkle.new(:root => spath)
-        path = container.get(:template, path)[:path]
+      unless(path.is_a?(String) && File.file?(path.to_s))
+        if(spath = (opts.delete(:sparkle_path) || SparkleFormation.sparkle_path))
+          container = Sparkle.new(:root => spath)
+          path = container.get(:template, path)[:path]
+        end
       end
       formation = instance_eval(IO.read(path), path, 1)
+      formation.template_path = path
       if(args.delete(:sparkle))
         formation
       else
@@ -213,7 +216,17 @@ class SparkleFormation
       begin
         dyn = struct._self.sparkle.get(:dynamic, dynamic_name)
         raise dyn if dyn.is_a?(Exception)
-        result = struct.instance_exec(*args, &dyn[:block])
+        dyn.monochrome.each do |dynamic_item|
+          if(result)
+            opts = args.detect{|i| i.is_a?(Hash)}
+            if(opts)
+              opts[:previous_layer_result] = result
+            else
+              args.push(:previous_layer_result => result)
+            end
+          end
+          result = struct.instance_exec(*args, &dynamic_item[:block])
+        end
         if(block_given?)
           result.instance_exec(&block)
         end
@@ -364,6 +377,10 @@ class SparkleFormation
   attr_reader :provider
   # @return [Class] Provider resources
   attr_reader :provider_resources
+  # @return [String] local path to template
+  attr_accessor :template_path
+  # @return [Array<String>] black listed templates
+  attr_reader :blacklisted_templates
 
   # Create new instance
   #
@@ -379,19 +396,23 @@ class SparkleFormation
   def initialize(name, options={}, &block)
     @name = name.to_sym
     @component_paths = []
-    @sparkle = SparkleCollection.new
-    @sparkle.set_root(
-      Sparkle.new(
-        Smash.new.tap{|h|
-          s_path = options.fetch(:sparkle_path,
-            self.class.custom_paths[:sparkle_path]
-          )
-          if(s_path)
-            h[:root] = s_path
-          end
-        }
+    if(options[:sparkle_collection])
+      @sparkle = options[:sparkle_collection]
+    else
+      @sparkle = SparkleCollection.new
+      @sparkle.set_root(
+        Sparkle.new(
+          Smash.new.tap{|h|
+            s_path = options.fetch(:sparkle_path,
+              self.class.custom_paths[:sparkle_path]
+            )
+            if(s_path)
+              h[:root] = s_path
+            end
+          }
+        )
       )
-    )
+    end
     self.provider = options.fetch(:provider, @parent ? @parent.provider : :aws)
     if(provider == :aws || !options[:disable_aws_builtins])
       require 'sparkle_formation/aws'
@@ -405,14 +426,103 @@ class SparkleFormation
       stack_resource_type,
       *options.fetch(:stack_resource_types, [])
     ].compact.uniq
+    @blacklisted_templates = [name]
     @components = Smash.new
     @load_order = []
     @overrides = []
     @parent = options[:parent]
+    @seed = Smash.new(
+      :inherit => options[:inherit],
+      :layering => options[:layering]
+    )
     if(block)
       load_block(block)
     end
     @compiled = nil
+  end
+
+  # @return [Array<Proc>]
+  def raw_overrides
+    @overrides
+  end
+
+  # Update underlying data structures based on inherit
+  # or layering behavior if defined for this template
+  #
+  # @param options [Hash]
+  # @return [self]
+  def seed_self
+    memoize(:seed) do
+      options = @seed
+      if(options[:inherit] && options[:layering].to_s == 'merge')
+        raise ArgumentError.new 'Cannot merge and inherit!'
+      end
+      if(options[:inherit])
+        inherit_from(options[:inherit])
+      elsif(options[:layering].to_s == 'merge')
+        merge_previous!
+      end
+      true
+    end
+    self
+  end
+
+  # Merge previous layer template structure
+  #
+  # @return [self]
+  def merge_previous!
+    my_index = sparkle.get(:template, name).spectrum.find_index do |item|
+      item[:path] == template_path
+    end
+    template = self.class.compile(sparkle.get(:template, name).layer_at(my_index - 1)[:path], :sparkle)
+    extract_template_data(template)
+  end
+
+  # Inhert template structure
+  #
+  # @param template_name [String] name of template to inherit
+  # @return [self]
+  def inherit_from(template_name)
+    if(blacklisted_templates.map(&:to_s).include?(template_name.to_s))
+      raise Error::CircularInheritance.new "Circular inheritance detected between templates `#{template_name}` and `#{name}`" # rubocop:disable Metrics/LineLength
+    end
+    template = self.class.compile(sparkle.get(:template, template_name)[:path], :sparkle)
+    template.blacklisted_templates.replace(
+      (template.blacklisted_templates + blacklisted_templates).map(&:to_s).uniq
+    )
+    extract_template_data(template)
+  end
+
+  # Extract information from given template and integrate with current instance
+  #
+  # @param template [SparkleFormation]
+  # @return [self]
+  def extract_template_data(template)
+    if(provider != template.provider)
+      raise TypeError.new "This template `#{name}` cannot inherit template `#{template.name}`! Provider mismatch: `#{provider}` != `#{template.provider}`" # rubocop:disable Metrics/LineLength
+    end
+    sparkle.size.times do |idx|
+      template.sparkle.add_sparkle(sparkle.sparkle_at(idx))
+    end
+    template.seed_self
+    blacklisted_templates.replace(
+      (blacklisted_templates + template.blacklisted_templates).map(&:to_s).uniq
+    )
+    @parameters = template.parameters
+    @overrides = template.raw_overrides + raw_overrides
+    new_components = template.components
+    new_load_order = template.load_order
+    load_order.each do |comp_key|
+      if(components[comp_key])
+        original_key = comp_key
+        comp_key = "#{comp_key}_#{Smash.new(:name => name, :path => template_path).checksum}_child"
+        new_components[comp_key] = components[original_key]
+      end
+      new_load_order << comp_key
+    end
+    @components = new_components
+    @load_order = new_load_order
+    self
   end
 
   # @return [String] provider stack resource type
@@ -536,11 +646,13 @@ class SparkleFormation
     args.each do |thing|
       key = File.basename(thing.to_s).sub('.rb', '')
       if(thing.is_a?(String))
+        # NOTE: This needs to be deprecated and removed
+        # TODO: deprecate
         components[key] = self.class.load_component(thing)
+        @load_order << key
       else
-        components[key] = sparkle.get(:component, thing)[:block]
+        @load_order << thing
       end
-      @load_order << key
     end
     self
   end
@@ -565,6 +677,9 @@ class SparkleFormation
       unmemoize(:compile)
     end
     memoize(:compile) do
+      # NOTE: this is where we inject inherit or layering
+      seed_self
+
       set_compile_time_parameters!
       if(provider && SparkleAttribute.const_defined?(camel(provider)))
         const = SparkleAttribute.const_get(camel(provider))
@@ -593,7 +708,13 @@ class SparkleFormation
         compiled.set_state!(compile_state)
       end
       @load_order.each do |key|
-        self.class.build(compiled, &components[key])
+        if(components[key])
+          self.class.build(compiled, &components[key])
+        else
+          sparkle.get(:component, key).monochrome.each do |component_block|
+            self.class.build(compiled, &component_block[:block])
+          end
+        end
       end
       @overrides.each do |override|
         if(override[:args] && !override[:args].empty?)
