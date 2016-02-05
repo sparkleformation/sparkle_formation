@@ -88,6 +88,10 @@ describe SparkleFormation do
       result['ExpandedDynamic'].must_equal 'extended'
     end
 
+    it 'should have provided original dynamic return context' do
+      result.get('ExtendedCustomBlock', 'ReturnValue').must_equal 'test'
+    end
+
   end
 
   describe 'Inheritance merging and knockouts' do
