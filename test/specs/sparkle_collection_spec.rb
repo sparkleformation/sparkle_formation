@@ -57,7 +57,69 @@ describe SparkleFormation::SparkleCollection do
 
   describe SparkleFormation::SparkleCollection::Rainbow do
 
+    before do
+      @rainbow = SparkleFormation::SparkleCollection::Rainbow.new(:dummy, :component)
+    end
 
+    let(:rainbow){ @rainbow }
+
+    it 'should have a name' do
+      rainbow.name.must_equal 'dummy'
+    end
+
+    it 'should have a type' do
+      rainbow.type.must_equal :component
+    end
+
+    it 'should have an empty spectrum' do
+      rainbow.spectrum.must_be :empty?
+    end
+
+    it 'should act like a hash' do
+      rainbow.empty?.must_equal true
+      rainbow[:item].must_be_nil
+    end
+
+    it 'should error when created with invalid type' do
+      ->{
+        SparkleFormation::SparkleCollection::Rainbow.new(:test, :invalid)
+      }.must_raise ArgumentError
+    end
+
+    it 'should error when invalid type added as layer' do
+      ->{ rainbow.add_layer(:symbol) }.must_raise TypeError
+    end
+
+    it 'should allow adding layers' do
+      rainbow.add_layer(:one => true).add_layer(:two => true).must_equal rainbow
+    end
+
+    it 'should access top layer when used as a hash' do
+      rainbow.add_layer(:one => true).add_layer(:two => true)
+      rainbow[:one].must_be_nil
+      rainbow[:two].must_equal true
+    end
+
+    it 'should collapse spectrum to just top layer when no merging' do
+      rainbow.add_layer(:one => true).add_layer(:two => true)
+      rainbow.monochrome.must_equal ['two' => true]
+    end
+
+    it 'should collapse spectrum to just last merging layers' do
+      rainbow.add_layer(:one => true).add_layer(:two => true, :args => {:layering => :merge})
+      rainbow.add_layer(:three => true).add_layer(:four => true, :args => {:layering => :merge})
+      rainbow.monochrome.must_equal [
+        {'three' => true},
+        {'four' => true, 'args' => {'layering' => :merge}}
+      ]
+    end
+
+    it 'should allow layer access by index' do
+      rainbow.add_layer(:one => true).add_layer(:two => true, :args => {:layering => :merge})
+      rainbow.add_layer(:three => true).add_layer(:four => true, :args => {:layering => :merge})
+      rainbow.layer_at(0).must_equal 'one' => true
+      rainbow.layer_at(2).must_equal 'three' => true
+    end
 
   end
 
