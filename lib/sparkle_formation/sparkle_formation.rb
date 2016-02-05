@@ -286,11 +286,7 @@ class SparkleFormation
         type struct._self.stack_resource_type
       end
       unless(struct._self.sparkle.empty?)
-        struct._self.sparkle.size.times do |idx|
-          nested_template.sparkle.add_sparkle(
-            struct._self.sparkle.sparkle_at(idx)
-          )
-        end
+        nested_template.sparkle.apply(struct._self.sparkle)
       end
       struct.resources[resource_name].properties.stack nested_template
       if(block_given?)
@@ -501,9 +497,7 @@ class SparkleFormation
     if(provider != template.provider)
       raise TypeError.new "This template `#{name}` cannot inherit template `#{template.name}`! Provider mismatch: `#{provider}` != `#{template.provider}`" # rubocop:disable Metrics/LineLength
     end
-    sparkle.size.times do |idx|
-      template.sparkle.add_sparkle(sparkle.sparkle_at(idx))
-    end
+    template.sparkle.apply(sparkle)
     template.seed_self
     blacklisted_templates.replace(
       (blacklisted_templates + template.blacklisted_templates).map(&:to_s).uniq
