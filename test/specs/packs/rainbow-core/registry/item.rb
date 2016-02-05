@@ -1,0 +1,1 @@
+SfnRegistry.register(:item){ 'value' }
