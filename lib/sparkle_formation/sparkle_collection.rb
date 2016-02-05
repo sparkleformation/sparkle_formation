@@ -85,7 +85,7 @@ class SparkleFormation
         Smash.new.tap do |hsh|
           sparkles.each do |sprkl|
             sprkl.dynamics.each_pair do |c_name, c_value|
-              hsh[c_name] ||= Rainbow.new(c_name, :dynamics)
+              hsh[c_name] ||= Rainbow.new(c_name, :dynamic)
               hsh[c_name].add_layer(c_value)
             end
           end
