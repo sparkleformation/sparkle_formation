@@ -205,7 +205,7 @@ the `dynamic!` call:
 ~~~ruby
 SparkleFormation.new(:with_namespace) do
   dynamic!(:aws_opsworks_instance, :foobar,
-    :resource_suffix_name => :instance
+    :resource_name_suffix => :instance
   )
 end
 ~~~
