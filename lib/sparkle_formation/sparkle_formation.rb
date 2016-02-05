@@ -94,9 +94,11 @@ class SparkleFormation
     # @return [Hashish, SparkleStruct]
     def compile(path, *args)
       opts = args.detect{|i| i.is_a?(Hash) } || {}
-      if(spath = (opts.delete(:sparkle_path) || SparkleFormation.sparkle_path))
-        container = Sparkle.new(:root => spath)
-        path = container.get(:template, path)[:path]
+      unless(path.is_a?(String) && File.file?(path.to_s))
+        if(spath = (opts.delete(:sparkle_path) || SparkleFormation.sparkle_path))
+          container = Sparkle.new(:root => spath)
+          path = container.get(:template, path)[:path]
+        end
       end
       formation = instance_eval(IO.read(path), path, 1)
       formation.template_path = path
@@ -510,10 +512,13 @@ class SparkleFormation
     @overrides = template.raw_overrides + raw_overrides
     new_components = template.components
     new_load_order = template.load_order
-    components.each do |comp_key, comp_value|
-      comp_key = "#{comp_key}_#{Smash.new(:name => name, :path => template_path).checksum}_child"
+    load_order.each do |comp_key|
+      if(components[comp_key])
+        original_key = comp_key
+        comp_key = "#{comp_key}_#{Smash.new(:name => name, :path => template_path).checksum}_child"
+        new_components[comp_key] = components[original_key]
+      end
       new_load_order << comp_key
-      new_components[comp_key] = comp_value
     end
     @components = new_components
     @load_order = new_load_order
@@ -641,14 +646,12 @@ class SparkleFormation
     args.each do |thing|
       key = File.basename(thing.to_s).sub('.rb', '')
       if(thing.is_a?(String))
+        # NOTE: This needs to be deprecated and removed
+        # TODO: deprecate
         components[key] = self.class.load_component(thing)
         @load_order << key
       else
-        sparkle.get(:component, thing).monochrome.each_with_index do |comp, idx|
-          c_key = "#{key}_#{idx}"
-          components[c_key] = comp[:block]
-          @load_order << c_key
-        end
+        @load_order << thing
       end
     end
     self
@@ -705,7 +708,13 @@ class SparkleFormation
         compiled.set_state!(compile_state)
       end
       @load_order.each do |key|
-        self.class.build(compiled, &components[key])
+        if(components[key])
+          self.class.build(compiled, &components[key])
+        else
+          sparkle.get(:component, key).monochrome.each do |component_block|
+            self.class.build(compiled, &component_block[:block])
+          end
+        end
       end
       @overrides.each do |override|
         if(override[:args] && !override[:args].empty?)
