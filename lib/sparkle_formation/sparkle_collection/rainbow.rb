@@ -11,15 +11,21 @@ class SparkleFormation
     # properly generating the end result based on merging or knockout rules.
     class Rainbow
 
-      extend Forwardable
+      # Valid types for a rainbow
+      VALID_TYPES = [
+        :template,
+        :component,
+        :dynamic
+      ].freeze
 
+      extend Forwardable
       def_delegators :top, *(Smash.public_instance_methods - Object.public_instance_methods)
 
       # @return [String]
       attr_reader :name
-      # @return [String]
+      # @return [Symbol]
       attr_reader :type
-      # @return [Array]
+      # @return [Array<Hash>]
       attr_reader :spectrum
 
       # Create a new rainbow
@@ -28,8 +34,11 @@ class SparkleFormation
       # @param type [String, Symbol] type of item
       # @return [self]
       def initialize(name, type)
-        @name = name
-        @type = type
+        unless(VALID_TYPES.include?(type.to_sym))
+          raise ArgumentError.new "Invalid type provdied for Rainbow instance `#{type}`"
+        end
+        @name = name.to_s
+        @type = type.to_sym
         @spectrum = []
       end
 
@@ -38,7 +47,10 @@ class SparkleFormation
       # @param item [Hash]
       # @return [self]
       def add_layer(item)
-        spectrum << item
+        unless(item.is_a?(Hash))
+          raise TypeError.new "Expecting type `Hash` but received type `#{item.class}`"
+        end
+        spectrum << item.to_smash
         self
       end
 
@@ -72,7 +84,7 @@ class SparkleFormation
 
       # @return [Hash]
       def top
-        spectrum.last
+        spectrum.last || {}
       end
     end
 
