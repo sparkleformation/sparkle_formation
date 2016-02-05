@@ -583,9 +583,6 @@
       <pre class="lines">
 
 
-207
-208
-209
 210
 211
 212
@@ -601,10 +598,13 @@
 222
 223
 224
-225</pre>
+225
+226
+227
+228</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle.rb', line 207</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle.rb', line 210</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -679,12 +679,12 @@
       <pre class="lines">
 
 
-199
-200
-201</pre>
+202
+203
+204</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle.rb', line 199</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle.rb', line 202</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_raw_data'>raw_data</span>
   <span class='ivar'>@raw_data</span>
@@ -738,12 +738,12 @@
       <pre class="lines">
 
 
-197
-198
-199</pre>
+200
+201
+202</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle.rb', line 197</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle.rb', line 200</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_root'>root</span>
   <span class='ivar'>@root</span>
@@ -1033,14 +1033,14 @@ name</p>
       <pre class="lines">
 
 
-228
-229
-230
 231
-232</pre>
+232
+233
+234
+235</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle.rb', line 228</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle.rb', line 231</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_components'>components</span>
   <span class='id identifier rubyid_memoize'>memoize</span><span class='lparen'>(</span><span class='symbol'>:components</span><span class='rparen'>)</span> <span class='kw'>do</span>
@@ -1089,14 +1089,14 @@ name</p>
       <pre class="lines">
 
 
-235
-236
-237
 238
-239</pre>
+239
+240
+241
+242</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle.rb', line 235</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle.rb', line 238</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dynamics'>dynamics</span>
   <span class='id identifier rubyid_memoize'>memoize</span><span class='lparen'>(</span><span class='symbol'>:dynamics</span><span class='rparen'>)</span> <span class='kw'>do</span>
@@ -1237,7 +1237,10 @@ rubocop:disable Metrics/MethodLength</p>
 165
 166
 167
-168</pre>
+168
+169
+170
+171</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle.rb', line 66</span>
@@ -1289,11 +1292,14 @@ rubocop:disable Metrics/MethodLength</p>
           ).last
         end
 
-        def component(name, &amp;block)
+        def component(name, args={}, &amp;block)
           part_data[:component].push(
             ::Smash.new(
               :name =&gt; name,
               :block =&gt; block,
+              :args =&gt; Smash[
+                args.map(&amp;:to_a)
+              ],
               :type =&gt; :component
             )
           ).last
@@ -1426,9 +1432,6 @@ rubocop:disable Metrics/MethodLength</p>
       <pre class="lines">
 
 
-261
-262
-263
 264
 265
 266
@@ -1448,10 +1451,13 @@ rubocop:disable Metrics/MethodLength</p>
 280
 281
 282
-283</pre>
+283
+284
+285
+286</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle.rb', line 261</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle.rb', line 264</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='kw'>unless</span><span class='lparen'>(</span><span class='const'>TYPES</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -1518,12 +1524,12 @@ rubocop:disable Metrics/MethodLength</p>
       <pre class="lines">
 
 
-286
-287
-288</pre>
+289
+290
+291</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle.rb', line 286</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle.rb', line 289</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inspect'>inspect</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&lt;SparkleFormation::Sparkle [root: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_root'>root</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>]&gt;</span><span class='tstring_end'>&quot;</span></span>
@@ -1570,14 +1576,14 @@ rubocop:disable Metrics/MethodLength</p>
       <pre class="lines">
 
 
-242
-243
-244
 245
-246</pre>
+246
+247
+248
+249</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle.rb', line 242</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle.rb', line 245</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_registries'>registries</span>
   <span class='id identifier rubyid_memoize'>memoize</span><span class='lparen'>(</span><span class='symbol'>:registries</span><span class='rparen'>)</span> <span class='kw'>do</span>
@@ -1626,14 +1632,14 @@ rubocop:disable Metrics/MethodLength</p>
       <pre class="lines">
 
 
-249
-250
-251
 252
-253</pre>
+253
+254
+255
+256</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle.rb', line 249</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle.rb', line 252</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_templates'>templates</span>
   <span class='id identifier rubyid_memoize'>memoize</span><span class='lparen'>(</span><span class='symbol'>:templates</span><span class='rparen'>)</span> <span class='kw'>do</span>
@@ -1650,7 +1656,7 @@ rubocop:disable Metrics/MethodLength</p>
 </div>
 
     <div id="footer">
-  Generated on Thu Jan 21 14:37:04 2016 by
+  Generated on Fri Feb  5 12:00:55 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.3).
 </div>

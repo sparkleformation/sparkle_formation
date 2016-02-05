@@ -96,7 +96,9 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/sparkle_formation/sparkle_collection.rb</dd>
+    <dd class="r2 last">lib/sparkle_formation/sparkle_collection.rb<span class="defines">,<br />
+  lib/sparkle_formation/sparkle_collection/rainbow.rb</span>
+</dd>
   
 </dl>
 <div class="clear"></div>
@@ -119,7 +121,17 @@ leak on long running processes with long lasting collections</p>
 <div class="tags">
   
 
-</div>
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="SparkleCollection/Rainbow.html" title="SparkleFormation::SparkleCollection::Rainbow (class)">Rainbow</a></span>
+    
+  
+</p>
+
   <h2>Constant Summary</h2>
   
 
@@ -300,7 +312,7 @@ leak on long running processes with long lasting collections</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get-instance_method" title="#get (instance method)">- (Smash) <strong>get</strong>(*args) </a>
+      <a href="#get-instance_method" title="#get (instance method)">- (Smash) <strong>get</strong>(type, name) </a>
     
 
     
@@ -513,13 +525,13 @@ leak on long running processes with long lasting collections</p>
       <pre class="lines">
 
 
-12
-13
 14
-15</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid__'>_</span><span class='rparen'>)</span>
   <span class='ivar'>@root</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -687,8 +699,6 @@ leak on long running processes with long lasting collections</p>
       <pre class="lines">
 
 
-30
-31
 32
 33
 34
@@ -697,10 +707,12 @@ leak on long running processes with long lasting collections</p>
 37
 38
 39
-40</pre>
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 32</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_sparkle'>add_sparkle</span><span class='lparen'>(</span><span class='id identifier rubyid_sparkle'>sparkle</span><span class='comma'>,</span> <span class='id identifier rubyid_precedence'>precedence</span><span class='op'>=</span><span class='symbol'>:high</span><span class='rparen'>)</span>
   <span class='kw'>unless</span><span class='lparen'>(</span><span class='id identifier rubyid_sparkle'>sparkle</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Sparkle</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -755,24 +767,30 @@ leak on long running processes with long lasting collections</p>
       <pre class="lines">
 
 
-67
-68
 69
 70
 71
 72
 73
 74
-75</pre>
+75
+76
+77
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_components'>components</span>
   <span class='id identifier rubyid_memoize'>memoize</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>components_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_checksum'>checksum</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='const'>Smash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='period'>.</span><span class='id identifier rubyid_tap'>tap</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_hsh'>hsh</span><span class='op'>|</span>
       <span class='id identifier rubyid_sparkles'>sparkles</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_sprkl'>sprkl</span><span class='op'>|</span>
-        <span class='id identifier rubyid_hsh'>hsh</span><span class='period'>.</span><span class='id identifier rubyid_merge!'>merge!</span><span class='lparen'>(</span><span class='id identifier rubyid_sprkl'>sprkl</span><span class='period'>.</span><span class='id identifier rubyid_components'>components</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_sprkl'>sprkl</span><span class='period'>.</span><span class='id identifier rubyid_components'>components</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_c_name'>c_name</span><span class='comma'>,</span> <span class='id identifier rubyid_c_value'>c_value</span><span class='op'>|</span>
+          <span class='id identifier rubyid_hsh'>hsh</span><span class='lbracket'>[</span><span class='id identifier rubyid_c_name'>c_name</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>Rainbow</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_c_name'>c_name</span><span class='comma'>,</span> <span class='symbol'>:component</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_hsh'>hsh</span><span class='lbracket'>[</span><span class='id identifier rubyid_c_name'>c_name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_add_layer'>add_layer</span><span class='lparen'>(</span><span class='id identifier rubyid_c_value'>c_value</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -819,24 +837,30 @@ leak on long running processes with long lasting collections</p>
       <pre class="lines">
 
 
-78
-79
-80
-81
-82
 83
 84
 85
-86</pre>
+86
+87
+88
+89
+90
+91
+92
+93
+94</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dynamics'>dynamics</span>
   <span class='id identifier rubyid_memoize'>memoize</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>dynamics_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_checksum'>checksum</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='const'>Smash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='period'>.</span><span class='id identifier rubyid_tap'>tap</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_hsh'>hsh</span><span class='op'>|</span>
       <span class='id identifier rubyid_sparkles'>sparkles</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_sprkl'>sprkl</span><span class='op'>|</span>
-        <span class='id identifier rubyid_hsh'>hsh</span><span class='period'>.</span><span class='id identifier rubyid_merge!'>merge!</span><span class='lparen'>(</span><span class='id identifier rubyid_sprkl'>sprkl</span><span class='period'>.</span><span class='id identifier rubyid_dynamics'>dynamics</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_sprkl'>sprkl</span><span class='period'>.</span><span class='id identifier rubyid_dynamics'>dynamics</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_c_name'>c_name</span><span class='comma'>,</span> <span class='id identifier rubyid_c_value'>c_value</span><span class='op'>|</span>
+          <span class='id identifier rubyid_hsh'>hsh</span><span class='lbracket'>[</span><span class='id identifier rubyid_c_name'>c_name</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>Rainbow</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_c_name'>c_name</span><span class='comma'>,</span> <span class='symbol'>:dynamic</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_hsh'>hsh</span><span class='lbracket'>[</span><span class='id identifier rubyid_c_name'>c_name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_add_layer'>add_layer</span><span class='lparen'>(</span><span class='id identifier rubyid_c_value'>c_value</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -883,12 +907,12 @@ leak on long running processes with long lasting collections</p>
       <pre class="lines">
 
 
-62
-63
-64</pre>
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_empty?'>empty?</span>
   <span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>0</span>
@@ -901,7 +925,7 @@ leak on long running processes with long lasting collections</p>
       <div class="method_details ">
   <h3 class="signature " id="get-instance_method">
   
-    - (<tt>Smash</tt>) <strong>get</strong>(*args) 
+    - (<tt>Smash</tt>) <strong>get</strong>(type, name) 
   
 
   
@@ -974,39 +998,41 @@ leak on long running processes with long lasting collections</p>
       <pre class="lines">
 
 
-116
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126
 127
 128
 129
-130</pre>
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 116</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 127</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_type_name'>type_name</span> <span class='op'>=</span> <span class='const'>Sparkle</span><span class='op'>::</span><span class='const'>TYPES</span><span class='lbracket'>[</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rbracket'>]</span>
+  <span class='kw'>unless</span><span class='lparen'>(</span><span class='id identifier rubyid_type_name'>type_name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unknown file type requested from collection `</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_content'>`</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='id identifier rubyid_error'>error</span> <span class='op'>=</span> <span class='kw'>nil</span>
-  <span class='id identifier rubyid_sparkles'>sparkles</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_sprkl'>sprkl</span><span class='op'>|</span>
-    <span class='kw'>begin</span>
-      <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_sprkl'>sprkl</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
-    <span class='kw'>rescue</span> <span class='const'>Error</span><span class='op'>::</span><span class='const'>NotFound</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_error'>error</span>
-    <span class='kw'>end</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_type_name'>type_name</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
+  <span class='kw'>unless</span><span class='lparen'>(</span><span class='id identifier rubyid_result'>result</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_error_klass'>error_klass</span> <span class='op'>=</span> <span class='const'>Error</span><span class='op'>::</span><span class='const'>NotFound</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span>
+      <span class='const'>Bogo</span><span class='op'>::</span><span class='const'>Utility</span><span class='period'>.</span><span class='id identifier rubyid_camel'>camel</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+    <span class='rparen'>)</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_error_klass'>error_klass</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:name</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
-  <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_result'>result</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_result'>result</span>
-  <span class='kw'>else</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_error'>error</span>
-  <span class='kw'>end</span>
+  <span class='id identifier rubyid_result'>result</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1050,18 +1076,18 @@ leak on long running processes with long lasting collections</p>
       <pre class="lines">
 
 
-89
-90
-91
-92
-93
-94
-95
-96
-97</pre>
+97
+98
+99
+100
+101
+102
+103
+104
+105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 89</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_registries'>registries</span>
   <span class='id identifier rubyid_memoize'>memoize</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>registries_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_checksum'>checksum</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
@@ -1130,13 +1156,13 @@ leak on long running processes with long lasting collections</p>
       <pre class="lines">
 
 
-46
-47
 48
-49</pre>
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remove_sparkle'>remove_sparkle</span><span class='lparen'>(</span><span class='id identifier rubyid_sparkle'>sparkle</span><span class='rparen'>)</span>
   <span class='ivar'>@sparkles</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_sparkle'>sparkle</span><span class='rparen'>)</span>
@@ -1200,13 +1226,13 @@ leak on long running processes with long lasting collections</p>
       <pre class="lines">
 
 
-21
-22
 23
-24</pre>
+24
+25
+26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_root'>set_root</span><span class='lparen'>(</span><span class='id identifier rubyid_sparkle'>sparkle</span><span class='rparen'>)</span>
   <span class='ivar'>@root</span> <span class='op'>=</span> <span class='id identifier rubyid_sparkle'>sparkle</span>
@@ -1254,12 +1280,12 @@ leak on long running processes with long lasting collections</p>
       <pre class="lines">
 
 
-57
-58
-59</pre>
+59
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_size'>size</span>
   <span class='id identifier rubyid_sparkles'>sparkles</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
@@ -1306,12 +1332,12 @@ leak on long running processes with long lasting collections</p>
       <pre class="lines">
 
 
-52
-53
-54</pre>
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sparkle_at'>sparkle_at</span><span class='lparen'>(</span><span class='id identifier rubyid_idx'>idx</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_sparkles'>sparkles</span><span class='period'>.</span><span class='id identifier rubyid_at'>at</span><span class='lparen'>(</span><span class='id identifier rubyid_idx'>idx</span><span class='rparen'>)</span>
@@ -1358,24 +1384,30 @@ leak on long running processes with long lasting collections</p>
       <pre class="lines">
 
 
-100
-101
-102
-103
-104
-105
-106
-107
-108</pre>
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_collection.rb', line 108</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_templates'>templates</span>
   <span class='id identifier rubyid_memoize'>memoize</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>templates_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_checksum'>checksum</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='const'>Smash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='period'>.</span><span class='id identifier rubyid_tap'>tap</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_hsh'>hsh</span><span class='op'>|</span>
       <span class='id identifier rubyid_sparkles'>sparkles</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_sprkl'>sprkl</span><span class='op'>|</span>
-        <span class='id identifier rubyid_hsh'>hsh</span><span class='period'>.</span><span class='id identifier rubyid_merge!'>merge!</span><span class='lparen'>(</span><span class='id identifier rubyid_sprkl'>sprkl</span><span class='period'>.</span><span class='id identifier rubyid_templates'>templates</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_sprkl'>sprkl</span><span class='period'>.</span><span class='id identifier rubyid_templates'>templates</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_c_name'>c_name</span><span class='comma'>,</span> <span class='id identifier rubyid_c_value'>c_value</span><span class='op'>|</span>
+          <span class='id identifier rubyid_hsh'>hsh</span><span class='lbracket'>[</span><span class='id identifier rubyid_c_name'>c_name</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>Rainbow</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_c_name'>c_name</span><span class='comma'>,</span> <span class='symbol'>:template</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_hsh'>hsh</span><span class='lbracket'>[</span><span class='id identifier rubyid_c_name'>c_name</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_add_layer'>add_layer</span><span class='lparen'>(</span><span class='id identifier rubyid_c_value'>c_value</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -1390,7 +1422,7 @@ leak on long running processes with long lasting collections</p>
 </div>
 
     <div id="footer">
-  Generated on Thu Jan 21 14:37:05 2016 by
+  Generated on Fri Feb  5 12:00:57 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.3).
 </div>
