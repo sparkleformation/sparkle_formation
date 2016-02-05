@@ -1,3 +1,8 @@
+# v2.1.0
+* Add template inheritance support (#145)
+* Add layer merging support for templates, components, and dynamics (#145)
+* Update allowed Ruby constraint to require version greater than or equal to 2.1
+
 # v2.0.2
 * Provide useful return value from `#dynamic!` (#137)
 * Implement proper Azure resource generator (#141)
