@@ -1,3 +1,6 @@
+# v2.1.4
+* Fix struct value storage within internal table (#147)
+
 # v2.1.2
 * Add helper for copying SparkleFormation::Collection settings
 * Use collections helper to ensure expected pack ordering
