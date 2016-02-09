@@ -57,6 +57,19 @@ describe SparkleFormation::SparkleStruct do
       )
     end
 
+    it 'should provide current context as block param value' do
+      @struct.fubar.feebar [1,2,3]
+      @struct.fubar do |current_fubar|
+        current_fubar.feebar.push(22)
+      end
+      @struct.fubar.things [1,2,3]
+      @struct.fubar.things += [22]
+      result = @struct._dump.to_smash
+      result.get('Fubar', 'Feebar').must_equal [1,2,3,22]
+      result.get('Fubar', 'Things').must_equal [1,2,3,22]
+      result['Fubar'].keys.wont_include 'Things='
+    end
+
   end
 
 end
