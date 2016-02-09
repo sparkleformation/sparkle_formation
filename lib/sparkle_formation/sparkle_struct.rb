@@ -78,8 +78,9 @@ class SparkleFormation
       if(sym.to_s.start_with?('_') || sym.to_s.end_with?('!'))
         ::Kernel.raise ::NoMethodError.new "Undefined method `#{sym}` for #{_klass.name}"
       end
-      result = super(*[sym, *args], &block)
-      @table[_process_key(sym)] = function_bubbler(result)
+      super(*[sym, *args], &block)
+      @table[_process_key(sym)] = function_bubbler(@table[_process_key(sym)])
+      @table[_process_key(sym)]
     end
 
     # @return [Class]
