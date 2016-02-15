@@ -309,6 +309,28 @@ SparkleFormation.new(:instance_stack) do
 end
 ~~~
 
+Additional parameters can be passed into registry methods
+
+~~~ruby
+SfnRegisty.register(:add_foo_bar) do |args={}|
+  args[:foo] + args[:bar]
+end
+~~~
+
+And references in your template
+
+~~~ruby
+SparkleFormation.new(:instance_stack) do
+  parameters.instance_note do
+    type 'String'
+    allowed_values registry!(:instance_sizes)
+    default registry!(:instance_size_default, foo: 'note A', bar: 'note B')
+  end
+end
+~~~
+
+InstanceNote will then be given a default value of 'note Anote B'
+
 ### Templates
 
 Templates are the files that pull all the building blocks together to produce
