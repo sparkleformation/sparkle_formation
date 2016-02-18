@@ -312,8 +312,8 @@ end
 Additional parameters can be passed into registry methods
 
 ~~~ruby
-SfnRegisty.register(:add_foo_bar) do |args={}|
-  args[:foo] + args[:bar]
+SfnRegistry.register(:instance_size_default) do |args={}|
+  args[:class] + "." + args[:size]
 end
 ~~~
 
@@ -321,15 +321,15 @@ And references in your template
 
 ~~~ruby
 SparkleFormation.new(:instance_stack) do
-  parameters.instance_note do
+  parameters.instance_size do
     type 'String'
     allowed_values registry!(:instance_sizes)
-    default registry!(:instance_size_default, foo: 'note A', bar: 'note B')
+    default registry!(:instance_size_default, :class => 'm3', :size => 'large')
   end
 end
 ~~~
 
-InstanceNote will then be given a default value of 'note Anote B'
+InstanceSize will then be given a default value of 'm3.large'
 
 ### Templates
 
