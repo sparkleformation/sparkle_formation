@@ -145,7 +145,7 @@ SparkleFormation.new(:template) do
     creator_is_spox equals!(ref!(:creator), 'spox')
   end
   dynamic!(:ec2_instance, :fubar) do
-    on_condition :creator_is_spox
+    on_condition! :creator_is_spox
   end
 end
 ~~~
