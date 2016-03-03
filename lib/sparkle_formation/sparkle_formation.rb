@@ -389,7 +389,7 @@ class SparkleFormation
   # @option options [Hash] :parameters parameters for stack generation
   # @option options [Truthy, Falsey] :disable_aws_builtins do not load builtins
   # @yield base context
-  def initialize(name, options={}, &block)
+  def initialize(name, options={}, &base_block)
     @name = name.to_sym
     @component_paths = []
     if(options[:sparkle_collection])
@@ -431,8 +431,8 @@ class SparkleFormation
       :inherit => options[:inherit],
       :layering => options[:layering]
     )
-    if(block)
-      load_block(block)
+    if(base_block)
+      block(base_block)
     end
     @compiled = nil
   end
