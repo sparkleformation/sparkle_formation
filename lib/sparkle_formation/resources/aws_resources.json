@@ -5804,5 +5804,26 @@
       }
     },
     "path": "aws-resource-cloudformation-interface.html"
+  },
+  "AWS::EC2::NatGateway": {
+    "properties": [
+      "AllocationId",
+      "SubnetId"
+    ],
+    "full_properties": {
+      "AllocationId": {
+        "description": "The allocation ID of an Elastic IP address to associate with the NAT gateway. If the Elastic IP address is associated with another resource, you must first disassociate it.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "SubnetId": {
+        "description": "The public subnet in which to create the NAT gateway.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-ec2-natgateway.html"
   }
 }
