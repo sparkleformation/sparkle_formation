@@ -265,6 +265,153 @@
     },
     "path": "aws-resource-lambda-eventsourcemapping.html"
   },
+  "AWS::EMR::Cluster": {
+    "properties": [
+      "AdditionalInfo",
+      "Applications",
+      "BootstrapActions",
+      "Configurations",
+      "Instances",
+      "JobFlowRole",
+      "LogUri",
+      "Name",
+      "ReleaseLabel",
+      "ServiceRole",
+      "Tags",
+      "VisibleToAllUsers"
+    ],
+    "full_properties": {
+      "AdditionalInfo": {
+        "description": "Additional features that you want to select.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "Applications": {
+        "description": "The software applications to deploy on the cluster, and the arguments that Amazon EMR passes to those applications.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "BootstrapActions": {
+        "description": "A list of bootstrap actions that Amazon EMR runs before starting applications on the cluster.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "Configurations": {
+        "description": "The software configuration of the Amazon EMR cluster.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "Instances": {
+        "description": "Configures the EC2 instances that will run jobs in the Amazon EMR cluster.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "JobFlowRole": {
+        "description": "An AWS Identity and Access Management (IAM) role for an Amazon EMR cluster. All EC2 instances in the cluster assume this role, which instances use to access AWS services and resources to complete a job. For more information, see Configure IAM Roles for Amazon EMR in the Amazon Elastic MapReduce Management Guide.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "LogUri": {
+        "description": "An S3 bucket location to which Amazon EMR writes logs files from a job flow. If you don't specify a value, Amazon EMR doesn't write any log files.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Name": {
+        "description": "A name for the Amazon EMR cluster.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "ReleaseLabel": {
+        "description": "The Amazon EMR software release label. A release is a set of software applications and components that you can install and configure on an Amazon EMR cluster. For more information, see About Amazon EMR Releases in the Amazon Elastic MapReduce Release Guide.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "ServiceRole": {
+        "description": "The IAM role that Amazon EMR assumes to access AWS resources on your behalf. For more information, see Configure IAM Roles for Amazon EMR in the Amazon Elastic MapReduce Management Guide.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Tags": {
+        "description": "An arbitrary set of tags (key–value pairs) to help you identify the Amazon EMR cluster.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "VisibleToAllUsers": {
+        "description": "Indicates whether the instances in the cluster are visible to all IAM users in the AWS account. If you specify true, all IAM users can view and (if they have permissions) manage the instances. If you specify false, only the IAM user that created the cluster can view and manage it. By default, AWS CloudFormation sets this property to false.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-emr-cluster.html"
+  },
+  "AWS::Elasticsearch::Domain": {
+    "properties": [
+      "AccessPolicies",
+      "AdvancedOptions",
+      "DomainName",
+      "EBSOptions",
+      "ElasticsearchClusterConfig",
+      "SnapshotOptions",
+      "Tags"
+    ],
+    "full_properties": {
+      "AccessPolicies": {
+        "description": "An AWS Identity and Access Management (IAM) policy document that specifies who can access the Amazon ES domain and their permissions. For more information, see Configuring Access Policies in the Amazon Elasticsearch Service Developer Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "AdvancedOptions": {
+        "description": "Additional options to specify for the Amazon ES domain. For more information, see Configuring Advanced Options in the Amazon Elasticsearch Service Developer Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "DomainName": {
+        "description": "A name for the Amazon ES domain. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the domain name. For more information, see Name Type.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "EBSOptions": {
+        "description": "The configurations of Amazon Elastic Block Store (Amazon EBS) volumes that are attached to data nodes in the Amazon ES domain. For more information, see Configuring EBS-based Storage in the Amazon Elasticsearch Service Developer Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "ElasticsearchClusterConfig": {
+        "description": "The cluster configuration for the  Amazon ES domain. You can specify options such as the instance type and the number of instances. For more information, see Configuring Amazon ES Domains in the Amazon Elasticsearch Service Developer Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "SnapshotOptions": {
+        "description": "The automated snapshot configuration for the Amazon ES domain indices.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "Tags": {
+        "description": "An arbitrary set of tags (key–value pairs) to associate with the Amazon ES domain.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-elasticsearch-domain.html"
+  },
   "AWS::WAF::IPSet": {
     "properties": [
       "IPSetDescriptors",
@@ -855,12 +1002,14 @@
       "DBSubnetGroupName",
       "Engine",
       "EngineVersion",
+      "KmsKeyId",
       "MasterUsername",
       "MasterUserPassword",
       "Port",
       "PreferredBackupWindow",
       "PreferredMaintenanceWindow",
       "SnapshotIdentifier",
+      "StorageEncrypted",
       "Tags",
       "VpcSecurityGroupIds"
     ],
@@ -907,6 +1056,12 @@
         "type": "String",
         "update_causes": "replacement"
       },
+      "KmsKeyId": {
+        "description": "The Amazon Resource Name (ARN) of the AWS Key Management Service master key that is used to encrypt the database instances in the DB cluster, such as arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef. If you enable the StorageEncrypted property but don't specify this property, the default master key is used. If you specify this property, you must set the StorageEncrypted property to true.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
       "MasterUsername": {
         "description": "The master user name for the DB instance.",
         "required": false,
@@ -941,6 +1096,12 @@
         "description": "The identifier for the DB cluster snapshot from which you want to restore.",
         "required": false,
         "type": "String",
+        "update_causes": "replacement"
+      },
+      "StorageEncrypted": {
+        "description": "Indicates whether the DB instances in the cluster are encrypted.",
+        "required": false,
+        "type": "Boolean",
         "update_causes": "replacement"
       },
       "Tags": {
@@ -1307,6 +1468,41 @@
       }
     },
     "path": "aws-properties-elasticache-parameter-group.html"
+  },
+  "AWS::EMR::Step": {
+    "properties": [
+      "ActionOnFailure",
+      "HadoopJarStep",
+      "JobFlowId",
+      "Name"
+    ],
+    "full_properties": {
+      "ActionOnFailure": {
+        "description": "The action to take if the job flow step fails. Currently, AWS CloudFormation supports CONTINUE and CONTINUE_AND_WAIT. For more information, see Managing Cluster Termination in the Amazon Elastic MapReduce Management Guide.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "HadoopJarStep": {
+        "description": "The JAR file that includes the main function that Amazon EMR executes.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "JobFlowId": {
+        "description": "The ID of a cluster in which you want to run this job flow step.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Name": {
+        "description": "A name for the job flow step.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-emr-step.html"
   },
   "AWS::Lambda::Function": {
     "properties": [
@@ -2865,24 +3061,31 @@
       "DestinationCidrBlock",
       "GatewayId",
       "InstanceId",
+      "NatGatewayId",
       "NetworkInterfaceId",
       "RouteTableId"
     ],
     "full_properties": {
       "DestinationCidrBlock": {
-        "description": "The CIDR address block used for the destination match. For example, \"0.0.0.0/0\". Routing decisions are based on the most specific match.",
+        "description": "The CIDR address block used for the destination match. For example, 0.0.0.0/0. Routing decisions are based on the most specific match.",
         "required": true,
         "type": "String",
         "update_causes": "replacement"
       },
       "GatewayId": {
-        "description": "The ID of an Internet gateway or virtual private gateway that is attached to your VPC. For example: \"igw-eaad4883\".",
+        "description": "The ID of an Internet gateway or virtual private gateway that is attached to your VPC. For example: igw-eaad4883.",
         "required": false,
         "type": "String",
         "update_causes": "none"
       },
       "InstanceId": {
-        "description": "The ID of a NAT instance in your VPC. For example, \"i-1a2b3c4d\".",
+        "description": "The ID of a NAT instance in your VPC. For example, i-1a2b3c4d.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "NatGatewayId": {
+        "description": "The ID of a NAT gateway. For example, nat-0a12bc456789de0fg.",
         "required": false,
         "type": "String",
         "update_causes": "none"
@@ -2987,7 +3190,7 @@
         "update_causes": "interrupt"
       },
       "DBInstanceIdentifier": {
-        "description": "A name for the DB instance. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the DB instance. For more information, see Name Type.",
+        "description": "A name for the DB instance. If you specify a name, AWS CloudFormation converts it to lower case. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the DB instance. For more information, see Name Type.",
         "required": false,
         "type": "Unknown",
         "update_causes": "replacement"
@@ -3193,6 +3396,7 @@
     "properties": [
       "NotificationARNs",
       "Parameters",
+      "Tags",
       "TemplateURL",
       "TimeoutInMinutes"
     ],
@@ -3208,6 +3412,12 @@
         "required": false,
         "type": "Unknown",
         "update_causes": "interrupt"
+      },
+      "Tags": {
+        "description": "An arbitrary set of tags (key–value pairs) to describe this stack.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
       },
       "TemplateURL": {
         "description": "The URL of a template that specifies the stack that you want to create as a resource. The template must be stored on an Amazon S3 bucket, so the URL must have the form: https://s3.amazonaws.com/.../TemplateName.template",
@@ -3699,6 +3909,69 @@
     },
     "path": "aws-resource-config-configurationrecorder.html"
   },
+  "AWS::EMR::InstanceGroupConfig": {
+    "properties": [
+      "BidPrice",
+      "Configurations",
+      "InstanceCount",
+      "InstanceRole",
+      "InstanceType",
+      "JobFlowId",
+      "Market",
+      "Name"
+    ],
+    "full_properties": {
+      "BidPrice": {
+        "description": "The bid price in USD for each EC2 instance in the instance group when launching instances (nodes) as Spot Instances.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Configurations": {
+        "description": "A list of configurations to apply to this instance group. For more information see, Configuring Applications in the Amazon Elastic MapReduce Release Guide.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "InstanceCount": {
+        "description": "The number of instances to launch in the instance group.",
+        "required": true,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "InstanceRole": {
+        "description": "The role of the servers in the Amazon EMR cluster, such as TASK. For more information, see Instance Groups in the Amazon Elastic MapReduce Management Guide.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "InstanceType": {
+        "description": "The EC2 instance type for all instances in the instance group. For more information, see Instance Configurations in the Amazon Elastic MapReduce Management Guide.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "JobFlowId": {
+        "description": "The ID of an Amazon EMR cluster that you want to associate this instance group with.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Market": {
+        "description": "The type of marketplace from which your instances are provisioned into this group, either ON_DEMAND or SPOT. For more information, see Amazon EC2 Purchasing Options.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Name": {
+        "description": "A name for the instance group.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-emr-instancegroupconfig.html"
+  },
   "AWS::Redshift::ClusterSecurityGroupIngress": {
     "properties": [
       "ClusterSecurityGroupName",
@@ -3818,8 +4091,8 @@
         "update_causes": "replacement"
       },
       "Status": {
-        "description": "The status of the access key.",
-        "required": true,
+        "description": "The status of the access key. By default, AWS CloudFormation sets this property value to Active.",
+        "required": false,
         "type": "String",
         "update_causes": "none"
       },
@@ -3922,6 +4195,27 @@
       }
     },
     "path": "aws-resource-datapipeline-pipeline.html"
+  },
+  "AWS::EC2::NatGateway": {
+    "properties": [
+      "AllocationId",
+      "SubnetId"
+    ],
+    "full_properties": {
+      "AllocationId": {
+        "description": "The allocation ID of an Elastic IP address to associate with the NAT gateway. If the Elastic IP address is associated with another resource, you must first disassociate it.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "SubnetId": {
+        "description": "The public subnet in which to create the NAT gateway.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-ec2-natgateway.html"
   },
   "AWS::EC2::VPCGatewayAttachment": {
     "properties": [
@@ -4118,19 +4412,19 @@
       "GlobalSecondaryIndexes": {
         "description": "Global secondary indexes to be created on the table. You can create up to 5 global secondary indexes.",
         "required": false,
-        "type": "Unknown",
+        "type": "Array",
         "update_causes": "replacement"
       },
       "KeySchema": {
         "description": "Specifies the attributes that make up the primary key for the table. The attributes in the KeySchema property must also be defined in the AttributeDefinitions property.",
         "required": true,
-        "type": "Unknown",
+        "type": "Array",
         "update_causes": "replacement"
       },
       "LocalSecondaryIndexes": {
         "description": "Local secondary indexes to be created on the table. You can create up to 5 local secondary indexes. Each index is scoped to a given hash key value. The size of each hash key can be up to 10 gigabytes.",
         "required": false,
-        "type": "Unknown",
+        "type": "Array",
         "update_causes": "replacement"
       },
       "StreamSpecification": {
@@ -4154,6 +4448,27 @@
     },
     "path": "aws-resource-dynamodb-table.html"
   },
+  "AWS::ECR::Repository": {
+    "properties": [
+      "RepositoryName",
+      "RepositoryPolicyText"
+    ],
+    "full_properties": {
+      "RepositoryName": {
+        "description": "A name for the image repository. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the repository name. For more information, see Name Type.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "RepositoryPolicyText": {
+        "description": "A policy that controls who has access to the repository and which actions they can perform on it. For more information, see Amazon ECR Repository Policies in the Amazon EC2 Container Registry User Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-ecr-repository.html"
+  },
   "AWS::CloudTrail::Trail": {
     "properties": [
       "CloudWatchLogsLogGroupArn",
@@ -4174,7 +4489,7 @@
         "update_causes": "none"
       },
       "EnableLogFileValidation": {
-        "description": "Indicates whether CloudTrail validates the integrity of log files. When you disable log file integrity validation, CloudTrail stops creating digest files. For more information, see CreateTrail in the AWS CloudTrail API Reference.",
+        "description": "Indicates whether CloudTrail validates the integrity of log files. By default, AWS CloudFormation sets this value to false. When you disable log file integrity validation, CloudTrail stops creating digest files. For more information, see CreateTrail in the AWS CloudTrail API Reference.",
         "required": false,
         "type": "Boolean",
         "update_causes": "none"
@@ -5212,7 +5527,7 @@
         "update_causes": "replacement"
       },
       "ShortName": {
-        "description": "The short name of the directory, such as CORP.",
+        "description": "The NetBIOS name of the on-premises directory, such as CORP.",
         "required": false,
         "type": "String",
         "update_causes": "replacement"
@@ -5563,25 +5878,25 @@
     ],
     "full_properties": {
       "DestinationArn": {
-        "description": "The Amazon Resource Name (ARN) of the Amazon Kinesis stream that you want to use as the subscription feed destination.",
+        "description": "The Amazon Resource Name (ARN) of the Amazon Kinesis stream or Lambda function that you want to use as the subscription feed destination.",
         "required": true,
         "type": "String",
         "update_causes": "replacement"
       },
       "FilterPattern": {
-        "description": "The filtering expressions that restrict what gets delivered to the destination Amazon Kinesis stream. For more information about the filter pattern syntax, see Filter and Pattern Syntax in the Amazon CloudWatch Developer Guide.",
+        "description": "The filtering expressions that restrict what gets delivered to the destination AWS resource. For more information about the filter pattern syntax, see Filter and Pattern Syntax in the Amazon CloudWatch Developer Guide.",
         "required": true,
         "type": "String",
         "update_causes": "replacement"
       },
       "LogGroupName": {
-        "description": "The log group to associate with the subscription filter. All log events that are uploaded to this log group are filtered and delivered to the specified Amazon Kinesis stream if the filter pattern matches the log events.",
+        "description": "The log group to associate with the subscription filter. All log events that are uploaded to this log group are filtered and delivered to the specified AWS resource if the filter pattern matches the log events.",
         "required": true,
         "type": "String",
         "update_causes": "replacement"
       },
       "RoleArn": {
-        "description": "An IAM role that grants CloudWatch Logs permission to put data into the specified Amazon Kinesis stream.",
+        "description": "An IAM role that grants CloudWatch Logs permission to put data into the specified Amazon Kinesis stream. For Lambda and CloudWatch Logs destinations, don't specify this property because CloudWatch Logs gets the necessary permissions from the destination resource.",
         "required": false,
         "type": "String",
         "update_causes": "replacement"

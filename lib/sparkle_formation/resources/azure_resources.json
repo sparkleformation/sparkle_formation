@@ -487,11 +487,18 @@
   },
   "Microsoft.Network/networkInterfaces": {
     "properties": [
+      "enableIPForwarding",
       "networkSecurityGroup",
       "ipConfigurations",
       "dnsSettings"
     ],
     "full_properties": {
+      "enableIPForwarding": {
+        "description": "Microsoft.Network/networkInterfaces: Enable IP forwarding",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
       "networkSecurityGroup": {
         "description": "Microsoft.Network/networkInterfaces: Network security group",
         "required": false,
@@ -1620,6 +1627,45 @@
       "apiVersion",
       "properties",
       "location"
+    ]
+  },
+  "Microsoft.ServerManagement/gateways": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-07-01-preview",
+    "required": [
+      "location",
+      "name",
+      "properties"
+    ]
+  },
+  "Microsoft.ServerManagement/nodes": {
+    "properties": [
+      "gatewayId",
+      "connectionName"
+    ],
+    "full_properties": {
+      "gatewayId": {
+        "description": "The gateway to to which this node belongs. This is the ARM resource id for the gateway",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "connectionName": {
+        "description": "The node name to connect to. It can be one of NetBios name, IP (v4/v6), FQDN",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-07-01-preview",
+    "required": [
+      "name",
+      "location",
+      "properties"
     ]
   },
   "Microsoft.DocumentDB/databaseAccounts": {
