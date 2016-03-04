@@ -357,10 +357,6 @@ class SparkleFormation
   attr_reader :dynamics_directory
   # @return [String] registry path
   attr_reader :registry_directory
-  # @return [Array] components to load
-  attr_reader :components
-  # @return [Array] order of loading
-  attr_reader :load_order
   # @return [Hash] parameters for stack generation
   attr_reader :parameters
   # @return [SparkleFormation] parent stack
@@ -377,6 +373,8 @@ class SparkleFormation
   attr_accessor :template_path
   # @return [Array<String>] black listed templates
   attr_reader :blacklisted_templates
+  # @return [Composition]
+  attr_reader :composition
 
   # Create new instance
   #
@@ -423,23 +421,16 @@ class SparkleFormation
       *options.fetch(:stack_resource_types, [])
     ].compact.uniq
     @blacklisted_templates = [name]
-    @components = Smash.new
-    @load_order = []
-    @overrides = []
+    @composition = Composition.new(self)
     @parent = options[:parent]
     @seed = Smash.new(
       :inherit => options[:inherit],
       :layering => options[:layering]
     )
     if(base_block)
-      block(base_block)
+      load_block(base_block)
     end
     @compiled = nil
-  end
-
-  # @return [Array<Proc>]
-  def raw_overrides
-    @overrides
   end
 
   # Update underlying data structures based on inherit
@@ -494,6 +485,7 @@ class SparkleFormation
   # @param template [SparkleFormation]
   # @return [self]
   def extract_template_data(template)
+    # TODO: Should allow forced override here for cases like: openstack -> rackspace
     if(provider != template.provider)
       raise TypeError.new "This template `#{name}` cannot inherit template `#{template.name}`! Provider mismatch: `#{provider}` != `#{template.provider}`" # rubocop:disable Metrics/LineLength
     end
@@ -502,20 +494,22 @@ class SparkleFormation
     blacklisted_templates.replace(
       (blacklisted_templates + template.blacklisted_templates).map(&:to_s).uniq
     )
-    @parameters = template.parameters
-    @overrides = template.raw_overrides + raw_overrides
-    new_components = template.components
-    new_load_order = template.load_order
-    load_order.each do |comp_key|
-      if(components[comp_key])
-        original_key = comp_key
-        comp_key = "#{comp_key}_#{Smash.new(:name => name, :path => template_path).checksum}_child"
-        new_components[comp_key] = components[original_key]
+    @parameters = template.parameters.to_smash.deep_merge(parameters.to_smash)
+    new_composition = Composition.new(self,
+      :components => template.composition.composite,
+      :overrides => composition.overrides
+    )
+    composition.components.each do |item|
+      if(item.respond_to?(:key) && item.key == '__base__')
+        item.key = Smash.new(
+          :template => name,
+          :component => :__base__,
+          :object_id => object_id
+        ).checksum.to_s
       end
-      new_load_order << comp_key
+      new_composition.add_component(item)
     end
-    @components = new_components
-    @load_order = new_load_order
+    @composition = new_composition
     self
   end
 
@@ -626,8 +620,7 @@ class SparkleFormation
   # @param block [Proc]
   # @return [TrueClass]
   def block(block)
-    @components[:__base__] = block
-    @load_order << :__base__
+    composition.new_component(:__base__, &block)
     true
   end
   alias_method :load_block, :block
@@ -638,14 +631,13 @@ class SparkleFormation
   # @return [self]
   def load(*args)
     args.each do |thing|
-      key = File.basename(thing.to_s).sub('.rb', '')
       if(thing.is_a?(String))
         # NOTE: This needs to be deprecated and removed
         # TODO: deprecate
-        components[key] = self.class.load_component(thing)
-        @load_order << key
+        key = File.basename(thing.to_s).sub('.rb', '')
+        composition.new_component(key, &self.class.load_component(thing))
       else
-        @load_order << thing
+        composition.new_component(thing)
       end
     end
     self
@@ -656,7 +648,7 @@ class SparkleFormation
   # @param args [Hash] optional arguments to provide state
   # @yield override block
   def overrides(args={}, &block)
-    @overrides << {:args => args, :block => block}
+    composition.new_override(args, &block)
     self
   end
 
@@ -701,20 +693,22 @@ class SparkleFormation
       if(compile_state)
         compiled.set_state!(compile_state)
       end
-      @load_order.each do |key|
-        if(components[key])
-          self.class.build(compiled, &components[key])
-        else
-          sparkle.get(:component, key).monochrome.each do |component_block|
-            self.class.build(compiled, &component_block[:block])
+      composition.each do |item|
+        case item
+        when Composition::Component
+          if(item.block)
+            self.class.build(compiled, &item.block)
+          else
+            sparkle.get(:component, item.key).monochrome.each do |component_block|
+              self.class.build(compiled, &component_block[:block])
+            end
           end
+        when Composition::Override
+          if(item.args && !item.args.empty?)
+            compiled._set_state(item.args)
+          end
+          self.class.build(compiled, &item.block)
         end
-      end
-      @overrides.each do |override|
-        if(override[:args] && !override[:args].empty?)
-          compiled._set_state(override[:args])
-        end
-        self.class.build(compiled, &override[:block])
       end
       if(compile_state && !compile_state.empty?)
         compiled.outputs.compile_state.value MultiJson.dump(compile_state)
