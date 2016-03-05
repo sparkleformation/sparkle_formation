@@ -309,6 +309,28 @@ SparkleFormation.new(:instance_stack) do
 end
 ~~~
 
+Additional parameters can be passed into registry methods
+
+~~~ruby
+SfnRegistry.register(:instance_size_default) do |args={}|
+  args[:class] + "." + args[:size]
+end
+~~~
+
+And references in your template
+
+~~~ruby
+SparkleFormation.new(:instance_stack) do
+  parameters.instance_size do
+    type 'String'
+    allowed_values registry!(:instance_sizes)
+    default registry!(:instance_size_default, :class => 'm3', :size => 'large')
+  end
+end
+~~~
+
+InstanceSize will then be given a default value of 'm3.large'
+
 ### Templates
 
 Templates are the files that pull all the building blocks together to produce
