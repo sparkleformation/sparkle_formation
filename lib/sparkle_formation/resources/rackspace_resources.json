@@ -190,33 +190,6 @@
       }
     }
   },
-  "OS::Heat::ResourceChain": {
-    "properties": [
-      "concurrent",
-      "resource_properties",
-      "resources"
-    ],
-    "full_properties": {
-      "resources": {
-        "description": "The list of resource types to create. This list may contain type names or aliases defined in the resource registry. Specific template names are not supported.",
-        "required": true,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "concurrent": {
-        "description": "If true, the resources in the chain will be created concurrently. If false or omitted, each resource will be treated as having a dependency on the previous resource in the list.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "replacement"
-      },
-      "resource_properties": {
-        "description": "Properties to pass to each resource being created in the chain.",
-        "required": false,
-        "type": "map",
-        "update_causes": "replacement"
-      }
-    }
-  },
   "OS::Heat::ResourceGroup": {
     "properties": [
       "count",
@@ -507,7 +480,9 @@
   "OS::Heat::TestResource": {
     "properties": [
       "action_wait_secs",
+      "attr_wait_secs",
       "client_name",
+      "constraint_prop_secs",
       "entity_name",
       "fail",
       "update_replace",
@@ -521,10 +496,22 @@
         "type": "map",
         "update_causes": "none"
       },
+      "attr_wait_secs": {
+        "description": "Number value for timeout during resolving output value.",
+        "required": false,
+        "type": "number",
+        "update_causes": "none"
+      },
       "client_name": {
         "description": "Client to poll.",
         "required": false,
         "type": "string",
+        "update_causes": "none"
+      },
+      "constraint_prop_secs": {
+        "description": "Number value for delay during resolve constraint.",
+        "required": false,
+        "type": "number",
         "update_causes": "none"
       },
       "entity_name": {
@@ -556,40 +543,6 @@
         "required": false,
         "type": "number",
         "update_causes": "none"
-      }
-    }
-  },
-  "OS::Neutron::AddressScope": {
-    "properties": [
-      "ip_version",
-      "name",
-      "shared",
-      "tenant_id"
-    ],
-    "full_properties": {
-      "name": {
-        "description": "The name for the address scope.",
-        "required": true,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "ip_version": {
-        "description": "Address family of the address scope, which is 4 or 6.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "replacement"
-      },
-      "shared": {
-        "description": "Whether the address scope should be shared to other tenants. Note that the default policy setting restricts usage of this attribute to administrative users only, and restricts changing of shared address scope to unshared with update.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "none"
-      },
-      "tenant_id": {
-        "description": "The owner tenant ID of the address scope. Only administrative users can specify a tenant ID other than their own.",
-        "required": false,
-        "type": "string",
-        "update_causes": "replacement"
       }
     }
   },
@@ -670,7 +623,7 @@
         "description": "Network this port belongs to. If you plan to use current port to assign Floating IP, you should specify fixed_ips with subnet.  Note if this changes to a different network update, the port will be replaced",
         "required": true,
         "type": "string",
-        "update_causes": "none"
+        "update_causes": "replacement"
       },
       "device_id": {
         "description": "Device ID of this port.",
@@ -707,6 +660,47 @@
         "required": false,
         "type": "list",
         "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::RBACPolicy": {
+    "properties": [
+      "action",
+      "object_id",
+      "object_type",
+      "target_tenant",
+      "tenant_id"
+    ],
+    "full_properties": {
+      "action": {
+        "description": "Action for the RBAC policy.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "object_id": {
+        "description": "ID or name of the RBAC object.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "object_type": {
+        "description": "Type of the object that RBAC policy affects.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "target_tenant": {
+        "description": "ID of the tenant to which the RBAC policy will be enforced.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "tenant_id": {
+        "description": "The owner tenant ID. Only required if the caller has an administrative role and wants to create a RBAC for another tenant.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
       }
     }
   },
@@ -1068,13 +1062,13 @@
         "description": "Reference to a flavor for creating DB instance.",
         "required": true,
         "type": "string",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "size": {
         "description": "Database volume size in GB.",
         "required": true,
         "type": "integer",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "availability_zone": {
         "description": "Name of the availability zone for DB instance.",
@@ -1086,7 +1080,7 @@
         "description": "List of databases to be created on DB instance creation.",
         "required": false,
         "type": "list",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "datastore_type": {
         "description": "Name of registered datastore type.",
@@ -1104,7 +1098,7 @@
         "description": "Name of the DB instance to create.",
         "required": false,
         "type": "string",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "networks": {
         "description": "List of network interfaces to create on instance.",
@@ -1134,7 +1128,7 @@
         "description": "List of users to be created on DB instance creation.",
         "required": false,
         "type": "list",
-        "update_causes": "replacement"
+        "update_causes": "none"
       }
     }
   },
@@ -1305,7 +1299,8 @@
       "StartTimeMinute",
       "TimeZoneId",
       "VersionRetention",
-      "host_ip_address"
+      "host_ip_address",
+      "server"
     ],
     "full_properties": {
       "BackupConfigurationName": {
@@ -1368,12 +1363,6 @@
         "type": "string",
         "update_causes": "none"
       },
-      "host_ip_address": {
-        "description": "Cloud server ip address.",
-        "required": true,
-        "type": "string",
-        "update_causes": "replacement"
-      },
       "Enabled": {
         "description": "Indicates backup configuration is enabled or not.",
         "required": false,
@@ -1409,6 +1398,18 @@
         "required": false,
         "type": "integer",
         "update_causes": "none"
+      },
+      "host_ip_address": {
+        "description": "The IP address of the server to back up. Required if “server” is not specifed; should be omitted otherwise.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "server": {
+        "description": "The id of the Cloud Server to back up. Required if “host_ip_address” is not specified; should be omitted otherwise.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
       }
     }
   },
@@ -1684,6 +1685,61 @@
         "required": false,
         "type": "integer",
         "update_causes": "none"
+      }
+    }
+  },
+  "Rackspace::Cloud::LBNode": {
+    "properties": [
+      "address",
+      "condition",
+      "draining_timeout",
+      "load_balancer",
+      "port",
+      "type",
+      "weight"
+    ],
+    "full_properties": {
+      "address": {
+        "description": "IP address for the node.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "load_balancer": {
+        "description": "The ID of the load balancer to associate the node with.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "port": {
+        "description": "Integer value expected.",
+        "required": true,
+        "type": "updates",
+        "update_causes": "unknown"
+      },
+      "condition": {
+        "description": "String value expected.",
+        "required": false,
+        "type": "can",
+        "update_causes": "unknown"
+      },
+      "draining_timeout": {
+        "description": "The time to wait, in seconds, for the node to drain before it is deleted.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "type": {
+        "description": "String value expected.",
+        "required": false,
+        "type": "can",
+        "update_causes": "unknown"
+      },
+      "weight": {
+        "description": "Number value expected.",
+        "required": false,
+        "type": "can",
+        "update_causes": "unknown"
       }
     }
   },
@@ -1996,6 +2052,47 @@
         "required": false,
         "type": "string",
         "update_causes": "replacement"
+      }
+    }
+  },
+  "Rackspace::CloudDatabase::ScheduledBackup": {
+    "properties": [
+      "day_of_week",
+      "full_backup_retention",
+      "hour",
+      "minute",
+      "source"
+    ],
+    "full_properties": {
+      "source": {
+        "description": "The database or HA instance to back up.",
+        "required": true,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "day_of_week": {
+        "description": "The day of the week to run the backup. Sunday is 0.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "full_backup_retention": {
+        "description": "The number of full automated backups to keep.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "hour": {
+        "description": "The hour of the day to run the backup. Midnight is 0.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "minute": {
+        "description": "The minute of the hour to run the backup.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
       }
     }
   },

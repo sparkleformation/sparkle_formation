@@ -1,4 +1,65 @@
 {
+  "OS::Barbican::CertificateContainer": {
+    "properties": [
+      "certificate_ref",
+      "intermediates_ref",
+      "name",
+      "private_key_passphrase_ref",
+      "private_key_ref"
+    ],
+    "full_properties": {
+      "certificate_ref": {
+        "description": "Reference to certificate.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "intermediates_ref": {
+        "description": "Reference to intermediates.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Human-readable name for the container.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "private_key_passphrase_ref": {
+        "description": "Reference to private key passphrase.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "private_key_ref": {
+        "description": "Reference to private key.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Barbican::GenericContainer": {
+    "properties": [
+      "name",
+      "secrets"
+    ],
+    "full_properties": {
+      "name": {
+        "description": "Human-readable name for the container.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "secrets": {
+        "description": "References to secrets that will be stored in container.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
   "OS::Barbican::Order": {
     "properties": [
       "algorithm",
@@ -24,13 +85,13 @@
         "update_causes": "replacement"
       },
       "algorithm": {
-        "description": "The algorithm type used to generate the secret.",
+        "description": "The algorithm type used to generate the secret. Required for key and asymmetric types of order.",
         "required": false,
         "type": "string",
         "update_causes": "replacement"
       },
       "bit_length": {
-        "description": "The bit-length of the secret.",
+        "description": "The bit-length of the secret. Required for key and asymmetric types of order.",
         "required": false,
         "type": "integer",
         "update_causes": "replacement"
@@ -60,7 +121,7 @@
         "update_causes": "replacement"
       },
       "pass_phrase": {
-        "description": "The passphrase the created key.",
+        "description": "The passphrase the created key. Can be set only for asymmetric type of order.",
         "required": false,
         "type": "string",
         "update_causes": "replacement"
@@ -78,7 +139,7 @@
         "update_causes": "replacement"
       },
       "request_data": {
-        "description": "The content of the CSR.",
+        "description": "The content of the CSR. Only for certificate orders.",
         "required": false,
         "type": "string",
         "update_causes": "replacement"
@@ -97,6 +158,40 @@
       },
       "subject_dn": {
         "description": "The subject of the certificate request.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Barbican::RSAContainer": {
+    "properties": [
+      "name",
+      "private_key_passphrase_ref",
+      "private_key_ref",
+      "public_key_ref"
+    ],
+    "full_properties": {
+      "name": {
+        "description": "Human-readable name for the container.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "private_key_passphrase_ref": {
+        "description": "Reference to private key passphrase.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "private_key_ref": {
+        "description": "Reference to private key.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "public_key_ref": {
+        "description": "Reference to public key.",
         "required": false,
         "type": "string",
         "update_causes": "replacement"
@@ -283,7 +378,7 @@
         "update_causes": "none"
       },
       "time_constraints": {
-        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression,whereas its duration is given in seconds.",
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
         "required": false,
         "type": "list",
         "update_causes": "replacement"
@@ -359,7 +454,7 @@
         "update_causes": "none"
       },
       "time_constraints": {
-        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression,whereas its duration is given in seconds.",
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
         "required": false,
         "type": "list",
         "update_causes": "replacement"
@@ -397,7 +492,7 @@
         "update_causes": "none"
       },
       "aggregation_method": {
-        "description": "The aggregation method to compare to the threshold",
+        "description": "The aggregation method to compare to the threshold.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -463,7 +558,7 @@
         "update_causes": "none"
       },
       "time_constraints": {
-        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression,whereas its duration is given in seconds.",
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
         "required": false,
         "type": "list",
         "update_causes": "replacement"
@@ -497,13 +592,13 @@
         "update_causes": "none"
       },
       "query": {
-        "description": "The query to filter the metrics",
+        "description": "The query to filter the metrics.",
         "required": true,
         "type": "string",
         "update_causes": "none"
       },
       "resource_type": {
-        "description": "Resource type",
+        "description": "Resource type.",
         "required": true,
         "type": "string",
         "update_causes": "none"
@@ -515,7 +610,7 @@
         "update_causes": "none"
       },
       "aggregation_method": {
-        "description": "The aggregation method to compare to the threshold",
+        "description": "The aggregation method to compare to the threshold.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -581,7 +676,7 @@
         "update_causes": "none"
       },
       "time_constraints": {
-        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression,whereas its duration is given in seconds.",
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
         "required": false,
         "type": "list",
         "update_causes": "replacement"
@@ -615,13 +710,13 @@
         "update_causes": "none"
       },
       "resource_id": {
-        "description": "Id of a resource",
+        "description": "Id of a resource.",
         "required": true,
         "type": "string",
         "update_causes": "none"
       },
       "resource_type": {
-        "description": "Resource type",
+        "description": "Resource type.",
         "required": true,
         "type": "string",
         "update_causes": "none"
@@ -633,7 +728,7 @@
         "update_causes": "none"
       },
       "aggregation_method": {
-        "description": "The aggregation method to compare to the threshold",
+        "description": "The aggregation method to compare to the threshold.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -699,7 +794,7 @@
         "update_causes": "none"
       },
       "time_constraints": {
-        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression,whereas its duration is given in seconds.",
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
         "required": false,
         "type": "list",
         "update_causes": "replacement"
@@ -1293,7 +1388,7 @@
         "update_causes": "replacement"
       },
       "removal_policies": {
-        "description": "Policies for removal of resources on update",
+        "description": "Policies for removal of resources on update.",
         "required": false,
         "type": "list",
         "update_causes": "none"
@@ -1618,7 +1713,7 @@
         "update_causes": "none"
       },
       "input_key": {
-        "description": "Name of key to use for substituting inputs during deployment",
+        "description": "Name of key to use for substituting inputs during deployment.",
         "required": false,
         "type": "string",
         "update_causes": "replacement"
@@ -1674,7 +1769,7 @@
         "update_causes": "none"
       },
       "input_key": {
-        "description": "Name of key to use for substituting inputs during deployment",
+        "description": "Name of key to use for substituting inputs during deployment.",
         "required": false,
         "type": "string",
         "update_causes": "replacement"
@@ -1725,7 +1820,7 @@
         "update_causes": "replacement"
       },
       "timeout": {
-        "description": "The maximum number of seconds to wait for the resource to signal completion.  Once the timeout is reached, creation of the signal resource will fail.",
+        "description": "The maximum number of seconds to wait for the resource to signal completion. Once the timeout is reached, creation of the signal resource will fail.",
         "required": true,
         "type": "number",
         "update_causes": "replacement"
@@ -1750,6 +1845,7 @@
       "action_wait_secs",
       "attr_wait_secs",
       "client_name",
+      "constraint_prop_secs",
       "entity_name",
       "fail",
       "update_replace",
@@ -1775,6 +1871,12 @@
         "type": "string",
         "update_causes": "none"
       },
+      "constraint_prop_secs": {
+        "description": "Number value for delay during resolve constraint.",
+        "required": false,
+        "type": "number",
+        "update_causes": "none"
+      },
       "entity_name": {
         "description": "Client entity to poll.",
         "required": false,
@@ -1788,7 +1890,7 @@
         "update_causes": "none"
       },
       "update_replace": {
-        "description": "Value which can be set to trigger update replace for the particular resource",
+        "description": "Value which can be set to trigger update replace for the particular resource.",
         "required": false,
         "type": "boolean",
         "update_causes": "none"
@@ -1800,7 +1902,7 @@
         "update_causes": "none"
       },
       "wait_secs": {
-        "description": "Seconds to wait after an action (-1 is infinite)",
+        "description": "Seconds to wait after an action (-1 is infinite).",
         "required": false,
         "type": "number",
         "update_causes": "none"
@@ -2116,13 +2218,13 @@
         "update_causes": "none"
       },
       "enabled": {
-        "description": "Keystone user is enabled or disabled",
+        "description": "Keystone user is enabled or disabled.",
         "required": false,
         "type": "boolean",
         "update_causes": "none"
       },
       "groups": {
-        "description": "keystone user groups.",
+        "description": "Keystone user groups.",
         "required": false,
         "type": "list",
         "update_causes": "none"
@@ -2545,7 +2647,8 @@
       "driver_handles_share_servers",
       "extra_specs",
       "is_public",
-      "name"
+      "name",
+      "snapshot_support"
     ],
     "full_properties": {
       "driver_handles_share_servers": {
@@ -2568,6 +2671,12 @@
       },
       "is_public": {
         "description": "Defines if share type is accessible to the public.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "snapshot_support": {
+        "description": "Boolean extra spec that used for filtering of backends by their capability to create share snapshots.",
         "required": false,
         "type": "boolean",
         "update_causes": "replacement"
@@ -2677,7 +2786,7 @@
         "update_causes": "none"
       },
       "use_request_body_as_input": {
-        "description": "Defines the method in which the request body for signaling a workflow would be parsed. In case this property is set to True, the body would be parsed as a simple json where each key is a workflow input, in other cases body would be parsed expecting a specific json format with two keys: “input” and “params”",
+        "description": "Defines the method in which the request body for signaling a workflow would be parsed. In case this property is set to True, the body would be parsed as a simple json where each key is a workflow input, in other cases body would be parsed expecting a specific json format with two keys: “input” and “params”.",
         "required": false,
         "type": "boolean",
         "update_causes": "none"
@@ -2752,16 +2861,16 @@
         "type": "string",
         "update_causes": "none"
       },
-      "shared": {
-        "description": "Whether this firewall should be shared across all tenants. NOTE: The default policy setting in Neutron restricts usage of this property to administrative users only.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "none"
-      },
       "value_specs": {
         "description": "Extra parameters to include in the request. Parameters are often specific to installed hardware or extensions.",
         "required": false,
         "type": "map",
+        "update_causes": "none"
+      },
+      "shared": {
+        "description": "Whether this firewall should be shared across all tenants. NOTE: The default policy setting in Neutron restricts usage of this property to administrative users only.",
+        "required": false,
+        "type": "boolean",
         "update_causes": "none"
       }
     }
@@ -3241,6 +3350,316 @@
       }
     }
   },
+  "OS::Neutron::LBaaS::HealthMonitor": {
+    "properties": [
+      "admin_state_up",
+      "delay",
+      "expected_codes",
+      "http_method",
+      "max_retries",
+      "pool",
+      "tenant_id",
+      "timeout",
+      "type",
+      "url_path"
+    ],
+    "full_properties": {
+      "delay": {
+        "description": "The minimum time in seconds between regular connections of the member.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "max_retries": {
+        "description": "Number of permissible connection failures before changing the member status to INACTIVE.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "pool": {
+        "description": "ID or name of the load balancing pool.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "timeout": {
+        "description": "Maximum number of seconds for a monitor to wait for a connection to be established before it times out.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "type": {
+        "description": "One of predefined health monitor types.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "admin_state_up": {
+        "description": "The administrative state of the health monitor.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "expected_codes": {
+        "description": "The HTTP status codes expected in response from the member to declare it healthy. Specify one of the following values: a single value, such as 200. a list, such as 200, 202. a range, such as 200-204.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "http_method": {
+        "description": "The HTTP method used for requests by the monitor of type HTTP.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "tenant_id": {
+        "description": "ID of the tenant who owns the health monitor.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "url_path": {
+        "description": "The HTTP path used in the HTTP request used by the monitor to test a member health. A valid value is a string the begins with a forward slash (/).",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::LBaaS::Listener": {
+    "properties": [
+      "admin_state_up",
+      "connection_limit",
+      "default_tls_container_ref",
+      "description",
+      "loadbalancer",
+      "name",
+      "protocol",
+      "protocol_port",
+      "sni_container_refs",
+      "tenant_id"
+    ],
+    "full_properties": {
+      "loadbalancer": {
+        "description": "ID or name of the load balancer with which listener is associated.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "protocol": {
+        "description": "Protocol on which to listen for the client traffic.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "protocol_port": {
+        "description": "TCP or UDP port on which to listen for client traffic.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "admin_state_up": {
+        "description": "The administrative state of this listener.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "connection_limit": {
+        "description": "The maximum number of connections permitted for this load balancer. Defaults to -1, which is infinite.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "default_tls_container_ref": {
+        "description": "Default TLS container reference to retrieve TLS information.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of this listener.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of this listener.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "sni_container_refs": {
+        "description": "List of TLS container references for SNI.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "tenant_id": {
+        "description": "The ID of the tenant who owns the listener.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::LBaaS::LoadBalancer": {
+    "properties": [
+      "admin_state_up",
+      "description",
+      "name",
+      "provider",
+      "tenant_id",
+      "vip_address",
+      "vip_subnet"
+    ],
+    "full_properties": {
+      "vip_subnet": {
+        "description": "The name or ID of the subnet on which to allocate the VIP address.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "admin_state_up": {
+        "description": "The administrative state of this Load Balancer.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of this Load Balancer.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of this Load Balancer.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "provider": {
+        "description": "Provider for this Load Balancer.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "tenant_id": {
+        "description": "The ID of the tenant who owns the Load Balancer. Only administrative users can specify a tenant ID other than their own.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "vip_address": {
+        "description": "IP address for the VIP.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::LBaaS::Pool": {
+    "properties": [
+      "admin_state_up",
+      "description",
+      "lb_algorithm",
+      "listener",
+      "name",
+      "protocol",
+      "session_persistence"
+    ],
+    "full_properties": {
+      "lb_algorithm": {
+        "description": "The algorithm used to distribute load between the members of the pool.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "listener": {
+        "description": "Listner name or ID to be associated with this pool.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "protocol": {
+        "description": "Protocol of the pool.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "admin_state_up": {
+        "description": "The administrative state of this pool.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of this pool.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of this pool.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "session_persistence": {
+        "description": "Configuration of session persistence.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::LBaaS::PoolMember": {
+    "properties": [
+      "address",
+      "admin_state_up",
+      "pool",
+      "protocol_port",
+      "subnet",
+      "weight"
+    ],
+    "full_properties": {
+      "address": {
+        "description": "IP address of the pool member on the pool network.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "pool": {
+        "description": "Name or ID of the load balancing pool.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "protocol_port": {
+        "description": "Port on which the pool member listens for requests or connections.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "admin_state_up": {
+        "description": "The administrative state of the pool member.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "subnet": {
+        "description": "Subnet name or ID of this member.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "weight": {
+        "description": "Weight of pool member in the pool (default to 1).",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      }
+    }
+  },
   "OS::Neutron::LoadBalancer": {
     "properties": [
       "members",
@@ -3360,7 +3779,7 @@
         "update_causes": "none"
       },
       "port_security_enabled": {
-        "description": "Flag to enable/disable port security on the network. It provides the default value for the attribute of the ports created on this network",
+        "description": "Flag to enable/disable port security on the network. It provides the default value for the attribute of the ports created on this network.",
         "required": false,
         "type": "boolean",
         "update_causes": "none"
@@ -3530,18 +3949,43 @@
   },
   "OS::Neutron::Port": {
     "properties": [
+      "admin_state_up",
+      "allowed_address_pairs",
+      "binding:vnic_type",
       "device_id",
       "device_owner",
       "fixed_ips",
+      "mac_address",
       "name",
       "network",
+      "port_security_enabled",
+      "qos_policy",
       "replacement_policy",
-      "security_groups"
+      "security_groups",
+      "value_specs"
     ],
     "full_properties": {
       "network": {
-        "description": "Network this port belongs to. If you plan to use current port to assign Floating IP, you should specify fixed_ips with subnet.  Note if this changes to a different network update, the port will be replaced",
+        "description": "Network this port belongs to. If you plan to use current port to assign Floating IP, you should specify fixed_ips with subnet. Note if this changes to a different network update, the port will be replaced.",
         "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "admin_state_up": {
+        "description": "The administrative state of this port.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "allowed_address_pairs": {
+        "description": "Additional MAC/IP address pairs allowed to pass through the port.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "binding:vnic_type": {
+        "description": "The vnic type to be bound on the neutron port. To support SR-IOV PCI passthrough networking, you can request that the neutron port to be realized as normal (virtual nic), direct (pci passthrough), or macvtap (virtual interface with a tap-like software interface). Note that this only works for Neutron deployments that support the bindings extension.",
+        "required": false,
         "type": "string",
         "update_causes": "none"
       },
@@ -3552,7 +3996,7 @@
         "update_causes": "none"
       },
       "device_owner": {
-        "description": "Name of the network owning the port. The value is typically network:floatingip or network:router_interface or network:dhcp",
+        "description": "Name of the network owning the port. The value is typically network:floatingip or network:router_interface or network:dhcp.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -3563,14 +4007,26 @@
         "type": "list",
         "update_causes": "none"
       },
+      "mac_address": {
+        "description": "MAC address to give to this port.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
       "name": {
         "description": "A symbolic name for this port.",
         "required": false,
         "type": "string",
         "update_causes": "none"
       },
-      "replacement_policy": {
-        "description": "Policy on how to respond to a stack-update for this resource. REPLACE_ALWAYS will replace the port regardless of any property changes. AUTO will update the existing port for any changed update-allowed property.",
+      "port_security_enabled": {
+        "description": "Flag to enable/disable port security on the port. When disable this feature(set it to False), there will be no packages filtering, like security-group and address-pairs.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "qos_policy": {
+        "description": "The name or ID of QoS policy to attach to this port.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -3579,6 +4035,18 @@
         "description": "Security group IDs to associate with this port.",
         "required": false,
         "type": "list",
+        "update_causes": "none"
+      },
+      "value_specs": {
+        "description": "Extra parameters to include in the request.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "replacement_policy": {
+        "description": "Policy on how to respond to a stack-update for this resource. REPLACE_ALWAYS will replace the port regardless of any property changes. AUTO will update the existing port for any changed update-allowed property.",
+        "required": false,
+        "type": "string",
         "update_causes": "none"
       }
     }
@@ -3589,6 +4057,7 @@
       "name",
       "network_type",
       "physical_network",
+      "router_external",
       "segmentation_id",
       "shared"
     ],
@@ -3615,6 +4084,12 @@
         "description": "A string specifying a symbolic name for the network, which is not required to be unique.",
         "required": false,
         "type": "string",
+        "update_causes": "none"
+      },
+      "router_external": {
+        "description": "Whether the network contains an external router.",
+        "required": false,
+        "type": "boolean",
         "update_causes": "none"
       },
       "segmentation_id": {
@@ -3905,10 +4380,10 @@
         "update_causes": "none"
       },
       "host_routes": {
-        "description": "List value expected.",
+        "description": "A list of host route dictionaries for the subnet.",
         "required": false,
-        "type": "can",
-        "update_causes": "unknown"
+        "type": "list",
+        "update_causes": "none"
       },
       "ip_version": {
         "description": "The IP version, which is 4 or 6.",
@@ -3917,13 +4392,13 @@
         "update_causes": "replacement"
       },
       "ipv6_address_mode": {
-        "description": "IPv6 address mode. dhcpv6-stateful, dhcpv6-stateless, or slaac.",
+        "description": "IPv6 address mode.",
         "required": false,
         "type": "string",
         "update_causes": "replacement"
       },
       "ipv6_ra_mode": {
-        "description": "IPv6 RA (Router Advertisement) mode. dhcpv6-stateful, dhcpv6-stateless, or slaac.",
+        "description": "IPv6 RA (Router Advertisement) mode.",
         "required": false,
         "type": "string",
         "update_causes": "replacement"
@@ -3999,7 +4474,7 @@
         "update_causes": "none"
       },
       "is_default": {
-        "description": "Whether this is default IPv4/IPv6 subnet pool.There can only be one default subnet pool for each IP family.Note that the default policy setting restricts administrative users to set this to True",
+        "description": "Whether this is default IPv4/IPv6 subnet pool. There can only be one default subnet pool for each IP family. Note that the default policy setting restricts administrative users to set this to True.",
         "required": false,
         "type": "boolean",
         "update_causes": "none"
@@ -4023,7 +4498,7 @@
         "update_causes": "none"
       },
       "shared": {
-        "description": "Whether the subnet pool will be shared across all tenants.Note that the default policy setting restricts usage of this attribute to administrative users only.",
+        "description": "Whether the subnet pool will be shared across all tenants. Note that the default policy setting restricts usage of this attribute to administrative users only.",
         "required": false,
         "type": "boolean",
         "update_causes": "replacement"
@@ -4120,7 +4595,7 @@
         "update_causes": "none"
       },
       "is_public": {
-        "description": "Scope of flavor accessibility. Public or private.Default value is True, means public, shared across all projects.",
+        "description": "Scope of flavor accessibility. Public or private. Default value is True, means public, shared across all projects.",
         "required": false,
         "type": "boolean",
         "update_causes": "replacement"
@@ -4255,7 +4730,8 @@
       "security_groups",
       "software_config_transport",
       "user_data",
-      "user_data_format"
+      "user_data_format",
+      "user_data_update_policy"
     ],
     "full_properties": {
       "flavor": {
@@ -4313,7 +4789,7 @@
         "update_causes": "none"
       },
       "image_update_policy": {
-        "description": "Policy on how to apply an image-id update; either by requesting a server rebuild or by replacing the entire server",
+        "description": "Policy on how to apply an image-id update; either by requesting a server rebuild or by replacing the entire server.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -4325,7 +4801,7 @@
         "update_causes": "replacement"
       },
       "metadata": {
-        "description": "Arbitrary key/value metadata to store for this server. Both keys and values must be 255 characters or less.  Non-string values will be serialized to JSON (and the serialized string must be 255 characters or less).",
+        "description": "Arbitrary key/value metadata to store for this server. Both keys and values must be 255 characters or less. Non-string values will be serialized to JSON (and the serialized string must be 255 characters or less).",
         "required": false,
         "type": "map",
         "update_causes": "none"
@@ -4376,13 +4852,19 @@
         "description": "User data script to be executed by cloud-init.",
         "required": false,
         "type": "string",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "user_data_format": {
         "description": "How the user_data should be formatted for the server. For HEAT_CFNTOOLS, the user_data is bundled as part of the heat-cfntools cloud-init boot configuration data. For RAW the user_data is passed to Nova unmodified. For SOFTWARE_CONFIG user_data is bundled as part of the software config data, and metadata is derived from any associated SoftwareDeployment resources.",
         "required": false,
         "type": "string",
         "update_causes": "replacement"
+      },
+      "user_data_update_policy": {
+        "description": "Policy on how to apply a user_data update; either by ignorning it or by replacing the entire server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
       }
     }
   },
@@ -4642,7 +5124,7 @@
     ],
     "full_properties": {
       "url": {
-        "description": "URL for the job binary. Must be in the format swift://<container>/<path> or internal-db://<uuid>",
+        "description": "URL for the job binary. Must be in the format swift://<container>/<path> or internal-db://<uuid>.",
         "required": true,
         "type": "string",
         "update_causes": "none"
@@ -4868,15 +5350,77 @@
       }
     }
   },
+  "OS::Senlin::Node": {
+    "properties": [
+      "metadata",
+      "name",
+      "profile"
+    ],
+    "full_properties": {
+      "profile": {
+        "description": "Name or ID of senlin profile to create this node.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "metadata": {
+        "description": "Metadata key-values defined for node.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of the senlin node. By default, physical resource name is used.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Senlin::Policy": {
+    "properties": [
+      "bindings",
+      "name",
+      "properties",
+      "type"
+    ],
+    "full_properties": {
+      "type": {
+        "description": "The type of senlin policy.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "bindings": {
+        "description": "A list of clusters to which this policy is attached.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of the senlin policy. By default, physical resource name is used.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "properties": {
+        "description": "Properties of this policy.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      }
+    }
+  },
   "OS::Senlin::Profile": {
     "properties": [
       "metadata",
       "name",
-      "spec"
+      "properties",
+      "type"
     ],
     "full_properties": {
-      "spec": {
-        "description": "The spec template content for Senlin profile, should be either in YAML or JSON format.",
+      "type": {
+        "description": "The type of profile.",
         "required": true,
         "type": "string",
         "update_causes": "replacement"
@@ -4892,6 +5436,53 @@
         "required": false,
         "type": "string",
         "update_causes": "none"
+      },
+      "properties": {
+        "description": "Properties for profile.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Senlin::Receiver": {
+    "properties": [
+      "action",
+      "cluster",
+      "name",
+      "params",
+      "type"
+    ],
+    "full_properties": {
+      "action": {
+        "description": "The action to be executed when the receiver is signaled.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "cluster": {
+        "description": "Name or ID of target cluster.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name of the senlin receiver. By default, physical resource name is used.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "params": {
+        "description": "The parameters passed to action when the receiver is signaled.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "type": {
+        "description": "Type of receiver.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
       }
     }
   },
@@ -4969,13 +5560,13 @@
         "description": "Reference to a flavor for creating DB instance.",
         "required": true,
         "type": "string",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "size": {
         "description": "Database volume size in GB.",
         "required": true,
         "type": "integer",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "availability_zone": {
         "description": "Name of the availability zone for DB instance.",
@@ -4987,7 +5578,7 @@
         "description": "List of databases to be created on DB instance creation.",
         "required": false,
         "type": "list",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "datastore_type": {
         "description": "Name of registered datastore type.",
@@ -5005,7 +5596,7 @@
         "description": "Name of the DB instance to create.",
         "required": false,
         "type": "string",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "networks": {
         "description": "List of network interfaces to create on instance.",
@@ -5035,7 +5626,7 @@
         "description": "List of users to be created on DB instance creation.",
         "required": false,
         "type": "list",
-        "update_causes": "replacement"
+        "update_causes": "none"
       }
     }
   },
