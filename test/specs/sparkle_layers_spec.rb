@@ -143,6 +143,20 @@ describe SparkleFormation do
       @final
     end
 
+    let(:complex) do
+      unless(@final)
+        template = SparkleFormation.compile(
+          collection.get(:template, :complex_inherit)[:path],
+          :sparkle
+        )
+        template.sparkle.add_sparkle(collection.sparkle_at(0))
+        template.sparkle.add_sparkle(collection.sparkle_at(1))
+        template.sparkle.set_root(collection.sparkle_at(2))
+        @final = template.dump.to_smash
+      end
+      @final
+    end
+
     it 'should replace the previous template layer' do
       extended.must_equal 'KnockoutTemplate' => true
     end
@@ -157,6 +171,13 @@ describe SparkleFormation do
 
     it 'should replace previous registry item' do
       final['Final'].must_equal 'Customvalue'
+    end
+
+    it 'should properly order inherited template components' do
+      complex['CoreBlock'].must_equal 'core'
+      complex['TestValue'].must_equal 'inherit'
+      complex['OverrideValue'].must_equal 'inherit'
+      complex['KnockoutComponent'].must_equal true
     end
 
   end

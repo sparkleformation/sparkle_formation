@@ -23,6 +23,7 @@ require 'attribute_struct'
 # Unicorns and rainbows
 class SparkleFormation
   autoload :Aws, 'sparkle_formation/aws'
+  autoload :Composition, 'sparkle_formation/composition'
   autoload :Error, 'sparkle_formation/error'
   autoload :FunctionStruct, 'sparkle_formation/function_struct'
   autoload :Provider, 'sparkle_formation/provider'
