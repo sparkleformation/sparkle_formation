@@ -5,7 +5,7 @@ AllCops:
     - 'test/**/**/*'
     - 'bin/*'
 
-Style/SpaceAfterControlKeyword:
+Style/SpaceAroundKeyword:
   Enabled: false
 Style/IfUnlessModifier:
   Enabled: false
