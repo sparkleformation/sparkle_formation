@@ -1,3 +1,7 @@
+# v2.1.6
+* Update builtin resource lists (#156)
+* Refactor internal template composition (#158)
+
 # v2.1.4
 * Fix struct value storage within internal table (#147)
 
