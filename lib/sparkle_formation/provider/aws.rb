@@ -167,7 +167,7 @@ class SparkleFormation
               check_name = pname
             end
             if(parameters.keys.include?(check_name))
-              if(parameters[check_name]['Type'] == 'CommaDelimitedList')
+              if(list_type?(parameters[check_name]['Type']))
                 new_val = {'Fn::Join' => [',', {'Ref' => check_name}]}
               else
                 new_val = {'Ref' => check_name}
@@ -178,7 +178,7 @@ class SparkleFormation
                 pname, 'Fn::GetAtt' => output_map[check_name]
               )
             else
-              if(pval['Type'] == 'CommaDelimitedList')
+              if(list_type?(pval['Type']))
                 new_val = {'Fn::Join' => [',', {'Ref' => check_name}]}
               else
                 new_val = {'Ref' => check_name}
@@ -194,6 +194,14 @@ class SparkleFormation
           end
         end
         true
+      end
+
+      # Check if type is a list type
+      #
+      # @param type [String]
+      # @return [TrueClass, FalseClass]
+      def list_type?(type)
+        type == 'CommaDelimitedList' || type.start_with?('List<')
       end
 
     end

@@ -89,4 +89,17 @@ describe SparkleFormation do
 
   end
 
+  describe 'List types with shallow nesting' do
+
+    it 'should properly join lists when passing to stack resource' do
+      result = SparkleFormation.compile('nest_list.rb', :sparkle)
+      result.apply_nesting(:shallow){|*_| }
+      result = result.dump.to_smash
+      result.get('Resources', 'ListParameters', 'Properties', 'Parameters', 'BasicString').keys.first.must_equal 'Ref'
+      result.get('Resources', 'ListParameters', 'Properties', 'Parameters', 'CommaList').keys.first.must_equal 'Fn::Join'
+      result.get('Resources', 'ListParameters', 'Properties', 'Parameters', 'TypeList').keys.first.must_equal 'Fn::Join'
+    end
+
+  end
+
 end
