@@ -565,7 +565,10 @@
         "description": "Assigns a list of private IP addresses to the network interface. You can specify a primary private IP address by setting the value of the Primary property to true in the PrivateIpAddressSpecification property. If you want Amazon EC2 to automatically assign private IP addresses, use the SecondaryPrivateIpAddressCount property and do not specify this property.",
         "required": false,
         "type": "Unknown",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "none"
+        ]
       },
       "SecondaryPrivateIpAddressCount": {
         "description": "The number of secondary private IP addresses that Amazon EC2 automatically assigns to the network interface. Amazon EC2 uses the value of the PrivateIpAddress property as the primary private IP address. If you don't specify that property, Amazon EC2 automatically assigns both the primary and secondary private IP addresses.",
@@ -1024,7 +1027,10 @@
         "description": "The number of days for which automatic backups are retained. For more information, see CreateDBCluster in the Amazon Relational Database Service API Reference.",
         "required": false,
         "type": "Number",
-        "update_causes": "none"
+        "update_causes": [
+          "none",
+          "interrupt"
+        ]
       },
       "DatabaseName": {
         "description": "The name of your database. You can specify a name of up to eight alpha-numeric characters. If you do not provide a name, Amazon Relational Database Service (Amazon RDS) won't create a database in this DB cluster.",
@@ -1090,7 +1096,10 @@
         "description": "The weekly time range (in UTC) during which system maintenance can occur.",
         "required": false,
         "type": "String",
-        "update_causes": "none"
+        "update_causes": [
+          "none",
+          "interrupt"
+        ]
       },
       "SnapshotIdentifier": {
         "description": "The identifier for the DB cluster snapshot from which you want to restore.",
@@ -1788,25 +1797,37 @@
         "description": "Allocation ID for the VPC Elastic IP address you want to associate with an Amazon EC2 instance in your VPC.",
         "required": false,
         "type": "String",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "none"
+        ]
       },
       "EIP": {
         "description": "Elastic IP address that you want to associate with the Amazon EC2 instance specified by the InstanceId property. You can specify an existing Elastic IP address or a reference to an Elastic IP address allocated with a AWS::EC2::EIP resource.",
         "required": false,
         "type": "String",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "none"
+        ]
       },
       "InstanceId": {
         "description": "Instance ID of the Amazon EC2 instance that you want to associate with the Elastic IP address specified by the EIP property.",
         "required": false,
         "type": "String",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "none"
+        ]
       },
       "NetworkInterfaceId": {
         "description": "The ID of the network interface to associate with the Elastic IP address (VPC only).",
         "required": false,
         "type": "String",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "none"
+        ]
       },
       "PrivateIpAddress": {
         "description": "The private IP address that you want to associate with the Elastic IP address. The private IP address is restricted to the primary and secondary private IP addresses that are associated with the network interface. By default, the private IP address that is associated with the EIP is the primary private IP address of the network interface.",
@@ -2065,7 +2086,10 @@
         "description": "The parameters to set for this RDS parameter group.",
         "required": false,
         "type": "Unknown",
-        "update_causes": "none"
+        "update_causes": [
+          "none",
+          "interrupt"
+        ]
       },
       "Tags": {
         "description": "The tags that you want to attach to the RDS parameter group.",
@@ -2442,7 +2466,10 @@
         "description": "One or more VPCs that you want to associate with this hosted zone. When you specify this property, AWS CloudFormation creates a private hosted zone.",
         "required": false,
         "type": "Array",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "none"
+        ]
       }
     },
     "path": "aws-resource-route53-hostedzone.html"
@@ -2484,7 +2511,10 @@
         "description": "The type of source for which Amazon RDS provides notification events. For example, if you want to be notified of events generated by a database instance, set this parameter to db-instance. If you don't specify a value, notifications are provided for all source types.",
         "required": false,
         "type": "String",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "interrupt"
+        ]
       }
     },
     "path": "aws-resource-rds-eventsubscription.html"
@@ -2970,7 +3000,10 @@
         "description": "The number of cache nodes that the cache cluster should have.",
         "required": true,
         "type": "String",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "none"
+        ]
       },
       "Port": {
         "description": "The port number on which each of the cache nodes will accept connections.",
@@ -2988,7 +3021,10 @@
         "description": "For Memcached cache clusters, the list of Availability Zones in which cache nodes are created. The number of Availability Zones listed must equal the number of cache nodes. For example, if you want to create three nodes in two different Availability Zones, you can specify [\"us-east-1a\", \"us-east-1a\", \"us-east-1b\"], which would create two nodes in us-east-1a and one node in us-east-1b.",
         "required": false,
         "type": "Array",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "interrupt"
+        ]
       },
       "PreferredMaintenanceWindow": {
         "description": "The weekly time range (in UTC) during which system maintenance can occur.",
@@ -3157,7 +3193,10 @@
         "description": "Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window. The default value is true.",
         "required": false,
         "type": "Boolean",
-        "update_causes": "none"
+        "update_causes": [
+          "none",
+          "interrupt"
+        ]
       },
       "AvailabilityZone": {
         "description": "The name of the Availability Zone where the DB instance is located. You cannot set the AvailabilityZone parameter if the MultiAZ parameter is set to true.",
@@ -3169,7 +3208,10 @@
         "description": "The number of days for which automatic DB snapshots are retained.",
         "required": false,
         "type": "String",
-        "update_causes": "none"
+        "update_causes": [
+          "none",
+          "interrupt"
+        ]
       },
       "CharacterSetName": {
         "description": "For supported engines, specifies the character set to associate with the database instance. For more information, see Appendix: Oracle Character Sets Supported in Amazon RDS in the Amazon Relational Database Service User Guide.",
@@ -3205,7 +3247,10 @@
         "description": "The name of an existing DB parameter group or a reference to an AWS::RDS::DBParameterGroup resource created in the template.",
         "required": false,
         "type": "String",
-        "update_causes": "none"
+        "update_causes": [
+          "none",
+          "interrupt"
+        ]
       },
       "DBSecurityGroups": {
         "description": "A list of the DB security groups to assign to the Amazon RDS instance. The list can include both the name of existing DB security groups or references to AWS::RDS::DBSecurityGroup resources created in the template.",
@@ -3295,7 +3340,10 @@
         "description": "The weekly time range (in UTC) during which system maintenance can occur.",
         "required": false,
         "type": "String",
-        "update_causes": "none"
+        "update_causes": [
+          "none",
+          "interrupt"
+        ]
       },
       "PubliclyAccessible": {
         "description": "Indicates whether the database instance is an Internet-facing instance. If you specify true, an instance is created with a publicly resolvable DNS name, which resolves to a public IP address. If you specify false, an internal instance is created with a DNS name that resolves to a private IP address.",
@@ -3576,7 +3624,10 @@
         "description": "The parameters to set for this DB cluster parameter group. For a list of parameter keys, see Appendix: DB Cluster and DB Instance Parameters in the Amazon Relational Database Service User Guide.",
         "required": true,
         "type": "Unknown",
-        "update_causes": "none"
+        "update_causes": [
+          "none",
+          "interrupt"
+        ]
       },
       "Tags": {
         "description": "The tags that you want to attach to this parameter group.",
@@ -3717,7 +3768,10 @@
         "description": "Defines a set of Amazon Elastic Block Store block device mappings, ephemeral instance store block device mappings, or both. For more information, see Amazon Elastic Block Store or Amazon EC2 Instance Store in the Amazon EC2 User Guide for Linux Instances.",
         "required": false,
         "type": "Array",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "none"
+        ]
       },
       "DisableApiTermination": {
         "description": "Specifies whether the instance can be terminated through the API.",
@@ -3729,7 +3783,10 @@
         "description": "Specifies whether the instance is optimized for Amazon Elastic Block Store I/O. This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal EBS I/O performance.",
         "required": false,
         "type": "Boolean",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "interrupt"
+        ]
       },
       "IamInstanceProfile": {
         "description": "The physical ID of an instance profile or a reference to an AWS::IAM::InstanceProfile resource.",
@@ -3753,13 +3810,19 @@
         "description": "The instance type, such as t2.micro. The default type is \"m1.small\". For a list of instance types, see Instance Families and Types.",
         "required": false,
         "type": "Array",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "interrupt"
+        ]
       },
       "KernelId": {
         "description": "The kernel ID.",
         "required": false,
         "type": "String",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "interrupt"
+        ]
       },
       "KeyName": {
         "description": "Provides the name of the Amazon EC2 key pair.",
@@ -3795,13 +3858,19 @@
         "description": "The ID of the RAM disk to select. Some kernels require additional drivers at launch. Check the kernel requirements for information about whether you need to specify a RAM disk. To find kernel requirements, go to the AWS Resource Center and search for the kernel ID.",
         "required": false,
         "type": "String",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "interrupt"
+        ]
       },
       "SecurityGroupIds": {
         "description": "A list that contains the security group IDs for VPC security groups to assign to the Amazon EC2 instance. If you specified the NetworkInterfaces property, do not specify this property.",
         "required": false,
         "type": "Array",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "none"
+        ]
       },
       "SecurityGroups": {
         "description": "Valid only for Amazon EC2 security groups. A list that contains the Amazon EC2 security groups to assign to the Amazon EC2 instance. The list can contain both the name of existing Amazon EC2 security groups or references to AWS::EC2::SecurityGroup resources created in the template.",
@@ -3843,7 +3912,10 @@
         "description": "Base64-encoded MIME user data that is made available to the instances.",
         "required": false,
         "type": "String",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "interrupt"
+        ]
       },
       "Volumes": {
         "description": "The Amazon EBS volumes to attach to the instance.",
@@ -3855,7 +3927,10 @@
         "description": "Reserved.",
         "required": false,
         "type": "String",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "interrupt"
+        ]
       }
     },
     "path": "aws-properties-ec2-instance.html"
@@ -4413,7 +4488,11 @@
         "description": "Global secondary indexes to be created on the table. You can create up to 5 global secondary indexes.",
         "required": false,
         "type": "Array",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "none",
+          "interrupt"
+        ]
       },
       "KeySchema": {
         "description": "Specifies the attributes that make up the primary key for the table. The attributes in the KeySchema property must also be defined in the AttributeDefinitions property.",
@@ -5043,7 +5122,10 @@
         "description": "The Availability Zones in which to create the load balancer. You can specify the AvailabilityZones or Subnets property, but not both.",
         "required": false,
         "type": "Array",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "none"
+        ]
       },
       "ConnectionDrainingPolicy": {
         "description": "Whether deregistered or unhealthy instances can complete all in-flight requests.",
@@ -5067,7 +5149,10 @@
         "description": "Application health check for the instances.",
         "required": false,
         "type": "Unknown",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "none"
+        ]
       },
       "Instances": {
         "description": "A list of EC2 instance IDs for the load balancer.",
@@ -5115,7 +5200,10 @@
         "description": "A list of subnet IDs in your virtual private cloud (VPC) to attach to your load balancer. Do not specify multiple subnets that are in the same Availability Zone. You can specify the AvailabilityZones or Subnets property, but not both.",
         "required": false,
         "type": "Array",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "none"
+        ]
       },
       "Tags": {
         "description": "An arbitrary set of tags (key-value pairs) for this load balancer.",
