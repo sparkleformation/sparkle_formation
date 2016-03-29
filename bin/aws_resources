@@ -14,8 +14,8 @@ STORE = '/tmp/aws-cfn-docs'
 
 UPDATE_MAPPING = {
   'replacement' => :replacement,
-  'no interruption' => :none,
-  /(?<!no )interruption/ => :interrupt,
+  /(no|without) interruption/ => :none,
+  /(?<!no|without) interruption/ => :interrupt,
   'not supported' => :unavailable
 }
 
