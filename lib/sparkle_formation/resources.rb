@@ -27,7 +27,8 @@ class SparkleFormation
     # Defines conditional result for cause of property update
     #
     # @param update_causes [String] one of: 'replacement', 'interrupt', 'unknown', 'none'
-    # @param conditional [Proc] condition logic. passed single value: Hash of resource "final" state
+    # @param conditional [Proc, TrueClass] condition logic. passed two values: Hash of resource "final" state and
+    #   Hash of resource "original" state
     UpdateCausesConditional = Struct.new(:update_causes, :conditional)
 
     # Defines a resource property
@@ -44,10 +45,12 @@ class SparkleFormation
       #
       # @param final_resource [Hash] desired resource structure containing this property
       # @return ['replacement', 'interrupt', 'unknown', 'none']
-      def update_causes(final_resource=nil)
+      def update_causes(final_resource=nil, original_resource=nil)
         if(conditionals && final_resource)
+          final_resource = final_resource.to_smash
+          original_resource = original_resource.to_smash
           result = conditionals.detect do |p_cond|
-            p_cond.conditional.call(final_resource)
+            p_cond == true || p_cond.conditional.call(final_resource, original_resource)
           end
           if(result)
             result.update_causes
