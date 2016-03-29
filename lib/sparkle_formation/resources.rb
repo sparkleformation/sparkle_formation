@@ -13,6 +13,53 @@ class SparkleFormation
     RESOURCE_TYPE_TR = '_'
     # String to split for resource namespacing
     RESOURCE_TYPE_NAMESPACE_SPLITTER = '::'
+    # Property update conditionals
+    # Format: Smash.new(RESOURCE_TYPE => {PROPERTY_NAME => [PropertyConditional]})
+    PROPERTY_UPDATE_CONDITIONALS = Smash.new
+
+    # Defines a resource type
+    #
+    # @param name [String] name of resource type
+    # @param properties [Array<Property>] resource properties
+    # @param raw [Hash] raw resource information
+    Resource = Struct.new(:name, :properties, :raw)
+
+    # Defines conditional result for cause of property update
+    #
+    # @param update_causes [String] one of: 'replacement', 'interrupt', 'unknown', 'none'
+    # @param conditional [Proc] condition logic. passed single value: Hash of resource "final" state
+    UpdateCausesConditional = Struct.new(:update_causes, :conditional)
+
+    # Defines a resource property
+    #
+    # @param name [String] property name
+    # @param description [String] property descrition
+    # @param type [String] property data type
+    # @param required [TrueClass, FalseClass] property is required
+    # @param update_causes [String] one of: 'replacement', 'interrupt', 'unknown', 'none'
+    # @param conditionals [Array<UpdateCausesConditional>] conditionals for update causes
+    Property = Struct.new(:name, :description, :type, :required, :update_causes, :conditionals) do
+
+      # Determine result of property update
+      #
+      # @param final_resource [Hash] desired resource structure containing this property
+      # @return ['replacement', 'interrupt', 'unknown', 'none']
+      def update_causes(final_resource=nil)
+        if(conditionals && final_resource)
+          result = conditionals.detect do |p_cond|
+            p_cond.conditional.call(final_resource)
+          end
+          if(result)
+            result.update_causes
+          else
+            'unknown'
+          end
+        else
+          self[:update_causes]
+        end
+      end
+
+    end
 
     class << self
 
@@ -140,6 +187,28 @@ class SparkleFormation
       # @return [SparkleStruct]
       def resource_customizer(struct, lookup_key)
         struct
+      end
+
+      # Information about specific resource type
+      #
+      # @param type [String] resource type
+      # @return [Resource]
+      def resource_lookup(type)
+        result = registry[type]
+        if(result)
+          properties = result.fetch('full_properties', {}).map do |p_name, p_info|
+            Property.new(p_name,
+              p_info[:description],
+              p_info[:type],
+              p_info[:required],
+              p_info[:update_causes],
+              self.const_get(:PROPERTY_UPDATE_CONDITIONALS).get(type, p_name)
+            )
+          end
+          Resource.new(type, properties, result)
+        else
+          raise KeyError.new "Failed to locate requested resource type: `#{type}`"
+        end
       end
 
     end

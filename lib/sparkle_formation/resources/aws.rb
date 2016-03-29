@@ -8,6 +8,23 @@ class SparkleFormation
     # AWS specific resources collection
     class Aws < Resources
 
+      # Conditionals for property updates
+      PROPERTY_UPDATE_CONDITIONALS = Smash.new(
+        'AWS::EC2::Instance' => {
+          'SecurityGroupIds' => [
+            UpdateCausesConditional.new('none',
+              lambda{|final|
+                final.get('Properties', 'SubnetId') ||
+                  final.fetch('Properties', 'NetworkInterface', {}).values.include?('SubnetId')
+              }
+            ),
+            UpdateCausesConditional.new('replacement',
+              lambda{|*_| 'replacement'}
+            )
+          ]
+        }
+      )
+
       class << self
 
         include Bogo::Memoization
