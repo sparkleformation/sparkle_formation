@@ -157,7 +157,7 @@ class SparkleFormation
 
         ::Object.constants.each do |const|
           unless(self.const_defined?(const))
-            next if const == :Config # prevent warning output
+            next if const == :Config || const == :TimeoutError # prevent warning output
             self.const_set(const, ::Object.const_get(const))
           end
         end
