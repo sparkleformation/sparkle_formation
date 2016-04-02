@@ -12,11 +12,9 @@ class SparkleFormation
       PROPERTY_UPDATE_CONDITIONALS = Smash.new(
         'AWS::DynamoDB::Table' => {
           'GlobalSecondaryIndexes' => [
-            UpdateCausesConditional.new('none',
-              lambda{|final, orig|
-              }
-            ),
-            UpdateCausesConditional.new('replacement', true)
+            # Updates not really supported here. Set as unknown to
+            # prompt user to investigate
+            UpdateCausesConditional.new('unknown', true)
           ]
         },
         'AWS::EC2::EIPAssociation' => {
@@ -149,42 +147,115 @@ class SparkleFormation
         },
         'AWS::ElasticLoadBalancing::LoadBalancer' => {
           'AvailabilityZones' => [
+            UpdateCausesConditional.new('replacement',
+              lambda{|final, original|
+                original.fetch('Properties', 'AvailabilityZones', []).empty? ||
+                  final.fetch('Properties', 'AvailabilityZones', []).empty?
+              }
+            ),
+            UpdateCausesConditional.new('none', true)
           ],
           'HealthCheck' => [
+            UpdateCausesConditional.new('replacement',
+              lambda{|final, original|
+                original.fetch('Properties', 'HealthCheck', {}).empty? ||
+                  final.fetch('Properties', 'HealthCheck', {}).empty?
+              }
+            ),
+            UpdateCausesConditional.new('none', true)
           ],
           'Subnets' => [
+            UpdateCausesConditional.new('replacement',
+              lambda{|final, original|
+                original.fetch('Properties', 'Subnets', []).empty? ||
+                  final.fetch('Properties', 'Subnets', []).empty?
+              }
+            ),
+            UpdateCausesConditional.new('none', true)
           ]
         },
         'AWS::RDS::DBCluster' => {
           'BackupRetentionPeriod' => [
+            UpdateCausesConditional.new('interrupt',
+              lambda{|final, original|
+                fp = final.get('Properties', 'BackupRetentionPeriod').to_i
+                op = original.get('Properties', 'BackupRetentionPeriod').to_i
+                (fp == 0 && op != 0) ||
+                  (op == 0 && fp != 0)
+              }
+            ),
+            UpdateCausesConditional.new('none', true)
           ],
           'PreferredMaintenanceWindow' => [
+            # can interrupt if apply immediately is set on api call but
+            # no way to know
+            UpdateCausesConditional.new('unknown', true)
           ]
         },
         'AWS::RDS::DBClusterParameterGroup' => {
           'Parameters' => [
+            # dependent on what parameters have been changed. doesn't
+            # look like parameter modifications are applied immediately?
+            # set as unknown for safety
+            UpdateCausesConditional.new('unknown', true)
           ]
         },
         'AWS::RDS::DBInstance' => {
           'AutoMinorVersionUpgrade' => [
+            # can cause interrupts based on future actions (enables
+            # auto patching) so leave as unknown for safety
+            UpdateCausesConditional.new('unknown', true)
           ],
           'BackupRetentionPeriod' => [
+            UpdateCausesConditional.new('interrupt',
+              lambda{|final, original|
+                fp = final.get('Properties', 'BackupRetentionPeriod').to_i
+                op = original.get('Properties', 'BackupRetentionPeriod').to_i
+                (fp == 0 && op != 0) ||
+                  (op == 0 && fp != 0)
+              }
+            ),
+            UpdateCausesConditional.new('none', true)
           ],
           'DBParameterGroupName' => [
+            # changes are not applied until reboot, but it could
+            # still be considered an interrupt? setting as unknown
+            # for safety
+            UpdateCausesConditional.new('unknown', true)
           ],
           'PreferredMaintenanceWindow' => [
+            # can interrupt if apply immediately is set on api call but
+            # no way to know
+            UpdateCausesConditional.new('unknown', true)
           ]
         },
         'AWS::RDS::DBParameterGroup' => {
           'Parameters' => [
+            # dependent on what parameters have been changed. doesn't
+            # look like parameter modifications are applied immediately?
+            # set as unknown for safety
+            UpdateCausesConditional.new('unknown', true)
           ]
         },
         'AWS::RDS::EventSubscription' => {
           'SourceType' => [
+            UpdateCausesConditional.new('replacement',
+              lambda{|final, original|
+                !final.get('Properties', 'SourceType')
+              }
+            ),
+            UpdateCausesConditional.new('none', true)
           ]
         },
         'AWS::Route53::HostedZone' => {
           'VPCs' => [
+            UpdateCausesConditional.new('replacement',
+              lambda{|final, original|
+                !final.get('Properties', 'VPCs') ||
+                  !original.get('Properties', 'VPCs')
+              }
+            ),
+            UpdateCausesConditional.new('none', true)
           ]
         }
       )
