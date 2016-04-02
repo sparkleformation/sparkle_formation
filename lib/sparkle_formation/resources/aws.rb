@@ -59,16 +59,38 @@ class SparkleFormation
         },
         'AWS::EC2::Instance' => {
           'AdditionalInfo' => [
+            UpdateCausesConditional.new('unknown', true) # EBS AMI dependent
           ],
           'BlockDeviceMappings' => [
+            UpdateCausesConditional.new('replacement',
+              lambda{|final, original|
+                f_maps = final.fetch('Properties', 'BlockDeviceMappings', [])
+                o_maps = original.fetch('Properties', 'BlockDeviceMappings', [])
+                f_maps.map! do |m|
+                  m.delete('DeleteOnTermination')
+                  m.to_smash(:sorted)
+                end
+                o_maps.map! do |m|
+                  m.delete('DeleteOnTermination')
+                  m.to_smash(:sorted)
+                end
+                f_maps.size != o_maps.size ||
+                  !f_maps.all?{|m| o_maps.include?(m)}
+              }
+            )
+            UpdateCausesConditional.new('none', true)
           ],
           'EbsOptimized' => [
+            UpdateCausesConditional.new('unknown', true) # EBS AMI dependent
           ],
           'InstanceType' => [
+            UpdateCausesConditional.new('unknown', true) # EBS AMI dependent
           ],
           'KernelId' => [
+            UpdateCausesConditional.new('unknown', true) # EBS AMI dependent
           ],
           'RamdiskId' => [
+            UpdateCausesConditional.new('unknown', true) # EBS AMI dependent
           ],
           'SecurityGroupIds' => [
             UpdateCausesConditional.new('none',
@@ -77,21 +99,52 @@ class SparkleFormation
                   final.fetch('Properties', 'NetworkInterface', {}).values.include?('SubnetId')
               }
             ),
-            UpdateCausesConditional.new('replacement',
-              lambda{|*_| 'replacement'}
-            )
+            UpdateCausesConditional.new('replacement', true)
           ],
           'UserData' => [
+            UpdateCausesConditional.new('unknown', true) # EBS AMI dependent
           ]
         },
         'AWS::EC2::NetworkInterface' => {
           'PrivateIpAddresses' => [
+            UpdateCausesConditional.new('replacement',
+              lambda{|final, original|
+                f_primary = final.fetch('Properties', 'PrivateIpAddresses', []).detect do |addr|
+                  addr['Primary']
+                end || Smash.new
+                o_primary = original.fetch('Properties', 'PrivateIpAddresses', []).detect do |addr|
+                  addr['Primary']
+                end || Smash.new
+                f_primary.to_smash(:sorted) != o_primary.to_smash(:sorted)
+              }
+            ),
+            UpdateCausesConditional.new('none', true)
           ]
         },
         'AWS::ElastiCache::CacheCluster' => {
           'NumCacheNodes' => [
+            UpdateCausesConditional.new('replacement',
+              lambda{|final, original|
+                [
+                  final.get('Properties', 'PreferredAvailabilityZone'),
+                  final.get('Properties', 'PreferredAvailabilityZones'),
+                  original.get('Properties', 'PreferredAvailabilityZone'),
+                  original.get('Properties', 'PreferredAvailabilityZones')
+                ].all?{|i| i.nil? || i.empty? }
+              }
+            ),
+            UpdateCausesConditional.new('none', true)
           ],
           'PreferredAvailabilityZones' => [
+            UpdateCausesConditional.new('interrupt',
+              lambda{|final, original|
+                original.get('Properties', 'PreferredAvailabilityZones') ||
+                  final.fetch('Properties', 'PreferredAvailabilityZones', []).include?(
+                  original.get('Properties', 'PreferredAvailabilityZone')
+                )
+              }
+            ),
+            UpdateCausesConditional.new('replacement', true)
           ]
         },
         'AWS::ElasticLoadBalancing::LoadBalancer' => {
