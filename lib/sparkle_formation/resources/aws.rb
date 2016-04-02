@@ -107,7 +107,7 @@ class SparkleFormation
           ],
           'PreferredMaintenanceWindow' => [
           ]
-        }
+        },
         'AWS::RDS::DBClusterParameterGroup' => {
           'Parameters' => [
           ]
