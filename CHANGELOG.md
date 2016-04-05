@@ -1,3 +1,8 @@
+# v2.1.8
+* Add support for CFN list type with shallow nesting (#150)
+* Fix deprecation warnings on Ruby 2.3 caused by TimeoutError constant
+* Fix JSON dump behavior with pure ruby json library (#162)
+
 # v2.1.6
 * Update builtin resource lists (#156)
 * Refactor internal template composition (#158)
