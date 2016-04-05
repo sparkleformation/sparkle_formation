@@ -919,6 +919,12 @@ class SparkleFormation
 
   # @return [String] dumped hash JSON
   def to_json(*args)
+    # NOTE: Ported in from batali
+    # Prevent stupid conversion errors of
+    # JSON::Ext::Generator::State into Hash
+    args = args.map do |argument|
+      argument.respond_to?(:to_h) ? argument.to_h : argument
+    end
     MultiJson.dump(compile.dump!, *args)
   end
 
