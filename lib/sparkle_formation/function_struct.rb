@@ -58,7 +58,7 @@ class SparkleFormation
     # @param val [Integer, String]
     # @return [FunctionStruct]
     def [](val)
-      _set("[#{val}]")
+      _set("#{__anchor_start}#{val}#{__anchor_stop}")
     end
 
     # Override of the dump to properly format eval string
@@ -95,7 +95,7 @@ class SparkleFormation
             suffix
           ].compact
         )
-        root? ? "[#{internal}]" : internal
+        root? ? "#{__anchor_start}#{internal}#{__anchor_stop}" : internal
       else
         suffix
       end
@@ -109,7 +109,7 @@ class SparkleFormation
       args = args.compact
       args.delete_if(&:empty?)
       args.slice(1, args.size).to_a.inject(args.first) do |memo, item|
-        if(item.start_with?('['))
+        if(item.start_with?(__anchor_start))
           memo += item
         else
           memo += ".#{item}"
@@ -120,6 +120,55 @@ class SparkleFormation
     # @return [Class]
     def _klass
       ::SparkleFormation::FunctionStruct
+    end
+
+    # @return [String] start character(s) used to anchor function call
+    def __anchor_start
+      '['
+    end
+
+    # @return [String] stop character(s) used to anchor function call
+    def __anchor_stop
+      ']'
+    end
+
+  end
+
+  # FunctionStruct for jinja outputs
+  class JinjaStruct < FunctionStruct
+
+    # @return [String] start character(s) used to anchor function call
+    def __anchor_start
+      '{{'
+    end
+
+    # @return [String] stop character(s) used to anchor function call
+    def __anchor_stop
+      '}}'
+    end
+
+    # @return [Class]
+    def _klass
+      ::SparkleFormation::JinjaStruct
+    end
+
+  end
+
+  # FunctionStruct for customized google functions
+  class GoogleStruct < FunctionStruct
+    # @return [String] start character(s) used to anchor function call
+    def __anchor_start
+      '$('
+    end
+
+    # @return [String] stop character(s) used to anchor function call
+    def __anchor_stop
+      ')'
+    end
+
+    # @return [Class]
+    def _klass
+      ::SparkleFormation::GoogleStruct
     end
 
   end
