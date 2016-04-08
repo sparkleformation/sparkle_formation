@@ -7,6 +7,7 @@ class SparkleFormation
 
     autoload :Aws, 'sparkle_formation/sparkle_attribute/aws'
     autoload :Azure, 'sparkle_formation/sparkle_attribute/azure'
+    autoload :Google, 'sparkle_formation/attribute_struct/google'
     autoload :Heat, 'sparkle_formation/sparkle_attribute/heat'
     autoload :Rackspace, 'sparkle_formation/sparkle_attribute/rackspace'
 

@@ -6,6 +6,7 @@ class SparkleFormation
 
     autoload :Aws, 'sparkle_formation/resources/aws'
     autoload :Azure, 'sparkle_formation/resources/azure'
+    autoload :Google, 'sparkle_formation/resources/google'
     autoload :Heat, 'sparkle_formation/resources/heat'
     autoload :Rackspace, 'sparkle_formation/resources/rackspace'
 
