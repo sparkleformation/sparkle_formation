@@ -134,22 +134,42 @@ class SparkleFormation
 
   end
 
-  # FunctionStruct for jinja outputs
-  class JinjaStruct < FunctionStruct
+  # FunctionStruct for jinja expressions
+  class JinjaExpressionStruct < FunctionStruct
 
     # @return [String] start character(s) used to anchor function call
     def __anchor_start
-      '{{'
+      '{{ '
     end
 
     # @return [String] stop character(s) used to anchor function call
     def __anchor_stop
-      '}}'
+      ' }}'
     end
 
     # @return [Class]
     def _klass
-      ::SparkleFormation::JinjaStruct
+      ::SparkleFormation::JinjaExpressionStruct
+    end
+
+  end
+
+  # FunctionStruct for jinja statements
+  class JinjaStatementStruct < FunctionStruct
+
+    # @return [String] start character(s) used to anchor function call
+    def __anchor_start
+      '{% '
+    end
+
+    # @return [String] stop character(s) used to anchor function call
+    def __anchor_stop
+      ' %}'
+    end
+
+    # @return [Class]
+    def _klass
+      ::SparkleFormation::JinjaStatementStruct
     end
 
   end
