@@ -5,6 +5,87 @@ class SparkleFormation
     # Google specific implementation
     module Google
 
+      # Extract nested stack templates and store in root level files
+      #
+      # @param template_hash [Hash] template hash to process
+      # @param parent_names [Array<String>] name of parent resources
+      # @param dump_copy [Smash] translated dump
+      # @return [Smash] dump_copy
+      def google_template_extractor(template_hash, parent_names=[], dump_copy)
+        template_hash.fetch('resources', []).each do |t_resource|
+          if(t_resource['type'] == stack_resource_type)
+            full_names = parent_names + [t_resource['name']]
+            stack = t_resource['properties'].delete('stack')
+            google_template_extractor(stack, full_names, dump_copy)
+            new_type = generate_template_files(full_names.join('-'), stack, dump_copy)
+            t_resource['type'] = new_type
+          end
+        end
+        dump_copy
+      end
+
+      # Sets stack template files into target copy and extracts parameters
+      # into schema files if available
+      #
+      # @param r_name [String] name used for template file name
+      # @param r_stack [Hash] template to store
+      # @param dump_copy [Smash] translated dump
+      # @return [String] new type for stack
+      def generate_template_files(r_name, r_stack, dump_copy)
+        f_name = "#{r_name}.jinja"
+        r_parameters = r_stack.delete('parameters')
+        dump_copy.set(:files, f_name, r_stack)
+        if(r_parameters)
+          dump_copy.set(:files, "#{f_name}.schema",
+            Smash.new.tap{|schema|
+              schema.set(:info, :title, "#{f_name} Template")
+              schema.set(:info, :description, "Creates stack defined by #{f_name} template")
+              schema.set(:properties, r_parameters)
+            }
+          )
+        end
+        f_name
+      end
+
+      # Customized dump to break out templates into consumable structures for
+      # passing to the deployment manager API
+      #
+      # @return [Hash]
+      def google_dump
+        result = non_google_dump
+        if(root?)
+          dump_copy = Smash.new
+          google_template_extractor(result, [name], dump_copy)
+          root_template = Smash.new.tap do |r_template|
+            ['parameters', 'resources', 'outputs'].each do |key|
+              r_template[key] = result[key] if result.key?(key)
+            end
+          end
+          dump_copy.set(:resources, :root, :type,
+            generate_template_files('sparkle-root', root_template, dump_copy)
+          )
+          dump_copy.to_hash
+        else
+          result
+        end
+      end
+
+      # Properly remap dumping methods
+      def self.included(klass)
+        klass.class_eval do
+          alias_method :non_google_dump, :dump
+          alias_method :dump, :google_dump
+        end
+      end
+
+      # Properly remap dumping methods
+      def self.extended(klass)
+        klass.instance_eval do
+          alias :non_google_dump :dump
+          alias :dump :google_dump
+        end
+      end
+
       # @return [String] Type string for Google Deployment Manager stack resource
       # @note Nested templates aren't defined as a specific type thus no "real"
       #   type exists. So we'll create a custom one!
