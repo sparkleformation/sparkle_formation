@@ -7,6 +7,30 @@ class SparkleFormation
 
     module Google
 
+      def self.included(klass)
+        klass.const_set(:CAMEL_STYLE, :no_leading)
+
+        klass.class_eval do
+
+          def _google_dump
+            result = _non_google_attribute_struct_dump
+            if(_parent.nil?)
+              if(result.key?('resources') && result['resources'].is_a?(Hash))
+                resources = result.delete('resources')
+                result['resources'] = resources.map do |r_name, r_content|
+                  r_content.merge('name' => r_name)
+                end
+              end
+            end
+            result
+          end
+          alias_method :_non_google_attribute_struct_dump, :_dump
+          alias_method :_dump, :_google_dump
+          alias_method :dump!, :_google_dump
+
+        end
+      end
+
       # Reference generator. Will lookup defined resource name
       # to validate exist.
       #
@@ -57,6 +81,7 @@ class SparkleFormation
       def _statement(line)
         ::SparkleFormation::JinjaStatementStruct.new(line)
       end
+      alias_method :statement!, :_statement
 
     end
 
