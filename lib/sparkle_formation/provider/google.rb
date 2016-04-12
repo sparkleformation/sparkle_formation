@@ -69,9 +69,9 @@ class SparkleFormation
               r_template[key] = result[key] if result.key?(key)
             end
           end
-          dump_copy.set(:config, :content, :resources, :root, :type,
-            generate_template_files('sparkle-root', root_template, dump_copy)
-          )
+          dump_copy.set(:config, :content, :resources, [
+            {'name' => 'root', 'type' => generate_template_files('sparkle-root', root_template, dump_copy)}
+          ])
           dump_copy.set(:config, :content, :imports,
             dump_copy[:imports].map{|i| i[:name]}
           )
