@@ -58,7 +58,7 @@ class SparkleFormation
     # @param val [Integer, String]
     # @return [FunctionStruct]
     def [](val)
-      _set("#{__anchor_start}#{val}#{__anchor_stop}")
+      _set("[#{val.inspect}]")
     end
 
     # Override of the dump to properly format eval string
@@ -109,7 +109,7 @@ class SparkleFormation
       args = args.compact
       args.delete_if(&:empty?)
       args.slice(1, args.size).to_a.inject(args.first) do |memo, item|
-        if(item.start_with?(__anchor_start))
+        if(item.start_with?('['))
           memo += item
         else
           memo += ".#{item}"
@@ -130,6 +130,16 @@ class SparkleFormation
     # @return [String] stop character(s) used to anchor function call
     def __anchor_stop
       ']'
+    end
+
+    # @return [String] dump from root
+    def to_s
+      _root._dump
+    end
+
+    # @return [String] dump from root
+    def inspect
+      _root._dump
     end
 
   end
