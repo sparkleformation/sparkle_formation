@@ -34,14 +34,22 @@ class SparkleFormation
       def generate_template_files(r_name, r_stack, dump_copy)
         f_name = "#{r_name}.jinja"
         r_parameters = r_stack.delete('parameters')
-        dump_copy.set(:files, f_name, r_stack)
+        dump_copy[:imports].push(
+          Smash.new(
+            :name => f_name,
+            :content => r_stack
+          )
+        )
         if(r_parameters)
-          dump_copy.set(:files, "#{f_name}.schema",
-            Smash.new.tap{|schema|
-              schema.set(:info, :title, "#{f_name} Template")
-              schema.set(:info, :description, "Creates stack defined by #{f_name} template")
-              schema.set(:properties, r_parameters)
-            }
+          dump_copy[:imports].push(
+            Smash.new(
+              :name => "#{f_name}.schema",
+              :content => Smash.new.tap{|schema|
+                schema.set(:info, :title, "#{f_name} Template")
+                schema.set(:info, :description, "Creates stack defined by #{f_name} template")
+                schema.set(:properties, r_parameters)
+              }
+            )
           )
         end
         f_name
@@ -54,15 +62,18 @@ class SparkleFormation
       def google_dump
         result = non_google_dump
         if(root?)
-          dump_copy = Smash.new
+          dump_copy = Smash.new(:imports => [])
           google_template_extractor(result, [name], dump_copy)
           root_template = Smash.new.tap do |r_template|
             ['parameters', 'resources', 'outputs'].each do |key|
               r_template[key] = result[key] if result.key?(key)
             end
           end
-          dump_copy.set(:resources, :root, :type,
+          dump_copy.set(:config, :content, :resources, :root, :type,
             generate_template_files('sparkle-root', root_template, dump_copy)
+          )
+          dump_copy.set(:config, :content, :imports,
+            dump_copy[:imports].map{|i| i[:name]}
           )
           dump_copy.to_hash
         else
