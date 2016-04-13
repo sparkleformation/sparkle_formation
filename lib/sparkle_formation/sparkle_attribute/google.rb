@@ -50,7 +50,7 @@ class SparkleFormation
         if(_root.resources.set!(r_name).nil?)
           ::Kernel.raise ::SparkleFormation::Error::NotFound::Resource.new(:name => r_name)
         else
-          ::SparkleFormation::GoogleStruct.new('ref').set!(r_name)
+          ::SparkleFormation::GoogleStruct.new('ref').set!(__attribute_key(r_name))
         end
       end
       alias_method :ref!, :_ref
@@ -92,6 +92,16 @@ class SparkleFormation
         ::SparkleFormation::JinjaStatementStruct.new(line)
       end
       alias_method :statement!, :_statement
+
+      # Reference output value from nested stack
+      #
+      # @param stack_name [String, Symbol] logical resource name of stack
+      # @param output_name [String, Symbol] stack output name
+      # @return [SparkleFormation::JinjaExpressionStruct]
+      def _stack_output(stack_name, output_name)
+        _ref(stack_name)._set(output_name)
+      end
+      alias_method :stack_output!, :_stack_output
 
     end
 
