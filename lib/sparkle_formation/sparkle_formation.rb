@@ -919,6 +919,7 @@ class SparkleFormation
   def dump
     MultiJson.load(to_json)
   end
+  alias_method :sparkle_dump, :dump
 
   # @return [String] dumped hash JSON
   def to_json(*args)
