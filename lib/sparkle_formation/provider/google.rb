@@ -5,6 +5,11 @@ class SparkleFormation
     # Google specific implementation
     module Google
 
+      # Always return as nested since nesting is our final form
+      def nested?(*_)
+        true
+      end
+
       # Extract nested stack templates and store in root level files
       #
       # @param template_hash [Hash] template hash to process
@@ -64,17 +69,10 @@ class SparkleFormation
         if(root?)
           dump_copy = Smash.new(:imports => [])
           google_template_extractor(result, [name], dump_copy)
-          root_template = Smash.new.tap do |r_template|
-            ['parameters', 'resources', 'outputs'].each do |key|
-              r_template[key] = result[key] if result.key?(key)
-            end
-          end
-          dump_copy.set(:config, :content, :resources, [
-            {'name' => 'root', 'type' => generate_template_files('sparkle-root', root_template, dump_copy)}
-          ])
           dump_copy.set(:config, :content, :imports,
             dump_copy[:imports].map{|i| i[:name]}
           )
+          dump_copy.set(:config, :content, :resources, result['resources'])
           dump_copy.to_hash
         else
           result
@@ -138,7 +136,8 @@ class SparkleFormation
         if(block_given?)
           extract_templates(&block)
         end
-        compile.dump!
+        #        dump
+        self
       end
 
       # Apply shallow nesting. This style of nesting will bubble
@@ -162,7 +161,7 @@ class SparkleFormation
             compile.outputs._set(o_name).value compile._stack_output(*o_val)
           end
         end
-        compile.dump!
+        dump
       end
 
       # Extract output to make available for stack parameter usage at the
