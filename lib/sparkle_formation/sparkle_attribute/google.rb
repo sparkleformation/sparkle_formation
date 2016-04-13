@@ -38,7 +38,17 @@ class SparkleFormation
           alias_method :_non_google_attribute_struct_dump, :_dump
           alias_method :_dump, :_google_dump
           alias_method :dump!, :_google_dump
+          alias_method :_non_google_dynamic!, :dynamic!
+          alias_method :dynamic!, :_google_dynamic!
         end
+      end
+
+      def _google_dynamic!(name, *args, &block)
+        $stdout.puts args.inspect
+        if(args.delete(:sparkle_unique))
+          args[0] = "#{__attribute_key(args.first)}-#{_env('deployment')}-"
+        end
+        _non_google_dynamic!(name, *args, &block)
       end
 
       # Reference generator. Will lookup defined resource name
@@ -47,6 +57,7 @@ class SparkleFormation
       # @param r_name [String, Symbol] resource name
       # @return [SparkleFormation::GoogleStruct]
       def _ref(r_name)
+        __t_stringish(r_name)
         if(_root.resources.set!(r_name).nil?)
           ::Kernel.raise ::SparkleFormation::Error::NotFound::Resource.new(:name => r_name)
         else
@@ -69,6 +80,7 @@ class SparkleFormation
       # @param e_name [String, Symbol] environment variable name
       # @return [SparkleFormation::JinjaExpressionStruct]
       def _env(e_name)
+        __t_stringish(e_name)
         _jinja.env[__attribute_key(e_name)]
       end
       alias_method :env!, :_env
@@ -79,6 +91,7 @@ class SparkleFormation
       # @return [SparkleFormation::JinjaExpressionStruct]
       # @todo Provide lookup validation that defined p_name is valid
       def _property(p_name)
+        __t_stringish(p_name)
         _jinja.properties[__attribute_key(p_name)]
       end
       alias_method :property!, :_property
@@ -99,6 +112,8 @@ class SparkleFormation
       # @param output_name [String, Symbol] stack output name
       # @return [SparkleFormation::JinjaExpressionStruct]
       def _stack_output(stack_name, output_name)
+        __t_stringish(stack_name)
+        __t_stringish(output_name)
         _ref(stack_name)._set(output_name)
       end
       alias_method :stack_output!, :_stack_output
