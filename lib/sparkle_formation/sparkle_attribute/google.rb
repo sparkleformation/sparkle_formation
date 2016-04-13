@@ -44,7 +44,6 @@ class SparkleFormation
       end
 
       def _google_dynamic!(name, *args, &block)
-        $stdout.puts args.inspect
         if(args.delete(:sparkle_unique))
           args[0] = "#{__attribute_key(args.first)}-#{_env('deployment')}-"
         end
