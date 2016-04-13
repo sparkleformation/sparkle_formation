@@ -15,19 +15,29 @@ class SparkleFormation
           def _google_dump
             result = _non_google_attribute_struct_dump
             if(_parent.nil?)
+              sparkle_root = {}
               if(result.key?('resources') && result['resources'].is_a?(Hash))
                 resources = result.delete('resources')
+                sparkle_root = (resources.delete(_self.name) || {}).fetch('properties', {})
                 result['resources'] = resources.map do |r_name, r_content|
                   r_content.merge('name' => r_name)
                 end
               end
+              result = {
+                'resources' => [{
+                  'name' => _self.name,
+                  'type' => _self.stack_resource_type,
+                  'properties' => {
+                    'stack' => result
+                  }.merge(sparkle_root)
+                }]
+              }
             end
             result
           end
           alias_method :_non_google_attribute_struct_dump, :_dump
           alias_method :_dump, :_google_dump
           alias_method :dump!, :_google_dump
-
         end
       end
 
