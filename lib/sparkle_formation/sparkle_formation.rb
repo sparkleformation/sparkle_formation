@@ -276,9 +276,10 @@ class SparkleFormation
           args.map{|a| Bogo::Utility.snake(a)}.join('_')
         ].flatten.compact.join('_').to_sym
       end
+      resource_name = struct._process_key(resource_name.to_sym)
       nested_template = compile(to_nest[:path], :sparkle)
       nested_template.parent = struct._self
-      nested_template.name = Bogo::Utility.camel(resource_name)
+      nested_template.name = resource_name
       if(options[:parameters])
         nested_template.compile_state = options[:parameters]
       end
@@ -402,6 +403,8 @@ class SparkleFormation
             )
             if(s_path)
               h[:root] = s_path
+            else
+              h[:root] = :none
             end
           }
         )
@@ -812,7 +815,8 @@ class SparkleFormation
   # @yieldreturn [Hash] key/values to be merged into resource properties
   # @return [Hash] dumped stack
   def apply_deep_nesting(*args, &block)
-    compile.dump!
+    compile
+    dump
   end
 
   # Check if parameter name matches an output name
@@ -870,7 +874,8 @@ class SparkleFormation
   # @yieldreturn [String] Remote URL storage for template
   # @return [Hash]
   def apply_shallow_nesting(*args, &block)
-    compile.dump!
+    compile
+    dump
   end
 
   # @return [Smash<output_name:SparkleFormation>]
