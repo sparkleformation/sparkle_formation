@@ -794,7 +794,7 @@ class SparkleFormation
   # Apply nesting logic to stack
   #
   # @param nest_type [Symbol] values: :shallow, :deep (default: :deep)
-  # @return [Hash] dumped stack
+  # @return [SparkleFormation::SparkleStruct] compiled structure
   # @note see specific version for expected block parameters
   def apply_nesting(*args, &block)
     if(args.include?(:shallow))
@@ -813,10 +813,9 @@ class SparkleFormation
   # @yieldparam resource [AttributeStruct] the stack resource
   # @yieldparam s_name [String] stack resource name
   # @yieldreturn [Hash] key/values to be merged into resource properties
-  # @return [Hash] dumped stack
+  # @return [SparkleFormation::SparkleStruct] compiled structure
   def apply_deep_nesting(*args, &block)
     compile
-    dump
   end
 
   # Check if parameter name matches an output name
@@ -872,10 +871,9 @@ class SparkleFormation
   # @yieldparam resource_name [String] name of stack resource
   # @yieldparam stack [SparkleFormation] nested stack
   # @yieldreturn [String] Remote URL storage for template
-  # @return [Hash]
+  # @return [SparkleFormation::SparkleStruct] compiled structure
   def apply_shallow_nesting(*args, &block)
     compile
-    dump
   end
 
   # @return [Smash<output_name:SparkleFormation>]

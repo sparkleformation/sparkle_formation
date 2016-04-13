@@ -47,7 +47,7 @@ class SparkleFormation
       # @yieldparam resource [AttributeStruct] the stack resource
       # @yieldparam s_name [String] stack resource name
       # @yieldreturn [Hash] key/values to be merged into resource properties
-      # @return [Hash] dumped stack
+      # @return [SparkleFormation::SparkleStruct] compiled structure
       def apply_deep_nesting(*args, &block)
         outputs = collect_outputs
         nested_stacks(:with_resource).each do |stack, resource|
@@ -65,7 +65,7 @@ class SparkleFormation
         if(block_given?)
           extract_templates(&block)
         end
-        compile.dump!
+        compile
       end
 
       # Apply shallow nesting. This style of nesting will bubble
@@ -76,7 +76,7 @@ class SparkleFormation
       # @yieldparam resource_name [String] name of stack resource
       # @yieldparam stack [SparkleFormation] nested stack
       # @yieldreturn [String] Remote URL storage for template
-      # @return [Hash]
+      # @return [SparkleFormation::SparkleStruct] compiled structure
       def apply_shallow_nesting(*args, &block)
         parameters = compile[:parameters] ? compile[:parameters]._dump : {}
         output_map = {}
@@ -97,7 +97,7 @@ class SparkleFormation
             compile.outputs output_hash
           end
         end
-        compile.dump!
+        compile
       end
 
       # Extract output to make available for stack parameter usage at the
