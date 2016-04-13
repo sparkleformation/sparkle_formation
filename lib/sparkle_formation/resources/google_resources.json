@@ -1,1 +1,667 @@
-{}
+{
+  "autoscaler.v1beta2.autoscaler": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "bigquery.v2.dataset": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "bigquery.v2.table": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "clouduseraccounts.beta.group": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "clouduseraccounts.beta.user": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.address": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.autoscaler": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.backendService": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.disk": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.firewall": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.forwardingRule": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.globalAddress": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.globalForwardingRule": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.httpHealthCheck": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.httpsHealthCheck": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.image": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.instance": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.instanceGroup": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.instanceGroupManager": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.instanceTemplate": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.network": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.route": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.router": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.sslCertificate": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.subnetwork": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.targetHttpProxy": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.targetHttpsProxy": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.targetInstance": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.targetPool": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.targetVpnGateway": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.urlMap": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.alpha.vpnTunnel": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.address": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.autoscaler": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.backendService": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.disk": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.firewall": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.forwardingRule": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.globalAddress": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.globalForwardingRule": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.httpHealthCheck": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.httpsHealthCheck": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.image": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.instance": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.instanceGroup": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.instanceGroupManager": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.instanceTemplate": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.network": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.route": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.sslCertificate": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.subnetwork": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.targetHttpProxy": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.targetHttpsProxy": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.targetInstance": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.targetPool": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.targetVpnGateway": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.urlMap": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.beta.vpnTunnel": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.address": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.autoscaler": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.backendService": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.disk": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.firewall": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.forwardingRule": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.globalAddress": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.globalForwardingRule": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.httpHealthCheck": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.httpsHealthCheck": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.image": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.instance": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.instanceGroup": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.instanceGroupManager": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.instanceTemplate": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.network": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.route": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.sslCertificate": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.subnetwork": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.targetHttpProxy": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.targetHttpsProxy": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.targetInstance": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.targetPool": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.targetVpnGateway": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.urlMap": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "compute.v1.vpnTunnel": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "container.v1.cluster": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "replicapool.v1beta1.pool": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "replicapool.v1beta2.instanceGroupManager": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "resourceviews.v1beta2.zoneView": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "sqladmin.v1beta4.database": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "sqladmin.v1beta4.instance": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "storage.v1.bucket": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "storage.v1.bucketAccessControl": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "storage.v1.defaultObjectAccessControl": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "storage.v1.object": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  },
+  "storage.v1.objectAccessControl": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    }
+  }
+}
