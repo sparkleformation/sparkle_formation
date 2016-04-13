@@ -87,7 +87,7 @@ class SparkleFormation
           end
         end.join(', ')
         unless(_fn_name.to_s.empty?)
-          function_name = args.empty? ? "#{_fn_name}()" : "#{_fn_name}(#{args})"
+          function_name = args.empty? ? "#{_fn_name}#{__empty_argument_list}" : "#{_fn_name}(#{args})"
         end
         internal = _eval_join(
           *[
@@ -132,6 +132,11 @@ class SparkleFormation
       ']'
     end
 
+    # @return [String] value to use when argument list is empty
+    def __empty_argument_list
+      '()'
+    end
+
     # @return [String] dump from root
     def to_s
       _root._dump
@@ -157,6 +162,11 @@ class SparkleFormation
       ' }}'
     end
 
+    # @return [String] value to use when argument list is empty
+    def __empty_argument_list
+      ''
+    end
+
     # @return [Class]
     def _klass
       ::SparkleFormation::JinjaExpressionStruct
@@ -177,6 +187,11 @@ class SparkleFormation
       ' %}'
     end
 
+    # @return [String] value to use when argument list is empty
+    def __empty_argument_list
+      ''
+    end
+
     # @return [Class]
     def _klass
       ::SparkleFormation::JinjaStatementStruct
@@ -194,6 +209,11 @@ class SparkleFormation
     # @return [String] stop character(s) used to anchor function call
     def __anchor_stop
       ')'
+    end
+
+    # @return [String] value to use when argument list is empty
+    def __empty_argument_list
+      ''
     end
 
     # @return [Class]
