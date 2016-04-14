@@ -917,9 +917,13 @@ class SparkleFormation
 
   # @return [Hash] dumped hash
   def dump
-    MultiJson.load(to_json)
+    compile.dump!
   end
-  alias_method :sparkle_dump, :dump
+
+  # @return [Hash] dumped hash
+  def sparkle_dump
+    compile.sparkle_dump!
+  end
 
   # @return [String] dumped hash JSON
   def to_json(*args)

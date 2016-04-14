@@ -130,5 +130,46 @@ class SparkleFormation
     end
     alias_method :state!, :_state
 
+    # TODO: Need to refactor attribute_struct dumping to allow hooking
+    # custom behavior instead of heavy copy/paste to modify a method call
+
+    # Process and unpack items for dumping within deeply nested
+    # enumerable types
+    #
+    # @param item [Object]
+    # @return [Object]
+    def _sparkle_dump_unpacker(item)
+      if(item.is_a?(::Enumerable))
+        if(item.respond_to?(:keys))
+          item.class[
+            *item.map do |entry|
+              _dump_unpacker(entry)
+            end.flatten(1)
+          ]
+        else
+          item.class[
+            *item.map do |entry|
+              _dump_unpacker(entry)
+            end
+          ]
+        end
+      elsif(item.is_a?(::AttributeStruct))
+        item.nil? ? UNSET_VALUE : item._sparkle_dump
+      else
+        item
+      end
+    end
+
+    # @return [AttributeStruct::AttributeHash, Mash] dump struct to hashish
+    def _sparkle_dump
+      processed = @table.keys.map do |key|
+        value = @table[key]
+        val = _sparkle_dump_unpacker(value)
+        [_sparkle_dump_unpacker(key), val] unless val == UNSET_VALUE
+      end.compact
+      __hashish[*processed.flatten(1)]
+    end
+    alias_method :sparkle_dump!, :_sparkle_dump
+
   end
 end
