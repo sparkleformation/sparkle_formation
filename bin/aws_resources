@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-%w(multi_json nokogiri fileutils).each do |lib|
+%w(bogo multi_json nokogiri fileutils).each do |lib|
   begin
     require lib
   rescue LoadError
@@ -14,8 +14,8 @@ STORE = '/tmp/aws-cfn-docs'
 
 UPDATE_MAPPING = {
   'replacement' => :replacement,
-  'no interruption' => :none,
-  'interruption' => :interrupt,
+  /(no|without) interruption/ => :none,
+  /(?<!no|without) interruption/ => :interrupt,
   'not supported' => :unavailable
 }
 
@@ -31,6 +31,7 @@ unless(File.directory?(STORE))
 end
 
 aws_resources = {}
+multiple_update_causes = Smash.new
 
 Dir.glob(File.join(STORE, '**/*.html')).each do |path|
   resource = nil
@@ -81,11 +82,21 @@ Dir.glob(File.join(STORE, '**/*.html')).each do |path|
           update_causes = :unavailable
         elsif(full_text.include?('update causes interrupt'))
           update_causes = :interrupt
-        else
-          links = info.css('a').map(&:text).map(&:downcase)
-          update_causes = UPDATE_MAPPING.map do |match, value|
-            value if links.any?{|a| a.include?(match)}
-          end.compact.first || :unknown
+        end
+        links = info.css('a').map(&:text).map(&:downcase)
+        update_causes_map = UPDATE_MAPPING.map do |match, value|
+          value if links.any?{|a| a.match(match) } #include?(match)}
+        end.compact
+        if(update_causes && !update_causes_map.empty?)
+          update_causes = [update_causes] + update_causes_map
+        elsif(update_causes.nil? && !update_causes_map.empty?)
+          update_causes = update_causes_map.size > 1 ? update_causes_map : update_causes_map.first
+        end
+        update_causes = :unknown unless update_causes
+        if(update_causes.is_a?(Array))
+          $stderr.puts "Multiple update_causes values detected! Resource: #{type} Property: #{name} -> #{update_causes.inspect}"
+          multiple_update_causes[type] ||= []
+          multiple_update_causes[type] << name
         end
 
         property_information[name] = {
@@ -117,3 +128,10 @@ Dir.glob(File.join(STORE, '**/*.html')).each do |path|
 end
 
 puts MultiJson.dump(aws_resources, :pretty => true)
+
+unless(multiple_update_causes.empty?)
+  $stderr.puts "--------------------------------------------------------"
+  $stderr.puts "Resource properties detected with multiple update states"
+  $stderr.puts "--------------------------------------------------------"
+  $stderr.puts MultiJson.dump(multiple_update_causes.to_smash(:sorted).tap{|h| h.values.map(&:sort!)}, :pretty => true)
+end
