@@ -8,7 +8,7 @@ class SparkleFormation
 
     module Google
 
-      CHARACTER_COLLECTION = ('A'..'Z').to_a + ('a'..'z').to_a
+      CHARACTER_COLLECTION = ('a'..'z').to_a
 
       def self.included(klass)
         klass.const_set(:CAMEL_STYLE, :no_leading)
@@ -50,8 +50,14 @@ class SparkleFormation
         if(args.delete(:sparkle_unique))
           seed = Zlib.crc32(_self.root_path.map(&:name).join('-'))
           gen = Random.new(seed)
-          suffix = 5.times.map{ CHARACTER_COLLECTION.at(gen.rand(CHARACTER_COLLECTION.size)) }.join
-          args[0] = "#{__attribute_key(args.first)}-#{_env('deployment')}-#{suffix}-"
+          suffix = 10.times.map{ CHARACTER_COLLECTION.at(gen.rand(CHARACTER_COLLECTION.size)) }.join
+          config_hash = args.detect{|a| a.is_a?(Hash)}
+          unless(config_hash)
+            config_hash = {}
+            args.push(config_hash)
+          end
+          config_hash[:resource_name_suffix] = "-#{suffix}"
+          args[0] = args.first.to_s.tr('_', '-').downcase
         end
         _non_google_dynamic!(name, *args, &block)
       end
