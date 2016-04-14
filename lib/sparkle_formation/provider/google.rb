@@ -13,15 +13,15 @@ class SparkleFormation
       # Extract nested stack templates and store in root level files
       #
       # @param template_hash [Hash] template hash to process
-      # @param parent_names [Array<String>] name of parent resources
       # @param dump_copy [Smash] translated dump
+      # @param parent_names [Array<String>] name of parent resources
       # @return [Smash] dump_copy
-      def google_template_extractor(template_hash, parent_names=[], dump_copy)
+      def google_template_extractor(template_hash, dump_copy, parent_names=[])
         template_hash.fetch('resources', []).each do |t_resource|
           if(t_resource['type'] == stack_resource_type)
             full_names = parent_names + [t_resource['name']]
             stack = t_resource['properties'].delete('stack')
-            google_template_extractor(stack, full_names, dump_copy)
+            google_template_extractor(stack, dump_copy, full_names)
             new_type = generate_template_files(full_names.join('-'), stack, dump_copy)
             t_resource['type'] = new_type
           end
@@ -68,7 +68,7 @@ class SparkleFormation
         result = non_google_dump
         if(root?)
           dump_copy = Smash.new(:imports => [])
-          google_template_extractor(result, [name], dump_copy)
+          google_template_extractor(result, dump_copy, [name])
           dump_copy.set(:config, :content, :imports,
             dump_copy[:imports].map{|i| i[:name]}
           )

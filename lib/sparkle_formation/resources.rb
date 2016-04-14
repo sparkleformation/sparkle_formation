@@ -41,7 +41,6 @@ class SparkleFormation
     # @param update_causes [String] one of: 'replacement', 'interrupt', 'unknown', 'none'
     # @param conditionals [Array<UpdateCausesConditional>] conditionals for update causes
     Property = Struct.new(:name, :description, :type, :required, :update_causes, :conditionals) do
-
       # Determine result of property update
       #
       # @param final_resource [Hash] desired resource structure containing this property
@@ -62,7 +61,6 @@ class SparkleFormation
           self[:update_causes]
         end
       end
-
     end
 
     class << self

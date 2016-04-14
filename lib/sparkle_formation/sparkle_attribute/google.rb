@@ -5,7 +5,6 @@ class SparkleFormation
   module SparkleAttribute
 
     # Google specific helper implementations
-
     module Google
 
       CHARACTER_COLLECTION = ('a'..'z').to_a
@@ -14,7 +13,6 @@ class SparkleFormation
         klass.const_set(:CAMEL_STYLE, :no_leading)
 
         klass.class_eval do
-
           def _google_dump
             result = _non_google_attribute_struct_dump
             if(_parent.nil?)
@@ -46,11 +44,21 @@ class SparkleFormation
         end
       end
 
+      # Customized dynamic to provide automatic unique name generation for
+      # built in resources
+      #
+      # @see SparkleFormation::SparkleAttribute#dynamic!
+      # @note generate unique names using the `:sparkle_unique` argument
       def _google_dynamic!(name, *args, &block)
         if(args.delete(:sparkle_unique))
           seed = Zlib.crc32(_self.root_path.map(&:name).join('-'))
           gen = Random.new(seed)
-          suffix = 10.times.map{ CHARACTER_COLLECTION.at(gen.rand(CHARACTER_COLLECTION.size)) }.join
+          suffix = Array.new(10) do
+            CHARACTER_COLLECTION.at(
+              gen.rand(CHARACTER_COLLECTION.size
+              )
+            )
+          end.join
           config_hash = args.detect{|a| a.is_a?(Hash)}
           unless(config_hash)
             config_hash = {}

@@ -75,7 +75,7 @@ class SparkleFormation
                 f_maps.size != o_maps.size ||
                   !f_maps.all?{|m| o_maps.include?(m)}
               }
-            )
+            ),
             UpdateCausesConditional.new('none', true)
           ],
           'EbsOptimized' => [
@@ -138,7 +138,7 @@ class SparkleFormation
               lambda{|final, original|
                 original.get('Properties', 'PreferredAvailabilityZones') ||
                   final.fetch('Properties', 'PreferredAvailabilityZones', []).include?(
-                  original.get('Properties', 'PreferredAvailabilityZone')
+                    original.get('Properties', 'PreferredAvailabilityZone')
                 )
               }
             ),
