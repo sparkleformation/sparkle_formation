@@ -1,3 +1,4 @@
+require 'zlib'
 require 'sparkle_formation'
 
 class SparkleFormation
@@ -6,6 +7,8 @@ class SparkleFormation
     # Google specific helper implementations
 
     module Google
+
+      CHARACTER_COLLECTION = ('A'..'Z').to_a + ('a'..'z').to_a
 
       def self.included(klass)
         klass.const_set(:CAMEL_STYLE, :no_leading)
@@ -45,7 +48,10 @@ class SparkleFormation
 
       def _google_dynamic!(name, *args, &block)
         if(args.delete(:sparkle_unique))
-          args[0] = "#{__attribute_key(args.first)}-#{_env('deployment')}-"
+          seed = Zlib.crc32(_self.root_path.map(&:name).join('-'))
+          gen = Random.new(seed)
+          suffix = 5.times.map{ CHARACTER_COLLECTION.at(gen.rand(CHARACTER_COLLECTION.size)) }.join
+          args[0] = "#{__attribute_key(args.first)}-#{_env('deployment')}-#{suffix}-"
         end
         _non_google_dynamic!(name, *args, &block)
       end
