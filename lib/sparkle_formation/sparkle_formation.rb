@@ -917,12 +917,16 @@ class SparkleFormation
 
   # @return [Hash] dumped hash
   def dump
-    compile.dump!
+    MultiJson.load(to_json)
   end
 
   # @return [Hash] dumped hash
   def sparkle_dump
-    compile.sparkle_dump!
+    MultiJson.load(
+      MultiJson.dump(
+        compile.sparkle_dump!
+      )
+    )
   end
 
   # @return [String] dumped hash JSON
