@@ -95,7 +95,7 @@ class SparkleFormation
     def compile(path, *args)
       opts = args.detect{|i| i.is_a?(Hash) } || {}
       unless(path.is_a?(String) && File.file?(path.to_s))
-        if(spath = (opts.delete(:sparkle_path) || SparkleFormation.sparkle_path))
+        if(spath = (opts.delete(:sparkle_path) || SparkleFormation.custom_paths[:sparkle_path]))
           container = Sparkle.new(:root => spath)
           path = container.get(:template, path)[:path]
         end
