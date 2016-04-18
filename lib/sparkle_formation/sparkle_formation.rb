@@ -283,17 +283,17 @@ class SparkleFormation
       if(options[:parameters])
         nested_template.compile_state = options[:parameters]
       end
-      struct.resources.set!(resource_name) do
-        type struct._self.stack_resource_type
-      end
       unless(struct._self.sparkle.empty?)
         nested_template.sparkle.apply(struct._self.sparkle)
       end
-      struct.resources[resource_name].properties.stack nested_template
-      if(block_given?)
-        struct.resources[resource_name].instance_exec(&block)
-      end
-      struct.resources[resource_name]
+      nested_resource = struct.dynamic!(
+        struct._self.stack_resource_type,
+        resource_name,
+        {:resource_name_suffix => nil},
+        &block
+      )
+      nested_resource.properties.stack nested_template
+      nested_resource
     end
 
     # Insert a builtin dynamic into a context
@@ -308,7 +308,11 @@ class SparkleFormation
         _config ||= {}
         __t_stringish(_name)
         __t_hashish(_config)
-        resource_name = "#{_name}_#{_config.delete(:resource_name_suffix) || dynamic_name}".to_sym
+        resource_name = [
+          _name,
+          _config.fetch(:resource_name_suffix, dynamic_name)
+        ].compact.join('_').to_sym
+        _config.delete(:resource_name_suffix)
         new_resource = struct.resources.set!(resource_name)
         new_resource.type lookup_key
         properties = new_resource.properties
