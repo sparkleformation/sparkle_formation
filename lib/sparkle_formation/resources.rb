@@ -129,27 +129,31 @@ class SparkleFormation
       # @param key [String, Symbol]
       # @return [String, NilClass]
       def registry_key(key)
-        o_key = key
-        key = key.to_s.tr(self.const_get(:RESOURCE_TYPE_TR), '') # rubocop:disable Style/RedundantSelf
-        snake_parts = nil
-        result = @@registry[base_key].keys.detect do |ref|
-          ref = ref.downcase
-          snake_parts = ref.split(resource_type_splitter)
-          until(snake_parts.empty?)
-            break if snake_parts.join('') == key
-            snake_parts.shift
+        if(registry[key])
+          result = key
+        else
+          o_key = key
+          key = key.to_s.tr(self.const_get(:RESOURCE_TYPE_TR), '') # rubocop:disable Style/RedundantSelf
+          snake_parts = nil
+          result = @@registry[base_key].keys.detect do |ref|
+            ref = ref.downcase
+            snake_parts = ref.split(resource_type_splitter)
+            until(snake_parts.empty?)
+              break if snake_parts.join('') == key
+              snake_parts.shift
+            end
+            !snake_parts.empty?
           end
-          !snake_parts.empty?
-        end
-        if(result)
-          collisions = @@registry[base_key].keys.find_all do |ref|
-            split_ref = ref.downcase.split(resource_type_splitter)
-            ref = split_ref.slice(split_ref.size - snake_parts.size, split_ref.size).join('')
-            key == ref
-          end
-          if(collisions.size > 1)
-            raise ArgumentError.new 'Ambiguous dynamic name returned multiple matches! ' \
-              "`#{o_key.inspect}` -> #{collisions.sort.join(', ')}"
+          if(result)
+            collisions = @@registry[base_key].keys.find_all do |ref|
+              split_ref = ref.downcase.split(resource_type_splitter)
+              ref = split_ref.slice(split_ref.size - snake_parts.size, split_ref.size).join('')
+              key == ref
+            end
+            if(collisions.size > 1)
+              raise ArgumentError.new 'Ambiguous dynamic name returned multiple matches! ' \
+                "`#{o_key.inspect}` -> #{collisions.sort.join(', ')}"
+            end
           end
         end
         result
@@ -170,7 +174,7 @@ class SparkleFormation
       # @param key [String, Symbol]
       # @return [Hashish, NilClass]
       def lookup(key)
-        @@registry[base_key][registry_key(key)]
+        @@registry[base_key][key] || @@registry[base_key][registry_key(key)]
       end
 
       # @return [Hashish] currently loaded AWS registry
