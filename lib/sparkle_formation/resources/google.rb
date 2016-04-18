@@ -26,6 +26,11 @@ class SparkleFormation
                 'google_resources.json'
               )
             )
+            # NOTE: Internal resource type used for nesting
+            registry['sparkleformation.stack'] = {
+              'properties' => [],
+              'full_properties' => {}
+            }
             true
           end
         end
