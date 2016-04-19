@@ -71,12 +71,12 @@ class SparkleFormation
         result = non_google_dump
         if(root?)
           dump_copy = Smash.new(:imports => [])
-          google_template_extractor(result, dump_copy, [name])
-          root_template = generate_template_files(name, result, dump_copy)
+          google_template_extractor(result, dump_copy)
+          dump_copy.set(:config, :content, result)
           dump_copy.set(:config, :content, :imports,
             dump_copy[:imports].map{|i| i[:name]}
           )
-          dump_copy.set(:config, :content, :resources, [{'name' => name, 'type' => root_template}])
+
           dump_copy.to_hash
         else
           result
