@@ -21,6 +21,9 @@ class SparkleFormation
           if(t_resource['type'] == stack_resource_type)
             full_names = parent_names + [t_resource['name']]
             stack = t_resource['properties'].delete('stack')
+            if(t_resource['properties'].empty?)
+              t_resource.delete('properties')
+            end
             google_template_extractor(stack, dump_copy, full_names)
             new_type = generate_template_files(full_names.join('-'), stack, dump_copy)
             t_resource['type'] = new_type
@@ -50,8 +53,8 @@ class SparkleFormation
             Smash.new(
               :name => "#{f_name}.schema",
               :content => Smash.new.tap{|schema|
-                schema.set(:info, :title, "#{f_name} Template")
-                schema.set(:info, :description, "Creates stack defined by #{f_name} template")
+                schema.set(:info, :title, "#{f_name} template")
+                schema.set(:info, :description, "#{f_name} template schema")
                 schema.set(:properties, r_parameters)
               }
             )
@@ -69,10 +72,11 @@ class SparkleFormation
         if(root?)
           dump_copy = Smash.new(:imports => [])
           google_template_extractor(result, dump_copy, [name])
+          root_template = generate_template_files(name, result, dump_copy)
           dump_copy.set(:config, :content, :imports,
             dump_copy[:imports].map{|i| i[:name]}
           )
-          dump_copy.set(:config, :content, :resources, result['resources'])
+          dump_copy.set(:config, :content, :resources, [{'name' => name, 'type' => root_template}])
           dump_copy.to_hash
         else
           result
