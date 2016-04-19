@@ -18,21 +18,27 @@ class SparkleFormation
             if(_parent.nil?)
               sparkle_root = {}
               if(result.key?('resources') && result['resources'].is_a?(Hash))
-                resources = result.delete('resources')
+                resources = result.delete('resources') || {}
                 sparkle_root = (resources.delete(_self.name) || {}).fetch('properties', {})
                 result['resources'] = resources.map do |r_name, r_content|
                   r_content.merge('name' => r_name)
                 end
+                outputs = result.delete('outputs') || {}
+                result['outputs'] = outputs.map do |o_name, o_content|
+                  o_content.merge('name' => o_name)
+                end
+                if(_self.parent.nil?)
+                  result = {
+                    'resources' => [{
+                      'name' => _self.name,
+                      'type' => _self.stack_resource_type,
+                      'properties' => {
+                        'stack' => result
+                      }.merge(sparkle_root)
+                    }]
+                  }
+                end
               end
-              result = {
-                'resources' => [{
-                  'name' => _self.name,
-                  'type' => _self.stack_resource_type,
-                  'properties' => {
-                    'stack' => result
-                  }.merge(sparkle_root)
-                }]
-              }
             end
             result
           end
