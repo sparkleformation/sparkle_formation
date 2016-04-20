@@ -143,18 +143,20 @@ class SparkleFormation
         if(item.respond_to?(:keys))
           item.class[
             *item.map do |entry|
-              _dump_unpacker(entry)
+              _sparkle_dump_unpacker(entry)
             end.flatten(1)
           ]
         else
           item.class[
             *item.map do |entry|
-              _dump_unpacker(entry)
+              _sparkle_dump_unpacker(entry)
             end
           ]
         end
       elsif(item.is_a?(::AttributeStruct))
         item.nil? ? UNSET_VALUE : item._sparkle_dump
+      elsif(item.is_a?(::SparkleFormation))
+        item.sparkle_dump
       else
         item
       end
