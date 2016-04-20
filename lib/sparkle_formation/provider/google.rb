@@ -76,7 +76,6 @@ class SparkleFormation
           dump_copy.set(:config, :content, :imports,
             dump_copy[:imports].map{|i| i[:name]}
           )
-
           dump_copy.to_hash
         else
           result
