@@ -213,7 +213,7 @@ class SparkleFormation
       else
         @root = args.fetch(:root, locate_root)
       end
-      unless(File.directory?(@root))
+      if(@root != :none && !File.directory?(@root))
         raise Errno::ENOENT.new("No such directory - #{@root}")
       end
       @raw_data = Smash.new(
@@ -224,7 +224,7 @@ class SparkleFormation
       )
       @wrapper = eval_wrapper.new
       wrapper.part_data(raw_data)
-      load_parts!
+      load_parts! unless @root == :none
     end
 
     # @return [Smash<name:block>]

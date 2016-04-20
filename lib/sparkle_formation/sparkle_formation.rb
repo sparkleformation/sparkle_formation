@@ -95,7 +95,7 @@ class SparkleFormation
     def compile(path, *args)
       opts = args.detect{|i| i.is_a?(Hash) } || {}
       unless(path.is_a?(String) && File.file?(path.to_s))
-        if(spath = (opts.delete(:sparkle_path) || SparkleFormation.sparkle_path))
+        if(spath = (opts.delete(:sparkle_path) || SparkleFormation.custom_paths[:sparkle_path]))
           container = Sparkle.new(:root => spath)
           path = container.get(:template, path)[:path]
         end
@@ -276,23 +276,24 @@ class SparkleFormation
           args.map{|a| Bogo::Utility.snake(a)}.join('_')
         ].flatten.compact.join('_').to_sym
       end
+      resource_name = struct._process_key(resource_name.to_sym)
       nested_template = compile(to_nest[:path], :sparkle)
       nested_template.parent = struct._self
-      nested_template.name = Bogo::Utility.camel(resource_name)
+      nested_template.name = resource_name
       if(options[:parameters])
         nested_template.compile_state = options[:parameters]
-      end
-      struct.resources.set!(resource_name) do
-        type struct._self.stack_resource_type
       end
       unless(struct._self.sparkle.empty?)
         nested_template.sparkle.apply(struct._self.sparkle)
       end
-      struct.resources[resource_name].properties.stack nested_template
-      if(block_given?)
-        struct.resources[resource_name].instance_exec(&block)
-      end
-      struct.resources[resource_name]
+      nested_resource = struct.dynamic!(
+        struct._self.stack_resource_type,
+        resource_name,
+        {:resource_name_suffix => nil},
+        &block
+      )
+      nested_resource.properties.stack nested_template
+      nested_resource
     end
 
     # Insert a builtin dynamic into a context
@@ -307,7 +308,11 @@ class SparkleFormation
         _config ||= {}
         __t_stringish(_name)
         __t_hashish(_config)
-        resource_name = "#{_name}_#{_config.delete(:resource_name_suffix) || dynamic_name}".to_sym
+        resource_name = [
+          _name,
+          _config.fetch(:resource_name_suffix, dynamic_name)
+        ].compact.join('_').to_sym
+        _config.delete(:resource_name_suffix)
         new_resource = struct.resources.set!(resource_name)
         new_resource.type lookup_key
         properties = new_resource.properties
@@ -402,6 +407,8 @@ class SparkleFormation
             )
             if(s_path)
               h[:root] = s_path
+            else
+              h[:root] = :none
             end
           }
         )
@@ -791,7 +798,7 @@ class SparkleFormation
   # Apply nesting logic to stack
   #
   # @param nest_type [Symbol] values: :shallow, :deep (default: :deep)
-  # @return [Hash] dumped stack
+  # @return [SparkleFormation::SparkleStruct] compiled structure
   # @note see specific version for expected block parameters
   def apply_nesting(*args, &block)
     if(args.include?(:shallow))
@@ -810,9 +817,9 @@ class SparkleFormation
   # @yieldparam resource [AttributeStruct] the stack resource
   # @yieldparam s_name [String] stack resource name
   # @yieldreturn [Hash] key/values to be merged into resource properties
-  # @return [Hash] dumped stack
+  # @return [SparkleFormation::SparkleStruct] compiled structure
   def apply_deep_nesting(*args, &block)
-    compile.dump!
+    compile
   end
 
   # Check if parameter name matches an output name
@@ -855,7 +862,10 @@ class SparkleFormation
       unless(stack.nested_stacks.empty?)
         stack_template_extractor(stack.nested_stacks(:with_resource, :with_name), &block)
       end
-      resource.properties.set!(:stack, stack.compile.dump!)
+      resource.properties._delete(:stack)
+      s_parent = resource.properties.stack
+      stack.compile._parent(s_parent)
+      resource.properties.set!(:stack, stack.compile)
       block.call(s_name, stack, resource)
     end
   end
@@ -868,9 +878,9 @@ class SparkleFormation
   # @yieldparam resource_name [String] name of stack resource
   # @yieldparam stack [SparkleFormation] nested stack
   # @yieldreturn [String] Remote URL storage for template
-  # @return [Hash]
+  # @return [SparkleFormation::SparkleStruct] compiled structure
   def apply_shallow_nesting(*args, &block)
-    compile.dump!
+    compile
   end
 
   # @return [Smash<output_name:SparkleFormation>]
@@ -915,6 +925,15 @@ class SparkleFormation
   # @return [Hash] dumped hash
   def dump
     MultiJson.load(to_json)
+  end
+
+  # @return [Hash] dumped hash
+  def sparkle_dump
+    MultiJson.load(
+      MultiJson.dump(
+        compile.sparkle_dump!
+      )
+    )
   end
 
   # @return [String] dumped hash JSON

@@ -58,7 +58,11 @@ class SparkleFormation
     # @param val [Integer, String]
     # @return [FunctionStruct]
     def [](val)
-      _set("[#{val}]")
+      if(val.is_a?(::String) && __single_quote_strings)
+        _set("['#{val}']")
+      else
+        _set("[#{val.inspect}]")
+      end
     end
 
     # Override of the dump to properly format eval string
@@ -80,14 +84,14 @@ class SparkleFormation
             arg._dump
           elsif(arg.is_a?(::Symbol))
             "'#{::Bogo::Utility.camel(arg.to_s, false)}'"
-          elsif(arg.is_a?(::String))
+          elsif(arg.is_a?(::String) && __single_quote_strings)
             "'#{arg}'"
           else
             arg.inspect
           end
         end.join(', ')
         unless(_fn_name.to_s.empty?)
-          function_name = args.empty? ? "#{_fn_name}()" : "#{_fn_name}(#{args})"
+          function_name = args.empty? ? "#{_fn_name}#{__empty_argument_list}" : "#{_fn_name}(#{args})"
         end
         internal = _eval_join(
           *[
@@ -95,7 +99,7 @@ class SparkleFormation
             suffix
           ].compact
         )
-        root? ? "[#{internal}]" : internal
+        root? ? "#{__anchor_start}#{internal}#{__anchor_stop}" : internal
       else
         suffix
       end
@@ -120,6 +124,130 @@ class SparkleFormation
     # @return [Class]
     def _klass
       ::SparkleFormation::FunctionStruct
+    end
+
+    # @return [String] start character(s) used to anchor function call
+    def __anchor_start
+      '['
+    end
+
+    # @return [String] stop character(s) used to anchor function call
+    def __anchor_stop
+      ']'
+    end
+
+    # @return [String] value to use when argument list is empty
+    def __empty_argument_list
+      '()'
+    end
+
+    # @return [String] dump from root
+    def to_s
+      _root._dump
+    end
+
+    # @return [String] dump from root
+    def inspect
+      _root._dump
+    end
+
+    # @return [TrueClass] enable single quote string generation
+    def __single_quote_strings
+      true
+    end
+
+  end
+
+  # FunctionStruct for jinja expressions
+  class JinjaExpressionStruct < FunctionStruct
+
+    SINGLE_QUOTE_STRINGS = false
+
+    # @return [String] start character(s) used to anchor function call
+    def __anchor_start
+      '{{ '
+    end
+
+    # @return [String] stop character(s) used to anchor function call
+    def __anchor_stop
+      ' }}'
+    end
+
+    # @return [String] value to use when argument list is empty
+    def __empty_argument_list
+      ''
+    end
+
+    # @return [FalseClass] disable single quote string generation
+    def __single_quote_strings
+      false
+    end
+
+    # @return [Class]
+    def _klass
+      ::SparkleFormation::JinjaExpressionStruct
+    end
+
+  end
+
+  # FunctionStruct for jinja statements
+  class JinjaStatementStruct < FunctionStruct
+
+    SINGLE_QUOTE_STRINGS = false
+
+    # @return [String] start character(s) used to anchor function call
+    def __anchor_start
+      '{% '
+    end
+
+    # @return [String] stop character(s) used to anchor function call
+    def __anchor_stop
+      ' %}'
+    end
+
+    # @return [String] value to use when argument list is empty
+    def __empty_argument_list
+      ''
+    end
+
+    # @return [FalseClass] disable single quote string generation
+    def __single_quote_strings
+      false
+    end
+
+    # @return [Class]
+    def _klass
+      ::SparkleFormation::JinjaStatementStruct
+    end
+
+  end
+
+  # FunctionStruct for customized google functions
+  class GoogleStruct < FunctionStruct
+
+    # @return [String] start character(s) used to anchor function call
+    def __anchor_start
+      '$('
+    end
+
+    # @return [String] stop character(s) used to anchor function call
+    def __anchor_stop
+      ')'
+    end
+
+    # @return [String] value to use when argument list is empty
+    def __empty_argument_list
+      ''
+    end
+
+    # @return [FalseClass] disable single quote string generation
+    def __single_quote_strings
+      false
+    end
+
+    # @return [Class]
+    def _klass
+      ::SparkleFormation::GoogleStruct
     end
 
   end
