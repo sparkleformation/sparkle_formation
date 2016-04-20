@@ -862,7 +862,10 @@ class SparkleFormation
       unless(stack.nested_stacks.empty?)
         stack_template_extractor(stack.nested_stacks(:with_resource, :with_name), &block)
       end
-      resource.properties.set!(:stack, stack.compile.dump!)
+      resource.properties._delete(:stack)
+      s_parent = resource.properties.stack
+      stack.compile._parent(s_parent)
+      resource.properties.set!(:stack, stack.compile)
       block.call(s_name, stack, resource)
     end
   end
