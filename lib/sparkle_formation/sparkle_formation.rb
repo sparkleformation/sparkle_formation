@@ -200,7 +200,8 @@ class SparkleFormation
     # @return [SparkleStruct]
     def registry(registry_name, struct, *args)
       __t_stringish(registry_name)
-      reg = struct._self.sparkle.get(:registry, registry_name)
+      opts = args.detect{|item| item.is_a?(Hash)} || {}
+      reg = struct._self.sparkle.get(:registry, registry_name, opts[:provider])
       struct.instance_exec(*args, &reg[:block])
     end
 
@@ -214,7 +215,9 @@ class SparkleFormation
       __t_stringish(dynamic_name)
       result = false
       begin
-        dyn = struct._self.sparkle.get(:dynamic, dynamic_name)
+        opts = args.detect{|i| i.is_a?(Hash)} || {}
+        dyn = struct._self.sparkle.get(:dynamic, dynamic_name, opts[:provider])
+        opts = nil
         raise dyn if dyn.is_a?(Exception)
         dyn.monochrome.each do |dynamic_item|
           if(result)
@@ -234,7 +237,7 @@ class SparkleFormation
         result = builtin_insert(dynamic_name, struct, *args, &block)
         unless(result)
           message = "Failed to locate requested dynamic block for insertion: #{dynamic_name} " \
-          "(valid: #{struct._self.sparkle.dynamics.keys.sort.join(', ')})"
+            "(valid: #{struct._self.sparkle.dynamics.fetch(struct._self.sparkle.provider, {}).keys.sort.join(', ')})"
           if(struct._self.provider_resources && struct._self.provider_resources.registry.keys.size > 1)
             t_name = struct._self.provider_resources.registry.keys.first
             valid_t_name = Bogo::Utility.snake(
@@ -268,7 +271,7 @@ class SparkleFormation
       [template, *args].compact.each do |item|
         __t_stringish(item)
       end
-      to_nest = struct._self.sparkle.get(:template, template)
+      to_nest = struct._self.sparkle.get(:template, template, options[:provider])
       resource_name = template.to_s.gsub('__', '_')
       unless(args.empty?)
         resource_name = [
@@ -538,6 +541,7 @@ class SparkleFormation
       if(Provider.const_defined?(provider_klass))
         extend Provider.const_get(provider_klass)
       end
+      sparkle.provider = val
       @provider
     else
       @provider = nil
@@ -636,7 +640,7 @@ class SparkleFormation
   #
   # @param args [String, Symbol] Symbol component names or String paths
   # @return [self]
-  def load(*args)
+  def load(*args, &user_block)
     args.each do |thing|
       if(thing.is_a?(String))
         # NOTE: This needs to be deprecated and removed
@@ -646,6 +650,9 @@ class SparkleFormation
       else
         composition.new_component(thing)
       end
+    end
+    if(block_given?)
+      block(user_block)
     end
     self
   end

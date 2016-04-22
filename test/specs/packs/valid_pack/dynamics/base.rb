@@ -1,3 +1,3 @@
 SparkleFormation.dynamic(:base) do |n, c={}|
-  testing true
+  aws_dynamic true
 end
