@@ -1,3 +1,16 @@
+# v3.0.0
+_Major release includes breaking changes!_
+* Builtin provider resources updates (#163)
+ * New Resource and Propery types
+ * Support for conditional logic to determine property modification effect
+* New provider Google (#167)
+* Inject nested stacks using dynamic style insertion (#167)
+* Add sparkle aliases for dumps to allow non-provider formatted template dumps (#167)
+* Allow sparkle pack to load as empty pack (#167)
+* Generate nested stack resource name using key processing style of current context (#167)
+* SparkleFormation#apply_nesting now returns compiled structure not Hash (#167)
+* SparkleFormation#stack_template_extractor now sets compiled structure not Hash (#167)
+
 # v2.1.8
 * Add support for CFN list type with shallow nesting (#150)
 * Fix deprecation warnings on Ruby 2.3 caused by TimeoutError constant
