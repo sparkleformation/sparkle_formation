@@ -9,6 +9,9 @@ anchors:
     url: "#usage"
 ---
 
+_WARNING: Translations of templates between providers is no longer
+being actively developed._
+
 ## Translation
 
 SparkleFormation has alpha support for template translation from
