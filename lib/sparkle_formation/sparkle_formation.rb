@@ -271,7 +271,7 @@ class SparkleFormation
       [template, *args].compact.each do |item|
         __t_stringish(item)
       end
-      to_nest = struct._self.sparkle.get(:template, template)
+      to_nest = struct._self.sparkle.get(:template, template, options[:provider])
       resource_name = template.to_s.gsub('__', '_')
       unless(args.empty?)
         resource_name = [
