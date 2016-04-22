@@ -70,27 +70,30 @@ class SparkleFormation
     # @param name [String, Symbol] dynamic name
     # @param args [Object] argument list for dynamic
     # @return [self]
-    def dynamic!(name, *args, &block)
+    def _dynamic(name, *args, &block)
       SparkleFormation.insert(name, self, *args, &block)
     end
+    alias_method :dynamic!, :_dynamic
 
     # Registry insertion helper method
     #
     # @param name [String, Symbol] name of registry item
     # @param args [Object] argument list for registry
     # @return [self]
-    def registry!(name, *args)
+    def _registry(name, *args)
       SparkleFormation.registry(name, self, *args)
     end
+    alias_method :registry!, :_registry
 
     # Stack nesting helper method
     #
     # @param template [String, Symbol] template to nest
     # @param args [String, Symbol] stringified and underscore joined for name
     # @return [self]
-    def nest!(template, *args, &block)
+    def _nest(template, *args, &block)
       SparkleFormation.nest(template, self, *args, &block)
     end
+    alias_method :nest!, :_nest
 
     # Format the provided key. If symbol type is provided
     # formatting is forced. Otherwise the default formatting
