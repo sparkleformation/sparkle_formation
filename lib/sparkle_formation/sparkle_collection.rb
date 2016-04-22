@@ -8,10 +8,16 @@ class SparkleFormation
 
     autoload :Rainbow, 'sparkle_formation/sparkle_collection/rainbow'
 
+    # @return [Symbol] provider
+    attr_accessor :provider
+
     # Create a new collection of sparkles
     #
+    # @param args [Hash]
+    # @option args [Symbol, String] :provider name of default provider
     # @return [self]
-    def initialize(*_)
+    def initialize(args={})
+      @provider = Bogo::Utility.snake(args.to_smash.fetch(:provider, 'aws')).to_sym
       @root = nil
       @sparkles = []
     end
@@ -81,9 +87,13 @@ class SparkleFormation
       memoize("components_#{checksum}") do
         Smash.new.tap do |hsh|
           sparkles.each do |sprkl|
-            sprkl.components.each_pair do |c_name, c_value|
-              hsh[c_name] ||= Rainbow.new(c_name, :component)
-              hsh[c_name].add_layer(c_value)
+            sprkl.components.each_pair do |c_provider, c_info|
+              c_info.each_pair do |c_name, c_value|
+                unless(hsh.get(c_provider, c_name))
+                  hsh.set(c_provider, c_name, Rainbow.new(c_name, :component))
+                end
+                hsh.get(c_provider, c_name).add_layer(c_value)
+              end
             end
           end
         end
@@ -95,9 +105,13 @@ class SparkleFormation
       memoize("dynamics_#{checksum}") do
         Smash.new.tap do |hsh|
           sparkles.each do |sprkl|
-            sprkl.dynamics.each_pair do |c_name, c_value|
-              hsh[c_name] ||= Rainbow.new(c_name, :dynamic)
-              hsh[c_name].add_layer(c_value)
+            sprkl.dynamics.each_pair do |c_provider, c_info|
+              c_info.each_pair do |c_name, c_value|
+                unless(hsh.get(c_provider, c_name))
+                  hsh.set(c_provider, c_name, Rainbow.new(c_name, :dynamic))
+                end
+                hsh.get(c_provider, c_name).add_layer(c_value)
+              end
             end
           end
         end
@@ -109,7 +123,7 @@ class SparkleFormation
       memoize("registries_#{checksum}") do
         Smash.new.tap do |hsh|
           sparkles.each do |sprkl|
-            hsh.merge!(sprkl.registries)
+            hsh.deep_merge!(sprkl.registries)
           end
         end
       end
@@ -120,9 +134,13 @@ class SparkleFormation
       memoize("templates_#{checksum}") do
         Smash.new.tap do |hsh|
           sparkles.each do |sprkl|
-            sprkl.templates.each_pair do |c_name, c_value|
-              hsh[c_name] ||= Rainbow.new(c_name, :template)
-              hsh[c_name].add_layer(c_value)
+            sprkl.templates.each_pair do |c_provider, c_info|
+              c_info.each_pair do |c_name, c_value|
+                unless(hsh.get(c_provider, c_name))
+                  hsh.set(c_provider, c_name, Rainbow.new(c_name, :template))
+                end
+                hsh.get(c_provider, c_name).add_layer(c_value)
+              end
             end
           end
         end
@@ -133,25 +151,29 @@ class SparkleFormation
     #
     # @param type [String, Symbol] item type (see: TYPES)
     # @param name [String, Symbol] name of item
+    # @param target_provider [String, Symbol] restrict to provider
     # @return [Smash] requested item
     # @raises [NameError, Error::NotFound]
-    def get(type, name)
+    def get(type, name, target_provider=nil)
       type_name = Sparkle::TYPES[type.to_s]
       unless(type_name)
         raise ArgumentError.new "Unknown file type requested from collection `#{type}`"
       end
       result = nil
       error = nil
-      result = send(type_name)[name]
+      unless(target_provider)
+        target_provider = provider
+      end
+      result = send(type_name).get(target_provider, name)
       if(result.nil? && type_name == 'templates')
         t_direct = sparkles.map do |pack|
           begin
-            pack.get(:template, name)
+            pack.get(:template, name, target_provider)
           rescue Error::NotFound
           end
         end.compact.last
         if(t_direct)
-          result = send(type_name)[t_direct[:name]]
+          result = send(type_name).get(target_provider, t_direct[:name])
         end
       end
       unless(result)

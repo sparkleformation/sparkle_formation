@@ -234,7 +234,7 @@ class SparkleFormation
         result = builtin_insert(dynamic_name, struct, *args, &block)
         unless(result)
           message = "Failed to locate requested dynamic block for insertion: #{dynamic_name} " \
-          "(valid: #{struct._self.sparkle.dynamics.keys.sort.join(', ')})"
+          "(valid: #{struct._self.sparkle.dynamics[struct._self.sparkle.provider].keys.sort.join(', ')})"
           if(struct._self.provider_resources && struct._self.provider_resources.registry.keys.size > 1)
             t_name = struct._self.provider_resources.registry.keys.first
             valid_t_name = Bogo::Utility.snake(
@@ -538,6 +538,7 @@ class SparkleFormation
       if(Provider.const_defined?(provider_klass))
         extend Provider.const_get(provider_klass)
       end
+      sparkle.provider = val
       @provider
     else
       @provider = nil
