@@ -77,6 +77,9 @@ class SparkleFormation
         'subscription'
       ]
 
+      # NOTE: Alias implementation disabled due to Ruby 2.3 __callee__ bug
+      #   see: https://bugs.ruby-lang.org/issues/12176
+
       # Generate a builtin azure function
       #
       # @return [SparkleFormation::FunctionStruct]
@@ -89,8 +92,15 @@ class SparkleFormation
       AZURE_FUNCTIONS.map do |f_name|
         ::Bogo::Utility.snake(f_name)
       end.each do |f_name|
-        alias_method "_#{f_name}".to_sym, :_fn_format
-        alias_method "#{f_name}!".to_sym, :_fn_format
+        # alias_method "_#{f_name}".to_sym, :_fn_format
+        # alias_method "#{f_name}!".to_sym, :_fn_format
+
+        define_method("_#{f_name}".to_sym) do |*args|
+          src = ::Kernel.__callee__.to_s
+          src = ::Bogo::Utility.camel(src.sub(/(^_|\!$)/, ''), false)
+          ::SparkleFormation::FunctionStruct.new(src, *args)
+        end
+        alias_method "#{f_name}!".to_sym, "_#{f_name}".to_sym
       end
 
       # Customized resourceId generator that will perform automatic
