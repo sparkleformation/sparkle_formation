@@ -1,3 +1,3 @@
 SparkleFormation.component(:base) do
-  testing true
+  aws_component true
 end

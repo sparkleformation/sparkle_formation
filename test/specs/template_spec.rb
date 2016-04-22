@@ -42,7 +42,7 @@ describe SparkleFormation do
         )
       )
       result = template.dump.to_smash
-      result.get('Resources', 'PackTemplate', 'Properties', 'Stack', 'Testing').must_equal true
+      result.get('Resources', 'PackTemplate', 'Properties', 'Stack', 'AwsDynamic').must_equal true
     end
 
   end

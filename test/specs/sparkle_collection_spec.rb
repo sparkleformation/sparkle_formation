@@ -136,4 +136,41 @@ describe SparkleFormation::SparkleCollection do
 
   end
 
+  describe 'Provider specific loading' do
+    before do
+      @collection = SparkleFormation::SparkleCollection.new
+      @collection.set_root(
+        SparkleFormation::Sparkle.new(
+          :root => File.join(
+            File.dirname(__FILE__), 'packs', 'valid_pack'
+          )
+        )
+      )
+      @collection
+    end
+
+    it 'should load AWS by default' do
+      template = @collection.get(:template, :stack)
+      template = SparkleFormation.compile(template[:path], :sparkle)
+      template.sparkle.apply @collection
+      result = template.dump.to_smash
+      result['AwsTemplate'].must_equal true
+      result['AwsDynamic'].must_equal true
+      result['Registry'].must_equal 'aws'
+      result['SharedItem'].must_equal 'shared'
+    end
+
+    it 'should load HEAT when defined as provider' do
+      template = @collection.get(:template, :stack, :heat)
+      template = SparkleFormation.compile(template[:path], :sparkle)
+      template.sparkle.apply @collection
+      result = template.dump.to_smash
+      result['heat_template'].must_equal true
+      result['heat_dynamic'].must_equal true
+      result['registry'].must_equal 'heat'
+      result['shared_item'].must_equal 'shared'
+    end
+
+  end
+
 end
