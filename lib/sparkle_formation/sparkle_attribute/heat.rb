@@ -13,9 +13,10 @@ class SparkleFormation
         klass.const_set(:CAMEL_KEYS, false)
       end
 
-      # get_attr generator
-      #
-      # @param [Object] pass through arguments
+      # @overload _get_attr(logical_id, attribute_name)
+      #   get_attr generator
+      #   @param logical_id [String, Symbol] logical resource name
+      #   @param attribute_name [String, Symbol] name of desired resource attribute
       # @return [Hash]
       def _get_attr(*args)
         __t_stringish(args.first)
@@ -27,9 +28,12 @@ class SparkleFormation
       alias_method :_attr, :_get_attr
       alias_method :attr!, :_get_attr
 
-      # list_join generator
-      #
-      # @param args [Object]
+      # @overload _list_join(*args, opts={})
+      #   list_join generator
+      #   @param args [String, Hash] list of items to join
+      #   @param opts [Hash]
+      #   @option opts [Hash] :options options for join function
+      #   @option options [String] :delimiter value used for joining items. Defaults to ''
       # @return [Hash]
       def _list_join(*args)
         options = args.detect{|i| i.is_a?(::Hash) && i[:options]} || {:options => {}}
@@ -53,9 +57,14 @@ class SparkleFormation
       alias_method :_file, :_get_file
       alias_method :file!, :_get_file
 
-      # get_param generator
-      #
-      # @param args [Object]
+      # @overload _get_param(name)
+      #   get_param generator
+      #   @param name [String, Symbol] name of parameter
+      # @overload _get_param(name, index1, index2, ...)
+      #   get_param generator accessing complex data
+      #   @param name [String, Symbol] name of parameter
+      #   @param index1 [Object] value for key/index
+      #   @param index2 [Object] value for key/index
       # @return [Hash]
       def _get_param(*args)
         __t_stringish(args.first)
@@ -78,6 +87,10 @@ class SparkleFormation
       alias_method :_resource, :_get_resource
       alias_method :resource!, :_get_resource
 
+      # digest generator
+      #
+      # @param value [String, Hash] thing to be hashed
+      # @param algorithm [String] algorithm to use (defaults to 'sha512')
       def _digest(value, algorithm='sha512')
         __t_string(algorithm)
         {'digest' => [algorithm, value]}
@@ -122,9 +135,10 @@ class SparkleFormation
       alias_method :_split, :_str_split
       alias_method :split!, :_str_split
 
-      # map_merge generator
-      #
-      # @param args [Object]
+      # @overload _map_merge(hash1, hash2, ...)
+      #   map_merge generator
+      #   @param hash1 [Hash] item to merge
+      #   @param hash2 [Hash] item to merge
       # @return [Hash]
       def _map_merge(*args)
         {'map_merge' => args}
@@ -150,9 +164,14 @@ class SparkleFormation
       alias_method :project_id!, :_project_id
 
       # Resource dependency generator
-      #
-      # @param [Symbol, String, Array<Symbol, String>] resource names
+      # @overload _depends_on(resource_name)
+      #   @param resource_name [String, Symbol] logical resource name
+      # @overload _depends_on(resource_names)
+      #   @param resource_names [Array<String, Symbol>] list of logical resource names
+      # @overload _depends_on(*resource_names)
+      #   @param resource_names [Array<String, Symbol>] list of logical resource names
       # @return [Array<String>]
+      # @note this will directly modify the struct at its current context to inject depends on structure
       def _depends_on(*args)
         _set('depends_on', [args].flatten.compact.map{|s| __attribute_key(s) })
       end
