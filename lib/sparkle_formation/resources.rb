@@ -24,7 +24,6 @@ class SparkleFormation
     # @param properties [Array<Property>] resource properties
     # @param raw [Hash] raw resource information
     Resource = Struct.new(:name, :properties, :raw) do
-
       # Get property by name
       #
       # @param name [String] name of property
@@ -34,7 +33,6 @@ class SparkleFormation
           prop.name == name
         end
       end
-
     end
 
     # Defines conditional result for cause of property update
