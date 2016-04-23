@@ -391,7 +391,36 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#_method-instance_method" title="#_method (instance method)">- (Method) <strong>_method</strong>(*args) </a>
+      <a href="#_dynamic-instance_method" title="#_dynamic (instance method)">- (self) <strong>_dynamic</strong>(name, *args) {|new_struct| ... }</a>
+    
+
+    
+      (also: #dynamic!)
+    
+  </span>
+  
+    <span class="note title not_defined_here">
+      included
+      from <span class='object_link'><a href="SparkleAttribute.html#_dynamic-instance_method" title="SparkleFormation::SparkleAttribute#_dynamic (method)">SparkleAttribute</a></span>
+    </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#_method-instance_method" title="#_method (instance method)">- (Method) <strong>_method</strong>(sym) </a>
     
 
     
@@ -412,7 +441,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Lookup a method definition on self usually used as <code>puts! method!(:foo).source_location</code>.</p>
+    <span class="summary_desc"><div class='inline'><p>Lookup a method definition on self.</p>
 </div></span>
   
 </li>
@@ -421,7 +450,37 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#_puts-instance_method" title="#_puts (instance method)">- (NilClass) <strong>_puts</strong>(*args) </a>
+      <a href="#_nest-instance_method" title="#_nest (instance method)">- (self) <strong>_nest</strong>(template, *names, options = {}) </a>
+    
+
+    
+      (also: #nest!)
+    
+  </span>
+  
+    <span class="note title not_defined_here">
+      included
+      from <span class='object_link'><a href="SparkleAttribute.html#_nest-instance_method" title="SparkleFormation::SparkleAttribute#_nest (method)">SparkleAttribute</a></span>
+    </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Nest a stack resource.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#_puts-instance_method" title="#_puts (instance method)">- (NilClass) <strong>_puts</strong>(obj, ...) </a>
     
 
     
@@ -473,6 +532,36 @@
 
   
     <span class="summary_desc"><div class='inline'><p>Raise an exception.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#_registry-instance_method" title="#_registry (instance method)">- (Object) <strong>_registry</strong>(name, *args) </a>
+    
+
+    
+      (also: #registry!)
+    
+  </span>
+  
+    <span class="note title not_defined_here">
+      included
+      from <span class='object_link'><a href="SparkleAttribute.html#_registry-instance_method" title="SparkleFormation::SparkleAttribute#_registry (method)">SparkleAttribute</a></span>
+    </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Return value of registry item.</p>
 </div></span>
   
 </li>
@@ -707,34 +796,6 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#dynamic%21-instance_method" title="#dynamic! (instance method)">- (self) <strong>dynamic!</strong>(name, *args, &amp;block) </a>
-    
-
-    
-  </span>
-  
-    <span class="note title not_defined_here">
-      included
-      from <span class='object_link'><a href="SparkleAttribute.html#dynamic%21-instance_method" title="SparkleFormation::SparkleAttribute#dynamic! (method)">SparkleAttribute</a></span>
-    </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>Dynamic insertion helper method.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
       <a href="#format_properties-instance_method" title="#format_properties (instance method)">- (Hash) <strong>format_properties</strong>(args) </a>
     
 
@@ -829,34 +890,6 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#nest%21-instance_method" title="#nest! (instance method)">- (self) <strong>nest!</strong>(template, *args, &amp;block) </a>
-    
-
-    
-  </span>
-  
-    <span class="note title not_defined_here">
-      included
-      from <span class='object_link'><a href="SparkleAttribute.html#nest%21-instance_method" title="SparkleFormation::SparkleAttribute#nest! (method)">SparkleAttribute</a></span>
-    </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>Stack nesting helper method.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
       <a href="#outputs-instance_method" title="#outputs (instance method)">- (Hash) <strong>outputs</strong> </a>
     
 
@@ -895,34 +928,6 @@
 
   
     <span class="summary_desc"><div class='inline'><p>Parameters for template.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#registry%21-instance_method" title="#registry! (instance method)">- (self) <strong>registry!</strong>(name, *args) </a>
-    
-
-    
-  </span>
-  
-    <span class="note title not_defined_here">
-      included
-      from <span class='object_link'><a href="SparkleAttribute.html#registry%21-instance_method" title="SparkleFormation::SparkleAttribute#registry! (method)">SparkleAttribute</a></span>
-    </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>Registry insertion helper method.</p>
 </div></span>
   
 </li>
@@ -1629,9 +1634,288 @@ is applied</p>
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="_dynamic-instance_method">
+  
+    
+      <span class="overload">- (<tt>self</tt>) <strong>_dynamic</strong>(resource_type, custom_name, options = {}) </span>
+    
+      <span class="overload">- (<tt>self</tt>) <strong>_dynamic</strong>(dynamic_name, custom_name, options = {}) </span>
+    
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='dynamic!-instance_method'>dynamic!</span></span>
+    </span>
+  
+
+  
+    <span class="not_defined_here">
+      Originally defined in module
+        <span class='object_link'><a href="SparkleAttribute.html#_dynamic-instance_method" title="SparkleFormation::SparkleAttribute#_dynamic (method)">SparkleAttribute</a></span>
+    </span>
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+  <p class="tag_title">Overloads:</p>
+  <ul class="overload">
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>self</tt>) <strong>_dynamic</strong>(resource_type, custom_name, options = {}) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>All other options are set into the new resource&#39;s properties</p>
+</div>
+  </div>
+
+<p>Insert builtin resource</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>resource_type</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>provider resource type</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>custom_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>custom name used for resource name generation</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:resource_name_suffix</span>
+          <span class="type">(<tt>String</tt>, <tt>NilClass</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>custom suffix to use for
+name generation (defaults to resource_type)</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+
+</div>
+      </li>
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>self</tt>) <strong>_dynamic</strong>(dynamic_name, custom_name, options = {}) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>All options are passed to dynamic with custom_name</p>
+</div>
+  </div>
+
+<p>Call custom dynamic from available sparkle packs</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>dynamic_name</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>name of registered dynamic</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>custom_name</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>, <tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>unique name passed directly to registered dynamic</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:provider</span>
+          <span class="type">(<tt>String</tt>, <tt>Symbol</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>override provider restriction when fetching dynamic</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+
+</div>
+      </li>
+    
+  </ul>
+
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>new_struct</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>newly inserted structure which can be modified</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Yield Returns:</p>
+<ul class="yieldreturn">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>discarded</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>self</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="_method-instance_method">
   
-    - (<tt>Method</tt>) <strong>_method</strong>(*args) 
+    - (<tt>Method</tt>) <strong>_method</strong>(sym) 
   
 
   
@@ -1648,14 +1932,50 @@ is applied</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Lookup a method definition on self
-usually used as <code>puts! method!(:foo).source_location</code></p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>usually used as <code>puts! method!(:foo).source_location</code></p>
+</div>
+  </div>
+
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="docstring">
+  <div class="discussion">
+    <p>Lookup a method definition on self</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>sym</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>name of method</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1670,13 +1990,209 @@ usually used as <code>puts! method!(:foo).source_location</code></p>
   
 </ul>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>Object#method</li>
+    
+  </ul>
+
+</div>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="_nest-instance_method">
+  
+    - (<tt>self</tt>) <strong>_nest</strong>(template, *names, options = {}) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='nest!-instance_method'>nest!</span></span>
+    </span>
+  
+
+  
+    <span class="not_defined_here">
+      Originally defined in module
+        <span class='object_link'><a href="SparkleAttribute.html#_nest-instance_method" title="SparkleFormation::SparkleAttribute#_nest (method)">SparkleAttribute</a></span>
+    </span>
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="docstring">
+  <div class="discussion">
+    <p>Nest a stack resource</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>template</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>name of desired template</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>names</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>list of optional string/symbol values for resource name generation</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:provider</span>
+          <span class="type">(<tt>String</tt>, <tt>Symbol</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>override provider restriction when
+fetching template</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:overwrite_name</span>
+          <span class="type">(<tt>Truthy</tt>, <tt>Falsey</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>when set to true, will not include
+template name in resource name</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:parameters</span>
+          <span class="type">(<tt>Hash</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>compile time parameter values to pass to nested template</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+
+</div>
+
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>new_struct</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>newly inserted structure which can be modified</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Yield Returns:</p>
+<ul class="yieldreturn">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>discarded</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>self</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div>
 </div>
     
       <div class="method_details ">
   <h3 class="signature " id="_puts-instance_method">
   
-    - (<tt>NilClass</tt>) <strong>_puts</strong>(*args) 
+    - (<tt>NilClass</tt>) <strong>_puts</strong>(obj, ...) 
   
 
   
@@ -1693,6 +2209,14 @@ usually used as <code>puts! method!(:foo).source_location</code></p>
   
 </h3><div class="docstring">
   <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="docstring">
+  <div class="discussion">
     <p>Print to stdout</p>
 
 
@@ -1704,16 +2228,23 @@ usually used as <code>puts! method!(:foo).source_location</code></p>
   
     <li>
       
-        <span class='name'>args</span>
+        <span class='name'>obj</span>
       
       
-        <span class='type'></span>
+        <span class='type'>(<tt>Object</tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'><p>object to print</p>
+</div>
       
     </li>
   
 </ul>
+
+
+</div>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
@@ -1728,6 +2259,13 @@ usually used as <code>puts! method!(:foo).source_location</code></p>
     </li>
   
 </ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>Kernel.puts</li>
+    
+  </ul>
 
 </div>
 </div>
@@ -1759,6 +2297,193 @@ usually used as <code>puts! method!(:foo).source_location</code></p>
 </div>
 <div class="tags">
   
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>Kernel.raise</li>
+    
+  </ul>
+
+</div>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="_registry-instance_method">
+  
+    
+      <span class="overload">- (<tt>Object</tt>) <strong>_registry</strong>(name) </span>
+    
+      <span class="overload">- (<tt>Object</tt>) <strong>_registry</strong>(name, *args, options = {}) </span>
+    
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='registry!-instance_method'>registry!</span></span>
+    </span>
+  
+
+  
+    <span class="not_defined_here">
+      Originally defined in module
+        <span class='object_link'><a href="SparkleAttribute.html#_registry-instance_method" title="SparkleFormation::SparkleAttribute#_registry (method)">SparkleAttribute</a></span>
+    </span>
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Return value of registry item</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <p class="tag_title">Overloads:</p>
+  <ul class="overload">
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>Object</tt>) <strong>_registry</strong>(name) </span>
+        <div class="docstring">
+  <div class="discussion">
+    <p>Return value from registry item with given name</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>registry item name</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div>
+      </li>
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>Object</tt>) <strong>_registry</strong>(name, *args, options = {}) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>args and options will be passed directly to registry item when called</p>
+</div>
+  </div>
+
+<p>Pass given parameters to registry item with given name and
+return the value</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>registry item name</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>:provider override provider restriction when fetching registry item</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>args</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>argument list</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div>
+      </li>
+    
+  </ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>return value of registry item</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div>
 </div>
@@ -2529,80 +3254,6 @@ and apply functions if possible.</p>
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="dynamic!-instance_method">
-  
-    - (<tt>self</tt>) <strong>dynamic!</strong>(name, *args, &amp;block) 
-  
-
-  
-
-  
-    <span class="not_defined_here">
-      Originally defined in module
-        <span class='object_link'><a href="SparkleAttribute.html#dynamic%21-instance_method" title="SparkleFormation::SparkleAttribute#dynamic! (method)">SparkleAttribute</a></span>
-    </span>
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Dynamic insertion helper method</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>name</span>
-      
-      
-        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>dynamic name</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>args</span>
-      
-      
-        <span class='type'>(<tt>Object</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>argument list for dynamic</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>self</tt>)</span>
-      
-      
-      
-    </li>
-  
-</ul>
-
-</div>
-</div>
-    
-      <div class="method_details ">
   <h3 class="signature " id="format_properties-instance_method">
   
     - (<tt>Hash</tt>) <strong>format_properties</strong>(args) 
@@ -2874,80 +3525,6 @@ and apply functions if possible.</p>
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="nest!-instance_method">
-  
-    - (<tt>self</tt>) <strong>nest!</strong>(template, *args, &amp;block) 
-  
-
-  
-
-  
-    <span class="not_defined_here">
-      Originally defined in module
-        <span class='object_link'><a href="SparkleAttribute.html#nest%21-instance_method" title="SparkleFormation::SparkleAttribute#nest! (method)">SparkleAttribute</a></span>
-    </span>
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Stack nesting helper method</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>template</span>
-      
-      
-        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>template to nest</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>args</span>
-      
-      
-        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>stringified and underscore joined for name</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>self</tt>)</span>
-      
-      
-      
-    </li>
-  
-</ul>
-
-</div>
-</div>
-    
-      <div class="method_details ">
   <h3 class="signature " id="outputs-instance_method">
   
     - (<tt>Hash</tt>) <strong>outputs</strong> 
@@ -3067,80 +3644,6 @@ and apply functions if possible.</p>
     </td>
   </tr>
 </table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="registry!-instance_method">
-  
-    - (<tt>self</tt>) <strong>registry!</strong>(name, *args) 
-  
-
-  
-
-  
-    <span class="not_defined_here">
-      Originally defined in module
-        <span class='object_link'><a href="SparkleAttribute.html#registry%21-instance_method" title="SparkleFormation::SparkleAttribute#registry! (method)">SparkleAttribute</a></span>
-    </span>
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Registry insertion helper method</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>name</span>
-      
-      
-        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>name of registry item</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>args</span>
-      
-      
-        <span class='type'>(<tt>Object</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>argument list for registry</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>self</tt>)</span>
-      
-      
-      
-    </li>
-  
-</ul>
-
-</div>
 </div>
     
       <div class="method_details ">
@@ -3790,7 +4293,7 @@ and apply functions if possible.</p>
 </div>
 
     <div id="footer">
-  Generated on Fri Feb  5 12:00:56 2016 by
+  Generated on Sat Apr 23 10:26:29 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.3).
 </div>

@@ -199,7 +199,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>digest generator.</p>
+</div></span>
   
 </li>
 
@@ -207,7 +208,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#_get_attr-instance_method" title="#_get_attr (instance method)">- (Hash) <strong>_get_attr</strong>(*args) </a>
+      <a href="#_get_attr-instance_method" title="#_get_attr (instance method)">- (Hash) <strong>_get_attr</strong>(logical_id, attribute_name) </a>
     
 
     
@@ -288,8 +289,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>get_param generator.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -327,7 +327,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#_list_join-instance_method" title="#_list_join (instance method)">- (Hash) <strong>_list_join</strong>(*args) </a>
+      <a href="#_list_join-instance_method" title="#_list_join (instance method)">- (Hash) <strong>_list_join</strong>(*args, opts = {}) </a>
     
 
     
@@ -357,7 +357,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#_map_merge-instance_method" title="#_map_merge (instance method)">- (Hash) <strong>_map_merge</strong>(*args) </a>
+      <a href="#_map_merge-instance_method" title="#_map_merge (instance method)">- (Hash) <strong>_map_merge</strong>(hash1, hash2, ...) </a>
     
 
     
@@ -651,7 +651,13 @@
       <div class="method_details first">
   <h3 class="signature first" id="_depends_on-instance_method">
   
-    - (<tt>Array&lt;String&gt;</tt>) <strong>_depends_on</strong>(*args) 
+    
+      <span class="overload">- (<tt>Array&lt;String&gt;</tt>) <strong>_depends_on</strong>(resource_name) </span>
+    
+      <span class="overload">- (<tt>Array&lt;String&gt;</tt>) <strong>_depends_on</strong>(resource_names) </span>
+    
+      <span class="overload">- (<tt>Array&lt;String&gt;</tt>) <strong>_depends_on</strong>(*resource_names) </span>
+    
   
 
   
@@ -668,8 +674,29 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Resource dependency generator</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>this will directly modify the struct at its current context to inject depends on structure</p>
+</div>
+  </div>
 
+<p>Resource dependency generator</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <p class="tag_title">Overloads:</p>
+  <ul class="overload">
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>Array&lt;String&gt;</tt>) <strong>_depends_on</strong>(resource_name) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
 
   </div>
 </div>
@@ -679,20 +706,94 @@
   
     <li>
       
-        <span class='name'>resource</span>
+        <span class='name'>resource_name</span>
       
       
-        <span class='type'>(<tt>Symbol</tt>, <tt>String</tt>, <tt>Array&lt;Symbol, String&gt;</tt>)</span>
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>names</p>
+        <div class='inline'><p>logical resource name</p>
 </div>
       
     </li>
   
 </ul>
+
+
+</div>
+      </li>
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>Array&lt;String&gt;</tt>) <strong>_depends_on</strong>(resource_names) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>resource_names</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String, Symbol&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>list of logical resource names</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div>
+      </li>
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>Array&lt;String&gt;</tt>) <strong>_depends_on</strong>(*resource_names) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>resource_names</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String, Symbol&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>list of logical resource names</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div>
+      </li>
+    
+  </ul>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
@@ -729,13 +830,59 @@
         <span class='object_link'><a href="Heat.html#_digest-instance_method" title="SparkleFormation::SparkleAttribute::Heat#_digest (method)">Heat</a></span>
     </span>
   
-</h3>
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>digest generator</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>thing to be hashed</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>algorithm</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;sha512&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>algorithm to use (defaults to &#39;sha512&#39;)</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div>
 </div>
     
       <div class="method_details ">
   <h3 class="signature " id="_get_attr-instance_method">
   
-    - (<tt>Hash</tt>) <strong>_get_attr</strong>(*args) 
+    - (<tt>Hash</tt>) <strong>_get_attr</strong>(logical_id, attribute_name) 
   
 
   
@@ -752,6 +899,14 @@
   
 </h3><div class="docstring">
   <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="docstring">
+  <div class="discussion">
     <p>get_attr generator</p>
 
 
@@ -763,20 +918,38 @@
   
     <li>
       
-        <span class='name'>pass</span>
+        <span class='name'>logical_id</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>through arguments</p>
+        <div class='inline'><p>logical resource name</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>attribute_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>name of desired resource attribute</p>
 </div>
       
     </li>
   
 </ul>
+
+
+</div>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
@@ -857,7 +1030,11 @@
       <div class="method_details ">
   <h3 class="signature " id="_get_param-instance_method">
   
-    - (<tt>Hash</tt>) <strong>_get_param</strong>(*args) 
+    
+      <span class="overload">- (<tt>Hash</tt>) <strong>_get_param</strong>(name) </span>
+    
+      <span class="overload">- (<tt>Hash</tt>) <strong>_get_param</strong>(name, index1, index2, ...) </span>
+    
   
 
   
@@ -874,6 +1051,20 @@
   
 </h3><div class="docstring">
   <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+  <p class="tag_title">Overloads:</p>
+  <ul class="overload">
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>Hash</tt>) <strong>_get_param</strong>(name) </span>
+        <div class="docstring">
+  <div class="discussion">
     <p>get_param generator</p>
 
 
@@ -885,16 +1076,91 @@
   
     <li>
       
-        <span class='name'>args</span>
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>name of parameter</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div>
+      </li>
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>Hash</tt>) <strong>_get_param</strong>(name, index1, index2, ...) </span>
+        <div class="docstring">
+  <div class="discussion">
+    <p>get_param generator accessing complex data</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>name of parameter</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>index1</span>
       
       
         <span class='type'>(<tt>Object</tt>)</span>
       
       
       
+        &mdash;
+        <div class='inline'><p>value for key/index</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>index2</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>value for key/index</p>
+</div>
+      
     </li>
   
 </ul>
+
+
+</div>
+      </li>
+    
+  </ul>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
@@ -975,7 +1241,7 @@
       <div class="method_details ">
   <h3 class="signature " id="_list_join-instance_method">
   
-    - (<tt>Hash</tt>) <strong>_list_join</strong>(*args) 
+    - (<tt>Hash</tt>) <strong>_list_join</strong>(*args, opts = {}) 
   
 
   
@@ -992,6 +1258,14 @@
   
 </h3><div class="docstring">
   <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="docstring">
+  <div class="discussion">
     <p>list_join generator</p>
 
 
@@ -1006,13 +1280,56 @@
         <span class='name'>args</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>String</tt>, <tt>Hash</tt>)</span>
       
+      
+      
+        &mdash;
+        <div class='inline'><p>list of items to join</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>opts</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
       
       
     </li>
   
 </ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>opts</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:options</span>
+          <span class="type">(<tt>Hash</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>options for join function</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+
+</div>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
@@ -1034,7 +1351,7 @@
       <div class="method_details ">
   <h3 class="signature " id="_map_merge-instance_method">
   
-    - (<tt>Hash</tt>) <strong>_map_merge</strong>(*args) 
+    - (<tt>Hash</tt>) <strong>_map_merge</strong>(hash1, hash2, ...) 
   
 
   
@@ -1051,6 +1368,14 @@
   
 </h3><div class="docstring">
   <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="docstring">
+  <div class="discussion">
     <p>map_merge generator</p>
 
 
@@ -1062,16 +1387,38 @@
   
     <li>
       
-        <span class='name'>args</span>
+        <span class='name'>hash1</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Hash</tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'><p>item to merge</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>hash2</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>item to merge</p>
+</div>
       
     </li>
   
 </ul>
+
+
+</div>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
@@ -1514,7 +1861,7 @@
 </div>
 
     <div id="footer">
-  Generated on Fri Feb  5 12:00:54 2016 by
+  Generated on Sat Apr 23 10:26:27 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.3).
 </div>

@@ -112,7 +112,11 @@ strings of code for remote evaulation</p>
 <div class="tags">
   
 
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="GoogleStruct.html" title="SparkleFormation::GoogleStruct (class)">GoogleStruct</a></span>, <span class='object_link'><a href="JinjaExpressionStruct.html" title="SparkleFormation::JinjaExpressionStruct (class)">JinjaExpressionStruct</a></span>, <span class='object_link'><a href="JinjaStatementStruct.html" title="SparkleFormation::JinjaStatementStruct (class)">JinjaStatementStruct</a></span></p>
 </div>
+
 
 
 
@@ -214,6 +218,98 @@ strings of code for remote evaulation</p>
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#__anchor_start-instance_method" title="#__anchor_start (instance method)">- (String) <strong>__anchor_start</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Start character(s) used to anchor function call.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#__anchor_stop-instance_method" title="#__anchor_stop (instance method)">- (String) <strong>__anchor_stop</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Stop character(s) used to anchor function call.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#__empty_argument_list-instance_method" title="#__empty_argument_list (instance method)">- (String) <strong>__empty_argument_list</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Value to use when argument list is empty.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#__single_quote_strings-instance_method" title="#__single_quote_strings (instance method)">- (TrueClass) <strong>__single_quote_strings</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Enable single quote string generation.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#_dump-instance_method" title="#_dump (instance method)">- (String) <strong>_dump</strong> </a>
     
 
@@ -307,6 +403,29 @@ strings of code for remote evaulation</p>
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#inspect-instance_method" title="#inspect (instance method)">- (String) <strong>inspect</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Dump from root.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#method_missing-instance_method" title="#method_missing (instance method)">- (Object) <strong>method_missing</strong>(name, *args) </a>
     
 
@@ -368,6 +487,29 @@ strings of code for remote evaulation</p>
 
   
     <span class="summary_desc"><div class='inline'><p>Is root struct.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#to_s-instance_method" title="#to_s (instance method)">- (String) <strong>to_s</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Dump from root.</p>
 </div></span>
   
 </li>
@@ -763,13 +905,249 @@ to a function call</p>
 
 60
 61
-62</pre>
+62
+63
+64
+65
+66</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid__set'>_set</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_val'>val</span><span class='embexpr_end'>}</span><span class='tstring_content'>]</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>String</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid___single_quote_strings'>__single_quote_strings</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid__set'>_set</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[&#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_val'>val</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;]</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid__set'>_set</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>]</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="__anchor_start-instance_method">
+  
+    - (<tt>String</tt>) <strong>__anchor_start</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns start character(s) used to anchor function call</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>start character(s) used to anchor function call</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+130
+131
+132</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 130</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid___anchor_start'>__anchor_start</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>[</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="__anchor_stop-instance_method">
+  
+    - (<tt>String</tt>) <strong>__anchor_stop</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns stop character(s) used to anchor function call</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>stop character(s) used to anchor function call</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+135
+136
+137</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 135</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid___anchor_stop'>__anchor_stop</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>]</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="__empty_argument_list-instance_method">
+  
+    - (<tt>String</tt>) <strong>__empty_argument_list</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns value to use when argument list is empty</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>value to use when argument list is empty</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+140
+141
+142</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 140</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid___empty_argument_list'>__empty_argument_list</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>()</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="__single_quote_strings-instance_method">
+  
+    - (<tt>TrueClass</tt>) <strong>__single_quote_strings</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns enable single quote string generation</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>TrueClass</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>enable single quote string generation</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+155
+156
+157</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 155</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid___single_quote_strings'>__single_quote_strings</span>
+  <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -814,10 +1192,6 @@ to a function call</p>
       <pre class="lines">
 
 
-67
-68
-69
-70
 71
 72
 73
@@ -849,10 +1223,14 @@ to a function call</p>
 99
 100
 101
-102</pre>
+102
+103
+104
+105
+106</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__dump'>_dump</span>
   <span class='kw'>unless</span><span class='lparen'>(</span><span class='ivar'>@table</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span>
@@ -870,14 +1248,14 @@ to a function call</p>
         <span class='id identifier rubyid_arg'>arg</span><span class='period'>.</span><span class='id identifier rubyid__dump'>_dump</span>
       <span class='kw'>elsif</span><span class='lparen'>(</span><span class='id identifier rubyid_arg'>arg</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>Symbol</span><span class='rparen'>)</span><span class='rparen'>)</span>
         <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&#39;</span><span class='embexpr_beg'>#{</span><span class='op'>::</span><span class='const'>Bogo</span><span class='op'>::</span><span class='const'>Utility</span><span class='period'>.</span><span class='id identifier rubyid_camel'>camel</span><span class='lparen'>(</span><span class='id identifier rubyid_arg'>arg</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>
-      <span class='kw'>elsif</span><span class='lparen'>(</span><span class='id identifier rubyid_arg'>arg</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>String</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='kw'>elsif</span><span class='lparen'>(</span><span class='id identifier rubyid_arg'>arg</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>String</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid___single_quote_strings'>__single_quote_strings</span><span class='rparen'>)</span>
         <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_arg'>arg</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>
       <span class='kw'>else</span>
         <span class='id identifier rubyid_arg'>arg</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
     <span class='kw'>unless</span><span class='lparen'>(</span><span class='id identifier rubyid__fn_name'>_fn_name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_function_name'>function_name</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid__fn_name'>_fn_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>()</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid__fn_name'>_fn_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_function_name'>function_name</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid__fn_name'>_fn_name</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid___empty_argument_list'>__empty_argument_list</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid__fn_name'>_fn_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>(</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_args'>args</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
     <span class='id identifier rubyid_internal'>internal</span> <span class='op'>=</span> <span class='id identifier rubyid__eval_join'>_eval_join</span><span class='lparen'>(</span>
       <span class='op'>*</span><span class='lbracket'>[</span>
@@ -885,7 +1263,7 @@ to a function call</p>
         <span class='id identifier rubyid_suffix'>suffix</span>
       <span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span>
     <span class='rparen'>)</span>
-    <span class='id identifier rubyid_root?'>root?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_internal'>internal</span><span class='embexpr_end'>}</span><span class='tstring_content'>]</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='id identifier rubyid_internal'>internal</span>
+    <span class='id identifier rubyid_root?'>root?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid___anchor_start'>__anchor_start</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_internal'>internal</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid___anchor_stop'>__anchor_stop</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='id identifier rubyid_internal'>internal</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_suffix'>suffix</span>
   <span class='kw'>end</span>
@@ -948,20 +1326,20 @@ to a function call</p>
       <pre class="lines">
 
 
-108
-109
-110
-111
 112
 113
 114
 115
 116
 117
-118</pre>
+118
+119
+120
+121
+122</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 108</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 112</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__eval_join'>_eval_join</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span>
@@ -1016,15 +1394,72 @@ to a function call</p>
       <pre class="lines">
 
 
-121
-122
-123</pre>
+125
+126
+127</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 121</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 125</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__klass'>_klass</span>
   <span class='op'>::</span><span class='const'>SparkleFormation</span><span class='op'>::</span><span class='const'>FunctionStruct</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="inspect-instance_method">
+  
+    - (<tt>String</tt>) <strong>inspect</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns dump from root</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>dump from root</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+150
+151
+152</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 150</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_inspect'>inspect</span>
+  <span class='id identifier rubyid__root'>_root</span><span class='period'>.</span><span class='id identifier rubyid__dump'>_dump</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1145,12 +1580,69 @@ to a function call</p>
 </table>
 </div>
     
+      <div class="method_details ">
+  <h3 class="signature " id="to_s-instance_method">
+  
+    - (<tt>String</tt>) <strong>to_s</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns dump from root</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>dump from root</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+145
+146
+147</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 145</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='id identifier rubyid__root'>_root</span><span class='period'>.</span><span class='id identifier rubyid__dump'>_dump</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
 
     <div id="footer">
-  Generated on Fri Feb  5 12:00:56 2016 by
+  Generated on Sat Apr 23 10:26:30 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.3).
 </div>

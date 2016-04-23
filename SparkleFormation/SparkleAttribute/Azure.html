@@ -234,7 +234,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Customized dependsOn generator.</p>
+    <span class="summary_desc"><div class='inline'><p>Resource dependency generator.</p>
 </div></span>
   
 </li>
@@ -266,7 +266,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#_resource_id-instance_method" title="#_resource_id (instance method)">- (FunctionStruct) <strong>_resource_id</strong>(*args) </a>
+      <a href="#_resource_id-instance_method" title="#_resource_id (instance method)">- (FunctionStruct) <strong>_resource_id</strong>(resource_name) </a>
     
 
     
@@ -282,7 +282,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Customized resourceId generator that will perform automatic lookup on defined resources for building the function if Symbol type is provided.</p>
+    <span class="summary_desc"><div class='inline'><p>Customized resourceId generator that will perform automatic lookup on defined resources for building the function if Symbol type is provided   @param [String, Symbol] name of resource.</p>
 </div></span>
   
 </li>
@@ -489,7 +489,13 @@ Array type expected by the ARM API</p>
       <div class="method_details first">
   <h3 class="signature first" id="_depends_on-instance_method">
   
-    - (<tt>Array&lt;String&gt;</tt>) <strong>_depends_on</strong>(*args) 
+    
+      <span class="overload">- (<tt>Array&lt;String&gt;</tt>) <strong>_depends_on</strong>(resource_name) </span>
+    
+      <span class="overload">- (<tt>Array&lt;String&gt;</tt>) <strong>_depends_on</strong>(resource_names) </span>
+    
+      <span class="overload">- (<tt>Array&lt;String&gt;</tt>) <strong>_depends_on</strong>(*resource_names) </span>
+    
   
 
   
@@ -501,10 +507,29 @@ Array type expected by the ARM API</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Customized dependsOn generator. Will automatically build resource
-reference value using defined resources for Symbol type values. Sets
-directly into current context.</p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>this will directly modify the struct at its current context to inject depends on structure</p>
+</div>
+  </div>
 
+<p>Resource dependency generator</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <p class="tag_title">Overloads:</p>
+  <ul class="overload">
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>Array&lt;String&gt;</tt>) <strong>_depends_on</strong>(resource_name) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
 
   </div>
 </div>
@@ -514,16 +539,94 @@ directly into current context.</p>
   
     <li>
       
-        <span class='name'>args</span>
+        <span class='name'>resource_name</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'><p>logical resource name</p>
+</div>
       
     </li>
   
 </ul>
+
+
+</div>
+      </li>
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>Array&lt;String&gt;</tt>) <strong>_depends_on</strong>(resource_names) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>resource_names</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String, Symbol&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>list of logical resource names</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div>
+      </li>
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>Array&lt;String&gt;</tt>) <strong>_depends_on</strong>(*resource_names) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>resource_names</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String, Symbol&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>list of logical resource names</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div>
+      </li>
+    
+  </ul>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
@@ -545,25 +648,25 @@ directly into current context.</p>
       <pre class="lines">
 
 
-127
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138
-139
 140
 141
-142</pre>
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute/azure.rb', line 127</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute/azure.rb', line 140</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__depends_on'>_depends_on</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
@@ -624,14 +727,14 @@ directly into current context.</p>
       <pre class="lines">
 
 
-83
-84
-85
 86
-87</pre>
+87
+88
+89
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute/azure.rb', line 83</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute/azure.rb', line 86</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__fn_format'>_fn_format</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_src'>src</span> <span class='op'>=</span> <span class='op'>::</span><span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid___callee__'>__callee__</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -646,7 +749,7 @@ directly into current context.</p>
       <div class="method_details ">
   <h3 class="signature " id="_resource_id-instance_method">
   
-    - (<tt><span class='object_link'><a href="../FunctionStruct.html" title="SparkleFormation::FunctionStruct (class)">FunctionStruct</a></span></tt>) <strong>_resource_id</strong>(*args) 
+    - (<tt><span class='object_link'><a href="../FunctionStruct.html" title="SparkleFormation::FunctionStruct (class)">FunctionStruct</a></span></tt>) <strong>_resource_id</strong>(resource_name) 
   
 
   
@@ -658,29 +761,26 @@ directly into current context.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="docstring">
+  <div class="discussion">
     <p>Customized resourceId generator that will perform automatic
 lookup on defined resources for building the function if Symbol
-type is provided</p>
+type is provided
+  @param [String, Symbol] name of resource</p>
 
 
   </div>
 </div>
 <div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
   
-    <li>
-      
-        <span class='name'>args</span>
-      
-      
-        <span class='type'>(<tt>Object</tt>)</span>
-      
-      
-      
-    </li>
-  
-</ul>
+
+</div>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
@@ -702,26 +802,26 @@ type is provided</p>
       <pre class="lines">
 
 
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
 112
 113
 114
 115
 116
 117
-118</pre>
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute/azure.rb', line 102</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute/azure.rb', line 112</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__resource_id'>_resource_id</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;</span> <span class='int'>1</span><span class='rparen'>)</span>
@@ -821,16 +921,16 @@ type is provided</p>
       <pre class="lines">
 
 
-150
-151
-152
-153
-154
-155
-156</pre>
+163
+164
+165
+166
+167
+168
+169</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute/azure.rb', line 150</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute/azure.rb', line 163</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__stack_output'>_stack_output</span><span class='lparen'>(</span><span class='id identifier rubyid_stack_name'>stack_name</span><span class='comma'>,</span> <span class='id identifier rubyid_output_name'>output_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_stack_name'>stack_name</span> <span class='op'>=</span> <span class='id identifier rubyid___attribute_key'>__attribute_key</span><span class='lparen'>(</span><span class='id identifier rubyid_stack_name'>stack_name</span><span class='rparen'>)</span>
@@ -849,7 +949,7 @@ type is provided</p>
 </div>
 
     <div id="footer">
-  Generated on Fri Feb  5 12:00:54 2016 by
+  Generated on Sat Apr 23 10:26:27 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.3).
 </div>

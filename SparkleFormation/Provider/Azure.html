@@ -112,7 +112,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#apply_deep_nesting-instance_method" title="#apply_deep_nesting (instance method)">- (Hash) <strong>apply_deep_nesting</strong>(*args) {|stack, resource, s_name| ... }</a>
+      <a href="#apply_deep_nesting-instance_method" title="#apply_deep_nesting (instance method)">- (SparkleFormation::SparkleStruct) <strong>apply_deep_nesting</strong>(*args) {|stack, resource, s_name| ... }</a>
     
 
     
@@ -135,7 +135,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#apply_shallow_nesting-instance_method" title="#apply_shallow_nesting (instance method)">- (Hash) <strong>apply_shallow_nesting</strong>(*args) {|resource_name, stack| ... }</a>
+      <a href="#apply_shallow_nesting-instance_method" title="#apply_shallow_nesting (instance method)">- (SparkleFormation::SparkleStruct) <strong>apply_shallow_nesting</strong>(*args) {|resource_name, stack| ... }</a>
     
 
     
@@ -259,7 +259,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="apply_deep_nesting-instance_method">
   
-    - (<tt>Hash</tt>) <strong>apply_deep_nesting</strong>(*args) {|stack, resource, s_name| ... }
+    - (<tt><span class='object_link'><a href="../SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleFormation::SparkleStruct</a></span></tt>) <strong>apply_deep_nesting</strong>(*args) {|stack, resource, s_name| ... }
   
 
   
@@ -349,12 +349,12 @@ automatically applied.</p>
     <li>
       
       
-        <span class='type'>(<tt>Hash</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleFormation::SparkleStruct</a></span></tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>dumped stack</p>
+        <div class='inline'><p>compiled structure</p>
 </div>
       
     </li>
@@ -407,7 +407,7 @@ automatically applied.</p>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_block_given?'>block_given?</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_extract_templates'>extract_templates</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
-  <span class='id identifier rubyid_compile'>compile</span><span class='period'>.</span><span class='id identifier rubyid_dump!'>dump!</span>
+  <span class='id identifier rubyid_compile'>compile</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -417,7 +417,7 @@ automatically applied.</p>
       <div class="method_details ">
   <h3 class="signature " id="apply_shallow_nesting-instance_method">
   
-    - (<tt>Hash</tt>) <strong>apply_shallow_nesting</strong>(*args) {|resource_name, stack| ... }
+    - (<tt><span class='object_link'><a href="../SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleFormation::SparkleStruct</a></span></tt>) <strong>apply_shallow_nesting</strong>(*args) {|resource_name, stack| ... }
   
 
   
@@ -492,9 +492,13 @@ existing usage won&#39;t be automatically busted.</p>
     <li>
       
       
-        <span class='type'>(<tt>Hash</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleFormation::SparkleStruct</a></span></tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'><p>compiled structure</p>
+</div>
       
     </li>
   
@@ -536,7 +540,7 @@ existing usage won&#39;t be automatically busted.</p>
       <span class='id identifier rubyid_compile'>compile</span><span class='period'>.</span><span class='id identifier rubyid_outputs'>outputs</span><span class='period'>.</span><span class='id identifier rubyid__set'>_set</span><span class='lparen'>(</span><span class='id identifier rubyid_o_name'>o_name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span> <span class='id identifier rubyid_compile'>compile</span><span class='period'>.</span><span class='id identifier rubyid__stack_output'>_stack_output</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_o_val'>o_val</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
-  <span class='id identifier rubyid_compile'>compile</span><span class='period'>.</span><span class='id identifier rubyid_dump!'>dump!</span>
+  <span class='id identifier rubyid_compile'>compile</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1005,7 +1009,7 @@ stack parameters and set to use ref.</p>
 </div>
 
     <div id="footer">
-  Generated on Fri Feb  5 12:00:53 2016 by
+  Generated on Sat Apr 23 10:26:26 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.3).
 </div>

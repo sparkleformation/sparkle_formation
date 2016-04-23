@@ -112,7 +112,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#apply_deep_nesting-instance_method" title="#apply_deep_nesting (instance method)">- (Hash) <strong>apply_deep_nesting</strong>(*args) {|stack, resource, s_name| ... }</a>
+      <a href="#apply_deep_nesting-instance_method" title="#apply_deep_nesting (instance method)">- (SparkleFormation::SparkleStruct) <strong>apply_deep_nesting</strong>(*args) {|stack, resource, s_name| ... }</a>
     
 
     
@@ -135,7 +135,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#apply_shallow_nesting-instance_method" title="#apply_shallow_nesting (instance method)">- (Hash) <strong>apply_shallow_nesting</strong>(*args) {|resource_name, stack| ... }</a>
+      <a href="#apply_shallow_nesting-instance_method" title="#apply_shallow_nesting (instance method)">- (SparkleFormation::SparkleStruct) <strong>apply_shallow_nesting</strong>(*args) {|resource_name, stack| ... }</a>
     
 
     
@@ -173,6 +173,29 @@
 
   
     <span class="summary_desc"><div class='inline'><p>Generate policy for stack.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#list_type%3F-instance_method" title="#list_type? (instance method)">- (TrueClass, FalseClass) <strong>list_type?</strong>(type) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Check if type is a list type.</p>
 </div></span>
   
 </li>
@@ -259,7 +282,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="apply_deep_nesting-instance_method">
   
-    - (<tt>Hash</tt>) <strong>apply_deep_nesting</strong>(*args) {|stack, resource, s_name| ... }
+    - (<tt><span class='object_link'><a href="../SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleFormation::SparkleStruct</a></span></tt>) <strong>apply_deep_nesting</strong>(*args) {|stack, resource, s_name| ... }
   
 
   
@@ -349,12 +372,12 @@ automatically applied.</p>
     <li>
       
       
-        <span class='type'>(<tt>Hash</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleFormation::SparkleStruct</a></span></tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>dumped stack</p>
+        <div class='inline'><p>compiled structure</p>
 </div>
       
     </li>
@@ -407,7 +430,7 @@ automatically applied.</p>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_block_given?'>block_given?</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_extract_templates'>extract_templates</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
-  <span class='id identifier rubyid_compile'>compile</span><span class='period'>.</span><span class='id identifier rubyid_dump!'>dump!</span>
+  <span class='id identifier rubyid_compile'>compile</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -417,7 +440,7 @@ automatically applied.</p>
       <div class="method_details ">
   <h3 class="signature " id="apply_shallow_nesting-instance_method">
   
-    - (<tt>Hash</tt>) <strong>apply_shallow_nesting</strong>(*args) {|resource_name, stack| ... }
+    - (<tt><span class='object_link'><a href="../SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleFormation::SparkleStruct</a></span></tt>) <strong>apply_shallow_nesting</strong>(*args) {|resource_name, stack| ... }
   
 
   
@@ -492,9 +515,13 @@ existing usage won&#39;t be automatically busted.</p>
     <li>
       
       
-        <span class='type'>(<tt>Hash</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleFormation::SparkleStruct</a></span></tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'><p>compiled structure</p>
+</div>
       
     </li>
   
@@ -552,7 +579,7 @@ existing usage won&#39;t be automatically busted.</p>
       <span class='id identifier rubyid_compile'>compile</span><span class='period'>.</span><span class='id identifier rubyid_outputs'>outputs</span> <span class='id identifier rubyid_output_hash'>output_hash</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
-  <span class='id identifier rubyid_compile'>compile</span><span class='period'>.</span><span class='id identifier rubyid_dump!'>dump!</span>
+  <span class='id identifier rubyid_compile'>compile</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -648,6 +675,74 @@ existing usage won&#39;t be automatically busted.</p>
     <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Principal</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>*</span><span class='tstring_end'>&#39;</span></span>
   <span class='rparen'>)</span>
   <span class='const'>Smash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Statement</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_statements'>statements</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="list_type?-instance_method">
+  
+    - (<tt>TrueClass</tt>, <tt>FalseClass</tt>) <strong>list_type?</strong>(type) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Check if type is a list type</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>type</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>TrueClass</tt>, <tt>FalseClass</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+203
+204
+205</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/provider/aws.rb', line 203</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_list_type?'>list_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_type'>type</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CommaDelimitedList</span><span class='tstring_end'>&#39;</span></span> <span class='op'>||</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>List&lt;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -976,7 +1071,7 @@ stack parameters and set to use ref.</p>
         <span class='id identifier rubyid_check_name'>check_name</span> <span class='op'>=</span> <span class='id identifier rubyid_pname'>pname</span>
       <span class='kw'>end</span>
       <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_check_name'>check_name</span><span class='rparen'>)</span><span class='rparen'>)</span>
-        <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='id identifier rubyid_check_name'>check_name</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CommaDelimitedList</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+        <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_list_type?'>list_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='lbracket'>[</span><span class='id identifier rubyid_check_name'>check_name</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='rparen'>)</span>
           <span class='id identifier rubyid_new_val'>new_val</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::Join</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ref</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_check_name'>check_name</span><span class='rbrace'>}</span><span class='rbracket'>]</span><span class='rbrace'>}</span>
         <span class='kw'>else</span>
           <span class='id identifier rubyid_new_val'>new_val</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ref</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_check_name'>check_name</span><span class='rbrace'>}</span>
@@ -987,7 +1082,7 @@ stack parameters and set to use ref.</p>
           <span class='id identifier rubyid_pname'>pname</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::GetAtt</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_output_map'>output_map</span><span class='lbracket'>[</span><span class='id identifier rubyid_check_name'>check_name</span><span class='rbracket'>]</span>
         <span class='rparen'>)</span>
       <span class='kw'>else</span>
-        <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_pval'>pval</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CommaDelimitedList</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+        <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_list_type?'>list_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_pval'>pval</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Type</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='rparen'>)</span>
           <span class='id identifier rubyid_new_val'>new_val</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Fn::Join</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ref</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_check_name'>check_name</span><span class='rbrace'>}</span><span class='rbracket'>]</span><span class='rbrace'>}</span>
         <span class='kw'>else</span>
           <span class='id identifier rubyid_new_val'>new_val</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ref</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_check_name'>check_name</span><span class='rbrace'>}</span>
@@ -1071,7 +1166,7 @@ stack parameters and set to use ref.</p>
 </div>
 
     <div id="footer">
-  Generated on Fri Feb  5 12:00:53 2016 by
+  Generated on Sat Apr 23 10:26:25 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.3).
 </div>

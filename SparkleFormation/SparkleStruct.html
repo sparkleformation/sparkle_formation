@@ -275,6 +275,35 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#_dynamic-instance_method" title="#_dynamic (instance method)">- (self) <strong>_dynamic</strong>(name, *args) {|new_struct| ... }</a>
+    
+
+    
+      (also: #dynamic!)
+    
+  </span>
+  
+    <span class="note title not_defined_here">
+      included
+      from <span class='object_link'><a href="SparkleAttribute.html#_dynamic-instance_method" title="SparkleFormation::SparkleAttribute#_dynamic (method)">SparkleAttribute</a></span>
+    </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#_klass-instance_method" title="#_klass (instance method)">- (Class) <strong>_klass</strong> </a>
     
 
@@ -320,7 +349,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#_method-instance_method" title="#_method (instance method)">- (Method) <strong>_method</strong>(*args) </a>
+      <a href="#_method-instance_method" title="#_method (instance method)">- (Method) <strong>_method</strong>(sym) </a>
     
 
     
@@ -341,7 +370,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Lookup a method definition on self usually used as <code>puts! method!(:foo).source_location</code>.</p>
+    <span class="summary_desc"><div class='inline'><p>Lookup a method definition on self.</p>
 </div></span>
   
 </li>
@@ -350,7 +379,37 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#_puts-instance_method" title="#_puts (instance method)">- (NilClass) <strong>_puts</strong>(*args) </a>
+      <a href="#_nest-instance_method" title="#_nest (instance method)">- (self) <strong>_nest</strong>(template, *names, options = {}) </a>
+    
+
+    
+      (also: #nest!)
+    
+  </span>
+  
+    <span class="note title not_defined_here">
+      included
+      from <span class='object_link'><a href="SparkleAttribute.html#_nest-instance_method" title="SparkleFormation::SparkleAttribute#_nest (method)">SparkleAttribute</a></span>
+    </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Nest a stack resource.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#_puts-instance_method" title="#_puts (instance method)">- (NilClass) <strong>_puts</strong>(obj, ...) </a>
     
 
     
@@ -402,6 +461,36 @@
 
   
     <span class="summary_desc"><div class='inline'><p>Raise an exception.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#_registry-instance_method" title="#_registry (instance method)">- (Object) <strong>_registry</strong>(name, *args) </a>
+    
+
+    
+      (also: #registry!)
+    
+  </span>
+  
+    <span class="note title not_defined_here">
+      included
+      from <span class='object_link'><a href="SparkleAttribute.html#_registry-instance_method" title="SparkleFormation::SparkleAttribute#_registry (method)">SparkleAttribute</a></span>
+    </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Return value of registry item.</p>
 </div></span>
   
 </li>
@@ -485,6 +574,54 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#_sparkle_dump-instance_method" title="#_sparkle_dump (instance method)">- (AttributeStruct::AttributeHash, Mash) <strong>_sparkle_dump</strong> </a>
+    
+
+    
+      (also: #sparkle_dump!)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Dump struct to hashish.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#_sparkle_dump_unpacker-instance_method" title="#_sparkle_dump_unpacker (instance method)">- (Object) <strong>_sparkle_dump_unpacker</strong>(item) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Process and unpack items for dumping within deeply nested enumerable types.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#_state-instance_method" title="#_state (instance method)">- (Object) <strong>_state</strong>(arg) </a>
     
 
@@ -532,34 +669,6 @@
 
   
     <span class="summary_desc"><div class='inline'><p>Execute system command.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#dynamic%21-instance_method" title="#dynamic! (instance method)">- (self) <strong>dynamic!</strong>(name, *args, &amp;block) </a>
-    
-
-    
-  </span>
-  
-    <span class="note title not_defined_here">
-      included
-      from <span class='object_link'><a href="SparkleAttribute.html#dynamic%21-instance_method" title="SparkleFormation::SparkleAttribute#dynamic! (method)">SparkleAttribute</a></span>
-    </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>Dynamic insertion helper method.</p>
 </div></span>
   
 </li>
@@ -631,62 +740,6 @@
 
   
     <span class="summary_desc"><div class='inline'><p>Override to inspect result value and fetch root if value is a FunctionStruct.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#nest%21-instance_method" title="#nest! (instance method)">- (self) <strong>nest!</strong>(template, *args, &amp;block) </a>
-    
-
-    
-  </span>
-  
-    <span class="note title not_defined_here">
-      included
-      from <span class='object_link'><a href="SparkleAttribute.html#nest%21-instance_method" title="SparkleFormation::SparkleAttribute#nest! (method)">SparkleAttribute</a></span>
-    </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>Stack nesting helper method.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#registry%21-instance_method" title="#registry! (instance method)">- (self) <strong>registry!</strong>(name, *args) </a>
-    
-
-    
-  </span>
-  
-    <span class="note title not_defined_here">
-      included
-      from <span class='object_link'><a href="SparkleAttribute.html#registry%21-instance_method" title="SparkleFormation::SparkleAttribute#registry! (method)">SparkleAttribute</a></span>
-    </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>Registry insertion helper method.</p>
 </div></span>
   
 </li>
@@ -788,7 +841,13 @@ FunctionStruct</p>
 80
 81
 82
-83</pre>
+83
+84
+85
+86
+87
+88
+89</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_struct.rb', line 77</span>
@@ -797,8 +856,14 @@ FunctionStruct</p>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_sym'>sym</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_start_with?'>start_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_sym'>sym</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_end_with?'>end_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>!</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
     <span class='op'>::</span><span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_raise'>raise</span> <span class='op'>::</span><span class='const'>NoMethodError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Undefined method `</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_sym'>sym</span><span class='embexpr_end'>}</span><span class='tstring_content'>` for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid__klass'>_klass</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
-  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='op'>*</span><span class='lbracket'>[</span><span class='id identifier rubyid_sym'>sym</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='ivar'>@table</span><span class='lbracket'>[</span><span class='id identifier rubyid__process_key'>_process_key</span><span class='lparen'>(</span><span class='id identifier rubyid_sym'>sym</span><span class='rparen'>)</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_function_bubbler'>function_bubbler</span><span class='lparen'>(</span><span class='id identifier rubyid_result'>result</span><span class='rparen'>)</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='op'>*</span><span class='lbracket'>[</span><span class='id identifier rubyid_sym'>sym</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>if</span><span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span> <span class='op'>=</span> <span class='id identifier rubyid_sym'>sym</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_end_with?'>end_with?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>=</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_slice!'>slice!</span><span class='lparen'>(</span><span class='op'>-</span><span class='int'>1</span><span class='comma'>,</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_sym'>sym</span> <span class='op'>=</span> <span class='id identifier rubyid_s'>s</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_sym'>sym</span> <span class='op'>=</span> <span class='id identifier rubyid__process_key'>_process_key</span><span class='lparen'>(</span><span class='id identifier rubyid_sym'>sym</span><span class='rparen'>)</span>
+  <span class='ivar'>@table</span><span class='lbracket'>[</span><span class='id identifier rubyid_sym'>sym</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_function_bubbler'>function_bubbler</span><span class='lparen'>(</span><span class='ivar'>@table</span><span class='lbracket'>[</span><span class='id identifier rubyid_sym'>sym</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='ivar'>@table</span><span class='lbracket'>[</span><span class='id identifier rubyid_sym'>sym</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1091,6 +1156,285 @@ is applied</p>
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="_dynamic-instance_method">
+  
+    
+      <span class="overload">- (<tt>self</tt>) <strong>_dynamic</strong>(resource_type, custom_name, options = {}) </span>
+    
+      <span class="overload">- (<tt>self</tt>) <strong>_dynamic</strong>(dynamic_name, custom_name, options = {}) </span>
+    
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='dynamic!-instance_method'>dynamic!</span></span>
+    </span>
+  
+
+  
+    <span class="not_defined_here">
+      Originally defined in module
+        <span class='object_link'><a href="SparkleAttribute.html#_dynamic-instance_method" title="SparkleFormation::SparkleAttribute#_dynamic (method)">SparkleAttribute</a></span>
+    </span>
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+  <p class="tag_title">Overloads:</p>
+  <ul class="overload">
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>self</tt>) <strong>_dynamic</strong>(resource_type, custom_name, options = {}) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>All other options are set into the new resource&#39;s properties</p>
+</div>
+  </div>
+
+<p>Insert builtin resource</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>resource_type</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>provider resource type</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>custom_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>custom name used for resource name generation</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:resource_name_suffix</span>
+          <span class="type">(<tt>String</tt>, <tt>NilClass</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>custom suffix to use for
+name generation (defaults to resource_type)</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+
+</div>
+      </li>
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>self</tt>) <strong>_dynamic</strong>(dynamic_name, custom_name, options = {}) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>All options are passed to dynamic with custom_name</p>
+</div>
+  </div>
+
+<p>Call custom dynamic from available sparkle packs</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>dynamic_name</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>name of registered dynamic</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>custom_name</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>, <tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>unique name passed directly to registered dynamic</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:provider</span>
+          <span class="type">(<tt>String</tt>, <tt>Symbol</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>override provider restriction when fetching dynamic</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+
+</div>
+      </li>
+    
+  </ul>
+
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>new_struct</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>newly inserted structure which can be modified</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Yield Returns:</p>
+<ul class="yieldreturn">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>discarded</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>self</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="_klass-instance_method">
   
     - (<tt>Class</tt>) <strong>_klass</strong> 
@@ -1127,12 +1471,12 @@ is applied</p>
       <pre class="lines">
 
 
-86
-87
-88</pre>
+92
+93
+94</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_struct.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_struct.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__klass'>_klass</span>
   <span class='id identifier rubyid__struct_class'>_struct_class</span> <span class='op'>||</span> <span class='op'>::</span><span class='const'>SparkleFormation</span><span class='op'>::</span><span class='const'>SparkleStruct</span>
@@ -1180,21 +1524,21 @@ is applied</p>
       <pre class="lines">
 
 
-93
-94
-95
-96
-97
-98
 99
 100
 101
 102
 103
-104</pre>
+104
+105
+106
+107
+108
+109
+110</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_struct.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_struct.rb', line 99</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__klass_new'>_klass_new</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_inst'>inst</span> <span class='op'>=</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='rparen'>)</span>
@@ -1216,7 +1560,7 @@ is applied</p>
       <div class="method_details ">
   <h3 class="signature " id="_method-instance_method">
   
-    - (<tt>Method</tt>) <strong>_method</strong>(*args) 
+    - (<tt>Method</tt>) <strong>_method</strong>(sym) 
   
 
   
@@ -1233,14 +1577,50 @@ is applied</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Lookup a method definition on self
-usually used as <code>puts! method!(:foo).source_location</code></p>
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>usually used as <code>puts! method!(:foo).source_location</code></p>
+</div>
+  </div>
+
 
 
   </div>
 </div>
 <div class="tags">
   
+  <div class="docstring">
+  <div class="discussion">
+    <p>Lookup a method definition on self</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>sym</span>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>name of method</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -1255,13 +1635,209 @@ usually used as <code>puts! method!(:foo).source_location</code></p>
   
 </ul>
 
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>Object#method</li>
+    
+  </ul>
+
+</div>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="_nest-instance_method">
+  
+    - (<tt>self</tt>) <strong>_nest</strong>(template, *names, options = {}) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='nest!-instance_method'>nest!</span></span>
+    </span>
+  
+
+  
+    <span class="not_defined_here">
+      Originally defined in module
+        <span class='object_link'><a href="SparkleAttribute.html#_nest-instance_method" title="SparkleFormation::SparkleAttribute#_nest (method)">SparkleAttribute</a></span>
+    </span>
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="docstring">
+  <div class="discussion">
+    <p>Nest a stack resource</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>template</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>name of desired template</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>names</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>list of optional string/symbol values for resource name generation</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:provider</span>
+          <span class="type">(<tt>String</tt>, <tt>Symbol</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>override provider restriction when
+fetching template</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:overwrite_name</span>
+          <span class="type">(<tt>Truthy</tt>, <tt>Falsey</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>when set to true, will not include
+template name in resource name</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:parameters</span>
+          <span class="type">(<tt>Hash</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>compile time parameter values to pass to nested template</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+
+</div>
+
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>new_struct</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>newly inserted structure which can be modified</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Yield Returns:</p>
+<ul class="yieldreturn">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>discarded</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>self</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div>
 </div>
     
       <div class="method_details ">
   <h3 class="signature " id="_puts-instance_method">
   
-    - (<tt>NilClass</tt>) <strong>_puts</strong>(*args) 
+    - (<tt>NilClass</tt>) <strong>_puts</strong>(obj, ...) 
   
 
   
@@ -1278,6 +1854,14 @@ usually used as <code>puts! method!(:foo).source_location</code></p>
   
 </h3><div class="docstring">
   <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="docstring">
+  <div class="discussion">
     <p>Print to stdout</p>
 
 
@@ -1289,16 +1873,23 @@ usually used as <code>puts! method!(:foo).source_location</code></p>
   
     <li>
       
-        <span class='name'>args</span>
+        <span class='name'>obj</span>
       
       
-        <span class='type'></span>
+        <span class='type'>(<tt>Object</tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'><p>object to print</p>
+</div>
       
     </li>
   
 </ul>
+
+
+</div>
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
@@ -1313,6 +1904,13 @@ usually used as <code>puts! method!(:foo).source_location</code></p>
     </li>
   
 </ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>Kernel.puts</li>
+    
+  </ul>
 
 </div>
 </div>
@@ -1344,6 +1942,193 @@ usually used as <code>puts! method!(:foo).source_location</code></p>
 </div>
 <div class="tags">
   
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li>Kernel.raise</li>
+    
+  </ul>
+
+</div>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="_registry-instance_method">
+  
+    
+      <span class="overload">- (<tt>Object</tt>) <strong>_registry</strong>(name) </span>
+    
+      <span class="overload">- (<tt>Object</tt>) <strong>_registry</strong>(name, *args, options = {}) </span>
+    
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='registry!-instance_method'>registry!</span></span>
+    </span>
+  
+
+  
+    <span class="not_defined_here">
+      Originally defined in module
+        <span class='object_link'><a href="SparkleAttribute.html#_registry-instance_method" title="SparkleFormation::SparkleAttribute#_registry (method)">SparkleAttribute</a></span>
+    </span>
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Return value of registry item</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <p class="tag_title">Overloads:</p>
+  <ul class="overload">
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>Object</tt>) <strong>_registry</strong>(name) </span>
+        <div class="docstring">
+  <div class="discussion">
+    <p>Return value from registry item with given name</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>registry item name</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div>
+      </li>
+    
+      
+      <li class="overload_item">
+        <span class="signature">- (<tt>Object</tt>) <strong>_registry</strong>(name, *args, options = {}) </span>
+        <div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>args and options will be passed directly to registry item when called</p>
+</div>
+  </div>
+
+<p>Pass given parameters to registry item with given name and
+return the value</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>registry item name</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>:provider override provider restriction when fetching registry item</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>args</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>argument list</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div>
+      </li>
+    
+  </ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>return value of registry item</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div>
 </div>
@@ -1535,6 +2320,186 @@ usually used as <code>puts! method!(:foo).source_location</code></p>
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="_sparkle_dump-instance_method">
+  
+    - (<tt>AttributeStruct::AttributeHash</tt>, <tt>Mash</tt>) <strong>_sparkle_dump</strong> 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='sparkle_dump!-instance_method'>sparkle_dump!</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns dump struct to hashish</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>AttributeStruct::AttributeHash</tt>, <tt>Mash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>dump struct to hashish</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+166
+167
+168
+169
+170
+171
+172
+173</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_struct.rb', line 166</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid__sparkle_dump'>_sparkle_dump</span>
+  <span class='id identifier rubyid_processed'>processed</span> <span class='op'>=</span> <span class='ivar'>@table</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='op'>|</span>
+    <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='ivar'>@table</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_val'>val</span> <span class='op'>=</span> <span class='id identifier rubyid__sparkle_dump_unpacker'>_sparkle_dump_unpacker</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+    <span class='lbracket'>[</span><span class='id identifier rubyid__sparkle_dump_unpacker'>_sparkle_dump_unpacker</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='id identifier rubyid_val'>val</span> <span class='op'>==</span> <span class='const'>UNSET_VALUE</span>
+  <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span>
+  <span class='id identifier rubyid___hashish'>__hashish</span><span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_processed'>processed</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="_sparkle_dump_unpacker-instance_method">
+  
+    - (<tt>Object</tt>) <strong>_sparkle_dump_unpacker</strong>(item) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Process and unpack items for dumping within deeply nested
+enumerable types</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>item</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_struct.rb', line 141</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid__sparkle_dump_unpacker'>_sparkle_dump_unpacker</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span>
+  <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>Enumerable</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:keys</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='lbracket'>[</span>
+        <span class='op'>*</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_entry'>entry</span><span class='op'>|</span>
+          <span class='id identifier rubyid__sparkle_dump_unpacker'>_sparkle_dump_unpacker</span><span class='lparen'>(</span><span class='id identifier rubyid_entry'>entry</span><span class='rparen'>)</span>
+        <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='lparen'>(</span><span class='int'>1</span><span class='rparen'>)</span>
+      <span class='rbracket'>]</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='lbracket'>[</span>
+        <span class='op'>*</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_entry'>entry</span><span class='op'>|</span>
+          <span class='id identifier rubyid__sparkle_dump_unpacker'>_sparkle_dump_unpacker</span><span class='lparen'>(</span><span class='id identifier rubyid_entry'>entry</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+  <span class='kw'>elsif</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>AttributeStruct</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='const'>UNSET_VALUE</span> <span class='op'>:</span> <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid__sparkle_dump'>_sparkle_dump</span>
+  <span class='kw'>elsif</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>SparkleFormation</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_sparkle_dump'>sparkle_dump</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_item'>item</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="_state-instance_method">
   
     - (<tt>Object</tt>) <strong>_state</strong>(arg) 
@@ -1596,22 +2561,22 @@ provided</p>
       <pre class="lines">
 
 
-112
-113
-114
-115
-116
-117
 118
 119
 120
 121
 122
 123
-124</pre>
+124
+125
+126
+127
+128
+129
+130</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_struct.rb', line 112</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_struct.rb', line 118</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__state'>_state</span><span class='lparen'>(</span><span class='id identifier rubyid_arg'>arg</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>super</span>
@@ -1686,80 +2651,6 @@ provided</p>
         &mdash;
         <div class='inline'><p>result</p>
 </div>
-      
-    </li>
-  
-</ul>
-
-</div>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="dynamic!-instance_method">
-  
-    - (<tt>self</tt>) <strong>dynamic!</strong>(name, *args, &amp;block) 
-  
-
-  
-
-  
-    <span class="not_defined_here">
-      Originally defined in module
-        <span class='object_link'><a href="SparkleAttribute.html#dynamic%21-instance_method" title="SparkleFormation::SparkleAttribute#dynamic! (method)">SparkleAttribute</a></span>
-    </span>
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Dynamic insertion helper method</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>name</span>
-      
-      
-        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>dynamic name</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>args</span>
-      
-      
-        <span class='type'>(<tt>Object</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>argument list for dynamic</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>self</tt>)</span>
-      
-      
       
     </li>
   
@@ -1873,160 +2764,12 @@ the root item of the structure</p>
 </table>
 </div>
     
-      <div class="method_details ">
-  <h3 class="signature " id="nest!-instance_method">
-  
-    - (<tt>self</tt>) <strong>nest!</strong>(template, *args, &amp;block) 
-  
-
-  
-
-  
-    <span class="not_defined_here">
-      Originally defined in module
-        <span class='object_link'><a href="SparkleAttribute.html#nest%21-instance_method" title="SparkleFormation::SparkleAttribute#nest! (method)">SparkleAttribute</a></span>
-    </span>
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Stack nesting helper method</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>template</span>
-      
-      
-        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>template to nest</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>args</span>
-      
-      
-        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>stringified and underscore joined for name</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>self</tt>)</span>
-      
-      
-      
-    </li>
-  
-</ul>
-
-</div>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="registry!-instance_method">
-  
-    - (<tt>self</tt>) <strong>registry!</strong>(name, *args) 
-  
-
-  
-
-  
-    <span class="not_defined_here">
-      Originally defined in module
-        <span class='object_link'><a href="SparkleAttribute.html#registry%21-instance_method" title="SparkleFormation::SparkleAttribute#registry! (method)">SparkleAttribute</a></span>
-    </span>
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Registry insertion helper method</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>name</span>
-      
-      
-        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>name of registry item</p>
-</div>
-      
-    </li>
-  
-    <li>
-      
-        <span class='name'>args</span>
-      
-      
-        <span class='type'>(<tt>Object</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>argument list for registry</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>self</tt>)</span>
-      
-      
-      
-    </li>
-  
-</ul>
-
-</div>
-</div>
-    
   </div>
 
 </div>
 
     <div id="footer">
-  Generated on Fri Feb  5 12:00:56 2016 by
+  Generated on Sat Apr 23 10:26:30 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.3).
 </div>
