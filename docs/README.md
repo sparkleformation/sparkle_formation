@@ -22,6 +22,7 @@
   - [Nested Stacks](nested-stacks.md)
     - [Shallow Nesting](nested-stacks.md#shallow-nesting)
     - [Deep Nesting](nested-stacks.md#deep-nesting)
+  - [Provider Restrictions](provider-restrictions.md)
   - [Sparkle Packs](sparkle-packs.md)
   - [Stack Policies](stack-policies.md)
   - [Translation](translation.md)
