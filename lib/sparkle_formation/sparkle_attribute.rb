@@ -75,7 +75,8 @@ class SparkleFormation
     #   @param resource_type [String, Symbol] provider resource type
     #   @param custom_name [String, Symbol] custom name used for resource name generation
     #   @param options [Hash]
-    #   @option options [String, NilClass] :resource_name_suffix custom suffix to use for name generation (defaults to resource_type)
+    #   @option options [String, NilClass] :resource_name_suffix custom suffix to use for
+    #     name generation (defaults to resource_type)
     #   @note All other options are set into the new resource's properties
     # @overload _dynamic(dynamic_name, custom_name, options={})
     #   Call custom dynamic from available sparkle packs
@@ -115,8 +116,10 @@ class SparkleFormation
     #   @param template [String, Symbol] name of desired template
     #   @param names [String, Symbol] list of optional string/symbol values for resource name generation
     #   @param options [Hash]
-    #   @option options [String, Symbol] :provider override provider restriction when fetching template
-    #   @option options [Truthy, Falsey] :overwrite_name when set to true, will not include template name in resource name
+    #   @option options [String, Symbol] :provider override provider restriction when
+    #     fetching template
+    #   @option options [Truthy, Falsey] :overwrite_name when set to true, will not include
+    #     template name in resource name
     #   @option options [Hash] :parameters compile time parameter values to pass to nested template
     # @yieldblock [new_struct] Provides newly inserted structure
     # @yieldparam new_struct [SparkleStruct] newly inserted structure which can be modified
