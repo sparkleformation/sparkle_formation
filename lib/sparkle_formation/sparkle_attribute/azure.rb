@@ -103,11 +103,11 @@ class SparkleFormation
         alias_method "#{f_name}!".to_sym, "_#{f_name}".to_sym
       end
 
-      # Customized resourceId generator that will perform automatic
-      # lookup on defined resources for building the function if Symbol
-      # type is provided
-      #
-      # @param args [Object]
+      # @overload _resource_id(resource_name)
+      #   Customized resourceId generator that will perform automatic
+      #   lookup on defined resources for building the function if Symbol
+      #   type is provided
+      #     @param [String, Symbol] name of resource
       # @return [FunctionStruct]
       def _resource_id(*args)
         if(args.size > 1)
@@ -128,12 +128,15 @@ class SparkleFormation
       end
       alias_method :resource_id!, :_resource_id
 
-      # Customized dependsOn generator. Will automatically build resource
-      # reference value using defined resources for Symbol type values. Sets
-      # directly into current context.
-      #
-      # @param args [Object]
+      # Resource dependency generator
+      # @overload _depends_on(resource_name)
+      #   @param resource_name [String, Symbol] logical resource name
+      # @overload _depends_on(resource_names)
+      #   @param resource_names [Array<String, Symbol>] list of logical resource names
+      # @overload _depends_on(*resource_names)
+      #   @param resource_names [Array<String, Symbol>] list of logical resource names
       # @return [Array<String>]
+      # @note this will directly modify the struct at its current context to inject depends on structure
       def _depends_on(*args)
         args = args.map do |item|
           case item

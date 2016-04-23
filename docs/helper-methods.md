@@ -155,5 +155,6 @@ to the library documentation:
 
 * [AWS helpers](http://sparkleformation.github.io/sparkle_formation/SparkleFormation/SparkleAttribute/Aws.html)
 * [Azure helpers](http://sparkleformation.github.io/sparkle_formation/SparkleFormation/SparkleAttribute/Azure.html)
+* [Google helpers](http://sparkleformation.github.io/sparkle_formation/SparkleFormation/SparkleAttribute/Google.html)
 * [HEAT helpers](http://sparkleformation.github.io/sparkle_formation/SparkleFormation/SparkleAttribute/Heat.html)
 * [Rackspace helpers](http://sparkleformation.github.io/sparkle_formation/SparkleFormation/SparkleAttribute/Rackspace.html)

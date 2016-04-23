@@ -8,9 +8,12 @@ class SparkleFormation
     # AWS specific helper implementations
     module Aws
 
-      # Fn::Join generator
-      #
-      # @param args [Object]
+      # @overload _cf_join(*args, opts={})
+      #   Fn::Join generator
+      #   @param args [String, Hash] list of items to join
+      #   @param opts [Hash]
+      #   @option opts [Hash] :options options for join function
+      #   @option options [String] :delimiter value used for joining items. Defaults to ''
       # @return [Hash]
       def _cf_join(*args)
         options = args.detect{|i| i.is_a?(Hash) && i[:options]} || {:options => {}}
@@ -34,11 +37,11 @@ class SparkleFormation
       alias_method :_ref, :_cf_ref
       alias_method :ref!, :_cf_ref
 
-      # Fn::FindInMap generator
-      #
-      # @param thing [String, Symbol] thing to find
-      # @param key [String, Symbol] thing to search
-      # @param suffix [Object] additional args
+      # @overload _cf_map(map_name, top_level_key, second_level_key)
+      #   Fn::FindInMap generator
+      #   @param map_name [String, Symbol] name of map
+      #   @param top_level_key [String, Symbol, Hash] top level key name
+      #   @param second_level_key [String, Symbol, Hash] second level key name
       # @return [Hash]
       def _cf_map(thing, key, *suffix)
         __t_stringish(thing)
@@ -59,9 +62,10 @@ class SparkleFormation
       alias_method :find_in_map!, :_cf_map
       alias_method :map!, :_cf_map
 
-      # Fn::GetAtt generator
-      #
-      # @param [Object] pass through arguments
+      # @overload _cf_attr(logical_id, attribute_name)
+      #   Fn::GetAtt generator
+      #   @param logical_id [String, Symbol] logical resource name
+      #   @param attribute_name [String, Symbol] name of desired resource attribute
       # @return [Hash]
       def _cf_attr(*args)
         r_name = args.first
@@ -82,7 +86,7 @@ class SparkleFormation
 
       # Fn::Base64 generator
       #
-      # @param arg [Object] pass through
+      # @param arg [Object] argument to be encoded
       # @return [Hash]
       def _cf_base64(arg)
         {'Fn::Base64' => arg}
@@ -143,8 +147,8 @@ class SparkleFormation
       # Fn::If generator
       #
       # @param cond [String, Symbol] symbol will be case processed
-      # @param true_value [Object]
-      # @param false_value [Object]
+      # @param true_value [Object] item to be used when true
+      # @param false_value [Object] item to be used when false
       # @return [Hash]
       def _if(cond, true_value, false_value)
         {'Fn::If' => _array(__attribute_key(cond), true_value, false_value)}
@@ -153,7 +157,7 @@ class SparkleFormation
 
       # Fn::And generator
       #
-      # @param args [Object]
+      # @param args [Object] items to be AND'ed together
       # @return [Hash]
       # @note symbols will be processed and set as condition. strings
       #   will be set as condition directly. procs will be evaluated
@@ -218,7 +222,7 @@ class SparkleFormation
 
       # No value generator
       #
-      # @return [String]
+      # @return [Hash]
       def _no_value
         _ref('AWS::NoValue')
       end
@@ -265,9 +269,14 @@ class SparkleFormation
       alias_method :stack_name!, :_stack_name
 
       # Resource dependency generator
-      #
-      # @param [Symbol, String, Array<Symbol, String>] resource names
+      # @overload _depends_on(resource_name)
+      #   @param resource_name [String, Symbol] logical resource name
+      # @overload _depends_on(resource_names)
+      #   @param resource_names [Array<String, Symbol>] list of logical resource names
+      # @overload _depends_on(*resource_names)
+      #   @param resource_names [Array<String, Symbol>] list of logical resource names
       # @return [Array<String>]
+      # @note this will directly modify the struct at its current context to inject depends on structure
       def _depends_on(*args)
         _set('DependsOn', [args].flatten.compact.map{|s| __attribute_key(s)})
       end
