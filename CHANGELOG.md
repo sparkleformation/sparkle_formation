@@ -10,6 +10,10 @@ _Major release includes breaking changes!_
 * Generate nested stack resource name using key processing style of current context (#167)
 * SparkleFormation#apply_nesting now returns compiled structure not Hash (#167)
 * SparkleFormation#stack_template_extractor now sets compiled structure not Hash (#167)
+* Remove helper method aliasing in Azure module to work on Ruby 2.3 (#170)
+* Implement provider restrictions and naming uniqueness (#169)
+
+_NOTE: If using non-AWS provider, files must be updated to include `:provider` flag._
 
 # v2.1.8
 * Add support for CFN list type with shallow nesting (#150)
