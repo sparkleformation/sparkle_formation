@@ -1,3 +1,6 @@
+# v3.0.2
+* Fix resource effect check when defaulted with boolean
+
 # v3.0.0
 _Major release includes breaking changes!_
 * Builtin provider resources updates (#163)
