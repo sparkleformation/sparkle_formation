@@ -60,7 +60,7 @@ class SparkleFormation
           final_resource = final_resource.to_smash
           original_resource = original_resource.to_smash
           result = conditionals.detect do |p_cond|
-            p_cond == true || p_cond.conditional.call(final_resource, original_resource)
+            p_cond.conditional == true || p_cond.conditional.call(final_resource, original_resource)
           end
           if(result)
             result.update_causes
