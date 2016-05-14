@@ -579,7 +579,13 @@ class SparkleFormation
     root == self
   end
 
-  ALLOWED_GENERATION_PARAMETERS = ['type', 'default', 'description', 'multiple', 'prompt_when_nested']
+  # Attributes allowed for generation parameter definitions
+  ALLOWED_GENERATION_PARAMETERS = [
+    'type', 'default', 'description', 'multiple', 'prompt_when_nested',
+    'allowed_values', 'allowed_pattern', 'max_length', 'min_length',
+    'max_value', 'min_value'
+  ]
+  # Allowed data types for parameters
   VALID_GENERATION_PARAMETER_TYPES = ['String', 'Number']
 
   # Get or set the compile time parameter setting block. If a get
