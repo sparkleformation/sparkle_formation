@@ -1,3 +1,6 @@
+# v3.0.4
+* Extend allowed attributes for generation parameters (#173)
+
 # v3.0.2
 * Fix resource effect check when defaulted with boolean
 
