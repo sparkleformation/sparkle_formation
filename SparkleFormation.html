@@ -149,7 +149,7 @@
 
 </div>
         </dt>
-        <dd><pre class="code"><span class='const'>Gem</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>3.0.0</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></pre></dd>
+        <dd><pre class="code"><span class='const'>Gem</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>3.0.5</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></pre></dd>
       
         <dt id="SparklePack-constant" class="">SparklePack =
           <div class="docstring">
@@ -267,12 +267,36 @@
         <dd><pre class="code"><span class='lbracket'>[</span><span class='const'>DEFAULT_STACK_RESOURCE</span><span class='rbracket'>]</span></pre></dd>
       
         <dt id="ALLOWED_GENERATION_PARAMETERS-constant" class="">ALLOWED_GENERATION_PARAMETERS =
-          
+          <div class="docstring">
+  <div class="discussion">
+    <p>Attributes allowed for generation parameter definitions</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
         </dt>
-        <dd><pre class="code"><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>type</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>default</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>description</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>multiple</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prompt_when_nested</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span></pre></dd>
+        <dd><pre class="code"><span class='lbracket'>[</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>type</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>default</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>description</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>multiple</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prompt_when_nested</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>allowed_values</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>allowed_pattern</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>max_length</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>min_length</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>max_value</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>min_value</span><span class='tstring_end'>&#39;</span></span>
+<span class='rbracket'>]</span></pre></dd>
       
         <dt id="VALID_GENERATION_PARAMETER_TYPES-constant" class="">VALID_GENERATION_PARAMETER_TYPES =
-          
+          <div class="docstring">
+  <div class="discussion">
+    <p>Allowed data types for parameters</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
         </dt>
         <dd><pre class="code"><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>String</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span></pre></dd>
       
@@ -5563,12 +5587,12 @@ automatically applied.</p>
       <pre class="lines">
 
 
-828
-829
-830</pre>
+834
+835
+836</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 828</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 834</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_apply_deep_nesting'>apply_deep_nesting</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_compile'>compile</span>
@@ -5646,16 +5670,16 @@ automatically applied.</p>
       <pre class="lines">
 
 
-810
-811
-812
-813
-814
-815
-816</pre>
+816
+817
+818
+819
+820
+821
+822</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 810</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 816</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_apply_nesting'>apply_nesting</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='symbol'>:shallow</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -5765,12 +5789,12 @@ existing usage won&#39;t be automatically busted.</p>
       <pre class="lines">
 
 
-889
-890
-891</pre>
+895
+896
+897</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 889</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 895</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_apply_shallow_nesting'>apply_shallow_nesting</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_compile'>compile</span>
@@ -5837,13 +5861,13 @@ existing usage won&#39;t be automatically busted.</p>
       <pre class="lines">
 
 
-633
-634
-635
-636</pre>
+639
+640
+641
+642</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 633</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 639</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_block'>block</span><span class='lparen'>(</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_composition'>composition</span><span class='period'>.</span><span class='id identifier rubyid_new_component'>new_component</span><span class='lparen'>(</span><span class='symbol'>:__base__</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -5946,12 +5970,6 @@ existing usage won&#39;t be automatically busted.</p>
       <pre class="lines">
 
 
-894
-895
-896
-897
-898
-899
 900
 901
 902
@@ -5964,10 +5982,16 @@ existing usage won&#39;t be automatically busted.</p>
 909
 910
 911
-912</pre>
+912
+913
+914
+915
+916
+917
+918</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 894</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 900</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_collect_outputs'>collect_outputs</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='symbol'>:force</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_root?'>root?</span><span class='rparen'>)</span>
@@ -6069,12 +6093,6 @@ existing usage won&#39;t be automatically busted.</p>
       <pre class="lines">
 
 
-674
-675
-676
-677
-678
-679
 680
 681
 682
@@ -6127,10 +6145,16 @@ existing usage won&#39;t be automatically busted.</p>
 729
 730
 731
-732</pre>
+732
+733
+734
+735
+736
+737
+738</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 674</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 680</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_compile'>compile</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='symbol'>:state</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -6267,20 +6291,20 @@ request the ancestor path will be searched to root</p>
       <pre class="lines">
 
 
-591
-592
-593
-594
-595
-596
 597
 598
 599
 600
-601</pre>
+601
+602
+603
+604
+605
+606
+607</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 591</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 597</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_compile_time_parameter_setter'>compile_time_parameter_setter</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -6340,12 +6364,12 @@ request the ancestor path will be searched to root</p>
       <pre class="lines">
 
 
-933
-934
-935</pre>
+939
+940
+941</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 933</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 939</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dump'>dump</span>
   <span class='const'>MultiJson</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_to_json'>to_json</span><span class='rparen'>)</span>
@@ -6564,12 +6588,12 @@ request the ancestor path will be searched to root</p>
       <pre class="lines">
 
 
-860
-861
-862</pre>
+866
+867
+868</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 860</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 866</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_extract_templates'>extract_templates</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_stack_template_extractor'>stack_template_extractor</span><span class='lparen'>(</span><span class='id identifier rubyid_nested_stacks'>nested_stacks</span><span class='lparen'>(</span><span class='symbol'>:with_resource</span><span class='comma'>,</span> <span class='symbol'>:with_name</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -6617,12 +6641,12 @@ request the ancestor path will be searched to root</p>
       <pre class="lines">
 
 
-801
-802
-803</pre>
+807
+808
+809</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 801</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 807</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate_policy'>generate_policy</span>
   <span class='const'>Smash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -6674,19 +6698,19 @@ request the ancestor path will be searched to root</p>
       <pre class="lines">
 
 
-787
-788
-789
-790
-791
-792
 793
 794
 795
-796</pre>
+796
+797
+798
+799
+800
+801
+802</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 787</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 793</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_includes_policies?'>includes_policies?</span><span class='lparen'>(</span><span class='id identifier rubyid_stack_hash'>stack_hash</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_stack_hash'>stack_hash</span><span class='rparen'>)</span>
@@ -6831,19 +6855,19 @@ request the ancestor path will be searched to root</p>
       <pre class="lines">
 
 
-775
-776
-777
-778
-779
-780
 781
 782
 783
-784</pre>
+784
+785
+786
+787
+788
+789
+790</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 775</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 781</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_isolated_nests?'>isolated_nests?</span><span class='lparen'>(</span><span class='id identifier rubyid_stack_hash'>stack_hash</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_stack_hash'>stack_hash</span><span class='rparen'>)</span>
@@ -6917,12 +6941,6 @@ request the ancestor path will be searched to root</p>
       <pre class="lines">
 
 
-643
-644
-645
-646
-647
-648
 649
 650
 651
@@ -6932,10 +6950,16 @@ request the ancestor path will be searched to root</p>
 655
 656
 657
-658</pre>
+658
+659
+660
+661
+662
+663
+664</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 643</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 649</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_user_block'>user_block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_thing'>thing</span><span class='op'>|</span>
@@ -7018,12 +7042,12 @@ current depth</p>
       <pre class="lines">
 
 
-850
-851
-852</pre>
+856
+857
+858</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 850</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 856</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_make_output_available'>make_output_available</span><span class='lparen'>(</span><span class='id identifier rubyid_output_name'>output_name</span><span class='comma'>,</span> <span class='id identifier rubyid_outputs'>outputs</span><span class='rparen'>)</span>
   <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -7136,19 +7160,19 @@ current depth</p>
       <pre class="lines">
 
 
-763
-764
-765
-766
-767
-768
 769
 770
 771
-772</pre>
+772
+773
+774
+775
+776
+777
+778</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 763</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 769</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_nested?'>nested?</span><span class='lparen'>(</span><span class='id identifier rubyid_stack_hash'>stack_hash</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_stack_hash'>stack_hash</span><span class='rparen'>)</span>
@@ -7202,12 +7226,6 @@ current depth</p>
       <pre class="lines">
 
 
-743
-744
-745
-746
-747
-748
 749
 750
 751
@@ -7219,10 +7237,16 @@ current depth</p>
 757
 758
 759
-760</pre>
+760
+761
+762
+763
+764
+765
+766</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 743</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 749</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_nested_stacks'>nested_stacks</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_compile'>compile</span><span class='lbracket'>[</span><span class='symbol'>:resources</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -7330,14 +7354,14 @@ current depth</p>
       <pre class="lines">
 
 
-838
-839
-840
-841
-842</pre>
+844
+845
+846
+847
+848</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 838</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 844</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_output_matched?'>output_matched?</span><span class='lparen'>(</span><span class='id identifier rubyid_p_name'>p_name</span><span class='comma'>,</span> <span class='id identifier rubyid_output_names'>output_names</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_output_names'>output_names</span><span class='period'>.</span><span class='id identifier rubyid_detect'>detect</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_o_name'>o_name</span><span class='op'>|</span>
@@ -7412,13 +7436,13 @@ current depth</p>
       <pre class="lines">
 
 
-664
-665
-666
-667</pre>
+670
+671
+672
+673</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 664</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 670</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_overrides'>overrides</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_composition'>composition</span><span class='period'>.</span><span class='id identifier rubyid_new_override'>new_override</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -7467,13 +7491,13 @@ current depth</p>
       <pre class="lines">
 
 
-737
-738
-739
-740</pre>
+743
+744
+745
+746</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 737</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 743</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_recompile'>recompile</span>
   <span class='id identifier rubyid_unmemoize'>unmemoize</span><span class='lparen'>(</span><span class='symbol'>:compile</span><span class='rparen'>)</span>
@@ -7613,12 +7637,12 @@ stack parameters and set to use ref.</p>
       <pre class="lines">
 
 
-928
-929
-930</pre>
+934
+935
+936</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 928</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 934</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remap_nested_parameters'>remap_nested_parameters</span><span class='lparen'>(</span><span class='id identifier rubyid_template'>template</span><span class='comma'>,</span> <span class='id identifier rubyid_parameters'>parameters</span><span class='comma'>,</span> <span class='id identifier rubyid_stack_name'>stack_name</span><span class='comma'>,</span> <span class='id identifier rubyid_stack_resource'>stack_resource</span><span class='comma'>,</span> <span class='id identifier rubyid_output_map'>output_map</span><span class='rparen'>)</span>
   <span class='kw'>true</span>
@@ -7934,14 +7958,14 @@ is available</p>
       <pre class="lines">
 
 
-605
-606
-607
-608
-609</pre>
+611
+612
+613
+614
+615</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 605</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 611</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_compile_time_parameters!'>set_compile_time_parameters!</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_compile_time_parameter_setter'>compile_time_parameter_setter</span><span class='rparen'>)</span>
@@ -8015,20 +8039,20 @@ are in the expected format</p>
       <pre class="lines">
 
 
-617
-618
-619
-620
-621
-622
 623
 624
 625
 626
-627</pre>
+627
+628
+629
+630
+631
+632
+633</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 617</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 623</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_generation_parameters!'>set_generation_parameters!</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
@@ -8143,16 +8167,16 @@ are in the expected format</p>
       <pre class="lines">
 
 
-938
-939
-940
-941
-942
-943
-944</pre>
+944
+945
+946
+947
+948
+949
+950</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 938</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 944</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sparkle_dump'>sparkle_dump</span>
   <span class='const'>MultiJson</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span>
@@ -8331,21 +8355,21 @@ are in the expected format</p>
       <pre class="lines">
 
 
-867
-868
-869
-870
-871
-872
 873
 874
 875
 876
 877
-878</pre>
+878
+879
+880
+881
+882
+883
+884</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 867</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 873</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stack_template_extractor'>stack_template_extractor</span><span class='lparen'>(</span><span class='id identifier rubyid_x_stacks'>x_stacks</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_x_stacks'>x_stacks</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_stack'>stack</span><span class='comma'>,</span> <span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='id identifier rubyid_s_name'>s_name</span><span class='op'>|</span>
@@ -8406,18 +8430,18 @@ are in the expected format</p>
       <pre class="lines">
 
 
-947
-948
-949
-950
-951
-952
 953
 954
-955</pre>
+955
+956
+957
+958
+959
+960
+961</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 947</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 953</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_json'>to_json</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='comment'># NOTE: Ported in from batali
@@ -8438,7 +8462,7 @@ are in the expected format</p>
 </div>
 
     <div id="footer">
-  Generated on Sat Apr 23 10:26:28 2016 by
+  Generated on Sat May 14 12:40:56 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.3).
 </div>
