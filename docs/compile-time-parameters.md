@@ -75,6 +75,36 @@ defining options for the parameter. The available items within the option
 |                       | Required    | no
 |                       | Valid       | `TrueClass`, `FalseClass`
 |                       | Default     | `true`
+|-----------------------|-------------|-----------------------------------------
+| `:allowed_values`     | Description | List of allowed values
+|                       | Required    | no
+|                       | Valid       | `Array`
+|                       | Default     | none
+|-----------------------|-------------|-----------------------------------------
+| `:allowed_pattern`    | Description | Require pattern value must match
+|                       | Required    | no
+|                       | Valid       | `String`
+|                       | Default     | none
+|-----------------------|-------------|-----------------------------------------
+| `:min_size`           | Description | Minimum size of value
+|                       | Required    | no
+|                       | Valid       | `Numeric`
+|                       | Default     | none
+|-----------------------|-------------|-----------------------------------------
+| `:max_size`           | Description | Maximum size of value
+|                       | Required    | no
+|                       | Valid       | `Numeric`
+|                       | Default     | none
+|-----------------------|-------------|-----------------------------------------
+| `:min_length`         | Description | Minimum length of value
+|                       | Required    | no
+|                       | Valid       | `Numeric`
+|                       | Default     | none
+|-----------------------|-------------|-----------------------------------------
+| `:max_length`         | Description | Maximum length of value
+|                       | Required    | no
+|                       | Valid       | `Numeric`
+|                       | Default     | none
 
 ##### Multiple value support
 
