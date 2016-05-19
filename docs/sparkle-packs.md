@@ -11,6 +11,8 @@ anchors:
     url: "#layout"
   - title: "Usage"
     url: "#usage"
+  - title: "Distribution"
+    url: "#distribution
 ---
 
 ## SparklePacks
