@@ -202,4 +202,4 @@ SparkleFormation.new(:template) do
 end
 ~~~
 
-* [Outputs](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/resources-section-structure.html)
+* [Outputs](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/outputs-section-structure.html)
