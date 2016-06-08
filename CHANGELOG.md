@@ -1,3 +1,6 @@
+# v3.0.6
+* Update builtin provider resource lists
+
 # v3.0.4
 * Extend allowed attributes for generation parameters (#173)
 
