@@ -39,7 +39,12 @@ end
 resource_definitions = schemas.find_all do |schema|
   schema.keys.include?('resourceDefinitions')
 end.inject(Smash.new) do |memo, schema|
-  memo.deep_merge(schema['resourceDefinitions'])
+  r_defs = Smash[
+    schema['resourceDefinitions'].map do |r_key, r_val|
+      ["#{schema["title"]}/#{r_key}", r_val]
+    end
+  ]
+  memo.deep_merge(r_defs)
 end
 
 definitions = schemas.find_all do |schema|
@@ -72,6 +77,7 @@ ref_replacer = lambda do |item|
 end
 
 resource_definitions = ref_replacer.call(resource_definitions)
+
 azure_resources = Smash[
   resource_definitions.map do |k, v|
     resource_name = v.fetch(:properties, :type, :enum, []).first

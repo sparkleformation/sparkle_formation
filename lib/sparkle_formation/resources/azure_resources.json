@@ -39,38 +39,79 @@
     ],
     "full_properties": {
     },
-    "api_version": "2015-05-21-preview",
+    "api_version": "2016-05-15",
     "required": [
       "type",
       "apiVersion",
       "location"
     ]
   },
-  "Microsoft.DevTestLab/environments": {
+  "Microsoft.DevTestLab/labs/virtualMachines": {
     "properties": [
-      "labId",
-      "vms"
+      "customImageId",
+      "size",
+      "userName",
+      "password",
+      "sshKey",
+      "isAuthenticationWithSshKey",
+      "labVirtualNetworkId",
+      "labSubnetName"
     ],
     "full_properties": {
-      "labId": {
-        "description": "Microsoft.DevTestLab/environments - Lab ID",
+      "customImageId": {
+        "description": "The id of the custom image.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "size": {
+        "description": "The size of the VM (eg. 'Standard_A4')",
         "required": true,
         "type": "string",
         "update_causes": "unknown"
       },
-      "vms": {
-        "description": "Microsoft.DevTestLab/environments - VMs",
-        "required": true,
+      "userName": {
+        "description": "Name of the account used for connection to VM",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "password": {
+        "description": "Password of account used for connection to VM",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "sshKey": {
+        "description": "SSH key used for connection to Linux machines",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "isAuthenticationWithSshKey": {
+        "description": "Sets whether SSH Key should be used to authenticate to Linux machine",
+        "required": false,
         "type": null,
+        "update_causes": "unknown"
+      },
+      "labVirtualNetworkId": {
+        "description": "The id for the virtual network",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "labSubnetName": {
+        "description": "The name of the subnet",
+        "required": true,
+        "type": "string",
         "update_causes": "unknown"
       }
     },
-    "api_version": "2015-05-21-preview",
+    "api_version": "2016-05-15",
     "required": [
       "type",
       "apiVersion",
-      "properties",
-      "location"
+      "properties"
     ]
   },
   "Microsoft.AppService/apiapps": {
@@ -186,6 +227,96 @@
       "properties"
     ]
   },
+  "Microsoft.DataCatalog/catalogs": {
+    "properties": [
+      "units",
+      "enableAutomaticUnitAdjustment",
+      "sku",
+      "admins",
+      "users"
+    ],
+    "full_properties": {
+      "units": {
+        "description": "Microsoft.DataCatalog/catalogs: units - specifies the number of users, in groups of 100, permitted in the user list.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "enableAutomaticUnitAdjustment": {
+        "description": "Microsoft.DataCatalog/catalogs: enableAutomaticUnitAdjustment - specifies whether to permit automatic unit adjustment. This property is required to add security groups to the user list.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "sku": {
+        "description": "Microsoft.DataCatalog/catalogs: sku - specifies desired SKU for the catalog (Free, Standard)",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "admins": {
+        "description": "Microsoft.DataCatalog/catalogs: admins - specifies the list of catalog administrators",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "users": {
+        "description": "Microsoft.DataCatalog/catalogs: users - specifies the list of catalog users",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2016-03-30",
+    "required": [
+      "type",
+      "location",
+      "apiVersion",
+      "properties"
+    ]
+  },
+  "Microsoft.ContainerService/containerServices": {
+    "properties": [
+      "orchestratorProfile",
+      "masterProfile",
+      "agentPoolProfiles",
+      "linuxProfile"
+    ],
+    "full_properties": {
+      "orchestratorProfile": {
+        "description": "Microsoft.ContainerService/containerServices - Orchestrator Type",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "masterProfile": {
+        "description": "Microsoft.ContainerService/containerServices - Master Profile",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "agentPoolProfiles": {
+        "description": "Microsoft.ContainerService/containerServices - Agent Pool Profiles",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "linuxProfile": {
+        "description": "Microsoft.ContainerService/containerServices - Linux Profile",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2016-03-30",
+    "required": [
+      "name",
+      "apiVersion",
+      "type",
+      "properties",
+      "location"
+    ]
+  },
   "Microsoft.DataConnect/connectionManagers": {
     "properties": [
       "description"
@@ -204,6 +335,156 @@
       "apiVersion",
       "properties",
       "location"
+    ]
+  },
+  "Microsoft.PowerBI/workspaceCollections": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2016-01-29",
+    "required": [
+      "apiVersion",
+      "type",
+      "name",
+      "location",
+      "sku"
+    ]
+  },
+  "Microsoft.Automation/automationAccounts": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-10-31",
+    "required": [
+      "apiVersion",
+      "properties",
+      "type"
+    ]
+  },
+  "Microsoft.Automation/automationAccounts/runbooks": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-10-31",
+    "required": [
+      "name",
+      "properties"
+    ]
+  },
+  "Microsoft.Automation/automationAccounts/modules": {
+    "properties": [
+      "isGlobal",
+      "version",
+      "sizeInBytes",
+      "contentLink"
+    ],
+    "full_properties": {
+      "isGlobal": {
+        "description": "True or false indicating whether the module is a global Automation module or is a user module.  Select False to specify that the module is a user module.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "version": {
+        "description": "The PowerShell module version number.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "sizeInBytes": {
+        "description": "The size of the PowerShell module.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "contentLink": {
+        "description": "A PowerShell module.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-10-31",
+    "required": [
+      "properties"
+    ]
+  },
+  "Microsoft.Automation/automationAccounts/certificates": {
+    "properties": [
+      "description",
+      "base64Value"
+    ],
+    "full_properties": {
+      "description": {
+        "description": "The description for the certificate.",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "base64Value": {
+        "description": "The base 64 value for the certificate.",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-10-31",
+    "required": [
+      "properties"
+    ]
+  },
+  "Microsoft.Automation/automationAccounts/connections": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-10-31",
+    "required": null
+  },
+  "Microsoft.Automation/automationAccounts/variables": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-10-31",
+    "required": null
+  },
+  "Microsoft.Automation/automationAccounts/schedules": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-10-31",
+    "required": null
+  },
+  "Microsoft.Automation/automationAccounts/jobs": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-10-31",
+    "required": null
+  },
+  "Microsoft.Automation/automationAccounts/jobSchedules": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-10-31",
+    "required": [
+      "jobScheduleId",
+      "properties"
     ]
   },
   "Microsoft.Web/serverfarms": {
@@ -285,11 +566,7 @@
       "packageUri",
       "dbType",
       "connectionString",
-      "setParameters",
-      "publisher",
-      "type",
-      "typeHandlerVersion",
-      "settings"
+      "setParameters"
     ],
     "full_properties": {
       "packageUri": {
@@ -313,30 +590,6 @@
       "setParameters": {
         "description": "Microsoft.Web/sites/extensions: parameters",
         "required": false,
-        "type": "string",
-        "update_causes": "unknown"
-      },
-      "publisher": {
-        "description": "Microsoft.Compute/extensions - Publisher",
-        "required": true,
-        "type": "string",
-        "update_causes": "unknown"
-      },
-      "type": {
-        "description": "Microsoft.Compute/extensions - Type",
-        "required": true,
-        "type": "string",
-        "update_causes": "unknown"
-      },
-      "typeHandlerVersion": {
-        "description": "Microsoft.Compute/extensions - Type handler version",
-        "required": true,
-        "type": "string",
-        "update_causes": "unknown"
-      },
-      "settings": {
-        "description": "Microsoft.Compute/extensions - Settings",
-        "required": true,
         "type": null,
         "update_causes": "unknown"
       }
@@ -442,12 +695,14 @@
         "update_causes": "unknown"
       }
     },
-    "api_version": "2015-06-15",
+    "api_version": "2016-01-01",
     "required": [
       "type",
       "apiVersion",
-      "properties",
-      "location"
+      "sku",
+      "kind",
+      "location",
+      "properties"
     ]
   },
   "Microsoft.Network/publicIPAddresses": {
@@ -476,7 +731,7 @@
         "update_causes": "unknown"
       }
     },
-    "api_version": "2015-06-15",
+    "api_version": "2016-03-30",
     "required": [
       "type",
       "apiVersion",
@@ -518,7 +773,7 @@
         "update_causes": "unknown"
       }
     },
-    "api_version": "2015-06-15",
+    "api_version": "2016-03-30",
     "required": [
       "type",
       "apiVersion",
@@ -553,7 +808,7 @@
         "update_causes": "unknown"
       }
     },
-    "api_version": "2015-06-15",
+    "api_version": "2016-03-30",
     "required": [
       "type",
       "apiVersion",
@@ -616,7 +871,7 @@
         "update_causes": "unknown"
       }
     },
-    "api_version": "2015-06-15",
+    "api_version": "2016-03-30",
     "required": [
       "type",
       "apiVersion",
@@ -637,7 +892,7 @@
         "update_causes": "unknown"
       }
     },
-    "api_version": "2015-06-15",
+    "api_version": "2016-03-30",
     "required": [
       "type",
       "apiVersion",
@@ -658,7 +913,7 @@
         "update_causes": "unknown"
       }
     },
-    "api_version": "2015-06-15",
+    "api_version": "2016-03-30",
     "required": [
       "type",
       "apiVersion",
@@ -769,6 +1024,46 @@
       "sku",
       "properties",
       "location"
+    ]
+  },
+  "Microsoft.Compute/virtualMachines/extensions": {
+    "properties": [
+      "publisher",
+      "type",
+      "typeHandlerVersion",
+      "settings"
+    ],
+    "full_properties": {
+      "publisher": {
+        "description": "Microsoft.Compute/extensions - Publisher",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "type": {
+        "description": "Microsoft.Compute/extensions - Type",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "typeHandlerVersion": {
+        "description": "Microsoft.Compute/extensions - Type handler version",
+        "required": true,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "settings": {
+        "description": "Microsoft.Compute/extensions - Settings",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-06-15",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
     ]
   },
   "extensions": {
@@ -888,67 +1183,130 @@
       "location"
     ]
   },
-  "Microsoft.Scheduler/jobCollections": {
+  "Microsoft.Network/dnszones": {
     "properties": [
-      "sku",
-      "quota"
+
     ],
     "full_properties": {
-      "sku": {
-        "description": "Microsoft.Scheduler/jobCollections: Job Collection sku",
-        "required": true,
-        "type": null,
-        "update_causes": "unknown"
-      },
-      "quota": {
-        "description": "Microsoft.Scheduler/jobCollections/quota",
-        "required": false,
-        "type": null,
-        "update_causes": "unknown"
-      }
     },
-    "api_version": "2014-08-01",
+    "api_version": "2015-05-04-preview",
     "required": [
       "type",
       "apiVersion",
-      "properties",
-      "location"
+      "properties"
     ]
   },
-  "Microsoft.Scheduler/jobCollections/jobs": {
+  "Microsoft.Network/dnszones/A": {
     "properties": [
-      "startTime",
-      "recurrence",
-      "state",
-      "action"
+
     ],
     "full_properties": {
-      "startTime": {
-        "description": "Microsoft.Scheduler/jobCollections/jobs: For simple scheduler startTime will be the first occurrence and for complex schedules the job will start no sooner than startTime.",
-        "required": false,
-        "type": null,
-        "update_causes": "unknown"
-      },
-      "recurrence": {
-        "description": "Microsoft.Scheduler/jobCollections/jobs: The recurrence schedule the job will execute.",
-        "required": false,
-        "type": null,
-        "update_causes": "unknown"
-      },
-      "state": {
-        "description": "Microsoft.Scheduler/jobCollections/jobs: Running state of the job.",
-        "required": false,
-        "type": null,
-        "update_causes": "unknown"
-      },
-      "action": {
-        "description": "Microsoft.Scheduler/jobCollections/jobs: Action to perform on the prescribed schedule",
-        "required": false,
-        "type": null,
-        "update_causes": "unknown"
-      }
     },
-    "api_version": "2014-08-01",
+    "api_version": "2015-05-04-preview",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
+    ]
+  },
+  "Microsoft.Network/dnszones/AAAA": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-05-04-preview",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
+    ]
+  },
+  "Microsoft.Network/dnszones/CNAME": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-05-04-preview",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
+    ]
+  },
+  "Microsoft.Network/dnszones/MX": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-05-04-preview",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
+    ]
+  },
+  "Microsoft.Network/dnszones/NS": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-05-04-preview",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
+    ]
+  },
+  "Microsoft.Network/dnszones/PTR": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-05-04-preview",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
+    ]
+  },
+  "Microsoft.Network/dnszones/SOA": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-05-04-preview",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
+    ]
+  },
+  "Microsoft.Network/dnszones/SRV": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-05-04-preview",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
+    ]
+  },
+  "Microsoft.Network/dnszones/TXT": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-05-04-preview",
     "required": [
       "type",
       "apiVersion",
@@ -1082,6 +1440,60 @@
       "type"
     ]
   },
+  "Microsoft.Cdn/profiles": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2016-04-02",
+    "required": [
+      "type",
+      "apiVersion",
+      "location",
+      "sku"
+    ]
+  },
+  "Microsoft.Cdn/profiles/endpoints": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2016-04-02",
+    "required": [
+      "type",
+      "apiVersion",
+      "location",
+      "properties"
+    ]
+  },
+  "Microsoft.Cdn/profiles/endpoints/customDomains": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2016-04-02",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
+    ]
+  },
+  "Microsoft.Cdn/profiles/endpoints/origins": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2016-04-02",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
+    ]
+  },
   "Microsoft.Sql/servers": {
     "properties": [
       "version",
@@ -1129,18 +1541,17 @@
       "properties"
     ]
   },
-  "SuccessBricks.ClearDB/databases": {
+  "Microsoft.Sql/servers/databases": {
     "properties": [
 
     ],
     "full_properties": {
     },
-    "api_version": "2014-04-01",
+    "api_version": "2014-04-01-preview",
     "required": [
       "type",
       "apiVersion",
-      "plan",
-      "location"
+      "properties"
     ]
   },
   "firewallrules": {
@@ -1345,6 +1756,110 @@
       "properties"
     ]
   },
+  "Microsoft.Batch/batchAccounts": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-12-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
+    ]
+  },
+  "Microsoft.Batch/batchAccounts/applications": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-12-01",
+    "required": [
+      "type",
+      "apiVersion"
+    ]
+  },
+  "Microsoft.Batch/batchAccounts/applications/versions": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2015-12-01",
+    "required": [
+      "type",
+      "apiVersion"
+    ]
+  },
+  "Microsoft.Scheduler/jobCollections": {
+    "properties": [
+      "sku",
+      "quota"
+    ],
+    "full_properties": {
+      "sku": {
+        "description": "Microsoft.Scheduler/jobCollections: Job Collection sku",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "quota": {
+        "description": "Microsoft.Scheduler/jobCollections/quota",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-08-01-preview",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties",
+      "location"
+    ]
+  },
+  "Microsoft.Scheduler/jobCollections/jobs": {
+    "properties": [
+      "startTime",
+      "recurrence",
+      "state",
+      "action"
+    ],
+    "full_properties": {
+      "startTime": {
+        "description": "Microsoft.Scheduler/jobCollections/jobs: For simple scheduler startTime will be the first occurrence and for complex schedules the job will start no sooner than startTime.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "recurrence": {
+        "description": "Microsoft.Scheduler/jobCollections/jobs: The recurrence schedule the job will execute.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "state": {
+        "description": "Microsoft.Scheduler/jobCollections/jobs: Running state of the job.",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "action": {
+        "description": "Microsoft.Scheduler/jobCollections/jobs: Action to perform on the prescribed schedule",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2014-08-01-preview",
+    "required": [
+      "type",
+      "apiVersion",
+      "properties"
+    ]
+  },
   "microsoft.visualstudio/account": {
     "properties": [
       "OperationType",
@@ -1395,6 +1910,22 @@
     "required": [
       "type",
       "apiVersion",
+      "properties"
+    ]
+  },
+  "Microsoft.CognitiveServices/accounts": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2016-02-01-preview",
+    "required": [
+      "type",
+      "apiVersion",
+      "sku",
+      "kind",
+      "location",
       "properties"
     ]
   },
@@ -1629,6 +2160,20 @@
       "location"
     ]
   },
+  "SuccessBricks.ClearDB/databases": {
+    "properties": [
+
+    ],
+    "full_properties": {
+    },
+    "api_version": "2014-04-01",
+    "required": [
+      "type",
+      "apiVersion",
+      "plan",
+      "location"
+    ]
+  },
   "Microsoft.ServerManagement/gateways": {
     "properties": [
 
@@ -1664,6 +2209,74 @@
     "api_version": "2015-07-01-preview",
     "required": [
       "name",
+      "location",
+      "properties"
+    ]
+  },
+  "Microsoft.DataLakeAnalytics/accounts": {
+    "properties": [
+      "defaultDataLakeStoreAccount",
+      "dataLakeStoreAccounts",
+      "storageAccounts"
+    ],
+    "full_properties": {
+      "defaultDataLakeStoreAccount": {
+        "description": "Microsoft.DataLakeAnalytics/accounts - Default Data Lake Store account",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "dataLakeStoreAccounts": {
+        "description": "Microsoft.DataLakeAnalytics/accounts - List of Data Lake Store accounts",
+        "required": true,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "storageAccounts": {
+        "description": "Microsoft.DataLakeAnalytics/accounts - List of Azure Storage accounts",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-10-01-preview",
+    "required": [
+      "apiVersion",
+      "type",
+      "location",
+      "properties"
+    ]
+  },
+  "Microsoft.DataLakeStore/accounts": {
+    "properties": [
+      "defaultGroup",
+      "firewallState",
+      "firewallRules"
+    ],
+    "full_properties": {
+      "defaultGroup": {
+        "description": "Microsoft.DataLakeStore/accounts - Default group owner assigned to new directories and files",
+        "required": false,
+        "type": "string",
+        "update_causes": "unknown"
+      },
+      "firewallState": {
+        "description": "Microsoft.DataLakeStore/accounts - The firewall rules feature state (Enabled/Disabled)",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      },
+      "firewallRules": {
+        "description": "Microsoft.DataLakeStore/accounts - List of firewall rules",
+        "required": false,
+        "type": null,
+        "update_causes": "unknown"
+      }
+    },
+    "api_version": "2015-10-01-preview",
+    "required": [
+      "apiVersion",
+      "type",
       "location",
       "properties"
     ]

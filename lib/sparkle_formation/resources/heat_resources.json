@@ -914,7 +914,7 @@
         "update_causes": "replacement"
       },
       "size": {
-        "description": "The size of the volume in GB. On update only increase in size is supported.",
+        "description": "The size of the volume in GB. On update only increase in size is supported. This property is required unless property backup_id or source_volid or snapshot_id is specified.",
         "required": false,
         "type": "integer",
         "update_causes": "none"
@@ -1106,7 +1106,8 @@
       "min_disk",
       "min_ram",
       "name",
-      "protected"
+      "protected",
+      "tags"
     ],
     "full_properties": {
       "container_format": {
@@ -1162,6 +1163,12 @@
         "required": false,
         "type": "boolean",
         "update_causes": "replacement"
+      },
+      "tags": {
+        "description": "List of image tags.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
       }
     }
   },
@@ -1594,7 +1601,7 @@
         "update_causes": "none"
       },
       "servers": {
-        "description": "A map of Nova names and IDs to apply configuration to.",
+        "description": "A map of names and server IDs to apply configuration to. The name is arbitrary and is used as the Heat resource name for the corresponding deployment.",
         "required": false,
         "type": "map",
         "update_causes": "none"
@@ -1793,7 +1800,7 @@
         "update_causes": "none"
       },
       "servers": {
-        "description": "A map of Nova names and IDs to apply configuration to.",
+        "description": "A map of names and server IDs to apply configuration to. The name is arbitrary and is used as the Heat resource name for the corresponding deployment.",
         "required": false,
         "type": "map",
         "update_causes": "none"
@@ -1849,6 +1856,7 @@
       "entity_name",
       "fail",
       "update_replace",
+      "update_replace_value",
       "value",
       "wait_secs"
     ],
@@ -1894,6 +1902,12 @@
         "required": false,
         "type": "boolean",
         "update_causes": "none"
+      },
+      "update_replace_value": {
+        "description": "Some value that can be stored but can not be updated.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
       },
       "value": {
         "description": "The input string to be stored.",
@@ -2336,8 +2350,8 @@
       "no_proxy",
       "public",
       "registry_enabled",
-      "ssh_authorized_key",
-      "tls_disabled"
+      "tls_disabled",
+      "volume_driver"
     ],
     "full_properties": {
       "coe": {
@@ -2442,16 +2456,16 @@
         "type": "boolean",
         "update_causes": "replacement"
       },
-      "ssh_authorized_key": {
-        "description": "The SSH Authorized Key.",
-        "required": false,
-        "type": "string",
-        "update_causes": "replacement"
-      },
       "tls_disabled": {
         "description": "Disable TLS in the bay.",
         "required": false,
         "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "volume_driver": {
+        "description": "The volume driver name for instantiating container volume.",
+        "required": false,
+        "type": "string",
         "update_causes": "replacement"
       }
     }
@@ -2793,6 +2807,102 @@
       }
     }
   },
+  "OS::Monasca::AlarmDefinition": {
+    "properties": [
+      "actions_enabled",
+      "alarm_actions",
+      "description",
+      "expression",
+      "match_by",
+      "name",
+      "ok_actions",
+      "severity",
+      "undetermined_actions"
+    ],
+    "full_properties": {
+      "expression": {
+        "description": "Expression of the alarm to evaluate.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "actions_enabled": {
+        "description": "Whether to enable the actions or not.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "alarm_actions": {
+        "description": "The notification methods to use when an alarm state is ALARM.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "match_by": {
+        "description": "The metric dimensions to match to the alarm dimensions. One or more dimension key names separated by a comma.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name of the alarm. By default, physical resource name is used.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "ok_actions": {
+        "description": "The notification methods to use when an alarm state is OK.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "severity": {
+        "description": "Severity of the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "undetermined_actions": {
+        "description": "The notification methods to use when an alarm state is UNDETERMINED.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Monasca::Notification": {
+    "properties": [
+      "address",
+      "name",
+      "type"
+    ],
+    "full_properties": {
+      "address": {
+        "description": "Address of the notification. It could be a valid email address, url or service key based on notification type.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "type": {
+        "description": "Type of the notification.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of the notification. By default, physical resource name is used.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
   "OS::Neutron::AddressScope": {
     "properties": [
       "ip_version",
@@ -2801,17 +2911,17 @@
       "tenant_id"
     ],
     "full_properties": {
-      "name": {
-        "description": "The name for the address scope.",
-        "required": true,
-        "type": "string",
-        "update_causes": "none"
-      },
       "ip_version": {
         "description": "Address family of the address scope, which is 4 or 6.",
         "required": false,
         "type": "integer",
         "update_causes": "replacement"
+      },
+      "name": {
+        "description": "The name for the address scope.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
       },
       "shared": {
         "description": "Whether the address scope should be shared to other tenants. Note that the default policy setting restricts usage of this attribute to administrative users only, and restricts changing of shared address scope to unshared with update.",
@@ -4068,12 +4178,6 @@
         "type": "string",
         "update_causes": "none"
       },
-      "physical_network": {
-        "description": "A string specifying physical network mapping for the network.",
-        "required": true,
-        "type": "string",
-        "update_causes": "none"
-      },
       "admin_state_up": {
         "description": "A boolean value specifying the administrative status of the network.",
         "required": false,
@@ -4082,6 +4186,12 @@
       },
       "name": {
         "description": "A string specifying a symbolic name for the network, which is not required to be unique.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "physical_network": {
+        "description": "A string specifying physical network mapping for the network.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -4140,6 +4250,33 @@
       }
     }
   },
+  "OS::Neutron::QoSDscpMarkingRule": {
+    "properties": [
+      "dscp_mark",
+      "policy",
+      "tenant_id"
+    ],
+    "full_properties": {
+      "dscp_mark": {
+        "description": "DSCP mark between 0 and 56, except 2-6, 42, 44, and 50-54.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "policy": {
+        "description": "ID or name of the QoS policy.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "tenant_id": {
+        "description": "The owner tenant ID of this rule.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
   "OS::Neutron::QoSPolicy": {
     "properties": [
       "description",
@@ -4148,14 +4285,14 @@
       "tenant_id"
     ],
     "full_properties": {
-      "name": {
-        "description": "The name for the QoS policy.",
-        "required": true,
+      "description": {
+        "description": "The description for the QoS policy.",
+        "required": false,
         "type": "string",
         "update_causes": "none"
       },
-      "description": {
-        "description": "The description for the QoS policy.",
+      "name": {
+        "description": "The name for the QoS policy.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -4557,7 +4694,9 @@
       "disk",
       "ephemeral",
       "extra_specs",
+      "flavorid",
       "is_public",
+      "name",
       "ram",
       "rxtx_factor",
       "swap",
@@ -4594,10 +4733,22 @@
         "type": "map",
         "update_causes": "none"
       },
+      "flavorid": {
+        "description": "Unique ID of the flavor. If not specified, an UUID will be auto generated and used.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
       "is_public": {
         "description": "Scope of flavor accessibility. Public or private. Default value is True, means public, shared across all projects.",
         "required": false,
         "type": "boolean",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name of the flavor.",
+        "required": false,
+        "type": "string",
         "update_causes": "replacement"
       },
       "rxtx_factor": {

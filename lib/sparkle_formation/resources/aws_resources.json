@@ -174,6 +174,55 @@
     },
     "path": "aws-resource-logs-destination.html"
   },
+  "AWS::GameLift::Alias": {
+    "properties": [
+      "Description",
+      "Name",
+      "RoutingStrategy"
+    ],
+    "full_properties": {
+      "Description": {
+        "description": "Information that helps you identify the purpose of this alias.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Name": {
+        "description": "An identifier to associate with this alias. Alias names don't need to be unique.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "RoutingStrategy": {
+        "description": "A routing configuration that specifies where traffic is directed for this alias, such as to a fleet or to a message.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-gamelift-alias.html"
+  },
+  "AWS::WAF::SizeConstraintSet": {
+    "properties": [
+      "Name",
+      "SizeConstraints"
+    ],
+    "full_properties": {
+      "Name": {
+        "description": "A friendly name or description for the SizeConstraintSet.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "SizeConstraints": {
+        "description": "The size constraint and the part of the web request to check.",
+        "required": true,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-waf-sizeconstraintset.html"
+  },
   "AWS::EC2::DHCPOptions": {
     "properties": [
       "DomainName",
@@ -222,6 +271,62 @@
       }
     },
     "path": "aws-resource-ec2-dhcp-options.html"
+  },
+  "AWS::Events::Rule": {
+    "properties": [
+      "Description",
+      "EventPattern",
+      "Name",
+      "RoleArn",
+      "ScheduleExpression",
+      "State",
+      "Targets"
+    ],
+    "full_properties": {
+      "Description": {
+        "description": "A description of the rule's purpose.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "EventPattern": {
+        "description": "Describes which events CloudWatch Events routes to the specified target. These routed events are matched events. For more information, see Events and Event Patterns in the Amazon CloudWatch Developer Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "Name": {
+        "description": "A name for the rule. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the rule name. For more information, see Name Type.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "RoleArn": {
+        "description": "The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants CloudWatch Events permission to make calls to target services, such as AWS Lambda (Lambda) or Amazon Kinesis streams.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "ScheduleExpression": {
+        "description": "The schedule or rate (frequency) that determines when CloudWatch Events runs the rule. For more information, see Schedule Expression Syntax for Rules in the Amazon CloudWatch Developer Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "State": {
+        "description": "Indicates whether the rule is enabled. For valid values, see the State parameter for the PutRule action in the Amazon CloudWatch Events API Reference.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Targets": {
+        "description": "The resources, such as Lambda functions or Amazon Kinesis streams, that CloudWatch Events routes events to and invokes when the rule is triggered.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-events-rule.html"
   },
   "AWS::Lambda::EventSourceMapping": {
     "properties": [
@@ -381,7 +486,7 @@
       },
       "DomainName": {
         "description": "A name for the Amazon ES domain. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the domain name. For more information, see Name Type.",
-        "required": true,
+        "required": false,
         "type": "Unknown",
         "update_causes": "replacement"
       },
@@ -446,6 +551,41 @@
       }
     },
     "path": "aws-properties-elasticache-security-group.html"
+  },
+  "AWS::ApiGateway::Deployment": {
+    "properties": [
+      "Description",
+      "RestApiId",
+      "StageDescription",
+      "StageName"
+    ],
+    "full_properties": {
+      "Description": {
+        "description": "A description of the purpose of the API Gateway deployment.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "RestApiId": {
+        "description": "The ID of the RestApi resource to deploy.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "StageDescription": {
+        "description": "Configures the stage that API Gateway creates with this deployment.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "StageName": {
+        "description": "A name for the stage that API Gateway creates with this deployment.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-apigateway-deployment.html"
   },
   "AWS::CloudFormation::Authentication": {
     "properties": [
@@ -851,7 +991,8 @@
   },
   "AWS::Kinesis::Stream": {
     "properties": [
-      "ShardCount"
+      "ShardCount",
+      "Tags"
     ],
     "full_properties": {
       "ShardCount": {
@@ -859,6 +1000,12 @@
         "required": true,
         "type": "Number",
         "update_causes": "replacement"
+      },
+      "Tags": {
+        "description": "An arbitrary set of tags (key–value pairs) to associate with the Amazon Kinesis stream.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
       }
     },
     "path": "aws-resource-kinesis-stream.html"
@@ -933,7 +1080,7 @@
         "description": "The instance operating system. For more information, see CreateInstance in the AWS OpsWorks API Reference.",
         "required": false,
         "type": "String",
-        "update_causes": "interrupt"
+        "update_causes": "replacement"
       },
       "RootDeviceType": {
         "description": "The root device type of the instance.",
@@ -968,6 +1115,20 @@
     },
     "path": "aws-resource-opsworks-instance.html"
   },
+  "AWS::ApiGateway::Account": {
+    "properties": [
+      "CloudWatchRoleArn"
+    ],
+    "full_properties": {
+      "CloudWatchRoleArn": {
+        "description": "The Amazon Resource Name (ARN) of an IAM role that has write access to CloudWatch Logs in your account.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-apigateway-account.html"
+  },
   "AWS::WAF::Rule": {
     "properties": [
       "MetricName",
@@ -976,7 +1137,7 @@
     ],
     "full_properties": {
       "MetricName": {
-        "description": "A friendly name or description for the metrics of this rule.",
+        "description": "A friendly name or description for the metrics of the rule.",
         "required": true,
         "type": "String",
         "update_causes": "replacement"
@@ -988,13 +1149,48 @@
         "update_causes": "replacement"
       },
       "Predicates": {
-        "description": "The ByteMatchSet, IPSet, or SqlInjectionMatchSet objects to include in a rule. If you add more than one predicate to a rule, a request must match all conditions for it to be allowed or blocked.",
+        "description": "The ByteMatchSet, IPSet, SizeConstraintSet, SqlInjectionMatchSet, or XssMatchSet objects to include in a rule. If you add more than one predicate to a rule, a request must match all conditions in order to be allowed or blocked.",
         "required": false,
         "type": "Array",
         "update_causes": "none"
       }
     },
     "path": "aws-resource-waf-rule.html"
+  },
+  "AWS::ApiGateway::BasePathMapping": {
+    "properties": [
+      "BasePath",
+      "DomainName",
+      "RestApiId",
+      "Stage"
+    ],
+    "full_properties": {
+      "BasePath": {
+        "description": "The base path name that callers of the API must provide in the URL after the domain name.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "DomainName": {
+        "description": "The name of a DomainName resource.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "RestApiId": {
+        "description": "The name of the API.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Stage": {
+        "description": "The name of the API's stage.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-apigateway-basepathmapping.html"
   },
   "AWS::RDS::DBCluster": {
     "properties": [
@@ -1239,7 +1435,7 @@
         "update_causes": "replacement"
       },
       "Tags": {
-        "description": "An arbitrary set of tags (key–value pairs) for this VPC.",
+        "description": "An arbitrary set of tags (key–value pairs) for this VPC. To name a VPC resource, specify a value for the Name key.",
         "required": false,
         "type": "Unknown",
         "update_causes": "none"
@@ -1256,7 +1452,7 @@
         "description": "A name for the application. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the application name. For more information, see Name Type.",
         "required": false,
         "type": "Unknown",
-        "update_causes": "replacement"
+        "update_causes": "unavailable"
       }
     },
     "path": "aws-resource-codedeploy-application.html"
@@ -1517,11 +1713,13 @@
     "properties": [
       "Code",
       "Description",
+      "FunctionName",
       "Handler",
       "MemorySize",
       "Role",
       "Runtime",
-      "Timeout"
+      "Timeout",
+      "VpcConfig"
     ],
     "full_properties": {
       "Code": {
@@ -1535,6 +1733,12 @@
         "required": false,
         "type": "String",
         "update_causes": "none"
+      },
+      "FunctionName": {
+        "description": "A name for the function. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the function's name. For more information, see Name Type.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
       },
       "Handler": {
         "description": "The name of the function (within your source code) that Lambda calls to start running your code. For more information, see the Handler property in the AWS Lambda Developer Guide.",
@@ -1564,6 +1768,12 @@
         "description": "The function execution time (in seconds) after which Lambda terminates the function. Because the execution time affects cost, set this value based on the function's expected execution time. By default,  Timeout is set to 3 seconds.",
         "required": false,
         "type": "Number",
+        "update_causes": "none"
+      },
+      "VpcConfig": {
+        "description": "If the Lambda function requires access to resources in a VPC, specify a VPC configuration that Lambda uses to set up an elastic network interface (ENI). The ENI enables your function to connect to other resources in your VPC, but it doesn't provide public Internet access. If your function requires Internet access (for example, to access AWS services that don't have VPC endpoints), configure a Network Address Translation (NAT) instance inside your VPC or use an Amazon Virtual Private Cloud (Amazon VPC) NAT gateway. For more information, see NAT Gateways in the Amazon VPC User Guide.",
+        "required": false,
+        "type": "Unknown",
         "update_causes": "none"
       }
     },
@@ -2074,13 +2284,13 @@
         "description": "A friendly description of the RDS parameter group. For example, \"My Parameter Group\".",
         "required": true,
         "type": "String",
-        "update_causes": "none"
+        "update_causes": "unavailable"
       },
       "Family": {
         "description": "The database family of this RDS parameter group. For example, \"MySQL5.1\".",
         "required": true,
         "type": "String",
-        "update_causes": "none"
+        "update_causes": "unavailable"
       },
       "Parameters": {
         "description": "The parameters to set for this RDS parameter group.",
@@ -2099,6 +2309,20 @@
       }
     },
     "path": "aws-properties-rds-dbparametergroup.html"
+  },
+  "AWS::ApiGateway::ClientCertificate": {
+    "properties": [
+      "Description"
+    ],
+    "full_properties": {
+      "Description": {
+        "description": "A description of the client certificate.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-apigateway-clientcertificate.html"
   },
   "AWS::Logs::LogGroup": {
     "properties": [
@@ -2187,6 +2411,7 @@
   "AWS::Route53::RecordSet": {
     "properties": [
       "AliasTarget",
+      "Comment",
       "Failover",
       "GeoLocation",
       "HealthCheckId",
@@ -2205,6 +2430,12 @@
         "description": "Alias resource record sets only: Information about the domain to which you are redirecting traffic.",
         "required": false,
         "type": "Unknown",
+        "update_causes": "none"
+      },
+      "Comment": {
+        "description": "Any comments that you want to include about the hosted zone.",
+        "required": false,
+        "type": "String",
         "update_causes": "none"
       },
       "Failover": {
@@ -2750,6 +2981,90 @@
     },
     "path": "aws-resource-opsworks-elbattachment.html"
   },
+  "AWS::GameLift::Fleet": {
+    "properties": [
+      "BuildId",
+      "Description",
+      "DesiredEC2Instances",
+      "EC2InboundPermissions",
+      "EC2InstanceType",
+      "LogPaths",
+      "MaxSize",
+      "MinSize",
+      "Name",
+      "ServerLaunchParameters",
+      "ServerLaunchPath"
+    ],
+    "full_properties": {
+      "BuildId": {
+        "description": "The unique identifier for the build that you want to use with this fleet.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Description": {
+        "description": "Information that helps you identify the purpose of this fleet.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "DesiredEC2Instances": {
+        "description": "The number of EC2 instances that you want in this fleet.",
+        "required": true,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "EC2InboundPermissions": {
+        "description": "The incoming traffic, expressed as IP ranges and port numbers, that is permitted to access the game server. If you don't specify values, no traffic is permitted to your game servers.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "EC2InstanceType": {
+        "description": "The type of EC2 instances that the fleet uses. EC2 instance types define the CPU, memory, storage, and networking capacity of the fleet's hosts. For more information about the instance types that are supported by GameLift, see the EC2InstanceType parameter in the Amazon GameLift API Reference.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "LogPaths": {
+        "description": "The path to game-session log files that are generated by your game server, with the slashes (\\) escaped. After a game session has been terminated, GameLift captures and stores the logs in an S3 bucket.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "MaxSize": {
+        "description": "The maximum number of EC2 instances that you want to allow in this fleet. By default, AWS CloudFormation, sets this property to 1.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "MinSize": {
+        "description": "The minimum number of EC2 instances that you want to allow in this fleet. By default, AWS CloudFormation, sets this property to 0.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "Name": {
+        "description": "An identifier to associate with this fleet. Fleet names don't need to be unique.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "ServerLaunchParameters": {
+        "description": "The parameters that are required to launch your game server. Specify these parameters as a string of command-line parameters, such as +sv_port 33435 +start_lobby.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "ServerLaunchPath": {
+        "description": "The location of your game server that GameLift launches. You must escape the slashes (\\) and use the following pattern: C:\\\\game\\\\launchpath. For example, if your game server files are in the MyGame folder, the path should be C:\\\\game\\\\MyGame\\\\server.exe.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-gamelift-fleet.html"
+  },
   "AWS::IAM::Group": {
     "properties": [
       "ManagedPolicyArns",
@@ -2777,6 +3092,69 @@
       }
     },
     "path": "aws-properties-iam-group.html"
+  },
+  "AWS::ApiGateway::Authorizer": {
+    "properties": [
+      "AuthorizerCredentials",
+      "AuthorizerResultTtlInSeconds",
+      "AuthorizerUri",
+      "IdentitySource",
+      "IdentityValidationExpression",
+      "Name",
+      "RestApiId",
+      "Type"
+    ],
+    "full_properties": {
+      "AuthorizerCredentials": {
+        "description": "The credentials required for the authorizer. To specify an AWS Identity and Access Management (IAM) role that API Gateway assumes, specify the role's Amazon Resource Name (ARN). To use resource-based permissions on the AWS Lambda (Lambda) function, specify null.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "AuthorizerResultTtlInSeconds": {
+        "description": "The time-to-live (TTL) period, in seconds, that specifies how long API Gateway caches authorizer results. If you specify a value greater than 0, API Gateway caches the authorizer responses. By default, API Gateway sets this property to 300. The maximum value is 3600, or 1 hour.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "AuthorizerUri": {
+        "description": "The authorizer's Uniform Resource Identifier (URI). If you specify TOKEN for the authorizer's Type property, specify a Lambda function URI, which has the form arn:aws:apigateway:region:lambda:path/path. The path usually has the form /2015-03-31/functions/LambdaFunctionARN/invocations.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "IdentitySource": {
+        "description": "The source of the identity in an incoming request. If you specify TOKEN for the authorizer's Type property, specify a mapping expression. The custom header mapping expression has the form method.request.header.name, where name is the name of a custom authorization header that clients submit as part of their requests.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "IdentityValidationExpression": {
+        "description": "A validation expression for the incoming identity. If you specify TOKEN for the authorizer's Type property, specify a regular expression. API Gateway uses the expression to attempt to match the incoming client token, and proceeds if the token matches. If the token doesn't match, API Gateway responds with a 401 (unauthorized request) error code.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "Name": {
+        "description": "The name of the authorizer.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "RestApiId": {
+        "description": "The ID of the RestApi resource in which API Gateway creates the authorizer.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Type": {
+        "description": "The type of the authorizer, such as TOKEN.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-apigateway-authorizer.html"
   },
   "AWS::Route53::RecordSetGroup": {
     "properties": [
@@ -2812,6 +3190,34 @@
       }
     },
     "path": "aws-properties-route53-recordsetgroup.html"
+  },
+  "AWS::Lambda::Version": {
+    "properties": [
+      "CodeSha256",
+      "Description",
+      "FunctionName"
+    ],
+    "full_properties": {
+      "CodeSha256": {
+        "description": "The SHA-256 hash of the deployment package that you want to publish. This value must match the SHA-256 hash of the $LATEST version of the function. Specify this property to validate that you are publishing the correct package.",
+        "required": false,
+        "type": "String",
+        "update_causes": "unavailable"
+      },
+      "Description": {
+        "description": "A description of the version you are publishing. If you don't specify a value, Lambda copies the description from the $LATEST version of the function.",
+        "required": false,
+        "type": "String",
+        "update_causes": "unavailable"
+      },
+      "FunctionName": {
+        "description": "The Lambda function for which you want to publish a version. You can specify the function's name or its Amazon Resource Name (ARN).",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-lambda-version.html"
   },
   "AWS::AutoScaling::ScalingPolicy": {
     "properties": [
@@ -2863,7 +3269,7 @@
         "update_causes": "none"
       },
       "PolicyType": {
-        "description": "An Auto Scaling policy type. You can specify SimpleScaling or StepScaling. By default, AWS CloudFormation specifies SimpleScaling. For more information, see Scaling Policy Types in the Auto Scaling Developer Guide.",
+        "description": "An Auto Scaling policy type. You can specify SimpleScaling or StepScaling. By default, AWS CloudFormation specifies SimpleScaling. For more information, see Scaling Policy Types in the Auto Scaling User Guide.",
         "required": false,
         "type": "Unknown",
         "update_causes": "none"
@@ -3440,6 +3846,41 @@
     },
     "path": "aws-resource-as-lifecyclehook.html"
   },
+  "AWS::Lambda::Alias": {
+    "properties": [
+      "Description",
+      "FunctionName",
+      "FunctionVersion",
+      "Name"
+    ],
+    "full_properties": {
+      "Description": {
+        "description": "Information that describes the alias, such as its purpose or the function that it's associated with.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "FunctionName": {
+        "description": "The Lambda function that you want to associate with this alias. You can specify the function's name or its Amazon Resource Name (ARN).",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "FunctionVersion": {
+        "description": "The version of the Lambda function that you want to associate with this alias.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Name": {
+        "description": "A name for the alias.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-lambda-alias.html"
+  },
   "AWS::CloudFormation::Stack": {
     "properties": [
       "NotificationARNs",
@@ -3485,6 +3926,7 @@
   "AWS::ECS::Service": {
     "properties": [
       "Cluster",
+      "DeploymentConfiguration",
       "DesiredCount",
       "LoadBalancers",
       "Role",
@@ -3496,6 +3938,12 @@
         "required": false,
         "type": "String",
         "update_causes": "replacement"
+      },
+      "DeploymentConfiguration": {
+        "description": "Configures how many tasks run during a deployment.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
       },
       "DesiredCount": {
         "description": "The number of simultaneous tasks, which you specify by using the TaskDefinition property, that you want to run on the cluster.",
@@ -3595,7 +4043,7 @@
         "description": "The service token that was given to the template developer by the service provider to access the service, such as an Amazon SNS topic ARN or Lambda function ARN. The service token must be from the same region in which you are creating the stack.",
         "required": true,
         "type": "String",
-        "update_causes": "unknown"
+        "update_causes": "unavailable"
       }
     },
     "path": "aws-resource-cfn-customresource.html"
@@ -3731,10 +4179,12 @@
   },
   "AWS::EC2::Instance": {
     "properties": [
+      "Affinity",
       "AvailabilityZone",
       "BlockDeviceMappings",
       "DisableApiTermination",
       "EbsOptimized",
+      "HostId",
       "IamInstanceProfile",
       "ImageId",
       "InstanceInitiatedShutdownBehavior",
@@ -3758,6 +4208,12 @@
       "AdditionalInfo"
     ],
     "full_properties": {
+      "Affinity": {
+        "description": "Indicates whether Amazon Elastic Compute Cloud (Amazon EC2) always associates the instance with a dedicated host. If you want Amazon EC2 to always restart the instance (if it was stopped) onto the same host on which it was launched, specify host. If you want Amazon EC2 to restart the instance on any available host, but to try to launch the instance onto the last host it ran on (on a best-effort basis), specify default.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
       "AvailabilityZone": {
         "description": "Specifies the name of the Availability Zone in which the instance is located.",
         "required": false,
@@ -3788,8 +4244,14 @@
           "interrupt"
         ]
       },
+      "HostId": {
+        "description": "If you specify host for the Affinity property, the ID of a dedicated host that the instance is associated with. If you don't specify an ID, Amazon EC2 launches the instance onto any available, compatible dedicated host in your account. This type of launch is called an untargeted launch. Note that for untargeted launches, you must have a compatible, dedicated host available to successfully launch instances.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
       "IamInstanceProfile": {
-        "description": "The physical ID of an instance profile or a reference to an AWS::IAM::InstanceProfile resource.",
+        "description": "The physical ID (resource name) of an instance profile or a reference to an AWS::IAM::InstanceProfile resource.",
         "required": false,
         "type": "String",
         "update_causes": "replacement"
@@ -3903,10 +4365,13 @@
         "update_causes": "none"
       },
       "Tenancy": {
-        "description": "The tenancy of the instance that you want to launch. This value can be either \"default\" or \"dedicated\". An instance that has a tenancy value of \"dedicated\" runs on single-tenant hardware and can be launched only into a VPC. For more information, see Using EC2 Dedicated Instances Within Your VPC in the Amazon VPC User Guide.",
+        "description": "The tenancy of the instance that you want to launch, such as default, dedicated, or host. If you specify a tenancy value of dedicated or host, you must launch the instance in a VPC. For more information, see Dedicated Instances in the Amazon VPC User Guide.",
         "required": false,
         "type": "String",
-        "update_causes": "replacement"
+        "update_causes": [
+          "replacement",
+          "none"
+        ]
       },
       "UserData": {
         "description": "Base64-encoded MIME user data that is made available to the instances.",
@@ -3956,6 +4421,34 @@
     },
     "path": "aws-resource-ec2-vpn-gatewayrouteprop.html"
   },
+  "AWS::ApiGateway::Resource": {
+    "properties": [
+      "ParentId",
+      "PathPart",
+      "RestApiId"
+    ],
+    "full_properties": {
+      "ParentId": {
+        "description": "If you want to create a child resource, the ID of the parent resource. For resources without a parent, specify the RestApi root resource ID, such as { \"Fn::GetAtt\": [\"MyRestApi\", \"RootResourceId\"] }.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "PathPart": {
+        "description": "A path name for the resource.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "RestApiId": {
+        "description": "The ID of the RestApi resource in which you want to create this resource.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-apigateway-resource.html"
+  },
   "AWS::Config::ConfigurationRecorder": {
     "properties": [
       "Name",
@@ -3988,6 +4481,7 @@
     "properties": [
       "BidPrice",
       "Configurations",
+      "EbsConfiguration",
       "InstanceCount",
       "InstanceRole",
       "InstanceType",
@@ -4006,6 +4500,12 @@
         "description": "A list of configurations to apply to this instance group. For more information see, Configuring Applications in the Amazon Elastic MapReduce Release Guide.",
         "required": false,
         "type": "Array",
+        "update_causes": "replacement"
+      },
+      "EbsConfiguration": {
+        "description": "Configures Amazon Elastic Block Store (Amazon EBS) storage volumes to attach to your instances.",
+        "required": false,
+        "type": "Unknown",
         "update_causes": "replacement"
       },
       "InstanceCount": {
@@ -4114,7 +4614,7 @@
         "update_causes": "unavailable"
       },
       "Iops": {
-        "description": "The number of I/O operations per second (IOPS) that the volume supports. This can be any integer value from 1–4000.",
+        "description": "The number of I/O operations per second (IOPS) that the volume supports. For more information about the valid sizes for each volume type, see the Iops parameter for the CreateVolume action in the Amazon EC2 API Reference.",
         "required": false,
         "type": "Unknown",
         "update_causes": "unavailable"
@@ -4126,7 +4626,7 @@
         "update_causes": "unavailable"
       },
       "Size": {
-        "description": "The size of the volume, in gibibytes (GiBs). For more information about the valid sizes for each volume type, see the CreateVolume Size parameter in the Amazon EC2 API Reference.",
+        "description": "The size of the volume, in gibibytes (GiBs). For more information about the valid sizes for each volume type, see the Size parameter for the CreateVolume action in the Amazon EC2 API Reference.",
         "required": false,
         "type": "String",
         "update_causes": "unavailable"
@@ -4141,12 +4641,12 @@
         "description": "An arbitrary set of tags (key–value pairs) for this volume.",
         "required": false,
         "type": "Unknown",
-        "update_causes": "unavailable"
+        "update_causes": "none"
       },
       "VolumeType": {
-        "description": "The volume type. You can specify standard, io1, or gp2. If you set the type to io1, you must also set the Iops property. For more information about these values and the default value, see CreateVolume in the Amazon EC2 API Reference.",
+        "description": "The volume type. You can specify standard, io1, or gp2. If you set the type to io1, you must also set the Iops property. For more information about these values and the default value, see the VolumeType parameter for the CreateVolume action in the Amazon EC2 API Reference.",
         "required": false,
-        "type": "String",
+        "type": "Unknown",
         "update_causes": "unavailable"
       }
     },
@@ -4369,6 +4869,34 @@
     },
     "path": "aws-resource-config-configrule.html"
   },
+  "AWS::EC2::Host": {
+    "properties": [
+      "AutoPlacement",
+      "AvailabilityZone",
+      "InstanceType"
+    ],
+    "full_properties": {
+      "AutoPlacement": {
+        "description": "Indicates if the host accepts EC2 instances with only matching configurations or if instances must also specify the host ID. Instances that don't specify a host ID can't launch onto a host with AutoPlacement set to off. By default, AWS CloudFormation sets this property to on. For more information, see Understanding Instance Placement and Host Affinity in the Amazon EC2 User Guide for Linux Instances.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "AvailabilityZone": {
+        "description": "The Availability Zone (AZ) in which to launch the dedicated host.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "InstanceType": {
+        "description": "The instance type that the dedicated host accepts. Only instances of this type can be launched onto the host. For more information, see Supported Instance Types in the Amazon EC2 User Guide for Linux Instances.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-ec2-host.html"
+  },
   "AWS::EC2::VolumeAttachment": {
     "properties": [
       "Device",
@@ -4473,8 +5001,8 @@
       "GlobalSecondaryIndexes",
       "KeySchema",
       "LocalSecondaryIndexes",
-      "StreamSpecification",
       "ProvisionedThroughput",
+      "StreamSpecification",
       "TableName"
     ],
     "full_properties": {
@@ -4489,7 +5017,7 @@
         "required": false,
         "type": "Array",
         "update_causes": [
-          "replacement",
+          "unavailable",
           "none",
           "interrupt"
         ]
@@ -4506,15 +5034,15 @@
         "type": "Array",
         "update_causes": "replacement"
       },
-      "StreamSpecification": {
-        "description": "The settings for the DynamoDB table stream, which capture changes to items stored in the table.",
-        "required": false,
-        "type": "Unknown",
-        "update_causes": "none"
-      },
       "ProvisionedThroughput": {
         "description": "Throughput for the specified table, consisting of values for ReadCapacityUnits and WriteCapacityUnits. For more information about the contents of a provisioned throughput structure, see DynamoDB Provisioned Throughput.",
         "required": true,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "StreamSpecification": {
+        "description": "The settings for the DynamoDB table stream, which capture changes to items stored in the table.",
+        "required": false,
         "type": "Unknown",
         "update_causes": "none"
       },
@@ -4617,6 +5145,111 @@
       }
     },
     "path": "aws-resource-ec2-subnet.html"
+  },
+  "AWS::ApiGateway::ApiKey": {
+    "properties": [
+      "Description",
+      "Enabled",
+      "Name",
+      "StageKeys"
+    ],
+    "full_properties": {
+      "Description": {
+        "description": "A description of the purpose of the API key.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Enabled": {
+        "description": "Indicates whether the API key can be used by clients.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "Name": {
+        "description": "A name for the API key. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the API key name. For more information, see Name Type.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "StageKeys": {
+        "description": "A list of stages to associated with this API key.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-apigateway-apikey.html"
+  },
+  "AWS::ApiGateway::Stage": {
+    "properties": [
+      "CacheClusterEnabled",
+      "CacheClusterSize",
+      "ClientCertificateId",
+      "DeploymentId",
+      "Description",
+      "MethodSettings",
+      "RestApiId",
+      "StageName",
+      "Variables"
+    ],
+    "full_properties": {
+      "CacheClusterEnabled": {
+        "description": "Indicates whether cache clustering is enabled for the stage.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "CacheClusterSize": {
+        "description": "The stage's cache cluster size.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "ClientCertificateId": {
+        "description": "The identifier of the client certificate that API Gateway uses to call your integration endpoints in the stage.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "DeploymentId": {
+        "description": "The ID of the deployment that the stage points to.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Description": {
+        "description": "A description of the stage's purpose.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "MethodSettings": {
+        "description": "Settings for all methods in the stage.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "RestApiId": {
+        "description": "The ID of the RestApi resource that you're deploying with this stage.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "StageName": {
+        "description": "The name of the stage, which API Gateway uses as the first path segment in the invoke Uniform Resource Identifier (URI).",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Variables": {
+        "description": "A map (string to string map) that defines the stage variables, where the variable name is the key and the variable value is the value. Variable names are limited to alphanumeric characters. Values must match the following regular expression: [A-Za-z0-9-._~:/?#&amp;=,]+.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-apigateway-stage.html"
   },
   "AWS::ElasticBeanstalk::ConfigurationTemplate": {
     "properties": [
@@ -4897,6 +5530,34 @@
     },
     "path": "aws-resource-waf-sqlinjectionmatchset.html"
   },
+  "AWS::GameLift::Build": {
+    "properties": [
+      "Name",
+      "StorageLocation",
+      "Version"
+    ],
+    "full_properties": {
+      "Name": {
+        "description": "An identifier to associate with this build. Build names don't need to be unique.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "StorageLocation": {
+        "description": "The Amazon Simple Storage Service (Amazon S3) location where your build package files are located.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "Version": {
+        "description": "A version to associate with this build. Version is useful if you want to track updates to your build package files. Versions don't need to be unique.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-gamelift-build.html"
+  },
   "AWS::EC2::SecurityGroup": {
     "properties": [
       "GroupDescription",
@@ -4938,6 +5599,27 @@
       }
     },
     "path": "aws-properties-ec2-security-group.html"
+  },
+  "AWS::ApiGateway::RestApi": {
+    "properties": [
+      "Body",
+      "BodyS3Location"
+    ],
+    "full_properties": {
+      "Body": {
+        "description": "A Swagger specification that defines a set of RESTful APIs in JSON or YAML format.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "BodyS3Location": {
+        "description": "The Amazon Simple Storage Service (Amazon S3) location that points to a Swagger file, which defines a set of RESTful APIs in JSON or YAML format.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-apigateway-restapi.html"
   },
   "AWS::EC2::SubnetRouteTableAssociation": {
     "properties": [
@@ -5179,7 +5861,7 @@
         "update_causes": "none"
       },
       "Policies": {
-        "description": "A list of elastic load balancing policies to apply to this elastic load balancer.",
+        "description": "A list of elastic load balancing policies to apply to this elastic load balancer. Specify only back-end server policies. For more information, see DescribeLoadBalancerPolicyTypes in the Elastic Load Balancing API Reference.",
         "required": false,
         "type": "Array",
         "update_causes": "none"
@@ -5340,6 +6022,48 @@
       }
     },
     "path": "aws-properties-elasticache-subnetgroup.html"
+  },
+  "AWS::ApiGateway::Model": {
+    "properties": [
+      "ContentType",
+      "Description",
+      "Name",
+      "RestApiId",
+      "Schema"
+    ],
+    "full_properties": {
+      "ContentType": {
+        "description": "The content type for the model.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Description": {
+        "description": "A description that identifies this model.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Name": {
+        "description": "A name for the mode. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the model name. For more information, see Name Type.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "RestApiId": {
+        "description": "The ID of a REST API with which to associate this model.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Schema": {
+        "description": "The schema to use to transform data to one or more output formats.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-apigateway-model.html"
   },
   "AWS::EC2::NetworkAclEntry": {
     "properties": [
@@ -5635,6 +6359,83 @@
     },
     "path": "aws-resource-directoryservice-simplead.html"
   },
+  "AWS::ApiGateway::Method": {
+    "properties": [
+      "ApiKeyRequired",
+      "AuthorizationType",
+      "AuthorizerId",
+      "HttpMethod",
+      "Integration",
+      "MethodResponses",
+      "RequestModels",
+      "RequestParameters",
+      "ResourceId",
+      "RestApiId"
+    ],
+    "full_properties": {
+      "ApiKeyRequired": {
+        "description": "Indicates whether the method requires clients to submit a valid API key.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "AuthorizationType": {
+        "description": "The method's authorization type.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "AuthorizerId": {
+        "description": "The identifier of the authorizer to use on this method. If you specify this property, specify CUSTOM for the AuthorizationType property.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "HttpMethod": {
+        "description": "The HTTP method that clients will use to call this method.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Integration": {
+        "description": "The back-end system that the method calls when it receives a request.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "MethodResponses": {
+        "description": "The responses that can be sent to the client who calls the method.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "RequestModels": {
+        "description": "The resources used for the response's content type. Specify response models as key-value pairs (string-to-string maps), with a content type as the key and a Model resource name as the value.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "RequestParameters": {
+        "description": "Request parameters that API Gateway accepts. Specify request parameters as key-value pairs (string-to-Boolean maps), with a source as the key and a Boolean as the value. The Boolean specifies whether a parameter is required. A source must match the following format method.request.location.name, where the location is querystring, path, or header, and name is a valid, unique parameter name.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "ResourceId": {
+        "description": "The ID of an API Gateway resource. For root resource methods, specify the RestApi root resource ID, such as { \"Fn::GetAtt\": [\"MyRestApi\", \"RootResourceId\"] }.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "RestApiId": {
+        "description": "The ID of the RestApi resource in which API Gateway creates the method.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-apigateway-method.html"
+  },
   "AWS::Logs::LogStream": {
     "properties": [
       "LogGroupName",
@@ -5655,6 +6456,27 @@
       }
     },
     "path": "aws-resource-logs-logstream.html"
+  },
+  "AWS::WAF::XssMatchSet": {
+    "properties": [
+      "Name",
+      "XssMatchTuples"
+    ],
+    "full_properties": {
+      "Name": {
+        "description": "A friendly name or description for the XssMatchSet.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "XssMatchTuples": {
+        "description": "The parts of web requests that you want to inspect for cross-site scripting attacks.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-waf-xssmatchset.html"
   },
   "AWS::IAM::Role": {
     "properties": [
@@ -5683,7 +6505,7 @@
         "update_causes": "replacement"
       },
       "Policies": {
-        "description": "The policies to associate with this role. Policies can also be specified externally. For sample templates that demonstrates both embedded and external policies, see Template Examples.",
+        "description": "Important",
         "required": false,
         "type": "Array",
         "update_causes": "none"
