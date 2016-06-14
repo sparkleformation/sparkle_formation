@@ -1,3 +1,6 @@
+# v3.0.8
+* Fix pack loading on Windows (#178)
+
 # v3.0.6
 * Update builtin provider resource lists
 
