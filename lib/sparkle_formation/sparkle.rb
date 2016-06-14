@@ -133,18 +133,25 @@ class SparkleFormation
       # @return [Array<String:name, String:path>]
       def register!(name=nil, path=nil)
         unless(path)
+          puts "REGISTER CALLER PATH:"
+          puts caller.join("\n")
           idx = caller.index do |item|
             item.end_with?("`register!'")
           end
           idx = idx ? idx.next : 0
+          puts "CALLER IDX: #{idx}"
           file = caller[idx].split(':', 2).first
+          puts "REGISTER FILE: #{file}"
           path = File.join(File.dirname(file), 'sparkleformation')
           unless(File.directory?(path))
             path = nil
           end
+          puts "REGISTER PATH: #{path}"
           unless(name)
             name = File.basename(caller[idx].split(':', 2).first)
+            puts "REGISTER NAME DISCOVERY: #{name}"
             name.sub!(File.extname(name), '')
+            puts "REGISTER NAME CLEANUP: #{name}"
           end
         end
         unless(name)
@@ -159,6 +166,7 @@ class SparkleFormation
           raise ArgumentError.new('No SparklePack name provided and failed to auto-detect!')
         end
         @@_pack_registry[name] = path
+        puts "CURRENT PACK REGISTRY CONTENT: #{@@_pack_registry}"
         [name, path]
       end
 
