@@ -137,7 +137,9 @@ class SparkleFormation
             item.end_with?("`register!'")
           end
           idx = idx ? idx.next : 0
-          file = caller[idx].split(':', 2).first
+          # Trim from the end to determine path allowing windows paths
+          # to not be improperly truncated
+          file = caller[idx].split(':').reverse.drop(2).reverse.join(':')
           path = File.join(File.dirname(file), 'sparkleformation')
           unless(File.directory?(path))
             path = nil
