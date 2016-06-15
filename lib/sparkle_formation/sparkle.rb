@@ -145,7 +145,7 @@ class SparkleFormation
             path = nil
           end
           unless(name)
-            name = File.basename(caller[idx].split(':', 2).first)
+            name = File.basename(file)
             name.sub!(File.extname(name), '')
           end
         end
