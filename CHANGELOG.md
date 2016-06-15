@@ -1,3 +1,6 @@
+# v3.0.10
+* Extract pack name using previously extract path (#180)
+
 # v3.0.8
 * Fix pack loading on Windows (#178)
 
