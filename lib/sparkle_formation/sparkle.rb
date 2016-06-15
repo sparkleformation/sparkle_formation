@@ -136,18 +136,23 @@ class SparkleFormation
           idx = caller.index do |item|
             item.end_with?("`register!'")
           end
+          puts "CALLER: #{caller.join("\n")}"
           idx = idx ? idx.next : 0
           # Trim from the end to determine path allowing windows paths
           # to not be improperly truncated
           file = caller[idx].split(':').reverse.drop(2).reverse.join(':')
+          puts "IDX: #{idx}"
+          puts "FILE: #{file}"
           path = File.join(File.dirname(file), 'sparkleformation')
           unless(File.directory?(path))
             path = nil
           end
           unless(name)
-            name = File.basename(caller[idx].split(':', 2).first)
+            name = File.basename(file)
             name.sub!(File.extname(name), '')
           end
+          puts "PATH: #{path}"
+          puts "NAME: #{name}"
         end
         unless(name)
           if(path)
@@ -161,6 +166,7 @@ class SparkleFormation
           raise ArgumentError.new('No SparklePack name provided and failed to auto-detect!')
         end
         @@_pack_registry[name] = path
+        puts "REGISTRY: #{@@_pack_registry}"
         [name, path]
       end
 
