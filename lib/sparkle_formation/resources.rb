@@ -9,6 +9,7 @@ class SparkleFormation
     autoload :Google, 'sparkle_formation/resources/google'
     autoload :Heat, 'sparkle_formation/resources/heat'
     autoload :Rackspace, 'sparkle_formation/resources/rackspace'
+    autoload :Terraform, 'sparkle_formation/resources/terraform'
 
     # Characters to be removed from supplied key on matching
     RESOURCE_TYPE_TR = '_'

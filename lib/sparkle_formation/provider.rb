@@ -8,6 +8,7 @@ class SparkleFormation
     autoload :Azure, 'sparkle_formation/provider/azure'
     autoload :Google, 'sparkle_formation/provider/google'
     autoload :Heat, 'sparkle_formation/provider/heat'
+    autoload :Terraform, 'sparkle_formation/provider/terraform'
 
   end
 end

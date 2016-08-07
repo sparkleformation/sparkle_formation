@@ -10,6 +10,7 @@ class SparkleFormation
     autoload :Google, 'sparkle_formation/sparkle_attribute/google'
     autoload :Heat, 'sparkle_formation/sparkle_attribute/heat'
     autoload :Rackspace, 'sparkle_formation/sparkle_attribute/rackspace'
+    autoload :Terraform, 'sparkle_formation/sparkle_attribute/terraform'
 
     # Return current resource name
     #
