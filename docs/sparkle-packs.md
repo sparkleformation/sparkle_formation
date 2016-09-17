@@ -12,7 +12,7 @@ anchors:
   - title: "Usage"
     url: "#usage"
   - title: "Distribution"
-    url: "#distribution
+    url: "#distribution"
 ---
 
 ## SparklePacks
