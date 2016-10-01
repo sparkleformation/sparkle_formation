@@ -31,6 +31,13 @@ describe SparkleFormation::SparkleAttribute::Aws do
     end.dump.must_equal 'Thing' => {'Ref' => 'Item'}
   end
 
+  it 'should generate Fn::ImportValue' do
+    @sfn.overrides do
+      thing import_value!('MyUniqueOutput')
+    end.dump.
+      must_equal 'Thing' => {'Fn::ImportValue' => 'MyUniqueOutput'}
+  end
+
   it 'should generate Fn::FindInMap' do
     @sfn.overrides do
       thing find_in_map!('MyMap', ref!('MyKey'), 'SubKey')
