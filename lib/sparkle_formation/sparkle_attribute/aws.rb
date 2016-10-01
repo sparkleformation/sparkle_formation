@@ -37,6 +37,17 @@ class SparkleFormation
       alias_method :_ref, :_cf_ref
       alias_method :ref!, :_cf_ref
 
+      # ValueImport generator
+      #
+      # @param thing [String, String] value import
+      # @return [Hash]
+      def _cf_value_import(thing)
+        __t_stringish(thing)
+        {'Fn::ImportValue' => __attribute_key(thing)}
+      end
+      alias_method :_import_value, :_cf_value_import
+      alias_method :import_value!, :_cf_value_import
+
       # @overload _cf_map(map_name, top_level_key, second_level_key)
       #   Fn::FindInMap generator
       #   @param map_name [String, Symbol] name of map
