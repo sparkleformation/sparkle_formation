@@ -899,7 +899,7 @@ class SparkleFormation
   # @return [Smash<output_name:SparkleFormation>]
   def collect_outputs(*args)
     if(args.include?(:force) || root?)
-      unless(compile.outputs.nil?)
+      if(!compile.outputs.nil? && !root?)
         outputs = Smash[
           compile.outputs.keys!.zip(
             [self] * compile.outputs.keys!.size
