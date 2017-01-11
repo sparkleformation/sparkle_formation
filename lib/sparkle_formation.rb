@@ -18,6 +18,7 @@ class SparkleFormation
   autoload :SparkleCollection, 'sparkle_formation/sparkle_collection'
   autoload :SparkleAttribute, 'sparkle_formation/sparkle_attribute'
   autoload :SparkleStruct, 'sparkle_formation/sparkle_struct'
+  autoload :TerraformStruct, 'sparkle_formation/function_struct'
   autoload :Utils, 'sparkle_formation/utils'
   autoload :Translation, 'sparkle_formation/translation'
   autoload :Version, 'sparkle_formation/version'
