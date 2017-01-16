@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'pry'
+
 %w(multi_json fileutils bogo).each do |lib|
   begin
     require lib
@@ -17,7 +19,7 @@ UPDATE_MAPPING = {}
 unless(File.directory?(STORE))
   FileUtils.mkdir_p(STORE)
   Dir.chdir(STORE) do
-    unless(system('wget https://github.com/Azure/azure-resource-manager-schemas/archive/master.tar.gz'))
+    unless(system('wget -q https://github.com/Azure/azure-resource-manager-schemas/archive/master.tar.gz'))
       puts 'FAILED: Documentation fetching failed!'
       exit -1
     end
@@ -28,7 +30,7 @@ unless(File.directory?(STORE))
   end
 end
 
-schema_files = Dir.glob(File.join(STORE, 'azure-resource-manager-schemas-master', 'schemas', '**', '**', '*.json'))
+schema_files = Dir.glob(File.join(STORE, 'azure-resource-manager-schemas-master', 'schemas', '**', '**', '*.json')).sort
 schema_contents = schema_files.map do |s_path|
   File.read(s_path).sub(/^[^\{]*/, '')
 end
@@ -82,10 +84,14 @@ azure_resources = Smash[
   resource_definitions.map do |k, v|
     resource_name = v.fetch(:properties, :type, :enum, []).first
     next unless resource_name
+    r_properties = v.get(:properties, :properties, :properties)
+    if(r_properties.nil?)
+      r_properties = v.fetch(:properties, :properties, :oneOf, []).map{|x| x.fetch(:properties, {})}.first || Smash.new
+    end
     [resource_name,
-      :properties => v.fetch(:properties, :properties, :properties, {}).keys,
+      :properties => r_properties.keys,
       :full_properties => Smash[
-        v.fetch(:properties, :properties, :properties, {}).map do |prop_key, prop_val|
+        r_properties.map do |prop_key, prop_val|
           [prop_key,
             :description => prop_val[:description],
             :required => v.fetch(:properties, :properties, :required, []).include?(prop_key),
