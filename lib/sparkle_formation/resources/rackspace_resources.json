@@ -1,4 +1,538 @@
 {
+  "OS::Aodh::Alarm": {
+    "properties": [
+      "alarm_actions",
+      "comparison_operator",
+      "description",
+      "enabled",
+      "evaluation_periods",
+      "insufficient_data_actions",
+      "matching_metadata",
+      "meter_name",
+      "ok_actions",
+      "period",
+      "query",
+      "repeat_actions",
+      "severity",
+      "statistic",
+      "threshold",
+      "time_constraints"
+    ],
+    "full_properties": {
+      "meter_name": {
+        "description": "Meter name watched by the alarm.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "threshold": {
+        "description": "Threshold to evaluate against.",
+        "required": true,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "alarm_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "comparison_operator": {
+        "description": "Operator used to compare specified statistic with threshold.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "True if alarm evaluation/actioning is enabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "evaluation_periods": {
+        "description": "Number of periods to evaluate over.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "insufficient_data_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "matching_metadata": {
+        "description": "Meter should match this resource metadata (key=value) additionally to the meter_name.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "ok_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "period": {
+        "description": "Period (seconds) to evaluate over.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "query": {
+        "description": "A list of query factors, each comparing a Sample attribute with a value. Implicitly combined with matching_metadata, if any.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "repeat_actions": {
+        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "severity": {
+        "description": "Severity of the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "statistic": {
+        "description": "Meter statistic to evaluate.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "time_constraints": {
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Aodh::CombinationAlarm": {
+    "properties": [
+      "alarm_actions",
+      "alarm_ids",
+      "description",
+      "enabled",
+      "insufficient_data_actions",
+      "ok_actions",
+      "operator",
+      "repeat_actions",
+      "severity",
+      "time_constraints"
+    ],
+    "full_properties": {
+      "alarm_ids": {
+        "description": "List of alarm identifiers to combine.",
+        "required": true,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "alarm_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "True if alarm evaluation/actioning is enabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "insufficient_data_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "operator": {
+        "description": "Operator used to combine the alarms.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "repeat_actions": {
+        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "severity": {
+        "description": "Severity of the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "time_constraints": {
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Aodh::GnocchiAggregationByMetricsAlarm": {
+    "properties": [
+      "aggregation_method",
+      "alarm_actions",
+      "comparison_operator",
+      "description",
+      "enabled",
+      "evaluation_periods",
+      "granularity",
+      "insufficient_data_actions",
+      "metrics",
+      "ok_actions",
+      "repeat_actions",
+      "severity",
+      "threshold",
+      "time_constraints"
+    ],
+    "full_properties": {
+      "metrics": {
+        "description": "A list of metric ids.",
+        "required": true,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "threshold": {
+        "description": "Threshold to evaluate against.",
+        "required": true,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "aggregation_method": {
+        "description": "The aggregation method to compare to the threshold.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "alarm_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "comparison_operator": {
+        "description": "Operator used to compare specified statistic with threshold.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "True if alarm evaluation/actioning is enabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "evaluation_periods": {
+        "description": "Number of periods to evaluate over.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "granularity": {
+        "description": "The time range in seconds.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "insufficient_data_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "repeat_actions": {
+        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "severity": {
+        "description": "Severity of the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "time_constraints": {
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Aodh::GnocchiAggregationByResourcesAlarm": {
+    "properties": [
+      "aggregation_method",
+      "alarm_actions",
+      "comparison_operator",
+      "description",
+      "enabled",
+      "evaluation_periods",
+      "granularity",
+      "insufficient_data_actions",
+      "metric",
+      "ok_actions",
+      "query",
+      "repeat_actions",
+      "resource_type",
+      "severity",
+      "threshold",
+      "time_constraints"
+    ],
+    "full_properties": {
+      "metric": {
+        "description": "Metric name watched by the alarm.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "query": {
+        "description": "The query to filter the metrics.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "resource_type": {
+        "description": "Resource type.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "threshold": {
+        "description": "Threshold to evaluate against.",
+        "required": true,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "aggregation_method": {
+        "description": "The aggregation method to compare to the threshold.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "alarm_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "comparison_operator": {
+        "description": "Operator used to compare specified statistic with threshold.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "True if alarm evaluation/actioning is enabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "evaluation_periods": {
+        "description": "Number of periods to evaluate over.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "granularity": {
+        "description": "The time range in seconds.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "insufficient_data_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "repeat_actions": {
+        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "severity": {
+        "description": "Severity of the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "time_constraints": {
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Aodh::GnocchiResourcesAlarm": {
+    "properties": [
+      "aggregation_method",
+      "alarm_actions",
+      "comparison_operator",
+      "description",
+      "enabled",
+      "evaluation_periods",
+      "granularity",
+      "insufficient_data_actions",
+      "metric",
+      "ok_actions",
+      "repeat_actions",
+      "resource_id",
+      "resource_type",
+      "severity",
+      "threshold",
+      "time_constraints"
+    ],
+    "full_properties": {
+      "metric": {
+        "description": "Metric name watched by the alarm.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "resource_id": {
+        "description": "Id of a resource.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "resource_type": {
+        "description": "Resource type.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "threshold": {
+        "description": "Threshold to evaluate against.",
+        "required": true,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "aggregation_method": {
+        "description": "The aggregation method to compare to the threshold.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "alarm_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "comparison_operator": {
+        "description": "Operator used to compare specified statistic with threshold.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "True if alarm evaluation/actioning is enabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "evaluation_periods": {
+        "description": "Number of periods to evaluate over.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "granularity": {
+        "description": "The time range in seconds.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "insufficient_data_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "repeat_actions": {
+        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "severity": {
+        "description": "Severity of the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "time_constraints": {
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
   "OS::Cinder::Volume": {
     "properties": [
       "availability_zone",
@@ -71,7 +605,7 @@
         "update_causes": "replacement"
       },
       "size": {
-        "description": "The size of the volume in GB. On update only increase in size is supported.",
+        "description": "The size of the volume in GB. On update only increase in size is supported. This property is required unless property backup_id or source_volid or snapshot_id is specified.",
         "required": false,
         "type": "integer",
         "update_causes": "none"
@@ -217,7 +751,7 @@
         "update_causes": "replacement"
       },
       "removal_policies": {
-        "description": "Policies for removal of resources on update",
+        "description": "Policies for removal of resources on update.",
         "required": false,
         "type": "list",
         "update_causes": "none"
@@ -323,6 +857,12 @@
       "signal_transport"
     ],
     "full_properties": {
+      "servers": {
+        "description": "A map of names and server IDs to apply configuration to. The name is arbitrary and is used as the Heat resource name for the corresponding deployment.",
+        "required": true,
+        "type": "map",
+        "update_causes": "none"
+      },
       "actions": {
         "description": "Which lifecycle actions of the deployment resource will result in this deployment being triggered.",
         "required": false,
@@ -345,12 +885,6 @@
         "description": "Name of the derived config associated with this deployment. This is used to apply a sort order to the list of configurations currently deployed to a server.",
         "required": false,
         "type": "string",
-        "update_causes": "none"
-      },
-      "servers": {
-        "description": "A map of Nova names and IDs to apply configuration to.",
-        "required": false,
-        "type": "map",
         "update_causes": "none"
       },
       "signal_transport": {
@@ -371,6 +905,12 @@
       "signal_transport"
     ],
     "full_properties": {
+      "servers": {
+        "description": "A map of names and server IDs to apply configuration to. The name is arbitrary and is used as the Heat resource name for the corresponding deployment.",
+        "required": true,
+        "type": "map",
+        "update_causes": "none"
+      },
       "actions": {
         "description": "Which lifecycle actions of the deployment resource will result in this deployment being triggered.",
         "required": false,
@@ -393,12 +933,6 @@
         "description": "Name of the derived config associated with this deployment. This is used to apply a sort order to the list of configurations currently deployed to a server.",
         "required": false,
         "type": "string",
-        "update_causes": "none"
-      },
-      "servers": {
-        "description": "A map of Nova names and IDs to apply configuration to.",
-        "required": false,
-        "type": "map",
         "update_causes": "none"
       },
       "signal_transport": {
@@ -457,7 +991,7 @@
         "update_causes": "replacement"
       },
       "timeout": {
-        "description": "The maximum number of seconds to wait for the resource to signal completion.  Once the timeout is reached, creation of the signal resource will fail.",
+        "description": "The maximum number of seconds to wait for the resource to signal completion. Once the timeout is reached, creation of the signal resource will fail.",
         "required": true,
         "type": "number",
         "update_causes": "replacement"
@@ -486,6 +1020,7 @@
       "entity_name",
       "fail",
       "update_replace",
+      "update_replace_value",
       "value",
       "wait_secs"
     ],
@@ -527,10 +1062,16 @@
         "update_causes": "none"
       },
       "update_replace": {
-        "description": "Value which can be set to trigger update replace for the particular resource",
+        "description": "Value which can be set to trigger update replace for the particular resource.",
         "required": false,
         "type": "boolean",
         "update_causes": "none"
+      },
+      "update_replace_value": {
+        "description": "Some value that can be stored but can not be updated.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
       },
       "value": {
         "description": "The input string to be stored.",
@@ -539,9 +1080,319 @@
         "update_causes": "none"
       },
       "wait_secs": {
-        "description": "Seconds to wait after an action (-1 is infinite)",
+        "description": "Seconds to wait after an action (-1 is infinite).",
         "required": false,
         "type": "number",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::LBaaS::HealthMonitor": {
+    "properties": [
+      "admin_state_up",
+      "delay",
+      "expected_codes",
+      "http_method",
+      "max_retries",
+      "pool",
+      "tenant_id",
+      "timeout",
+      "type",
+      "url_path"
+    ],
+    "full_properties": {
+      "delay": {
+        "description": "The minimum time in milliseconds between regular connections of the member.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "max_retries": {
+        "description": "Number of permissible connection failures before changing the member status to INACTIVE.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "pool": {
+        "description": "ID or name of the load balancing pool.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "timeout": {
+        "description": "Maximum number of milliseconds for a monitor to wait for a connection to be established before it times out.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "type": {
+        "description": "One of predefined health monitor types.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "admin_state_up": {
+        "description": "The administrative state of the health monitor.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "expected_codes": {
+        "description": "The HTTP status codes expected in response from the member to declare it healthy. Specify one of the following values: a single value, such as 200. a list, such as 200, 202. a range, such as 200-204.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "http_method": {
+        "description": "The HTTP method used for requests by the monitor of type HTTP.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "tenant_id": {
+        "description": "ID of the tenant who owns the health monitor.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "url_path": {
+        "description": "The HTTP path used in the HTTP request used by the monitor to test a member health. A valid value is a string the begins with a forward slash (/).",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::LBaaS::Listener": {
+    "properties": [
+      "admin_state_up",
+      "connection_limit",
+      "default_tls_container_ref",
+      "description",
+      "loadbalancer",
+      "name",
+      "protocol",
+      "protocol_port",
+      "sni_container_refs",
+      "tenant_id"
+    ],
+    "full_properties": {
+      "loadbalancer": {
+        "description": "ID or name of the load balancer with which listener is associated.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "protocol": {
+        "description": "Protocol on which to listen for the client traffic.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "protocol_port": {
+        "description": "TCP or UDP port on which to listen for client traffic.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "admin_state_up": {
+        "description": "The administrative state of this listener.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "connection_limit": {
+        "description": "The maximum number of connections permitted for this load balancer. Defaults to -1, which is infinite.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "default_tls_container_ref": {
+        "description": "Default TLS container reference to retrieve TLS information.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of this listener.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of this listener.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "sni_container_refs": {
+        "description": "List of TLS container references for SNI.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "tenant_id": {
+        "description": "The ID of the tenant who owns the listener.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::LBaaS::LoadBalancer": {
+    "properties": [
+      "admin_state_up",
+      "description",
+      "name",
+      "provider",
+      "tenant_id",
+      "vip_address",
+      "vip_subnet"
+    ],
+    "full_properties": {
+      "vip_subnet": {
+        "description": "The name or ID of the subnet on which to allocate the VIP address.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "admin_state_up": {
+        "description": "The administrative state of this Load Balancer.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of this Load Balancer.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of this Load Balancer.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "provider": {
+        "description": "Provider for this Load Balancer.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "tenant_id": {
+        "description": "The ID of the tenant who owns the Load Balancer. Only administrative users can specify a tenant ID other than their own.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "vip_address": {
+        "description": "IP address for the VIP.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::LBaaS::Pool": {
+    "properties": [
+      "admin_state_up",
+      "description",
+      "lb_algorithm",
+      "listener",
+      "name",
+      "protocol",
+      "session_persistence"
+    ],
+    "full_properties": {
+      "lb_algorithm": {
+        "description": "The algorithm used to distribute load between the members of the pool.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "listener": {
+        "description": "Listener name or ID to be associated with this pool.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "protocol": {
+        "description": "Protocol of the pool.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "admin_state_up": {
+        "description": "The administrative state of this pool.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of this pool.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of this pool.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "session_persistence": {
+        "description": "Configuration of session persistence.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::LBaaS::PoolMember": {
+    "properties": [
+      "address",
+      "admin_state_up",
+      "pool",
+      "protocol_port",
+      "subnet",
+      "weight"
+    ],
+    "full_properties": {
+      "address": {
+        "description": "IP address of the pool member on the pool network.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "pool": {
+        "description": "Name or ID of the load balancing pool.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "protocol_port": {
+        "description": "Port on which the pool member listens for requests or connections.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "admin_state_up": {
+        "description": "The administrative state of the pool member.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "subnet": {
+        "description": "Subnet name or ID of this member.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "weight": {
+        "description": "Weight of pool member in the pool (default to 1).",
+        "required": false,
+        "type": "integer",
         "update_causes": "none"
       }
     }
@@ -577,7 +1428,7 @@
         "update_causes": "none"
       },
       "port_security_enabled": {
-        "description": "Flag to enable/disable port security on the network. It provides the default value for the attribute of the ports created on this network",
+        "description": "Flag to enable/disable port security on the network. It provides the default value for the attribute of the ports created on this network.",
         "required": false,
         "type": "boolean",
         "update_causes": "none"
@@ -610,20 +1461,45 @@
   },
   "OS::Neutron::Port": {
     "properties": [
+      "admin_state_up",
+      "allowed_address_pairs",
+      "binding:vnic_type",
       "device_id",
       "device_owner",
       "fixed_ips",
+      "mac_address",
       "name",
       "network",
+      "port_security_enabled",
+      "qos_policy",
       "replacement_policy",
-      "security_groups"
+      "security_groups",
+      "value_specs"
     ],
     "full_properties": {
       "network": {
-        "description": "Network this port belongs to. If you plan to use current port to assign Floating IP, you should specify fixed_ips with subnet.  Note if this changes to a different network update, the port will be replaced",
+        "description": "Network this port belongs to. If you plan to use current port to assign Floating IP, you should specify fixed_ips with subnet. Note if this changes to a different network update, the port will be replaced.",
         "required": true,
         "type": "string",
         "update_causes": "replacement"
+      },
+      "admin_state_up": {
+        "description": "The administrative state of this port.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "allowed_address_pairs": {
+        "description": "Additional MAC/IP address pairs allowed to pass through the port.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "binding:vnic_type": {
+        "description": "The vnic type to be bound on the neutron port. To support SR-IOV PCI passthrough networking, you can request that the neutron port to be realized as normal (virtual nic), direct (pci passthrough), or macvtap (virtual interface with a tap-like software interface). Note that this only works for Neutron deployments that support the bindings extension.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
       },
       "device_id": {
         "description": "Device ID of this port.",
@@ -632,7 +1508,7 @@
         "update_causes": "none"
       },
       "device_owner": {
-        "description": "Name of the network owning the port. The value is typically network:floatingip or network:router_interface or network:dhcp",
+        "description": "Name of the network owning the port. The value is typically network:floatingip or network:router_interface or network:dhcp.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -643,14 +1519,26 @@
         "type": "list",
         "update_causes": "none"
       },
+      "mac_address": {
+        "description": "MAC address to give to this port.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
       "name": {
         "description": "A symbolic name for this port.",
         "required": false,
         "type": "string",
         "update_causes": "none"
       },
-      "replacement_policy": {
-        "description": "Policy on how to respond to a stack-update for this resource. REPLACE_ALWAYS will replace the port regardless of any property changes. AUTO will update the existing port for any changed update-allowed property.",
+      "port_security_enabled": {
+        "description": "Flag to enable/disable port security on the port. When disable this feature(set it to False), there will be no packages filtering, like security-group and address-pairs.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "qos_policy": {
+        "description": "The name or ID of QoS policy to attach to this port.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -660,6 +1548,86 @@
         "required": false,
         "type": "list",
         "update_causes": "none"
+      },
+      "value_specs": {
+        "description": "Extra parameters to include in the request.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "replacement_policy": {
+        "description": "Policy on how to respond to a stack-update for this resource. REPLACE_ALWAYS will replace the port regardless of any property changes. AUTO will update the existing port for any changed update-allowed property.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::PortPair": {
+    "properties": [
+      "description",
+      "egress",
+      "ingress",
+      "name",
+      "service_function_parameters"
+    ],
+    "full_properties": {
+      "egress": {
+        "description": "ID or name of the egress neutron port.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "ingress": {
+        "description": "ID or name of the ingress neutron port.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "description": {
+        "description": "Description for the Port Pair.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name for the Port Pair.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "service_function_parameters": {
+        "description": "Dictionary of service function parameter. Currently only correlation=None is supported.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Neutron::QoSDscpMarkingRule": {
+    "properties": [
+      "dscp_mark",
+      "policy",
+      "tenant_id"
+    ],
+    "full_properties": {
+      "dscp_mark": {
+        "description": "DSCP mark between 0 and 56, except 2-6, 42, 44, and 50-54.",
+        "required": true,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "policy": {
+        "description": "ID or name of the QoS policy.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "tenant_id": {
+        "description": "The owner tenant ID of this rule.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
       }
     }
   },
@@ -731,6 +1699,75 @@
       }
     }
   },
+  "OS::Neutron::SecurityGroupRule": {
+    "properties": [
+      "description",
+      "direction",
+      "ethertype",
+      "port_range_max",
+      "port_range_min",
+      "protocol",
+      "remote_group",
+      "remote_ip_prefix",
+      "security_group"
+    ],
+    "full_properties": {
+      "security_group": {
+        "description": "Security group name or ID to add rule.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "description": {
+        "description": "Description of the security group rule.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "direction": {
+        "description": "The direction in which the security group rule is applied. For a compute instance, an ingress security group rule matches traffic that is incoming (ingress) for that instance. An egress rule is applied to traffic leaving the instance.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "ethertype": {
+        "description": "Ethertype of the traffic.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "port_range_max": {
+        "description": "The maximum port number in the range that is matched by the security group rule. The port_range_min attribute constrains the port_range_max attribute. If the protocol is ICMP, this value must be an ICMP code.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "port_range_min": {
+        "description": "The minimum port number in the range that is matched by the security group rule. If the protocol is TCP or UDP, this value must be less than or equal to the value of the port_range_max attribute. If the protocol is ICMP, this value must be an ICMP type.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "protocol": {
+        "description": "The protocol that is matched by the security group rule. Allowed values are ah, dccp, egp, esp, gre, icmp, icmpv6, igmp, ipv6-encap, ipv6-frag, ipv6-icmp, ipv6-nonxt, ipv6-opts, ipv6-route, ospf, pgm, rsvp, sctp, tcp, udp, udplite, vrrp and integer representations [0-255].",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "remote_group": {
+        "description": "The remote group name or ID to be associated with this security group rule.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "remote_ip_prefix": {
+        "description": "The remote IP prefix (CIDR) to be associated with this security group rule.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
   "OS::Neutron::Subnet": {
     "properties": [
       "allocation_pools",
@@ -787,10 +1824,10 @@
         "update_causes": "none"
       },
       "host_routes": {
-        "description": "List value expected.",
+        "description": "A list of host route dictionaries for the subnet.",
         "required": false,
-        "type": "can",
-        "update_causes": "unknown"
+        "type": "list",
+        "update_causes": "none"
       },
       "ip_version": {
         "description": "The IP version, which is 4 or 6.",
@@ -799,13 +1836,13 @@
         "update_causes": "replacement"
       },
       "ipv6_address_mode": {
-        "description": "IPv6 address mode. dhcpv6-stateful, dhcpv6-stateless, or slaac.",
+        "description": "IPv6 address mode.",
         "required": false,
         "type": "string",
         "update_causes": "replacement"
       },
       "ipv6_ra_mode": {
-        "description": "IPv6 RA (Router Advertisement) mode. dhcpv6-stateful, dhcpv6-stateless, or slaac.",
+        "description": "IPv6 RA (Router Advertisement) mode.",
         "required": false,
         "type": "string",
         "update_causes": "replacement"
@@ -891,7 +1928,8 @@
       "security_groups",
       "software_config_transport",
       "user_data",
-      "user_data_format"
+      "user_data_format",
+      "user_data_update_policy"
     ],
     "full_properties": {
       "flavor": {
@@ -949,7 +1987,7 @@
         "update_causes": "none"
       },
       "image_update_policy": {
-        "description": "Policy on how to apply an image-id update; either by requesting a server rebuild or by replacing the entire server",
+        "description": "Policy on how to apply an image-id update; either by requesting a server rebuild or by replacing the entire server.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -961,7 +1999,7 @@
         "update_causes": "replacement"
       },
       "metadata": {
-        "description": "Arbitrary key/value metadata to store for this server. Both keys and values must be 255 characters or less.  Non-string values will be serialized to JSON (and the serialized string must be 255 characters or less).",
+        "description": "Arbitrary key/value metadata to store for this server. Both keys and values must be 255 characters or less. Non-string values will be serialized to JSON (and the serialized string must be 255 characters or less).",
         "required": false,
         "type": "map",
         "update_causes": "none"
@@ -1003,7 +2041,7 @@
         "update_causes": "replacement"
       },
       "software_config_transport": {
-        "description": "How the server should receive the metadata required for software configuration. POLL_SERVER_CFN will allow calls to the cfn API action DescribeStackResource authenticated with the provided keypair. POLL_SERVER_HEAT will allow calls to the Heat API resource-show using the provided keystone credentials. POLL_TEMP_URL will create and populate a Swift TempURL with metadata for polling. ZAQAR_MESSAGE will create a dedicated zaqar queue and post the metadata for polling.",
+        "description": "How the server should receive the metadata required for software configuration. POLL_TEMP_URL is the only supported transport on Rackspace Cloud. This property is retained for compatibility.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -1012,13 +2050,19 @@
         "description": "User data script to be executed by cloud-init.",
         "required": false,
         "type": "string",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "user_data_format": {
-        "description": "How the user_data should be formatted for the server. For HEAT_CFNTOOLS, the user_data is bundled as part of the heat-cfntools cloud-init boot configuration data. For RAW the user_data is passed to Nova unmodified. For SOFTWARE_CONFIG user_data is bundled as part of the software config data, and metadata is derived from any associated SoftwareDeployment resources.",
+        "description": "How the user_data should be formatted for the server. For RAW the user_data is passed to Nova unmodified. For SOFTWARE_CONFIG user_data is bundled as part of the software config data, and metadata is derived from any associated SoftwareDeployment resources.",
         "required": false,
         "type": "string",
         "update_causes": "replacement"
+      },
+      "user_data_update_policy": {
+        "description": "Policy on how to apply a user_data update; either by ignoring it or by replacing the entire server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
       }
     }
   },
@@ -1918,7 +2962,8 @@
       "security_groups",
       "software_config_transport",
       "user_data",
-      "user_data_format"
+      "user_data_format",
+      "user_data_update_policy"
     ],
     "full_properties": {
       "flavor": {
@@ -1976,7 +3021,7 @@
         "update_causes": "none"
       },
       "image_update_policy": {
-        "description": "Policy on how to apply an image-id update; either by requesting a server rebuild or by replacing the entire server",
+        "description": "Policy on how to apply an image-id update; either by requesting a server rebuild or by replacing the entire server.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -1988,7 +3033,7 @@
         "update_causes": "replacement"
       },
       "metadata": {
-        "description": "Arbitrary key/value metadata to store for this server. Both keys and values must be 255 characters or less.  Non-string values will be serialized to JSON (and the serialized string must be 255 characters or less).",
+        "description": "Arbitrary key/value metadata to store for this server. Both keys and values must be 255 characters or less. Non-string values will be serialized to JSON (and the serialized string must be 255 characters or less).",
         "required": false,
         "type": "map",
         "update_causes": "none"
@@ -2045,12 +3090,66 @@
         "description": "User data script to be executed by cloud-init.",
         "required": false,
         "type": "string",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "user_data_format": {
         "description": "How the user_data should be formatted for the server. For HEAT_CFNTOOLS, the user_data is bundled as part of the heat-cfntools cloud-init boot configuration data. For RAW the user_data is passed to Nova unmodified. For SOFTWARE_CONFIG user_data is bundled as part of the software config data, and metadata is derived from any associated SoftwareDeployment resources.",
         "required": false,
         "type": "string",
+        "update_causes": "replacement"
+      },
+      "user_data_update_policy": {
+        "description": "Policy on how to apply a user_data update; either by ignoring it or by replacing the entire server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "Rackspace::CloudDatabase::HAInstance": {
+    "properties": [
+      "acls",
+      "datastore",
+      "name",
+      "networks",
+      "replica_source",
+      "replicas"
+    ],
+    "full_properties": {
+      "datastore": {
+        "description": "The type of datastore to use",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Specifies the name of the HA instance",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "replica_source": {
+        "description": "The name, flavorRef, and volume of the replica source (primary) instance.",
+        "required": true,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "replicas": {
+        "description": "The name, flavorRef, and volume of the replicas.",
+        "required": true,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "acls": {
+        "description": "List of IP based ACLs in the CIDR format. This is required to allow the HA group access to the specified IP. By default, the HA group access is blocked.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "networks": {
+        "description": "List of networks to be associated with the HA group. By default (if not specified), it will be [‘servicenet’]. If a public network would be required in addition to the servicenet, it would have to be specified.",
+        "required": false,
+        "type": "list",
         "update_causes": "replacement"
       }
     }

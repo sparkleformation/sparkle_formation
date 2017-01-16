@@ -1,4 +1,733 @@
 {
+  "OS::Aodh::Alarm": {
+    "properties": [
+      "alarm_actions",
+      "alarm_queues",
+      "comparison_operator",
+      "description",
+      "enabled",
+      "evaluation_periods",
+      "insufficient_data_actions",
+      "insufficient_data_queues",
+      "matching_metadata",
+      "meter_name",
+      "ok_actions",
+      "ok_queues",
+      "period",
+      "query",
+      "repeat_actions",
+      "severity",
+      "statistic",
+      "threshold",
+      "time_constraints"
+    ],
+    "full_properties": {
+      "meter_name": {
+        "description": "Meter name watched by the alarm.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "threshold": {
+        "description": "Threshold to evaluate against.",
+        "required": true,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "alarm_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "alarm_queues": {
+        "description": "A list of Zaqar queues to post to when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "comparison_operator": {
+        "description": "Operator used to compare specified statistic with threshold.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "True if alarm evaluation/actioning is enabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "evaluation_periods": {
+        "description": "Number of periods to evaluate over.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "insufficient_data_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "insufficient_data_queues": {
+        "description": "A list of Zaqar queues to post to when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "matching_metadata": {
+        "description": "Meter should match this resource metadata (key=value) additionally to the meter_name.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "ok_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_queues": {
+        "description": "A list of Zaqar queues to post to when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "period": {
+        "description": "Period (seconds) to evaluate over.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "query": {
+        "description": "A list of query factors, each comparing a Sample attribute with a value. Implicitly combined with matching_metadata, if any.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "repeat_actions": {
+        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "severity": {
+        "description": "Severity of the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "statistic": {
+        "description": "Meter statistic to evaluate.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "time_constraints": {
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Aodh::CompositeAlarm": {
+    "properties": [
+      "alarm_actions",
+      "alarm_queues",
+      "composite_rule",
+      "description",
+      "enabled",
+      "insufficient_data_actions",
+      "insufficient_data_queues",
+      "ok_actions",
+      "ok_queues",
+      "repeat_actions",
+      "severity",
+      "time_constraints"
+    ],
+    "full_properties": {
+      "composite_rule": {
+        "description": "Composite threshold rules in JSON format.",
+        "required": true,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "alarm_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "alarm_queues": {
+        "description": "A list of Zaqar queues to post to when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "True if alarm evaluation/actioning is enabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "insufficient_data_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "insufficient_data_queues": {
+        "description": "A list of Zaqar queues to post to when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_queues": {
+        "description": "A list of Zaqar queues to post to when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "repeat_actions": {
+        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "severity": {
+        "description": "Severity of the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "time_constraints": {
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Aodh::EventAlarm": {
+    "properties": [
+      "alarm_actions",
+      "alarm_queues",
+      "description",
+      "enabled",
+      "event_type",
+      "insufficient_data_actions",
+      "insufficient_data_queues",
+      "ok_actions",
+      "ok_queues",
+      "query",
+      "repeat_actions",
+      "severity",
+      "time_constraints"
+    ],
+    "full_properties": {
+      "alarm_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "alarm_queues": {
+        "description": "A list of Zaqar queues to post to when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "True if alarm evaluation/actioning is enabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "event_type": {
+        "description": "Event type to evaluate against. If not specified will match all events.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "insufficient_data_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "insufficient_data_queues": {
+        "description": "A list of Zaqar queues to post to when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_queues": {
+        "description": "A list of Zaqar queues to post to when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "query": {
+        "description": "A list for filtering events. Query conditions used to filter specific events when evaluating the alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "repeat_actions": {
+        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "severity": {
+        "description": "Severity of the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "time_constraints": {
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Aodh::GnocchiAggregationByMetricsAlarm": {
+    "properties": [
+      "aggregation_method",
+      "alarm_actions",
+      "alarm_queues",
+      "comparison_operator",
+      "description",
+      "enabled",
+      "evaluation_periods",
+      "granularity",
+      "insufficient_data_actions",
+      "insufficient_data_queues",
+      "metrics",
+      "ok_actions",
+      "ok_queues",
+      "repeat_actions",
+      "severity",
+      "threshold",
+      "time_constraints"
+    ],
+    "full_properties": {
+      "metrics": {
+        "description": "A list of metric ids.",
+        "required": true,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "threshold": {
+        "description": "Threshold to evaluate against.",
+        "required": true,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "aggregation_method": {
+        "description": "The aggregation method to compare to the threshold.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "alarm_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "alarm_queues": {
+        "description": "A list of Zaqar queues to post to when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "comparison_operator": {
+        "description": "Operator used to compare specified statistic with threshold.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "True if alarm evaluation/actioning is enabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "evaluation_periods": {
+        "description": "Number of periods to evaluate over.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "granularity": {
+        "description": "The time range in seconds.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "insufficient_data_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "insufficient_data_queues": {
+        "description": "A list of Zaqar queues to post to when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_queues": {
+        "description": "A list of Zaqar queues to post to when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "repeat_actions": {
+        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "severity": {
+        "description": "Severity of the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "time_constraints": {
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Aodh::GnocchiAggregationByResourcesAlarm": {
+    "properties": [
+      "aggregation_method",
+      "alarm_actions",
+      "alarm_queues",
+      "comparison_operator",
+      "description",
+      "enabled",
+      "evaluation_periods",
+      "granularity",
+      "insufficient_data_actions",
+      "insufficient_data_queues",
+      "metric",
+      "ok_actions",
+      "ok_queues",
+      "query",
+      "repeat_actions",
+      "resource_type",
+      "severity",
+      "threshold",
+      "time_constraints"
+    ],
+    "full_properties": {
+      "metric": {
+        "description": "Metric name watched by the alarm.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "query": {
+        "description": "The query to filter the metrics.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "resource_type": {
+        "description": "Resource type.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "threshold": {
+        "description": "Threshold to evaluate against.",
+        "required": true,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "aggregation_method": {
+        "description": "The aggregation method to compare to the threshold.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "alarm_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "alarm_queues": {
+        "description": "A list of Zaqar queues to post to when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "comparison_operator": {
+        "description": "Operator used to compare specified statistic with threshold.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "True if alarm evaluation/actioning is enabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "evaluation_periods": {
+        "description": "Number of periods to evaluate over.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "granularity": {
+        "description": "The time range in seconds.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "insufficient_data_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "insufficient_data_queues": {
+        "description": "A list of Zaqar queues to post to when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_queues": {
+        "description": "A list of Zaqar queues to post to when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "repeat_actions": {
+        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "severity": {
+        "description": "Severity of the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "time_constraints": {
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Aodh::GnocchiResourcesAlarm": {
+    "properties": [
+      "aggregation_method",
+      "alarm_actions",
+      "alarm_queues",
+      "comparison_operator",
+      "description",
+      "enabled",
+      "evaluation_periods",
+      "granularity",
+      "insufficient_data_actions",
+      "insufficient_data_queues",
+      "metric",
+      "ok_actions",
+      "ok_queues",
+      "repeat_actions",
+      "resource_id",
+      "resource_type",
+      "severity",
+      "threshold",
+      "time_constraints"
+    ],
+    "full_properties": {
+      "metric": {
+        "description": "Metric name watched by the alarm.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "resource_id": {
+        "description": "Id of a resource.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "resource_type": {
+        "description": "Resource type.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "threshold": {
+        "description": "Threshold to evaluate against.",
+        "required": true,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "aggregation_method": {
+        "description": "The aggregation method to compare to the threshold.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "alarm_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "alarm_queues": {
+        "description": "A list of Zaqar queues to post to when state transitions to alarm.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "comparison_operator": {
+        "description": "Operator used to compare specified statistic with threshold.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description for the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "True if alarm evaluation/actioning is enabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "evaluation_periods": {
+        "description": "Number of periods to evaluate over.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "granularity": {
+        "description": "The time range in seconds.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "insufficient_data_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "insufficient_data_queues": {
+        "description": "A list of Zaqar queues to post to when state transitions to insufficient-data.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_actions": {
+        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "ok_queues": {
+        "description": "A list of Zaqar queues to post to when state transitions to ok.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "repeat_actions": {
+        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "severity": {
+        "description": "Severity of the alarm.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "time_constraints": {
+        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      }
+    }
+  },
   "OS::Barbican::CertificateContainer": {
     "properties": [
       "certificate_ref",
@@ -267,540 +996,6 @@
       }
     }
   },
-  "OS::Ceilometer::Alarm": {
-    "properties": [
-      "alarm_actions",
-      "comparison_operator",
-      "description",
-      "enabled",
-      "evaluation_periods",
-      "insufficient_data_actions",
-      "matching_metadata",
-      "meter_name",
-      "ok_actions",
-      "period",
-      "query",
-      "repeat_actions",
-      "severity",
-      "statistic",
-      "threshold",
-      "time_constraints"
-    ],
-    "full_properties": {
-      "meter_name": {
-        "description": "Meter name watched by the alarm.",
-        "required": true,
-        "type": "string",
-        "update_causes": "replacement"
-      },
-      "threshold": {
-        "description": "Threshold to evaluate against.",
-        "required": true,
-        "type": "number",
-        "update_causes": "none"
-      },
-      "alarm_actions": {
-        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
-        "required": false,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "comparison_operator": {
-        "description": "Operator used to compare specified statistic with threshold.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "description": {
-        "description": "Description for the alarm.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "enabled": {
-        "description": "True if alarm evaluation/actioning is enabled.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "none"
-      },
-      "evaluation_periods": {
-        "description": "Number of periods to evaluate over.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "none"
-      },
-      "insufficient_data_actions": {
-        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
-        "required": false,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "matching_metadata": {
-        "description": "Meter should match this resource metadata (key=value) additionally to the meter_name.",
-        "required": false,
-        "type": "map",
-        "update_causes": "none"
-      },
-      "ok_actions": {
-        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
-        "required": false,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "period": {
-        "description": "Period (seconds) to evaluate over.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "none"
-      },
-      "query": {
-        "description": "A list of query factors, each comparing a Sample attribute with a value. Implicitly combined with matching_metadata, if any.",
-        "required": false,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "repeat_actions": {
-        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "none"
-      },
-      "severity": {
-        "description": "Severity of the alarm.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "statistic": {
-        "description": "Meter statistic to evaluate.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "time_constraints": {
-        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
-        "required": false,
-        "type": "list",
-        "update_causes": "replacement"
-      }
-    }
-  },
-  "OS::Ceilometer::CombinationAlarm": {
-    "properties": [
-      "alarm_actions",
-      "alarm_ids",
-      "description",
-      "enabled",
-      "insufficient_data_actions",
-      "ok_actions",
-      "operator",
-      "repeat_actions",
-      "severity",
-      "time_constraints"
-    ],
-    "full_properties": {
-      "alarm_ids": {
-        "description": "List of alarm identifiers to combine.",
-        "required": true,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "alarm_actions": {
-        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
-        "required": false,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "description": {
-        "description": "Description for the alarm.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "enabled": {
-        "description": "True if alarm evaluation/actioning is enabled.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "none"
-      },
-      "insufficient_data_actions": {
-        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
-        "required": false,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "ok_actions": {
-        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
-        "required": false,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "operator": {
-        "description": "Operator used to combine the alarms.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "repeat_actions": {
-        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "none"
-      },
-      "severity": {
-        "description": "Severity of the alarm.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "time_constraints": {
-        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
-        "required": false,
-        "type": "list",
-        "update_causes": "replacement"
-      }
-    }
-  },
-  "OS::Ceilometer::GnocchiAggregationByMetricsAlarm": {
-    "properties": [
-      "aggregation_method",
-      "alarm_actions",
-      "comparison_operator",
-      "description",
-      "enabled",
-      "evaluation_periods",
-      "granularity",
-      "insufficient_data_actions",
-      "metrics",
-      "ok_actions",
-      "repeat_actions",
-      "severity",
-      "threshold",
-      "time_constraints"
-    ],
-    "full_properties": {
-      "metrics": {
-        "description": "A list of metric ids.",
-        "required": true,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "threshold": {
-        "description": "Threshold to evaluate against.",
-        "required": true,
-        "type": "number",
-        "update_causes": "none"
-      },
-      "aggregation_method": {
-        "description": "The aggregation method to compare to the threshold.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "alarm_actions": {
-        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
-        "required": false,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "comparison_operator": {
-        "description": "Operator used to compare specified statistic with threshold.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "description": {
-        "description": "Description for the alarm.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "enabled": {
-        "description": "True if alarm evaluation/actioning is enabled.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "none"
-      },
-      "evaluation_periods": {
-        "description": "Number of periods to evaluate over.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "none"
-      },
-      "granularity": {
-        "description": "The time range in seconds.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "none"
-      },
-      "insufficient_data_actions": {
-        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
-        "required": false,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "ok_actions": {
-        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
-        "required": false,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "repeat_actions": {
-        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "none"
-      },
-      "severity": {
-        "description": "Severity of the alarm.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "time_constraints": {
-        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
-        "required": false,
-        "type": "list",
-        "update_causes": "replacement"
-      }
-    }
-  },
-  "OS::Ceilometer::GnocchiAggregationByResourcesAlarm": {
-    "properties": [
-      "aggregation_method",
-      "alarm_actions",
-      "comparison_operator",
-      "description",
-      "enabled",
-      "evaluation_periods",
-      "granularity",
-      "insufficient_data_actions",
-      "metric",
-      "ok_actions",
-      "query",
-      "repeat_actions",
-      "resource_type",
-      "severity",
-      "threshold",
-      "time_constraints"
-    ],
-    "full_properties": {
-      "metric": {
-        "description": "Metric name watched by the alarm.",
-        "required": true,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "query": {
-        "description": "The query to filter the metrics.",
-        "required": true,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "resource_type": {
-        "description": "Resource type.",
-        "required": true,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "threshold": {
-        "description": "Threshold to evaluate against.",
-        "required": true,
-        "type": "number",
-        "update_causes": "none"
-      },
-      "aggregation_method": {
-        "description": "The aggregation method to compare to the threshold.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "alarm_actions": {
-        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
-        "required": false,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "comparison_operator": {
-        "description": "Operator used to compare specified statistic with threshold.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "description": {
-        "description": "Description for the alarm.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "enabled": {
-        "description": "True if alarm evaluation/actioning is enabled.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "none"
-      },
-      "evaluation_periods": {
-        "description": "Number of periods to evaluate over.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "none"
-      },
-      "granularity": {
-        "description": "The time range in seconds.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "none"
-      },
-      "insufficient_data_actions": {
-        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
-        "required": false,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "ok_actions": {
-        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
-        "required": false,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "repeat_actions": {
-        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "none"
-      },
-      "severity": {
-        "description": "Severity of the alarm.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "time_constraints": {
-        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
-        "required": false,
-        "type": "list",
-        "update_causes": "replacement"
-      }
-    }
-  },
-  "OS::Ceilometer::GnocchiResourcesAlarm": {
-    "properties": [
-      "aggregation_method",
-      "alarm_actions",
-      "comparison_operator",
-      "description",
-      "enabled",
-      "evaluation_periods",
-      "granularity",
-      "insufficient_data_actions",
-      "metric",
-      "ok_actions",
-      "repeat_actions",
-      "resource_id",
-      "resource_type",
-      "severity",
-      "threshold",
-      "time_constraints"
-    ],
-    "full_properties": {
-      "metric": {
-        "description": "Metric name watched by the alarm.",
-        "required": true,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "resource_id": {
-        "description": "Id of a resource.",
-        "required": true,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "resource_type": {
-        "description": "Resource type.",
-        "required": true,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "threshold": {
-        "description": "Threshold to evaluate against.",
-        "required": true,
-        "type": "number",
-        "update_causes": "none"
-      },
-      "aggregation_method": {
-        "description": "The aggregation method to compare to the threshold.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "alarm_actions": {
-        "description": "A list of URLs (webhooks) to invoke when state transitions to alarm.",
-        "required": false,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "comparison_operator": {
-        "description": "Operator used to compare specified statistic with threshold.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "description": {
-        "description": "Description for the alarm.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "enabled": {
-        "description": "True if alarm evaluation/actioning is enabled.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "none"
-      },
-      "evaluation_periods": {
-        "description": "Number of periods to evaluate over.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "none"
-      },
-      "granularity": {
-        "description": "The time range in seconds.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "none"
-      },
-      "insufficient_data_actions": {
-        "description": "A list of URLs (webhooks) to invoke when state transitions to insufficient-data.",
-        "required": false,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "ok_actions": {
-        "description": "A list of URLs (webhooks) to invoke when state transitions to ok.",
-        "required": false,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "repeat_actions": {
-        "description": "False to trigger actions when the threshold is reached AND the alarm’s state has changed. By default, actions are called each time the threshold is reached.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "none"
-      },
-      "severity": {
-        "description": "Severity of the alarm.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "time_constraints": {
-        "description": "Describe time constraints for the alarm. Only evaluate the alarm if the time at evaluation is within this time constraint. Start point(s) of the constraint are specified with a cron expression, whereas its duration is given in seconds.",
-        "required": false,
-        "type": "list",
-        "update_causes": "replacement"
-      }
-    }
-  },
   "OS::Cinder::EncryptedVolumeType": {
     "properties": [
       "cipher",
@@ -836,6 +1031,80 @@
       },
       "key_size": {
         "description": "Size of encryption key, in bits. For example, 128 or 256.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Cinder::QoSAssociation": {
+    "properties": [
+      "qos_specs",
+      "volume_types"
+    ],
+    "full_properties": {
+      "qos_specs": {
+        "description": "ID or Name of the QoS specs.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "volume_types": {
+        "description": "List of volume type IDs or Names to be attached to QoS specs.",
+        "required": true,
+        "type": "list",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Cinder::QoSSpecs": {
+    "properties": [
+      "name",
+      "specs"
+    ],
+    "full_properties": {
+      "specs": {
+        "description": "The specs key and value pairs of the QoS.",
+        "required": true,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of the QoS.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Cinder::Quota": {
+    "properties": [
+      "gigabytes",
+      "project",
+      "snapshots",
+      "volumes"
+    ],
+    "full_properties": {
+      "project": {
+        "description": "OpenStack Keystone Project.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "gigabytes": {
+        "description": "Quota for the amount of disk space (in Gigabytes). Setting the value to -1 removes the limit.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "snapshots": {
+        "description": "Quota for the number of snapshots. Setting the value to -1 removes the limit.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "volumes": {
+        "description": "Quota for the number of volumes. Setting the value to -1 removes the limit.",
         "required": false,
         "type": "integer",
         "update_causes": "none"
@@ -890,7 +1159,7 @@
         "update_causes": "none"
       },
       "multiattach": {
-        "description": "Whether allow the volume to be attached more than once. This property is only supported from Cinder API v2.",
+        "description": "Whether allow the volume to be attached more than once.",
         "required": false,
         "type": "boolean",
         "update_causes": "replacement"
@@ -1007,31 +1276,45 @@
       }
     }
   },
-  "OS::Designate::Domain": {
+  "OS::Designate::RecordSet": {
     "properties": [
       "description",
-      "email",
       "name",
-      "ttl"
+      "records",
+      "ttl",
+      "type",
+      "zone"
     ],
     "full_properties": {
-      "email": {
-        "description": "Domain email.",
+      "records": {
+        "description": "A list of data for this RecordSet. Each item will be a separate record in Designate These items should conform to the DNS spec for the record type - e.g. A records must be IPv4 addresses, CNAME records must be a hostname. DNS record data varies based on the type of record. For more details, please refer rfc 1035.",
         "required": true,
-        "type": "string",
+        "type": "list",
         "update_causes": "none"
       },
-      "name": {
-        "description": "Domain name.",
+      "type": {
+        "description": "DNS RecordSet type.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "zone": {
+        "description": "DNS Zone id or name.",
         "required": true,
         "type": "string",
         "update_causes": "replacement"
       },
       "description": {
-        "description": "Description of domain.",
+        "description": "Description of RecordSet.",
         "required": false,
         "type": "string",
         "update_causes": "none"
+      },
+      "name": {
+        "description": "RecordSet name.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
       },
       "ttl": {
         "description": "Time To Live (Seconds).",
@@ -1041,134 +1324,51 @@
       }
     }
   },
-  "OS::Designate::Record": {
+  "OS::Designate::Zone": {
     "properties": [
-      "data",
       "description",
-      "domain",
+      "email",
+      "masters",
       "name",
-      "priority",
       "ttl",
       "type"
     ],
     "full_properties": {
-      "data": {
-        "description": "DNS record data, varies based on the type of record. For more details, please refer rfc 1035.",
-        "required": true,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "domain": {
-        "description": "DNS Domain id or name.",
-        "required": true,
-        "type": "string",
-        "update_causes": "replacement"
-      },
       "name": {
-        "description": "Record name.",
+        "description": "DNS Name for the zone.",
         "required": true,
         "type": "string",
         "update_causes": "replacement"
-      },
-      "type": {
-        "description": "DNS Record type.",
-        "required": true,
-        "type": "string",
-        "update_causes": "none"
       },
       "description": {
-        "description": "Description of record.",
+        "description": "Description of zone.",
         "required": false,
         "type": "string",
         "update_causes": "none"
       },
-      "priority": {
-        "description": "DNS record priority. It is considered only for MX and SRV types, otherwise, it is ignored.",
+      "email": {
+        "description": "E-mail for the zone. Used in SOA records for the zone. It is required for PRIMARY Type, otherwise ignored.",
         "required": false,
-        "type": "integer",
+        "type": "string",
         "update_causes": "none"
       },
-      "ttl": {
-        "description": "Time To Live (Seconds).",
-        "required": false,
-        "type": "integer",
-        "update_causes": "none"
-      }
-    }
-  },
-  "OS::Glance::Image": {
-    "properties": [
-      "container_format",
-      "disk_format",
-      "id",
-      "is_public",
-      "location",
-      "min_disk",
-      "min_ram",
-      "name",
-      "protected",
-      "tags"
-    ],
-    "full_properties": {
-      "container_format": {
-        "description": "Container format of image.",
-        "required": true,
-        "type": "string",
-        "update_causes": "replacement"
-      },
-      "disk_format": {
-        "description": "Disk format of image.",
-        "required": true,
-        "type": "string",
-        "update_causes": "replacement"
-      },
-      "location": {
-        "description": "URL where the data for this image already resides. For example, if the image data is stored in swift, you could specify “swift://example.com/container/obj”.",
-        "required": true,
-        "type": "string",
-        "update_causes": "replacement"
-      },
-      "id": {
-        "description": "The image ID. Glance will generate a UUID if not specified.",
-        "required": false,
-        "type": "string",
-        "update_causes": "replacement"
-      },
-      "is_public": {
-        "description": "Scope of image accessibility. Public or private. Default value is False means private.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "replacement"
-      },
-      "min_disk": {
-        "description": "Amount of disk space (in GB) required to boot image. Default value is 0 if not specified and means no limit on the disk size.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "replacement"
-      },
-      "min_ram": {
-        "description": "Amount of ram (in MB) required to boot image. Default value is 0 if not specified and means no limit on the ram size.",
-        "required": false,
-        "type": "integer",
-        "update_causes": "replacement"
-      },
-      "name": {
-        "description": "Name for the image. The name of an image is not unique to a Image Service node.",
-        "required": false,
-        "type": "string",
-        "update_causes": "replacement"
-      },
-      "protected": {
-        "description": "Whether the image can be deleted. If the value is True, the image is protected and cannot be deleted.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "replacement"
-      },
-      "tags": {
-        "description": "List of image tags.",
+      "masters": {
+        "description": "The servers to slave from to get DNS information and is mandatory for zone type SECONDARY, otherwise ignored.",
         "required": false,
         "type": "list",
         "update_causes": "none"
+      },
+      "ttl": {
+        "description": "Time To Live (Seconds) for the zone.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "type": {
+        "description": "Type of zone. PRIMARY is controlled by Designate, SECONDARY zones are slaved from another DNS Server.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
       }
     }
   },
@@ -1243,6 +1443,33 @@
         "required": false,
         "type": "map",
         "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Heat::DeployedServer": {
+    "properties": [
+      "metadata",
+      "name",
+      "software_config_transport"
+    ],
+    "full_properties": {
+      "metadata": {
+        "description": "Arbitrary key/value metadata to store for this server. Both keys and values must be 255 characters or less. Non-string values will be serialized to JSON (and the serialized string must be 255 characters or less).",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Server name.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "software_config_transport": {
+        "description": "How the server should receive the metadata required for software configuration. POLL_SERVER_CFN will allow calls to the cfn API action DescribeStackResource authenticated with the provided keypair. POLL_SERVER_HEAT will allow calls to the Heat API resource-show using the provided keystone credentials. POLL_TEMP_URL will create and populate a Swift TempURL with metadata for polling. ZAQAR_MESSAGE will create a dedicated zaqar queue and post the metadata for polling.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
       }
     }
   },
@@ -1576,6 +1803,12 @@
       "signal_transport"
     ],
     "full_properties": {
+      "servers": {
+        "description": "A map of names and server IDs to apply configuration to. The name is arbitrary and is used as the Heat resource name for the corresponding deployment.",
+        "required": true,
+        "type": "map",
+        "update_causes": "none"
+      },
       "actions": {
         "description": "Which lifecycle actions of the deployment resource will result in this deployment being triggered.",
         "required": false,
@@ -1598,12 +1831,6 @@
         "description": "Name of the derived config associated with this deployment. This is used to apply a sort order to the list of configurations currently deployed to a server.",
         "required": false,
         "type": "string",
-        "update_causes": "none"
-      },
-      "servers": {
-        "description": "A map of names and server IDs to apply configuration to. The name is arbitrary and is used as the Heat resource name for the corresponding deployment.",
-        "required": false,
-        "type": "map",
         "update_causes": "none"
       },
       "signal_transport": {
@@ -1763,6 +1990,12 @@
       "signal_transport"
     ],
     "full_properties": {
+      "servers": {
+        "description": "A map of names and server IDs to apply configuration to. The name is arbitrary and is used as the Heat resource name for the corresponding deployment.",
+        "required": true,
+        "type": "map",
+        "update_causes": "none"
+      },
       "actions": {
         "description": "Which lifecycle actions of the deployment resource will result in this deployment being triggered.",
         "required": false,
@@ -1797,12 +2030,6 @@
         "description": "Name of the derived config associated with this deployment. This is used to apply a sort order to the list of configurations currently deployed to a server.",
         "required": false,
         "type": "string",
-        "update_causes": "none"
-      },
-      "servers": {
-        "description": "A map of names and server IDs to apply configuration to. The name is arbitrary and is used as the Heat resource name for the corresponding deployment.",
-        "required": false,
-        "type": "map",
         "update_causes": "none"
       },
       "signal_transport": {
@@ -1930,6 +2157,26 @@
     "full_properties": {
     }
   },
+  "OS::Heat::Value": {
+    "properties": [
+      "type",
+      "value"
+    ],
+    "full_properties": {
+      "value": {
+        "description": "The expression to generate the “value” attribute.",
+        "required": true,
+        "type": "any",
+        "update_causes": "none"
+      },
+      "type": {
+        "description": "The type of the “value” property.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
   "OS::Heat::WaitCondition": {
     "properties": [
       "count",
@@ -1967,6 +2214,33 @@
         "required": false,
         "type": "string",
         "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Keystone::Domain": {
+    "properties": [
+      "description",
+      "enabled",
+      "name"
+    ],
+    "full_properties": {
+      "description": {
+        "description": "Description of keystone domain.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "enabled": {
+        "description": "This domain is enabled or disabled.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "The name of the domain.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
       }
     }
   },
@@ -2208,7 +2482,7 @@
     ],
     "full_properties": {
       "default_project": {
-        "description": "Default project of keystone user.",
+        "description": "Name or ID of default project of keystone user.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -2220,7 +2494,7 @@
         "update_causes": "none"
       },
       "domain": {
-        "description": "Name of keystone domain.",
+        "description": "Name or ID of keystone domain.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -2880,6 +3154,7 @@
     "properties": [
       "address",
       "name",
+      "period",
       "type"
     ],
     "full_properties": {
@@ -2899,6 +3174,12 @@
         "description": "Name of the notification. By default, physical resource name is used.",
         "required": false,
         "type": "string",
+        "update_causes": "none"
+      },
+      "period": {
+        "description": "Interval in seconds to invoke webhooks if the alarm state does not transition away from the defined trigger state. A value of 0 will disable continuous notifications. This property is only applicable for the webhook notification type and has default period interval of 60 seconds.",
+        "required": false,
+        "type": "integer",
         "update_causes": "none"
       }
     }
@@ -3111,6 +3392,8 @@
   },
   "OS::Neutron::FloatingIP": {
     "properties": [
+      "dns_domain",
+      "dns_name",
       "fixed_ip_address",
       "floating_ip_address",
       "floating_network",
@@ -3123,6 +3406,18 @@
         "required": true,
         "type": "string",
         "update_causes": "replacement"
+      },
+      "dns_domain": {
+        "description": "DNS domain associated with floating ip.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "dns_name": {
+        "description": "DNS name associated with floating ip.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
       },
       "fixed_ip_address": {
         "description": "IP address to use if the port has multiple addresses.",
@@ -3171,68 +3466,6 @@
       },
       "fixed_ip_address": {
         "description": "IP address to use if the port has multiple addresses.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      }
-    }
-  },
-  "OS::Neutron::HealthMonitor": {
-    "properties": [
-      "admin_state_up",
-      "delay",
-      "expected_codes",
-      "http_method",
-      "max_retries",
-      "timeout",
-      "type",
-      "url_path"
-    ],
-    "full_properties": {
-      "delay": {
-        "description": "The minimum time in seconds between regular connections of the member.",
-        "required": true,
-        "type": "integer",
-        "update_causes": "none"
-      },
-      "max_retries": {
-        "description": "Number of permissible connection failures before changing the member status to INACTIVE.",
-        "required": true,
-        "type": "integer",
-        "update_causes": "none"
-      },
-      "timeout": {
-        "description": "Maximum number of seconds for a monitor to wait for a connection to be established before it times out.",
-        "required": true,
-        "type": "integer",
-        "update_causes": "none"
-      },
-      "type": {
-        "description": "One of predefined health monitor types.",
-        "required": true,
-        "type": "string",
-        "update_causes": "replacement"
-      },
-      "admin_state_up": {
-        "description": "The administrative state of the health monitor.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "none"
-      },
-      "expected_codes": {
-        "description": "The list of HTTP status codes expected in response from the member to declare it healthy.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "http_method": {
-        "description": "The HTTP method used for requests by the monitor of type HTTP.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "url_path": {
-        "description": "The HTTP path used in the HTTP request used by the monitor to test a member health.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -3475,7 +3708,7 @@
     ],
     "full_properties": {
       "delay": {
-        "description": "The minimum time in seconds between regular connections of the member.",
+        "description": "The minimum time in milliseconds between regular connections of the member.",
         "required": true,
         "type": "integer",
         "update_causes": "none"
@@ -3493,7 +3726,7 @@
         "update_causes": "replacement"
       },
       "timeout": {
-        "description": "Maximum number of seconds for a monitor to wait for a connection to be established before it times out.",
+        "description": "Maximum number of milliseconds for a monitor to wait for a connection to be established before it times out.",
         "required": true,
         "type": "integer",
         "update_causes": "none"
@@ -3530,6 +3763,123 @@
       },
       "url_path": {
         "description": "The HTTP path used in the HTTP request used by the monitor to test a member health. A valid value is a string the begins with a forward slash (/).",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::LBaaS::L7Policy": {
+    "properties": [
+      "action",
+      "admin_state_up",
+      "description",
+      "listener",
+      "name",
+      "position",
+      "redirect_pool",
+      "redirect_url"
+    ],
+    "full_properties": {
+      "action": {
+        "description": "Action type of the policy.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "listener": {
+        "description": "ID or name of the listener this policy belongs to.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "admin_state_up": {
+        "description": "The administrative state of the policy.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of the policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of the policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "position": {
+        "description": "L7 policy position in ordered policies list. This must be an integer starting from 1. If not specified, policy will be placed at the tail of existing policies list.",
+        "required": false,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "redirect_pool": {
+        "description": "ID or name of the pool for REDIRECT_TO_POOL action type.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "redirect_url": {
+        "description": "URL for REDIRECT_TO_URL action type. This should be a valid URL string.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::LBaaS::L7Rule": {
+    "properties": [
+      "admin_state_up",
+      "compare_type",
+      "invert",
+      "key",
+      "l7policy",
+      "type",
+      "value"
+    ],
+    "full_properties": {
+      "compare_type": {
+        "description": "Rule compare type.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "l7policy": {
+        "description": "ID or name of L7 policy this rule belongs to.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "type": {
+        "description": "Rule type.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "value": {
+        "description": "Value to compare.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "admin_state_up": {
+        "description": "The administrative state of the rule.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "invert": {
+        "description": "Invert the compare type.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "key": {
+        "description": "Key to compare. Relevant for HEADER and COOKIE types only.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -3685,7 +4035,7 @@
         "update_causes": "none"
       },
       "listener": {
-        "description": "Listner name or ID to be associated with this pool.",
+        "description": "Listener name or ID to be associated with this pool.",
         "required": true,
         "type": "string",
         "update_causes": "replacement"
@@ -3750,49 +4100,22 @@
         "type": "integer",
         "update_causes": "replacement"
       },
+      "subnet": {
+        "description": "Subnet name or ID of this member.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
       "admin_state_up": {
         "description": "The administrative state of the pool member.",
         "required": false,
         "type": "boolean",
         "update_causes": "none"
       },
-      "subnet": {
-        "description": "Subnet name or ID of this member.",
-        "required": false,
-        "type": "string",
-        "update_causes": "replacement"
-      },
       "weight": {
         "description": "Weight of pool member in the pool (default to 1).",
         "required": false,
         "type": "integer",
-        "update_causes": "none"
-      }
-    }
-  },
-  "OS::Neutron::LoadBalancer": {
-    "properties": [
-      "members",
-      "pool_id",
-      "protocol_port"
-    ],
-    "full_properties": {
-      "pool_id": {
-        "description": "The ID of the load balancing pool.",
-        "required": true,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "protocol_port": {
-        "description": "Port number on which the servers are running on the members.",
-        "required": true,
-        "type": "integer",
-        "update_causes": "replacement"
-      },
-      "members": {
-        "description": "The list of Nova server IDs load balanced.",
-        "required": false,
-        "type": "list",
         "update_causes": "none"
       }
     }
@@ -3862,6 +4185,7 @@
     "properties": [
       "admin_state_up",
       "dhcp_agent_ids",
+      "dns_domain",
       "name",
       "port_security_enabled",
       "qos_policy",
@@ -3880,6 +4204,12 @@
         "description": "The IDs of the DHCP agent to schedule the network. Note that the default policy setting in Neutron restricts usage of this property to administrative users only.",
         "required": false,
         "type": "list",
+        "update_causes": "none"
+      },
+      "dns_domain": {
+        "description": "DNS domain associated with this network.",
+        "required": false,
+        "type": "string",
         "update_causes": "none"
       },
       "name": {
@@ -3947,116 +4277,6 @@
       }
     }
   },
-  "OS::Neutron::Pool": {
-    "properties": [
-      "admin_state_up",
-      "description",
-      "lb_method",
-      "monitors",
-      "name",
-      "protocol",
-      "provider",
-      "subnet",
-      "vip"
-    ],
-    "full_properties": {
-      "lb_method": {
-        "description": "The algorithm used to distribute load between the members of the pool.",
-        "required": true,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "protocol": {
-        "description": "Protocol for balancing.",
-        "required": true,
-        "type": "string",
-        "update_causes": "replacement"
-      },
-      "subnet": {
-        "description": "The subnet for the port on which the members of the pool will be connected.",
-        "required": true,
-        "type": "string",
-        "update_causes": "replacement"
-      },
-      "vip": {
-        "description": "IP address and port of the pool.",
-        "required": true,
-        "type": "map",
-        "update_causes": "replacement"
-      },
-      "admin_state_up": {
-        "description": "The administrative state of this pool.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "none"
-      },
-      "description": {
-        "description": "Description of the pool.",
-        "required": false,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "monitors": {
-        "description": "List of health monitors associated with the pool.",
-        "required": false,
-        "type": "list",
-        "update_causes": "none"
-      },
-      "name": {
-        "description": "Name of the pool.",
-        "required": false,
-        "type": "string",
-        "update_causes": "replacement"
-      },
-      "provider": {
-        "description": "LBaaS provider to implement this load balancer instance.",
-        "required": false,
-        "type": "string",
-        "update_causes": "replacement"
-      }
-    }
-  },
-  "OS::Neutron::PoolMember": {
-    "properties": [
-      "address",
-      "admin_state_up",
-      "pool_id",
-      "protocol_port",
-      "weight"
-    ],
-    "full_properties": {
-      "address": {
-        "description": "IP address of the pool member on the pool network.",
-        "required": true,
-        "type": "string",
-        "update_causes": "replacement"
-      },
-      "pool_id": {
-        "description": "The ID of the load balancing pool.",
-        "required": true,
-        "type": "string",
-        "update_causes": "none"
-      },
-      "protocol_port": {
-        "description": "TCP port on which the pool member listens for requests or connections.",
-        "required": true,
-        "type": "integer",
-        "update_causes": "replacement"
-      },
-      "admin_state_up": {
-        "description": "The administrative state of the pool member.",
-        "required": false,
-        "type": "boolean",
-        "update_causes": "replacement"
-      },
-      "weight": {
-        "description": "Weight of pool member in the pool (default to 1).",
-        "required": false,
-        "type": "integer",
-        "update_causes": "none"
-      }
-    }
-  },
   "OS::Neutron::Port": {
     "properties": [
       "admin_state_up",
@@ -4064,6 +4284,7 @@
       "binding:vnic_type",
       "device_id",
       "device_owner",
+      "dns_name",
       "fixed_ips",
       "mac_address",
       "name",
@@ -4091,7 +4312,7 @@
         "description": "Additional MAC/IP address pairs allowed to pass through the port.",
         "required": false,
         "type": "list",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "binding:vnic_type": {
         "description": "The vnic type to be bound on the neutron port. To support SR-IOV PCI passthrough networking, you can request that the neutron port to be realized as normal (virtual nic), direct (pci passthrough), or macvtap (virtual interface with a tap-like software interface). Note that this only works for Neutron deployments that support the bindings extension.",
@@ -4107,6 +4328,12 @@
       },
       "device_owner": {
         "description": "Name of the network owning the port. The value is typically network:floatingip or network:router_interface or network:dhcp.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "dns_name": {
+        "description": "DNS name associated with the port.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -4311,6 +4538,68 @@
       }
     }
   },
+  "OS::Neutron::Quota": {
+    "properties": [
+      "floatingip",
+      "network",
+      "port",
+      "project",
+      "router",
+      "security_group",
+      "security_group_rule",
+      "subnet"
+    ],
+    "full_properties": {
+      "project": {
+        "description": "Name or id of the project to set the quota for.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "floatingip": {
+        "description": "Quota for the number of floating IPs. Setting -1 means unlimited.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "network": {
+        "description": "Quota for the number of networks. Setting -1 means unlimited.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "port": {
+        "description": "Quota for the number of ports. Setting -1 means unlimited.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "router": {
+        "description": "Quota for the number of routers. Setting -1 means unlimited.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "security_group": {
+        "description": "Quota for the number of security groups. Setting -1 means unlimited.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "security_group_rule": {
+        "description": "Quota for the number of security group rules. Setting -1 means unlimited.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "subnet": {
+        "description": "Quota for the number of subnets. Setting -1 means unlimited.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      }
+    }
+  },
   "OS::Neutron::RBACPolicy": {
     "properties": [
       "action",
@@ -4458,6 +4747,75 @@
         "required": false,
         "type": "list",
         "update_causes": "none"
+      }
+    }
+  },
+  "OS::Neutron::SecurityGroupRule": {
+    "properties": [
+      "description",
+      "direction",
+      "ethertype",
+      "port_range_max",
+      "port_range_min",
+      "protocol",
+      "remote_group",
+      "remote_ip_prefix",
+      "security_group"
+    ],
+    "full_properties": {
+      "security_group": {
+        "description": "Security group name or ID to add rule.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "description": {
+        "description": "Description of the security group rule.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "direction": {
+        "description": "The direction in which the security group rule is applied. For a compute instance, an ingress security group rule matches traffic that is incoming (ingress) for that instance. An egress rule is applied to traffic leaving the instance.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "ethertype": {
+        "description": "Ethertype of the traffic.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "port_range_max": {
+        "description": "The maximum port number in the range that is matched by the security group rule. The port_range_min attribute constrains the port_range_max attribute. If the protocol is ICMP, this value must be an ICMP code.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "port_range_min": {
+        "description": "The minimum port number in the range that is matched by the security group rule. If the protocol is TCP or UDP, this value must be less than or equal to the value of the port_range_max attribute. If the protocol is ICMP, this value must be an ICMP type.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      },
+      "protocol": {
+        "description": "The protocol that is matched by the security group rule. Allowed values are ah, dccp, egp, esp, gre, icmp, icmpv6, igmp, ipv6-encap, ipv6-frag, ipv6-icmp, ipv6-nonxt, ipv6-opts, ipv6-route, ospf, pgm, rsvp, sctp, tcp, udp, udplite, vrrp and integer representations [0-255].",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "remote_group": {
+        "description": "The remote group name or ID to be associated with this security group rule.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "remote_ip_prefix": {
+        "description": "The remote IP prefix (CIDR) to be associated with this security group rule.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
       }
     }
   },
@@ -4700,6 +5058,7 @@
       "ram",
       "rxtx_factor",
       "swap",
+      "tenants",
       "vcpus"
     ],
     "full_properties": {
@@ -4762,6 +5121,12 @@
         "required": false,
         "type": "integer",
         "update_causes": "replacement"
+      },
+      "tenants": {
+        "description": "List of tenants.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
       }
     }
   },
@@ -4836,7 +5201,8 @@
     "properties": [
       "name",
       "public_key",
-      "save_private_key"
+      "save_private_key",
+      "type"
     ],
     "full_properties": {
       "name": {
@@ -4856,6 +5222,123 @@
         "required": false,
         "type": "boolean",
         "update_causes": "replacement"
+      },
+      "type": {
+        "description": "Keypair type. Supported since Nova api version 2.2.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Nova::Quota": {
+    "properties": [
+      "cores",
+      "fixed_ips",
+      "floating_ips",
+      "injected_file_content_bytes",
+      "injected_file_path_bytes",
+      "injected_files",
+      "instances",
+      "key_pairs",
+      "metadata_items",
+      "project",
+      "ram",
+      "security_group_rules",
+      "security_groups",
+      "server_group_members",
+      "server_groups"
+    ],
+    "full_properties": {
+      "project": {
+        "description": "Name or id of the project to set the quota for.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "cores": {
+        "description": "Quota for the number of cores. Setting the value to -1 removes the limit.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "fixed_ips": {
+        "description": "Quota for the number of fixed IPs. Setting the value to -1 removes the limit.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "floating_ips": {
+        "description": "Quota for the number of floating IPs. Setting the value to -1 removes the limit.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "injected_file_content_bytes": {
+        "description": "Quota for the number of injected file content bytes. Setting the value to -1 removes the limit.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "injected_file_path_bytes": {
+        "description": "Quota for the number of injected file path bytes. Setting the value to -1 removes the limit.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "injected_files": {
+        "description": "Quota for the number of injected files. Setting the value to -1 removes the limit.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "instances": {
+        "description": "Quota for the number of instances. Setting the value to -1 removes the limit.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "key_pairs": {
+        "description": "Quota for the number of key pairs. Setting the value to -1 removes the limit.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "metadata_items": {
+        "description": "Quota for the number of metadata items. Setting the value to -1 removes the limit.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "ram": {
+        "description": "Quota for the amount of ram (in megabytes). Setting the value to -1 removes the limit.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "security_group_rules": {
+        "description": "Quota for the number of security group rules. Setting the value to -1 removes the limit.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "security_groups": {
+        "description": "Quota for the number of security groups. Setting the value to -1 removes the limit.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "server_group_members": {
+        "description": "Quota for the number of server group members. Setting the value to -1 removes the limit.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      },
+      "server_groups": {
+        "description": "Quota for the number of server groups. Setting the value to -1 removes the limit.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
       }
     }
   },
@@ -4880,6 +5363,7 @@
       "scheduler_hints",
       "security_groups",
       "software_config_transport",
+      "tags",
       "user_data",
       "user_data_format",
       "user_data_update_policy"
@@ -4999,6 +5483,12 @@
         "type": "string",
         "update_causes": "none"
       },
+      "tags": {
+        "description": "Server tags. Supported since client version 2.26.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
       "user_data": {
         "description": "User data script to be executed by cloud-init.",
         "required": false,
@@ -5012,7 +5502,7 @@
         "update_causes": "replacement"
       },
       "user_data_update_policy": {
-        "description": "Policy on how to apply a user_data update; either by ignorning it or by replacing the entire server.",
+        "description": "Policy on how to apply a user_data update; either by ignoring it or by replacing the entire server.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -5262,6 +5752,68 @@
         "description": "Tags to add to the image.",
         "required": false,
         "type": "list",
+        "update_causes": "none"
+      }
+    }
+  },
+  "OS::Sahara::Job": {
+    "properties": [
+      "default_execution_data",
+      "description",
+      "is_protected",
+      "is_public",
+      "libs",
+      "mains",
+      "name",
+      "type"
+    ],
+    "full_properties": {
+      "type": {
+        "description": "Type of the job.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "default_execution_data": {
+        "description": "Default execution data to use when run signal.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of the job.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "is_protected": {
+        "description": "If True, job will be protected from modifications and can not be deleted until this property is set to False.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "is_public": {
+        "description": "If True, job will be shared across the tenants.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "libs": {
+        "description": "IDs of job’s lib job binaries.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "mains": {
+        "description": "IDs of job’s main job binary. In case of specific Sahara service, this property designed as a list, but accepts only one item.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name of the job.",
+        "required": false,
+        "type": "string",
         "update_causes": "none"
       }
     }
@@ -5781,22 +6333,131 @@
       }
     }
   },
+  "OS::Zaqar::MistralTrigger": {
+    "properties": [
+      "input",
+      "params",
+      "queue_name",
+      "ttl",
+      "workflow_id"
+    ],
+    "full_properties": {
+      "queue_name": {
+        "description": "Name of the queue to subscribe to.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "workflow_id": {
+        "description": "UUID of the Mistral workflow to trigger.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "input": {
+        "description": "Input values to pass to the Mistral workflow.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "params": {
+        "description": "Parameters to pass to the Mistral workflow execution. The parameters depend on the workflow type.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "ttl": {
+        "description": "Time to live of the subscription in seconds.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "none"
+      }
+    }
+  },
   "OS::Zaqar::Queue": {
     "properties": [
       "metadata",
       "name"
     ],
     "full_properties": {
-      "name": {
-        "description": "Name of the queue instance to create.",
-        "required": true,
-        "type": "string",
-        "update_causes": "replacement"
-      },
       "metadata": {
         "description": "Arbitrary key/value metadata to store contextual information about this queue.",
         "required": false,
         "type": "map",
+        "update_causes": "none"
+      },
+      "name": {
+        "description": "Name of the queue instance to create.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Zaqar::SignedQueueURL": {
+    "properties": [
+      "methods",
+      "paths",
+      "queue",
+      "ttl"
+    ],
+    "full_properties": {
+      "queue": {
+        "description": "Name of the queue instance to create a URL for.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "methods": {
+        "description": "List of allowed HTTP methods to be used. Default to allow GET.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "paths": {
+        "description": "List of allowed paths to be accessed. Default to allow queue messages URL.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
+      "ttl": {
+        "description": "Time validity of the URL, in seconds. Default to one day.",
+        "required": false,
+        "type": "integer",
+        "update_causes": "replacement"
+      }
+    }
+  },
+  "OS::Zaqar::Subscription": {
+    "properties": [
+      "options",
+      "queue_name",
+      "subscriber",
+      "ttl"
+    ],
+    "full_properties": {
+      "queue_name": {
+        "description": "Name of the queue to subscribe to.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "subscriber": {
+        "description": "URI of the subscriber which will be notified. Must be in the format: <TYPE>:<VALUE>.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "options": {
+        "description": "Options used to configure this subscription.",
+        "required": false,
+        "type": "map",
+        "update_causes": "none"
+      },
+      "ttl": {
+        "description": "Time to live of the subscription in seconds.",
+        "required": false,
+        "type": "integer",
         "update_causes": "none"
       }
     }
