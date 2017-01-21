@@ -1,6 +1,6 @@
 SparkleFormation.new('load_balancer').overrides do
 
-  dynamic!(:load_balancer, :test) do
+  dynamic!(:elastic_loadbalancing_load_balancer, :test, :resource_name_suffix => :load_balancer) do
     properties do
       listeners array!(
         -> {

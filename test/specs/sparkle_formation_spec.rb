@@ -18,8 +18,8 @@ describe SparkleFormation do
       end
 
       it 'should require string-ish type for dynamic name' do
-        ->{ SparkleFormation.insert(:thing, @struct) }.must_raise RuntimeError
-        ->{ SparkleFormation.insert('thing', @struct) }.must_raise RuntimeError
+        ->{ SparkleFormation.insert(:thing, @struct) }.must_raise TypeError
+        ->{ SparkleFormation.insert('thing', @struct) }.must_raise TypeError
         ->{ SparkleFormation.insert(false, @struct) }.must_raise TypeError
       end
 
