@@ -25,6 +25,18 @@ class SparkleFormation
       end
       alias_method :join!, :_cf_join
 
+      # Split generator
+      #
+      # @param string [String] string to split
+      # @param delimiter [String] delimiter to split string
+      # @return [Hash]
+      def _cf_split(string, delimiter)
+        __t_stringish(string)
+        __t_stringish(delimiter)
+        {'Fn::Split' => [delimiter, string]}
+      end
+      alias_method :split!, :_cf_split
+
       # Ref generator
       #
       # @param thing [String, Symbol] reference name
