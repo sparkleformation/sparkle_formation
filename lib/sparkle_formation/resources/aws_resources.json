@@ -7029,5 +7029,40 @@
       }
     },
     "path": "aws-resource-cloudformation-interface.html"
+  },
+  "AWS::CertificateManager::Certificate": {
+    "properties": [
+      "DomainName",
+      "DomainValidationOptions",
+      "SubjectAlternativeNames",
+      "Tags"
+    ],
+    "full_properties": {
+      "DomainName": {
+        "description": "Fully qualified domain name (FQDN), such as www.example.com, of the site that you want to secure with the ACM certificate. To protect several sites in the same domain, use an asterisk (*) to specify a wildcard. For example, *.example.com protects www.example.com, site.example.com, and images.example.com.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "DomainValidationOptions": {
+        "description": "Domain information that domain name registrars use to verify your identity",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "SubjectAlternativeNames": {
+        "description": "FQDNs to be included in the Subject Alternative Name extension of the ACM certificate. For example, you can add www.example.net to a certificate for the www.example.com domain name so that users can reach your site by using either name.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Tags": {
+        "description": "The tags that you want to attach to the resource.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-certificatemanager-certificate.html"
   }
 }
