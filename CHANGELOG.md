@@ -1,3 +1,9 @@
+# v3.0.12
+* Prevent parameter mappings applying to root template
+* Add #import_value! helper for AWS templates (#193)
+* Add #split! helper for AWS templates
+* Add provider support for Terraform (#201)
+
 # v3.0.10
 * Extract pack name using previously extract path (#180)
 
