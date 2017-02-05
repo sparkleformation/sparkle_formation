@@ -34,4 +34,4 @@ implementation:
 * Documentation: http://www.sparkleformation.io/docs/sparkle_formation
 * Repository: https://github.com/sparkleformation/sparkle_formation
 * Mailing List: https://groups.google.com/forum/#!forum/sparkleformation
-* IRC: Freenode @ #sparkleformation
+* IRC: [#sparkleformation @ Freenode](https://webchat.freenode.net/?channels=#sparkleformation)
