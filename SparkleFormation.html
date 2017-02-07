@@ -1,8 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
   Class: SparkleFormation
   
@@ -15,9 +15,8 @@
   <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  hasFrames = window.top.frames.main ? true : false;
+  pathId = "SparkleFormation";
   relpath = '';
-  framesUrl = "frames.html#!SparkleFormation.html";
 </script>
 
 
@@ -28,51 +27,48 @@
 
   </head>
   <body>
-    <div id="header">
-      <div id="menu">
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
   
     <a href="_index.html">Index (S)</a> &raquo;
     
     
     <span class="title">SparkleFormation</span>
   
-
-  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
-      <div id="search">
+        <div id="search">
   
     <a class="full_list_link" id="class_list_link"
         href="class_list.html">
-      Class List
-    </a>
-  
-    <a class="full_list_link" id="method_list_link"
-        href="method_list.html">
-      Method List
-    </a>
-  
-    <a class="full_list_link" id="file_list_link"
-        href="file_list.html">
-      File List
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
     </a>
   
 </div>
-      <div class="clear"></div>
-    </div>
+        <div class="clear"></div>
+      </div>
 
-    <iframe id="search_frame"></iframe>
-
-    <div id="content"><h1>Class: SparkleFormation
+      <div id="content"><h1>Class: SparkleFormation
   
   
   
 </h1>
-
-<dl class="box">
+<div class="box_info">
   
-    <dt class="r1">Inherits:</dt>
-    <dd class="r1">
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
       <span class="inheritName">Object</span>
       
         <ul class="fullTree">
@@ -83,31 +79,37 @@
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
       
-      </dd>
-    
+    </dd>
+  </dl>
+  
+
   
   
-    
-      <dt class="r2">Extended by:</dt>
-      <dd class="r2"><span class='object_link'><a href="SparkleFormation/Utils/AnimalStrings.html" title="SparkleFormation::Utils::AnimalStrings (module)">Utils::AnimalStrings</a></span>, <span class='object_link'><a href="SparkleFormation/Utils/TypeCheckers.html" title="SparkleFormation::Utils::TypeCheckers (module)">Utils::TypeCheckers</a></span></dd>
-      
-    
-  
-    
-      <dt class="r1">Includes:</dt>
-      <dd class="r1">Bogo::Memoization, <span class='object_link'><a href="SparkleFormation/Utils/AnimalStrings.html" title="SparkleFormation::Utils::AnimalStrings (module)">Utils::AnimalStrings</a></span></dd>
-      
-    
+  <dl>
+      <dt>Extended by:</dt>
+      <dd><span class='object_link'><a href="SparkleFormation/Utils/AnimalStrings.html" title="SparkleFormation::Utils::AnimalStrings (module)">Utils::AnimalStrings</a></span>, <span class='object_link'><a href="SparkleFormation/Utils/TypeCheckers.html" title="SparkleFormation::Utils::TypeCheckers (module)">Utils::TypeCheckers</a></span></dd>
+  </dl>
   
   
   
-    <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/sparkle_formation.rb<span class="defines">,<br />
-  lib/sparkle_formation/error.rb,<br /> lib/sparkle_formation/utils.rb,<br /> lib/sparkle_formation/version.rb,<br /> lib/sparkle_formation/sparkle.rb,<br /> lib/sparkle_formation/provider.rb,<br /> lib/sparkle_formation/resources.rb,<br /> lib/sparkle_formation/composition.rb,<br /> lib/sparkle_formation/translation.rb,<br /> lib/sparkle_formation/provider/aws.rb,<br /> lib/sparkle_formation/provider/heat.rb,<br /> lib/sparkle_formation/resources/aws.rb,<br /> lib/sparkle_formation/provider/azure.rb,<br /> lib/sparkle_formation/resources/heat.rb,<br /> lib/sparkle_formation/sparkle_struct.rb,<br /> lib/sparkle_formation/provider/google.rb,<br /> lib/sparkle_formation/function_struct.rb,<br /> lib/sparkle_formation/resources/azure.rb,<br /> lib/sparkle_formation/translation/heat.rb,<br /> lib/sparkle_formation/resources/google.rb,<br /> lib/sparkle_formation/sparkle_formation.rb,<br /> lib/sparkle_formation/sparkle_attribute.rb,<br /> lib/sparkle_formation/sparkle_collection.rb,<br /> lib/sparkle_formation/resources/rackspace.rb,<br /> lib/sparkle_formation/translation/rackspace.rb,<br /> lib/sparkle_formation/sparkle_attribute/aws.rb,<br /> lib/sparkle_formation/sparkle_attribute/heat.rb,<br /> lib/sparkle_formation/sparkle_attribute/azure.rb,<br /> lib/sparkle_formation/sparkle_attribute/google.rb,<br /> lib/sparkle_formation/sparkle_collection/rainbow.rb,<br /> lib/sparkle_formation/sparkle_attribute/rackspace.rb</span>
+  <dl>
+      <dt>Includes:</dt>
+      <dd>Bogo::Memoization, <span class='object_link'><a href="SparkleFormation/Utils/AnimalStrings.html" title="SparkleFormation::Utils::AnimalStrings (module)">Utils::AnimalStrings</a></span></dd>
+  </dl>
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/sparkle_formation.rb<span class="defines">,<br />
+  lib/sparkle_formation/error.rb,<br /> lib/sparkle_formation/utils.rb,<br /> lib/sparkle_formation/sparkle.rb,<br /> lib/sparkle_formation/version.rb,<br /> lib/sparkle_formation/provider.rb,<br /> lib/sparkle_formation/resources.rb,<br /> lib/sparkle_formation/composition.rb,<br /> lib/sparkle_formation/translation.rb,<br /> lib/sparkle_formation/provider/aws.rb,<br /> lib/sparkle_formation/provider/heat.rb,<br /> lib/sparkle_formation/resources/aws.rb,<br /> lib/sparkle_formation/provider/azure.rb,<br /> lib/sparkle_formation/resources/heat.rb,<br /> lib/sparkle_formation/sparkle_struct.rb,<br /> lib/sparkle_formation/function_struct.rb,<br /> lib/sparkle_formation/provider/google.rb,<br /> lib/sparkle_formation/resources/azure.rb,<br /> lib/sparkle_formation/resources/google.rb,<br /> lib/sparkle_formation/translation/heat.rb,<br /> lib/sparkle_formation/sparkle_attribute.rb,<br /> lib/sparkle_formation/sparkle_formation.rb,<br /> lib/sparkle_formation/provider/terraform.rb,<br /> lib/sparkle_formation/sparkle_collection.rb,<br /> lib/sparkle_formation/resources/rackspace.rb,<br /> lib/sparkle_formation/resources/terraform.rb,<br /> lib/sparkle_formation/sparkle_attribute/aws.rb,<br /> lib/sparkle_formation/translation/rackspace.rb,<br /> lib/sparkle_formation/sparkle_attribute/heat.rb,<br /> lib/sparkle_formation/sparkle_attribute/azure.rb,<br /> lib/sparkle_formation/sparkle_attribute/google.rb,<br /> lib/sparkle_formation/sparkle_collection/rainbow.rb,<br /> lib/sparkle_formation/sparkle_attribute/rackspace.rb,<br /> lib/sparkle_formation/sparkle_attribute/terraform.rb</span>
 </dd>
+  </dl>
   
-</dl>
-<div class="clear"></div>
+</div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
@@ -127,32 +129,16 @@
     
   
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="SparkleFormation/Cache.html" title="SparkleFormation::Cache (class)">Cache</a></span>, <span class='object_link'><a href="SparkleFormation/Composition.html" title="SparkleFormation::Composition (class)">Composition</a></span>, <span class='object_link'><a href="SparkleFormation/Error.html" title="SparkleFormation::Error (class)">Error</a></span>, <span class='object_link'><a href="SparkleFormation/FunctionStruct.html" title="SparkleFormation::FunctionStruct (class)">FunctionStruct</a></span>, <span class='object_link'><a href="SparkleFormation/GoogleStruct.html" title="SparkleFormation::GoogleStruct (class)">GoogleStruct</a></span>, <span class='object_link'><a href="SparkleFormation/JinjaExpressionStruct.html" title="SparkleFormation::JinjaExpressionStruct (class)">JinjaExpressionStruct</a></span>, <span class='object_link'><a href="SparkleFormation/JinjaStatementStruct.html" title="SparkleFormation::JinjaStatementStruct (class)">JinjaStatementStruct</a></span>, <span class='object_link'><a href="SparkleFormation/Registry.html" title="SparkleFormation::Registry (class)">Registry</a></span>, <span class='object_link'><a href="SparkleFormation/Resources.html" title="SparkleFormation::Resources (class)">Resources</a></span>, <span class='object_link'><a href="SparkleFormation/Sparkle.html" title="SparkleFormation::Sparkle (class)">Sparkle</a></span>, <span class='object_link'><a href="SparkleFormation/SparkleCollection.html" title="SparkleFormation::SparkleCollection (class)">SparkleCollection</a></span>, <span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span>, <span class='object_link'><a href="SparkleFormation/Translation.html" title="SparkleFormation::Translation (class)">Translation</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="SparkleFormation/Cache.html" title="SparkleFormation::Cache (class)">Cache</a></span>, <span class='object_link'><a href="SparkleFormation/Composition.html" title="SparkleFormation::Composition (class)">Composition</a></span>, <span class='object_link'><a href="SparkleFormation/Error.html" title="SparkleFormation::Error (class)">Error</a></span>, <span class='object_link'><a href="SparkleFormation/FunctionStruct.html" title="SparkleFormation::FunctionStruct (class)">FunctionStruct</a></span>, <span class='object_link'><a href="SparkleFormation/GoogleStruct.html" title="SparkleFormation::GoogleStruct (class)">GoogleStruct</a></span>, <span class='object_link'><a href="SparkleFormation/JinjaExpressionStruct.html" title="SparkleFormation::JinjaExpressionStruct (class)">JinjaExpressionStruct</a></span>, <span class='object_link'><a href="SparkleFormation/JinjaStatementStruct.html" title="SparkleFormation::JinjaStatementStruct (class)">JinjaStatementStruct</a></span>, <span class='object_link'><a href="SparkleFormation/Registry.html" title="SparkleFormation::Registry (class)">Registry</a></span>, <span class='object_link'><a href="SparkleFormation/Resources.html" title="SparkleFormation::Resources (class)">Resources</a></span>, <span class='object_link'><a href="SparkleFormation/Sparkle.html" title="SparkleFormation::Sparkle (class)">Sparkle</a></span>, <span class='object_link'><a href="SparkleFormation/SparkleCollection.html" title="SparkleFormation::SparkleCollection (class)">SparkleCollection</a></span>, <span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span>, <span class='object_link'><a href="SparkleFormation/TerraformStruct.html" title="SparkleFormation::TerraformStruct (class)">TerraformStruct</a></span>, <span class='object_link'><a href="SparkleFormation/Translation.html" title="SparkleFormation::Translation (class)">Translation</a></span>
     
   
 </p>
 
   <h2>Constant Summary</h2>
-  
-    <dl class="constants">
-      
-        <dt id="VERSION-constant" class="">VERSION =
-          <div class="docstring">
-  <div class="discussion">
-    <p>Current library version</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
-        </dt>
-        <dd><pre class="code"><span class='const'>Gem</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>3.0.5</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></pre></dd>
-      
-        <dt id="SparklePack-constant" class="">SparklePack =
-          <div class="docstring">
+  <dl class="constants">
+    
+      <dt id="SparklePack-constant" class="">SparklePack =
+        <div class="docstring">
   <div class="discussion">
     <p>Alias for interfacing naming</p>
 
@@ -163,11 +149,26 @@
   
 
 </div>
-        </dt>
-        <dd><pre class="code"><span class='const'>Sparkle</span></pre></dd>
-      
-        <dt id="IGNORE_DIRECTORIES-constant" class="">IGNORE_DIRECTORIES =
-          <div class="docstring">
+      </dt>
+      <dd><pre class="code"><span class='const'><span class='object_link'><a href="SparkleFormation/Sparkle.html" title="SparkleFormation::Sparkle (class)">Sparkle</a></span></span></pre></dd>
+    
+      <dt id="VERSION-constant" class="">VERSION =
+        <div class="docstring">
+  <div class="discussion">
+    <p>Current library version</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+      </dt>
+      <dd><pre class="code"><span class='const'>Gem</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>3.0.12</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span></pre></dd>
+    
+      <dt id="IGNORE_DIRECTORIES-constant" class="">IGNORE_DIRECTORIES =
+        <div class="docstring">
   <div class="discussion">
     <p>Returns directory names to ignore</p>
 
@@ -195,15 +196,15 @@
 </ul>
 
 </div>
-        </dt>
-        <dd><pre class="code"><span class='lbracket'>[</span>
+      </dt>
+      <dd><pre class="code"><span class='lbracket'>[</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>components</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>dynamics</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>registry</span><span class='tstring_end'>&#39;</span></span>
 <span class='rbracket'>]</span></pre></dd>
-      
-        <dt id="DEFAULT_STACK_RESOURCE-constant" class="">DEFAULT_STACK_RESOURCE =
-          <div class="docstring">
+    
+      <dt id="DEFAULT_STACK_RESOURCE-constant" class="">DEFAULT_STACK_RESOURCE =
+        <div class="docstring">
   <div class="discussion">
     <p>Returns default stack resource name</p>
 
@@ -231,11 +232,11 @@
 </ul>
 
 </div>
-        </dt>
-        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS::CloudFormation::Stack</span><span class='tstring_end'>&#39;</span></span></pre></dd>
-      
-        <dt id="VALID_STACK_RESOURCES-constant" class="">VALID_STACK_RESOURCES =
-          <div class="docstring">
+      </dt>
+      <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>AWS::CloudFormation::Stack</span><span class='tstring_end'>&#39;</span></span></pre></dd>
+    
+      <dt id="VALID_STACK_RESOURCES-constant" class="">VALID_STACK_RESOURCES =
+        <div class="docstring">
   <div class="discussion">
     <p>Returns collection of valid stack resource types</p>
 
@@ -263,11 +264,11 @@
 </ul>
 
 </div>
-        </dt>
-        <dd><pre class="code"><span class='lbracket'>[</span><span class='const'>DEFAULT_STACK_RESOURCE</span><span class='rbracket'>]</span></pre></dd>
-      
-        <dt id="ALLOWED_GENERATION_PARAMETERS-constant" class="">ALLOWED_GENERATION_PARAMETERS =
-          <div class="docstring">
+      </dt>
+      <dd><pre class="code"><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="#DEFAULT_STACK_RESOURCE-constant" title="SparkleFormation::DEFAULT_STACK_RESOURCE (constant)">DEFAULT_STACK_RESOURCE</a></span></span><span class='rbracket'>]</span></pre></dd>
+    
+      <dt id="ALLOWED_GENERATION_PARAMETERS-constant" class="">ALLOWED_GENERATION_PARAMETERS =
+        <div class="docstring">
   <div class="discussion">
     <p>Attributes allowed for generation parameter definitions</p>
 
@@ -278,15 +279,15 @@
   
 
 </div>
-        </dt>
-        <dd><pre class="code"><span class='lbracket'>[</span>
+      </dt>
+      <dd><pre class="code"><span class='lbracket'>[</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>type</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>default</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>description</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>multiple</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prompt_when_nested</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>allowed_values</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>allowed_pattern</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>max_length</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>min_length</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>max_value</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>min_value</span><span class='tstring_end'>&#39;</span></span>
 <span class='rbracket'>]</span></pre></dd>
-      
-        <dt id="VALID_GENERATION_PARAMETER_TYPES-constant" class="">VALID_GENERATION_PARAMETER_TYPES =
-          <div class="docstring">
+    
+      <dt id="VALID_GENERATION_PARAMETER_TYPES-constant" class="">VALID_GENERATION_PARAMETER_TYPES =
+        <div class="docstring">
   <div class="discussion">
     <p>Allowed data types for parameters</p>
 
@@ -297,22 +298,21 @@
   
 
 </div>
-        </dt>
-        <dd><pre class="code"><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>String</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span></pre></dd>
-      
-    </dl>
-  
+      </dt>
+      <dd><pre class="code"><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>String</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Number</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span></pre></dd>
+    
+  </dl>
 
 
 
 
-  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
   <ul class="summary">
     
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#blacklisted_templates-instance_method" title="#blacklisted_templates (instance method)">- (Array&lt;String&gt;) <strong>blacklisted_templates</strong> </a>
+      <a href="#blacklisted_templates-instance_method" title="#blacklisted_templates (instance method)">#<strong>blacklisted_templates</strong>  &#x21d2; Array&lt;String&gt; </a>
     
 
     
@@ -340,7 +340,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#compile_state-instance_method" title="#compile_state (instance method)">- (Hash) <strong>compile_state</strong> </a>
+      <a href="#compile_state-instance_method" title="#compile_state (instance method)">#<strong>compile_state</strong>  &#x21d2; Hash </a>
     
 
     
@@ -366,7 +366,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#components_directory-instance_method" title="#components_directory (instance method)">- (String) <strong>components_directory</strong> </a>
+      <a href="#components_directory-instance_method" title="#components_directory (instance method)">#<strong>components_directory</strong>  &#x21d2; String </a>
     
 
     
@@ -394,7 +394,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#composition-instance_method" title="#composition (instance method)">- (Composition) <strong>composition</strong> </a>
+      <a href="#composition-instance_method" title="#composition (instance method)">#<strong>composition</strong>  &#x21d2; Composition </a>
     
 
     
@@ -421,7 +421,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#dynamics_directory-instance_method" title="#dynamics_directory (instance method)">- (String) <strong>dynamics_directory</strong> </a>
+      <a href="#dynamics_directory-instance_method" title="#dynamics_directory (instance method)">#<strong>dynamics_directory</strong>  &#x21d2; String </a>
     
 
     
@@ -449,7 +449,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#name-instance_method" title="#name (instance method)">- (Symbol) <strong>name</strong> </a>
+      <a href="#name-instance_method" title="#name (instance method)">#<strong>name</strong>  &#x21d2; Symbol </a>
     
 
     
@@ -475,7 +475,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#parameters-instance_method" title="#parameters (instance method)">- (Hash) <strong>parameters</strong> </a>
+      <a href="#parameters-instance_method" title="#parameters (instance method)">#<strong>parameters</strong>  &#x21d2; Hash </a>
     
 
     
@@ -503,7 +503,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#parent-instance_method" title="#parent (instance method)">- (SparkleFormation) <strong>parent</strong> </a>
+      <a href="#parent-instance_method" title="#parent (instance method)">#<strong>parent</strong>  &#x21d2; SparkleFormation </a>
     
 
     
@@ -529,7 +529,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#provider-instance_method" title="#provider (instance method)">- (Symbol) <strong>provider</strong> </a>
+      <a href="#provider-instance_method" title="#provider (instance method)">#<strong>provider</strong>  &#x21d2; Symbol </a>
     
 
     
@@ -555,7 +555,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#provider_resources-instance_method" title="#provider_resources (instance method)">- (Class) <strong>provider_resources</strong> </a>
+      <a href="#provider_resources-instance_method" title="#provider_resources (instance method)">#<strong>provider_resources</strong>  &#x21d2; Class </a>
     
 
     
@@ -583,7 +583,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#registry_directory-instance_method" title="#registry_directory (instance method)">- (String) <strong>registry_directory</strong> </a>
+      <a href="#registry_directory-instance_method" title="#registry_directory (instance method)">#<strong>registry_directory</strong>  &#x21d2; String </a>
     
 
     
@@ -611,7 +611,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#sparkle-instance_method" title="#sparkle (instance method)">- (Sparkle) <strong>sparkle</strong> </a>
+      <a href="#sparkle-instance_method" title="#sparkle (instance method)">#<strong>sparkle</strong>  &#x21d2; Sparkle </a>
     
 
     
@@ -639,7 +639,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#sparkle_path-instance_method" title="#sparkle_path (instance method)">- (String) <strong>sparkle_path</strong> </a>
+      <a href="#sparkle_path-instance_method" title="#sparkle_path (instance method)">#<strong>sparkle_path</strong>  &#x21d2; String </a>
     
 
     
@@ -667,7 +667,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#stack_resource_types-instance_method" title="#stack_resource_types (instance method)">- (Array&lt;String&gt;) <strong>stack_resource_types</strong> </a>
+      <a href="#stack_resource_types-instance_method" title="#stack_resource_types (instance method)">#<strong>stack_resource_types</strong>  &#x21d2; Array&lt;String&gt; </a>
     
 
     
@@ -695,7 +695,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#template_path-instance_method" title="#template_path (instance method)">- (String) <strong>template_path</strong> </a>
+      <a href="#template_path-instance_method" title="#template_path (instance method)">#<strong>template_path</strong>  &#x21d2; String </a>
     
 
     
@@ -726,7 +726,7 @@
   
     <h2>
       Class Method Summary
-      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+      <small><a href="#" class="summary_toggle">collapse</a></small>
     </h2>
 
     <ul class="summary">
@@ -734,7 +734,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#__t_check-class_method" title="#__t_check (class method)">+ (NilClass) <strong>__t_check</strong>(val, types) </a>
+      <a href="#__t_check-class_method" title="#__t_check (class method)">.<strong>__t_check</strong>(val, types)  &#x21d2; NilClass </a>
     
 
     
@@ -762,7 +762,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#__t_hashish-class_method" title="#__t_hashish (class method)">+ (NilClass) <strong>__t_hashish</strong>(val) </a>
+      <a href="#__t_hashish-class_method" title="#__t_hashish (class method)">.<strong>__t_hashish</strong>(val)  &#x21d2; NilClass </a>
     
 
     
@@ -790,7 +790,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#__t_stringish-class_method" title="#__t_stringish (class method)">+ (NilClass) <strong>__t_stringish</strong>(val) </a>
+      <a href="#__t_stringish-class_method" title="#__t_stringish (class method)">.<strong>__t_stringish</strong>(val)  &#x21d2; NilClass </a>
     
 
     
@@ -818,7 +818,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#build-class_method" title="build (class method)">+ (SparkleStruct) <strong>build</strong>(base = nil) { ... }</a>
+      <a href="#build-class_method" title="build (class method)">.<strong>build</strong>(base = nil) { ... } &#x21d2; SparkleStruct </a>
     
 
     
@@ -841,7 +841,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#builtin_insert-class_method" title="builtin_insert (class method)">+ (SparkleStruct) <strong>builtin_insert</strong>(dynamic_name, struct, *args, &amp;block) </a>
+      <a href="#builtin_insert-class_method" title="builtin_insert (class method)">.<strong>builtin_insert</strong>(dynamic_name, struct, *args, &amp;block)  &#x21d2; SparkleStruct </a>
     
 
     
@@ -864,7 +864,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#camel-class_method" title="#camel (class method)">+ (String) <strong>camel</strong>(string) </a>
+      <a href="#camel-class_method" title="#camel (class method)">.<strong>camel</strong>(string)  &#x21d2; String </a>
     
 
     
@@ -892,7 +892,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#compile-class_method" title="compile (class method)">+ (Hashish, SparkleStruct) <strong>compile</strong>(path, *args) </a>
+      <a href="#compile-class_method" title="compile (class method)">.<strong>compile</strong>(path, *args)  &#x21d2; Hashish, SparkleStruct </a>
     
 
     
@@ -915,7 +915,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#components_path%3D-class_method" title="components_path= (class method)">+ (String) <strong>components_path=</strong>(path = nil) </a>
+      <a href="#components_path=-class_method" title="components_path= (class method)">.<strong>components_path=</strong>(path = nil)  &#x21d2; String </a>
     
 
     
@@ -940,7 +940,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#custom_paths-class_method" title="custom_paths (class method)">+ (Hashish) <strong>custom_paths</strong> </a>
+      <a href="#custom_paths-class_method" title="custom_paths (class method)">.<strong>custom_paths</strong>  &#x21d2; Hashish </a>
     
 
     
@@ -963,7 +963,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#dynamic-class_method" title="dynamic (class method)">+ (TrueClass) <strong>dynamic</strong>(name, args = {}) { ... }</a>
+      <a href="#dynamic-class_method" title="dynamic (class method)">.<strong>dynamic</strong>(name, args = {}) { ... } &#x21d2; TrueClass </a>
     
 
     
@@ -986,7 +986,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#dynamic_info-class_method" title="dynamic_info (class method)">+ (Hashish) <strong>dynamic_info</strong>(name) </a>
+      <a href="#dynamic_info-class_method" title="dynamic_info (class method)">.<strong>dynamic_info</strong>(name)  &#x21d2; Hashish </a>
     
 
     
@@ -1011,7 +1011,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#dynamics-class_method" title="dynamics (class method)">+ (Hashish) <strong>dynamics</strong> </a>
+      <a href="#dynamics-class_method" title="dynamics (class method)">.<strong>dynamics</strong>  &#x21d2; Hashish </a>
     
 
     
@@ -1034,7 +1034,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#dynamics_path%3D-class_method" title="dynamics_path= (class method)">+ (String) <strong>dynamics_path=</strong>(path = nil) </a>
+      <a href="#dynamics_path=-class_method" title="dynamics_path= (class method)">.<strong>dynamics_path=</strong>(path = nil)  &#x21d2; String </a>
     
 
     
@@ -1059,7 +1059,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#from_hash-class_method" title="from_hash (class method)">+ (SparkleStruct) <strong>from_hash</strong>(hash) </a>
+      <a href="#from_hash-class_method" title="from_hash (class method)">.<strong>from_hash</strong>(hash)  &#x21d2; SparkleStruct </a>
     
 
     
@@ -1082,7 +1082,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#insert-class_method" title="insert (class method)">+ (SparkleStruct) <strong>insert</strong>(dynamic_name, struct, *args, &amp;block) </a>
+      <a href="#insert-class_method" title="insert (class method)">.<strong>insert</strong>(dynamic_name, struct, *args, &amp;block)  &#x21d2; SparkleStruct </a>
     
 
     
@@ -1105,7 +1105,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#load_component-class_method" title="load_component (class method)">+ (SparkleStruct) <strong>load_component</strong>(path) </a>
+      <a href="#load_component-class_method" title="load_component (class method)">.<strong>load_component</strong>(path)  &#x21d2; SparkleStruct </a>
     
 
     
@@ -1128,7 +1128,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#load_dynamics%21-class_method" title="load_dynamics! (class method)">+ (TrueClass) <strong>load_dynamics!</strong>(directory) </a>
+      <a href="#load_dynamics!-class_method" title="load_dynamics! (class method)">.<strong>load_dynamics!</strong>(directory)  &#x21d2; TrueClass </a>
     
 
     
@@ -1151,7 +1151,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#load_registry%21-class_method" title="load_registry! (class method)">+ (TrueClass) <strong>load_registry!</strong>(directory) </a>
+      <a href="#load_registry!-class_method" title="load_registry! (class method)">.<strong>load_registry!</strong>(directory)  &#x21d2; TrueClass </a>
     
 
     
@@ -1174,7 +1174,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#nest-class_method" title="nest (class method)">+ (SparkleStruct) <strong>nest</strong>(template, struct, *args, &amp;block) </a>
+      <a href="#nest-class_method" title="nest (class method)">.<strong>nest</strong>(template, struct, *args, &amp;block)  &#x21d2; SparkleStruct </a>
     
 
     
@@ -1197,7 +1197,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#registry-class_method" title="registry (class method)">+ (SparkleStruct) <strong>registry</strong>(registry_name, struct, *args) </a>
+      <a href="#registry-class_method" title="registry (class method)">.<strong>registry</strong>(registry_name, struct, *args)  &#x21d2; SparkleStruct </a>
     
 
     
@@ -1220,7 +1220,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#registry_path%3D-class_method" title="registry_path= (class method)">+ (String) <strong>registry_path=</strong>(path = nil) </a>
+      <a href="#registry_path=-class_method" title="registry_path= (class method)">.<strong>registry_path=</strong>(path = nil)  &#x21d2; String </a>
     
 
     
@@ -1245,7 +1245,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#snake-class_method" title="#snake (class method)">+ (String) <strong>snake</strong>(string) </a>
+      <a href="#snake-class_method" title="#snake (class method)">.<strong>snake</strong>(string)  &#x21d2; String </a>
     
 
     
@@ -1273,7 +1273,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#sparkle_path%3D-class_method" title="sparkle_path= (class method)">+ (String) <strong>sparkle_path=</strong>(path = nil) </a>
+      <a href="#sparkle_path=-class_method" title="sparkle_path= (class method)">.<strong>sparkle_path=</strong>(path = nil)  &#x21d2; String </a>
     
 
     
@@ -1299,7 +1299,7 @@
   
     <h2>
       Instance Method Summary
-      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+      <small><a href="#" class="summary_toggle">collapse</a></small>
     </h2>
 
     <ul class="summary">
@@ -1307,7 +1307,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#apply_deep_nesting-instance_method" title="#apply_deep_nesting (instance method)">- (SparkleFormation::SparkleStruct) <strong>apply_deep_nesting</strong>(*args) {|stack, resource, s_name| ... }</a>
+      <a href="#apply_deep_nesting-instance_method" title="#apply_deep_nesting (instance method)">#<strong>apply_deep_nesting</strong>(*args) {|stack, resource, s_name| ... } &#x21d2; SparkleFormation::SparkleStruct </a>
     
 
     
@@ -1330,7 +1330,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#apply_nesting-instance_method" title="#apply_nesting (instance method)">- (SparkleFormation::SparkleStruct) <strong>apply_nesting</strong>(*args, &amp;block) </a>
+      <a href="#apply_nesting-instance_method" title="#apply_nesting (instance method)">#<strong>apply_nesting</strong>(*args, &amp;block)  &#x21d2; SparkleFormation::SparkleStruct </a>
     
 
     
@@ -1353,7 +1353,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#apply_shallow_nesting-instance_method" title="#apply_shallow_nesting (instance method)">- (SparkleFormation::SparkleStruct) <strong>apply_shallow_nesting</strong>(*args) {|resource_name, stack| ... }</a>
+      <a href="#apply_shallow_nesting-instance_method" title="#apply_shallow_nesting (instance method)">#<strong>apply_shallow_nesting</strong>(*args) {|resource_name, stack| ... } &#x21d2; SparkleFormation::SparkleStruct </a>
     
 
     
@@ -1376,7 +1376,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#block-instance_method" title="#block (instance method)">- (TrueClass) <strong>block</strong>(block) </a>
+      <a href="#block-instance_method" title="#block (instance method)">#<strong>block</strong>(block)  &#x21d2; TrueClass </a>
     
 
     
@@ -1401,7 +1401,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#camel-instance_method" title="#camel (instance method)">- (String) <strong>camel</strong>(string) </a>
+      <a href="#camel-instance_method" title="#camel (instance method)">#<strong>camel</strong>(string)  &#x21d2; String </a>
     
 
     
@@ -1429,7 +1429,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#collect_outputs-instance_method" title="#collect_outputs (instance method)">- (Smash&lt;output_name:SparkleFormation&gt;) <strong>collect_outputs</strong>(*args) </a>
+      <a href="#collect_outputs-instance_method" title="#collect_outputs (instance method)">#<strong>collect_outputs</strong>(*args)  &#x21d2; Smash&lt;output_name:SparkleFormation&gt; </a>
     
 
     
@@ -1451,7 +1451,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#compile-instance_method" title="#compile (instance method)">- (SparkleStruct) <strong>compile</strong>(args = {}) </a>
+      <a href="#compile-instance_method" title="#compile (instance method)">#<strong>compile</strong>(args = {})  &#x21d2; SparkleStruct </a>
     
 
     
@@ -1474,7 +1474,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#compile_time_parameter_setter-instance_method" title="#compile_time_parameter_setter (instance method)">- (Proc, NilClass) <strong>compile_time_parameter_setter</strong> {|| ... }</a>
+      <a href="#compile_time_parameter_setter-instance_method" title="#compile_time_parameter_setter (instance method)">#<strong>compile_time_parameter_setter</strong> {|| ... } &#x21d2; Proc, NilClass </a>
     
 
     
@@ -1497,7 +1497,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#dump-instance_method" title="#dump (instance method)">- (Hash) <strong>dump</strong> </a>
+      <a href="#dump-instance_method" title="#dump (instance method)">#<strong>dump</strong>  &#x21d2; Hash </a>
     
 
     
@@ -1520,7 +1520,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#extract_template_data-instance_method" title="#extract_template_data (instance method)">- (self) <strong>extract_template_data</strong>(template) </a>
+      <a href="#extract_template_data-instance_method" title="#extract_template_data (instance method)">#<strong>extract_template_data</strong>(template)  &#x21d2; self </a>
     
 
     
@@ -1543,7 +1543,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#extract_templates-instance_method" title="#extract_templates (instance method)">- (Object) <strong>extract_templates</strong> {|stack, resource, s_name| ... }</a>
+      <a href="#extract_templates-instance_method" title="#extract_templates (instance method)">#<strong>extract_templates</strong> {|stack, resource, s_name| ... } &#x21d2; Object </a>
     
 
     
@@ -1566,7 +1566,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#generate_policy-instance_method" title="#generate_policy (instance method)">- (Hash) <strong>generate_policy</strong> </a>
+      <a href="#generate_policy-instance_method" title="#generate_policy (instance method)">#<strong>generate_policy</strong>  &#x21d2; Hash </a>
     
 
     
@@ -1589,7 +1589,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#includes_policies%3F-instance_method" title="#includes_policies? (instance method)">- (TrueClass, FalseClass) <strong>includes_policies?</strong>(stack_hash = nil) </a>
+      <a href="#includes_policies%3F-instance_method" title="#includes_policies? (instance method)">#<strong>includes_policies?</strong>(stack_hash = nil)  &#x21d2; TrueClass, FalseClass </a>
     
 
     
@@ -1612,7 +1612,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#inherit_from-instance_method" title="#inherit_from (instance method)">- (self) <strong>inherit_from</strong>(template_name) </a>
+      <a href="#inherit_from-instance_method" title="#inherit_from (instance method)">#<strong>inherit_from</strong>(template_name)  &#x21d2; self </a>
     
 
     
@@ -1635,7 +1635,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (SparkleFormation) <strong>initialize</strong>(name, options = {}) { ... }</a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(name, options = {}) { ... } &#x21d2; SparkleFormation </a>
     
 
     
@@ -1660,7 +1660,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#isolated_nests%3F-instance_method" title="#isolated_nests? (instance method)">- (TrueClass, FalseClass) <strong>isolated_nests?</strong>(stack_hash = nil) </a>
+      <a href="#isolated_nests%3F-instance_method" title="#isolated_nests? (instance method)">#<strong>isolated_nests?</strong>(stack_hash = nil)  &#x21d2; TrueClass, FalseClass </a>
     
 
     
@@ -1683,7 +1683,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#load-instance_method" title="#load (instance method)">- (self) <strong>load</strong>(*args, &amp;user_block) </a>
+      <a href="#load-instance_method" title="#load (instance method)">#<strong>load</strong>(*args, &amp;user_block)  &#x21d2; self </a>
     
 
     
@@ -1706,7 +1706,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#make_output_available-instance_method" title="#make_output_available (instance method)">- (Object) <strong>make_output_available</strong>(output_name, outputs) </a>
+      <a href="#make_output_available-instance_method" title="#make_output_available (instance method)">#<strong>make_output_available</strong>(output_name, outputs)  &#x21d2; Object </a>
     
 
     
@@ -1729,7 +1729,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#merge_previous%21-instance_method" title="#merge_previous! (instance method)">- (self) <strong>merge_previous!</strong> </a>
+      <a href="#merge_previous!-instance_method" title="#merge_previous! (instance method)">#<strong>merge_previous!</strong>  &#x21d2; self </a>
     
 
     
@@ -1752,7 +1752,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#nested%3F-instance_method" title="#nested? (instance method)">- (TrueClass, FalseClass) <strong>nested?</strong>(stack_hash = nil) </a>
+      <a href="#nested%3F-instance_method" title="#nested? (instance method)">#<strong>nested?</strong>(stack_hash = nil)  &#x21d2; TrueClass, FalseClass </a>
     
 
     
@@ -1775,7 +1775,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#nested_stacks-instance_method" title="#nested_stacks (instance method)">- (Array&lt;SparkleFormation&gt;) <strong>nested_stacks</strong>(*args) </a>
+      <a href="#nested_stacks-instance_method" title="#nested_stacks (instance method)">#<strong>nested_stacks</strong>(*args)  &#x21d2; Array&lt;SparkleFormation&gt; </a>
     
 
     
@@ -1797,7 +1797,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#output_matched%3F-instance_method" title="#output_matched? (instance method)">- (String, NilClass) <strong>output_matched?</strong>(p_name, output_names) </a>
+      <a href="#output_matched%3F-instance_method" title="#output_matched? (instance method)">#<strong>output_matched?</strong>(p_name, output_names)  &#x21d2; String, NilClass </a>
     
 
     
@@ -1820,7 +1820,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#overrides-instance_method" title="#overrides (instance method)">- (Object) <strong>overrides</strong>(args = {}) { ... }</a>
+      <a href="#overrides-instance_method" title="#overrides (instance method)">#<strong>overrides</strong>(args = {}) { ... } &#x21d2; Object </a>
     
 
     
@@ -1843,7 +1843,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#recompile-instance_method" title="#recompile (instance method)">- (SparkleStruct) <strong>recompile</strong> </a>
+      <a href="#recompile-instance_method" title="#recompile (instance method)">#<strong>recompile</strong>  &#x21d2; SparkleStruct </a>
     
 
     
@@ -1866,7 +1866,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#remap_nested_parameters-instance_method" title="#remap_nested_parameters (instance method)">- (TrueClass) <strong>remap_nested_parameters</strong>(template, parameters, stack_name, stack_resource, output_map) </a>
+      <a href="#remap_nested_parameters-instance_method" title="#remap_nested_parameters (instance method)">#<strong>remap_nested_parameters</strong>(template, parameters, stack_name, stack_resource, output_map)  &#x21d2; TrueClass </a>
     
 
     
@@ -1889,7 +1889,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#root-instance_method" title="#root (instance method)">- (SparkleFormation) <strong>root</strong> </a>
+      <a href="#root-instance_method" title="#root (instance method)">#<strong>root</strong>  &#x21d2; SparkleFormation </a>
     
 
     
@@ -1912,7 +1912,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#root%3F-instance_method" title="#root? (instance method)">- (TrueClass, FalseClass) <strong>root?</strong> </a>
+      <a href="#root%3F-instance_method" title="#root? (instance method)">#<strong>root?</strong>  &#x21d2; TrueClass, FalseClass </a>
     
 
     
@@ -1935,7 +1935,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#root_path-instance_method" title="#root_path (instance method)">- (Array&lt;SparkleFormation] path to root) <strong>root_path</strong> </a>
+      <a href="#root_path-instance_method" title="#root_path (instance method)">#<strong>root_path</strong>  &#x21d2; Array&lt;SparkleFormation] path to root </a>
     
 
     
@@ -1958,7 +1958,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#seed_self-instance_method" title="#seed_self (instance method)">- (self) <strong>seed_self</strong> </a>
+      <a href="#seed_self-instance_method" title="#seed_self (instance method)">#<strong>seed_self</strong>  &#x21d2; self </a>
     
 
     
@@ -1981,7 +1981,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set_compile_time_parameters%21-instance_method" title="#set_compile_time_parameters! (instance method)">- (Object) <strong>set_compile_time_parameters!</strong> </a>
+      <a href="#set_compile_time_parameters!-instance_method" title="#set_compile_time_parameters! (instance method)">#<strong>set_compile_time_parameters!</strong>  &#x21d2; Object </a>
     
 
     
@@ -2004,7 +2004,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set_generation_parameters%21-instance_method" title="#set_generation_parameters! (instance method)">- (Hash) <strong>set_generation_parameters!</strong>(params) </a>
+      <a href="#set_generation_parameters!-instance_method" title="#set_generation_parameters! (instance method)">#<strong>set_generation_parameters!</strong>(params)  &#x21d2; Hash </a>
     
 
     
@@ -2027,7 +2027,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#snake-instance_method" title="#snake (instance method)">- (String) <strong>snake</strong>(string) </a>
+      <a href="#snake-instance_method" title="#snake (instance method)">#<strong>snake</strong>(string)  &#x21d2; String </a>
     
 
     
@@ -2055,7 +2055,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#sparkle_dump-instance_method" title="#sparkle_dump (instance method)">- (Hash) <strong>sparkle_dump</strong> </a>
+      <a href="#sparkle_dump-instance_method" title="#sparkle_dump (instance method)">#<strong>sparkle_dump</strong>  &#x21d2; Hash </a>
     
 
     
@@ -2078,7 +2078,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#stack_resource_type-instance_method" title="#stack_resource_type (instance method)">- (String) <strong>stack_resource_type</strong> </a>
+      <a href="#stack_resource_type-instance_method" title="#stack_resource_type (instance method)">#<strong>stack_resource_type</strong>  &#x21d2; String </a>
     
 
     
@@ -2101,7 +2101,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#stack_resource_type%3F-instance_method" title="#stack_resource_type? (instance method)">- (TrueClass, FalseClass) <strong>stack_resource_type?</strong>(type) </a>
+      <a href="#stack_resource_type%3F-instance_method" title="#stack_resource_type? (instance method)">#<strong>stack_resource_type?</strong>(type)  &#x21d2; TrueClass, FalseClass </a>
     
 
     
@@ -2124,7 +2124,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#stack_template_extractor-instance_method" title="#stack_template_extractor (instance method)">- (Object) <strong>stack_template_extractor</strong>(x_stacks, &amp;block) </a>
+      <a href="#stack_template_extractor-instance_method" title="#stack_template_extractor (instance method)">#<strong>stack_template_extractor</strong>(x_stacks, &amp;block)  &#x21d2; Object </a>
     
 
     
@@ -2147,7 +2147,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#to_json-instance_method" title="#to_json (instance method)">- (String) <strong>to_json</strong>(*args) </a>
+      <a href="#to_json-instance_method" title="#to_json (instance method)">#<strong>to_json</strong>(*args)  &#x21d2; String </a>
     
 
     
@@ -2181,7 +2181,7 @@
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="SparkleFormation (class)">SparkleFormation</a></span></tt>) <strong>initialize</strong>(name, options = {}) { ... }
+    #<strong>initialize</strong>(name, options = {}) { ... } &#x21d2; <tt><span class='object_link'><a href="" title="SparkleFormation (class)">SparkleFormation</a></span></tt> 
   
 
   
@@ -2396,9 +2396,9 @@
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:sparkle_collection</span><span class='rbracket'>]</span><span class='rparen'>)</span>
     <span class='ivar'>@sparkle</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:sparkle_collection</span><span class='rbracket'>]</span>
   <span class='kw'>else</span>
-    <span class='ivar'>@sparkle</span> <span class='op'>=</span> <span class='const'>SparkleCollection</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='ivar'>@sparkle</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="SparkleFormation/SparkleCollection.html" title="SparkleFormation::SparkleCollection (class)">SparkleCollection</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="SparkleFormation/SparkleCollection.html#initialize-instance_method" title="SparkleFormation::SparkleCollection#initialize (method)">new</a></span></span>
     <span class='ivar'>@sparkle</span><span class='period'>.</span><span class='id identifier rubyid_set_root'>set_root</span><span class='lparen'>(</span>
-      <span class='const'>Sparkle</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+      <span class='const'><span class='object_link'><a href="SparkleFormation/Sparkle.html" title="SparkleFormation::Sparkle (class)">Sparkle</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="SparkleFormation/Sparkle.html#initialize-instance_method" title="SparkleFormation::Sparkle#initialize (method)">new</a></span></span><span class='lparen'>(</span>
         <span class='const'>Smash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='period'>.</span><span class='id identifier rubyid_tap'>tap</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_h'>h</span><span class='op'>|</span>
           <span class='id identifier rubyid_s_path'>s_path</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:sparkle_path</span><span class='comma'>,</span>
             <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_custom_paths'>custom_paths</span><span class='lbracket'>[</span><span class='symbol'>:sparkle_path</span><span class='rbracket'>]</span>
@@ -2426,7 +2426,7 @@
     <span class='op'>*</span><span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:stack_resource_types</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
   <span class='ivar'>@blacklisted_templates</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
-  <span class='ivar'>@composition</span> <span class='op'>=</span> <span class='const'>Composition</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
+  <span class='ivar'>@composition</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="SparkleFormation/Composition.html" title="SparkleFormation::Composition (class)">Composition</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="SparkleFormation/Composition.html#initialize-instance_method" title="SparkleFormation::Composition#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
   <span class='ivar'>@parent</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:parent</span><span class='rbracket'>]</span>
   <span class='ivar'>@seed</span> <span class='op'>=</span> <span class='const'>Smash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
     <span class='symbol'>:inherit</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:inherit</span><span class='rbracket'>]</span><span class='comma'>,</span>
@@ -2452,7 +2452,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="blacklisted_templates-instance_method">
   
-    - (<tt>Array&lt;String&gt;</tt>) <strong>blacklisted_templates</strong>  <span class="extras">(readonly)</span>
+    #<strong>blacklisted_templates</strong>  &#x21d2; <tt>Array&lt;String&gt;</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -2511,7 +2511,7 @@
       <div class="method_details ">
   <h3 class="signature " id="compile_state-instance_method">
   
-    - (<tt>Hash</tt>) <strong>compile_state</strong> 
+    #<strong>compile_state</strong>  &#x21d2; <tt>Hash</tt> 
   
 
   
@@ -2570,7 +2570,7 @@
       <div class="method_details ">
   <h3 class="signature " id="components_directory-instance_method">
   
-    - (<tt>String</tt>) <strong>components_directory</strong>  <span class="extras">(readonly)</span>
+    #<strong>components_directory</strong>  &#x21d2; <tt>String</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -2629,7 +2629,7 @@
       <div class="method_details ">
   <h3 class="signature " id="composition-instance_method">
   
-    - (<tt><span class='object_link'><a href="SparkleFormation/Composition.html" title="SparkleFormation::Composition (class)">Composition</a></span></tt>) <strong>composition</strong>  <span class="extras">(readonly)</span>
+    #<strong>composition</strong>  &#x21d2; <tt><span class='object_link'><a href="SparkleFormation/Composition.html" title="SparkleFormation::Composition (class)">Composition</a></span></tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -2683,7 +2683,7 @@
       <div class="method_details ">
   <h3 class="signature " id="dynamics_directory-instance_method">
   
-    - (<tt>String</tt>) <strong>dynamics_directory</strong>  <span class="extras">(readonly)</span>
+    #<strong>dynamics_directory</strong>  &#x21d2; <tt>String</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -2742,7 +2742,7 @@
       <div class="method_details ">
   <h3 class="signature " id="name-instance_method">
   
-    - (<tt>Symbol</tt>) <strong>name</strong> 
+    #<strong>name</strong>  &#x21d2; <tt>Symbol</tt> 
   
 
   
@@ -2801,7 +2801,7 @@
       <div class="method_details ">
   <h3 class="signature " id="parameters-instance_method">
   
-    - (<tt>Hash</tt>) <strong>parameters</strong>  <span class="extras">(readonly)</span>
+    #<strong>parameters</strong>  &#x21d2; <tt>Hash</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -2860,7 +2860,7 @@
       <div class="method_details ">
   <h3 class="signature " id="parent-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="SparkleFormation (class)">SparkleFormation</a></span></tt>) <strong>parent</strong> 
+    #<strong>parent</strong>  &#x21d2; <tt><span class='object_link'><a href="" title="SparkleFormation (class)">SparkleFormation</a></span></tt> 
   
 
   
@@ -2919,7 +2919,7 @@
       <div class="method_details ">
   <h3 class="signature " id="provider-instance_method">
   
-    - (<tt>Symbol</tt>) <strong>provider</strong> 
+    #<strong>provider</strong>  &#x21d2; <tt>Symbol</tt> 
   
 
   
@@ -2978,7 +2978,7 @@
       <div class="method_details ">
   <h3 class="signature " id="provider_resources-instance_method">
   
-    - (<tt>Class</tt>) <strong>provider_resources</strong>  <span class="extras">(readonly)</span>
+    #<strong>provider_resources</strong>  &#x21d2; <tt>Class</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -3037,7 +3037,7 @@
       <div class="method_details ">
   <h3 class="signature " id="registry_directory-instance_method">
   
-    - (<tt>String</tt>) <strong>registry_directory</strong>  <span class="extras">(readonly)</span>
+    #<strong>registry_directory</strong>  &#x21d2; <tt>String</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -3096,7 +3096,7 @@
       <div class="method_details ">
   <h3 class="signature " id="sparkle-instance_method">
   
-    - (<tt><span class='object_link'><a href="SparkleFormation/Sparkle.html" title="SparkleFormation::Sparkle (class)">Sparkle</a></span></tt>) <strong>sparkle</strong>  <span class="extras">(readonly)</span>
+    #<strong>sparkle</strong>  &#x21d2; <tt><span class='object_link'><a href="SparkleFormation/Sparkle.html" title="SparkleFormation::Sparkle (class)">Sparkle</a></span></tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -3155,7 +3155,7 @@
       <div class="method_details ">
   <h3 class="signature " id="sparkle_path-instance_method">
   
-    - (<tt>String</tt>) <strong>sparkle_path</strong>  <span class="extras">(readonly)</span>
+    #<strong>sparkle_path</strong>  &#x21d2; <tt>String</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -3214,7 +3214,7 @@
       <div class="method_details ">
   <h3 class="signature " id="stack_resource_types-instance_method">
   
-    - (<tt>Array&lt;String&gt;</tt>) <strong>stack_resource_types</strong>  <span class="extras">(readonly)</span>
+    #<strong>stack_resource_types</strong>  &#x21d2; <tt>Array&lt;String&gt;</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -3273,7 +3273,7 @@
       <div class="method_details ">
   <h3 class="signature " id="template_path-instance_method">
   
-    - (<tt>String</tt>) <strong>template_path</strong> 
+    #<strong>template_path</strong>  &#x21d2; <tt>String</tt> 
   
 
   
@@ -3337,7 +3337,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="__t_check-class_method">
   
-    + (<tt>NilClass</tt>) <strong>__t_check</strong>(val, types) 
+    .<strong>__t_check</strong>(val, types)  &#x21d2; <tt>NilClass</tt> 
   
 
   
@@ -3411,7 +3411,7 @@
       <div class="method_details ">
   <h3 class="signature " id="__t_hashish-class_method">
   
-    + (<tt>NilClass</tt>) <strong>__t_hashish</strong>(val) 
+    .<strong>__t_hashish</strong>(val)  &#x21d2; <tt>NilClass</tt> 
   
 
   
@@ -3451,7 +3451,7 @@
       <div class="method_details ">
   <h3 class="signature " id="__t_stringish-class_method">
   
-    + (<tt>NilClass</tt>) <strong>__t_stringish</strong>(val) 
+    .<strong>__t_stringish</strong>(val)  &#x21d2; <tt>NilClass</tt> 
   
 
   
@@ -3491,7 +3491,7 @@
       <div class="method_details ">
   <h3 class="signature " id="build-class_method">
   
-    + (<tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt>) <strong>build</strong>(base = nil) { ... }
+    .<strong>build</strong>(base = nil) { ... } &#x21d2; <tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt> 
   
 
   
@@ -3583,7 +3583,7 @@
 
 <span class='kw'>def</span> <span class='id identifier rubyid_build'>build</span><span class='lparen'>(</span><span class='id identifier rubyid_base'>base</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_base'>base</span> <span class='op'>||</span> <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_struct'>struct</span> <span class='op'>=</span> <span class='id identifier rubyid_base'>base</span> <span class='op'>||</span> <span class='const'>SparkleStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='id identifier rubyid_struct'>struct</span> <span class='op'>=</span> <span class='id identifier rubyid_base'>base</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="SparkleFormation/SparkleStruct.html#initialize-instance_method" title="SparkleFormation::SparkleStruct#initialize (method)">new</a></span></span>
     <span class='id identifier rubyid_struct'>struct</span><span class='period'>.</span><span class='id identifier rubyid_instance_exec'>instance_exec</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_struct'>struct</span>
   <span class='kw'>else</span>
@@ -3598,7 +3598,7 @@
       <div class="method_details ">
   <h3 class="signature " id="builtin_insert-class_method">
   
-    + (<tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt>) <strong>builtin_insert</strong>(dynamic_name, struct, *args, &amp;block) 
+    .<strong>builtin_insert</strong>(dynamic_name, struct, *args, &amp;block)  &#x21d2; <tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt> 
   
 
   
@@ -3756,7 +3756,7 @@
       <div class="method_details ">
   <h3 class="signature " id="camel-class_method">
   
-    + (<tt>String</tt>) <strong>camel</strong>(string) 
+    .<strong>camel</strong>(string)  &#x21d2; <tt>String</tt> 
   
 
   
@@ -3811,7 +3811,7 @@
       <div class="method_details ">
   <h3 class="signature " id="compile-class_method">
   
-    + (<tt>Hashish</tt>, <tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt>) <strong>compile</strong>(path, *args) 
+    .<strong>compile</strong>(path, *args)  &#x21d2; <tt>Hashish</tt>, <tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt> 
   
 
   
@@ -3904,8 +3904,8 @@ to pass through when compiling (=&gt; {})</p>
 <span class='kw'>def</span> <span class='id identifier rubyid_compile'>compile</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_detect'>detect</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span> <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='op'>||</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='kw'>unless</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_file?'>file?</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span><span class='rparen'>)</span>
-    <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_spath'>spath</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_opts'>opts</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='symbol'>:sparkle_path</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='const'>SparkleFormation</span><span class='period'>.</span><span class='id identifier rubyid_custom_paths'>custom_paths</span><span class='lbracket'>[</span><span class='symbol'>:sparkle_path</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_container'>container</span> <span class='op'>=</span> <span class='const'>Sparkle</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:root</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_spath'>spath</span><span class='rparen'>)</span>
+    <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_spath'>spath</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_opts'>opts</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='symbol'>:sparkle_path</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="" title="SparkleFormation (class)">SparkleFormation</a></span></span><span class='period'>.</span><span class='id identifier rubyid_custom_paths'><span class='object_link'><a href="#custom_paths-class_method" title="SparkleFormation.custom_paths (method)">custom_paths</a></span></span><span class='lbracket'>[</span><span class='symbol'>:sparkle_path</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_container'>container</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="SparkleFormation/Sparkle.html" title="SparkleFormation::Sparkle (class)">Sparkle</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="SparkleFormation/Sparkle.html#initialize-instance_method" title="SparkleFormation::Sparkle#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='symbol'>:root</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_spath'>spath</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_path'>path</span> <span class='op'>=</span> <span class='id identifier rubyid_container'>container</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='symbol'>:template</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='symbol'>:path</span><span class='rbracket'>]</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -3925,7 +3925,7 @@ to pass through when compiling (=&gt; {})</p>
       <div class="method_details ">
   <h3 class="signature " id="components_path=-class_method">
   
-    + (<tt>String</tt>) <strong>components_path=</strong>(path = nil) 
+    .<strong>components_path=</strong>(path = nil)  &#x21d2; <tt>String</tt> 
   
 
   
@@ -4013,7 +4013,7 @@ to pass through when compiling (=&gt; {})</p>
       <div class="method_details ">
   <h3 class="signature " id="custom_paths-class_method">
   
-    + (<tt>Hashish</tt>) <strong>custom_paths</strong> 
+    .<strong>custom_paths</strong>  &#x21d2; <tt>Hashish</tt> 
   
 
   
@@ -4061,7 +4061,7 @@ to pass through when compiling (=&gt; {})</p>
       <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_custom_paths'>custom_paths</span>
-  <span class='ivar'>@_paths</span> <span class='op'>||=</span> <span class='const'>SparkleStruct</span><span class='period'>.</span><span class='id identifier rubyid_hashish'>hashish</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='ivar'>@_paths</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></span><span class='period'>.</span><span class='id identifier rubyid_hashish'>hashish</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
   <span class='ivar'>@_paths</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -4072,7 +4072,7 @@ to pass through when compiling (=&gt; {})</p>
       <div class="method_details ">
   <h3 class="signature " id="dynamic-class_method">
   
-    + (<tt>TrueClass</tt>) <strong>dynamic</strong>(name, args = {}) { ... }
+    .<strong>dynamic</strong>(name, args = {}) { ... } &#x21d2; <tt>TrueClass</tt> 
   
 
   
@@ -4204,9 +4204,9 @@ to pass through when compiling (=&gt; {})</p>
       <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 174</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dynamic'>dynamic</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='ivar'>@dynamics</span> <span class='op'>||=</span> <span class='const'>SparkleStruct</span><span class='period'>.</span><span class='id identifier rubyid_hashish'>hashish</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-  <span class='id identifier rubyid_dynamics'>dynamics</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>SparkleStruct</span><span class='period'>.</span><span class='id identifier rubyid_hashish'>hashish</span><span class='lbracket'>[</span>
-    <span class='symbol'>:block</span><span class='comma'>,</span> <span class='id identifier rubyid_block'>block</span><span class='comma'>,</span> <span class='symbol'>:args</span><span class='comma'>,</span> <span class='const'>SparkleStruct</span><span class='period'>.</span><span class='id identifier rubyid_hashish'>hashish</span><span class='lbracket'>[</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_a</span><span class='rparen'>)</span><span class='rbracket'>]</span>
+  <span class='ivar'>@dynamics</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></span><span class='period'>.</span><span class='id identifier rubyid_hashish'>hashish</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_dynamics'>dynamics</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></span><span class='period'>.</span><span class='id identifier rubyid_hashish'>hashish</span><span class='lbracket'>[</span>
+    <span class='symbol'>:block</span><span class='comma'>,</span> <span class='id identifier rubyid_block'>block</span><span class='comma'>,</span> <span class='symbol'>:args</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></span><span class='period'>.</span><span class='id identifier rubyid_hashish'>hashish</span><span class='lbracket'>[</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_a</span><span class='rparen'>)</span><span class='rbracket'>]</span>
   <span class='rbracket'>]</span>
   <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
@@ -4218,7 +4218,7 @@ to pass through when compiling (=&gt; {})</p>
       <div class="method_details ">
   <h3 class="signature " id="dynamic_info-class_method">
   
-    + (<tt>Hashish</tt>) <strong>dynamic_info</strong>(name) 
+    .<strong>dynamic_info</strong>(name)  &#x21d2; <tt>Hashish</tt> 
   
 
   
@@ -4293,7 +4293,7 @@ to pass through when compiling (=&gt; {})</p>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dynamic_info'>dynamic_info</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_dynamics'>dynamics</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_dynamics'>dynamics</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:args</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>SparkleStruct</span><span class='period'>.</span><span class='id identifier rubyid_hashish'>hashish</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='id identifier rubyid_dynamics'>dynamics</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:args</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></span><span class='period'>.</span><span class='id identifier rubyid_hashish'>hashish</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>KeyError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No dynamic registered with provided name (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
@@ -4306,7 +4306,7 @@ to pass through when compiling (=&gt; {})</p>
       <div class="method_details ">
   <h3 class="signature " id="dynamics-class_method">
   
-    + (<tt>Hashish</tt>) <strong>dynamics</strong> 
+    .<strong>dynamics</strong>  &#x21d2; <tt>Hashish</tt> 
   
 
   
@@ -4353,7 +4353,7 @@ to pass through when compiling (=&gt; {})</p>
       <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dynamics'>dynamics</span>
-  <span class='ivar'>@dynamics</span> <span class='op'>||=</span> <span class='const'>SparkleStruct</span><span class='period'>.</span><span class='id identifier rubyid_hashish'>hashish</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='ivar'>@dynamics</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></span><span class='period'>.</span><span class='id identifier rubyid_hashish'>hashish</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -4363,7 +4363,7 @@ to pass through when compiling (=&gt; {})</p>
       <div class="method_details ">
   <h3 class="signature " id="dynamics_path=-class_method">
   
-    + (<tt>String</tt>) <strong>dynamics_path=</strong>(path = nil) 
+    .<strong>dynamics_path=</strong>(path = nil)  &#x21d2; <tt>String</tt> 
   
 
   
@@ -4451,7 +4451,7 @@ to pass through when compiling (=&gt; {})</p>
       <div class="method_details ">
   <h3 class="signature " id="from_hash-class_method">
   
-    + (<tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt>) <strong>from_hash</strong>(hash) 
+    .<strong>from_hash</strong>(hash)  &#x21d2; <tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt> 
   
 
   
@@ -4520,7 +4520,7 @@ to pass through when compiling (=&gt; {})</p>
       <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 345</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_from_hash'>from_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_struct'>struct</span> <span class='op'>=</span> <span class='const'>SparkleStruct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_struct'>struct</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="SparkleFormation/SparkleStruct.html#initialize-instance_method" title="SparkleFormation::SparkleStruct#initialize (method)">new</a></span></span>
   <span class='id identifier rubyid_struct'>struct</span><span class='period'>.</span><span class='id identifier rubyid__camel_keys_set'>_camel_keys_set</span><span class='lparen'>(</span><span class='symbol'>:auto_discovery</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_struct'>struct</span><span class='period'>.</span><span class='id identifier rubyid__load'>_load</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_struct'>struct</span><span class='period'>.</span><span class='id identifier rubyid__camel_keys_set'>_camel_keys_set</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='rparen'>)</span>
@@ -4534,7 +4534,7 @@ to pass through when compiling (=&gt; {})</p>
       <div class="method_details ">
   <h3 class="signature " id="insert-class_method">
   
-    + (<tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt>) <strong>insert</strong>(dynamic_name, struct, *args, &amp;block) 
+    .<strong>insert</strong>(dynamic_name, struct, *args, &amp;block)  &#x21d2; <tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt> 
   
 
   
@@ -4685,7 +4685,7 @@ to pass through when compiling (=&gt; {})</p>
     <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_block_given?'>block_given?</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_instance_exec'>instance_exec</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
-  <span class='kw'>rescue</span> <span class='const'>Error</span><span class='op'>::</span><span class='const'>NotFound</span><span class='op'>::</span><span class='const'>Dynamic</span>
+  <span class='kw'>rescue</span> <span class='const'><span class='object_link'><a href="SparkleFormation/Error.html" title="SparkleFormation::Error (class)">Error</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="SparkleFormation/Error/NotFound.html" title="SparkleFormation::Error::NotFound (class)">NotFound</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="SparkleFormation/Error/NotFound/Dynamic.html" title="SparkleFormation::Error::NotFound::Dynamic (class)">Dynamic</a></span></span>
     <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_builtin_insert'>builtin_insert</span><span class='lparen'>(</span><span class='id identifier rubyid_dynamic_name'>dynamic_name</span><span class='comma'>,</span> <span class='id identifier rubyid_struct'>struct</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
     <span class='kw'>unless</span><span class='lparen'>(</span><span class='id identifier rubyid_result'>result</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_message'>message</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed to locate requested dynamic block for insertion: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_dynamic_name'>dynamic_name</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span> \
@@ -4712,7 +4712,7 @@ to pass through when compiling (=&gt; {})</p>
       <div class="method_details ">
   <h3 class="signature " id="load_component-class_method">
   
-    + (<tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt>) <strong>load_component</strong>(path) 
+    .<strong>load_component</strong>(path)  &#x21d2; <tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt> 
   
 
   
@@ -4790,7 +4790,7 @@ to pass through when compiling (=&gt; {})</p>
       <div class="method_details ">
   <h3 class="signature " id="load_dynamics!-class_method">
   
-    + (<tt>TrueClass</tt>) <strong>load_dynamics!</strong>(directory) 
+    .<strong>load_dynamics!</strong>(directory)  &#x21d2; <tt>TrueClass</tt> 
   
 
   
@@ -4874,7 +4874,7 @@ to pass through when compiling (=&gt; {})</p>
       <div class="method_details ">
   <h3 class="signature " id="load_registry!-class_method">
   
-    + (<tt>TrueClass</tt>) <strong>load_registry!</strong>(directory) 
+    .<strong>load_registry!</strong>(directory)  &#x21d2; <tt>TrueClass</tt> 
   
 
   
@@ -4950,7 +4950,7 @@ to pass through when compiling (=&gt; {})</p>
       <div class="method_details ">
   <h3 class="signature " id="nest-class_method">
   
-    + (<tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt>) <strong>nest</strong>(template, struct, *args, &amp;block) 
+    .<strong>nest</strong>(template, struct, *args, &amp;block)  &#x21d2; <tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt> 
   
 
   
@@ -5128,7 +5128,7 @@ will be used for directory separator and dashes will match underscores</p>
       <div class="method_details ">
   <h3 class="signature " id="registry-class_method">
   
-    + (<tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt>) <strong>registry</strong>(registry_name, struct, *args) 
+    .<strong>registry</strong>(registry_name, struct, *args)  &#x21d2; <tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt> 
   
 
   
@@ -5236,7 +5236,7 @@ will be used for directory separator and dashes will match underscores</p>
       <div class="method_details ">
   <h3 class="signature " id="registry_path=-class_method">
   
-    + (<tt>String</tt>) <strong>registry_path=</strong>(path = nil) 
+    .<strong>registry_path=</strong>(path = nil)  &#x21d2; <tt>String</tt> 
   
 
   
@@ -5324,7 +5324,7 @@ will be used for directory separator and dashes will match underscores</p>
       <div class="method_details ">
   <h3 class="signature " id="snake-class_method">
   
-    + (<tt>String</tt>) <strong>snake</strong>(string) 
+    .<strong>snake</strong>(string)  &#x21d2; <tt>String</tt> 
   
 
   
@@ -5379,7 +5379,7 @@ will be used for directory separator and dashes will match underscores</p>
       <div class="method_details ">
   <h3 class="signature " id="sparkle_path=-class_method">
   
-    + (<tt>String</tt>) <strong>sparkle_path=</strong>(path = nil) 
+    .<strong>sparkle_path=</strong>(path = nil)  &#x21d2; <tt>String</tt> 
   
 
   
@@ -5479,7 +5479,7 @@ will be used for directory separator and dashes will match underscores</p>
       <div class="method_details first">
   <h3 class="signature first" id="apply_deep_nesting-instance_method">
   
-    - (<tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleFormation::SparkleStruct</a></span></tt>) <strong>apply_deep_nesting</strong>(*args) {|stack, resource, s_name| ... }
+    #<strong>apply_deep_nesting</strong>(*args) {|stack, resource, s_name| ... } &#x21d2; <tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleFormation::SparkleStruct</a></span></tt> 
   
 
   
@@ -5605,7 +5605,7 @@ automatically applied.</p>
       <div class="method_details ">
   <h3 class="signature " id="apply_nesting-instance_method">
   
-    - (<tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleFormation::SparkleStruct</a></span></tt>) <strong>apply_nesting</strong>(*args, &amp;block) 
+    #<strong>apply_nesting</strong>(*args, &amp;block)  &#x21d2; <tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleFormation::SparkleStruct</a></span></tt> 
   
 
   
@@ -5696,7 +5696,7 @@ automatically applied.</p>
       <div class="method_details ">
   <h3 class="signature " id="apply_shallow_nesting-instance_method">
   
-    - (<tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleFormation::SparkleStruct</a></span></tt>) <strong>apply_shallow_nesting</strong>(*args) {|resource_name, stack| ... }
+    #<strong>apply_shallow_nesting</strong>(*args) {|resource_name, stack| ... } &#x21d2; <tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleFormation::SparkleStruct</a></span></tt> 
   
 
   
@@ -5807,7 +5807,7 @@ existing usage won&#39;t be automatically busted.</p>
       <div class="method_details ">
   <h3 class="signature " id="block-instance_method">
   
-    - (<tt>TrueClass</tt>) <strong>block</strong>(block) 
+    #<strong>block</strong>(block)  &#x21d2; <tt>TrueClass</tt> 
   
 
   
@@ -5881,7 +5881,7 @@ existing usage won&#39;t be automatically busted.</p>
       <div class="method_details ">
   <h3 class="signature " id="camel-instance_method">
   
-    - (<tt>String</tt>) <strong>camel</strong>(string) 
+    #<strong>camel</strong>(string)  &#x21d2; <tt>String</tt> 
   
 
   
@@ -5936,7 +5936,7 @@ existing usage won&#39;t be automatically busted.</p>
       <div class="method_details ">
   <h3 class="signature " id="collect_outputs-instance_method">
   
-    - (<tt>Smash&lt;output_name:SparkleFormation&gt;</tt>) <strong>collect_outputs</strong>(*args) 
+    #<strong>collect_outputs</strong>(*args)  &#x21d2; <tt>Smash&lt;output_name:SparkleFormation&gt;</tt> 
   
 
   
@@ -5995,7 +5995,7 @@ existing usage won&#39;t be automatically busted.</p>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_collect_outputs'>collect_outputs</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='symbol'>:force</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_root?'>root?</span><span class='rparen'>)</span>
-    <span class='kw'>unless</span><span class='lparen'>(</span><span class='id identifier rubyid_compile'>compile</span><span class='period'>.</span><span class='id identifier rubyid_outputs'>outputs</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rparen'>)</span>
+    <span class='kw'>if</span><span class='lparen'>(</span><span class='op'>!</span><span class='id identifier rubyid_compile'>compile</span><span class='period'>.</span><span class='id identifier rubyid_outputs'>outputs</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_root?'>root?</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_outputs'>outputs</span> <span class='op'>=</span> <span class='const'>Smash</span><span class='lbracket'>[</span>
         <span class='id identifier rubyid_compile'>compile</span><span class='period'>.</span><span class='id identifier rubyid_outputs'>outputs</span><span class='period'>.</span><span class='id identifier rubyid_keys!'>keys!</span><span class='period'>.</span><span class='id identifier rubyid_zip'>zip</span><span class='lparen'>(</span>
           <span class='lbracket'>[</span><span class='kw'>self</span><span class='rbracket'>]</span> <span class='op'>*</span> <span class='id identifier rubyid_compile'>compile</span><span class='period'>.</span><span class='id identifier rubyid_outputs'>outputs</span><span class='period'>.</span><span class='id identifier rubyid_keys!'>keys!</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
@@ -6009,7 +6009,7 @@ existing usage won&#39;t be automatically busted.</p>
     <span class='kw'>end</span>
     <span class='id identifier rubyid_outputs'>outputs</span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_root'>root</span><span class='period'>.</span><span class='id identifier rubyid_collect_outputs'>collect_outputs</span><span class='lparen'>(</span><span class='symbol'>:force</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_root'><span class='object_link'><a href="top-level-namespace.html" title="Top Level Namespace (root)">root</a></span></span><span class='period'>.</span><span class='id identifier rubyid_collect_outputs'>collect_outputs</span><span class='lparen'>(</span><span class='symbol'>:force</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -6020,7 +6020,7 @@ existing usage won&#39;t be automatically busted.</p>
       <div class="method_details ">
   <h3 class="signature " id="compile-instance_method">
   
-    - (<tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt>) <strong>compile</strong>(args = {}) 
+    #<strong>compile</strong>(args = {})  &#x21d2; <tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt> 
   
 
   
@@ -6166,18 +6166,18 @@ existing usage won&#39;t be automatically busted.</p>
 </span>    <span class='id identifier rubyid_seed_self'>seed_self</span>
 
     <span class='id identifier rubyid_set_compile_time_parameters!'>set_compile_time_parameters!</span>
-    <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_provider'>provider</span> <span class='op'>&amp;&amp;</span> <span class='const'>SparkleAttribute</span><span class='period'>.</span><span class='id identifier rubyid_const_defined?'>const_defined?</span><span class='lparen'>(</span><span class='id identifier rubyid_camel'>camel</span><span class='lparen'>(</span><span class='id identifier rubyid_provider'>provider</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_const'>const</span> <span class='op'>=</span> <span class='const'>SparkleAttribute</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='id identifier rubyid_camel'>camel</span><span class='lparen'>(</span><span class='id identifier rubyid_provider'>provider</span><span class='rparen'>)</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_struct_class'>struct_class</span> <span class='op'>=</span> <span class='const'>Class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>SparkleStruct</span><span class='rparen'>)</span>
+    <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_provider'>provider</span> <span class='op'>&amp;&amp;</span> <span class='const'><span class='object_link'><a href="SparkleFormation/SparkleAttribute.html" title="SparkleFormation::SparkleAttribute (module)">SparkleAttribute</a></span></span><span class='period'>.</span><span class='id identifier rubyid_const_defined?'>const_defined?</span><span class='lparen'>(</span><span class='id identifier rubyid_camel'>camel</span><span class='lparen'>(</span><span class='id identifier rubyid_provider'>provider</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_const'>const</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="SparkleFormation/SparkleAttribute.html" title="SparkleFormation::SparkleAttribute (module)">SparkleAttribute</a></span></span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='id identifier rubyid_camel'>camel</span><span class='lparen'>(</span><span class='id identifier rubyid_provider'>provider</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_struct_class'>struct_class</span> <span class='op'>=</span> <span class='const'>Class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></span><span class='rparen'>)</span>
       <span class='id identifier rubyid_struct_class'>struct_class</span><span class='period'>.</span><span class='id identifier rubyid_include'>include</span><span class='lparen'>(</span><span class='id identifier rubyid_const'>const</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_struct_name'>struct_name</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='const'>SparkleStruct</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_camel'>camel</span><span class='lparen'>(</span><span class='id identifier rubyid_provider'>provider</span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>::</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_struct_name'>struct_name</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></span><span class='period'>.</span><span class='id identifier rubyid_name'><span class='object_link'><a href="#name-instance_method" title="SparkleFormation#name (method)">name</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_camel'>camel</span><span class='lparen'>(</span><span class='id identifier rubyid_provider'>provider</span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>::</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
       <span class='id identifier rubyid_struct_class'>struct_class</span><span class='period'>.</span><span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='symbol'>:name</span><span class='rparen'>)</span><span class='lbrace'>{</span> <span class='id identifier rubyid_struct_name'>struct_name</span> <span class='rbrace'>}</span>
       <span class='id identifier rubyid_struct_class'>struct_class</span><span class='period'>.</span><span class='id identifier rubyid_define_singleton_method'>define_singleton_method</span><span class='lparen'>(</span><span class='symbol'>:to_s</span><span class='rparen'>)</span><span class='lbrace'>{</span> <span class='id identifier rubyid_struct_name'>struct_name</span> <span class='rbrace'>}</span>
     <span class='kw'>else</span>
-      <span class='id identifier rubyid_struct_class'>struct_class</span> <span class='op'>=</span> <span class='const'>SparkleStruct</span>
+      <span class='id identifier rubyid_struct_class'>struct_class</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></span>
     <span class='kw'>end</span>
-    <span class='kw'>if</span><span class='lparen'>(</span><span class='const'>Resources</span><span class='period'>.</span><span class='id identifier rubyid_const_defined?'>const_defined?</span><span class='lparen'>(</span><span class='id identifier rubyid_camel'>camel</span><span class='lparen'>(</span><span class='id identifier rubyid_provider'>provider</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
-      <span class='ivar'>@provider_resources</span> <span class='op'>=</span> <span class='const'>Resources</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='id identifier rubyid_camel'>camel</span><span class='lparen'>(</span><span class='id identifier rubyid_provider'>provider</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>if</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="SparkleFormation/Resources.html" title="SparkleFormation::Resources (class)">Resources</a></span></span><span class='period'>.</span><span class='id identifier rubyid_const_defined?'>const_defined?</span><span class='lparen'>(</span><span class='id identifier rubyid_camel'>camel</span><span class='lparen'>(</span><span class='id identifier rubyid_provider'>provider</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='ivar'>@provider_resources</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="SparkleFormation/Resources.html" title="SparkleFormation::Resources (class)">Resources</a></span></span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='id identifier rubyid_camel'>camel</span><span class='lparen'>(</span><span class='id identifier rubyid_provider'>provider</span><span class='rparen'>)</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_provider_resources'>provider_resources</span><span class='period'>.</span><span class='id identifier rubyid_load!'>load!</span>
     <span class='kw'>end</span>
     <span class='id identifier rubyid_compiled'>compiled</span> <span class='op'>=</span> <span class='id identifier rubyid_struct_class'>struct_class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -6194,7 +6194,7 @@ existing usage won&#39;t be automatically busted.</p>
     <span class='kw'>end</span>
     <span class='id identifier rubyid_composition'>composition</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
       <span class='kw'>case</span> <span class='id identifier rubyid_item'>item</span>
-      <span class='kw'>when</span> <span class='const'>Composition</span><span class='op'>::</span><span class='const'>Component</span>
+      <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="SparkleFormation/Composition.html" title="SparkleFormation::Composition (class)">Composition</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="SparkleFormation/Composition/Component.html" title="SparkleFormation::Composition::Component (class)">Component</a></span></span>
         <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
           <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_build'>build</span><span class='lparen'>(</span><span class='id identifier rubyid_compiled'>compiled</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
         <span class='kw'>else</span>
@@ -6202,7 +6202,7 @@ existing usage won&#39;t be automatically busted.</p>
             <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_build'>build</span><span class='lparen'>(</span><span class='id identifier rubyid_compiled'>compiled</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_component_block'>component_block</span><span class='lbracket'>[</span><span class='symbol'>:block</span><span class='rbracket'>]</span><span class='rparen'>)</span>
           <span class='kw'>end</span>
         <span class='kw'>end</span>
-      <span class='kw'>when</span> <span class='const'>Composition</span><span class='op'>::</span><span class='const'>Override</span>
+      <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="SparkleFormation/Composition.html" title="SparkleFormation::Composition (class)">Composition</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="SparkleFormation/Composition/Override.html" title="SparkleFormation::Composition::Override (class)">Override</a></span></span>
         <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_args'>args</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span>
           <span class='id identifier rubyid_compiled'>compiled</span><span class='period'>.</span><span class='id identifier rubyid__set_state'>_set_state</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
         <span class='kw'>end</span>
@@ -6223,7 +6223,7 @@ existing usage won&#39;t be automatically busted.</p>
       <div class="method_details ">
   <h3 class="signature " id="compile_time_parameter_setter-instance_method">
   
-    - (<tt>Proc</tt>, <tt>NilClass</tt>) <strong>compile_time_parameter_setter</strong> {|| ... }
+    #<strong>compile_time_parameter_setter</strong> {|| ... } &#x21d2; <tt>Proc</tt>, <tt>NilClass</tt> 
   
 
   
@@ -6325,7 +6325,7 @@ request the ancestor path will be searched to root</p>
       <div class="method_details ">
   <h3 class="signature " id="dump-instance_method">
   
-    - (<tt>Hash</tt>) <strong>dump</strong> 
+    #<strong>dump</strong>  &#x21d2; <tt>Hash</tt> 
   
 
   
@@ -6382,7 +6382,7 @@ request the ancestor path will be searched to root</p>
       <div class="method_details ">
   <h3 class="signature " id="extract_template_data-instance_method">
   
-    - (<tt>self</tt>) <strong>extract_template_data</strong>(template) 
+    #<strong>extract_template_data</strong>(template)  &#x21d2; <tt>self</tt> 
   
 
   
@@ -6475,7 +6475,7 @@ request the ancestor path will be searched to root</p>
     <span class='lparen'>(</span><span class='id identifier rubyid_blacklisted_templates'>blacklisted_templates</span> <span class='op'>+</span> <span class='id identifier rubyid_template'>template</span><span class='period'>.</span><span class='id identifier rubyid_blacklisted_templates'>blacklisted_templates</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_s</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
   <span class='rparen'>)</span>
   <span class='ivar'>@parameters</span> <span class='op'>=</span> <span class='id identifier rubyid_template'>template</span><span class='period'>.</span><span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_to_smash'>to_smash</span><span class='period'>.</span><span class='id identifier rubyid_deep_merge'>deep_merge</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='period'>.</span><span class='id identifier rubyid_to_smash'>to_smash</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_new_composition'>new_composition</span> <span class='op'>=</span> <span class='const'>Composition</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span>
+  <span class='id identifier rubyid_new_composition'>new_composition</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="SparkleFormation/Composition.html" title="SparkleFormation::Composition (class)">Composition</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="SparkleFormation/Composition.html#initialize-instance_method" title="SparkleFormation::Composition#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span>
     <span class='symbol'>:components</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_template'>template</span><span class='period'>.</span><span class='id identifier rubyid_composition'>composition</span><span class='period'>.</span><span class='id identifier rubyid_composite'>composite</span><span class='comma'>,</span>
     <span class='symbol'>:overrides</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_composition'>composition</span><span class='period'>.</span><span class='id identifier rubyid_overrides'>overrides</span>
   <span class='rparen'>)</span>
@@ -6500,7 +6500,7 @@ request the ancestor path will be searched to root</p>
       <div class="method_details ">
   <h3 class="signature " id="extract_templates-instance_method">
   
-    - (<tt>Object</tt>) <strong>extract_templates</strong> {|stack, resource, s_name| ... }
+    #<strong>extract_templates</strong> {|stack, resource, s_name| ... } &#x21d2; <tt>Object</tt> 
   
 
   
@@ -6606,7 +6606,7 @@ request the ancestor path will be searched to root</p>
       <div class="method_details ">
   <h3 class="signature " id="generate_policy-instance_method">
   
-    - (<tt>Hash</tt>) <strong>generate_policy</strong> 
+    #<strong>generate_policy</strong>  &#x21d2; <tt>Hash</tt> 
   
 
   
@@ -6659,7 +6659,7 @@ request the ancestor path will be searched to root</p>
       <div class="method_details ">
   <h3 class="signature " id="includes_policies?-instance_method">
   
-    - (<tt>TrueClass</tt>, <tt>FalseClass</tt>) <strong>includes_policies?</strong>(stack_hash = nil) 
+    #<strong>includes_policies?</strong>(stack_hash = nil)  &#x21d2; <tt>TrueClass</tt>, <tt>FalseClass</tt> 
   
 
   
@@ -6714,7 +6714,7 @@ request the ancestor path will be searched to root</p>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_includes_policies?'>includes_policies?</span><span class='lparen'>(</span><span class='id identifier rubyid_stack_hash'>stack_hash</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_stack_hash'>stack_hash</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Error</span><span class='op'>::</span><span class='const'>Deprecated</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hash parameter no longer valid for this method (`</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid___callee__'>__callee__</span><span class='embexpr_end'>}</span><span class='tstring_content'>`)</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="SparkleFormation/Error.html" title="SparkleFormation::Error (class)">Error</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="SparkleFormation/Error/Deprecated.html" title="SparkleFormation::Error::Deprecated (class)">Deprecated</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hash parameter no longer valid for this method (`</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid___callee__'>__callee__</span><span class='embexpr_end'>}</span><span class='tstring_content'>`)</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
   <span class='kw'>unless</span><span class='lparen'>(</span><span class='id identifier rubyid_compile'>compile</span><span class='period'>.</span><span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_compile'>compile</span><span class='period'>.</span><span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid__data'>_data</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_r_name'>r_name</span><span class='comma'>,</span> <span class='id identifier rubyid_r_value'>r_value</span><span class='op'>|</span>
@@ -6730,7 +6730,7 @@ request the ancestor path will be searched to root</p>
       <div class="method_details ">
   <h3 class="signature " id="inherit_from-instance_method">
   
-    - (<tt>self</tt>) <strong>inherit_from</strong>(template_name) 
+    #<strong>inherit_from</strong>(template_name)  &#x21d2; <tt>self</tt> 
   
 
   
@@ -6800,7 +6800,7 @@ request the ancestor path will be searched to root</p>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inherit_from'>inherit_from</span><span class='lparen'>(</span><span class='id identifier rubyid_template_name'>template_name</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_blacklisted_templates'>blacklisted_templates</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_s</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_template_name'>template_name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Error</span><span class='op'>::</span><span class='const'>CircularInheritance</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Circular inheritance detected between templates `</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_template_name'>template_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>` and `</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>`</span><span class='tstring_end'>&quot;</span></span> <span class='comment'># rubocop:disable Metrics/LineLength
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="SparkleFormation/Error.html" title="SparkleFormation::Error (class)">Error</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="SparkleFormation/Error/CircularInheritance.html" title="SparkleFormation::Error::CircularInheritance (class)">CircularInheritance</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Circular inheritance detected between templates `</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_template_name'>template_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>` and `</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>`</span><span class='tstring_end'>&quot;</span></span> <span class='comment'># rubocop:disable Metrics/LineLength
 </span>  <span class='kw'>end</span>
   <span class='id identifier rubyid_template'>template</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_compile'>compile</span><span class='lparen'>(</span><span class='id identifier rubyid_sparkle'>sparkle</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='symbol'>:template</span><span class='comma'>,</span> <span class='id identifier rubyid_template_name'>template_name</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='symbol'>:path</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='symbol'>:sparkle</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_template'>template</span><span class='period'>.</span><span class='id identifier rubyid_blacklisted_templates'>blacklisted_templates</span><span class='period'>.</span><span class='id identifier rubyid_replace'>replace</span><span class='lparen'>(</span>
@@ -6816,7 +6816,7 @@ request the ancestor path will be searched to root</p>
       <div class="method_details ">
   <h3 class="signature " id="isolated_nests?-instance_method">
   
-    - (<tt>TrueClass</tt>, <tt>FalseClass</tt>) <strong>isolated_nests?</strong>(stack_hash = nil) 
+    #<strong>isolated_nests?</strong>(stack_hash = nil)  &#x21d2; <tt>TrueClass</tt>, <tt>FalseClass</tt> 
   
 
   
@@ -6871,7 +6871,7 @@ request the ancestor path will be searched to root</p>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_isolated_nests?'>isolated_nests?</span><span class='lparen'>(</span><span class='id identifier rubyid_stack_hash'>stack_hash</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_stack_hash'>stack_hash</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Error</span><span class='op'>::</span><span class='const'>Deprecated</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hash parameter no longer valid for this method (`</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid___callee__'>__callee__</span><span class='embexpr_end'>}</span><span class='tstring_content'>`)</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="SparkleFormation/Error.html" title="SparkleFormation::Error (class)">Error</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="SparkleFormation/Error/Deprecated.html" title="SparkleFormation::Error::Deprecated (class)">Deprecated</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hash parameter no longer valid for this method (`</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid___callee__'>__callee__</span><span class='embexpr_end'>}</span><span class='tstring_content'>`)</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
   <span class='kw'>unless</span><span class='lparen'>(</span><span class='id identifier rubyid_compile'>compile</span><span class='period'>.</span><span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_compile'>compile</span><span class='period'>.</span><span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid__data'>_data</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_r_name'>r_name</span><span class='comma'>,</span> <span class='id identifier rubyid_r_value'>r_value</span><span class='op'>|</span>
@@ -6887,7 +6887,7 @@ request the ancestor path will be searched to root</p>
       <div class="method_details ">
   <h3 class="signature " id="load-instance_method">
   
-    - (<tt>self</tt>) <strong>load</strong>(*args, &amp;user_block) 
+    #<strong>load</strong>(*args, &amp;user_block)  &#x21d2; <tt>self</tt> 
   
 
   
@@ -6985,7 +6985,7 @@ request the ancestor path will be searched to root</p>
       <div class="method_details ">
   <h3 class="signature " id="make_output_available-instance_method">
   
-    - (<tt>Object</tt>) <strong>make_output_available</strong>(output_name, outputs) 
+    #<strong>make_output_available</strong>(output_name, outputs)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -7060,7 +7060,7 @@ current depth</p>
       <div class="method_details ">
   <h3 class="signature " id="merge_previous!-instance_method">
   
-    - (<tt>self</tt>) <strong>merge_previous!</strong> 
+    #<strong>merge_previous!</strong>  &#x21d2; <tt>self</tt> 
   
 
   
@@ -7121,7 +7121,7 @@ current depth</p>
       <div class="method_details ">
   <h3 class="signature " id="nested?-instance_method">
   
-    - (<tt>TrueClass</tt>, <tt>FalseClass</tt>) <strong>nested?</strong>(stack_hash = nil) 
+    #<strong>nested?</strong>(stack_hash = nil)  &#x21d2; <tt>TrueClass</tt>, <tt>FalseClass</tt> 
   
 
   
@@ -7176,7 +7176,7 @@ current depth</p>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_nested?'>nested?</span><span class='lparen'>(</span><span class='id identifier rubyid_stack_hash'>stack_hash</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_stack_hash'>stack_hash</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Error</span><span class='op'>::</span><span class='const'>Deprecated</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hash parameter no longer valid for this method (`</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid___callee__'>__callee__</span><span class='embexpr_end'>}</span><span class='tstring_content'>`)</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="SparkleFormation/Error.html" title="SparkleFormation::Error (class)">Error</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="SparkleFormation/Error/Deprecated.html" title="SparkleFormation::Error::Deprecated (class)">Deprecated</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Hash parameter no longer valid for this method (`</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>#</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid___callee__'>__callee__</span><span class='embexpr_end'>}</span><span class='tstring_content'>`)</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
   <span class='kw'>unless</span><span class='lparen'>(</span><span class='id identifier rubyid_compile'>compile</span><span class='period'>.</span><span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_compile'>compile</span><span class='period'>.</span><span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid__data'>_data</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_r_name'>r_name</span><span class='comma'>,</span> <span class='id identifier rubyid_r_value'>r_value</span><span class='op'>|</span>
@@ -7192,7 +7192,7 @@ current depth</p>
       <div class="method_details ">
   <h3 class="signature " id="nested_stacks-instance_method">
   
-    - (<tt>Array&lt;<span class='object_link'><a href="" title="SparkleFormation (class)">SparkleFormation</a></span>&gt;</tt>) <strong>nested_stacks</strong>(*args) 
+    #<strong>nested_stacks</strong>(*args)  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="" title="SparkleFormation (class)">SparkleFormation</a></span>&gt;</tt> 
   
 
   
@@ -7274,7 +7274,7 @@ current depth</p>
       <div class="method_details ">
   <h3 class="signature " id="output_matched?-instance_method">
   
-    - (<tt>String</tt>, <tt>NilClass</tt>) <strong>output_matched?</strong>(p_name, output_names) 
+    #<strong>output_matched?</strong>(p_name, output_names)  &#x21d2; <tt>String</tt>, <tt>NilClass</tt> 
   
 
   
@@ -7376,7 +7376,7 @@ current depth</p>
       <div class="method_details ">
   <h3 class="signature " id="overrides-instance_method">
   
-    - (<tt>Object</tt>) <strong>overrides</strong>(args = {}) { ... }
+    #<strong>overrides</strong>(args = {}) { ... } &#x21d2; <tt>Object</tt> 
   
 
   
@@ -7456,7 +7456,7 @@ current depth</p>
       <div class="method_details ">
   <h3 class="signature " id="recompile-instance_method">
   
-    - (<tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt>) <strong>recompile</strong> 
+    #<strong>recompile</strong>  &#x21d2; <tt><span class='object_link'><a href="SparkleFormation/SparkleStruct.html" title="SparkleFormation::SparkleStruct (class)">SparkleStruct</a></span></tt> 
   
 
   
@@ -7511,7 +7511,7 @@ current depth</p>
       <div class="method_details ">
   <h3 class="signature " id="remap_nested_parameters-instance_method">
   
-    - (<tt>TrueClass</tt>) <strong>remap_nested_parameters</strong>(template, parameters, stack_name, stack_resource, output_map) 
+    #<strong>remap_nested_parameters</strong>(template, parameters, stack_name, stack_resource, output_map)  &#x21d2; <tt>TrueClass</tt> 
   
 
   
@@ -7655,7 +7655,7 @@ stack parameters and set to use ref.</p>
       <div class="method_details ">
   <h3 class="signature " id="root-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="SparkleFormation (class)">SparkleFormation</a></span></tt>) <strong>root</strong> 
+    #<strong>root</strong>  &#x21d2; <tt><span class='object_link'><a href="" title="SparkleFormation (class)">SparkleFormation</a></span></tt> 
   
 
   
@@ -7705,7 +7705,7 @@ stack parameters and set to use ref.</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 560</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_root'>root</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_root'><span class='object_link'><a href="top-level-namespace.html" title="Top Level Namespace (root)">root</a></span></span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_parent'>parent</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_root'>root</span>
   <span class='kw'>else</span>
@@ -7720,7 +7720,7 @@ stack parameters and set to use ref.</p>
       <div class="method_details ">
   <h3 class="signature " id="root?-instance_method">
   
-    - (<tt>TrueClass</tt>, <tt>FalseClass</tt>) <strong>root?</strong> 
+    #<strong>root?</strong>  &#x21d2; <tt>TrueClass</tt>, <tt>FalseClass</tt> 
   
 
   
@@ -7767,7 +7767,7 @@ stack parameters and set to use ref.</p>
       <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 578</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_root?'>root?</span>
-  <span class='id identifier rubyid_root'>root</span> <span class='op'>==</span> <span class='kw'>self</span>
+  <span class='id identifier rubyid_root'><span class='object_link'><a href="top-level-namespace.html" title="Top Level Namespace (root)">root</a></span></span> <span class='op'>==</span> <span class='kw'>self</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -7777,7 +7777,7 @@ stack parameters and set to use ref.</p>
       <div class="method_details ">
   <h3 class="signature " id="root_path-instance_method">
   
-    - (<tt>Array&lt;<span class='object_link'><a href="" title="SparkleFormation (class)">SparkleFormation</a></span>] path to <span class='object_link'><a href="top-level-namespace.html" title="Top Level Namespace (root)">root</a></span></tt>) <strong>root_path</strong> 
+    #<strong>root_path</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'><a href="" title="SparkleFormation (class)">SparkleFormation</a></span>] path to <span class='object_link'><a href="#root-instance_method" title="SparkleFormation#root (method)">root</a></span></tt> 
   
 
   
@@ -7798,7 +7798,7 @@ stack parameters and set to use ref.</p>
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="" title="SparkleFormation (class)">SparkleFormation</a></span>] path to <span class='object_link'><a href="top-level-namespace.html" title="Top Level Namespace (root)">root</a></span></tt>)</span>
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="" title="SparkleFormation (class)">SparkleFormation</a></span>] path to <span class='object_link'><a href="#root-instance_method" title="SparkleFormation#root (method)">root</a></span></tt>)</span>
       
       
       
@@ -7842,7 +7842,7 @@ stack parameters and set to use ref.</p>
       <div class="method_details ">
   <h3 class="signature " id="seed_self-instance_method">
   
-    - (<tt>self</tt>) <strong>seed_self</strong> 
+    #<strong>seed_self</strong>  &#x21d2; <tt>self</tt> 
   
 
   
@@ -7935,7 +7935,7 @@ or layering behavior if defined for this template</p>
       <div class="method_details ">
   <h3 class="signature " id="set_compile_time_parameters!-instance_method">
   
-    - (<tt>Object</tt>) <strong>set_compile_time_parameters!</strong> 
+    #<strong>set_compile_time_parameters!</strong>  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -7980,7 +7980,7 @@ is available</p>
       <div class="method_details ">
   <h3 class="signature " id="set_generation_parameters!-instance_method">
   
-    - (<tt>Hash</tt>) <strong>set_generation_parameters!</strong>(params) 
+    #<strong>set_generation_parameters!</strong>(params)  &#x21d2; <tt>Hash</tt> 
   
 
   
@@ -8059,7 +8059,7 @@ are in the expected format</p>
     <span class='kw'>unless</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_raise'>raise</span> <span class='const'>TypeError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Expecting `Hash` type. Received `</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>`</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>end</span>
-    <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_detect'>detect</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='op'>|</span> <span class='op'>!</span><span class='const'>ALLOWED_GENERATION_PARAMETERS</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+    <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_detect'>detect</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='op'>|</span> <span class='op'>!</span><span class='const'><span class='object_link'><a href="#ALLOWED_GENERATION_PARAMETERS-constant" title="SparkleFormation::ALLOWED_GENERATION_PARAMETERS (constant)">ALLOWED_GENERATION_PARAMETERS</a></span></span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Invalid generation parameter key provided `</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='embexpr_end'>}</span><span class='tstring_content'>`</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -8073,7 +8073,7 @@ are in the expected format</p>
       <div class="method_details ">
   <h3 class="signature " id="snake-instance_method">
   
-    - (<tt>String</tt>) <strong>snake</strong>(string) 
+    #<strong>snake</strong>(string)  &#x21d2; <tt>String</tt> 
   
 
   
@@ -8128,7 +8128,7 @@ are in the expected format</p>
       <div class="method_details ">
   <h3 class="signature " id="sparkle_dump-instance_method">
   
-    - (<tt>Hash</tt>) <strong>sparkle_dump</strong> 
+    #<strong>sparkle_dump</strong>  &#x21d2; <tt>Hash</tt> 
   
 
   
@@ -8193,7 +8193,7 @@ are in the expected format</p>
       <div class="method_details ">
   <h3 class="signature " id="stack_resource_type-instance_method">
   
-    - (<tt>String</tt>) <strong>stack_resource_type</strong> 
+    #<strong>stack_resource_type</strong>  &#x21d2; <tt>String</tt> 
   
 
   
@@ -8240,7 +8240,7 @@ are in the expected format</p>
       <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_formation.rb', line 527</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_stack_resource_type'>stack_resource_type</span>
-  <span class='const'>DEFAULT_STACK_RESOURCE</span>
+  <span class='const'><span class='object_link'><a href="#DEFAULT_STACK_RESOURCE-constant" title="SparkleFormation::DEFAULT_STACK_RESOURCE (constant)">DEFAULT_STACK_RESOURCE</a></span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -8250,7 +8250,7 @@ are in the expected format</p>
       <div class="method_details ">
   <h3 class="signature " id="stack_resource_type?-instance_method">
   
-    - (<tt>TrueClass</tt>, <tt>FalseClass</tt>) <strong>stack_resource_type?</strong>(type) 
+    #<strong>stack_resource_type?</strong>(type)  &#x21d2; <tt>TrueClass</tt>, <tt>FalseClass</tt> 
   
 
   
@@ -8318,7 +8318,7 @@ are in the expected format</p>
       <div class="method_details ">
   <h3 class="signature " id="stack_template_extractor-instance_method">
   
-    - (<tt>Object</tt>) <strong>stack_template_extractor</strong>(x_stacks, &amp;block) 
+    #<strong>stack_template_extractor</strong>(x_stacks, &amp;block)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -8391,7 +8391,7 @@ are in the expected format</p>
       <div class="method_details ">
   <h3 class="signature " id="to_json-instance_method">
   
-    - (<tt>String</tt>) <strong>to_json</strong>(*args) 
+    #<strong>to_json</strong>(*args)  &#x21d2; <tt>String</tt> 
   
 
   
@@ -8461,11 +8461,12 @@ are in the expected format</p>
 
 </div>
 
-    <div id="footer">
-  Generated on Sat May 14 12:40:56 2016 by
+      <div id="footer">
+  Generated on Mon Feb  6 20:48:34 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.2.3).
+  0.9.8 (ruby-2.2.3).
 </div>
 
+    </div>
   </body>
 </html>
