@@ -30,7 +30,7 @@ implementation:
 
 * [SparkleFormation Library Documentation](http://www.sparkleformation.io/docs/sparkle_formation/)
 
-# Infos
+# Info
 * Documentation: http://www.sparkleformation.io/docs/sparkle_formation
 * Repository: https://github.com/sparkleformation/sparkle_formation
 * Mailing List: https://groups.google.com/forum/#!forum/sparkleformation
