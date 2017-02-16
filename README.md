@@ -30,8 +30,9 @@ implementation:
 
 * [SparkleFormation Library Documentation](http://www.sparkleformation.io/docs/sparkle_formation/)
 
-# Infos
+# Info
 * Documentation: http://www.sparkleformation.io/docs/sparkle_formation
 * Repository: https://github.com/sparkleformation/sparkle_formation
 * Mailing List: https://groups.google.com/forum/#!forum/sparkleformation
 * IRC: Freenode @ #sparkleformation
+* Gitter: [![Join at https://gitter.im/SparkleFormation/sparkleformation](https://badges.gitter.im/SparkleFormation/sparkleformation.svg)](https://gitter.im/SparkleFormation/sparkleformation?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
