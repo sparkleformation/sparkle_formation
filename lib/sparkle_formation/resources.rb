@@ -158,7 +158,7 @@ class SparkleFormation
           if(result)
             collisions = @@registry[base_key].keys.find_all do |ref|
               split_ref = ref.downcase.split(resource_type_splitter)
-              ref = split_ref.slice(split_ref.size - snake_parts.size, split_ref.size).join('')
+              ref = Array(split_ref.slice(split_ref.size - snake_parts.size, split_ref.size)).join('')
               key == ref
             end
             if(collisions.size > 1)
