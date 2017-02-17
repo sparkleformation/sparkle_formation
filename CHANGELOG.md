@@ -1,3 +1,6 @@
+# v3.0.14
+* Fix resource lookup helper when using full match
+
 # v3.0.12
 * Prevent parameter mappings applying to root template
 * Add #import_value! helper for AWS templates (#193)
