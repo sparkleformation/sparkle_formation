@@ -12,7 +12,7 @@ class SparkleFormation
     autoload :Terraform, 'sparkle_formation/resources/terraform'
 
     # Characters to be removed from supplied key on matching
-    RESOURCE_TYPE_TR = '_'
+    RESOURCE_TYPE_TR = '_:'
     # String to split for resource namespacing
     RESOURCE_TYPE_NAMESPACE_SPLITTER = '::'
     # Property update conditionals
@@ -90,11 +90,14 @@ class SparkleFormation
       # @param hash [Hash] metadata information
       # @return [TrueClass]
       def register(type, hash)
+        unless(hash.is_a?(Hash))
+          raise TypeError.new("Expecting `Hash` type but received `#{hash.class}`")
+        end
         unless(class_variable_defined?(:@@registry))
           @@registry = AttributeStruct.hashish.new
         end
         @@registry[base_key] ||= AttributeStruct.hashish.new
-        @@registry[base_key][type] = hash
+        @@registry[base_key][type.to_s] = hash
         true
       end
 
@@ -102,7 +105,7 @@ class SparkleFormation
       #
       # @param identifier [String, Symbol] resource identifier
       # @param key [String, Symbol] specific data
-      # @return [Hashish]
+      # @return [Hashish, NilClass]
       def resource(identifier, key=nil)
         res = lookup(identifier)
         if(key && res)
@@ -117,10 +120,13 @@ class SparkleFormation
       # @param json_path_or_hash [String, Hashish] path to files or hash
       # @return [TrueClass]
       def load(json_path_or_hash)
-        if(json_path_or_hash.is_a?(String))
+        case json_path_or_hash
+        when String
           content = AttributeStruct.hashish.new(MultiJson.load(File.read(json_path_or_hash)))
-        else
+        when Hash
           content = json_path_or_hash
+        else
+          raise TypeError.new("Expecting `String` or `Hash` type but received `#{json_path_or_hash.class}`")
         end
         content.each do |type, hash|
           register(type, hash)
@@ -144,7 +150,7 @@ class SparkleFormation
           result = key
         else
           o_key = key
-          key = key.to_s.tr(self.const_get(:RESOURCE_TYPE_TR), '') # rubocop:disable Style/RedundantSelf
+          key = key.to_s.downcase.tr(self.const_get(:RESOURCE_TYPE_TR), '') # rubocop:disable Style/RedundantSelf
           snake_parts = nil
           result = @@registry[base_key].keys.detect do |ref|
             ref = ref.downcase
