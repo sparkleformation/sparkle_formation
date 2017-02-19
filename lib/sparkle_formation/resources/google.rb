@@ -8,6 +8,8 @@ class SparkleFormation
     # Google specific resources collection
     class Google < Resources
 
+      # Characters to be removed from supplied key on matching
+      RESOURCE_TYPE_TR = '._'
       # String to split for resource namespacing
       RESOURCE_TYPE_NAMESPACE_SPLITTER = ['.']
 
