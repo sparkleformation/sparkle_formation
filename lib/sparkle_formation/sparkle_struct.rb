@@ -6,6 +6,37 @@ class SparkleFormation
   # SparkleFormation customized AttributeStruct
   class SparkleStruct < AttributeStruct
 
+    # AWS specific struct
+    class Aws < SparkleStruct
+      include SparkleAttribute
+      include SparkleAttribute::Aws
+    end
+    # Azure specific struct
+    class Azure < SparkleStruct
+      include SparkleAttribute
+      include SparkleAttribute::Azure
+    end
+    # Google specific struct
+    class Google < SparkleStruct
+      include SparkleAttribute
+      include SparkleAttribute::Google
+    end
+    # Heat specific struct
+    class Heat < SparkleStruct
+      include SparkleAttribute
+      include SparkleAttribute::Heat
+    end
+    # Rackspace specific struct
+    class Rackspace < SparkleStruct
+      include SparkleAttribute
+      include SparkleAttribute::Rackspace
+    end
+    # Terraform specific struct
+    class Terraform < SparkleStruct
+      include SparkleAttribute
+      include SparkleAttribute::Terraform
+    end
+
     include ::SparkleFormation::SparkleAttribute
     # @!parse include ::SparkleFormation::SparkleAttribute
     include ::SparkleFormation::Utils::TypeCheckers
