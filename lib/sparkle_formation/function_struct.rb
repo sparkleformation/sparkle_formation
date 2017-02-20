@@ -268,8 +268,6 @@ class SparkleFormation
   # FunctionStruct for customized terraform functions
   class TerraformStruct < FunctionStruct
 
-    SINGLE_ANCHOR = true
-
     # @return [String] start character(s) used to anchor function call
     def __anchor_start
       '${'
