@@ -8,25 +8,25 @@ RSpec.describe SparkleFormation::Composition do
   context 'with only origin provided' do
     let(:instance){ described_class.new(SparkleFormation.new('test')) }
 
-    context '#components' do
+    describe '#components' do
       it 'should return empty array' do
         expect(instance.components).to eq([])
       end
     end
 
-    context '#overrides' do
+    describe '#overrides' do
       it 'should return empty array' do
         expect(instance.overrides).to eq([])
       end
     end
 
-    context '#composite' do
+    describe '#composite' do
       it 'should return empty array' do
         expect(instance.composite).to eq([])
       end
     end
 
-    context '#each' do
+    describe '#each' do
       it 'should return itself' do
         expect(instance.each).to eq(instance)
       end
@@ -36,7 +36,7 @@ RSpec.describe SparkleFormation::Composition do
       end
     end
 
-    context '#add_component' do
+    describe '#add_component' do
       let(:test_component) do
         SparkleFormation::Composition::Component.new(
           SparkleFormation.new('test'),
@@ -85,7 +85,7 @@ RSpec.describe SparkleFormation::Composition do
       end
     end
 
-    context '#add_component' do
+    describe '#add_component' do
       let(:test_component) do
         SparkleFormation::Composition::Component.new(
           SparkleFormation.new('test'),
@@ -132,7 +132,7 @@ RSpec.describe SparkleFormation::Composition do
       end
     end
 
-    context '#new_component' do
+    describe '#new_component' do
       it 'should return self' do
         expect(instance.new_component(:test_component)).to eq(instance)
       end
@@ -155,7 +155,7 @@ RSpec.describe SparkleFormation::Composition do
       end
     end
 
-    context '#new_override' do
+    describe '#new_override' do
       it 'should return self' do
         expect(instance.new_override).to eq(instance)
       end
@@ -166,7 +166,7 @@ RSpec.describe SparkleFormation::Composition do
       end
     end
 
-    context '#each' do
+    describe '#each' do
       before do
         instance.new_component(:first){|item| :first }
         instance.new_override{|item| :second }
