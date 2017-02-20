@@ -63,6 +63,9 @@ class SparkleFormation
     # @param location [Symbol] :prepend or :append (defaults to :append)
     # @return [self]
     def add_component(item, location=:append)
+      unless(item.is_a?(Component) || item.is_a?(Override))
+        raise TypeError.new("Expecting `Component` or `Override` but received `#{item.class}`")
+      end
       if(item.respond_to?(:key) && component_keys.include?(item.key))
         # do nothing
       else
@@ -85,6 +88,9 @@ class SparkleFormation
     # @param location [Symbol] :prepend or :append (defaults to :append)
     # @return [self]
     def add_override(item, location=:append)
+      unless(item.is_a?(Override))
+        raise TypeError.new("Expecting `Override` but received `#{item.class}`")
+      end
       case location
       when :append
         overrides_list.push(item)
@@ -173,7 +179,5 @@ class SparkleFormation
     end
 
     attr_reader :components_list, :overrides_list
-
   end
-
 end
