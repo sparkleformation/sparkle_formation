@@ -400,22 +400,29 @@ class SparkleFormation
     @component_paths = []
     if(options[:sparkle_collection])
       @sparkle = options[:sparkle_collection]
+      if(options[:sparkle])
+        @sparkle.add_sparkle(options[:sparkle])
+      end
     else
       @sparkle = SparkleCollection.new
-      @sparkle.set_root(
-        Sparkle.new(
-          Smash.new.tap{|h|
-            s_path = options.fetch(:sparkle_path,
-              self.class.custom_paths[:sparkle_path]
-            )
-            if(s_path)
-              h[:root] = s_path
-            else
-              h[:root] = :none
-            end
-          }
+      if(options[:sparkle])
+        @sparkle.set_root(options[:sparkle])
+      else
+        @sparkle.set_root(
+          Sparkle.new(
+            Smash.new.tap{|h|
+              s_path = options.fetch(:sparkle_path,
+                self.class.custom_paths[:sparkle_path]
+              )
+              if(s_path)
+                h[:root] = s_path
+              else
+                h[:root] = :none
+              end
+            }
+          )
         )
-      )
+      end
     end
     self.provider = options.fetch(:provider, @parent ? @parent.provider : :aws)
     if(provider == :aws || !options[:disable_aws_builtins])
