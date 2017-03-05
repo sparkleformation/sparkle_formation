@@ -51,7 +51,7 @@ class SparkleFormation
       # @param loc [String]
       # @return [Hash]
       def _get_file(loc)
-        __t_string(loc)
+        __t_stringish(loc)
         {'get_file' => loc}
       end
       alias_method :_file, :_get_file
@@ -92,7 +92,7 @@ class SparkleFormation
       # @param value [String, Hash] thing to be hashed
       # @param algorithm [String] algorithm to use (defaults to 'sha512')
       def _digest(value, algorithm='sha512')
-        __t_string(algorithm)
+        __t_stringish(algorithm)
         {'digest' => [algorithm, value]}
       end
       alias_method :digest!, :_digest
@@ -129,7 +129,7 @@ class SparkleFormation
       # @param idx [Numeric]
       # @return [Hash]
       def _str_split(splitter, string, idx=nil)
-        __t_string(splitter)
+        __t_stringish(splitter) unless splitter.is_a?(Hash)
         {'str_split' => [splitter, string, idx].compact}
       end
       alias_method :_split, :_str_split
