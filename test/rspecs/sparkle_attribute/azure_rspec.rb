@@ -30,7 +30,7 @@ RSpec.describe SparkleFormation::SparkleAttribute::Azure do
     described_class.const_get(:AZURE_FUNCTIONS).each do |full_name|
       f_name = Bogo::Utility.snake(full_name)
 
-      context "_##{f_name}" do
+      context "#_#{f_name}" do
         it "should generate a function string for #{f_name}" do
           result = instance.__send__("_#{f_name}".to_sym)
           expect(result._dump).to eq("[#{full_name}()]")
