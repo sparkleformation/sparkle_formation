@@ -27,15 +27,27 @@ class SparkleFormation
 
       # Split generator
       #
-      # @param string [String] string to split
+      # @param string [String, Hash] string to split
       # @param delimiter [String] delimiter to split string
       # @return [Hash]
       def _cf_split(string, delimiter)
-        __t_stringish(string)
-        __t_stringish(delimiter)
+        __t_stringish(string) unless string.is_a?(Hash)
+        __t_stringish(delimiter) unless delimiter.is_a?(Hash)
         {'Fn::Split' => [delimiter, string]}
       end
       alias_method :split!, :_cf_split
+
+      # Sub generator
+      #
+      # @param string [String, Hash] string to apply substitution
+      # @param variables [Hash] key value mappings for substitution
+      # @return [Hash]
+      def _cf_sub(string, variables)
+        __t_hashish(variables)
+        {'Fn::Sub' => [string, variables]}
+      end
+      alias_method :_sub, :_cf_sub
+      alias_method :sub!, :_cf_sub
 
       # Ref generator
       #
@@ -51,10 +63,10 @@ class SparkleFormation
 
       # ValueImport generator
       #
-      # @param thing [String, String] value import
+      # @param thing [String, Symbol, Hash] value import
       # @return [Hash]
       def _cf_value_import(thing)
-        __t_stringish(thing)
+        __t_stringish(thing) unless thing.is_a?(Hash)
         {'Fn::ImportValue' => __attribute_key(thing)}
       end
       alias_method :_import_value, :_cf_value_import
