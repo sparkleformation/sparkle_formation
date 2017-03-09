@@ -1,3 +1,7 @@
+# v3.0.16
+* Allow data structure arguments in AWS helpers
+* Add AWS sub intrinsic function helper
+
 # v3.0.14
 * Fix resource lookup helper when using full match
 
