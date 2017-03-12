@@ -57,7 +57,7 @@ class SparkleFormation
           unless(stack.root?)
             stack.compile.parameters.keys!.each do |parameter_name|
               next if stack.compile.parameters.set!(parameter_name).stack_unique == true
-              if(!stack.parent.compile.parameters.set!(parameter_name).nil?)
+              if(!stack.parent.compile.parameters.data![parameter_name].nil?)
                 resource.properties.parameters.set!(parameter_name, resource.ref!(parameter_name))
               elsif(output_name = output_matched?(parameter_name, outputs.keys))
                 next if outputs[output_name] == stack
