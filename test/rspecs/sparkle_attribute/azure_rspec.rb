@@ -1,11 +1,13 @@
 require_relative '../../rspecs'
 
 RSpec.describe SparkleFormation::SparkleAttribute::Azure do
+  let(:template){ SparkleFormation.new('test') }
+
   let(:instance) do
     klass = Class.new(SparkleFormation::SparkleStruct)
     klass.include described_class
     obj = klass.new
-    obj._set_self(SparkleFormation.new('test'))
+    obj._set_self(template)
     obj
   end
 
@@ -70,6 +72,50 @@ RSpec.describe SparkleFormation::SparkleAttribute::Azure do
   describe '#_stack_output' do
     it 'should create a stack output data structure' do
       expect(instance._stack_output('s_name', 's_output')._dump).to eq("[reference('SName').outputs.SOutput.value]")
+    end
+  end
+
+  describe '#_variables' do
+    it 'should generate an azure variable struct' do
+      expect(instance._variables('foo')._klass).to eq(SparkleFormation::AzureVariableStruct)
+    end
+
+    it 'should generate a variables function string on dump' do
+      expect(instance._variables('foo')._dump).to eq("[variables('foo')]")
+    end
+
+    context 'with local template context' do
+      let(:template) do
+        SparkleFormation.new('test', :provider => :azure) do
+          variables do
+            snake.set!('nested_function_call'.disable_camel!, 'fubar')
+            camel do
+              NestedFunctionCall 'foobar'
+            end
+            normal.nested_function_call 'phewbar'
+          end
+          snake variables!(:snake).nested_function_call
+          camel variables!(:camel).nested_function_call
+          normal variables!(:normal).nested_function_call
+          unset variables!(:unset).nested_function_call
+        end
+      end
+
+      it 'should dump the snake cased function name' do
+        expect(template.dump.to_smash[:snake]).to eq("[variables('snake').nested_function_call]")
+      end
+
+      it 'should dump the camel cased function name' do
+        expect(template.dump.to_smash[:camel]).to eq("[variables('camel').NestedFunctionCall]")
+      end
+
+      it 'should dump the normal cased function name' do
+        expect(template.dump.to_smash[:normal]).to eq("[variables('normal').nestedFunctionCall]")
+      end
+
+      it 'should dump the explicit given function name when variable is unset' do
+        expect(template.dump.to_smash[:unset]).to eq("[variables('unset').nested_function_call]")
+      end
     end
   end
 end

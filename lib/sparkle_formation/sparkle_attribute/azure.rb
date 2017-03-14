@@ -69,7 +69,6 @@ class SparkleFormation
         'uri',
         'deployment',
         'parameters',
-        'variables',
         'listKeys',
         'providers',
         'reference',
@@ -102,6 +101,16 @@ class SparkleFormation
         end
         alias_method "#{f_name}!".to_sym, "_#{f_name}".to_sym
       end
+
+      # Variables generator
+      #
+      # @return [SparkleFormation::AzureVariableStruct]
+      def _variables(*args)
+        x = ::SparkleFormation::AzureVariableStruct.new('variables', *args)
+        x._fn_context = self
+        x
+      end
+      alias_method :variables!, :_variables
 
       # @overload _resource_id(resource_name)
       #   Customized resourceId generator that will perform automatic
