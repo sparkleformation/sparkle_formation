@@ -1,3 +1,7 @@
+# v3.0.18
+* Fix deeply nested parameter pushing (#209)
+* Remap known nested variable functions in Azure templates (#210)
+
 # v3.0.16
 * Allow data structure arguments in AWS helpers
 * Add AWS sub intrinsic function helper
