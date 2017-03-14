@@ -33,11 +33,16 @@ class SparkleFormation
           unless(stack.nested_stacks.empty?)
             stack.apply_deep_nesting(*args)
           end
-          stack.compile.parameters.keys!.each do |parameter_name|
-            if(output_name = output_matched?(parameter_name, outputs.keys))
-              next if outputs[output_name] == stack
-              stack_output = stack.make_output_available(output_name, outputs)
-              resource.properties.parameters._set(parameter_name).value stack_output
+          unless(stack.root?)
+            stack.compile.parameters.keys!.each do |parameter_name|
+              next if stack.compile.parameters.set!(parameter_name).stack_unique == true
+              if(!stack.parent.compile.parameters.data![parameter_name].nil?)
+                resource.properties.parameters.set!(parameter_name, resource.ref!(parameter_name))
+              elsif(output_name = output_matched?(parameter_name, outputs.keys))
+                next if outputs[output_name] == stack
+                stack_output = stack.make_output_available(output_name, outputs)
+                resource.properties.parameters.set!(parameter_name, stack_output)
+              end
             end
           end
         end

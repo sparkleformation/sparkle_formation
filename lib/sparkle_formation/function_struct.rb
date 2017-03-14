@@ -175,6 +175,44 @@ class SparkleFormation
 
   end
 
+  # Function struct specialized for Azure variables to check nested
+  # variable function value and properly match defined case
+  class AzureVariableStruct < FunctionStruct
+    # [SparkleStruct] context of function usage
+    attr_reader :_fn_context
+
+    # Set current function context
+    #
+    # @param ctx [SparkleStruct] current context
+    # @return [SparkleStruct]
+    def _fn_context=(ctx)
+      @_fn_context = ctx
+    end
+
+    # Wrapper to check for nested function call and properly case
+    # the function if found.
+    def _dump
+      # Remap nested function keys if possible
+      if(_fn_context && _fn_context.root!.data![_fn_name] && _fn_context.root!.data![_fn_name].data![_fn_args.first])
+        __valid_keys = _fn_context.root!.data![_fn_name].data![_fn_args.first].keys!
+        __current_key = @table.keys.first
+        __match_key = __current_key.to_s.downcase.gsub('_', '')
+        __key_remap = __valid_keys.detect do |__nested_key|
+          __nested_key.to_s.downcase.gsub('_', '') == __match_key
+        end
+        if(__key_remap)
+          @table[__key_remap] = @table.delete(@table.keys.first)
+        end
+      end
+      super
+    end
+
+    # @return [Class]
+    def _klass
+      ::SparkleFormation::AzureVariableStruct
+    end
+  end
+
   # FunctionStruct for jinja expressions
   class JinjaExpressionStruct < FunctionStruct
 

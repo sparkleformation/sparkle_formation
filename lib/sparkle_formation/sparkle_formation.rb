@@ -755,14 +755,16 @@ class SparkleFormation
     if(compile[:resources])
       compile.resources.keys!.map do |key|
         if(stack_resource_type?(compile.resources[key].type))
-          result = [compile.resources[key].properties.stack]
-          if(args.include?(:with_resource))
-            result.push(compile[:resources][key])
+          if(compile.resources[key].properties.stack.is_a?(::SparkleFormation))
+            result = [compile.resources[key].properties.stack]
+            if(args.include?(:with_resource))
+              result.push(compile[:resources][key])
+            end
+            if(args.include?(:with_name))
+              result.push(key)
+            end
+            result.size == 1 ? result.first : result
           end
-          if(args.include?(:with_name))
-            result.push(key)
-          end
-          result.size == 1 ? result.first : result
         end
       end.compact
     else
