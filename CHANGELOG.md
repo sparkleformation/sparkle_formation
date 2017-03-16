@@ -1,3 +1,6 @@
+# v3.0.20
+* Fix nested stack processing. Use value set in place of type check.
+
 # v3.0.18
 * Fix deeply nested parameter pushing (#209)
 * Remap known nested variable functions in Azure templates (#210)
