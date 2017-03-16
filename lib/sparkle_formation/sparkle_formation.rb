@@ -755,7 +755,7 @@ class SparkleFormation
     if(compile[:resources])
       compile.resources.keys!.map do |key|
         if(stack_resource_type?(compile.resources[key].type))
-          if(compile.resources[key].properties.stack.is_a?(::SparkleFormation))
+          if(!compile.resources[key].properties.stack.nil?)
             result = [compile.resources[key].properties.stack]
             if(args.include?(:with_resource))
               result.push(compile[:resources][key])
