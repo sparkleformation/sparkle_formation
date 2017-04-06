@@ -31,6 +31,9 @@ class SparkleFormation
       unless(result)
         ::Kernel.raise NameError.new 'Failed to determine current resource name! (Check call location)'
       end
+      if(result.is_a?(::SparkleFormation::FunctionStruct))
+        result = result._clone
+      end
       result
     end
     alias_method :resource_name!, :_resource_name

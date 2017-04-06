@@ -309,12 +309,16 @@ class SparkleFormation
       if(struct._self.provider_resources && lookup_key = struct._self.provider_resources.registry_key(dynamic_name))
         _name, _config = *args
         _config ||= {}
-        __t_stringish(_name)
         __t_hashish(_config)
-        resource_name = [
-          _name,
-          _config.fetch(:resource_name_suffix, dynamic_name)
-        ].compact.join('_').to_sym
+        unless(_name.is_a?(SparkleFormation::FunctionStruct))
+          __t_stringish(_name)
+          resource_name = [
+            _name,
+            _config.fetch(:resource_name_suffix, dynamic_name)
+          ].compact.join('_').to_sym
+        else
+          resource_name = _name._root
+        end
         _config.delete(:resource_name_suffix)
         new_resource = struct.resources.set!(resource_name)
         new_resource.type lookup_key
@@ -916,7 +920,8 @@ class SparkleFormation
         outputs = Smash.new
       end
       nested_stacks.each do |nested_stack|
-        outputs = nested_stack.collect_outputs(:force).merge(outputs)
+        n_stack = nested_stack.is_a?(self.class) ? nested_stack : nested_stack._self
+        outputs = n_stack.collect_outputs(:force).merge(outputs)
       end
       outputs
     else

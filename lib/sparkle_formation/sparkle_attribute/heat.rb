@@ -10,6 +10,9 @@ class SparkleFormation
 
       # Set customized struct behavior
       def self.included(klass)
+        if(klass.const_defined?(:CAMEL_KEYS))
+          klass.send(:remove_const, :CAMEL_KEYS)
+        end
         klass.const_set(:CAMEL_KEYS, false)
       end
 

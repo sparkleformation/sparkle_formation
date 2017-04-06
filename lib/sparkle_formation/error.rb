@@ -8,6 +8,9 @@ class SparkleFormation
     # Inheritance error
     class CircularInheritance < Error; end
 
+    # Found resource improperly constructed
+    class InvalidResource < Error; end
+
     # File not found error
     class NotFound < KeyError
       attr_reader :name

@@ -126,6 +126,10 @@ class SparkleFormation
           resource = _root.resources.set!(r_name)
           if(resource.nil?)
             ::Kernel.raise ::SparkleFormation::Error::NotFound::Resource.new(:name => r_name)
+          elsif(resource.type.nil?)
+            ::Kernel.raise ::SparkleFormation::Error::InvalidResource.new(
+              "Resource `#{r_name}` provides no type information."
+            )
           else
             ::SparkleFormation::FunctionStruct.new(
               'resourceId',
