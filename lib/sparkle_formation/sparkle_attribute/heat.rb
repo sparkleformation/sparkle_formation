@@ -191,6 +191,6 @@ class SparkleFormation
       alias_method :stack_output!, :_stack_output
 
     end
-
+    OpenStack = Heat
   end
 end

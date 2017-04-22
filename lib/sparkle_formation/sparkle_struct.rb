@@ -26,6 +26,8 @@ class SparkleFormation
       include SparkleAttribute
       include SparkleAttribute::Heat
     end
+    OpenStack = Heat
+    Rackspace = Heat
     # Rackspace specific struct
     class Rackspace < SparkleStruct
       include SparkleAttribute

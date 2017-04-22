@@ -159,5 +159,6 @@ class SparkleFormation
       end
 
     end
+    OpenStack = Heat
   end
 end

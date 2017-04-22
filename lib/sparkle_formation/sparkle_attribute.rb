@@ -9,6 +9,7 @@ class SparkleFormation
     autoload :Azure, 'sparkle_formation/sparkle_attribute/azure'
     autoload :Google, 'sparkle_formation/sparkle_attribute/google'
     autoload :Heat, 'sparkle_formation/sparkle_attribute/heat'
+    autoload :OpenStack, 'sparkle_formation/sparkle_attribute/heat'
     autoload :Rackspace, 'sparkle_formation/sparkle_attribute/rackspace'
     autoload :Terraform, 'sparkle_formation/sparkle_attribute/terraform'
 
