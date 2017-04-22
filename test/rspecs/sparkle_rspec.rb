@@ -2,6 +2,7 @@ require_relative '../rspecs'
 
 RSpec.describe SparkleFormation::Sparkle do
   let(:root_dir){ Dir.mktmpdir('sparkleformation-sparkle-rspec') }
+  after{ FileUtils.rm_rf(root_dir) }
 
   context "with pack defined" do
     let(:instance){ described_class.new(:root => root_dir) }
