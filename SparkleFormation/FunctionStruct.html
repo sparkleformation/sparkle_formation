@@ -114,7 +114,7 @@ strings of code for remote evaulation</p>
 
 </div><div id="subclasses">
   <h2>Direct Known Subclasses</h2>
-  <p class="children"><span class='object_link'><a href="GoogleStruct.html" title="SparkleFormation::GoogleStruct (class)">GoogleStruct</a></span>, <span class='object_link'><a href="JinjaExpressionStruct.html" title="SparkleFormation::JinjaExpressionStruct (class)">JinjaExpressionStruct</a></span>, <span class='object_link'><a href="JinjaStatementStruct.html" title="SparkleFormation::JinjaStatementStruct (class)">JinjaStatementStruct</a></span>, <span class='object_link'><a href="TerraformStruct.html" title="SparkleFormation::TerraformStruct (class)">TerraformStruct</a></span></p>
+  <p class="children"><span class='object_link'><a href="AzureVariableStruct.html" title="SparkleFormation::AzureVariableStruct (class)">AzureVariableStruct</a></span>, <span class='object_link'><a href="GoogleStruct.html" title="SparkleFormation::GoogleStruct (class)">GoogleStruct</a></span>, <span class='object_link'><a href="JinjaExpressionStruct.html" title="SparkleFormation::JinjaExpressionStruct (class)">JinjaExpressionStruct</a></span>, <span class='object_link'><a href="JinjaStatementStruct.html" title="SparkleFormation::JinjaStatementStruct (class)">JinjaStatementStruct</a></span>, <span class='object_link'><a href="TerraformStruct.html" title="SparkleFormation::TerraformStruct (class)">TerraformStruct</a></span></p>
 </div>
 
 
@@ -191,6 +191,28 @@ strings of code for remote evaulation</p>
     </h2>
 
     <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#==-instance_method" title="#== (instance method)">#<strong>==</strong>(_other)  &#x21d2; TrueClass, FalseClass </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
       
         <li class="public ">
   <span class="summary_signature">
@@ -355,6 +377,29 @@ strings of code for remote evaulation</p>
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#_clone-instance_method" title="#_clone (instance method)">#<strong>_clone</strong>(*_)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><h1>Create a clone of this instance.</h1>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#_dump-instance_method" title="#_dump (instance method)">#<strong>_dump</strong>  &#x21d2; String </a>
     
 
@@ -416,6 +461,51 @@ strings of code for remote evaulation</p>
 
   
     <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#eql%3F-instance_method" title="#eql? (instance method)">#<strong>eql?</strong>(_other)  &#x21d2; TrueClass, FalseClass </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hash-instance_method" title="#hash (instance method)">#<strong>hash</strong>  &#x21d2; Numeric </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Hash value for instance.</p>
+</div></span>
   
 </li>
 
@@ -742,16 +832,16 @@ to a function call</p>
       <pre class="lines">
 
 
-48
-49
-50
-51
-52
-53
-54</pre>
+74
+75
+76
+77
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 74</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span>
@@ -896,7 +986,59 @@ to a function call</p>
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="[]-instance_method">
+  <h3 class="signature first" id="==-instance_method">
+  
+    #<strong>==</strong>(_other)  &#x21d2; <tt>TrueClass</tt>, <tt>FalseClass</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>TrueClass</tt>, <tt>FalseClass</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+54
+55
+56</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 54</span>
+
+<span class='kw'>def</span> <span class='op'>==</span><span class='lparen'>(</span><span class='id identifier rubyid__other'>_other</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='id identifier rubyid__other'>_other</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="[]-instance_method">
   
     #<strong>[]</strong>(val)  &#x21d2; <tt><span class='object_link'><a href="" title="SparkleFormation::FunctionStruct (class)">FunctionStruct</a></span></tt> 
   
@@ -948,16 +1090,16 @@ to a function call</p>
       <pre class="lines">
 
 
-60
-61
-62
-63
-64
-65
-66</pre>
+86
+87
+88
+89
+90
+91
+92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 86</span>
 
 <span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>String</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid___single_quote_strings'>__single_quote_strings</span><span class='rparen'>)</span>
@@ -1013,12 +1155,12 @@ to a function call</p>
       <pre class="lines">
 
 
-147
-148
-149</pre>
+173
+174
+175</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 147</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 173</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid___anchor_start'>__anchor_start</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>[</span><span class='tstring_end'>&#39;</span></span>
@@ -1070,12 +1212,12 @@ to a function call</p>
       <pre class="lines">
 
 
-152
-153
-154</pre>
+178
+179
+180</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 152</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 178</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid___anchor_stop'>__anchor_stop</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>]</span><span class='tstring_end'>&#39;</span></span>
@@ -1127,12 +1269,12 @@ to a function call</p>
       <pre class="lines">
 
 
-157
-158
-159</pre>
+183
+184
+185</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 157</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 183</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid___empty_argument_list'>__empty_argument_list</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>()</span><span class='tstring_end'>&#39;</span></span>
@@ -1179,12 +1321,12 @@ to a function call</p>
       <pre class="lines">
 
 
-132
-133
-134</pre>
+158
+159
+160</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 132</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 158</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid___quote_nested_funcs?'>__quote_nested_funcs?</span>
   <span class='kw'>false</span>
@@ -1236,12 +1378,12 @@ to a function call</p>
       <pre class="lines">
 
 
-137
-138
-139</pre>
+163
+164
+165</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 137</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 163</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid___single_anchor?'>__single_anchor?</span>
   <span class='kw'>true</span>
@@ -1293,15 +1435,55 @@ to a function call</p>
       <pre class="lines">
 
 
-172
-173
-174</pre>
+198
+199
+200</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 172</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 198</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid___single_quote_strings'>__single_quote_strings</span>
   <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="_clone-instance_method">
+  
+    #<strong>_clone</strong>(*_)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <h1>Create a clone of this instance</h1>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 33</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid__clone'>_clone</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid__'>_</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid__klass'>_klass</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid__fn_name'>_fn_name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid__fn_args'>_fn_args</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1346,32 +1528,6 @@ to a function call</p>
       <pre class="lines">
 
 
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
 97
 98
 99
@@ -1389,10 +1545,36 @@ to a function call</p>
 111
 112
 113
-114</pre>
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__dump'>_dump</span>
   <span class='kw'>unless</span><span class='lparen'>(</span><span class='ivar'>@table</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span>
@@ -1496,20 +1678,20 @@ to a function call</p>
       <pre class="lines">
 
 
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129
-130</pre>
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 120</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 146</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__eval_join'>_eval_join</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span>
@@ -1564,15 +1746,136 @@ to a function call</p>
       <pre class="lines">
 
 
-142
-143
-144</pre>
+168
+169
+170</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 142</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 168</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__klass'>_klass</span>
   <span class='op'>::</span><span class='const'><span class='object_link'><a href="../SparkleFormation.html" title="SparkleFormation (class)">SparkleFormation</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="SparkleFormation::FunctionStruct (class)">FunctionStruct</a></span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="eql?-instance_method">
+  
+    #<strong>eql?</strong>(_other)  &#x21d2; <tt>TrueClass</tt>, <tt>FalseClass</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>TrueClass</tt>, <tt>FalseClass</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45
+46
+47
+48
+49
+50
+51</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='id identifier rubyid__other'>_other</span><span class='rparen'>)</span>
+  <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid__other'>_other</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:_dump</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid__other'>_other</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:_parent</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='op'>::</span><span class='const'>MultiJson</span><span class='period'>.</span><span class='id identifier rubyid_dump'>dump</span><span class='lparen'>(</span><span class='id identifier rubyid__dump'>_dump</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_hash'>hash</span> <span class='op'>==</span>
+      <span class='op'>::</span><span class='const'>MultiJson</span><span class='period'>.</span><span class='id identifier rubyid_dump'>dump</span><span class='lparen'>(</span><span class='id identifier rubyid__other'>_other</span><span class='period'>.</span><span class='id identifier rubyid__dump'>_dump</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_hash'>hash</span> <span class='op'>&amp;&amp;</span>
+      <span class='id identifier rubyid__parent'>_parent</span> <span class='op'>==</span> <span class='id identifier rubyid__other'>_other</span><span class='period'>.</span><span class='id identifier rubyid__parent'>_parent</span>
+  <span class='kw'>else</span>
+    <span class='kw'>false</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="hash-instance_method">
+  
+    #<strong>hash</strong>  &#x21d2; <tt>Numeric</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns hash value for instance</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Numeric</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>hash value for instance</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38
+39
+40</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 38</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hash'>hash</span>
+  <span class='id identifier rubyid__dump'>_dump</span><span class='period'>.</span><span class='id identifier rubyid_hash'>hash</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1621,12 +1924,12 @@ to a function call</p>
       <pre class="lines">
 
 
-167
-168
-169</pre>
+193
+194
+195</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 167</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 193</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_inspect'>inspect</span>
   <span class='id identifier rubyid__root'>_root</span><span class='period'>.</span><span class='id identifier rubyid__dump'>_dump</span>
@@ -1678,12 +1981,12 @@ to a function call</p>
       <pre class="lines">
 
 
-33
-34
-35</pre>
+59
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_nil?'>nil?</span>
   <span class='kw'>false</span>
@@ -1735,12 +2038,12 @@ to a function call</p>
       <pre class="lines">
 
 
-38
-39
-40</pre>
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_root?'>root?</span>
   <span class='id identifier rubyid__parent'>_parent</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1792,12 +2095,12 @@ to a function call</p>
       <pre class="lines">
 
 
-162
-163
-164</pre>
+188
+189
+190</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 162</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/function_struct.rb', line 188</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
   <span class='id identifier rubyid__root'>_root</span><span class='period'>.</span><span class='id identifier rubyid__dump'>_dump</span>
@@ -1812,7 +2115,7 @@ to a function call</p>
 </div>
 
       <div id="footer">
-  Generated on Mon Feb  6 20:48:37 2017 by
+  Generated on Sun May 14 08:59:47 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.8 (ruby-2.2.3).
 </div>

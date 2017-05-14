@@ -74,6 +74,11 @@
   
 
   
+  <dl>
+    <dt>Included in:</dt>
+    <dd><span class='object_link'><a href="../SparkleStruct/Azure.html" title="SparkleFormation::SparkleStruct::Azure (class)">SparkleFormation::SparkleStruct::Azure</a></span></dd>
+  </dl>
+  
 
   
   <dl>
@@ -133,7 +138,6 @@
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>uri</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>deployment</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>parameters</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>variables</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>listKeys</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>providers</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>reference</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
@@ -305,6 +309,31 @@
 
   
     <span class="summary_desc"><div class='inline'><p>Reference output value from nested stack.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#_variables-instance_method" title="#_variables (instance method)">#<strong>_variables</strong>(*args)  &#x21d2; SparkleFormation::AzureVariableStruct </a>
+    
+
+    
+      (also: #variables!)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Variables generator.</p>
 </div></span>
   
 </li>
@@ -645,25 +674,25 @@ Array type expected by the ARM API</p>
       <pre class="lines">
 
 
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152
 153
 154
-155</pre>
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute/azure.rb', line 140</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute/azure.rb', line 153</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__depends_on'>_depends_on</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
@@ -724,14 +753,14 @@ Array type expected by the ARM API</p>
       <pre class="lines">
 
 
+85
 86
 87
 88
-89
-90</pre>
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute/azure.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute/azure.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__fn_format'>_fn_format</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_src'>src</span> <span class='op'>=</span> <span class='op'>::</span><span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid___callee__'>__callee__</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -799,15 +828,6 @@ type is provided
       <pre class="lines">
 
 
-112
-113
-114
-115
-116
-117
-118
-119
-120
 121
 122
 123
@@ -815,10 +835,23 @@ type is provided
 125
 126
 127
-128</pre>
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute/azure.rb', line 112</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute/azure.rb', line 121</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__resource_id'>_resource_id</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;</span> <span class='int'>1</span><span class='rparen'>)</span>
@@ -828,6 +861,10 @@ type is provided
     <span class='id identifier rubyid_resource'>resource</span> <span class='op'>=</span> <span class='id identifier rubyid__root'>_root</span><span class='period'>.</span><span class='id identifier rubyid_resources'>resources</span><span class='period'>.</span><span class='id identifier rubyid_set!'>set!</span><span class='lparen'>(</span><span class='id identifier rubyid_r_name'>r_name</span><span class='rparen'>)</span>
     <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rparen'>)</span>
       <span class='op'>::</span><span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_raise'>raise</span> <span class='op'>::</span><span class='const'><span class='object_link'><a href="../../SparkleFormation.html" title="SparkleFormation (class)">SparkleFormation</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Error.html" title="SparkleFormation::Error (class)">Error</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Error/NotFound.html" title="SparkleFormation::Error::NotFound (class)">NotFound</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Error/NotFound/Resource.html" title="SparkleFormation::Error::NotFound::Resource (class)">Resource</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../Error/NotFound.html#initialize-instance_method" title="SparkleFormation::Error::NotFound#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='symbol'>:name</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_r_name'>r_name</span><span class='rparen'>)</span>
+    <span class='kw'>elsif</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rparen'>)</span>
+      <span class='op'>::</span><span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_raise'>raise</span> <span class='op'>::</span><span class='const'><span class='object_link'><a href="../../SparkleFormation.html" title="SparkleFormation (class)">SparkleFormation</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Error.html" title="SparkleFormation::Error (class)">Error</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Error/InvalidResource.html" title="SparkleFormation::Error::InvalidResource (class)">InvalidResource</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Resource `</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_r_name'>r_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>` provides no type information.</span><span class='tstring_end'>&quot;</span></span>
+      <span class='rparen'>)</span>
     <span class='kw'>else</span>
       <span class='op'>::</span><span class='const'><span class='object_link'><a href="../../SparkleFormation.html" title="SparkleFormation (class)">SparkleFormation</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../FunctionStruct.html" title="SparkleFormation::FunctionStruct (class)">FunctionStruct</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../FunctionStruct.html#initialize-instance_method" title="SparkleFormation::FunctionStruct#initialize (method)">new</a></span></span><span class='lparen'>(</span>
         <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>resourceId</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
@@ -918,16 +955,16 @@ type is provided
       <pre class="lines">
 
 
-163
-164
-165
-166
-167
-168
-169</pre>
+176
+177
+178
+179
+180
+181
+182</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute/azure.rb', line 163</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute/azure.rb', line 176</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__stack_output'>_stack_output</span><span class='lparen'>(</span><span class='id identifier rubyid_stack_name'>stack_name</span><span class='comma'>,</span> <span class='id identifier rubyid_output_name'>output_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_stack_name'>stack_name</span> <span class='op'>=</span> <span class='id identifier rubyid___attribute_key'>__attribute_key</span><span class='lparen'>(</span><span class='id identifier rubyid_stack_name'>stack_name</span><span class='rparen'>)</span>
@@ -941,12 +978,73 @@ type is provided
 </table>
 </div>
     
+      <div class="method_details ">
+  <h3 class="signature " id="_variables-instance_method">
+  
+    #<strong>_variables</strong>(*args)  &#x21d2; <tt><span class='object_link'><a href="../AzureVariableStruct.html" title="SparkleFormation::AzureVariableStruct (class)">SparkleFormation::AzureVariableStruct</a></span></tt> 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='variables!-instance_method'>variables!</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Variables generator</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../AzureVariableStruct.html" title="SparkleFormation::AzureVariableStruct (class)">SparkleFormation::AzureVariableStruct</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+108
+109
+110
+111
+112</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute/azure.rb', line 108</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid__variables'>_variables</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_x'>x</span> <span class='op'>=</span> <span class='op'>::</span><span class='const'><span class='object_link'><a href="../../SparkleFormation.html" title="SparkleFormation (class)">SparkleFormation</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../AzureVariableStruct.html" title="SparkleFormation::AzureVariableStruct (class)">AzureVariableStruct</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../FunctionStruct.html#initialize-instance_method" title="SparkleFormation::FunctionStruct#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>variables</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_x'>x</span><span class='period'>.</span><span class='id identifier rubyid__fn_context'>_fn_context</span> <span class='op'>=</span> <span class='kw'>self</span>
+  <span class='id identifier rubyid_x'>x</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
 
       <div id="footer">
-  Generated on Mon Feb  6 20:48:32 2017 by
+  Generated on Sun May 14 08:59:11 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.8 (ruby-2.2.3).
 </div>
