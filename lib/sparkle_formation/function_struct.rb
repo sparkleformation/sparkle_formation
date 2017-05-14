@@ -29,6 +29,32 @@ class SparkleFormation
       end
     end
 
+    # # Create a clone of this instance
+    def _clone(*_)
+      _klass.new(_fn_name, *_fn_args)
+    end
+
+    # @return [Numeric] hash value for instance
+    def hash
+      _dump.hash
+    end
+
+    # @return [TrueClass, FalseClass]
+    def eql?(_other)
+      if(_other.respond_to?(:_dump) && _other.respond_to?(:_parent))
+        ::MultiJson.dump(_dump).hash ==
+          ::MultiJson.dump(_other._dump).hash &&
+          _parent == _other._parent
+      else
+        false
+      end
+    end
+
+    # @return [TrueClass, FalseClass]
+    def ==(_other)
+      eql?(_other)
+    end
+
     # @return [False] functions are never nil
     def nil?
       false

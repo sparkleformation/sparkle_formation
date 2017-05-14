@@ -9,6 +9,7 @@ class SparkleFormation
     autoload :Azure, 'sparkle_formation/sparkle_attribute/azure'
     autoload :Google, 'sparkle_formation/sparkle_attribute/google'
     autoload :Heat, 'sparkle_formation/sparkle_attribute/heat'
+    autoload :OpenStack, 'sparkle_formation/sparkle_attribute/heat'
     autoload :Rackspace, 'sparkle_formation/sparkle_attribute/rackspace'
     autoload :Terraform, 'sparkle_formation/sparkle_attribute/terraform'
 
@@ -29,6 +30,9 @@ class SparkleFormation
       end
       unless(result)
         ::Kernel.raise NameError.new 'Failed to determine current resource name! (Check call location)'
+      end
+      if(result.is_a?(::SparkleFormation::FunctionStruct))
+        result = result._clone
       end
       result
     end

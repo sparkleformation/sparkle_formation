@@ -26,6 +26,8 @@ class SparkleFormation
       include SparkleAttribute
       include SparkleAttribute::Heat
     end
+    OpenStack = Heat
+    Rackspace = Heat
     # Rackspace specific struct
     class Rackspace < SparkleStruct
       include SparkleAttribute
@@ -106,16 +108,26 @@ class SparkleFormation
     # Override to inspect result value and fetch root if value is a
     # FunctionStruct
     def method_missing(sym, *args, &block)
-      if(sym.to_s.start_with?('_') || sym.to_s.end_with?('!'))
-        ::Kernel.raise ::NoMethodError.new "Undefined method `#{sym}` for #{_klass.name}"
+      if(sym.is_a?(::String) || sym.is_a?(::Symbol))
+        if(sym.to_s.start_with?('_') || sym.to_s.end_with?('!'))
+          ::Kernel.raise ::NoMethodError.new "Undefined method `#{sym}` for #{_klass.name}"
+        end
       end
       super(*[sym, *args], &block)
-      if((s = sym.to_s).end_with?('='))
-        s.slice!(-1, s.length)
-        sym = s
+      if(sym.is_a?(::String) || sym.is_a?(::Symbol))
+        if((s = sym.to_s).end_with?('='))
+          s.slice!(-1, s.length)
+          sym = s
+        end
+        sym = _process_key(sym)
+      else
+        sym = function_bubbler(sym)
       end
-      sym = _process_key(sym)
       @table[sym] = function_bubbler(@table[sym])
+      # Always reset parent in case this is a clone
+      if(@table[sym].is_a?(::AttributeStruct))
+        @table[sym]._parent(self)
+      end
       @table[sym]
     end
 
