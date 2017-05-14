@@ -736,10 +736,20 @@ class SparkleFormation
         end
       end
       if(compile_state && !compile_state.empty?)
-        compiled.outputs.compile_state.value MultiJson.dump(compile_state)
+        set_compiled_state(compiled)
       end
       compiled
     end
+  end
+
+  # Set the current compile_state into the
+  # compiled result
+  #
+  # @param compiled [AttributeStruct]
+  # @return [AttributeStruct]
+  def set_compiled_state(compiled)
+    compiled.outputs.compile_state.value MultiJson.dump(compile_state)
+    compiled
   end
 
   # Clear compiled stack if cached and perform compilation again

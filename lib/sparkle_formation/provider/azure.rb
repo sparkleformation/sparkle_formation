@@ -17,6 +17,17 @@ class SparkleFormation
         {}
       end
 
+      # Set the current compile_state into the
+      # compiled result
+      #
+      # @param compiled [AttributeStruct]
+      # @return [AttributeStruct]
+      def set_compiled_state(compiled)
+        super
+        compiled.outputs.compile_state.type 'String'
+        compiled
+      end
+
       # Apply deeply nested stacks. This is the new nesting approach and
       # does not bubble parameters up to the root stack. Parameters are
       # isolated to the stack resource itself and output mapping is
