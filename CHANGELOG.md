@@ -1,3 +1,8 @@
+# v3.0.22
+* Add support for non-string like data keys (#217)
+* Customize compile time parameter setting (#218)
+* Add aliasing for Heat and Rackspace to OpenStack
+
 # v3.0.20
 * Fix nested stack processing. Use value set in place of type check.
 
