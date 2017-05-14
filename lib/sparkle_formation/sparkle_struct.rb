@@ -124,6 +124,11 @@ class SparkleFormation
         sym = function_bubbler(sym)
       end
       @table[sym] = function_bubbler(@table[sym])
+      # Always reset parent in case this is a clone
+      if(@table[sym].is_a?(::AttributeStruct))
+        @table[sym]._parent(self)
+      end
+      @table[sym]
     end
 
     # @return [Class]
