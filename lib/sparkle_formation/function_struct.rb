@@ -29,8 +29,8 @@ class SparkleFormation
       end
     end
 
-    # Create a clone of this instance
-    def _clone
+    # # Create a clone of this instance
+    def _clone(*_)
       _klass.new(_fn_name, *_fn_args)
     end
 
