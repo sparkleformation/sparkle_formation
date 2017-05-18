@@ -333,7 +333,7 @@ class SparkleFormation
     # Load all sparkle parts
     def load_parts!
       memoize(:load_parts) do
-        Dir.glob(File.join(root, '**', '**', '*.{json,rb}')).each do |file|
+        loadable_parts.each do |file|
           slim_path = file.sub("#{root}/", '')
           if(file.end_with?('.rb'))
             begin
@@ -377,6 +377,10 @@ class SparkleFormation
           end
         end
       end
+    end
+
+    def loadable_parts
+      Dir.glob(File.join(root, '**', '**', '*.{json,rb}'))
     end
 
   end
