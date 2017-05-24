@@ -123,11 +123,16 @@ class SparkleFormation
       else
         sym = function_bubbler(sym)
       end
-      @table[sym] = function_bubbler(@table[sym])
       # Always reset parent in case this is a clone
       if(@table[sym].is_a?(::AttributeStruct))
-        @table[sym]._parent(self)
+        if(@table[sym]._parent != self)
+          @table[sym] = @table[sym]._clone
+        end
+        unless(@table[sym]._parent.nil?)
+          @table[sym]._parent(self)
+        end
       end
+      @table[sym] = function_bubbler(@table[sym])
       @table[sym]
     end
 
