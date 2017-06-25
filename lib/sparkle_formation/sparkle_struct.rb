@@ -125,10 +125,9 @@ class SparkleFormation
       end
       # Always reset parent in case this is a clone
       if(@table[sym].is_a?(::AttributeStruct))
-        if(@table[sym]._parent != self)
+        if(@table[sym]._parent.nil?)
           @table[sym] = @table[sym]._clone
-        end
-        unless(@table[sym]._parent.nil?)
+        else
           @table[sym]._parent(self)
         end
       end
