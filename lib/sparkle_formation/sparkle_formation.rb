@@ -597,7 +597,7 @@ class SparkleFormation
     'max_value', 'min_value'
   ]
   # Allowed data types for parameters
-  VALID_GENERATION_PARAMETER_TYPES = ['String', 'Number']
+  VALID_GENERATION_PARAMETER_TYPES = ['String', 'Number', 'Complex']
 
   # Get or set the compile time parameter setting block. If a get
   # request the ancestor path will be searched to root
@@ -752,7 +752,13 @@ class SparkleFormation
   # @param compiled [AttributeStruct]
   # @return [AttributeStruct]
   def set_compiled_state(compiled)
-    compiled.outputs.compile_state.value MultiJson.dump(compile_state)
+    storage_compile_state = Smash.new
+    parameters.each do |param_key, param_config|
+      if(param_config.fetch(:type, 'string').to_s.downcase.to_sym != :complex)
+        storage_compile_state[param_key] = compile_state[param_key]
+      end
+    end
+    compiled.outputs.compile_state.value MultiJson.dump(storage_compile_state)
     compiled
   end
 
