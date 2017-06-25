@@ -53,7 +53,7 @@ defining options for the parameter. The available items within the option
 |-----------------------|-------------|-----------------------------------------
 | `:type`               | Description | Data type of parameter
 |                       | Required    | yes
-|                       | Valid       | `:number`, `:string`
+|                       | Valid       | `:number`, `:string`, `:complex`
 |                       | Default     | none
 |-----------------------|-------------|-----------------------------------------
 | `:description`        | Description | Description of the parameter
@@ -139,6 +139,28 @@ The resulting value when accessed will be:
   "network-as113"
 ]
 ~~~
+
+##### Complex type support
+
+Complex types are supported but should rarely be used. Defining these types of compile
+time parameters impose restrictions on templates and make them much less flexible. However,
+there may be cases where providing a complex type to a template is ideal. It is important to
+note these restrictions:
+
+* No `:multiple` support
+* No user defined input via sfn CLI
+* No template serialization
+
+The last restriction is extremely important. Compile time parameters are stored in a template's
+outputs. This is done to support template reprocessing and change detection. Complex types are
+not stored within the template output due to the fragility introduced by the dependency on the
+complex type to properly serialize itself. The size of the serialization is also a concern which
+can easily invalidate a template due to size restrictions given a sufficiently complex type.
+
+In general complex types should never be used. Given a situation where complex types may seem
+like the correct solution, re-evaluate the usage and determine no other solution can be implemented
+to solve the problem. Compile time parameters already make templates less flexible and complex
+types increases this rigidity.
 
 ##### Prompting when nested
 
