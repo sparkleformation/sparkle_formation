@@ -1,3 +1,7 @@
+# v3.0.24
+* Update value storage to handle FunctionStruct usage
+* Add Complex data type to allowed compile time parameter types
+
 # v3.0.22
 * Add support for non-string like data keys (#217)
 * Customize compile time parameter setting (#218)
