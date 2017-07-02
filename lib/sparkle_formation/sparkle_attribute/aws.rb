@@ -42,9 +42,9 @@ class SparkleFormation
       # @param string [String, Hash] string to apply substitution
       # @param variables [Hash] key value mappings for substitution
       # @return [Hash]
-      def _cf_sub(string, variables)
-        __t_hashish(variables)
-        {'Fn::Sub' => [string, variables]}
+      def _cf_sub(string, variables = nil)
+        __t_hashish(variables) if variables
+        {'Fn::Sub' => [string, variables].compact}
       end
       alias_method :_sub, :_cf_sub
       alias_method :sub!, :_cf_sub
