@@ -755,7 +755,7 @@ class SparkleFormation
     storage_compile_state = Smash.new
     parameters.each do |param_key, param_config|
       if(param_config.fetch(:type, 'string').to_s.downcase.to_sym != :complex)
-        storage_compile_state[param_key] = compile_state[param_key]
+        storage_compile_state[param_key.to_sym] = compile_state[param_key.to_sym]
       end
     end
     compiled.outputs.compile_state.value MultiJson.dump(storage_compile_state)
