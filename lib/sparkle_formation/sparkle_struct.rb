@@ -123,11 +123,15 @@ class SparkleFormation
       else
         sym = function_bubbler(sym)
       end
-      # Always reset parent in case this is a clone
+      # When setting an AttributeStruct type instance check parent or context if
+      # available and reset if it has been moved.
       if(@table[sym].is_a?(::AttributeStruct))
-        if(@table[sym]._parent.nil?)
-          @table[sym] = @table[sym]._clone
-        else
+        if(@table[sym].is_a?(::SparkleFormation::FunctionStruct))
+          if(@table[sym].respond_to?(:_fn_context) && @table[sym]._fn_context != self)
+            @table[sym] = @table[sym]._clone
+            @table[sym]._fn_context(self)
+          end
+        elsif(@table[sym]._parent != self)
           @table[sym]._parent(self)
         end
       end
