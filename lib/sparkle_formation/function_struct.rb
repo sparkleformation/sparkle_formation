@@ -138,6 +138,7 @@ class SparkleFormation
         suffix
       end
     end
+    alias_method :_sparkle_dump, :_dump
 
     # Join arguments into a string for remote evaluation
     #
