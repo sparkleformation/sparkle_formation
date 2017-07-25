@@ -110,7 +110,8 @@ class SparkleFormation
       # include deprecated constants to prevent warning outputs
       ::Object.constants.each do |const|
         unless(self.const_defined?(const)) # rubocop:disable Style/RedundantSelf
-          next if const == :Config || const == :TimeoutError
+          deprecated_constants = %i[Bignum Config FALSE Fixnum NIL TimeoutError TRUE]
+          next if deprecated_constants.include? const
           self.const_set(const, ::Object.const_get(const)) # rubocop:disable Style/RedundantSelf
         end
       end
