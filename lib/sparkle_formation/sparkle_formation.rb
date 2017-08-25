@@ -689,8 +689,8 @@ class SparkleFormation
   # @option args [Hash] :state local state parameters
   # @return [SparkleStruct]
   def compile(args={})
-    if(args.key?(:state))
-      @compile_state = args[:state]
+    if(args.key?(:state) && args.is_a?(Hash))
+      @compile_state = args[:state].to_smash
       unmemoize(:compile)
     end
     memoize(:compile) do
