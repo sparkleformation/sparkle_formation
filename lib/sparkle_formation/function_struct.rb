@@ -29,9 +29,25 @@ class SparkleFormation
       end
     end
 
-    # # Create a clone of this instance
+    # Create a clone of this instance
     def _clone(*_)
-      _klass.new(_fn_name, *_fn_args)
+      new_inst = _klass_new(_fn_name, *_fn_args)
+      new_inst._data.replace(__hashish[
+        @table.map{ |_key, _value|
+          if(_key.is_a?(::AttributeStruct))
+            _key = _key._clone
+          else
+            _key = _do_dup(_key)
+          end
+          if(_value.is_a?(::AttributeStruct))
+            _value = _value._clone
+          else
+            _value = _do_dup(_value)
+          end
+          [_key, _value]
+        }
+      ])
+      new_inst
     end
 
     # @return [Numeric] hash value for instance
