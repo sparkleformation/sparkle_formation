@@ -129,7 +129,7 @@ class SparkleFormation
         if(@table[sym].is_a?(::SparkleFormation::FunctionStruct))
           if(@table[sym].respond_to?(:_fn_context) && @table[sym]._fn_context != self)
             @table[sym] = @table[sym]._clone
-            @table[sym]._fn_context(self)
+            @table[sym]._fn_context = self
           end
         elsif(@table[sym]._parent != self)
           @table[sym]._parent(self)
