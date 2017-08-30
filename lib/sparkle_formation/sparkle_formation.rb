@@ -758,7 +758,9 @@ class SparkleFormation
         storage_compile_state[param_key] = compile_state[param_key]
       end
     end
-    compiled.outputs.compile_state.value MultiJson.dump(storage_compile_state)
+    unless(storage_compile_state.empty?)
+      compiled.outputs.compile_state.value MultiJson.dump(storage_compile_state)
+    end
     compiled
   end
 
