@@ -1,3 +1,4 @@
+require 'tempfile'
 require_relative '../rspecs'
 
 RSpec.describe SparkleFormation::Resources do
