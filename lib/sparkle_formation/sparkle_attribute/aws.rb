@@ -329,7 +329,7 @@ class SparkleFormation
       # @return [TrueClass, FalseClass] resource can be tagged
       def taggable?
         if(self[:type])
-          resource = _self.lookup(self[:type].gsub('::', '_').downcase)
+          resource = _self._provider._resources.lookup(self[:type].gsub('::', '_').downcase)
           resource && resource[:properties].include?('Tags')
         else
           if(_parent)
