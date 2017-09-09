@@ -1,3 +1,10 @@
+# v3.0.26
+* Allow Fn::Sub helper to accept no arguments
+* Fix Ruby 2.4 deprecation warnings
+* Only store compile state when value is set
+* Fix FunctionStruct clone behavior for Azure
+* Lookup resources for taggable? helper through loaded provider
+
 # v3.0.24
 * Update value storage to handle FunctionStruct usage
 * Add Complex data type to allowed compile time parameter types
