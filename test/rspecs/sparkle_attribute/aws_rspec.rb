@@ -37,6 +37,10 @@ RSpec.describe SparkleFormation::SparkleAttribute::Aws do
       expect(instance._cf_sub('string', 'Var1' => 'Val1')).to eq('Fn::Sub' => ['string', 'Var1' => 'Val1'])
     end
 
+    it 'should create sub data structure with no variables' do
+      expect(instance._cf_sub('string')).to eq('Fn::Sub' => 'string')
+    end
+
     it 'should raise error if non-Hash variables argument provided' do
       expect{ instance._cf_sub('string', 'variables') }.to raise_error(TypeError)
     end
