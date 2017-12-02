@@ -16,12 +16,12 @@ class SparkleFormation
     # @param f_name [String] name of function
     # @param args [Array<Object>] argument list
     # @return [self]
-    def initialize(f_name=nil, *args)
+    def initialize(f_name = nil, *args)
       super()
       @_fn_name = f_name.to_s
       @_fn_args = args
       @_fn_args.map! do |l_arg|
-        if(l_arg.is_a?(_klass))
+        if l_arg.is_a?(_klass)
           l_arg = l_arg._root
           l_arg._parent(self)
         end
@@ -33,13 +33,13 @@ class SparkleFormation
     def _clone(*_)
       new_inst = _klass_new(_fn_name, *_fn_args)
       new_inst._data.replace(__hashish[
-        @table.map{ |_key, _value|
-          if(_key.is_a?(::AttributeStruct))
+        @table.map { |_key, _value|
+          if _key.is_a?(::AttributeStruct)
             _key = _key._clone
           else
             _key = _do_dup(_key)
           end
-          if(_value.is_a?(::AttributeStruct))
+          if _value.is_a?(::AttributeStruct)
             _value = _value._clone
           else
             _value = _do_dup(_value)
@@ -57,7 +57,7 @@ class SparkleFormation
 
     # @return [TrueClass, FalseClass]
     def eql?(_other)
-      if(_other.respond_to?(:_dump) && _other.respond_to?(:_parent))
+      if _other.respond_to?(:_dump) && _other.respond_to?(:_parent)
         ::MultiJson.dump(_dump).hash ==
           ::MultiJson.dump(_other._dump).hash &&
           _parent == _other._parent
@@ -88,7 +88,7 @@ class SparkleFormation
     # @param args [Object<Array>] argument list
     # @return [Object]
     def method_missing(name, *args)
-      if(args.empty?)
+      if args.empty?
         super
       else
         @table['_function_'] = _klass_new(name, *args)
@@ -100,7 +100,7 @@ class SparkleFormation
     # @param val [Integer, String]
     # @return [FunctionStruct]
     def [](val)
-      if(val.is_a?(::String) && __single_quote_strings)
+      if val.is_a?(::String) && __single_quote_strings
         _set("['#{val}']")
       else
         _set("[#{val.inspect}]")
@@ -111,39 +111,39 @@ class SparkleFormation
     #
     # @return [String]
     def _dump
-      unless(@table.empty?)
+      unless @table.empty?
         key, value = @table.first
         suffix = _eval_join(
           *[
-            key == '_function_' ? nil : key,
-            !value.nil? ? value._dump : nil
-          ].compact
+          key == '_function_' ? nil : key,
+          !value.nil? ? value._dump : nil,
+        ].compact
         )
       end
-      if(_fn_name)
+      if _fn_name
         args = _fn_args.map do |arg|
-          if(arg.respond_to?(:_dump))
+          if arg.respond_to?(:_dump)
             arg._dump
-          elsif(arg.is_a?(::Symbol))
+          elsif arg.is_a?(::Symbol)
             quote = __single_quote_strings ? "'" : '"'
             "#{quote}#{::Bogo::Utility.camel(arg.to_s, false)}#{quote}"
-          elsif(arg.is_a?(::String) && __single_quote_strings)
+          elsif arg.is_a?(::String) && __single_quote_strings
             "'#{arg}'"
           else
             arg.inspect
           end
         end.join(', ')
-        unless(_fn_name.to_s.empty?)
+        unless _fn_name.to_s.empty?
           function_name = args.empty? ? "#{_fn_name}#{__empty_argument_list}" : "#{_fn_name}(#{args})"
         end
         internal = _eval_join(
           *[
-            function_name,
-            suffix
-          ].compact
+          function_name,
+          suffix,
+        ].compact
         )
-        if(root? || (!__single_anchor? && function_name))
-          if(!root? && __quote_nested_funcs?)
+        if root? || (!__single_anchor? && function_name)
+          if !root? && __quote_nested_funcs?
             quote = __single_quote_strings ? "'" : '"'
           end
           "#{quote}#{__anchor_start}#{internal}#{__anchor_stop}#{quote}"
@@ -154,6 +154,7 @@ class SparkleFormation
         suffix
       end
     end
+
     alias_method :_sparkle_dump, :_dump
 
     # Join arguments into a string for remote evaluation
@@ -162,9 +163,9 @@ class SparkleFormation
     # @return [String]
     def _eval_join(*args)
       args = args.compact
-      args.delete_if(&:empty?)
+      args.delete_if &:empty?
       args.slice(1, args.size).to_a.inject(args.first) do |memo, item|
-        if(item.start_with?('['))
+        if item.start_with?('[')
           memo += item
         else
           memo += ".#{item}"
@@ -215,7 +216,6 @@ class SparkleFormation
     def __single_quote_strings
       true
     end
-
   end
 
   # Function struct specialized for Azure variables to check nested
@@ -236,14 +236,14 @@ class SparkleFormation
     # the function if found.
     def _dump
       # Remap nested function keys if possible
-      if(_fn_context && _fn_context.root!.data![_fn_name] && _fn_context.root!.data![_fn_name].data![_fn_args.first])
+      if _fn_context && _fn_context.root!.data![_fn_name] && _fn_context.root!.data![_fn_name].data![_fn_args.first]
         __valid_keys = _fn_context.root!.data![_fn_name].data![_fn_args.first].keys!
         __current_key = @table.keys.first
         __match_key = __current_key.to_s.downcase.gsub('_', '')
         __key_remap = __valid_keys.detect do |__nested_key|
           __nested_key.to_s.downcase.gsub('_', '') == __match_key
         end
-        if(__key_remap)
+        if __key_remap
           @table[__key_remap] = @table.delete(@table.keys.first)
         end
       end
@@ -283,7 +283,6 @@ class SparkleFormation
     def _klass
       ::SparkleFormation::JinjaExpressionStruct
     end
-
   end
 
   # FunctionStruct for jinja statements
@@ -313,7 +312,6 @@ class SparkleFormation
     def _klass
       ::SparkleFormation::JinjaStatementStruct
     end
-
   end
 
   # FunctionStruct for customized google functions
@@ -343,7 +341,6 @@ class SparkleFormation
     def _klass
       ::SparkleFormation::GoogleStruct
     end
-
   end
 
   # FunctionStruct for customized terraform functions
@@ -382,6 +379,5 @@ class SparkleFormation
     def _klass
       ::SparkleFormation::TerraformStruct
     end
-
   end
 end

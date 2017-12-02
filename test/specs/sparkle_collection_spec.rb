@@ -1,22 +1,20 @@
 require_relative '../spec'
 
 describe SparkleFormation::SparkleCollection do
-
   describe 'Basic behavior' do
-
     before do
       @collection = SparkleFormation::SparkleCollection.new
     end
 
-    let(:collection){ @collection }
-    let(:root_pack){
+    let(:collection) { @collection }
+    let(:root_pack) {
       SparkleFormation::Sparkle.new(
-        :root => File.join(File.dirname(__FILE__), 'sparkleformation')
+        :root => File.join(File.dirname(__FILE__), 'sparkleformation'),
       )
     }
-    let(:extra_pack){
+    let(:extra_pack) {
       SparkleFormation::Sparkle.new(
-        :root => File.join(File.dirname(__FILE__), 'packs', 'valid_pack')
+        :root => File.join(File.dirname(__FILE__), 'packs', 'valid_pack'),
       )
     }
 
@@ -65,16 +63,14 @@ describe SparkleFormation::SparkleCollection do
       new_collection.apply(collection)
       new_collection.send(:sparkles).must_equal collection.send(:sparkles)
     end
-
   end
 
   describe SparkleFormation::SparkleCollection::Rainbow do
-
     before do
       @rainbow = SparkleFormation::SparkleCollection::Rainbow.new(:dummy, :component)
     end
 
-    let(:rainbow){ @rainbow }
+    let(:rainbow) { @rainbow }
 
     it 'should have a name' do
       rainbow.name.must_equal 'dummy'
@@ -94,13 +90,13 @@ describe SparkleFormation::SparkleCollection do
     end
 
     it 'should error when created with invalid type' do
-      ->{
+      -> {
         SparkleFormation::SparkleCollection::Rainbow.new(:test, :invalid)
       }.must_raise ArgumentError
     end
 
     it 'should error when invalid type added as layer' do
-      ->{ rainbow.add_layer(:symbol) }.must_raise TypeError
+      -> { rainbow.add_layer(:symbol) }.must_raise TypeError
     end
 
     it 'should allow adding layers' do
@@ -123,7 +119,7 @@ describe SparkleFormation::SparkleCollection do
       rainbow.add_layer(:three => true).add_layer(:four => true, :args => {:layering => :merge})
       rainbow.monochrome.must_equal [
         {'three' => true},
-        {'four' => true, 'args' => {'layering' => :merge}}
+        {'four' => true, 'args' => {'layering' => :merge}},
       ]
     end
 
@@ -133,7 +129,6 @@ describe SparkleFormation::SparkleCollection do
       rainbow.layer_at(0).must_equal 'one' => true
       rainbow.layer_at(2).must_equal 'three' => true
     end
-
   end
 
   describe 'Provider specific loading' do
@@ -143,7 +138,7 @@ describe SparkleFormation::SparkleCollection do
         SparkleFormation::Sparkle.new(
           :root => File.join(
             File.dirname(__FILE__), 'packs', 'valid_pack'
-          )
+          ),
         )
       )
       @collection
@@ -170,7 +165,5 @@ describe SparkleFormation::SparkleCollection do
       result['registry'].must_equal 'heat'
       result['shared_item'].must_equal 'shared'
     end
-
   end
-
 end

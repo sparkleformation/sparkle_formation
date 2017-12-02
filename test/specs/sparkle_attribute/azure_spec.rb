@@ -1,7 +1,6 @@
 require_relative '../../spec'
 
 describe SparkleFormation::SparkleAttribute::Azure do
-
   before do
     klass = Class.new(AttributeStruct)
     klass.include(SparkleFormation::SparkleAttribute)
@@ -14,16 +13,15 @@ describe SparkleFormation::SparkleAttribute::Azure do
   end
 
   describe 'depends_on helper method' do
-
     it 'should generate a depends on array' do
       @attr.depends_on!('type1/name_1', 'type2/name_2').must_equal([
-        'type1/name_1', 'type2/name_2'
+        'type1/name_1', 'type2/name_2',
       ])
       @attr._dump.must_equal(
         'dependsOn' => [
           'type1/name_1',
-          'type2/name_2'
-        ]
+          'type2/name_2',
+        ],
       )
     end
 
@@ -47,13 +45,11 @@ describe SparkleFormation::SparkleAttribute::Azure do
           :unknown_network_security_groups
         )
       end
-      ->{ @sfn.dump }.must_raise SparkleFormation::Error::NotFound::Resource
+      -> { @sfn.dump }.must_raise SparkleFormation::Error::NotFound::Resource
     end
-
   end
 
   describe 'resource_id helper method' do
-
     it 'should generate a direct resource id' do
       @attr.resource_id!('fubar_type', 'fubar').dump.must_equal "[resourceId('fubar_type/fubar')]"
     end
@@ -78,13 +74,11 @@ describe SparkleFormation::SparkleAttribute::Azure do
           :unknown_network_security_groups
         )
       end
-      ->{ @sfn.dump }.must_raise SparkleFormation::Error::NotFound::Resource
+      -> { @sfn.dump }.must_raise SparkleFormation::Error::NotFound::Resource
     end
-
   end
 
   describe 'stack_output helper method' do
-
     it 'should generate stack output reference' do
       @attr.stack_output!(:stack_name, :output_name)._dump.must_equal(
         "[reference('stackName').outputs.outputName.value]"
@@ -96,11 +90,9 @@ describe SparkleFormation::SparkleAttribute::Azure do
         "[reference('stack_name').outputs.outputName.value]"
       )
     end
-
   end
 
   describe 'structure dump behavior' do
-
     it 'should convert resources Hash type to Array type' do
       @attr.resources.my_resource.type 'testing'
       result = @attr._dump
@@ -108,11 +100,9 @@ describe SparkleFormation::SparkleAttribute::Azure do
       result['resources'].first['name'].must_equal 'myResource'
       result['resources'].first['type'].must_equal 'testing'
     end
-
   end
 
   describe 'intrinsic functions' do
-
     it 'should generate add function' do
       @attr.add!(1, 2)._dump.must_equal '[add(1, 2)]'
     end
@@ -234,11 +224,9 @@ describe SparkleFormation::SparkleAttribute::Azure do
     it 'should generate a subscription function' do
       @attr.subscription!._dump.must_equal '[subscription()]'
     end
-
   end
 
   describe 'Complex intrinsic function usage' do
-
     it 'should allow nesting helper method functions' do
       @sfn.overrides do
         value add!(parameters!(:one), parameters!(:two))
@@ -262,11 +250,9 @@ describe SparkleFormation::SparkleAttribute::Azure do
       end
       @sfn.dump.must_equal 'value' => "[add(int(parameters('firstValue')), int(providers('namespace', 'type').apiVersion[0]))]"
     end
-
   end
 
   describe 'Setting intrinsic function values' do
-
     it 'should set the root function structure' do
       @sfn.overrides do
         value deployment!.first.second.third.fourth
@@ -279,7 +265,7 @@ describe SparkleFormation::SparkleAttribute::Azure do
         value [
           :one,
           :two,
-          deployment!.first.second.third
+          deployment!.first.second.third,
         ]
       end
       @sfn.dump.must_equal 'value' => ['one', 'two', '[deployment().first.second.third]']
@@ -288,13 +274,13 @@ describe SparkleFormation::SparkleAttribute::Azure do
     it 'should set the root function structure in hashes' do
       @sfn.overrides do
         value(
-          :thing => deployment!.first.second.third
+          :thing => deployment!.first.second.third,
         )
       end
       @sfn.dump.must_equal(
         'value' => {
-          'thing' => '[deployment().first.second.third]'
-        }
+          'thing' => '[deployment().first.second.third]',
+        },
       )
     end
 
@@ -302,14 +288,14 @@ describe SparkleFormation::SparkleAttribute::Azure do
       @sfn.overrides do
         value [
           :thing1,
-          {:thing2 => deployment!.first.second.third}
+          {:thing2 => deployment!.first.second.third},
         ]
       end
       @sfn.dump.must_equal(
         'value' => [
           'thing1',
-          {'thing2' => '[deployment().first.second.third]'}
-        ]
+          {'thing2' => '[deployment().first.second.third]'},
+        ],
       )
     end
 
@@ -318,20 +304,18 @@ describe SparkleFormation::SparkleAttribute::Azure do
         value(
           :thing1 => [
             :thing1,
-            {:thing2 => deployment!.first.second.third}
-          ]
+            {:thing2 => deployment!.first.second.third},
+          ],
         )
       end
       @sfn.dump.must_equal(
         'value' => {
           'thing1' => [
             'thing1',
-            {'thing2' => '[deployment().first.second.third]'}
-          ]
-        }
+            {'thing2' => '[deployment().first.second.third]'},
+          ],
+        },
       )
     end
-
   end
-
 end

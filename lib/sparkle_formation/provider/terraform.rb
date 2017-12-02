@@ -14,13 +14,13 @@ class SparkleFormation
         Smash.new(
           :parameters => :variable,
           :resources => :resource,
-          :outputs => :output
+          :outputs => :output,
         ).each do |original, updated|
-          if(val = result.delete(original))
+          if val = result.delete(original)
             result[updated] = val
           end
         end
-        if(resources = result.delete(:resource))
+        if resources = result.delete(:resource)
           result[:resource] = Smash.new
           resources.each do |r_name, r_info|
             result.set(:resource, r_info[:type], r_name, r_info[:properties])
@@ -72,21 +72,21 @@ class SparkleFormation
       def apply_deep_nesting(*args, &block)
         outputs = collect_outputs
         nested_stacks(:with_resource).each do |stack, resource|
-          unless(stack.nested_stacks.empty?)
+          unless stack.nested_stacks.empty?
             stack.apply_deep_nesting(*args)
           end
           stack.compile.parameters.keys!.each do |parameter_name|
-            if(output_name = output_matched?(parameter_name, outputs.keys))
+            if output_name = output_matched?(parameter_name, outputs.keys)
               next if outputs[output_name] == stack
               stack_output = stack.make_output_available(output_name, outputs, self)
               # NOTE: Only set value if not already explicitly set
-              if(resource.properties.parameters._set(parameter_name).nil?)
+              if resource.properties.parameters._set(parameter_name).nil?
                 resource.properties.parameters._set(parameter_name, stack_output)
               end
             end
           end
         end
-        if(block_given?)
+        if block_given?
           extract_templates(&block)
         end
         self
@@ -115,20 +115,20 @@ class SparkleFormation
             )
           )
         end
-        if(bubble_path.empty?)
-          if(drip_path.size == 1)
+        if bubble_path.empty?
+          if drip_path.size == 1
             parent = drip_path.first.parent
-            if(parent && !parent.compile.parameters._set(output_name).nil?)
+            if parent && !parent.compile.parameters._set(output_name).nil?
               return compile.parameter!(output_name)
             end
           end
           raise ArgumentError.new "Failed to detect available bubbling path for output `#{output_name}`. " <<
-            'This may be due to a circular dependency! ' <<
-            "(Output Path: #{outputs[output_name].root_path.map(&:name).join(' > ')} " <<
-            "Requester Path: #{root_path.map(&:name).join(' > ')})"
+                                    'This may be due to a circular dependency! ' <<
+                                    "(Output Path: #{outputs[output_name].root_path.map(&:name).join(' > ')} " <<
+                                    "Requester Path: #{root_path.map(&:name).join(' > ')})"
         end
         result = source_stack.compile._stack_output(bubble_path.first.name, output_name)
-        if(drip_path.size > 1)
+        if drip_path.size > 1
           parent = drip_path.first.parent
           drip_path.unshift(parent) if parent
           drip_path.each_slice(2) do |base_sparkle, ref_sparkle|
@@ -140,7 +140,6 @@ class SparkleFormation
         end
         result
       end
-
     end
   end
 end

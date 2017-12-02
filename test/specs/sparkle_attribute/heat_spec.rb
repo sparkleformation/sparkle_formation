@@ -1,7 +1,6 @@
 require_relative '../../spec'
 
 describe SparkleFormation::SparkleAttribute::Heat do
-
   before do
     klass = Class.new(AttributeStruct)
     klass.include(SparkleFormation::SparkleAttribute)
@@ -96,16 +95,15 @@ describe SparkleFormation::SparkleAttribute::Heat do
     @sfn.dump.must_equal(
       'my_resource' => {
         'depends_on' => [
-          'other_resource'
-        ]
+          'other_resource',
+        ],
       },
       'other_resource' => {
         'depends_on' => [
           'my_resource',
-          'unknown_resource'
-        ]
-      }
+          'unknown_resource',
+        ],
+      },
     )
   end
-
 end

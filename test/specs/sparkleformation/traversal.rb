@@ -10,5 +10,4 @@ SparkleFormation.new('traversal') do
   end
 
   nest1.nest2.nest3.nest4.parent!.test3 'test3'
-
 end

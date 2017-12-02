@@ -6,7 +6,6 @@ class SparkleFormation
 
     # Google specific helper implementations
     module Google
-
       CHARACTER_COLLECTION = ('a'..'z').to_a
 
       def self.included(klass)
@@ -15,9 +14,9 @@ class SparkleFormation
         klass.class_eval do
           def _google_dump
             result = _non_google_attribute_struct_dump
-            if(_parent.nil?)
+            if _parent.nil?
               sparkle_root = {}
-              if(result.key?('resources') && result['resources'].is_a?(Hash))
+              if result.key?('resources') && result['resources'].is_a?(Hash)
                 resources = result.delete('resources') || {}
                 sparkle_root = (resources.delete(_self.name) || {}).fetch('properties', {})
                 result['resources'] = resources.map do |r_name, r_content|
@@ -27,21 +26,22 @@ class SparkleFormation
                 result['outputs'] = outputs.map do |o_name, o_content|
                   o_content.merge('name' => o_name)
                 end
-                if(_self.parent.nil?)
+                if _self.parent.nil?
                   result = {
                     'resources' => [{
                       'name' => _self.name,
                       'type' => _self.stack_resource_type,
                       'properties' => {
-                        'stack' => result
-                      }.merge(sparkle_root)
-                    }]
+                        'stack' => result,
+                      }.merge(sparkle_root),
+                    }],
                   }
                 end
               end
             end
             result
           end
+
           alias_method :_non_google_attribute_struct_dump, :_dump
           alias_method :_dump, :_google_dump
           alias_method :dump!, :_google_dump
@@ -56,17 +56,16 @@ class SparkleFormation
       # @see SparkleFormation::SparkleAttribute#dynamic!
       # @note generate unique names using the `:sparkle_unique` argument
       def _google_dynamic!(name, *args, &block)
-        if(args.delete(:sparkle_unique))
+        if args.delete(:sparkle_unique)
           seed = Zlib.crc32(_self.root_path.map(&:name).join('-'))
           gen = Random.new(seed)
           suffix = Array.new(10) do
             CHARACTER_COLLECTION.at(
-              gen.rand(CHARACTER_COLLECTION.size
-              )
+              gen.rand(CHARACTER_COLLECTION.size)
             )
           end.join
-          config_hash = args.detect{|a| a.is_a?(Hash)}
-          unless(config_hash)
+          config_hash = args.detect { |a| a.is_a?(Hash) }
+          unless config_hash
             config_hash = {}
             args.push(config_hash)
           end
@@ -83,12 +82,13 @@ class SparkleFormation
       # @return [SparkleFormation::GoogleStruct]
       def _ref(r_name)
         __t_stringish(r_name)
-        if(_root.resources.set!(r_name).nil?)
+        if _root.resources.set!(r_name).nil?
           ::Kernel.raise ::SparkleFormation::Error::NotFound::Resource.new(:name => r_name)
         else
           ::SparkleFormation::GoogleStruct.new('ref').set!(__attribute_key(r_name))
         end
       end
+
       alias_method :ref!, :_ref
 
       # Jinja function string wrapper
@@ -97,6 +97,7 @@ class SparkleFormation
       def _jinja
         ::SparkleFormation::JinjaExpressionStruct.new
       end
+
       alias_method :jinja!, :_jinja
       alias_method :fn!, :_jinja
 
@@ -108,6 +109,7 @@ class SparkleFormation
         __t_stringish(e_name)
         _jinja.env[__attribute_key(e_name)]
       end
+
       alias_method :env!, :_env
 
       # Access a property value supplied to template
@@ -119,6 +121,7 @@ class SparkleFormation
         __t_stringish(p_name)
         _jinja.properties[__attribute_key(p_name)]
       end
+
       alias_method :property!, :_property
       alias_method :properties!, :_property
 
@@ -129,6 +132,7 @@ class SparkleFormation
       def _statement(line)
         ::SparkleFormation::JinjaStatementStruct.new(line)
       end
+
       alias_method :statement!, :_statement
 
       # Reference output value from nested stack
@@ -141,9 +145,8 @@ class SparkleFormation
         __t_stringish(output_name)
         _ref(stack_name)._set(output_name)
       end
+
       alias_method :stack_output!, :_stack_output
-
     end
-
   end
 end

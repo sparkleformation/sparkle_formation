@@ -5,7 +5,6 @@ class SparkleFormation
   # @todo add unmemoize behavior on collection modification to prevent
   # leak on long running processes with long lasting collections
   class SparkleCollection < Sparkle
-
     autoload :Rainbow, 'sparkle_formation/sparkle_collection/rainbow'
 
     # @return [Symbol] provider
@@ -16,7 +15,7 @@ class SparkleFormation
     # @param args [Hash]
     # @option args [Symbol, String] :provider name of default provider
     # @return [self]
-    def initialize(args={})
+    def initialize(args = {})
       @provider = Bogo::Utility.snake(args.to_smash.fetch(:provider, 'aws')).to_sym
       @root = nil
       @sparkles = []
@@ -46,11 +45,11 @@ class SparkleFormation
     #
     # @param sparkle [Sparkle]
     # @return [self]
-    def add_sparkle(sparkle, precedence=:high)
-      unless(sparkle.is_a?(Sparkle))
+    def add_sparkle(sparkle, precedence = :high)
+      unless sparkle.is_a?(Sparkle)
         raise TypeError.new "Expected type `SparkleFormation::Sparkle` but received `#{sparkle.class}`!"
       end
-      if(precedence == :high)
+      if precedence == :high
         @sparkles.push(sparkle).uniq!
       else
         @sparkles.unshift(sparkle).uniq!
@@ -89,7 +88,7 @@ class SparkleFormation
           sparkles.each do |sprkl|
             sprkl.components.each_pair do |c_provider, c_info|
               c_info.each_pair do |c_name, c_value|
-                unless(hsh.get(c_provider, c_name))
+                unless hsh.get(c_provider, c_name)
                   hsh.set(c_provider, c_name, Rainbow.new(c_name, :component))
                 end
                 hsh.get(c_provider, c_name).add_layer(c_value)
@@ -107,7 +106,7 @@ class SparkleFormation
           sparkles.each do |sprkl|
             sprkl.dynamics.each_pair do |c_provider, c_info|
               c_info.each_pair do |c_name, c_value|
-                unless(hsh.get(c_provider, c_name))
+                unless hsh.get(c_provider, c_name)
                   hsh.set(c_provider, c_name, Rainbow.new(c_name, :dynamic))
                 end
                 hsh.get(c_provider, c_name).add_layer(c_value)
@@ -136,7 +135,7 @@ class SparkleFormation
           sparkles.each do |sprkl|
             sprkl.templates.each_pair do |c_provider, c_info|
               c_info.each_pair do |c_name, c_value|
-                unless(hsh.get(c_provider, c_name))
+                unless hsh.get(c_provider, c_name)
                   hsh.set(c_provider, c_name, Rainbow.new(c_name, :template))
                 end
                 hsh.get(c_provider, c_name).add_layer(c_value)
@@ -154,29 +153,29 @@ class SparkleFormation
     # @param target_provider [String, Symbol] restrict to provider
     # @return [Smash] requested item
     # @raises [NameError, Error::NotFound]
-    def get(type, name, target_provider=nil)
+    def get(type, name, target_provider = nil)
       type_name = Sparkle::TYPES[type.to_s]
-      unless(type_name)
+      unless type_name
         raise ArgumentError.new "Unknown file type requested from collection `#{type}`"
       end
       result = nil
       error = nil
-      unless(target_provider)
+      unless target_provider
         target_provider = provider
       end
       result = send(type_name).get(target_provider, name)
-      if(result.nil? && type_name == 'templates')
+      if result.nil? && type_name == 'templates'
         t_direct = sparkles.map do |pack|
           begin
             pack.get(:template, name, target_provider)
           rescue Error::NotFound
           end
         end.compact.last
-        if(t_direct)
+        if t_direct
           result = send(type_name).get(target_provider, t_direct[:name])
         end
       end
-      unless(result)
+      unless result
         error_klass = Error::NotFound.const_get(
           Bogo::Utility.camel(type)
         )
@@ -200,6 +199,5 @@ class SparkleFormation
         end
       end.checksum
     end
-
   end
 end

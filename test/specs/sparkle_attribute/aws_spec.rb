@@ -1,7 +1,6 @@
 require_relative '../../spec'
 
 describe SparkleFormation::SparkleAttribute::Aws do
-
   before do
     klass = Class.new(AttributeStruct)
     klass.include(SparkleFormation::SparkleAttribute)
@@ -183,23 +182,23 @@ describe SparkleFormation::SparkleAttribute::Aws do
 
   it 'should generate a stack output attribute' do
     @attr.stack_output!(:stack_resource, :output_name).must_equal(
-      'Fn::GetAtt' => ['StackResource', 'Outputs.OutputName']
+      'Fn::GetAtt' => ['StackResource', 'Outputs.OutputName'],
     )
     @attr.stack_output!('stack_resource', 'output_name').must_equal(
-      'Fn::GetAtt' => ['StackResource', 'Outputs.OutputName']
+      'Fn::GetAtt' => ['StackResource', 'Outputs.OutputName'],
     )
   end
 
   it 'should generate a hash of tags' do
     @attr.tags!(:foo => 'bar').must_equal([
       'Key' => 'Foo',
-      'Value' => 'bar'
+      'Value' => 'bar',
     ])
     @attr._dump.must_equal(
       'Tags' => [
         'Key' => 'Foo',
-        'Value' => 'bar'
-      ]
+        'Value' => 'bar',
+      ],
     )
   end
 
@@ -219,5 +218,4 @@ describe SparkleFormation::SparkleAttribute::Aws do
     result['Resources']['MyCustomResource']['Properties']['ResourceName'].must_equal 'MyCustomResource'
     result['Resources']['MyCustomResource']['Properties']['Nested']['ResourceName'].must_equal 'MyCustomResource'
   end
-
 end

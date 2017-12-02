@@ -18,7 +18,7 @@ RSpec.describe SparkleFormation::Utils do
       end
 
       it 'should raise for Numeric value' do
-        expect{ subject.__t_stringish(1) }.to raise_error(TypeError)
+        expect { subject.__t_stringish(1) }.to raise_error(TypeError)
       end
     end
 
@@ -32,7 +32,7 @@ RSpec.describe SparkleFormation::Utils do
       end
 
       it 'should raise for String value' do
-        expect{ subject.__t_hashish(1) }.to raise_error(TypeError)
+        expect { subject.__t_hashish(1) }.to raise_error(TypeError)
       end
     end
   end
@@ -64,11 +64,11 @@ RSpec.describe SparkleFormation::Utils do
   end
 
   describe SparkleFormation::Registry do
-    before{ described_class.init! }
+    before { described_class.init! }
 
     describe '.register' do
       it 'should register an item into the registry' do
-        expect(described_class.register(:item){ true }).to be_truthy
+        expect(described_class.register(:item) { true }).to be_truthy
       end
     end
 
@@ -96,7 +96,7 @@ RSpec.describe SparkleFormation::Utils do
   end
 
   describe SparkleFormation::Cache do
-    before{ described_class.init! }
+    before { described_class.init! }
 
     describe '#[]=' do
       it 'should set value into cache and return value' do

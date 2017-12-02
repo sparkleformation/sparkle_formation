@@ -41,15 +41,15 @@ class SparkleFormation
       def apply_deep_nesting(*args, &block)
         outputs = collect_outputs
         nested_stacks(:with_resource).each do |stack, resource|
-          unless(stack.nested_stacks.empty?)
+          unless stack.nested_stacks.empty?
             stack.apply_deep_nesting(*args)
           end
-          unless(stack.root?)
+          unless stack.root?
             stack.compile.parameters.keys!.each do |parameter_name|
               next if stack.compile.parameters.set!(parameter_name).stack_unique == true
-              if(!stack.parent.compile.parameters.data![parameter_name].nil?)
+              if !stack.parent.compile.parameters.data![parameter_name].nil?
                 resource.properties.parameters.set!(parameter_name, resource.ref!(parameter_name))
-              elsif(output_name = output_matched?(parameter_name, outputs.keys))
+              elsif output_name = output_matched?(parameter_name, outputs.keys)
                 next if outputs[output_name] == stack
                 stack_output = stack.make_output_available(output_name, outputs)
                 resource.properties.parameters.set!(parameter_name, stack_output)
@@ -57,7 +57,7 @@ class SparkleFormation
             end
           end
         end
-        if(block_given?)
+        if block_given?
           extract_templates(&block)
         end
         compile
@@ -79,7 +79,7 @@ class SparkleFormation
           remap_nested_parameters(compile, parameters, stack_name, stack_resource, output_map)
         end
         extract_templates(&block)
-        if(args.include?(:bubble_outputs))
+        if args.include?(:bubble_outputs)
           output_map.each do |o_name, o_val|
             compile.outputs._set(o_name).value compile._stack_output(*o_val)
           end
@@ -104,20 +104,20 @@ class SparkleFormation
             )
           )
         end
-        if(bubble_path.empty?)
-          if(drip_path.size == 1)
+        if bubble_path.empty?
+          if drip_path.size == 1
             parent = drip_path.first.parent
-            if(parent && !parent.compile.parameters._set(output_name).nil?)
+            if parent && !parent.compile.parameters._set(output_name).nil?
               return compile.parameter!(output_name)
             end
           end
           raise ArgumentError.new "Failed to detect available bubbling path for output `#{output_name}`. " <<
-            'This may be due to a circular dependency! ' <<
-            "(Output Path: #{outputs[output_name].root_path.map(&:name).join(' > ')} " <<
-            "Requester Path: #{root_path.map(&:name).join(' > ')})"
+                                    'This may be due to a circular dependency! ' <<
+                                    "(Output Path: #{outputs[output_name].root_path.map(&:name).join(' > ')} " <<
+                                    "Requester Path: #{root_path.map(&:name).join(' > ')})"
         end
         result = compile._stack_output(bubble_path.first.name, output_name)
-        if(drip_path.size > 1)
+        if drip_path.size > 1
           parent = drip_path.first.parent
           drip_path.unshift(parent) if parent
           drip_path.each_slice(2) do |base_sparkle, ref_sparkle|
@@ -147,19 +147,19 @@ class SparkleFormation
       def remap_nested_parameters(template, parameters, stack_name, stack_resource, output_map)
         nested_template = stack_resource.properties.stack.compile
         stack_parameters = nested_template.parameters
-        unless(stack_parameters.nil?)
+        unless stack_parameters.nil?
           stack_parameters._keys.each do |pname|
             pval = stack_parameters[pname]
-            unless(pval.stack_unique.nil?)
+            unless pval.stack_unique.nil?
               check_name = [stack_name, pname].join
             else
               check_name = pname
             end
-            if(!parameters._set(check_name).nil?)
+            if !parameters._set(check_name).nil?
               template.resources._set(stack_name).properties.parameters._set(pname).value(
                 template._parameter(check_name)
               )
-            elsif(output_map[check_name])
+            elsif output_map[check_name]
               template.resources._set(stack_name).properties.parameters._set(pname).value(
                 template._stack_output(*output_map[check_name])
               )
@@ -171,14 +171,13 @@ class SparkleFormation
             end
           end
         end
-        unless(nested_template.outputs.nil?)
+        unless nested_template.outputs.nil?
           nested_template.outputs.keys!.each do |oname|
             output_map[oname] = [stack_name, oname]
           end
         end
         true
       end
-
     end
   end
 end

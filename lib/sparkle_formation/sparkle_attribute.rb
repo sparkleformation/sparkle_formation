@@ -4,7 +4,6 @@ class SparkleFormation
 
   # Provides template helper methods
   module SparkleAttribute
-
     autoload :Aws, 'sparkle_formation/sparkle_attribute/aws'
     autoload :Azure, 'sparkle_formation/sparkle_attribute/azure'
     autoload :Google, 'sparkle_formation/sparkle_attribute/google'
@@ -18,8 +17,8 @@ class SparkleFormation
     # @return [String]
     def _resource_name
       result = nil
-      if(_parent)
-        if(_parent._parent == _root)
+      if _parent
+        if _parent._parent == _root
           result = _parent._data.detect do |r_name, r_value|
             r_value == self
           end
@@ -28,14 +27,15 @@ class SparkleFormation
           result = _parent._resource_name
         end
       end
-      unless(result)
+      unless result
         ::Kernel.raise NameError.new 'Failed to determine current resource name! (Check call location)'
       end
-      if(result.is_a?(::SparkleFormation::FunctionStruct))
+      if result.is_a?(::SparkleFormation::FunctionStruct)
         result = result._clone
       end
       result
     end
+
     alias_method :resource_name!, :_resource_name
 
     # Execute system command
@@ -45,6 +45,7 @@ class SparkleFormation
     def _system(command)
       ::Kernel.send('`', command)
     end
+
     alias_method :system!, :_system
 
     # @overload _puts(obj, ...)
@@ -55,6 +56,7 @@ class SparkleFormation
     def _puts(*args)
       $stdout.puts(*args)
     end
+
     alias_method :puts!, :_puts
 
     # Raise an exception
@@ -62,6 +64,7 @@ class SparkleFormation
     def _raise(*args)
       ::Kernel.raise(*args)
     end
+
     alias_method :raise!, :_raise
 
     # @overload _method(sym)
@@ -73,6 +76,7 @@ class SparkleFormation
     def _method(*args)
       ::Kernel.instance_method(:method).bind(self).call(*args)
     end
+
     alias_method :method!, :_method
 
     # @overload _dynamic(resource_type, custom_name, options={})
@@ -97,6 +101,7 @@ class SparkleFormation
     def _dynamic(name, *args, &block)
       SparkleFormation.insert(name, self, *args, &block)
     end
+
     alias_method :dynamic!, :_dynamic
 
     # @overload _registry(name)
@@ -114,6 +119,7 @@ class SparkleFormation
     def _registry(name, *args)
       SparkleFormation.registry(name, self, *args)
     end
+
     alias_method :registry!, :_registry
 
     # @overload _nest(template, *names, options={})
@@ -133,6 +139,7 @@ class SparkleFormation
     def _nest(template, *args, &block)
       SparkleFormation.nest(template, self, *args, &block)
     end
+
     alias_method :nest!, :_nest
 
     # Format the provided key. If symbol type is provided
@@ -142,12 +149,11 @@ class SparkleFormation
     # @param key [String, Symbol] given key
     # @return [String] formatted key
     def __attribute_key(key)
-      if(key.is_a?(::Symbol) || key.is_a?(::String))
+      if key.is_a?(::Symbol) || key.is_a?(::String)
         _process_key(key, key.is_a?(::Symbol) ? :force : nil)
       else
         key
       end
     end
-
   end
 end

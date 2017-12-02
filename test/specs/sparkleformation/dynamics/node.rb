@@ -1,5 +1,4 @@
 SparkleFormation.dynamic(:node) do |_name, _config|
-
   parameters do
     key_name do
       description 'Name of an existing EC2 KeyPair to enable SSH access to the instance'
@@ -12,5 +11,4 @@ SparkleFormation.dynamic(:node) do |_name, _config|
       key_name ref!(:key_name)
     end
   end
-
 end

@@ -1,4 +1,4 @@
-SparkleFormation.dynamic(:base) do |name, args={}|
+SparkleFormation.dynamic(:base) do |name, args = {}|
   result = set!("#{name}_custom_block".to_sym) do
     base_dynamic true
   end

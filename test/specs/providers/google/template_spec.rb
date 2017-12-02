@@ -1,9 +1,7 @@
 require_relative '../../../spec'
 
 describe 'Google templates' do
-
   describe 'Basic template structure' do
-
     it 'should automatically reformat resources when sparkle dumped' do
       result = SparkleFormation.new(:dummy, :provider => :google) do
         resources.test_resource do
@@ -29,7 +27,6 @@ describe 'Google templates' do
   end
 
   describe 'Helper functions behavior' do
-
     it 'should automatically generate unique resource name when requested' do
       result = SparkleFormation.new(:dummy, :provider => :google) do
         dynamic!(:v1_bucket, :test, :sparkle_unique)
@@ -61,7 +58,6 @@ describe 'Google templates' do
         test_value property!(:my_property)
       end.sparkle_dump
       result['testValue'].must_equal '{{ properties["myProperty"] }}'
-
     end
 
     it 'should generate properly formatted environment values' do
@@ -79,7 +75,5 @@ describe 'Google templates' do
       result['testValue'].must_equal '{{ time.clock }}'
       result['testValueParams'].must_equal '{{ time.sleep(2) }}'
     end
-
   end
-
 end

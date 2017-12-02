@@ -15,24 +15,22 @@ class SparkleFormation
 
       # @!visibility private
       class SparkleFormation
-
         attr_accessor :sparkle_path
 
         class << self
-
           def insert(*args, &block)
             ::SparkleFormation.insert(*args, &block)
           end
 
-          def part_data(data=nil)
-            if(data)
+          def part_data(data = nil)
+            if data
               @data = data
             else
               @data
             end
           end
 
-          def dynamic(name, args={}, &block)
+          def dynamic(name, args = {}, &block)
             part_data[:dynamic].push(
               ::Smash.new(
                 :name => name,
@@ -40,7 +38,7 @@ class SparkleFormation
                 :args => ::Smash[
                   args.map(&:to_a)
                 ],
-                :type => :dynamic
+                :type => :dynamic,
               )
             ).last
           end
@@ -49,12 +47,12 @@ class SparkleFormation
             part_data[:component].push(
               ::Smash.new(
                 :block => block,
-                :type => :component
+                :type => :component,
               )
             ).last
           end
 
-          def component(name, args={}, &block)
+          def component(name, args = {}, &block)
             part_data[:component].push(
               ::Smash.new(
                 :name => name,
@@ -62,7 +60,7 @@ class SparkleFormation
                 :args => ::Smash[
                   args.map(&:to_a)
                 ],
-                :type => :component
+                :type => :component,
               )
             ).last
           end
@@ -70,15 +68,14 @@ class SparkleFormation
           def dynamic_info(*args)
             ::Smash.new(:metadata => {}, :args => {})
           end
-
         end
 
         def initialize(*args)
-          opts = args.detect{|a| a.is_a?(Hash)} || {}
+          opts = args.detect { |a| a.is_a?(Hash) } || {}
           SparkleFormation.part_data[:template].push(
             ::Smash.new(
               :name => args.first,
-              :args => opts
+              :args => opts,
             )
           )
           raise ::TypeError
@@ -86,8 +83,7 @@ class SparkleFormation
 
         # @!visibility private
         class Registry
-
-          def self.register(name, args={}, &block)
+          def self.register(name, args = {}, &block)
             SparkleFormation.part_data[:registry].push(
               ::Smash.new(
                 :name => name,
@@ -95,11 +91,10 @@ class SparkleFormation
                 :args => ::Smash[
                   args.map(&:to_a)
                 ],
-                :type => :registry
+                :type => :registry,
               )
             ).last
           end
-
         end
       end
 
@@ -115,10 +110,10 @@ class SparkleFormation
         :Bignum,
         :NIL,
         :TRUE,
-        :FALSE
+        :FALSE,
       ]
       ::Object.constants.each do |const|
-        unless(self.const_defined?(const)) # rubocop:disable Style/RedundantSelf
+        unless (self.const_defined?(const)) # rubocop:disable Style/RedundantSelf
           next if deprecated_constants.include?(const)
           self.const_set(const, ::Object.const_get(const)) # rubocop:disable Style/RedundantSelf
         end
@@ -128,11 +123,9 @@ class SparkleFormation
       def part_data(arg)
         SparkleFormation.part_data(arg)
       end
-
     end
 
     class << self
-
       @@_pack_registry = Smash.new
 
       # Register a SparklePack for short name access
@@ -140,8 +133,8 @@ class SparkleFormation
       # @param name [String, Symbol] name of pack
       # @param path [String] path to pack
       # @return [Array<String:name, String:path>]
-      def register!(name=nil, path=nil)
-        unless(path)
+      def register!(name = nil, path = nil)
+        unless path
           idx = caller.index do |item|
             item.end_with?("`register!'")
           end
@@ -150,23 +143,23 @@ class SparkleFormation
           # to not be improperly truncated
           file = caller[idx].split(':').reverse.drop(2).reverse.join(':')
           path = File.join(File.dirname(file), 'sparkleformation')
-          unless(File.directory?(path))
+          unless File.directory?(path)
             path = nil
           end
-          unless(name)
+          unless name
             name = File.basename(file)
             name.sub!(File.extname(name), '')
           end
         end
-        unless(name)
-          if(path)
+        unless name
+          if path
             name = path.split(File::PATH_SEPARATOR)[-3].to_s
           end
         end
-        unless(path)
+        unless path
           raise ArgumentError.new('No SparklePack path provided and failed to auto-detect!')
         end
-        unless(name)
+        unless name
           raise ArgumentError.new('No SparklePack name provided and failed to auto-detect!')
         end
         @@_pack_registry[name] = path
@@ -179,13 +172,12 @@ class SparkleFormation
       # @param name [String, Symbol] name of pack
       # @return [String] path
       def path(name)
-        if(@@_pack_registry[name])
+        if @@_pack_registry[name]
           @@_pack_registry[name]
         else
           raise KeyError.new "No pack registered with requested name: #{name}!"
         end
       end
-
     end
 
     # Wrapper for evaluating sfn files to store within sparkle
@@ -202,14 +194,14 @@ class SparkleFormation
       'sfn',
       'cloudformation',
       'cfn',
-      '.'
+      '.',
     ]
 
     # Reserved directories
     DIRS = [
       'components',
       'registry',
-      'dynamics'
+      'dynamics',
     ]
 
     # Valid types
@@ -217,7 +209,7 @@ class SparkleFormation
       'component' => 'components',
       'registry' => 'registries',
       'dynamic' => 'dynamics',
-      'template' => 'templates'
+      'template' => 'templates',
     )
 
     # @return [String] path to sparkle directories
@@ -234,20 +226,20 @@ class SparkleFormation
     # @option args [String, Symbol] :name registered pack name
     # @option args [String, Symbol] :provider name of default provider
     # @return [self]
-    def initialize(args={})
-      if(args[:name])
+    def initialize(args = {})
+      if args[:name]
         @root = self.class.path(args[:name])
       else
         @root = args.fetch(:root, locate_root)
       end
-      if(@root != :none && !File.directory?(@root))
+      if @root != :none && !File.directory?(@root)
         raise Errno::ENOENT.new("No such directory - #{@root}")
       end
       @raw_data = Smash.new(
         :dynamic => [],
         :component => [],
         :registry => [],
-        :template => []
+        :template => [],
       )
       @provider = Bogo::Utility.snake(args.fetch(:provider, 'aws').to_s).to_sym
       @wrapper = eval_wrapper.new
@@ -290,27 +282,25 @@ class SparkleFormation
     # @param target_provider [String, Symbol] restrict to provider
     # @return [Smash] requested item
     # @raises [NameError, Error::NotFound]
-    def get(type, name, target_provider=nil)
-      unless(TYPES.keys.include?(type.to_s))
+    def get(type, name, target_provider = nil)
+      unless TYPES.keys.include?(type.to_s)
         raise NameError.new "Invalid type requested (#{type})! Valid types: #{TYPES.keys.join(', ')}"
       end
-      unless(target_provider)
+      unless target_provider
         target_provider = provider
       end
       result = send(TYPES[type]).get(target_provider, name)
-      if(result.nil? && TYPES[type] == 'templates')
-        result = (
-          send(TYPES[type]).fetch(target_provider, Smash.new).detect{|_, v|
-            name = name.to_s
-            short_name = v[:path].sub(%r{#{Regexp.escape(root)}/?}, '')
-            v[:path] == name ||
-            short_name == name ||
-            short_name.sub('.rb', '').gsub(File::SEPARATOR, '__').tr('-', '_') == name ||
-            v[:path].end_with?(name)
-          } || []
-        ).last
+      if result.nil? && TYPES[type] == 'templates'
+        result = (send(TYPES[type]).fetch(target_provider, Smash.new).detect { |_, v|
+          name = name.to_s
+          short_name = v[:path].sub(%r{#{Regexp.escape(root)}/?}, '')
+          v[:path] == name ||
+          short_name == name ||
+          short_name.sub('.rb', '').gsub(File::SEPARATOR, '__').tr('-', '_') == name ||
+          v[:path].end_with?(name)
+        } || []).last
       end
-      unless(result)
+      unless result
         klass = Error::NotFound.const_get(type.capitalize)
         raise klass.new("No #{type} registered with requested name (#{name})!", :name => name)
       end
@@ -333,7 +323,7 @@ class SparkleFormation
     def locate_root
       VALID_ROOT_DIRS.map do |part|
         path = File.expand_path(File.join(Dir.pwd, part))
-        if(File.exist?(path))
+        if File.exist?(path)
           path
         end
       end.compact.first
@@ -344,33 +334,32 @@ class SparkleFormation
       memoize(:load_parts) do
         Dir.glob(File.join(root, '**', '**', '*.{json,rb}')).each do |file|
           slim_path = file.sub("#{root}/", '')
-          if(file.end_with?('.rb'))
+          if file.end_with?('.rb')
             begin
               wrapper.instance_eval(IO.read(file), file, 1)
             rescue TypeError
             end
           end
-          if(file.end_with?('.json') || raw_data[:template].first)
+          if file.end_with?('.json') || raw_data[:template].first
             data = raw_data[:template].pop || Smash.new
-            unless(data[:name])
+            unless data[:name]
               data[:name] = slim_path.tr('/', '__').sub(/\.(rb|json)$/, '')
             end
             t_provider = data.fetch(:args, :provider, :aws)
-            if(templates.get(t_provider, data[:name]))
+            if templates.get(t_provider, data[:name])
               raise KeyError.new "Template name is already in use within pack! (`#{data[:name]}` -> `#{t_provider}`)"
             end
             templates.set(t_provider, data[:name],
-              data.merge(
-                :type => :template,
-                :path => file,
-                :serialized => !file.end_with?('.rb')
-              )
-            )
+                          data.merge(
+              :type => :template,
+              :path => file,
+              :serialized => !file.end_with?('.rb'),
+            ))
           end
         end
         raw_data.each do |key, items|
           items.each do |item|
-            if(item[:name])
+            if item[:name]
               collection = send(TYPES[key])
               name = item.delete(:name)
             else
@@ -379,7 +368,7 @@ class SparkleFormation
               collection = send(type)
             end
             i_provider = item.fetch(:args, :provider, :aws)
-            if(collection.get(i_provider, name))
+            if collection.get(i_provider, name)
               raise KeyError.new "#{key.capitalize} name is already in use within pack! (`#{name}` -> #{i_provider})"
             end
             collection.set(i_provider, name, item)
@@ -387,8 +376,8 @@ class SparkleFormation
         end
       end
     end
-
   end
+
   # Alias for interfacing naming
   SparklePack = Sparkle
 end

@@ -2,11 +2,11 @@ require_relative '../rspecs'
 
 RSpec.describe SparkleFormation::Composition do
   it 'should raise error if provided origin is not a SparkleFormation instance' do
-    expect{ described_class.new(true) }.to raise_error(TypeError)
+    expect { described_class.new(true) }.to raise_error(TypeError)
   end
 
   context 'with only origin provided' do
-    let(:instance){ described_class.new(SparkleFormation.new('test')) }
+    let(:instance) { described_class.new(SparkleFormation.new('test')) }
 
     describe '#components' do
       it 'should return empty array' do
@@ -32,7 +32,7 @@ RSpec.describe SparkleFormation::Composition do
       end
 
       it 'should accept a block' do
-        expect(instance.each{}).to eq(instance)
+        expect(instance.each { }).to eq(instance)
       end
     end
 
@@ -65,7 +65,7 @@ RSpec.describe SparkleFormation::Composition do
       end
 
       it 'should raise type error if item is not Component or override' do
-        expect{ instance.add_component(true) }.to raise_error(TypeError)
+        expect { instance.add_component(true) }.to raise_error(TypeError)
       end
 
       it 'should add item to end of components list by default' do
@@ -81,7 +81,7 @@ RSpec.describe SparkleFormation::Composition do
       end
 
       it 'should raise ArgumentError when using undefined location value' do
-        expect{ instance.add_component(test_component, :unknown) }.to raise_error(ArgumentError)
+        expect { instance.add_component(test_component, :unknown) }.to raise_error(ArgumentError)
       end
     end
 
@@ -112,7 +112,7 @@ RSpec.describe SparkleFormation::Composition do
       end
 
       it 'should raise TypeError when adding non-Override value' do
-        expect{ instance.add_override(test_component) }.to raise_error(TypeError)
+        expect { instance.add_override(test_component) }.to raise_error(TypeError)
       end
 
       it 'should add item to end of overrides list' do
@@ -128,7 +128,7 @@ RSpec.describe SparkleFormation::Composition do
       end
 
       it 'should raise ArgumentError when using undefined location value' do
-        expect{ instance.add_override(test_override, :unknown) }.to raise_error(ArgumentError)
+        expect { instance.add_override(test_override, :unknown) }.to raise_error(ArgumentError)
       end
     end
 
@@ -168,9 +168,9 @@ RSpec.describe SparkleFormation::Composition do
 
     describe '#each' do
       before do
-        instance.new_component(:first){|item| :first }
-        instance.new_override{|item| :second }
-        instance.new_component(:second){|item| :third }
+        instance.new_component(:first) { |item| :first }
+        instance.new_override { |item| :second }
+        instance.new_component(:second) { |item| :third }
       end
 
       it 'should perform a no-op if no block is given' do
@@ -179,13 +179,13 @@ RSpec.describe SparkleFormation::Composition do
 
       it 'should provide block each item in composition' do
         item_count = 0
-        instance.each{|i| item_count += 1 }
+        instance.each { |i| item_count += 1 }
         expect(item_count).to eq(3)
       end
 
       it 'should provide block with each item in order with Components first' do
         result = []
-        instance.each{|item| result << item.block.call}
+        instance.each { |item| result << item.block.call }
         expect(result).to eq([:first, :third, :second])
       end
     end

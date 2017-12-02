@@ -16,12 +16,12 @@ class SparkleFormation
       # @param dump_copy [Smash] translated dump
       # @param parent_names [Array<String>] name of parent resources
       # @return [Smash] dump_copy
-      def google_template_extractor(template_hash, dump_copy, parent_names=[])
+      def google_template_extractor(template_hash, dump_copy, parent_names = [])
         template_hash.fetch('resources', []).each do |t_resource|
-          if(t_resource['type'] == stack_resource_type)
+          if t_resource['type'] == stack_resource_type
             full_names = parent_names + [t_resource['name']]
             stack = t_resource['properties'].delete('stack')
-            if(t_resource['properties'].empty?)
+            if t_resource['properties'].empty?
               t_resource.delete('properties')
             end
             google_template_extractor(stack, dump_copy, full_names)
@@ -45,18 +45,18 @@ class SparkleFormation
         dump_copy[:imports].push(
           Smash.new(
             :name => f_name,
-            :content => r_stack
+            :content => r_stack,
           )
         )
-        if(r_parameters)
+        if r_parameters
           dump_copy[:imports].push(
             Smash.new(
               :name => "#{f_name}.schema",
-              :content => Smash.new.tap{|schema|
+              :content => Smash.new.tap { |schema|
                 schema.set(:info, :title, "#{f_name} template")
                 schema.set(:info, :description, "#{f_name} template schema")
                 schema.set(:properties, r_parameters)
-              }
+              },
             )
           )
         end
@@ -69,13 +69,12 @@ class SparkleFormation
       # @return [Hash]
       def google_dump
         result = non_google_dump
-        if(root?)
+        if root?
           dump_copy = Smash.new(:imports => [])
           google_template_extractor(result, dump_copy)
           dump_copy.set(:config, :content, result)
           dump_copy.set(:config, :content, :imports,
-            dump_copy[:imports].map{|i| i[:name]}
-          )
+                        dump_copy[:imports].map { |i| i[:name] })
           dump_copy.to_hash
         else
           result
@@ -125,21 +124,21 @@ class SparkleFormation
       def apply_deep_nesting(*args, &block)
         outputs = collect_outputs
         nested_stacks(:with_resource).each do |stack, resource|
-          unless(stack.nested_stacks.empty?)
+          unless stack.nested_stacks.empty?
             stack.apply_deep_nesting(*args)
           end
           stack.compile.parameters.keys!.each do |parameter_name|
-            if(output_name = output_matched?(parameter_name, outputs.keys))
+            if output_name = output_matched?(parameter_name, outputs.keys)
               next if outputs[output_name] == stack
               stack_output = stack.make_output_available(output_name, outputs, self)
               # NOTE: Only set value if not already explicitly set
-              if(resource.properties._set(parameter_name).nil?)
+              if resource.properties._set(parameter_name).nil?
                 resource.properties._set(parameter_name, stack_output)
               end
             end
           end
         end
-        if(block_given?)
+        if block_given?
           extract_templates(&block)
         end
         self
@@ -169,20 +168,20 @@ class SparkleFormation
             )
           )
         end
-        if(bubble_path.empty?)
-          if(drip_path.size == 1)
+        if bubble_path.empty?
+          if drip_path.size == 1
             parent = drip_path.first.parent
-            if(parent && !parent.compile.parameters._set(output_name).nil?)
+            if parent && !parent.compile.parameters._set(output_name).nil?
               return compile.parameter!(output_name)
             end
           end
           raise ArgumentError.new "Failed to detect available bubbling path for output `#{output_name}`. " <<
-            'This may be due to a circular dependency! ' <<
-            "(Output Path: #{outputs[output_name].root_path.map(&:name).join(' > ')} " <<
-            "Requester Path: #{root_path.map(&:name).join(' > ')})"
+                                    'This may be due to a circular dependency! ' <<
+                                    "(Output Path: #{outputs[output_name].root_path.map(&:name).join(' > ')} " <<
+                                    "Requester Path: #{root_path.map(&:name).join(' > ')})"
         end
         result = source_stack.compile._stack_output(bubble_path.first.name, output_name)
-        if(drip_path.size > 1)
+        if drip_path.size > 1
           parent = drip_path.first.parent
           drip_path.unshift(parent) if parent
           drip_path.each_slice(2) do |base_sparkle, ref_sparkle|
@@ -194,7 +193,6 @@ class SparkleFormation
         end
         result
       end
-
     end
   end
 end

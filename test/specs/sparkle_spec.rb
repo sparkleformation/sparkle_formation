@@ -1,12 +1,10 @@
 require_relative '../spec'
 
 describe SparkleFormation::Sparkle do
-
   describe 'valid sparkle pack' do
-
     before do
       @pack = SparkleFormation::Sparkle.new(
-        :root => File.join(File.dirname(__FILE__), 'packs/valid_pack')
+        :root => File.join(File.dirname(__FILE__), 'packs/valid_pack'),
       )
     end
 
@@ -25,27 +23,23 @@ describe SparkleFormation::Sparkle do
     it 'should have a registry item registered' do
       @pack.get(:registry, :base).must_be_kind_of Hash
     end
-
   end
 
   describe 'invalid name collision pack' do
-
     it 'should raise a KeyError on duplicate template name' do
-      ->{
+      -> {
         SparkleFormation::Sparkle.new(
-          :root => File.join(File.dirname(__FILE__), 'packs/name_collision_pack')
+          :root => File.join(File.dirname(__FILE__), 'packs/name_collision_pack'),
         ).templates
       }.must_raise KeyError
     end
 
     it 'should raise a KeyError on duplicate dynamic name' do
-      ->{
+      -> {
         SparkleFormation::Sparkle.new(
-          :root => File.join(File.dirname(__FILE__), 'packs/name_collision_pack_item')
+          :root => File.join(File.dirname(__FILE__), 'packs/name_collision_pack_item'),
         )
       }.must_raise KeyError
     end
-
   end
-
 end

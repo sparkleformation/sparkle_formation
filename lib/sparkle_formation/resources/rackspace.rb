@@ -7,9 +7,7 @@ class SparkleFormation
 
     # Rackspace specific resources collection
     class Rackspace < Resources
-
       class << self
-
         include Bogo::Memoization
 
         # Load the builtin AWS resources
@@ -31,9 +29,7 @@ class SparkleFormation
         def included(_klass)
           load!
         end
-
       end
-
     end
   end
 end

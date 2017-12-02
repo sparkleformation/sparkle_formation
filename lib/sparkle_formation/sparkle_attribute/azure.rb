@@ -14,7 +14,7 @@ class SparkleFormation
       # @param hash [Hash] template dump
       # @return [Hash]
       def self.resources_formatter(hash)
-        if(hash.key?('resources') && !hash['resources'].is_a?(Array))
+        if hash.key?('resources') && !hash['resources'].is_a?(Array)
           resources = hash.delete('resources')
           hash['resources'] = Array.new
           resources.each do |r_name, r_contents|
@@ -34,11 +34,12 @@ class SparkleFormation
         klass.class_eval do
           def _azure_dump
             result = _attribute_struct_dump
-            if(_parent.nil?)
+            if _parent.nil?
               result = ::SparkleFormation::SparkleAttribute::Azure.resources_formatter(result)
             end
             result
           end
+
           alias_method :_attribute_struct_dump, :_dump
           alias_method :_dump, :_azure_dump
           alias_method :dump!, :_azure_dump
@@ -73,7 +74,7 @@ class SparkleFormation
         'providers',
         'reference',
         'resourceGroup',
-        'subscription'
+        'subscription',
       ]
 
       # NOTE: Alias implementation disabled due to Ruby 2.3 __callee__ bug
@@ -110,6 +111,7 @@ class SparkleFormation
         x._fn_context = self
         x
       end
+
       alias_method :variables!, :_variables
 
       # @overload _resource_id(resource_name)
@@ -119,14 +121,14 @@ class SparkleFormation
       #     @param [String, Symbol] name of resource
       # @return [FunctionStruct]
       def _resource_id(*args)
-        if(args.size > 1)
+        if args.size > 1
           ::SparkleFormation::FunctionStruct.new('resourceId', *args)
         else
           r_name = args.first
           resource = _root.resources.set!(r_name)
-          if(resource.nil?)
+          if resource.nil?
             ::Kernel.raise ::SparkleFormation::Error::NotFound::Resource.new(:name => r_name)
-          elsif(resource.type.nil?)
+          elsif resource.type.nil?
             ::Kernel.raise ::SparkleFormation::Error::InvalidResource.new(
               "Resource `#{r_name}` provides no type information."
             )
@@ -139,6 +141,7 @@ class SparkleFormation
           end
         end
       end
+
       alias_method :resource_id!, :_resource_id
 
       # Resource dependency generator
@@ -155,7 +158,7 @@ class SparkleFormation
           case item
           when ::Symbol
             resource = _root.resources.set!(item)
-            if(resource.nil?)
+            if resource.nil?
               ::Kernel.raise ::SparkleFormation::Error::NotFound::Resource.new(:name => item)
             else
               [resource.type, resource.resource_name!].join('/')
@@ -166,6 +169,7 @@ class SparkleFormation
         end
         set!(:depends_on, args)
       end
+
       alias_method :depends_on!, :_depends_on
 
       # Reference output value from nested stack
@@ -180,8 +184,8 @@ class SparkleFormation
         o_root.outputs.set!(output_name).value
         o_root
       end
-      alias_method :stack_output!, :_stack_output
 
+      alias_method :stack_output!, :_stack_output
     end
   end
 end

@@ -17,13 +17,13 @@ class SparkleFormation
         statements = []
         compile.resources.keys!.each do |r_name|
           r_object = compile.resources[r_name]
-          if(r_object['Policy'])
+          if r_object['Policy']
             r_object['Policy'].keys!.each do |effect|
               statements.push(
                 'Effect' => effect.to_s.capitalize,
-                'Action' => [r_object['Policy'][effect]].flatten.compact.map{|i| "Update:#{i}"},
+                'Action' => [r_object['Policy'][effect]].flatten.compact.map { |i| "Update:#{i}" },
                 'Resource' => "LogicalResourceId/#{r_name}",
-                'Principal' => '*'
+                'Principal' => '*',
               )
             end
             r_object.delete!('Policy')
@@ -33,7 +33,7 @@ class SparkleFormation
           'Effect' => 'Allow',
           'Action' => 'Update:*',
           'Resource' => '*',
-          'Principal' => '*'
+          'Principal' => '*',
         )
         Smash.new('Statement' => statements)
       end
@@ -51,15 +51,15 @@ class SparkleFormation
       def apply_deep_nesting(*args, &block)
         outputs = collect_outputs
         nested_stacks(:with_resource).each do |stack, resource|
-          unless(stack.nested_stacks.empty?)
+          unless stack.nested_stacks.empty?
             stack.apply_deep_nesting(*args)
           end
-          unless(stack.root?)
+          unless stack.root?
             stack.compile.parameters.keys!.each do |parameter_name|
               next if stack.compile.parameters.set!(parameter_name).stack_unique == true
-              if(!stack.parent.compile.parameters.data![parameter_name].nil?)
+              if !stack.parent.compile.parameters.data![parameter_name].nil?
                 resource.properties.parameters.set!(parameter_name, resource.ref!(parameter_name))
-              elsif(output_name = output_matched?(parameter_name, outputs.keys))
+              elsif output_name = output_matched?(parameter_name, outputs.keys)
                 next if outputs[output_name] == stack
                 stack_output = stack.make_output_available(output_name, outputs)
                 resource.properties.parameters.set!(parameter_name, stack_output)
@@ -67,7 +67,7 @@ class SparkleFormation
             end
           end
         end
-        if(block_given?)
+        if block_given?
           extract_templates(&block)
         end
         compile
@@ -90,13 +90,13 @@ class SparkleFormation
         end
         extract_templates(&block)
         compile.parameters parameters
-        if(args.include?(:bubble_outputs))
+        if args.include?(:bubble_outputs)
           outputs_hash = Hash[
             output_map do |name, value|
               [name, {'Value' => {'Fn::GetAtt' => value}}]
             end
           ]
-          if(compile.outputs)
+          if compile.outputs
             compile._merge(compile._klass_new(outputs_hash))
           else
             compile.outputs output_hash
@@ -122,26 +122,26 @@ class SparkleFormation
             )
           )
         end
-        if(bubble_path.empty?)
-          if(drip_path.size == 1)
+        if bubble_path.empty?
+          if drip_path.size == 1
             parent = drip_path.first.parent
-            if(parent && parent.compile.parameters.data![output_name])
+            if parent && parent.compile.parameters.data![output_name]
               return compile.ref!(output_name)
             end
           end
           raise ArgumentError.new "Failed to detect available bubbling path for output `#{output_name}`. " <<
-            'This may be due to a circular dependency! ' <<
-            "(Output Path: #{outputs[output_name].root_path.map(&:name).join(' > ')} " <<
-            "Requester Path: #{root_path.map(&:name).join(' > ')})"
+                                    'This may be due to a circular dependency! ' <<
+                                    "(Output Path: #{outputs[output_name].root_path.map(&:name).join(' > ')} " <<
+                                    "Requester Path: #{root_path.map(&:name).join(' > ')})"
         end
         result = compile.attr!(bubble_path.first.name, "Outputs.#{output_name}")
-        if(drip_path.size > 1)
+        if drip_path.size > 1
           parent = drip_path.first.parent
           drip_path.unshift(parent) if parent
           drip_path.each_slice(2) do |base_sparkle, ref_sparkle|
             next unless ref_sparkle
             base_sparkle.compile.resources[ref_sparkle.name].properties.parameters.set!(output_name, result)
-            ref_sparkle.compile.parameters.set!(output_name){ type 'String' } # TODO: <<<<------ type check and prop
+            ref_sparkle.compile.parameters.set!(output_name) { type 'String' } # TODO: <<<<------ type check and prop
             result = compile.ref!(output_name)
           end
         end
@@ -164,26 +164,26 @@ class SparkleFormation
       #   be added to container stack and it will not use outputs
       def remap_nested_parameters(template, parameters, stack_name, stack_resource, output_map)
         stack_parameters = stack_resource.properties.stack.compile.parameters
-        unless(stack_parameters.nil?)
+        unless stack_parameters.nil?
           stack_parameters._dump.each do |pname, pval|
-            if(pval['StackUnique'])
+            if pval['StackUnique']
               check_name = [stack_name, pname].join
             else
               check_name = pname
             end
-            if(parameters.keys.include?(check_name))
-              if(list_type?(parameters[check_name]['Type']))
+            if parameters.keys.include?(check_name)
+              if list_type?(parameters[check_name]['Type'])
                 new_val = {'Fn::Join' => [',', {'Ref' => check_name}]}
               else
                 new_val = {'Ref' => check_name}
               end
               template.resources.set!(stack_name).properties.parameters.set!(pname, new_val)
-            elsif(output_map[check_name])
+            elsif output_map[check_name]
               template.resources.set!(stack_name).properties.parameters.set!(
-                pname, 'Fn::GetAtt' => output_map[check_name]
+                pname, 'Fn::GetAtt' => output_map[check_name],
               )
             else
-              if(list_type?(pval['Type']))
+              if list_type?(pval['Type'])
                 new_val = {'Fn::Join' => [',', {'Ref' => check_name}]}
               else
                 new_val = {'Ref' => check_name}
@@ -193,7 +193,7 @@ class SparkleFormation
             end
           end
         end
-        unless(stack_resource.properties.stack.compile.outputs.nil?)
+        unless stack_resource.properties.stack.compile.outputs.nil?
           stack_resource.properties.stack.compile.outputs.keys!.each do |oname|
             output_map[oname] = [stack_name, "Outputs.#{oname}"]
           end
@@ -208,7 +208,6 @@ class SparkleFormation
       def list_type?(type)
         type == 'CommaDelimitedList' || type.start_with?('List<')
       end
-
     end
   end
 end

@@ -17,7 +17,7 @@ RSpec.describe SparkleFormation::SparkleAttribute::Heat do
     end
 
     it 'should raise error if first argument is not a string' do
-      expect{ instance._get_attr(true) }.to raise_error(TypeError)
+      expect { instance._get_attr(true) }.to raise_error(TypeError)
     end
   end
 
@@ -40,7 +40,7 @@ RSpec.describe SparkleFormation::SparkleAttribute::Heat do
     end
 
     it 'should raise error if argument is not a string' do
-      expect{ instance._get_file(true) }.to raise_error(TypeError)
+      expect { instance._get_file(true) }.to raise_error(TypeError)
     end
   end
 
@@ -56,7 +56,7 @@ RSpec.describe SparkleFormation::SparkleAttribute::Heat do
     end
 
     it 'should raise error if first argument is not a string' do
-      expect{ instance._get_param(true) }.to raise_error(TypeError)
+      expect { instance._get_param(true) }.to raise_error(TypeError)
     end
   end
 
@@ -67,7 +67,7 @@ RSpec.describe SparkleFormation::SparkleAttribute::Heat do
     end
 
     it 'should raise error if argument is not a string' do
-      expect{ instance._get_resource(true) }.to raise_error(TypeError)
+      expect { instance._get_resource(true) }.to raise_error(TypeError)
     end
   end
 
@@ -83,7 +83,7 @@ RSpec.describe SparkleFormation::SparkleAttribute::Heat do
     end
 
     it 'should raise error if algorithm is not a string' do
-      expect{ instance._digest('value', true) }.to raise_error(TypeError)
+      expect { instance._digest('value', true) }.to raise_error(TypeError)
     end
   end
 
@@ -94,7 +94,7 @@ RSpec.describe SparkleFormation::SparkleAttribute::Heat do
     end
 
     it 'should raise error if argument is not a string' do
-      expect{ instance._resource_facade(true) }.to raise_error(TypeError)
+      expect { instance._resource_facade(true) }.to raise_error(TypeError)
     end
   end
 
@@ -105,11 +105,11 @@ RSpec.describe SparkleFormation::SparkleAttribute::Heat do
     end
 
     it 'should raise error if first argument is not a string' do
-      expect{ instance._str_replace(true, {}) }.to raise_error(TypeError)
+      expect { instance._str_replace(true, {}) }.to raise_error(TypeError)
     end
 
     it 'should raise error if second argument is not a hash' do
-      expect{ instance._str_replace('string', 'value') }.to raise_error(TypeError)
+      expect { instance._str_replace('string', 'value') }.to raise_error(TypeError)
     end
   end
 
@@ -125,7 +125,7 @@ RSpec.describe SparkleFormation::SparkleAttribute::Heat do
     end
 
     it 'should raise error if first argument is not a string' do
-      expect{ instance._str_split(true, 'value') }.to raise_error(TypeError)
+      expect { instance._str_split(true, 'value') }.to raise_error(TypeError)
     end
   end
 

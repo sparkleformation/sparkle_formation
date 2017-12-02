@@ -10,7 +10,7 @@ class SparkleFormation
 
       # Set customized struct behavior
       def self.included(klass)
-        if(klass.const_defined?(:CAMEL_KEYS))
+        if klass.const_defined?(:CAMEL_KEYS)
           klass.send(:remove_const, :CAMEL_KEYS)
         end
         klass.const_set(:CAMEL_KEYS, false)
@@ -28,6 +28,7 @@ class SparkleFormation
         end
         {'get_attr' => args}
       end
+
       alias_method :_attr, :_get_attr
       alias_method :attr!, :_get_attr
 
@@ -39,13 +40,14 @@ class SparkleFormation
       #   @option options [String] :delimiter value used for joining items. Defaults to ''
       # @return [Hash]
       def _list_join(*args)
-        options = args.detect{|i| i.is_a?(::Hash) && i[:options]} || {:options => {}}
+        options = args.detect { |i| i.is_a?(::Hash) && i[:options] } || {:options => {}}
         args.delete(options)
-        unless(args.size == 1)
+        unless args.size == 1
           args = [args]
         end
         {'list_join' => [options[:options][:delimiter] || '', *args]}
       end
+
       alias_method :_join, :_list_join
       alias_method :join!, :_list_join
 
@@ -57,6 +59,7 @@ class SparkleFormation
         __t_stringish(loc)
         {'get_file' => loc}
       end
+
       alias_method :_file, :_get_file
       alias_method :file!, :_get_file
 
@@ -76,6 +79,7 @@ class SparkleFormation
         end
         {'get_param' => args.size == 1 ? args.first : args}
       end
+
       alias_method :_param, :_get_param
       alias_method :param!, :_get_param
 
@@ -87,6 +91,7 @@ class SparkleFormation
         __t_stringish(r_name)
         {'get_resource' => __attribute_key(r_name)}
       end
+
       alias_method :_resource, :_get_resource
       alias_method :resource!, :_get_resource
 
@@ -94,10 +99,11 @@ class SparkleFormation
       #
       # @param value [String, Hash] thing to be hashed
       # @param algorithm [String] algorithm to use (defaults to 'sha512')
-      def _digest(value, algorithm='sha512')
+      def _digest(value, algorithm = 'sha512')
         __t_stringish(algorithm)
         {'digest' => [algorithm, value]}
       end
+
       alias_method :digest!, :_digest
 
       # resource_facade generator
@@ -108,6 +114,7 @@ class SparkleFormation
         __t_stringish(type)
         {'resource_facade' => type}
       end
+
       alias_method :_facade, :_resource_facade
       alias_method :facade!, :_resource_facade
       alias_method :resource_facade!, :_resource_facade
@@ -122,6 +129,7 @@ class SparkleFormation
         __t_hashish(params)
         {'str_replace' => {'template' => template, 'params' => params}}
       end
+
       alias_method :_replace, :_str_replace
       alias_method :replace!, :_str_replace
 
@@ -131,10 +139,11 @@ class SparkleFormation
       # @param string [Object]
       # @param idx [Numeric]
       # @return [Hash]
-      def _str_split(splitter, string, idx=nil)
+      def _str_split(splitter, string, idx = nil)
         __t_stringish(splitter) unless splitter.is_a?(Hash)
         {'str_split' => [splitter, string, idx].compact}
       end
+
       alias_method :_split, :_str_split
       alias_method :split!, :_str_split
 
@@ -146,24 +155,28 @@ class SparkleFormation
       def _map_merge(*args)
         {'map_merge' => args}
       end
+
       alias_method :map_merge!, :_map_merge
 
       # @return [Hash]
       def _stack_id
         _get_param('OS::stack_id')
       end
+
       alias_method :stack_id!, :_stack_id
 
       # @return [Hash]
       def _stack_name
         _get_param('OS::stack_name')
       end
+
       alias_method :stack_name!, :_stack_name
 
       # @return [Hash]
       def _project_id
         _get_param('OS::project_id')
       end
+
       alias_method :project_id!, :_project_id
 
       # Resource dependency generator
@@ -176,8 +189,9 @@ class SparkleFormation
       # @return [Array<String>]
       # @note this will directly modify the struct at its current context to inject depends on structure
       def _depends_on(*args)
-        _set('depends_on', [args].flatten.compact.map{|s| __attribute_key(s) })
+        _set('depends_on', [args].flatten.compact.map { |s| __attribute_key(s) })
       end
+
       alias_method :depends_on!, :_depends_on
 
       # Reference output value from nested stack
@@ -191,9 +205,10 @@ class SparkleFormation
           __attribute_key(output_name)
         )
       end
-      alias_method :stack_output!, :_stack_output
 
+      alias_method :stack_output!, :_stack_output
     end
+
     OpenStack = Heat
   end
 end

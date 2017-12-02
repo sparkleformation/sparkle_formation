@@ -20,9 +20,9 @@ class SparkleFormation
         cache.fetch('Parameters', {}).each do |k, v|
           translated['parameters'][k] = Hash[
             v.map do |key, value|
-              if(key == 'Type')
+              if key == 'Type'
                 [snake(key).to_s, value.downcase]
-              elsif(key == 'AllowedValues')
+              elsif key == 'AllowedValues'
                 # @todo fix this up to properly build constraints
                 ['constraints', [{'allowed_values' => value}]]
               else
@@ -51,11 +51,11 @@ class SparkleFormation
         translated['heat_template_version'] = '2013-05-23'
         # no HOT support for mappings, so remove and clean pseudo
         # params in refs
-        if(translated['resources'])
+        if translated['resources']
           translated['resources'] = dereference_processor(translated['resources'], ['Fn::FindInMap', 'Ref'])
           translated['resources'] = rename_processor(translated['resources'])
         end
-        if(translated['outputs'])
+        if translated['outputs']
           translated['outputs'] = dereference_processor(translated['outputs'], ['Fn::FindInMap', 'Ref'])
           translated['outputs'] = rename_processor(translated['outputs'])
         end
@@ -82,24 +82,24 @@ class SparkleFormation
 
         # if health check is provided, create resource and apply to
         # all pools generated
-        if(healthcheck)
+        if healthcheck
           healthcheck_name = "#{resource_name}HealthCheck"
           check = {
             healthcheck_name => {
               'Type' => 'OS::Neutron::HealthMonitor',
-              'Properties' => {}.tap{ |properties|
+              'Properties' => {}.tap { |properties|
                 {'Timeout' => 'timeout', 'Interval' => 'delay', 'HealthyThreshold' => 'max_retries'}.each do |aws, hot|
-                  if(healthcheck[aws])
+                  if healthcheck[aws]
                     properties[hot] = healthcheck[aws]
                   end
                 end
-                type, port, path = healthcheck['Target'].split(%r{(:|/.*)}).find_all{|x| x != ':'}
+                type, port, path = healthcheck['Target'].split(%r{(:|/.*)}).find_all { |x| x != ':' }
                 properties['type'] = type
-                if(path)
+                if path
                   properties['url_path'] = path
                 end
-              }
-            }
+              },
+            },
           }
           translated['Resources'].merge!(check)
         end
@@ -112,21 +112,21 @@ class SparkleFormation
             'Properties' => {
               'lb_method' => 'ROUND_ROBIN',
               'monitors' => [
-                {'get_resource' => healthcheck_name}
+                {'get_resource' => healthcheck_name},
               ],
               'protocol' => base_listener['Protocol'],
               'vip' => {
-                'protocol_port' => base_listener['LoadBalancerPort']
+                'protocol_port' => base_listener['LoadBalancerPort'],
               },
-              'subnet' => subnet
-            }
-          }
+              'subnet' => subnet,
+            },
+          },
         }
-        if(healthcheck)
+        if healthcheck
           base_pool[base_pool_name]['Properties'].merge(
             'monitors' => [
-              {'get_resource' => healthcheck_name}
-            ]
+              {'get_resource' => healthcheck_name},
+            ],
           )
         end
 
@@ -144,16 +144,16 @@ class SparkleFormation
                 'protocol' => listener['Protocol'],
                 'subnet' => subnet,
                 'vip' => {
-                  'protocol_port' => listener['LoadBalancerPort']
-                }
-              }
-            }
+                  'protocol_port' => listener['LoadBalancerPort'],
+                },
+              },
+            },
           }
-          if(healthcheck)
+          if healthcheck
             pool[pool_name]['Properties'].merge(
               'monitors' => [
-                {'get_resource' => healthcheck_name}
-              ]
+                {'get_resource' => healthcheck_name},
+              ],
             )
           end
 
@@ -174,7 +174,7 @@ class SparkleFormation
         translated['resources'].find_all do |resource_name, resource|
           resource['type'] == 'OS::Heat::AutoScalingGroup'
         end.each do |name, value|
-          if(lbs = value['properties'].delete('load_balancers'))
+          if lbs = value['properties'].delete('load_balancers')
             lbs.each do |lb_ref|
               lb_name = resource_name(lb_ref)
               lb_resource = translated['resources'][lb_name]
@@ -199,7 +199,7 @@ class SparkleFormation
       # @option args [Hash] :original_resource
       # @return [Array<String, Object>] name and new value
       # @todo implement
-      def nova_server_block_device_mapping(value, args={})
+      def nova_server_block_device_mapping(value, args = {})
         ['block_device_mapping', value]
       end
 
@@ -211,7 +211,7 @@ class SparkleFormation
       # @option args [Hash] :new_properties
       # @option args [Hash] :original_resource
       # @return [Array<String, Object>] name and new value
-      def nova_server_user_data(value, args={})
+      def nova_server_user_data(value, args = {})
         args[:new_properties][:user_data_format] = 'RAW'
         args[:new_properties][:config_drive] = 'true'
         [:user_data, Hash[value.values.first]]
@@ -225,18 +225,18 @@ class SparkleFormation
       # @param old_resource [Hash]
       # @return [Object]
       def nova_server_finalizer(resource_name, new_resource, old_resource)
-        if(old_resource['Metadata'])
+        if old_resource['Metadata']
           new_resource['Metadata'] = old_resource['Metadata']
           proceed = new_resource['Metadata'] &&
-            new_resource['Metadata']['AWS::CloudFormation::Init'] &&
-            config = new_resource['Metadata']['AWS::CloudFormation::Init']['config']
-          if(proceed)
+                    new_resource['Metadata']['AWS::CloudFormation::Init'] &&
+                    config = new_resource['Metadata']['AWS::CloudFormation::Init']['config']
+          if proceed
             # NOTE: This is a stupid hack since HOT gives the URL to
             # wget directly and if special characters exist, it fails
-            if(files = config['files'])
+            if files = config['files']
               files.each do |key, args|
-                if(args['source'])
-                  if(args['source'].is_a?(String))
+                if args['source']
+                  if args['source'].is_a?(String)
                     args['source'].replace("\"#{args['source']}\"")
                   else
                     args['source'] = {
@@ -244,9 +244,9 @@ class SparkleFormation
                         '', [
                           "\"",
                           args['source'],
-                          "\""
-                        ]
-                      ]
+                          "\"",
+                        ],
+                      ],
                     }
                   end
                 end
@@ -266,10 +266,10 @@ class SparkleFormation
       # @return [TrueClass]
       def neutron_subnet_finalizer(resource_name, new_resource, old_resource)
         azs = new_resource['Properties'].delete('availability_zone')
-        if(azs)
+        if azs
           network_name = "NetworkFor#{resource_name}"
           translated['Resources'][network_name] = {
-            'type' => 'OS::Neutron::Network'
+            'type' => 'OS::Neutron::Network',
           }
           new_resource['Properties']['network'] = {'get_resource' => network_name}
         end
@@ -295,7 +295,7 @@ class SparkleFormation
       # @return [TrueClass]
       def resource_finalizer(resource_name, new_resource, old_resource)
         %w(DependsOn Metadata).each do |key|
-          if(old_resource[key] && !new_resource[key])
+          if old_resource[key] && !new_resource[key]
             new_resource[key] = old_resource[key]
           end
         end
@@ -311,7 +311,7 @@ class SparkleFormation
       # @option args [Hash] :original_resource
       # @return [Array<String, Object>] name and new value
       # @todo implement
-      def autoscaling_group_launchconfig(value, args={})
+      def autoscaling_group_launchconfig(value, args = {})
         ['resource', value]
       end
 
@@ -339,8 +339,8 @@ class SparkleFormation
               'SecurityGroups' => 'security_groups',
               'SecurityGroupIds' => 'security_groups',
               'Tags' => 'metadata',
-              'UserData' => :nova_server_user_data
-            }
+              'UserData' => :nova_server_user_data,
+            },
           },
           'AWS::AutoScaling::AutoScalingGroup' => {
             :name => 'OS::Heat::AutoScalingGroup',
@@ -349,8 +349,8 @@ class SparkleFormation
               'DesiredCapacity' => 'desired_capacity',
               'MaxSize' => 'max_size',
               'MinSize' => 'min_size',
-              'LaunchConfigurationName' => :autoscaling_group_launchconfig
-            }
+              'LaunchConfigurationName' => :autoscaling_group_launchconfig,
+            },
           },
           'AWS::AutoScaling::LaunchConfiguration' => :delete,
           'AWS::ElasticLoadBalancing::LoadBalancer' => {
@@ -360,15 +360,15 @@ class SparkleFormation
               'Instances' => 'members',
               'Listeners' => 'listeners',
               'HealthCheck' => 'health_check',
-              'Subnets' => 'subnets'
-            }
+              'Subnets' => 'subnets',
+            },
           },
           'AWS::EC2::VPC' => {
             :name => 'OS::Neutron::Net',
             :finalizer => :neutron_net_finalizer,
             :properties => {
-              'CidrBlock' => 'cidr'
-            }
+              'CidrBlock' => 'cidr',
+            },
           },
           'AWS::EC2::Subnet' => {
             :name => 'OS::Neutron::Subnet',
@@ -376,23 +376,22 @@ class SparkleFormation
             :properties => {
               'CidrBlock' => 'cidr',
               'VpcId' => 'network',
-              'AvailabilityZone' => 'availability_zone'
-            }
-          }
-        }
+              'AvailabilityZone' => 'availability_zone',
+            },
+          },
+        },
       }
 
       REF_MAPPING = {
         'AWS::StackName' => 'OS::stack_name',
         'AWS::StackId' => 'OS::stack_id',
-        'AWS::Region' => 'OS::stack_id' # @todo i see it set in source, but no function. wat
+        'AWS::Region' => 'OS::stack_id', # @todo i see it set in source, but no function. wat
       }
 
       FN_MAPPING = {
         'Fn::GetAtt' => 'get_attr',
-        'Fn::Join' => 'list_join'
+        'Fn::Join' => 'list_join',
       }
-
     end
   end
 end

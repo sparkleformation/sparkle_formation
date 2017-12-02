@@ -14,7 +14,6 @@ class SparkleFormation
       RESOURCE_TYPE_NAMESPACE_SPLITTER = ['.', '/']
 
       class << self
-
         include Bogo::Memoization
 
         # Load the builtin AWS resources
@@ -45,17 +44,15 @@ class SparkleFormation
         # @return [SparkleStruct]
         def resource_customizer(struct, lookup_key)
           info = registry[lookup_key]
-          if(info[:required].include?('apiVersion') && struct.api_version.nil?)
+          if info[:required].include?('apiVersion') && struct.api_version.nil?
             struct.api_version info[:api_version]
           end
-          if(info[:required].include?('location') && struct.location.nil?)
+          if info[:required].include?('location') && struct.location.nil?
             struct.location struct.resource_group!.location
           end
           struct
         end
-
       end
-
     end
   end
 end

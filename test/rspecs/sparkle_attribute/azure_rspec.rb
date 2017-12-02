@@ -1,7 +1,7 @@
 require_relative '../../rspecs'
 
 RSpec.describe SparkleFormation::SparkleAttribute::Azure do
-  let(:template){ SparkleFormation.new('test') }
+  let(:template) { SparkleFormation.new('test') }
 
   let(:instance) do
     klass = Class.new(SparkleFormation::SparkleStruct)
@@ -16,9 +16,9 @@ RSpec.describe SparkleFormation::SparkleAttribute::Azure do
       Smash.new(
         :resources => {
           :item_name => {
-            :properties => []
-          }
-        }
+            :properties => [],
+          },
+        },
       )
     end
 
@@ -48,11 +48,11 @@ RSpec.describe SparkleFormation::SparkleAttribute::Azure do
 
   describe '#_resource_id' do
     it 'should raise error if resource is not defined' do
-      expect{ instance._resource_id('item') }.to raise_error(SparkleFormation::Error::NotFound::Resource)
+      expect { instance._resource_id('item') }.to raise_error(SparkleFormation::Error::NotFound::Resource)
     end
 
     context 'with resource defined' do
-      before{ instance.resources.item.type 'Custom' }
+      before { instance.resources.item.type 'Custom' }
 
       it 'should create a resource id data structure' do
         expect(instance._resource_id('item')._dump).to eq("[resourceId('Custom', 'Item')]")
@@ -61,7 +61,7 @@ RSpec.describe SparkleFormation::SparkleAttribute::Azure do
   end
 
   describe '#_depends_on' do
-    before{ instance.resources.item.type 'Custom' }
+    before { instance.resources.item.type 'Custom' }
 
     it 'should inject depends on data structure into underlying structure' do
       result = instance._depends_on(:item)

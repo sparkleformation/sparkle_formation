@@ -1,13 +1,11 @@
 require_relative '../spec'
 
 describe SparkleFormation do
-
   before do
     SparkleFormation.sparkle_path = File.join(File.dirname(__FILE__), 'sparkleformation')
   end
 
   describe 'Basic Usage' do
-
     it 'should dump hashes' do
       SparkleFormation.new(:dummy) do
         test true
@@ -153,7 +151,7 @@ describe SparkleFormation do
     end
 
     it 'should error on unknown helper underscore prefix method' do
-      ->{
+      -> {
         SparkleFormation.new(:dummy) do
           value _dummy
         end.dump
@@ -161,13 +159,11 @@ describe SparkleFormation do
     end
 
     it 'should error on unknown helper bang suffix method' do
-      ->{
+      -> {
         SparkleFormation.new(:dummy) do
           value dummy!
         end.dump
       }.must_raise NoMethodError
     end
-
   end
-
 end

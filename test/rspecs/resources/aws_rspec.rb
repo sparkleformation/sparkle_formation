@@ -3,7 +3,7 @@ require_relative '../../rspecs'
 RSpec.describe SparkleFormation::Resources::Aws do
   before do
     described_class.unmemoize(:aws_resources, :global)
-    if(described_class.registry)
+    if described_class.registry
       described_class.registry.clear
     end
   end
@@ -15,7 +15,7 @@ RSpec.describe SparkleFormation::Resources::Aws do
   end
 
   describe '#resource' do
-    before{ described_class.load! }
+    before { described_class.load! }
 
     it 'should return resource information' do
       expect(described_class.resource(:aws_ec2_instance)).to be_a(Hash)
@@ -38,7 +38,7 @@ RSpec.describe SparkleFormation::Resources::Aws do
 
   describe '#registry_key' do
     context 'with registry loaded' do
-      before{ described_class.load! }
+      before { described_class.load! }
 
       it 'should return key when exact key provided' do
         expect(described_class.registry_key('AWS::EC2::Instance')).to eq('AWS::EC2::Instance')
@@ -57,13 +57,13 @@ RSpec.describe SparkleFormation::Resources::Aws do
       end
 
       it 'should raise ArgumentError when multiple matches are found' do
-        expect{ described_class.registry_key('instance') }.to raise_error(ArgumentError)
+        expect { described_class.registry_key('instance') }.to raise_error(ArgumentError)
       end
     end
   end
 
   describe '#lookup' do
-    before{ described_class.load! }
+    before { described_class.load! }
 
     it 'should lookup resource with full name' do
       expect(described_class.lookup('AWS::EC2::Instance')).to be_a(Hash)
@@ -82,7 +82,7 @@ RSpec.describe SparkleFormation::Resources::Aws do
     end
 
     it 'should raise ArgumentError when multiple matches are found' do
-      expect{ described_class.lookup('instance') }.to raise_error(ArgumentError)
+      expect { described_class.lookup('instance') }.to raise_error(ArgumentError)
     end
 
     it 'should return nil if no match found' do
@@ -92,7 +92,7 @@ RSpec.describe SparkleFormation::Resources::Aws do
 
   describe '#registry' do
     context 'with data loaded' do
-      before{ described_class.load! }
+      before { described_class.load! }
 
       it 'should return the data Hash' do
         expect(described_class.registry).to be_a(Hash)
@@ -101,14 +101,14 @@ RSpec.describe SparkleFormation::Resources::Aws do
   end
 
   describe '#resource_lookup' do
-    before{ described_class.load! }
+    before { described_class.load! }
 
     it 'should return a Resource if found' do
       expect(described_class.resource_lookup('AWS::EC2::Instance')).to be_a(SparkleFormation::Resources::Resource)
     end
 
     it 'should raise error if resource is not found' do
-      expect{ described_class.resource_lookup(:example) }.to raise_error(KeyError)
+      expect { described_class.resource_lookup(:example) }.to raise_error(KeyError)
     end
   end
 end

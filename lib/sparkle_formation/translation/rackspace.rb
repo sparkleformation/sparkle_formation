@@ -11,7 +11,7 @@ class SparkleFormation
       # @option args [Hash] :new_properties
       # @option args [Hash] :original_resource
       # @return [Array<String, Object>] name and new value
-      def rackspace_server_network_interfaces_mapping(value, args={})
+      def rackspace_server_network_interfaces_mapping(value, args = {})
         networks = [value].flatten.map do |item|
           {:uuid => item['NetworkInterfaceId']}
         end
@@ -35,7 +35,7 @@ class SparkleFormation
         translated['resources'].find_all do |resource_name, resource|
           resource['type'] == 'Rackspace::AutoScale::Group'
         end.each do |name, value|
-          if(lbs = value['properties'].delete('load_balancers'))
+          if lbs = value['properties'].delete('load_balancers')
             lbs.each do |lb_ref|
               lb_name = resource_name(lb_ref)
               lb_resource = translated['resources'][lb_name]
@@ -44,25 +44,25 @@ class SparkleFormation
               end
               value['properties']['launchConfiguration']['args'].tap do |lnch_config|
                 lb_instance = {
-                  'loadBalancerId' => lb_ref
+                  'loadBalancerId' => lb_ref,
                 }
                 # @note search for a port defined within parameters
                 # that matches naming of LB ID for when they are
                 # passed in rather than defined within the template.
                 # Be sure to document this in user docs since it's
                 # weird but needed
-                if(lb_resource)
+                if lb_resource
                   lb_instance['port'] = lb_resource['cache_instance_port']
                 else
                   key = parameters.keys.find_all do |k|
-                    if(k.end_with?('Port'))
+                    if k.end_with?('Port')
                       lb_ref.values.first.start_with?(k.sub('Instance', '').sub(/Port$/, ''))
                     end
                   end
                   key = key.detect do |k|
                     k.downcase.include?('instance')
                   end || key.first
-                  if(key)
+                  if key
                     lb_instance['port'] = {'get_param' => key}
                   else
                     raise "Failed to translate load balancer configuartion. No port found! (#{lb_ref})"
@@ -72,9 +72,9 @@ class SparkleFormation
                 vip_resources.each do |vip_name, vip_resource|
                   lnch_config['loadBalancers'].push(
                     'loadBalancerId' => {
-                      'Ref' => vip_name
+                      'Ref' => vip_name,
                     },
-                    'port' => vip_resource['cache_instance_port']
+                    'port' => vip_resource['cache_instance_port'],
                   )
                 end
               end
@@ -91,12 +91,12 @@ class SparkleFormation
                 {
                   'get_attr' => [
                     resource_name(node_ref),
-                    'accessIPv4'
-                  ]
-                }
+                    'accessIPv4',
+                  ],
+                },
               ],
               'port' => resource['cache_instance_port'],
-              'condition' => 'ENABLED'
+              'condition' => 'ENABLED',
             }
           end
         end
@@ -126,7 +126,7 @@ class SparkleFormation
         subnet[:name] = 'Rackspace::Cloud::Network'
         subnet[:finalizer] = :rackspace_subnet_finalizer
         subnet[:properties] = {
-          'CidrBlock' => 'cidr'
+          'CidrBlock' => 'cidr',
         }
       end
       MAP[:resources]['AWS::ElasticLoadBalancing::LoadBalancer'] = {
@@ -136,15 +136,15 @@ class SparkleFormation
           'LoadBalancerName' => 'name',
           'Instances' => 'nodes',
           'Listeners' => 'listeners',
-          'HealthCheck' => 'health_check'
-        }
+          'HealthCheck' => 'health_check',
+        },
       }
 
       # Attribute map for autoscaling group server properties
       RACKSPACE_ASG_SRV_MAP = {
         'imageRef' => 'image',
         'flavorRef' => 'flavor',
-        'networks' => 'networks'
+        'networks' => 'networks',
       }
 
       # Finalizer for the rackspace load balancer resource. This
@@ -162,9 +162,9 @@ class SparkleFormation
       def rackspace_lb_finalizer(resource_name, new_resource, old_resource)
         listeners = new_resource['Properties'].delete('listeners') || []
         source_listener = listeners.shift
-        if(source_listener)
+        if source_listener
           new_resource['Properties']['port'] = source_listener['LoadBalancerPort']
-          if(['HTTP', 'HTTPS'].include?(source_listener['Protocol']))
+          if ['HTTP', 'HTTPS'].include?(source_listener['Protocol'])
             new_resource['Properties']['protocol'] = source_listener['Protocol']
           else
             new_resource['Properties']['protocol'] = 'TCP_CLIENT_FIRST'
@@ -175,7 +175,7 @@ class SparkleFormation
         new_resource['Properties']['nodes'] = [] unless new_resource['Properties']['nodes']
         health_check = new_resource['Properties'].delete('health_check')
         health_check = nil
-        if(health_check)
+        if health_check
           new_resource['Properties']['healthCheck'] = {}.tap do |check|
             check['timeout'] = health_check['Timeout']
             check['attemptsBeforeDeactivation'] = health_check['UnhealthyThreshold']
@@ -183,7 +183,7 @@ class SparkleFormation
             check_target = dereference_processor(health_check['Target'])
             check_args = check_target.split(':')
             check_type = check_args.shift
-            if(check_type == 'HTTP' || check_type == 'HTTPS')
+            if check_type == 'HTTP' || check_type == 'HTTPS'
               check['type'] = check_type
               check['path'] = check_args.last
             else
@@ -191,7 +191,7 @@ class SparkleFormation
             end
           end
         end
-        unless(listeners.empty?)
+        unless listeners.empty?
           listeners.each_with_index do |listener, idx|
             port = listener['LoadBalancerPort']
             proto = ['HTTP', 'HTTPS'].include?(listener['Protocol']) ? listener['Protocol'] : 'TCP_CLIENT_FIRST'
@@ -206,9 +206,9 @@ class SparkleFormation
                   resource_name,
                   'virtualIps',
                   0,
-                  'id'
-                ]
-              }
+                  'id',
+                ],
+              },
             ]
             vip_resource['cache_instance_port'] = listener['InstancePort']
             translated['Resources'][vip_name] = vip_resource
@@ -226,7 +226,7 @@ class SparkleFormation
       # @return [Object]
       def rackspace_asg_finalizer(resource_name, new_resource, old_resource)
         new_resource['Properties'] = {}.tap do |properties|
-          if(lbs = new_resource['Properties'].delete('load_balancers'))
+          if lbs = new_resource['Properties'].delete('load_balancers')
             properties['load_balancers'] = lbs
           end
           properties['groupConfiguration'] = new_resource['Properties'].merge('name' => resource_name)
@@ -269,7 +269,7 @@ class SparkleFormation
       # @option args [Hash] :new_properties
       # @option args [Hash] :original_resource
       # @return [Array<String, Object>] name and new value
-      def nova_server_user_data(value, args={})
+      def nova_server_user_data(value, args = {})
         result = super
         args[:new_properties].delete(:user_data_format)
         args[:new_properties].delete(:config_drive)
@@ -303,14 +303,14 @@ class SparkleFormation
         # execution (template functions, refs, and the like)
         raw_result = content.scan(/(?=(\{\s*"(Ref|Fn::[A-Za-z]+)"((?:[^{}]++|\{\g<3>\})++)\}))/).map(&:first)
         result = [].tap do |filtered|
-          until(raw_result.empty?)
+          until raw_result.empty?
             item = raw_result.shift
             filtered.push(item)
             check_item = nil
-            until(raw_result.empty? || !item.include?(check_item = raw_result.shift))
+            until raw_result.empty? || !item.include?(check_item = raw_result.shift)
               check_item = nil
             end
-            if(check_item && !item.include?(check_item))
+            if check_item && !item.include?(check_item)
               raw_result.unshift(check_item)
             end
           end
@@ -323,7 +323,7 @@ class SparkleFormation
             /\n(?=(?:[^"]*"[^"]*")*[^"]*\Z)/
           ).join.gsub('\n', '\\\\\n')
           # Check for nested join and fix quotes
-          if(string.match(/^[^A-Za-z]+Fn::Join/))
+          if string.match(/^[^A-Za-z]+Fn::Join/)
             string.gsub!("\\\"", "\\\\\\\\\\\"") # HAHAHA ohai thar hairy yak!
           end
           MultiJson.load(string)
@@ -334,7 +334,7 @@ class SparkleFormation
         result_set = []
         result.each_with_index do |str, i|
           cut_index = new_content.index(str)
-          if(cut_index)
+          if cut_index
             result_set << new_content.slice!(0, cut_index)
             result_set << objects[i]
             new_content.slice!(0, str.size)
@@ -350,7 +350,7 @@ class SparkleFormation
 
         # Determine optimal chuck sizing and check if viable
         calculated_chunk_size = (content.size.to_f / num_personality_files).ceil
-        if(calculated_chunk_size > max_chunk_size)
+        if calculated_chunk_size > max_chunk_size
           logger.error 'ERROR: Unable to split personality files within defined bounds!'
           logger.error "  Maximum chunk size: #{max_chunk_size.inspect}"
           logger.error "  Maximum personality files: #{num_personality_files.inspect}"
@@ -363,16 +363,16 @@ class SparkleFormation
         chunk_size = calculated_chunk_size
         file_index = 0
         parts = {}.tap do |files|
-          until(leftovers.empty? && result_set.empty?)
+          until leftovers.empty? && result_set.empty?
             file_content = []
-            unless(leftovers.empty?)
+            unless leftovers.empty?
               result_set.unshift leftovers
               leftovers = ''
             end
             item = nil
             # @todo need better way to determine length of objects since
             #   function structures can severely bloat actual length
-            until((cur_len = file_content.map(&:to_s).map(&:size).inject(&:+).to_i) >= chunk_size || result_set.empty?)
+            until (cur_len = file_content.map(&:to_s).map(&:size).inject(&:+).to_i) >= chunk_size || result_set.empty?
               to_cut = chunk_size - cur_len
               item = result_set.shift
               case item
@@ -383,12 +383,12 @@ class SparkleFormation
               end
             end
             leftovers = item if item.is_a?(String) && !item.empty?
-            unless(file_content.empty?)
-              if(file_content.all?{|o| o.is_a?(String)})
+            unless file_content.empty?
+              if file_content.all? { |o| o.is_a?(String) }
                 files["/etc/sprkl/#{file_index}.cfg"] = file_content.join
               else
                 file_content.map! do |cont|
-                  if(cont.is_a?(Hash))
+                  if cont.is_a?(Hash)
                     ["\"", cont, "\""]
                   else
                     cont
@@ -397,17 +397,17 @@ class SparkleFormation
                 files["/etc/sprkl/#{file_index}.cfg"] = {
                   'Fn::Join' => [
                     '',
-                    file_content.flatten
-                  ]
+                    file_content.flatten,
+                  ],
                 }
               end
             end
             file_index += 1
           end
         end
-        if(parts.size > num_personality_files)
+        if parts.size > num_personality_files
           logger.warn "Failed to split files within defined range! (Max files: #{num_personality_files} " \
-            "Actual files: #{parts.size})"
+                      "Actual files: #{parts.size})"
           logger.warn 'Appending to last file and hoping for the best!'
           parts = parts.to_a
           extras = parts.slice!(4, parts.length)
@@ -416,8 +416,8 @@ class SparkleFormation
           parts[tail_name] = {
             'Fn::Join' => [
               '',
-              extras.map(&:last).unshift(tail_contents)
-            ]
+              extras.map(&:last).unshift(tail_contents),
+            ],
           }
         end
         parts['/etc/cloud/cloud.cfg.d/99_s.cfg'] = RUNNER
@@ -426,7 +426,7 @@ class SparkleFormation
 
       FN_MAPPING = {
         'Fn::GetAtt' => 'get_attr',
-        # 'Fn::Join' => 'list_join'  # TODO: why is this not working?
+      # 'Fn::Join' => 'list_join'  # TODO: why is this not working?
       }
 
       FN_ATT_MAPPING = {
@@ -434,11 +434,11 @@ class SparkleFormation
           'PrivateDnsName' => 'accessIPv4', # @todo - need srv net name for access via nets
           'PublicDnsName' => 'accessIPv4',
           'PrivateIp' => 'accessIPv4', # @todo - need srv net name for access via nets
-          'PublicIp' => 'accessIPv4'
+          'PublicIp' => 'accessIPv4',
         },
         'AWS::ElasticLoadBalancing::LoadBalancer' => {
-          'DNSName' => 'PublicIp'
-        }
+          'DNSName' => 'PublicIp',
+        },
       }
 
       # Metadata init runner
@@ -449,7 +449,6 @@ runcmd:
 - chmod 755 /tmp/.z
 - /tmp/.z -meta-directory /etc/sprkl
 EOR
-
     end
   end
 end

@@ -14,17 +14,17 @@ RSpec.describe SparkleFormation::SparkleAttribute do
       end
 
       it 'should walk up one context to return `my_resource` name' do
-        expect(instance.resources.my_resource{ _resource_name }).to eql('my_resource')
+        expect(instance.resources.my_resource { _resource_name }).to eql('my_resource')
       end
 
       it 'should walk up multiple contexts to return `my_resource` name' do
-        expect(instance.resources.my_resource.properties.nested{ _resource_name }).to eql('my_resource')
+        expect(instance.resources.my_resource.properties.nested { _resource_name }).to eql('my_resource')
       end
     end
 
     context 'without resource structure defined' do
       it 'should raise error' do
-        expect{ instance.dummy{ _resource_name } }.to raise_error(NameError)
+        expect { instance.dummy { _resource_name } }.to raise_error(NameError)
       end
     end
   end
@@ -45,7 +45,7 @@ RSpec.describe SparkleFormation::SparkleAttribute do
 
   context '#_raise' do
     it 'should raise an exception' do
-      expect{ instance._raise('error') }.to raise_error(StandardError)
+      expect { instance._raise('error') }.to raise_error(StandardError)
     end
   end
 
@@ -58,7 +58,7 @@ RSpec.describe SparkleFormation::SparkleAttribute do
   context '#_dynamic' do
     it 'should proxy call to SparkleFormation.insert' do
       expect(SparkleFormation).to receive(:insert).
-        with('test', instance, 'val')
+                                    with('test', instance, 'val')
       instance._dynamic('test', 'val')
     end
   end
@@ -66,7 +66,7 @@ RSpec.describe SparkleFormation::SparkleAttribute do
   context '#_registry' do
     it 'should proxy call to SparkleFormation.registry' do
       expect(SparkleFormation).to receive(:registry).
-        with('test', instance, 'val')
+                                    with('test', instance, 'val')
       instance._registry('test', 'val')
     end
   end
@@ -74,7 +74,7 @@ RSpec.describe SparkleFormation::SparkleAttribute do
   context '#_nest' do
     it 'should proxy call to SparkleFormation.nest' do
       expect(SparkleFormation).to receive(:nest).
-        with('template', instance, 'val')
+                                    with('template', instance, 'val')
       instance._nest('template', 'val')
     end
   end
@@ -89,7 +89,7 @@ RSpec.describe SparkleFormation::SparkleAttribute do
     end
 
     context 'with key processing disabled' do
-      before{ instance.camel_keys_set!(:auto_disable) }
+      before { instance.camel_keys_set!(:auto_disable) }
 
       it 'should not apply formatting if String given' do
         expect(instance.__attribute_key('test_string')).to eq('test_string')

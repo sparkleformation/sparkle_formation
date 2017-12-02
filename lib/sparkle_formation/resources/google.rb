@@ -14,7 +14,6 @@ class SparkleFormation
       RESOURCE_TYPE_NAMESPACE_SPLITTER = ['.']
 
       class << self
-
         include Bogo::Memoization
 
         # Load the builtin AWS resources
@@ -31,7 +30,7 @@ class SparkleFormation
             # NOTE: Internal resource type used for nesting
             registry['sparkleformation.stack'] = {
               'properties' => [],
-              'full_properties' => {}
+              'full_properties' => {},
             }
             true
           end
@@ -41,9 +40,7 @@ class SparkleFormation
         def included(_klass)
           load!
         end
-
       end
-
     end
   end
 end

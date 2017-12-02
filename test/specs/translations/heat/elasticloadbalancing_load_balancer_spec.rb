@@ -2,7 +2,6 @@ require_relative '../../../spec'
 
 describe SparkleFormation::Translation::Heat do
   describe 'ElasticLoadbalancing::LoadBalancer' do
-
     it 'should translate to HOT format' do
       template = SparkleFormation.compile(
         File.join(SparkleFormation.sparkle_path, 'translations/elasticloadbalancing_load_balancer.rb')
@@ -16,6 +15,5 @@ describe SparkleFormation::Translation::Heat do
         )
       )
     end
-
   end
 end

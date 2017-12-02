@@ -3,7 +3,6 @@ require 'sparkle_formation'
 class SparkleFormation
   # Resources helper
   class Resources
-
     autoload :Aws, 'sparkle_formation/resources/aws'
     autoload :Azure, 'sparkle_formation/resources/azure'
     autoload :Google, 'sparkle_formation/resources/google'
@@ -56,14 +55,14 @@ class SparkleFormation
       #
       # @param final_resource [Hash] desired resource structure containing this property
       # @return ['replacement', 'interrupt', 'unknown', 'none']
-      def update_causes(final_resource=nil, original_resource=nil)
-        if(conditionals && final_resource)
+      def update_causes(final_resource = nil, original_resource = nil)
+        if conditionals && final_resource
           final_resource = final_resource.to_smash
           original_resource = original_resource.to_smash
           result = conditionals.detect do |p_cond|
             p_cond.conditional == true || p_cond.conditional.call(final_resource, original_resource)
           end
-          if(result)
+          if result
             result.update_causes
           else
             'unknown'
@@ -75,7 +74,6 @@ class SparkleFormation
     end
 
     class << self
-
       include SparkleFormation::Utils::AnimalStrings
       # @!parse include SparkleFormation::Utils::AnimalStrings
 
@@ -90,10 +88,10 @@ class SparkleFormation
       # @param hash [Hash] metadata information
       # @return [TrueClass]
       def register(type, hash)
-        unless(hash.is_a?(Hash))
+        unless hash.is_a?(Hash)
           raise TypeError.new("Expecting `Hash` type but received `#{hash.class}`")
         end
-        unless(class_variable_defined?(:@@registry))
+        unless class_variable_defined?(:@@registry)
           @@registry = AttributeStruct.hashish.new
         end
         @@registry[base_key] ||= AttributeStruct.hashish.new
@@ -106,9 +104,9 @@ class SparkleFormation
       # @param identifier [String, Symbol] resource identifier
       # @param key [String, Symbol] specific data
       # @return [Hashish, NilClass]
-      def resource(identifier, key=nil)
+      def resource(identifier, key = nil)
         res = lookup(identifier)
-        if(key && res)
+        if key && res
           res[key.to_sym]
         else
           res
@@ -146,7 +144,7 @@ class SparkleFormation
       # @param key [String, Symbol]
       # @return [String, NilClass]
       def registry_key(key)
-        if(registry[key])
+        if registry[key]
           result = key
         else
           o_key = key
@@ -155,21 +153,21 @@ class SparkleFormation
           result = @@registry[base_key].keys.detect do |ref|
             ref = ref.downcase
             snake_parts = ref.split(resource_type_splitter)
-            until(snake_parts.empty?)
+            until snake_parts.empty?
               break if snake_parts.join('') == key
               snake_parts.shift
             end
             !snake_parts.empty?
           end
-          if(result)
+          if result
             collisions = @@registry[base_key].keys.find_all do |ref|
               split_ref = ref.downcase.split(resource_type_splitter)
               ref = Array(split_ref.slice(split_ref.size - snake_parts.size, split_ref.size)).join('')
               key == ref
             end
-            if(collisions.size > 1)
+            if collisions.size > 1
               raise ArgumentError.new 'Ambiguous dynamic name returned multiple matches! ' \
-                "`#{o_key.inspect}` -> #{collisions.sort.join(', ')}"
+                                      "`#{o_key.inspect}` -> #{collisions.sort.join(', ')}"
             end
           end
         end
@@ -180,7 +178,7 @@ class SparkleFormation
       # rubocop:disable Style/RedundantSelf
       def resource_type_splitter
         Regexp.new(
-          [self.const_get(:RESOURCE_TYPE_NAMESPACE_SPLITTER)].flatten.compact.map{|value|
+          [self.const_get(:RESOURCE_TYPE_NAMESPACE_SPLITTER)].flatten.compact.map { |value|
             Regexp.escape(value)
           }.join('|')
         )
@@ -196,7 +194,7 @@ class SparkleFormation
 
       # @return [Hashish] currently loaded AWS registry
       def registry
-        unless(class_variable_defined?(:@@registry))
+        unless class_variable_defined?(:@@registry)
           @@registry = AttributeStruct.hashish.new
         end
         @@registry[base_key]
@@ -218,22 +216,20 @@ class SparkleFormation
       # @return [Resource]
       def resource_lookup(type)
         result = registry[type]
-        if(result)
+        if result
           properties = result.fetch('full_properties', {}).map do |p_name, p_info|
             Property.new(p_name,
-              p_info[:description],
-              p_info[:type],
-              p_info[:required],
-              p_info[:update_causes],
-              self.const_get(:PROPERTY_UPDATE_CONDITIONALS).get(type, p_name)
-            )
+                         p_info[:description],
+                         p_info[:type],
+                         p_info[:required],
+                         p_info[:update_causes],
+                         self.const_get(:PROPERTY_UPDATE_CONDITIONALS).get(type, p_name))
           end
           Resource.new(type, properties, result)
         else
           raise KeyError.new "Failed to locate requested resource type: `#{type}`"
         end
       end
-
     end
   end
 end

@@ -1,22 +1,22 @@
 require_relative '../rspecs'
 
 RSpec.describe SparkleFormation::Sparkle do
-  let(:root_dir){ Dir.mktmpdir('sparkleformation-sparkle-rspec') }
-  after{ FileUtils.rm_rf(root_dir) }
+  let(:root_dir) { Dir.mktmpdir('sparkleformation-sparkle-rspec') }
+  after { FileUtils.rm_rf(root_dir) }
 
   context "with pack defined" do
-    let(:instance){ described_class.new(:root => root_dir) }
+    let(:instance) { described_class.new(:root => root_dir) }
 
     before do
       sprkl_dir = Pathname.new(File.join(root_dir, 'sparkleformation'))
       FileUtils.mkdir_p(sprkl_dir.to_s)
-      sprkl_dir.join('t1.rb').open('w'){|f| f.write 'SparkleFormation.new(:t1){ key "value"}'}
-      sprkl_dir.join('t2.rb').open('w'){|f| f.write 'SparkleFormation.new(:t2){ key "value"}'}
-      sprkl_dir.join('c1.rb').open('w'){|f| f.write 'SparkleFormation.component(:c1){ key "value"}'}
-      sprkl_dir.join('c2.rb').open('w'){|f| f.write 'SparkleFormation.component(:c2){ key "value"}'}
-      sprkl_dir.join('d1.rb').open('w'){|f| f.write 'SparkleFormation.dynamic(:d1){ key "value"}'}
-      sprkl_dir.join('r1.rb').open('w'){|f| f.write 'SfnRegistry.register(:r1){ key "value"}'}
-      sprkl_dir.join('t1-google.rb').open('w'){|f| f.write 'SparkleFormation.new(:t1, :provider => :azure){ key "value"}'}
+      sprkl_dir.join('t1.rb').open('w') { |f| f.write 'SparkleFormation.new(:t1){ key "value"}' }
+      sprkl_dir.join('t2.rb').open('w') { |f| f.write 'SparkleFormation.new(:t2){ key "value"}' }
+      sprkl_dir.join('c1.rb').open('w') { |f| f.write 'SparkleFormation.component(:c1){ key "value"}' }
+      sprkl_dir.join('c2.rb').open('w') { |f| f.write 'SparkleFormation.component(:c2){ key "value"}' }
+      sprkl_dir.join('d1.rb').open('w') { |f| f.write 'SparkleFormation.dynamic(:d1){ key "value"}' }
+      sprkl_dir.join('r1.rb').open('w') { |f| f.write 'SfnRegistry.register(:r1){ key "value"}' }
+      sprkl_dir.join('t1-google.rb').open('w') { |f| f.write 'SparkleFormation.new(:t1, :provider => :azure){ key "value"}' }
     end
 
     it 'should load the given directory' do
@@ -53,7 +53,7 @@ RSpec.describe SparkleFormation::Sparkle do
       end
 
       it 'should error requesting template with non-matching provider' do
-        expect{instance.get(:template, :t1, :google)}.to raise_error(SparkleFormation::Error::NotFound)
+        expect { instance.get(:template, :t1, :google) }.to raise_error(SparkleFormation::Error::NotFound)
       end
 
       it 'should get requested component' do
@@ -65,7 +65,7 @@ RSpec.describe SparkleFormation::Sparkle do
       end
 
       it 'should error requesting component with non-matching provider' do
-        expect{instance.get(:component, :c1, :google)}.to raise_error(SparkleFormation::Error::NotFound)
+        expect { instance.get(:component, :c1, :google) }.to raise_error(SparkleFormation::Error::NotFound)
       end
 
       it 'should get requested dynamic' do
@@ -77,7 +77,7 @@ RSpec.describe SparkleFormation::Sparkle do
       end
 
       it 'should error requesting dynamic with non-matching provider' do
-        expect{instance.get(:dynamic, :d1, :google)}.to raise_error(SparkleFormation::Error::NotFound)
+        expect { instance.get(:dynamic, :d1, :google) }.to raise_error(SparkleFormation::Error::NotFound)
       end
 
       it 'should get requested registry' do
@@ -89,7 +89,7 @@ RSpec.describe SparkleFormation::Sparkle do
       end
 
       it 'should error requesting registry with non-matching provider' do
-        expect{instance.get(:registry, :r1, :google)}.to raise_error(SparkleFormation::Error::NotFound)
+        expect { instance.get(:registry, :r1, :google) }.to raise_error(SparkleFormation::Error::NotFound)
       end
 
       it 'should get requested template for non-default provider' do
@@ -97,7 +97,7 @@ RSpec.describe SparkleFormation::Sparkle do
       end
 
       it 'should error when invalid type requested' do
-        expect{instance.get(:unknown, :name)}.to raise_error(NameError)
+        expect { instance.get(:unknown, :name) }.to raise_error(NameError)
       end
     end
   end

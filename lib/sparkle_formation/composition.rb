@@ -24,10 +24,10 @@ class SparkleFormation
     # @option args [Array<Component>] :components seed components for composition
     # @option args [Array<Override>] :overrides seed overrides for composition
     # @return [self]
-    def initialize(origin, args={})
-      unless(origin.is_a?(SparkleFormation))
+    def initialize(origin, args = {})
+      unless origin.is_a?(SparkleFormation)
         raise TypeError.new 'Composition requires `SparkleFormation` instance as origin. ' \
-          "Received origin type `#{origin.class}`."
+                            "Received origin type `#{origin.class}`."
       end
       @origin = origin
       @components_list = []
@@ -62,11 +62,11 @@ class SparkleFormation
     # @param item [Component, Override]
     # @param location [Symbol] :prepend or :append (defaults to :append)
     # @return [self]
-    def add_component(item, location=:append)
-      unless(item.is_a?(Component) || item.is_a?(Override))
+    def add_component(item, location = :append)
+      unless item.is_a?(Component) || item.is_a?(Override)
         raise TypeError.new("Expecting `Component` or `Override` but received `#{item.class}`")
       end
-      if(item.respond_to?(:key) && component_keys.include?(item.key))
+      if item.respond_to?(:key) && component_keys.include?(item.key)
         # do nothing
       else
         case location
@@ -76,7 +76,7 @@ class SparkleFormation
           components_list.unshift(item)
         else
           raise ArgumentError.new 'Unknown addition location provided. Valid: `:append, :prepend`. ' \
-            "Received: `#{location.inspect}`"
+                                  "Received: `#{location.inspect}`"
         end
       end
       self
@@ -87,8 +87,8 @@ class SparkleFormation
     # @param item [Override]
     # @param location [Symbol] :prepend or :append (defaults to :append)
     # @return [self]
-    def add_override(item, location=:append)
-      unless(item.is_a?(Override))
+    def add_override(item, location = :append)
+      unless item.is_a?(Override)
         raise TypeError.new("Expecting `Override` but received `#{item.class}`")
       end
       case location
@@ -98,7 +98,7 @@ class SparkleFormation
         overrides_list.unshift(item)
       else
         raise ArgumentError.new 'Unknown addition location provided. Valid: ' \
-          "`:append, :prepend`. Received: `#{location.inspect}`"
+                                "`:append, :prepend`. Received: `#{location.inspect}`"
       end
       self
     end
@@ -109,7 +109,7 @@ class SparkleFormation
     # @param location [Symbol] :prepend or :append (defaults to :append)
     # @yield component block (optional)
     # @return [self]
-    def new_component(key, location=:append, &block)
+    def new_component(key, location = :append, &block)
       comp = Component.new(origin, key, block)
       add_component(comp, location)
       self
@@ -121,8 +121,8 @@ class SparkleFormation
     # @param location [Symbol] :prepend or :append (defaults to :append)
     # @yield override block
     # @return [self]
-    def new_override(args={}, location=:append, &block)
-      if(args.is_a?(Symbol))
+    def new_override(args = {}, location = :append, &block)
+      if args.is_a?(Symbol)
         location = args
         args = {}
       end
@@ -137,7 +137,7 @@ class SparkleFormation
     # @yieldparam [Component, Override]
     # @return [self]
     def each
-      if(block_given?)
+      if block_given?
         composite.each do |item|
           yield item
         end
@@ -162,14 +162,14 @@ class SparkleFormation
     # @return [Array]
     def seed_value(items, type)
       type = [type].flatten.compact
-      if(items)
+      if items
         items.each do |item|
           valid_item = type.any? do |klass|
             item.is_a?(klass)
           end
-          unless(valid_item)
+          unless valid_item
             raise TypeError.new "Invalid type encountered within collection `#{item.class}`. " \
-              "Expected `#{type.map(&:to_s).join('`, `')}`."
+                                "Expected `#{type.map(&:to_s).join('`, `')}`."
           end
         end
         items.dup

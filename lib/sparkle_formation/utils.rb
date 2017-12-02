@@ -14,14 +14,14 @@ class SparkleFormation
       # @raises [TypeError]
       def __t_check(val, types)
         types = [types] unless types.is_a?(Array)
-        if(types.none?{|t| val.is_a?(t)})
+        if types.none? { |t| val.is_a?(t) }
           ignore_paths = Gem::Specification.find_by_name('sparkle_formation').full_require_paths
           file_name, line_no = ::Kernel.caller.detect do |l|
-            ignore_paths.none?{|i_path| l.include?(i_path) }
+            ignore_paths.none? { |i_path| l.include?(i_path) }
           end.split(':')[0, 2]
           file_name = file_name.to_s.sub(::Dir.pwd, '.')
           ::Kernel.raise TypeError.new "Received invalid value type `#{val.class}`! " \
-            "(Allowed types: `#{types.join('`, `')}`) -> #{file_name} @ line #{line_no}"
+                                       "(Allowed types: `#{types.join('`, `')}`) -> #{file_name} @ line #{line_no}"
         end
       end
 
@@ -40,7 +40,6 @@ class SparkleFormation
       def __t_hashish(val)
         __t_check(val, Hash)
       end
-
     end
 
     # Animal stylings on strins
@@ -50,7 +49,7 @@ class SparkleFormation
       # @param string [String]
       # @return [String]
       def camel(string)
-        string.to_s.split('_').map{|k| "#{k.slice(0, 1).upcase}#{k.slice(1, k.length)}"}.join
+        string.to_s.split('_').map { |k| "#{k.slice(0, 1).upcase}#{k.slice(1, k.length)}" }.join
       end
 
       # Snake case (underscore) string
@@ -60,14 +59,11 @@ class SparkleFormation
       def snake(string)
         string.to_s.gsub(/([a-z])([A-Z])/, '\1_\2').downcase.to_sym
       end
-
     end
-
   end
 
   # Registry helper
   class Registry
-
     class << self
 
       # Initialize registry
@@ -92,15 +88,13 @@ class SparkleFormation
       # @param location [AttributeStruct] context to apply block
       # @param args [Object] argument list for block
       def insert(name, location, *args)
-        if(block = @register[name])
+        if block = @register[name]
           location.instance_exec(*args, &block)
         else
           raise KeyError.new("Requested item not found in registry (#{name})")
         end
       end
-
     end
-
   end
 
   # Cache helper
@@ -130,12 +124,11 @@ class SparkleFormation
       #
       # @return [self]
       def init!
-        unless(Thread.current[:sparkle_cache])
+        unless Thread.current[:sparkle_cache]
           Thread.current[:sparkle_cache] = {}
         end
         self
       end
-
     end
   end
 end

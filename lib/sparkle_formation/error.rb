@@ -16,7 +16,7 @@ class SparkleFormation
       attr_reader :name
 
       def initialize(*args)
-        opts = args.detect{|o| o.is_a?(Hash)}
+        opts = args.detect { |o| o.is_a?(Hash) }
         args.delete(opts) if opts
         super(args)
         @name = opts[:name] if opts
@@ -24,7 +24,7 @@ class SparkleFormation
 
       # @return [String] customized message including name
       def to_s
-        if(name)
+        if name
           "Failed to locate item named: `#{name}`"
         else
           'Failed to locate item'
@@ -39,12 +39,9 @@ class SparkleFormation
 
       # Template internals
       class Resource < NotFound; end
-
     end
 
     # Deprecation error
     class Deprecated < Error; end
-
   end
-
 end

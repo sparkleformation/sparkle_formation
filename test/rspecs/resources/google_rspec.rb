@@ -3,7 +3,7 @@ require_relative '../../rspecs'
 RSpec.describe SparkleFormation::Resources::Google do
   before do
     described_class.unmemoize(:google_resources, :global)
-    if(described_class.registry)
+    if described_class.registry
       described_class.registry.clear
     end
   end
@@ -15,7 +15,7 @@ RSpec.describe SparkleFormation::Resources::Google do
   end
 
   describe '#resource' do
-    before{ described_class.load! }
+    before { described_class.load! }
 
     it 'should return resource information' do
       expect(described_class.resource(:compute_v1_instance)).to be_a(Hash)
@@ -38,7 +38,7 @@ RSpec.describe SparkleFormation::Resources::Google do
 
   describe '#registry_key' do
     context 'with registry loaded' do
-      before{ described_class.load! }
+      before { described_class.load! }
 
       it 'should return key when exact key provided' do
         expect(described_class.registry_key('compute.v1.instance')).to eq('compute.v1.instance')
@@ -59,7 +59,7 @@ RSpec.describe SparkleFormation::Resources::Google do
   end
 
   describe '#lookup' do
-    before{ described_class.load! }
+    before { described_class.load! }
 
     it 'should lookup resource with full name' do
       expect(described_class.lookup('compute.v1.instance')).to be_a(Hash)
@@ -84,7 +84,7 @@ RSpec.describe SparkleFormation::Resources::Google do
 
   describe '#registry' do
     context 'with data loaded' do
-      before{ described_class.load! }
+      before { described_class.load! }
 
       it 'should return the data Hash' do
         expect(described_class.registry).to be_a(Hash)
@@ -93,14 +93,14 @@ RSpec.describe SparkleFormation::Resources::Google do
   end
 
   describe '#resource_lookup' do
-    before{ described_class.load! }
+    before { described_class.load! }
 
     it 'should return a Resource if found' do
       expect(described_class.resource_lookup('compute.v1.instance')).to be_a(SparkleFormation::Resources::Resource)
     end
 
     it 'should raise error if resource is not found' do
-      expect{ described_class.resource_lookup(:example) }.to raise_error(KeyError)
+      expect { described_class.resource_lookup(:example) }.to raise_error(KeyError)
     end
   end
 end

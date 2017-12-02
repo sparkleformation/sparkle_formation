@@ -12,7 +12,6 @@ class SparkleFormation
       RESOURCE_TYPE_NAMESPACE_SPLITTER = ['_']
 
       class << self
-
         include Bogo::Memoization
 
         # Load the builtin Terraform resources
@@ -28,9 +27,8 @@ class SparkleFormation
             )
             # NOTE: Internal resource type used for nesting
             register('module',
-              'properties' => [],
-              'full_properties' => {}
-            )
+                     'properties' => [],
+                     'full_properties' => {})
             true
           end
         end
@@ -39,9 +37,7 @@ class SparkleFormation
         def included(_klass)
           load!
         end
-
       end
-
     end
   end
 end

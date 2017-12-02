@@ -1,7 +1,6 @@
 require_relative '../spec'
 
 describe SparkleFormation::SparkleAttribute do
-
   before do
     @attr = Object.new
     @attr.extend(SparkleFormation::SparkleAttribute)
@@ -21,11 +20,10 @@ describe SparkleFormation::SparkleAttribute do
   end
 
   it 'should raise an exception' do
-    ->{ @attr.raise! RuntimeError }.must_raise RuntimeError
+    -> { @attr.raise! RuntimeError }.must_raise RuntimeError
   end
 
   it 'should provide method access' do
     @attr.method!(:system!).must_be_kind_of Method
   end
-
 end

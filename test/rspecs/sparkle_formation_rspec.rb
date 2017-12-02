@@ -1,18 +1,18 @@
 require_relative '../rspecs'
 
 RSpec.describe SparkleFormation do
-  let(:instance_args){ {} }
-  let(:instance){ described_class.new('test', instance_args){ content 'value'} }
+  let(:instance_args) { {} }
+  let(:instance) { described_class.new('test', instance_args) { content 'value' } }
 
   describe '#compile' do
     describe 'compile time parameters' do
-      let(:instance_args){ {:compile_time_parameters => compile_parameters} }
+      let(:instance_args) { {:compile_time_parameters => compile_parameters} }
       context 'with basic types' do
         let(:compile_parameters) do
           {
             :fubar => {
-              :type => :string
-            }
+              :type => :string,
+            },
           }
         end
         it 'should serialize parameters into template' do
@@ -26,8 +26,8 @@ RSpec.describe SparkleFormation do
         let(:compile_parameters) do
           {
             :fubar => {
-              :type => :complex
-            }
+              :type => :complex,
+            },
           }
         end
 
@@ -41,9 +41,7 @@ RSpec.describe SparkleFormation do
           result = instance.dump.to_smash
           expect(result.get(:Outputs, :CompileState)).to be_nil
         end
-
       end
     end
   end
-
 end

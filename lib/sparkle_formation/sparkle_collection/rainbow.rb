@@ -2,7 +2,6 @@ require 'sparkle_formation'
 require 'forwardable'
 
 class SparkleFormation
-
   class SparkleCollection
 
     # Contains a layered number of a specific item defined via
@@ -15,7 +14,7 @@ class SparkleFormation
       VALID_TYPES = [
         :template,
         :component,
-        :dynamic
+        :dynamic,
       ].freeze
 
       extend Forwardable
@@ -34,7 +33,7 @@ class SparkleFormation
       # @param type [String, Symbol] type of item
       # @return [self]
       def initialize(name, type)
-        unless(VALID_TYPES.include?(type.to_sym))
+        unless VALID_TYPES.include?(type.to_sym)
           raise ArgumentError.new "Invalid type provdied for Rainbow instance `#{type}`"
         end
         @name = name.to_s
@@ -47,7 +46,7 @@ class SparkleFormation
       # @param item [Hash]
       # @return [self]
       def add_layer(item)
-        unless(item.is_a?(Hash))
+        unless item.is_a?(Hash)
           raise TypeError.new "Expecting type `Hash` but received type `#{item.class}`"
         end
         spectrum << item.to_smash
@@ -59,7 +58,7 @@ class SparkleFormation
       # @param idx [Integer]
       # @return [Hash]
       def layer_at(idx)
-        if(idx <= spectrum.size)
+        if idx <= spectrum.size
           spectrum.at(idx)
         else
           raise KeyError.new "Invalid layer requested for #{type} - #{name} (index: #{idx})"
@@ -74,7 +73,7 @@ class SparkleFormation
       def monochrome
         Array.new.tap do |result|
           spectrum.each do |item|
-            unless(item.get(:args, :layering).to_s == 'merge')
+            unless item.get(:args, :layering).to_s == 'merge'
               result.clear
             end
             result << item
@@ -87,6 +86,5 @@ class SparkleFormation
         spectrum.last || {}
       end
     end
-
   end
 end

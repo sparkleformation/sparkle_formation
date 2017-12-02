@@ -17,6 +17,7 @@ class SparkleFormation
         __t_stringish(v_name)
         res = ::SparkleFormation::TerraformStruct.new('var').set!(__attribute_key(v_name))
       end
+
       alias_method :var!, :_var
       alias_method :parameter!, :_var
 
@@ -24,23 +25,27 @@ class SparkleFormation
         __t_stringish(p_name)
         ::SparkleFormation::TerraformStruct.new('path').set!(__attribute_key(p_name))
       end
+
       alias_method :path!, :_path
 
       def _module(m_name)
         __t_stringish(m_name)
         ::SparkleFormation::TerraformStruct.new('module').set!(__attribute_key(m_name))
       end
+
       alias_method :module!, :_module
 
       def _terraform_self(s_name)
         __t_stringish(s_name)
         ::SparkleFormation::TerraformStruct.new('self').set!(__attribute_key(s_name))
       end
+
       alias_method :self!, :_terraform_self
 
       def _terraform_lookup(*args)
         ::SparkleFormation::TerraformStruct.new('lookup', *args)
       end
+
       alias_method :lookup!, :_terraform_lookup
 
       # TODO: Add resource checking before returning structure
@@ -49,6 +54,7 @@ class SparkleFormation
         r_name = __resource_lookup(r_name)
         ::SparkleFormation::TerraformStruct.new(r_name)
       end
+
       alias_method :resource!, :_resource
 
       TERRAFORM_INTRINSIC_FUNCTIONS = [
@@ -83,7 +89,7 @@ class SparkleFormation
         'sort',
         'split',
         'trimspace',
-        'upper'
+        'upper',
       ]
 
       # NOTE: Alias implementation disabled due to Ruby 2.3 __callee__ bug
@@ -114,7 +120,7 @@ class SparkleFormation
 
       def __resource_lookup(name)
         resource = root!.resources[name]
-        if(resource.nil?)
+        if resource.nil?
           name
         else
           "#{resource.type}.#{name}"
@@ -131,8 +137,9 @@ class SparkleFormation
       # @return [Array<String>]
       # @note this will directly modify the struct at its current context to inject depends on structure
       def _depends_on(*args)
-        _set('depends_on', [args].flatten.compact.map{|s| __attribute_key(s) })
+        _set('depends_on', [args].flatten.compact.map { |s| __attribute_key(s) })
       end
+
       alias_method :depends_on!, :_depends_on
 
       # Reference output value from nested stack
@@ -143,9 +150,8 @@ class SparkleFormation
       def _stack_output(stack_name, output_name)
         _module(stack_name)._set(output_name)
       end
+
       alias_method :stack_output!, :_stack_output
-
     end
-
   end
 end

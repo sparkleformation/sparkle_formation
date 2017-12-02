@@ -2,7 +2,6 @@ require_relative '../../../../rspecs'
 
 RSpec.describe 'Acceptance -> Deep Nesting -> Aws' do
   describe '-> Deep nesting parameter push' do
-
     let(:root) do
       SparkleFormation.new(:root) do
         parameters.test_param.type 'String'

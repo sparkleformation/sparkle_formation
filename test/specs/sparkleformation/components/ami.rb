@@ -1,5 +1,4 @@
 SparkleFormation.build do
-
   mappings.region_map do
     set!('us-east-1'._no_hump, :ami => 'ami-7f418316')
     set!('us-west-1'._no_hump, :ami => 'ami-951945d0')
@@ -9,5 +8,4 @@ SparkleFormation.build do
     set!('ap-southeast-1'._no_hump, :ami => 'ami-74dda626')
     set!('ap-northeast-1'._no_hump, :ami => 'ami-dcfa4edd')
   end
-
 end

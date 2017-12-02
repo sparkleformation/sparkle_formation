@@ -11,21 +11,25 @@ class SparkleFormation
       include SparkleAttribute
       include SparkleAttribute::Aws
     end
+
     # Azure specific struct
     class Azure < SparkleStruct
       include SparkleAttribute
       include SparkleAttribute::Azure
     end
+
     # Google specific struct
     class Google < SparkleStruct
       include SparkleAttribute
       include SparkleAttribute::Google
     end
+
     # Heat specific struct
     class Heat < SparkleStruct
       include SparkleAttribute
       include SparkleAttribute::Heat
     end
+
     OpenStack = Heat
     Rackspace = Heat
     # Rackspace specific struct
@@ -33,6 +37,7 @@ class SparkleFormation
       include SparkleAttribute
       include SparkleAttribute::Rackspace
     end
+
     # Terraform specific struct
     class Terraform < SparkleStruct
       include SparkleAttribute
@@ -59,7 +64,7 @@ class SparkleFormation
     # @param inst [SparkleFormation]
     # @return [SparkleFormation]
     def _set_self(inst)
-      unless(inst.is_a?(::SparkleFormation))
+      unless inst.is_a?(::SparkleFormation)
         ::Kernel.raise ::TypeError.new "Expecting type of `SparkleFormation` but got `#{inst.class}`"
       end
       @self = inst
@@ -67,8 +72,8 @@ class SparkleFormation
 
     # @return [SparkleFormation]
     def _self(*_)
-      unless(@self)
-        if(_parent.nil?)
+      unless @self
+        if _parent.nil?
           ::Kernel.raise ::ArgumentError.new 'Creator did not provide return reference!'
         else
           _parent._self
@@ -84,8 +89,8 @@ class SparkleFormation
     # @param item [Object]
     # @return [Object]
     def function_bubbler(item)
-      if(item.is_a?(::Enumerable))
-        if(item.respond_to?(:keys))
+      if item.is_a?(::Enumerable)
+        if item.respond_to?(:keys)
           item.class[
             *item.map do |entry|
               function_bubbler(entry)
@@ -98,7 +103,7 @@ class SparkleFormation
             end
           ]
         end
-      elsif(item.is_a?(::SparkleFormation::FunctionStruct))
+      elsif item.is_a?(::SparkleFormation::FunctionStruct)
         item._root
       else
         item
@@ -108,14 +113,14 @@ class SparkleFormation
     # Override to inspect result value and fetch root if value is a
     # FunctionStruct
     def method_missing(sym, *args, &block)
-      if(sym.is_a?(::String) || sym.is_a?(::Symbol))
-        if(sym.to_s.start_with?('_') || sym.to_s.end_with?('!'))
+      if sym.is_a?(::String) || sym.is_a?(::Symbol)
+        if sym.to_s.start_with?('_') || sym.to_s.end_with?('!')
           ::Kernel.raise ::NoMethodError.new "Undefined method `#{sym}` for #{_klass.name}"
         end
       end
       super(*[sym, *args], &block)
-      if(sym.is_a?(::String) || sym.is_a?(::Symbol))
-        if((s = sym.to_s).end_with?('='))
+      if sym.is_a?(::String) || sym.is_a?(::Symbol)
+        if (s = sym.to_s).end_with?('=')
           s.slice!(-1, s.length)
           sym = s
         end
@@ -125,13 +130,13 @@ class SparkleFormation
       end
       # When setting an AttributeStruct type instance check parent or context if
       # available and reset if it has been moved.
-      if(@table[sym].is_a?(::AttributeStruct))
-        if(@table[sym].is_a?(::SparkleFormation::FunctionStruct))
-          if(@table[sym].respond_to?(:_fn_context) && @table[sym]._fn_context != self)
+      if @table[sym].is_a?(::AttributeStruct)
+        if @table[sym].is_a?(::SparkleFormation::FunctionStruct)
+          if @table[sym].respond_to?(:_fn_context) && @table[sym]._fn_context != self
             @table[sym] = @table[sym]._clone
             @table[sym]._fn_context = self
           end
-        elsif(@table[sym]._parent != self)
+        elsif @table[sym]._parent != self
           @table[sym]._parent(self)
         end
       end
@@ -151,10 +156,10 @@ class SparkleFormation
       inst = super()
       inst._set_self(_self)
       inst._struct_class = _struct_class
-      if(args.first.is_a?(::Hash))
+      if args.first.is_a?(::Hash)
         inst._load(args.first)
       end
-      if(block)
+      if block
         inst.build!(&block)
       end
       inst
@@ -168,9 +173,9 @@ class SparkleFormation
     # @raises [ArgumentError]
     def _state(arg)
       result = super
-      if(@self && result.nil?)
-        if(_self.parameters.keys.map(&:to_s).include?(arg.to_s))
-          unless(_self.parameters[arg.to_sym].key?(:default))
+      if @self && result.nil?
+        if _self.parameters.keys.map(&:to_s).include?(arg.to_s)
+          unless _self.parameters[arg.to_sym].key?(:default)
             ::Kernel.raise ::ArgumentError.new "No value provided for compile time parameter: `#{arg}`!"
           else
             result = _self.parameters[arg.to_sym][:default]
@@ -179,6 +184,7 @@ class SparkleFormation
       end
       result
     end
+
     alias_method :state!, :_state
 
     # TODO: Need to refactor attribute_struct dumping to allow hooking
@@ -190,8 +196,8 @@ class SparkleFormation
     # @param item [Object]
     # @return [Object]
     def _sparkle_dump_unpacker(item)
-      if(item.is_a?(::Enumerable))
-        if(item.respond_to?(:keys))
+      if item.is_a?(::Enumerable)
+        if item.respond_to?(:keys)
           item.class[
             *item.map do |entry|
               _sparkle_dump_unpacker(entry)
@@ -204,9 +210,9 @@ class SparkleFormation
             end
           ]
         end
-      elsif(item.is_a?(::AttributeStruct))
+      elsif item.is_a?(::AttributeStruct)
         item.nil? ? UNSET_VALUE : item._sparkle_dump
-      elsif(item.is_a?(::SparkleFormation))
+      elsif item.is_a?(::SparkleFormation)
         item.sparkle_dump
       else
         item
@@ -222,7 +228,7 @@ class SparkleFormation
       end.compact
       __hashish[*processed.flatten(1)]
     end
-    alias_method :sparkle_dump!, :_sparkle_dump
 
+    alias_method :sparkle_dump!, :_sparkle_dump
   end
 end

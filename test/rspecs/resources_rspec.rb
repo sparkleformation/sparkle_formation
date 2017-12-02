@@ -2,7 +2,7 @@ require 'tempfile'
 require_relative '../rspecs'
 
 RSpec.describe SparkleFormation::Resources do
-  before{ described_class.registry.clear if described_class.registry }
+  before { described_class.registry.clear if described_class.registry }
 
   describe '#base_key' do
     it 'should return "resources" string' do
@@ -16,7 +16,7 @@ RSpec.describe SparkleFormation::Resources do
     end
 
     it 'should raise error when type information is not a Hash' do
-      expect{ described_class.register('example', true) }.to raise_error(TypeError)
+      expect { described_class.register('example', true) }.to raise_error(TypeError)
     end
   end
 
@@ -34,7 +34,7 @@ RSpec.describe SparkleFormation::Resources do
         @tmp_file.puts({'example' => {'data' => 'value'}}.to_json)
         @tmp_file.close
       end
-      after{ @tmp_file.delete if @tmp_file }
+      after { @tmp_file.delete if @tmp_file }
 
       it 'should register data from file' do
         expect(described_class.load(@tmp_file.path)).to be(true)
@@ -44,13 +44,13 @@ RSpec.describe SparkleFormation::Resources do
       it 'should raise error if file does not exist' do
         path = @tmp_file.path
         @tmp_file.delete
-        expect{ described_class.load(path) }.to raise_error(Errno::ENOENT)
+        expect { described_class.load(path) }.to raise_error(Errno::ENOENT)
       end
     end
 
     context 'with unsupported data type' do
       it 'should raise ArgumentError' do
-        expect{ described_class.load(true) }.to raise_error(TypeError)
+        expect { described_class.load(true) }.to raise_error(TypeError)
       end
     end
   end

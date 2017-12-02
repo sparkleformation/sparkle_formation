@@ -24,11 +24,11 @@ RSpec.describe SparkleFormation::SparkleAttribute::Aws do
     end
 
     it 'should raise error if non-String value provided' do
-      expect{ instance._cf_split(true, '.') }.to raise_error(TypeError)
+      expect { instance._cf_split(true, '.') }.to raise_error(TypeError)
     end
 
     it 'should raise error if non-String delimiter provided' do
-      expect{ instance._cf_split('string', true) }.to raise_error(TypeError)
+      expect { instance._cf_split('string', true) }.to raise_error(TypeError)
     end
   end
 
@@ -42,7 +42,7 @@ RSpec.describe SparkleFormation::SparkleAttribute::Aws do
     end
 
     it 'should raise error if non-Hash variables argument provided' do
-      expect{ instance._cf_sub('string', 'variables') }.to raise_error(TypeError)
+      expect { instance._cf_sub('string', 'variables') }.to raise_error(TypeError)
     end
   end
 
@@ -52,7 +52,7 @@ RSpec.describe SparkleFormation::SparkleAttribute::Aws do
     end
 
     it 'should raise error if non-String value provided' do
-      expect{ instance._cf_ref(true) }.to raise_error(TypeError)
+      expect { instance._cf_ref(true) }.to raise_error(TypeError)
     end
   end
 
@@ -62,7 +62,7 @@ RSpec.describe SparkleFormation::SparkleAttribute::Aws do
     end
 
     it 'should raise error if non-String value provided' do
-      expect{ instance._cf_value_import(true) }.to raise_error(TypeError)
+      expect { instance._cf_value_import(true) }.to raise_error(TypeError)
     end
   end
 
@@ -73,7 +73,7 @@ RSpec.describe SparkleFormation::SparkleAttribute::Aws do
     end
 
     it 'should error if map name is not a Stringish value' do
-      expect{ instance._cf_map(true, 'a', 'b') }.to raise_error(TypeError)
+      expect { instance._cf_map(true, 'a', 'b') }.to raise_error(TypeError)
     end
 
     it 'should accept data structures for top level key' do
@@ -94,7 +94,7 @@ RSpec.describe SparkleFormation::SparkleAttribute::Aws do
     end
 
     it 'should raise error if non-String resource name provided' do
-      expect{ instance._cf_attr(true) }.to raise_error(TypeError)
+      expect { instance._cf_attr(true) }.to raise_error(TypeError)
     end
   end
 
@@ -134,7 +134,7 @@ RSpec.describe SparkleFormation::SparkleAttribute::Aws do
     end
 
     it 'should raise error if condition name is not a String' do
-      expect{ instance._condition(true) }.to raise_error(TypeError)
+      expect { instance._condition(true) }.to raise_error(TypeError)
     end
   end
 
@@ -250,7 +250,7 @@ RSpec.describe SparkleFormation::SparkleAttribute::Aws do
 
       it 'should return true within context that can be tagged' do
         instance.resources.item.properties do
-          if(taggable?)
+          if taggable?
             tagged true
           end
         end
@@ -267,7 +267,7 @@ RSpec.describe SparkleFormation::SparkleAttribute::Aws do
 
       it 'should return false within context that cannot be tagged' do
         instance.resources.item.properties do
-          if(taggable?)
+          if taggable?
             tagged true
           end
         end

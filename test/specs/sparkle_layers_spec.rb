@@ -1,19 +1,17 @@
 require_relative '../spec'
 
 describe SparkleFormation do
-
   describe 'Basic template inheritance' do
-
     before do
       @collection = SparkleFormation::SparkleCollection.new
       @collection.set_root(
         SparkleFormation::Sparkle.new(
-          :root => File.join(File.dirname(__FILE__), 'packs', 'rainbow-core')
+          :root => File.join(File.dirname(__FILE__), 'packs', 'rainbow-core'),
         )
       )
     end
 
-    let(:collection){ @collection }
+    let(:collection) { @collection }
 
     it 'should should inherit the core template' do
       template = SparkleFormation.compile(
@@ -34,7 +32,7 @@ describe SparkleFormation do
         :sparkle_path => collection.sparkle_at(0).root,
       )
       template.sparkle.set_root collection.sparkle_at(0)
-      ->{ template.dump }.must_raise SparkleFormation::Error::CircularInheritance
+      -> { template.dump }.must_raise SparkleFormation::Error::CircularInheritance
     end
 
     it 'should error on non-direct circular inheritance' do
@@ -44,22 +42,20 @@ describe SparkleFormation do
         :sparkle_path => collection.sparkle_at(0).root,
       )
       template.sparkle.set_root collection.sparkle_at(0)
-      ->{ template.dump }.must_raise SparkleFormation::Error::CircularInheritance
+      -> { template.dump }.must_raise SparkleFormation::Error::CircularInheritance
     end
-
   end
 
   describe 'Inheritance and merging' do
-
     before do
       @collection = SparkleFormation::SparkleCollection.new
       @collection.add_sparkle(
         SparkleFormation::Sparkle.new(
-          :root => File.join(File.dirname(__FILE__), 'packs', 'rainbow-core')
+          :root => File.join(File.dirname(__FILE__), 'packs', 'rainbow-core'),
         )
       ).set_root(
         SparkleFormation::Sparkle.new(
-          :root => File.join(File.dirname(__FILE__), 'packs', 'rainbow-addon')
+          :root => File.join(File.dirname(__FILE__), 'packs', 'rainbow-addon'),
         )
       )
       template = SparkleFormation.compile(
@@ -71,8 +67,8 @@ describe SparkleFormation do
       @result = template.dump.to_smash
     end
 
-    let(:collection){ @collection }
-    let(:result){ @result }
+    let(:collection) { @collection }
+    let(:result) { @result }
 
     it 'should inherit and merge template' do
       result.get('CoreCustomBlock', 'BaseDynamic').must_equal true
@@ -91,32 +87,30 @@ describe SparkleFormation do
     it 'should have provided original dynamic return context' do
       result.get('ExtendedCustomBlock', 'ReturnValue').must_equal 'test'
     end
-
   end
 
   describe 'Inheritance merging and knockouts' do
-
     before do
       @collection = SparkleFormation::SparkleCollection.new
       @collection.add_sparkle(
         SparkleFormation::Sparkle.new(
-          :root => File.join(File.dirname(__FILE__), 'packs', 'rainbow-core')
+          :root => File.join(File.dirname(__FILE__), 'packs', 'rainbow-core'),
         )
       ).add_sparkle(
         SparkleFormation::Sparkle.new(
-          :root => File.join(File.dirname(__FILE__), 'packs', 'rainbow-addon')
+          :root => File.join(File.dirname(__FILE__), 'packs', 'rainbow-addon'),
         )
       ).set_root(
         SparkleFormation::Sparkle.new(
-          :root => File.join(File.dirname(__FILE__), 'packs', 'rainbow-top')
+          :root => File.join(File.dirname(__FILE__), 'packs', 'rainbow-top'),
         )
       )
     end
 
-    let(:collection){ @collection }
+    let(:collection) { @collection }
 
     let(:extended) do
-      unless(@extended)
+      unless @extended
         template = SparkleFormation.compile(
           collection.get(:template, :extended)[:path],
           :sparkle
@@ -130,7 +124,7 @@ describe SparkleFormation do
     end
 
     let(:final) do
-      unless(@final)
+      unless @final
         template = SparkleFormation.compile(
           collection.get(:template, :final)[:path],
           :sparkle
@@ -144,7 +138,7 @@ describe SparkleFormation do
     end
 
     let(:complex) do
-      unless(@final)
+      unless @final
         template = SparkleFormation.compile(
           collection.get(:template, :complex_inherit)[:path],
           :sparkle
@@ -179,7 +173,5 @@ describe SparkleFormation do
       complex['OverrideValue'].must_equal 'inherit'
       complex['KnockoutComponent'].must_equal true
     end
-
   end
-
 end

@@ -1,5 +1,4 @@
 SparkleFormation.new('ec2_subnet').overrides do
-
   parameters do
     subnet_id do
       type 'String'
@@ -18,5 +17,4 @@ SparkleFormation.new('ec2_subnet').overrides do
       cidr_block '10.0.2.0/24'
     end
   end
-
 end

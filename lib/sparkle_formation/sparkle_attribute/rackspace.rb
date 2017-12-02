@@ -14,8 +14,6 @@ class SparkleFormation
       def self.included(klass)
         klass.include SparkleFormation::SparkleAttribute::Heat
       end
-
     end
-
   end
 end
