@@ -1,6 +1,7 @@
 AllCops:
   DisplayCopNames: true
   Exclude:
+    - 'vendor/**/**/*'
     - 'examples/**/**/*'
     - 'test/**/**/*'
     - 'bin/*'
