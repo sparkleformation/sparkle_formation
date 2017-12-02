@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'minitest'
   s.add_development_dependency 'rspec', '~> 3.5'
   s.add_development_dependency 'rake', '~> 10'
-  s.add_development_dependency 'rubocop', '0.38.0'
   s.add_development_dependency 'yard'
   s.add_development_dependency 'redcarpet', '~> 2.0'
   s.add_development_dependency 'github-markup'
