@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec', '~> 3.5'
   s.add_development_dependency 'rake', '~> 10'
   s.add_development_dependency 'yard'
+  s.add_development_dependency 'rufo'
   s.add_development_dependency 'redcarpet', '~> 2.0'
   s.add_development_dependency 'github-markup'
   s.executables << 'generate_sparkle_docs'
