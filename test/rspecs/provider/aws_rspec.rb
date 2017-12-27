@@ -98,6 +98,7 @@ RSpec.describe SparkleFormation::Provider::Aws do
                 some_data.type 'String'
                 other_data.type 'String'
               end
+              outputs.final_output.value '2'
             end
           end
         end
@@ -165,6 +166,12 @@ RSpec.describe SparkleFormation::Provider::Aws do
         instance.apply_shallow_nesting
         result = instance.dump.to_smash
         expect(result.get('Parameters', 'SomeInput', 'Type')).to eq('String')
+      end
+
+      it 'should provide all stack outputs in root stack' do
+        instance.apply_shallow_nesting(:bubble_outputs)
+        result = instance.dump.to_smash
+        expect(result.get('Outputs', 'SomeData')).not_to be_nil
       end
     end
   end
