@@ -94,14 +94,14 @@ class SparkleFormation
         compile.parameters parameters
         if args.include?(:bubble_outputs)
           outputs_hash = Hash[
-            output_map do |name, value|
+            output_map.map do |name, value|
               [name, {'Value' => {'Fn::GetAtt' => value}}]
             end
           ]
-          if compile.outputs
+          unless compile.outputs.nil?
             compile._merge(compile._klass_new(outputs_hash))
           else
-            compile.outputs output_hash
+            compile.outputs outputs_hash
           end
         end
         compile
