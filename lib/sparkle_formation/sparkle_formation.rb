@@ -939,7 +939,11 @@ class SparkleFormation
         outputs = Smash.new
       end
       nested_stacks.each do |nested_stack|
-        n_stack = nested_stack.is_a?(self.class) ? nested_stack : nested_stack._self
+        if nested_stack.is_a?(self.class) === true
+          n_stack = nested_stack
+        else
+          n_stack = nested_stack._self
+        end
         outputs = n_stack.collect_outputs(:force).merge(outputs)
       end
       outputs
