@@ -1,3 +1,9 @@
+# v3.0.28
+* Fix sub! when no hash is provided (#236)
+* Only run template extraction when required
+* Use explicit type checks when searching for nested stacks
+* Fix output bubbling to use proper nil checking
+
 # v3.0.26
 * Allow Fn::Sub helper to accept no arguments
 * Fix Ruby 2.4 deprecation warnings
