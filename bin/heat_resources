@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-%w(multi_json nokogiri fileutils).each do |lib|
+%w(bogo multi_json nokogiri fileutils).each do |lib|
   begin
     require lib
   rescue LoadError
@@ -12,10 +12,10 @@ end
 
 STORE = '/tmp/openstack-heat-docs'
 
-unless(File.directory?(STORE))
+unless (File.directory?(STORE))
   FileUtils.mkdir_p(STORE)
   Dir.chdir(STORE) do
-    unless(system('wget -q "http://docs.openstack.org/developer/heat/template_guide/openstack.html"'))
+    unless (system('wget -q "http://docs.openstack.org/developer/heat/template_guide/openstack.html"'))
       puts "FAILED: Documentation fetching failed!"
       exit -1
     end
@@ -33,7 +33,7 @@ file.css('div#openstack-resource-types').children.each do |resource|
   required_properties = resource.css("div[id='#{resource_name}-props-req']")
   optional_properties = resource.css("div[id='#{resource_name}-props-opt']")
   [required_properties, optional_properties].each_with_index do |property_list, idx|
-    if(property_list)
+    if (property_list)
       property_list.children.each do |prop|
         next unless prop.get_attribute(:id).to_s.start_with?("#{resource_name}-prop-")
         property_name = prop.get_attribute(:id).to_s.sub("#{resource_name}-prop-", '')
@@ -42,9 +42,9 @@ file.css('div#openstack-resource-types').children.each do |resource|
           element.name == 'p'
         end
         update_text = p_data[2] ? p_data[2].text.downcase : ''
-        if(update_text.include?('without replacement'))
+        if (update_text.include?('without replacement'))
           update_causes = :none
-        elsif(update_text.include?('replacement'))
+        elsif (update_text.include?('replacement'))
           update_causes = :replacement
         else
           update_causes = :unknown
@@ -53,15 +53,15 @@ file.css('div#openstack-resource-types').children.each do |resource|
           :description => p_data.first.text.strip.split("\n").map(&:strip).join(' '),
           :required => idx == 0,
           :type => p_data[1].text.strip.split(' ').first.to_s.downcase,
-          :update_causes => update_causes
+          :update_causes => update_causes,
         }
       end
     end
   end
   heat_resources[resource_name] = {
     :properties => properties.keys.sort,
-    :full_properties => properties
+    :full_properties => properties,
   }
 end
 
-puts MultiJson.dump(heat_resources, :pretty => true)
+puts MultiJson.dump(heat_resources.to_smash(:sorted), :pretty => true)

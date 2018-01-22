@@ -16,14 +16,13 @@ UPDATE_MAPPING = {
   'replacement' => :replacement,
   /(no|without) interruption/ => :none,
   /(?<!no|without) interruption/ => :interrupt,
-  'not supported' => :unavailable
+  'not supported' => :unavailable,
 }
 
-
-unless(File.directory?(STORE))
+unless (File.directory?(STORE))
   FileUtils.mkdir_p(STORE)
   Dir.chdir(STORE) do
-    unless(system('wget -q -r -l 1 -A "aws-*" "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html"'))
+    unless (system('wget -q -r -l 1 -A "aws-*" "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html"'))
       puts "FAILED: Documentation fetching failed!"
       exit -1
     end
@@ -38,21 +37,22 @@ Dir.glob(File.join(STORE, '**/*.html')).each do |path|
   begin
     file = Nokogiri::HTML(File.open(path, 'r'))
     type = file.css('h1.topictitle').text.strip
-    if(type.include?(' '))
+    if (type.include?(' '))
       next
     end
-    resource = file.css('div.section').detect do |section|
+    resource = file.css('div#main-col-body').detect do |section|
       section.children.any? do |child|
-        child.get_attribute(:class) == 'titlepage' &&
-          child.text.include?('Properties')
+        #        child.get_attribute(:class) == 'titlepage' &&
+        child.text.include?('Properties')
       end
     end
     property_information = {}
-    if(resource)
+    if (resource)
       resource = resource.css('div.variablelist').first
-      names = resource.children.detect{|r| r.name == 'dl'}.children.find_all{|r| r.name == 'dt'}.map(&:text).map(&:strip)
-      infos = resource.children.detect{|r| r.name == 'dl'}.children.find_all{|r| r.name == 'dd'}
-      unless(names.size == infos.size)
+      next unless resource
+      names = resource.children.detect { |r| r.name == 'dl' }.children.find_all { |r| r.name == 'dt' }.map(&:text).map(&:strip)
+      infos = resource.children.detect { |r| r.name == 'dl' }.children.find_all { |r| r.name == 'dd' }
+      unless (names.size == infos.size)
         raise "Failed to align resource properties with information - #{type} (#{path})"
       end
       names.each_with_index do |name, idx|
@@ -60,15 +60,15 @@ Dir.glob(File.join(STORE, '**/*.html')).each do |path|
         base_type = info.css('p').map(&:text).detect do |x|
           x.include?('Type')
         end || 'String'
-        if(base_type.downcase.match(/(\s|^)list(\s|$)/))
+        if (base_type.downcase.match(/(\s|^)list(\s|$)/))
           p_type = 'Array'
-        elsif(base_type.include?('Type: String'))
+        elsif (base_type.include?('Type: String'))
           p_type = 'String'
-        elsif(base_type.include?('Type: Boolean'))
+        elsif (base_type.include?('Type: Boolean'))
           p_type = 'Boolean'
-        elsif(base_type.include?('Type: Integer'))
+        elsif (base_type.include?('Type: Integer'))
           p_type = 'Number'
-        elsif(base_type.include?('Type:') && base_type.include?('JSON') && base_type.include?('document'))
+        elsif (base_type.include?('Type:') && base_type.include?('JSON') && base_type.include?('document'))
           p_type = 'JSON'
         else
           p_type = 'Unknown'
@@ -78,22 +78,22 @@ Dir.glob(File.join(STORE, '**/*.html')).each do |path|
         end
         description = info.css('p').first.text.strip.split("\n").map(&:strip).join(' ')
         full_text = info.text.downcase
-        if(full_text.include?('updates are not supported') || full_text.include?('cannot update this property'))
+        if (full_text.include?('updates are not supported') || full_text.include?('cannot update this property'))
           update_causes = :unavailable
-        elsif(full_text.include?('update causes interrupt'))
+        elsif (full_text.include?('update causes interrupt'))
           update_causes = :interrupt
         end
         links = info.css('a').map(&:text).map(&:downcase)
         update_causes_map = UPDATE_MAPPING.map do |match, value|
-          value if links.any?{|a| a.match(match) } #include?(match)}
+          value if links.any? { |a| a.match(match) } #include?(match)}
         end.compact
-        if(update_causes && !update_causes_map.empty?)
+        if (update_causes && !update_causes_map.empty?)
           update_causes = [update_causes] + update_causes_map
-        elsif(update_causes.nil? && !update_causes_map.empty?)
+        elsif (update_causes.nil? && !update_causes_map.empty?)
           update_causes = update_causes_map.size > 1 ? update_causes_map : update_causes_map.first
         end
         update_causes = :unknown unless update_causes
-        if(update_causes.is_a?(Array))
+        if (update_causes.is_a?(Array))
           $stderr.puts "Multiple update_causes values detected! Resource: #{type} Property: #{name} -> #{update_causes.inspect}"
           multiple_update_causes[type] ||= []
           multiple_update_causes[type] << name
@@ -103,21 +103,21 @@ Dir.glob(File.join(STORE, '**/*.html')).each do |path|
           :description => description,
           :required => required,
           :type => p_type,
-          :update_causes => update_causes
+          :update_causes => update_causes,
         }
       end
       aws_resources[type] = {
         :properties => names,
-        :full_properties => property_information
+        :full_properties => property_information,
       }
     else
       resource = file.css('div.informaltable')
-      if(resource)
+      if (resource)
         aws_resources[type] = {
-          :properties => resource.css('tr').map{|tr|
+          :properties => resource.css('tr').map { |tr|
             item = tr.css('td').first
             item ? item.text.strip : nil
-          }.compact
+          }.compact,
         }
       else
         next
@@ -127,11 +127,11 @@ Dir.glob(File.join(STORE, '**/*.html')).each do |path|
   end
 end
 
-puts MultiJson.dump(aws_resources, :pretty => true)
+puts MultiJson.dump(aws_resources.to_smash(:sorted), :pretty => true)
 
-unless(multiple_update_causes.empty?)
+unless (multiple_update_causes.empty?)
   $stderr.puts "--------------------------------------------------------"
   $stderr.puts "Resource properties detected with multiple update states"
   $stderr.puts "--------------------------------------------------------"
-  $stderr.puts MultiJson.dump(multiple_update_causes.to_smash(:sorted).tap{|h| h.values.map(&:sort!)}, :pretty => true)
+  $stderr.puts MultiJson.dump(multiple_update_causes.to_smash(:sorted).tap { |h| h.values.map(&:sort!) }, :pretty => true)
 end

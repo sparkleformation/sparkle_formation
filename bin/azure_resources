@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'pry'
-
 %w(multi_json fileutils bogo).each do |lib|
   begin
     require lib
@@ -16,14 +14,14 @@ STORE = '/tmp/azure-schemas'
 
 UPDATE_MAPPING = {}
 
-unless(File.directory?(STORE))
+unless (File.directory?(STORE))
   FileUtils.mkdir_p(STORE)
   Dir.chdir(STORE) do
-    unless(system('wget -q https://github.com/Azure/azure-resource-manager-schemas/archive/master.tar.gz'))
+    unless (system('wget -q https://github.com/Azure/azure-resource-manager-schemas/archive/master.tar.gz'))
       puts 'FAILED: Documentation fetching failed!'
       exit -1
     end
-    unless(system('tar xzf master.tar.gz'))
+    unless (system('tar xzf master.tar.gz'))
       puts 'FAILED: Documentation unpacking failed!'
       exit -1
     end
@@ -56,11 +54,11 @@ end.inject(Smash.new) do |memo, schema|
 end
 
 ref_replacer = lambda do |item|
-  if(item.is_a?(Hash) && item.size == 1 && item.keys.first == '$ref' && item.values.first.start_with?('#/definitions'))
+  if (item.is_a?(Hash) && item.size == 1 && item.keys.first == '$ref' && item.values.first.start_with?('#/definitions'))
     def_name = item.values.first.sub('#/definitions/', '')
     definitions[def_name] || raise("Failed to locate definition! `#{def_name}`")
-  elsif(item.is_a?(::Enumerable))
-    if(item.respond_to?(:keys))
+  elsif (item.is_a?(::Enumerable))
+    if (item.respond_to?(:keys))
       item.class[
         *item.map do |entry|
           ref_replacer.call(entry)
@@ -85,24 +83,23 @@ azure_resources = Smash[
     resource_name = v.fetch(:properties, :type, :enum, []).first
     next unless resource_name
     r_properties = v.get(:properties, :properties, :properties)
-    if(r_properties.nil?)
-      r_properties = v.fetch(:properties, :properties, :oneOf, []).map{|x| x.fetch(:properties, {})}.first || Smash.new
+    if (r_properties.nil?)
+      r_properties = v.fetch(:properties, :properties, :oneOf, []).map { |x| x.fetch(:properties, {}) }.first || Smash.new
     end
     [resource_name,
-      :properties => r_properties.keys,
-      :full_properties => Smash[
-        r_properties.map do |prop_key, prop_val|
-          [prop_key,
-            :description => prop_val[:description],
-            :required => v.fetch(:properties, :properties, :required, []).include?(prop_key),
-            :type => prop_val[:type],
-            :update_causes => 'unknown']
-        end
-      ],
-      :api_version => v.fetch(:properties, :apiVersion, :enum, []).sort.last,
-      :required => v[:required]
-    ]
+     :properties => r_properties.keys,
+     :full_properties => Smash[
+       r_properties.map do |prop_key, prop_val|
+         [prop_key,
+          :description => prop_val[:description],
+          :required => v.fetch(:properties, :properties, :required, []).include?(prop_key),
+          :type => prop_val[:type],
+          :update_causes => 'unknown']
+       end
+     ],
+     :api_version => v.fetch(:properties, :apiVersion, :enum, []).sort.last,
+     :required => v[:required]]
   end.compact
 ]
 
-puts MultiJson.dump(azure_resources, :pretty => true)
+puts MultiJson.dump(azure_resources.to_smash(:sorted), :pretty => true)
