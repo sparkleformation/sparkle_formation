@@ -104,6 +104,7 @@ class SparkleFormation
       # NOTE: Enable access to top level constants but do not
       # include deprecated constants to prevent warning outputs
       deprecated_constants = [
+        :Data,
         :Config,
         :TimeoutError,
         :Fixnum,
