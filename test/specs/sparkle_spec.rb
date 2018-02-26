@@ -25,6 +25,16 @@ describe SparkleFormation::Sparkle do
     end
   end
 
+  describe 'sparkle pack loads dynamics from itself and another pack' do
+    before do
+      @template = SparkleFormation.compile(File.join(File.dirname(__FILE__), 'packs/base_pack/stack.rb'), :sparkle)
+    end
+
+    it 'should be able to compile a stack with the dynamics' do
+      @template.to_json.must_be_kind_of String
+    end
+  end
+
   describe 'invalid name collision pack' do
     it 'should raise a KeyError on duplicate template name' do
       -> {
