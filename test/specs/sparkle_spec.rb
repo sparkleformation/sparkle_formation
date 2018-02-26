@@ -27,7 +27,7 @@ describe SparkleFormation::Sparkle do
 
   describe 'sparkle pack loads dynamics from itself and another pack' do
     before do
-      ::SparkleFormation::SparklePack.register!('base_pack',  File.join(File.dirname(__FILE__), 'packs/base_pack'))
+      ::SparkleFormation::SparklePack.register!('base_pack', File.join(File.dirname(__FILE__), 'packs/base_pack'))
       @root_pack = ::SparkleFormation::SparklePack.new(:name => 'base_pack')
       ::SparkleFormation.sparkle_path = File.join(File.dirname(__FILE__), 'packs/base_pack')
       @template = ::SparkleFormation.compile(File.join(File.dirname(__FILE__), 'packs/base_pack/stack.rb'), :sparkle => @root_pack)
