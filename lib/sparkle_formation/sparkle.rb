@@ -4,128 +4,6 @@ require 'sparkle_formation'
 class SparkleFormation
   # Independent collection of SparkleFormation items
   class Sparkle
-
-    # Evaluation context wrapper for loading SparkleFormation files
-    class EvalWrapper < BasicObject
-
-      # @!visibility private
-      def require(*args)
-        ::Kernel.require(*args)
-      end
-
-      # @!visibility private
-      class SparkleFormation
-        attr_accessor :sparkle_path
-
-        class << self
-          def insert(*args, &block)
-            ::SparkleFormation.insert(*args, &block)
-          end
-
-          def part_data(data = nil)
-            if data
-              @data = data
-            else
-              @data
-            end
-          end
-
-          def dynamic(name, args = {}, &block)
-            part_data[:dynamic].push(
-              ::Smash.new(
-                :name => name,
-                :block => block,
-                :args => ::Smash[
-                  args.map(&:to_a)
-                ],
-                :type => :dynamic,
-              )
-            ).last
-          end
-
-          def build(&block)
-            part_data[:component].push(
-              ::Smash.new(
-                :block => block,
-                :type => :component,
-              )
-            ).last
-          end
-
-          def component(name, args = {}, &block)
-            part_data[:component].push(
-              ::Smash.new(
-                :name => name,
-                :block => block,
-                :args => ::Smash[
-                  args.map(&:to_a)
-                ],
-                :type => :component,
-              )
-            ).last
-          end
-
-          def dynamic_info(*args)
-            ::Smash.new(:metadata => {}, :args => {})
-          end
-        end
-
-        def initialize(*args)
-          opts = args.detect { |a| a.is_a?(Hash) } || {}
-          SparkleFormation.part_data[:template].push(
-            ::Smash.new(
-              :name => args.first,
-              :args => opts,
-            )
-          )
-          raise ::TypeError
-        end
-
-        # @!visibility private
-        class Registry
-          def self.register(name, args = {}, &block)
-            SparkleFormation.part_data[:registry].push(
-              ::Smash.new(
-                :name => name,
-                :block => block,
-                :args => ::Smash[
-                  args.map(&:to_a)
-                ],
-                :type => :registry,
-              )
-            ).last
-          end
-        end
-      end
-
-      # @!visibility private
-      SfnRegistry = SparkleFormation::Registry
-
-      # NOTE: Enable access to top level constants but do not
-      # include deprecated constants to prevent warning outputs
-      deprecated_constants = [
-        :Data,
-        :Config,
-        :TimeoutError,
-        :Fixnum,
-        :Bignum,
-        :NIL,
-        :TRUE,
-        :FALSE,
-      ]
-      ::Object.constants.each do |const|
-        unless (self.const_defined?(const)) # rubocop:disable Style/RedundantSelf
-          next if deprecated_constants.include?(const)
-          self.const_set(const, ::Object.const_get(const)) # rubocop:disable Style/RedundantSelf
-        end
-      end
-
-      # @!visibility private
-      def part_data(arg)
-        SparkleFormation.part_data(arg)
-      end
-    end
-
     class << self
       @@_pack_registry = Smash.new
 
@@ -184,7 +62,134 @@ class SparkleFormation
     # Wrapper for evaluating sfn files to store within sparkle
     # container
     def eval_wrapper
-      Class.new(EvalWrapper)
+      # Evaluation context wrapper for loading SparkleFormation files
+      Class.new(BasicObject).new.instance_exec do
+        wrapper = ::Class.new(BasicObject)
+        wrapper.class_eval '
+        class SparkleFormation
+          attr_accessor :sparkle_path
+
+          class << self
+            def insert(*args, &block)
+              ::SparkleFormation.insert(*args, &block)
+            end
+
+            def part_data(data = nil)
+              if data
+                @data = data
+              else
+                @data
+              end
+            end
+
+            def dynamic(name, args = {}, &block)
+              part_data[:dynamic].push(
+                ::Smash.new(
+                  :name => name,
+                  :block => block,
+                  :args => ::Smash[
+                    args.map(&:to_a)
+                  ],
+                  :type => :dynamic,
+                )
+              ).last
+            end
+
+            def build(&block)
+              part_data[:component].push(
+                ::Smash.new(
+                  :block => block,
+                  :type => :component,
+                )
+              ).last
+            end
+
+            def component(name, args = {}, &block)
+              part_data[:component].push(
+                ::Smash.new(
+                  :name => name,
+                  :block => block,
+                  :args => ::Smash[
+                    args.map(&:to_a)
+                  ],
+                  :type => :component,
+                )
+              ).last
+            end
+
+            def dynamic_info(*args)
+              ::Smash.new(:metadata => {}, :args => {})
+            end
+          end
+
+          def initialize(*args)
+            opts = args.detect { |a| a.is_a?(Hash) } || {}
+            SparkleFormation.part_data[:template].push(
+              ::Smash.new(
+                :name => args.first,
+                :args => opts,
+              )
+            )
+            raise ::TypeError
+          end
+
+          class Registry
+            def self.register(name, args = {}, &block)
+              SparkleFormation.part_data[:registry].push(
+                ::Smash.new(
+                  :name => name,
+                  :block => block,
+                  :args => ::Smash[
+                    args.map(&:to_a)
+                  ],
+                  :type => :registry,
+                )
+              ).last
+            end
+          end
+        end
+
+        SfnRegistry = SparkleFormation::Registry
+
+        # @!visibility private
+        def require(*args)
+          ::Kernel.require(*args)
+        end
+
+        # NOTE: Enable access to top level constants but do not
+        # include deprecated constants to prevent warning outputs
+        deprecated_constants = [
+          :Data,
+          :Config,
+          :TimeoutError,
+          :Fixnum,
+          :Bignum,
+          :NIL,
+          :TRUE,
+          :FALSE,
+        ]
+        ::Object.constants.each do |const|
+          unless self.const_defined?(const) # rubocop:disable Style/RedundantSelf
+            next if deprecated_constants.include?(const)
+            self.const_set(const, ::Object.const_get(const)) # rubocop:disable Style/RedundantSelf
+          end
+        end
+
+        # @!visibility private
+        def part_data(arg)
+          SparkleFormation.part_data(arg)
+        end
+
+        def __sparkle_formation_id
+          SparkleFormation.object_id
+        end
+
+        def __sfn_registry_id
+          SfnRegistry.object_id
+        end
+        '
+        wrapper.new
+      end
     end
 
     include Bogo::Memoization
@@ -243,7 +248,7 @@ class SparkleFormation
         :template => [],
       )
       @provider = Bogo::Utility.snake(args.fetch(:provider, 'aws').to_s).to_sym
-      @wrapper = eval_wrapper.new
+      @wrapper = eval_wrapper
       wrapper.part_data(raw_data)
       load_parts! unless @root == :none
     end

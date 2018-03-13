@@ -4,6 +4,30 @@ RSpec.describe SparkleFormation::Sparkle do
   let(:root_dir) { Dir.mktmpdir('sparkleformation-sparkle-rspec') }
   after { FileUtils.rm_rf(root_dir) }
 
+  context "methods" do
+    let(:instance) { described_class.new(:root => root_dir) }
+
+    describe '#eval_wrapper' do
+      it 'should create new instances' do
+        i1 = instance.eval_wrapper
+        i2 = instance.eval_wrapper
+        expect(i1.__id__).not_to eq(i2.__id__)
+      end
+
+      it 'should create independent SparkleFormation classes' do
+        i1 = instance.eval_wrapper
+        i2 = instance.eval_wrapper
+        expect(i1.__sparkle_formation_id).not_to eq(i2.__sparkle_formation_id)
+      end
+
+      it 'should create independent Registry classes' do
+        i1 = instance.eval_wrapper
+        i2 = instance.eval_wrapper
+        expect(i1.__sfn_registry_id).not_to eq(i2.__sfn_registry_id)
+      end
+    end
+  end
+
   context "with pack defined" do
     let(:instance) { described_class.new(:root => root_dir) }
 
