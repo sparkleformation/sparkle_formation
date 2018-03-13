@@ -3,6 +3,7 @@ require_relative '../spec'
 describe SparkleFormation do
   describe 'Basic template inheritance' do
     before do
+      SparkleFormation.sparkle_path = nil
       @collection = SparkleFormation::SparkleCollection.new
       @collection.set_root(
         SparkleFormation::Sparkle.new(

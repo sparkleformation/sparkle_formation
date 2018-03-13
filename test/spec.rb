@@ -9,6 +9,7 @@ ensure
   $stdout = old
 end
 
-SparkleFormation.sparkle_path = File.join(
+$sparkle_path_spec = File.join(
   File.dirname(__FILE__), 'specs', 'sparkleformation'
 )
+SparkleFormation.sparkle_path = $sparkle_path_spec

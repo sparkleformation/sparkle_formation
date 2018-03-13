@@ -3,6 +3,7 @@ require_relative '../spec'
 describe SparkleFormation::Sparkle do
   describe 'valid sparkle pack' do
     before do
+      SparkleFormation.sparkle_path = nil
       @pack = SparkleFormation::Sparkle.new(
         :root => File.join(File.dirname(__FILE__), 'packs/valid_pack'),
       )
