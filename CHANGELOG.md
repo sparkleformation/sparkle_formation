@@ -1,3 +1,6 @@
+# v3.0.30
+* Fix race condition in pack loading (#241)
+
 # v3.0.28
 * Fix sub! when no hash is provided (#236)
 * Only run template extraction when required
