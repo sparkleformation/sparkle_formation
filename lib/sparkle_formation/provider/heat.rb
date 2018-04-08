@@ -1,4 +1,4 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 class SparkleFormation
   module Provider
@@ -7,7 +7,7 @@ class SparkleFormation
 
       # @return [String] Type string for OpenStack HEAT stack resource
       def stack_resource_type
-        'OS::Heat::Stack'
+        "OS::Heat::Stack"
       end
 
       # Generate policy for stack
@@ -96,9 +96,9 @@ class SparkleFormation
             end
           end
           raise ArgumentError.new "Failed to detect available bubbling path for output `#{output_name}`. " <<
-                                    'This may be due to a circular dependency! ' <<
-                                    "(Output Path: #{outputs[output_name].root_path.map(&:name).join(' > ')} " <<
-                                    "Requester Path: #{root_path.map(&:name).join(' > ')})"
+                                    "This may be due to a circular dependency! " <<
+                                    "(Output Path: #{outputs[output_name].root_path.map(&:name).join(" > ")} " <<
+                                    "Requester Path: #{root_path.map(&:name).join(" > ")})"
         end
         result = compile._stack_output(bubble_path.first.name, output_name)
         if drip_path.size > 1
@@ -107,7 +107,7 @@ class SparkleFormation
           drip_path.each_slice(2) do |base_sparkle, ref_sparkle|
             next unless ref_sparkle
             base_sparkle.compile.resources[ref_sparkle.name].properties.parameters._set(output_name, result)
-            ref_sparkle.compile.parameters._set(output_name).type 'string' # TODO: <<<<------ type check and prop
+            ref_sparkle.compile.parameters._set(output_name).type "string" # TODO: <<<<------ type check and prop
             result = compile._parameter(output_name)
           end
         end

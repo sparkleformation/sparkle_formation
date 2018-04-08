@@ -17,14 +17,14 @@ class SparkleFormation
           translated[snake(k).to_s] = v
         end
         # params
-        cache.fetch('Parameters', {}).each do |k, v|
-          translated['parameters'][k] = Hash[
+        cache.fetch("Parameters", {}).each do |k, v|
+          translated["parameters"][k] = Hash[
             v.map do |key, value|
-              if key == 'Type'
+              if key == "Type"
                 [snake(key).to_s, value.downcase]
-              elsif key == 'AllowedValues'
+              elsif key == "AllowedValues"
                 # @todo fix this up to properly build constraints
-                ['constraints', [{'allowed_values' => value}]]
+                ["constraints", [{"allowed_values" => value}]]
               else
                 [snake(key).to_s, value]
               end
@@ -32,34 +32,34 @@ class SparkleFormation
           ]
         end
         # resources
-        cache.fetch('Resources', {}).each do |r_name, r_value|
-          translated['resources'][r_name] = Hash[
+        cache.fetch("Resources", {}).each do |r_name, r_value|
+          translated["resources"][r_name] = Hash[
             r_value.map do |k, v|
               [snake(k).to_s, v]
             end
           ]
         end
         # outputs
-        cache.fetch('Outputs', {}).each do |o_name, o_value|
-          translated['outputs'][o_name] = Hash[
+        cache.fetch("Outputs", {}).each do |o_name, o_value|
+          translated["outputs"][o_name] = Hash[
             o_value.map do |k, v|
               [snake(k).to_s, v]
             end
           ]
         end
-        translated.delete('awstemplate_format_version')
-        translated['heat_template_version'] = '2013-05-23'
+        translated.delete("awstemplate_format_version")
+        translated["heat_template_version"] = "2013-05-23"
         # no HOT support for mappings, so remove and clean pseudo
         # params in refs
-        if translated['resources']
-          translated['resources'] = dereference_processor(translated['resources'], ['Fn::FindInMap', 'Ref'])
-          translated['resources'] = rename_processor(translated['resources'])
+        if translated["resources"]
+          translated["resources"] = dereference_processor(translated["resources"], ["Fn::FindInMap", "Ref"])
+          translated["resources"] = rename_processor(translated["resources"])
         end
-        if translated['outputs']
-          translated['outputs'] = dereference_processor(translated['outputs'], ['Fn::FindInMap', 'Ref'])
-          translated['outputs'] = rename_processor(translated['outputs'])
+        if translated["outputs"]
+          translated["outputs"] = dereference_processor(translated["outputs"], ["Fn::FindInMap", "Ref"])
+          translated["outputs"] = rename_processor(translated["outputs"])
         end
-        translated.delete('mappings')
+        translated.delete("mappings")
         complete_launch_config_lb_setups
         true
       end
@@ -76,9 +76,9 @@ class SparkleFormation
       # @return [Object]
       # rubocop:disable Metrics/MethodLength
       def neutron_loadbalancer_finalizer(resource_name, new_resource, old_resource)
-        listeners = new_resource['Properties'].delete('listeners') || []
-        healthcheck = new_resource['Properties'].delete('health_check')
-        subnet = (new_resource['Properties'].delete('subnets') || []).first
+        listeners = new_resource["Properties"].delete("listeners") || []
+        healthcheck = new_resource["Properties"].delete("health_check")
+        subnet = (new_resource["Properties"].delete("subnets") || []).first
 
         # if health check is provided, create resource and apply to
         # all pools generated
@@ -86,83 +86,83 @@ class SparkleFormation
           healthcheck_name = "#{resource_name}HealthCheck"
           check = {
             healthcheck_name => {
-              'Type' => 'OS::Neutron::HealthMonitor',
-              'Properties' => {}.tap { |properties|
-                {'Timeout' => 'timeout', 'Interval' => 'delay', 'HealthyThreshold' => 'max_retries'}.each do |aws, hot|
+              "Type" => "OS::Neutron::HealthMonitor",
+              "Properties" => {}.tap { |properties|
+                {"Timeout" => "timeout", "Interval" => "delay", "HealthyThreshold" => "max_retries"}.each do |aws, hot|
                   if healthcheck[aws]
                     properties[hot] = healthcheck[aws]
                   end
                 end
-                type, port, path = healthcheck['Target'].split(%r{(:|/.*)}).find_all { |x| x != ':' }
-                properties['type'] = type
+                type, port, path = healthcheck["Target"].split(%r{(:|/.*)}).find_all { |x| x != ":" }
+                properties["type"] = type
                 if path
-                  properties['url_path'] = path
+                  properties["url_path"] = path
                 end
               },
             },
           }
-          translated['Resources'].merge!(check)
+          translated["Resources"].merge!(check)
         end
 
         base_listener = listeners.shift
         base_pool_name = "#{resource_name}Pool"
         base_pool = {
           base_pool_name => {
-            'Type' => 'OS::Neutron::Pool',
-            'Properties' => {
-              'lb_method' => 'ROUND_ROBIN',
-              'monitors' => [
-                {'get_resource' => healthcheck_name},
+            "Type" => "OS::Neutron::Pool",
+            "Properties" => {
+              "lb_method" => "ROUND_ROBIN",
+              "monitors" => [
+                {"get_resource" => healthcheck_name},
               ],
-              'protocol' => base_listener['Protocol'],
-              'vip' => {
-                'protocol_port' => base_listener['LoadBalancerPort'],
+              "protocol" => base_listener["Protocol"],
+              "vip" => {
+                "protocol_port" => base_listener["LoadBalancerPort"],
               },
-              'subnet' => subnet,
+              "subnet" => subnet,
             },
           },
         }
         if healthcheck
-          base_pool[base_pool_name]['Properties'].merge(
-            'monitors' => [
-              {'get_resource' => healthcheck_name},
+          base_pool[base_pool_name]["Properties"].merge(
+            "monitors" => [
+              {"get_resource" => healthcheck_name},
             ],
           )
         end
 
-        translated['Resources'].merge!(base_pool)
-        new_resource['Properties']['pool_id'] = {'get_resource' => base_pool_name}
-        new_resource['Properties']['protocol_port'] = base_listener['InstancePort']
+        translated["Resources"].merge!(base_pool)
+        new_resource["Properties"]["pool_id"] = {"get_resource" => base_pool_name}
+        new_resource["Properties"]["protocol_port"] = base_listener["InstancePort"]
 
         listeners.each_with_index do |listener, count|
           pool_name = "#{resource_name}PoolVip#{count}"
           pool = {
             pool_name => {
-              'Type' => 'OS::Neutron::Pool',
-              'Properties' => {
-                'lb_method' => 'ROUND_ROBIN',
-                'protocol' => listener['Protocol'],
-                'subnet' => subnet,
-                'vip' => {
-                  'protocol_port' => listener['LoadBalancerPort'],
+              "Type" => "OS::Neutron::Pool",
+              "Properties" => {
+                "lb_method" => "ROUND_ROBIN",
+                "protocol" => listener["Protocol"],
+                "subnet" => subnet,
+                "vip" => {
+                  "protocol_port" => listener["LoadBalancerPort"],
                 },
               },
             },
           }
           if healthcheck
-            pool[pool_name]['Properties'].merge(
-              'monitors' => [
-                {'get_resource' => healthcheck_name},
+            pool[pool_name]["Properties"].merge(
+              "monitors" => [
+                {"get_resource" => healthcheck_name},
               ],
             )
           end
 
           lb_name = "#{resource_name}Vip#{count}"
           lb = {lb_name => MultiJson.load(MultiJson.dump(new_resource))}
-          lb[lb_name]['Properties']['pool_id'] = {'get_resource' => pool_name}
-          lb[lb_name]['Properties']['protocol_port'] = listener['InstancePort']
-          translated['Resources'].merge!(pool)
-          translated['Resources'].merge!(lb)
+          lb[lb_name]["Properties"]["pool_id"] = {"get_resource" => pool_name}
+          lb[lb_name]["Properties"]["protocol_port"] = listener["InstancePort"]
+          translated["Resources"].merge!(pool)
+          translated["Resources"].merge!(lb)
         end
       end
 
@@ -171,18 +171,18 @@ class SparkleFormation
       # multiple listeners (ports) have been defined resulting in
       # multiple isolated LB resources
       def complete_launch_config_lb_setups
-        translated['resources'].find_all do |resource_name, resource|
-          resource['type'] == 'OS::Heat::AutoScalingGroup'
+        translated["resources"].find_all do |resource_name, resource|
+          resource["type"] == "OS::Heat::AutoScalingGroup"
         end.each do |name, value|
-          if lbs = value['properties'].delete('load_balancers')
+          if lbs = value["properties"].delete("load_balancers")
             lbs.each do |lb_ref|
               lb_name = resource_name(lb_ref)
-              lb_resource = translated['resources'][lb_name]
-              vip_resources = translated['resources'].find_all do |k, v|
-                k.match(/#{lb_name}Vip\d+/) && v['type'] == 'OS::Neutron::LoadBalancer'
+              lb_resource = translated["resources"][lb_name]
+              vip_resources = translated["resources"].find_all do |k, v|
+                k.match(/#{lb_name}Vip\d+/) && v["type"] == "OS::Neutron::LoadBalancer"
               end
-              value['properties']['load_balancers'] = vip_resources.map do |vip_name|
-                {'get_resource' => vip_name}
+              value["properties"]["load_balancers"] = vip_resources.map do |vip_name|
+                {"get_resource" => vip_name}
               end
             end
           end
@@ -200,7 +200,7 @@ class SparkleFormation
       # @return [Array<String, Object>] name and new value
       # @todo implement
       def nova_server_block_device_mapping(value, args = {})
-        ['block_device_mapping', value]
+        ["block_device_mapping", value]
       end
 
       # Custom mapping for server user data
@@ -212,8 +212,8 @@ class SparkleFormation
       # @option args [Hash] :original_resource
       # @return [Array<String, Object>] name and new value
       def nova_server_user_data(value, args = {})
-        args[:new_properties][:user_data_format] = 'RAW'
-        args[:new_properties][:config_drive] = 'true'
+        args[:new_properties][:user_data_format] = "RAW"
+        args[:new_properties][:config_drive] = "true"
         [:user_data, Hash[value.values.first]]
       end
 
@@ -225,25 +225,25 @@ class SparkleFormation
       # @param old_resource [Hash]
       # @return [Object]
       def nova_server_finalizer(resource_name, new_resource, old_resource)
-        if old_resource['Metadata']
-          new_resource['Metadata'] = old_resource['Metadata']
-          proceed = new_resource['Metadata'] &&
-                    new_resource['Metadata']['AWS::CloudFormation::Init'] &&
-                    config = new_resource['Metadata']['AWS::CloudFormation::Init']['config']
+        if old_resource["Metadata"]
+          new_resource["Metadata"] = old_resource["Metadata"]
+          proceed = new_resource["Metadata"] &&
+                    new_resource["Metadata"]["AWS::CloudFormation::Init"] &&
+                    config = new_resource["Metadata"]["AWS::CloudFormation::Init"]["config"]
           if proceed
             # NOTE: This is a stupid hack since HOT gives the URL to
             # wget directly and if special characters exist, it fails
-            if files = config['files']
+            if files = config["files"]
               files.each do |key, args|
-                if args['source']
-                  if args['source'].is_a?(String)
-                    args['source'].replace("\"#{args['source']}\"")
+                if args["source"]
+                  if args["source"].is_a?(String)
+                    args["source"].replace("\"#{args["source"]}\"")
                   else
-                    args['source'] = {
-                      'Fn::Join' => [
-                        '', [
+                    args["source"] = {
+                      "Fn::Join" => [
+                        "", [
                           "\"",
-                          args['source'],
+                          args["source"],
                           "\"",
                         ],
                       ],
@@ -265,13 +265,13 @@ class SparkleFormation
       # @param old_resource [Hash]
       # @return [TrueClass]
       def neutron_subnet_finalizer(resource_name, new_resource, old_resource)
-        azs = new_resource['Properties'].delete('availability_zone')
+        azs = new_resource["Properties"].delete("availability_zone")
         if azs
           network_name = "NetworkFor#{resource_name}"
-          translated['Resources'][network_name] = {
-            'type' => 'OS::Neutron::Network',
+          translated["Resources"][network_name] = {
+            "type" => "OS::Neutron::Network",
           }
-          new_resource['Properties']['network'] = {'get_resource' => network_name}
+          new_resource["Properties"]["network"] = {"get_resource" => network_name}
         end
         true
       end
@@ -283,7 +283,7 @@ class SparkleFormation
       # @param old_resource [Hash]
       # @return [TrueClass]
       def neutron_net_finalizer(resource_name, new_resource, old_resource)
-        new_resource['Properties'].clear
+        new_resource["Properties"].clear
         true
       end
 
@@ -312,7 +312,7 @@ class SparkleFormation
       # @return [Array<String, Object>] name and new value
       # @todo implement
       def autoscaling_group_launchconfig(value, args = {})
-        ['resource', value]
+        ["resource", value]
       end
 
       # Default keys to snake cased format (underscore)
@@ -326,71 +326,71 @@ class SparkleFormation
       # Heat translation mapping
       MAP = {
         :resources => {
-          'AWS::EC2::Instance' => {
-            :name => 'OS::Nova::Server',
+          "AWS::EC2::Instance" => {
+            :name => "OS::Nova::Server",
             :finalizer => :nova_server_finalizer,
             :properties => {
-              'AvailabilityZone' => 'availability_zone',
-              'BlockDeviceMappings' => :nova_server_block_device_mapping,
-              'ImageId' => 'image',
-              'InstanceType' => 'flavor',
-              'KeyName' => 'key_name',
-              'NetworkInterfaces' => 'networks',
-              'SecurityGroups' => 'security_groups',
-              'SecurityGroupIds' => 'security_groups',
-              'Tags' => 'metadata',
-              'UserData' => :nova_server_user_data,
+              "AvailabilityZone" => "availability_zone",
+              "BlockDeviceMappings" => :nova_server_block_device_mapping,
+              "ImageId" => "image",
+              "InstanceType" => "flavor",
+              "KeyName" => "key_name",
+              "NetworkInterfaces" => "networks",
+              "SecurityGroups" => "security_groups",
+              "SecurityGroupIds" => "security_groups",
+              "Tags" => "metadata",
+              "UserData" => :nova_server_user_data,
             },
           },
-          'AWS::AutoScaling::AutoScalingGroup' => {
-            :name => 'OS::Heat::AutoScalingGroup',
+          "AWS::AutoScaling::AutoScalingGroup" => {
+            :name => "OS::Heat::AutoScalingGroup",
             :properties => {
-              'Cooldown' => 'cooldown',
-              'DesiredCapacity' => 'desired_capacity',
-              'MaxSize' => 'max_size',
-              'MinSize' => 'min_size',
-              'LaunchConfigurationName' => :autoscaling_group_launchconfig,
+              "Cooldown" => "cooldown",
+              "DesiredCapacity" => "desired_capacity",
+              "MaxSize" => "max_size",
+              "MinSize" => "min_size",
+              "LaunchConfigurationName" => :autoscaling_group_launchconfig,
             },
           },
-          'AWS::AutoScaling::LaunchConfiguration' => :delete,
-          'AWS::ElasticLoadBalancing::LoadBalancer' => {
-            :name => 'OS::Neutron::LoadBalancer',
+          "AWS::AutoScaling::LaunchConfiguration" => :delete,
+          "AWS::ElasticLoadBalancing::LoadBalancer" => {
+            :name => "OS::Neutron::LoadBalancer",
             :finalizer => :neutron_loadbalancer_finalizer,
             :properties => {
-              'Instances' => 'members',
-              'Listeners' => 'listeners',
-              'HealthCheck' => 'health_check',
-              'Subnets' => 'subnets',
+              "Instances" => "members",
+              "Listeners" => "listeners",
+              "HealthCheck" => "health_check",
+              "Subnets" => "subnets",
             },
           },
-          'AWS::EC2::VPC' => {
-            :name => 'OS::Neutron::Net',
+          "AWS::EC2::VPC" => {
+            :name => "OS::Neutron::Net",
             :finalizer => :neutron_net_finalizer,
             :properties => {
-              'CidrBlock' => 'cidr',
+              "CidrBlock" => "cidr",
             },
           },
-          'AWS::EC2::Subnet' => {
-            :name => 'OS::Neutron::Subnet',
+          "AWS::EC2::Subnet" => {
+            :name => "OS::Neutron::Subnet",
             :finalizer => :neutron_subnet_finalizer,
             :properties => {
-              'CidrBlock' => 'cidr',
-              'VpcId' => 'network',
-              'AvailabilityZone' => 'availability_zone',
+              "CidrBlock" => "cidr",
+              "VpcId" => "network",
+              "AvailabilityZone" => "availability_zone",
             },
           },
         },
       }
 
       REF_MAPPING = {
-        'AWS::StackName' => 'OS::stack_name',
-        'AWS::StackId' => 'OS::stack_id',
-        'AWS::Region' => 'OS::stack_id', # @todo i see it set in source, but no function. wat
+        "AWS::StackName" => "OS::stack_name",
+        "AWS::StackId" => "OS::stack_id",
+        "AWS::Region" => "OS::stack_id", # @todo i see it set in source, but no function. wat
       }
 
       FN_MAPPING = {
-        'Fn::GetAtt' => 'get_attr',
-        'Fn::Join' => 'list_join',
+        "Fn::GetAtt" => "get_attr",
+        "Fn::Join" => "list_join",
       }
     end
   end

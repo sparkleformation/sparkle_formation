@@ -1,5 +1,5 @@
-require 'sparkle_formation'
-require 'attribute_struct/monkey_camels'
+require "sparkle_formation"
+require "attribute_struct/monkey_camels"
 
 class SparkleFormation
 
@@ -74,7 +74,7 @@ class SparkleFormation
     def _self(*_)
       unless @self
         if _parent.nil?
-          ::Kernel.raise ::ArgumentError.new 'Creator did not provide return reference!'
+          ::Kernel.raise ::ArgumentError.new "Creator did not provide return reference!"
         else
           _parent._self
         end
@@ -114,13 +114,13 @@ class SparkleFormation
     # FunctionStruct
     def method_missing(sym, *args, &block)
       if sym.is_a?(::String) || sym.is_a?(::Symbol)
-        if sym.to_s.start_with?('_') || sym.to_s.end_with?('!')
+        if sym.to_s.start_with?("_") || sym.to_s.end_with?("!")
           ::Kernel.raise ::NoMethodError.new "Undefined method `#{sym}` for #{_klass.name}"
         end
       end
       super(*[sym, *args], &block)
       if sym.is_a?(::String) || sym.is_a?(::Symbol)
-        if (s = sym.to_s).end_with?('=')
+        if (s = sym.to_s).end_with?("=")
           s.slice!(-1, s.length)
           sym = s
         end

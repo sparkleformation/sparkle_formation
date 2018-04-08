@@ -1,4 +1,4 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 class SparkleFormation
 
@@ -18,7 +18,7 @@ class SparkleFormation
             load(
               File.join(
                 File.dirname(__FILE__),
-                'rackspace_resources.json'
+                "rackspace_resources.json"
               )
             )
             true

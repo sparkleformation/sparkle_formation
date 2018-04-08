@@ -1,4 +1,4 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 class SparkleFormation
 
@@ -27,7 +27,7 @@ class SparkleFormation
         if name
           "Failed to locate item named: `#{name}`"
         else
-          'Failed to locate item'
+          "Failed to locate item"
         end
       end
 

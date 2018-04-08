@@ -1,4 +1,4 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 class SparkleFormation
 
@@ -9,9 +9,9 @@ class SparkleFormation
     class Azure < Resources
 
       # Characters to be removed from supplied key on matching
-      RESOURCE_TYPE_TR = '/._'
+      RESOURCE_TYPE_TR = "/._"
       # String to split for resource namespacing
-      RESOURCE_TYPE_NAMESPACE_SPLITTER = ['.', '/']
+      RESOURCE_TYPE_NAMESPACE_SPLITTER = [".", "/"]
 
       class << self
         include Bogo::Memoization
@@ -24,7 +24,7 @@ class SparkleFormation
             load(
               File.join(
                 File.dirname(__FILE__),
-                'azure_resources.json'
+                "azure_resources.json"
               )
             )
             true
@@ -44,10 +44,10 @@ class SparkleFormation
         # @return [SparkleStruct]
         def resource_customizer(struct, lookup_key)
           info = registry[lookup_key]
-          if info[:required].include?('apiVersion') && struct.api_version.nil?
+          if info[:required].include?("apiVersion") && struct.api_version.nil?
             struct.api_version info[:api_version]
           end
-          if info[:required].include?('location') && struct.location.nil?
+          if info[:required].include?("location") && struct.location.nil?
             struct.location struct.resource_group!.location
           end
           struct

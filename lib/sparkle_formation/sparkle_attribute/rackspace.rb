@@ -1,4 +1,4 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 class SparkleFormation
 

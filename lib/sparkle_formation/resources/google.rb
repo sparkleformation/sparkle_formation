@@ -1,4 +1,4 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 class SparkleFormation
 
@@ -9,9 +9,9 @@ class SparkleFormation
     class Google < Resources
 
       # Characters to be removed from supplied key on matching
-      RESOURCE_TYPE_TR = '._'
+      RESOURCE_TYPE_TR = "._"
       # String to split for resource namespacing
-      RESOURCE_TYPE_NAMESPACE_SPLITTER = ['.']
+      RESOURCE_TYPE_NAMESPACE_SPLITTER = ["."]
 
       class << self
         include Bogo::Memoization
@@ -24,13 +24,13 @@ class SparkleFormation
             load(
               File.join(
                 File.dirname(__FILE__),
-                'google_resources.json'
+                "google_resources.json"
               )
             )
             # NOTE: Internal resource type used for nesting
-            registry['sparkleformation.stack'] = {
-              'properties' => [],
-              'full_properties' => {},
+            registry["sparkleformation.stack"] = {
+              "properties" => [],
+              "full_properties" => {},
             }
             true
           end

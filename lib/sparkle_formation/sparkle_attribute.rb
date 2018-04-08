@@ -1,16 +1,16 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 class SparkleFormation
 
   # Provides template helper methods
   module SparkleAttribute
-    autoload :Aws, 'sparkle_formation/sparkle_attribute/aws'
-    autoload :Azure, 'sparkle_formation/sparkle_attribute/azure'
-    autoload :Google, 'sparkle_formation/sparkle_attribute/google'
-    autoload :Heat, 'sparkle_formation/sparkle_attribute/heat'
-    autoload :OpenStack, 'sparkle_formation/sparkle_attribute/heat'
-    autoload :Rackspace, 'sparkle_formation/sparkle_attribute/rackspace'
-    autoload :Terraform, 'sparkle_formation/sparkle_attribute/terraform'
+    autoload :Aws, "sparkle_formation/sparkle_attribute/aws"
+    autoload :Azure, "sparkle_formation/sparkle_attribute/azure"
+    autoload :Google, "sparkle_formation/sparkle_attribute/google"
+    autoload :Heat, "sparkle_formation/sparkle_attribute/heat"
+    autoload :OpenStack, "sparkle_formation/sparkle_attribute/heat"
+    autoload :Rackspace, "sparkle_formation/sparkle_attribute/rackspace"
+    autoload :Terraform, "sparkle_formation/sparkle_attribute/terraform"
 
     # Return current resource name
     #
@@ -28,7 +28,7 @@ class SparkleFormation
         end
       end
       unless result
-        ::Kernel.raise NameError.new 'Failed to determine current resource name! (Check call location)'
+        ::Kernel.raise NameError.new "Failed to determine current resource name! (Check call location)"
       end
       if result.is_a?(::SparkleFormation::FunctionStruct)
         result = result._clone
@@ -43,7 +43,7 @@ class SparkleFormation
     # @param command [String]
     # @return [String] result
     def _system(command)
-      ::Kernel.send('`', command)
+      ::Kernel.send("`", command)
     end
 
     alias_method :system!, :_system

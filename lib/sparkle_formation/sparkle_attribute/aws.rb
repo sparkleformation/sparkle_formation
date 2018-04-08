@@ -1,4 +1,4 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 class SparkleFormation
 
@@ -21,7 +21,7 @@ class SparkleFormation
         unless args.size == 1
           args = [args]
         end
-        {'Fn::Join' => [options[:options][:delimiter] || '', *args]}
+        {"Fn::Join" => [options[:options][:delimiter] || "", *args]}
       end
 
       alias_method :join!, :_cf_join
@@ -34,7 +34,7 @@ class SparkleFormation
       def _cf_split(string, delimiter)
         __t_stringish(string) unless string.is_a?(Hash)
         __t_stringish(delimiter) unless delimiter.is_a?(Hash)
-        {'Fn::Split' => [delimiter, string]}
+        {"Fn::Split" => [delimiter, string]}
       end
 
       alias_method :split!, :_cf_split
@@ -46,10 +46,10 @@ class SparkleFormation
       # @return [Hash]
       def _cf_sub(string, variables = nil)
         if variables.nil?
-          {'Fn::Sub' => string}
+          {"Fn::Sub" => string}
         else
           __t_hashish(variables)
-          {'Fn::Sub' => [string, variables]}
+          {"Fn::Sub" => [string, variables]}
         end
       end
 
@@ -63,7 +63,7 @@ class SparkleFormation
       # @note Symbol value will force key processing
       def _cf_ref(thing)
         __t_stringish(thing)
-        {'Ref' => __attribute_key(thing)}
+        {"Ref" => __attribute_key(thing)}
       end
 
       alias_method :_ref, :_cf_ref
@@ -75,7 +75,7 @@ class SparkleFormation
       # @return [Hash]
       def _cf_value_import(thing)
         __t_stringish(thing) unless thing.is_a?(Hash)
-        {'Fn::ImportValue' => __attribute_key(thing)}
+        {"Fn::ImportValue" => __attribute_key(thing)}
       end
 
       alias_method :_import_value, :_cf_value_import
@@ -100,7 +100,7 @@ class SparkleFormation
         if key.is_a?(Symbol)
           key = ref!(key)
         end
-        {'Fn::FindInMap' => [thing, key, *suffix]}
+        {"Fn::FindInMap" => [thing, key, *suffix]}
       end
 
       alias_method :_cf_find_in_map, :_cf_map
@@ -123,7 +123,7 @@ class SparkleFormation
             thing
           end
         end
-        {'Fn::GetAtt' => [__attribute_key(r_name), *args]}
+        {"Fn::GetAtt" => [__attribute_key(r_name), *args]}
       end
 
       alias_method :_cf_get_att, :_cf_attr
@@ -135,7 +135,7 @@ class SparkleFormation
       # @param arg [Object] argument to be encoded
       # @return [Hash]
       def _cf_base64(arg)
-        {'Fn::Base64' => arg}
+        {"Fn::Base64" => arg}
       end
 
       alias_method :base64!, :_cf_base64
@@ -149,11 +149,11 @@ class SparkleFormation
                  when Symbol
                    _cf_ref(region)
                  when NilClass
-                   ''
+                   ""
                  else
                    region
                  end
-        {'Fn::GetAZs' => region}
+        {"Fn::GetAZs" => region}
       end
 
       alias_method :get_azs!, :_cf_get_azs
@@ -167,7 +167,7 @@ class SparkleFormation
       def _cf_select(index, item)
         index = index.is_a?(Symbol) ? _cf_ref(index) : index
         item = _cf_ref(item) if item.is_a?(Symbol)
-        {'Fn::Select' => [index, item]}
+        {"Fn::Select" => [index, item]}
       end
 
       alias_method :select!, :_cf_select
@@ -178,7 +178,7 @@ class SparkleFormation
       # @return [Hash]
       def _condition(name)
         __t_stringish(name)
-        {'Condition' => __attribute_key(name)}
+        {"Condition" => __attribute_key(name)}
       end
 
       alias_method :condition!, :_condition
@@ -202,7 +202,7 @@ class SparkleFormation
       # @param false_value [Object] item to be used when false
       # @return [Hash]
       def _if(cond, true_value, false_value)
-        {'Fn::If' => _array(__attribute_key(cond), true_value, false_value)}
+        {"Fn::If" => _array(__attribute_key(cond), true_value, false_value)}
       end
 
       alias_method :if!, :_if
@@ -215,7 +215,7 @@ class SparkleFormation
       #   will be set as condition directly. procs will be evaluated
       def _and(*args)
         {
-          'Fn::And' => _array(
+          "Fn::And" => _array(
             *args.map { |v|
             if v.is_a?(Symbol) || v.is_a?(String)
               _condition(v)
@@ -235,7 +235,7 @@ class SparkleFormation
       # @param v2 [Object]
       # @return [Hash]
       def _equals(v1, v2)
-        {'Fn::Equals' => _array(v1, v2)}
+        {"Fn::Equals" => _array(v1, v2)}
       end
 
       alias_method :equals!, :_equals
@@ -250,7 +250,7 @@ class SparkleFormation
         else
           arg = _array(arg).first
         end
-        {'Fn::Not' => [arg]}
+        {"Fn::Not" => [arg]}
       end
 
       alias_method :not!, :_not
@@ -262,7 +262,7 @@ class SparkleFormation
       # @return [Hash]
       def _or(*args)
         {
-          'Fn::Or' => _array(
+          "Fn::Or" => _array(
             *args.map { |v|
             if v.is_a?(Symbol) || v.is_a?(String)
               _condition(v)
@@ -280,7 +280,7 @@ class SparkleFormation
       #
       # @return [Hash]
       def _no_value
-        _ref('AWS::NoValue')
+        _ref("AWS::NoValue")
       end
 
       alias_method :no_value!, :_no_value
@@ -289,7 +289,7 @@ class SparkleFormation
       #
       # @return [Hash]
       def _region
-        _ref('AWS::Region')
+        _ref("AWS::Region")
       end
 
       alias_method :region!, :_region
@@ -298,7 +298,7 @@ class SparkleFormation
       #
       # @return [Hash]
       def _notification_arns
-        _ref('AWS::NotificationARNs')
+        _ref("AWS::NotificationARNs")
       end
 
       alias_method :notification_arns!, :_notification_arns
@@ -307,7 +307,7 @@ class SparkleFormation
       #
       # @return [Hash]
       def _account_id
-        _ref('AWS::AccountId')
+        _ref("AWS::AccountId")
       end
 
       alias_method :account_id!, :_account_id
@@ -316,7 +316,7 @@ class SparkleFormation
       #
       # @return [Hash]
       def _stack_id
-        _ref('AWS::StackId')
+        _ref("AWS::StackId")
       end
 
       alias_method :stack_id!, :_stack_id
@@ -325,7 +325,7 @@ class SparkleFormation
       #
       # @return [Hash]
       def _stack_name
-        _ref('AWS::StackName')
+        _ref("AWS::StackName")
       end
 
       alias_method :stack_name!, :_stack_name
@@ -340,7 +340,7 @@ class SparkleFormation
       # @return [Array<String>]
       # @note this will directly modify the struct at its current context to inject depends on structure
       def _depends_on(*args)
-        _set('DependsOn', [args].flatten.compact.map { |s| __attribute_key(s) })
+        _set("DependsOn", [args].flatten.compact.map { |s| __attribute_key(s) })
       end
 
       alias_method :depends_on!, :_depends_on
@@ -358,8 +358,8 @@ class SparkleFormation
       # @return [TrueClass, FalseClass] resource can be tagged
       def taggable?
         if self[:type]
-          resource = _self._provider._resources.lookup(self[:type].gsub('::', '_').downcase)
-          resource && resource[:properties].include?('Tags')
+          resource = _self._provider._resources.lookup(self[:type].gsub("::", "_").downcase)
+          resource && resource[:properties].include?("Tags")
         else
           if _parent
             _parent.taggable?
@@ -373,9 +373,9 @@ class SparkleFormation
       # @return [SparkleStruct]
       def _tags(hash)
         __t_hashish(hash)
-        _set('Tags',
+        _set("Tags",
              hash.map { |k, v|
-          {'Key' => __attribute_key(k), 'Value' => v}
+          {"Key" => __attribute_key(k), "Value" => v}
         })
       end
 

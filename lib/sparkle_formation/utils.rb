@@ -15,13 +15,13 @@ class SparkleFormation
       def __t_check(val, types)
         types = [types] unless types.is_a?(Array)
         if types.none? { |t| val.is_a?(t) }
-          ignore_paths = Gem::Specification.find_by_name('sparkle_formation').full_require_paths
+          ignore_paths = Gem::Specification.find_by_name("sparkle_formation").full_require_paths
           file_name, line_no = ::Kernel.caller.detect do |l|
             ignore_paths.none? { |i_path| l.include?(i_path) }
-          end.split(':')[0, 2]
-          file_name = file_name.to_s.sub(::Dir.pwd, '.')
+          end.split(":")[0, 2]
+          file_name = file_name.to_s.sub(::Dir.pwd, ".")
           ::Kernel.raise TypeError.new "Received invalid value type `#{val.class}`! " \
-                                       "(Allowed types: `#{types.join('`, `')}`) -> #{file_name} @ line #{line_no}"
+                                       "(Allowed types: `#{types.join("`, `")}`) -> #{file_name} @ line #{line_no}"
         end
       end
 
@@ -49,7 +49,7 @@ class SparkleFormation
       # @param string [String]
       # @return [String]
       def camel(string)
-        string.to_s.split('_').map { |k| "#{k.slice(0, 1).upcase}#{k.slice(1, k.length)}" }.join
+        string.to_s.split("_").map { |k| "#{k.slice(0, 1).upcase}#{k.slice(1, k.length)}" }.join
       end
 
       # Snake case (underscore) string

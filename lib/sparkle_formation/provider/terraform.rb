@@ -1,4 +1,4 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 class SparkleFormation
   module Provider
@@ -49,7 +49,7 @@ class SparkleFormation
       # @note Nested templates aren't defined as a specific type thus no "real"
       #   type exists. So we'll create a custom one!
       def stack_resource_type
-        'module'
+        "module"
       end
 
       # Generate policy for stack
@@ -94,7 +94,7 @@ class SparkleFormation
 
       # Forcibly disable shallow nesting
       def apply_shallow_nesting(*args, &block)
-        raise NotImplementedError.new 'Shallow nesting is not supported for this provider!'
+        raise NotImplementedError.new "Shallow nesting is not supported for this provider!"
       end
 
       # Extract output to make available for stack parameter usage at the
@@ -123,9 +123,9 @@ class SparkleFormation
             end
           end
           raise ArgumentError.new "Failed to detect available bubbling path for output `#{output_name}`. " <<
-                                    'This may be due to a circular dependency! ' <<
-                                    "(Output Path: #{outputs[output_name].root_path.map(&:name).join(' > ')} " <<
-                                    "Requester Path: #{root_path.map(&:name).join(' > ')})"
+                                    "This may be due to a circular dependency! " <<
+                                    "(Output Path: #{outputs[output_name].root_path.map(&:name).join(" > ")} " <<
+                                    "Requester Path: #{root_path.map(&:name).join(" > ")})"
         end
         result = source_stack.compile._stack_output(bubble_path.first.name, output_name)
         if drip_path.size > 1
@@ -134,7 +134,7 @@ class SparkleFormation
           drip_path.each_slice(2) do |base_sparkle, ref_sparkle|
             next unless ref_sparkle
             base_sparkle.compile.resources[ref_sparkle.name].properties.parameters.value._set(output_name, result)
-            ref_sparkle.compile.parameters._set(output_name).type 'string' # TODO: <<<<------ type check and prop
+            ref_sparkle.compile.parameters._set(output_name).type "string" # TODO: <<<<------ type check and prop
             result = compile._parameter(output_name)
           end
         end

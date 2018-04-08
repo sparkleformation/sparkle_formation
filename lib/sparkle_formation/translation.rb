@@ -1,12 +1,12 @@
-require 'sparkle_formation'
-require 'multi_json'
-require 'logger'
+require "sparkle_formation"
+require "multi_json"
+require "logger"
 
 class SparkleFormation
   # Translator
   class Translation
-    autoload :Heat, 'sparkle_formation/translation/heat'
-    autoload :Rackspace, 'sparkle_formation/translation/rackspace'
+    autoload :Heat, "sparkle_formation/translation/heat"
+    autoload :Rackspace, "sparkle_formation/translation/rackspace"
 
     include SparkleFormation::Utils::AnimalStrings
     include SparkleFormation::SparkleAttribute
@@ -41,25 +41,25 @@ class SparkleFormation
     # @return [Hash] parameters for template
     def parameters
       Hash[
-        @original.fetch('Parameters', {}).map do |k, v|
-          [k, v.fetch('Default', '')]
+        @original.fetch("Parameters", {}).map do |k, v|
+          [k, v.fetch("Default", "")]
         end
       ].merge(@parameters)
     end
 
     # @return [Hash] mappings for template
     def mappings
-      @original.fetch('Mappings', {})
+      @original.fetch("Mappings", {})
     end
 
     # @return [Hash] resources for template
     def resources
-      @original.fetch('Resources', {})
+      @original.fetch("Resources", {})
     end
 
     # @return [Hash] outputs for template
     def outputs
-      @original.fetch('Outputs', {})
+      @original.fetch("Outputs", {})
     end
 
     # @return [Hash] resource mapping
@@ -96,18 +96,18 @@ class SparkleFormation
     # @return [Hash, NilClass] new resource Hash or nil
     def resource_translation(resource_name, resource_args)
       new_resource = {}
-      lookup = map[:resources][resource_args['Type']]
+      lookup = map[:resources][resource_args["Type"]]
       if lookup.nil?
-        logger.warn "Failed to locate resource type: #{resource_args['Type']}"
+        logger.warn "Failed to locate resource type: #{resource_args["Type"]}"
         nil
       elsif lookup == :delete
         logger.warn "Deleting resource #{resource_name} due to configuration"
         nil
       else
-        new_resource['Type'] = lookup[:name]
-        if resource_args['Properties']
-          new_resource['Properties'] = format_properties(
-            :original_properties => resource_args['Properties'],
+        new_resource["Type"] = lookup[:name]
+        if resource_args["Properties"]
+          new_resource["Properties"] = format_properties(
+            :original_properties => resource_args["Properties"],
             :property_map => lookup[:properties],
             :new_resource => new_resource,
             :original_resource => resource_args,
@@ -130,7 +130,7 @@ class SparkleFormation
     # @option args [Hash] :original_resource
     # @return [Hash]
     def format_properties(args)
-      args[:new_resource]['Properties'] = {}.tap do |new_properties|
+      args[:new_resource]["Properties"] = {}.tap do |new_properties|
         args[:original_properties].each do |property_name, property_value|
           new_key = args[:property_map][property_name]
           if new_key
@@ -147,7 +147,7 @@ class SparkleFormation
             end
           else
             logger.warn "Failed to locate property conversion for `#{property_name}` on " \
-                        "resource type `#{args[:new_resource]['Type']}`. Passing directly."
+                        "resource type `#{args[:new_resource]["Type"]}`. Passing directly."
             new_properties[default_key_format(property_name)] = property_value
           end
         end
@@ -159,8 +159,8 @@ class SparkleFormation
     # @param value [Hash] resources hash
     # @return [Hash]
     def translate_resources(value)
-      translated['Resources'] = {}
-      translated['Resources'].tap do |modified_resources|
+      translated["Resources"] = {}
+      translated["Resources"].tap do |modified_resources|
         value.each do |resource_name, resource_args|
           new_resource = resource_translation(resource_name, resource_args)
           if new_resource
@@ -185,7 +185,7 @@ class SparkleFormation
     def dereference(obj)
       result = obj
       if obj.is_a?(Hash)
-        name = obj['Ref'] || obj['get_param']
+        name = obj["Ref"] || obj["get_param"]
         if name
           p_val = parameters[name.to_s]
           if p_val
@@ -203,7 +203,7 @@ class SparkleFormation
     def resource_name(obj)
       case obj
       when Hash
-        obj['Ref'] || obj['get_resource']
+        obj["Ref"] || obj["get_resource"]
       else
         obj.to_s
       end
@@ -258,13 +258,13 @@ class SparkleFormation
     def apply_rename(hash, names = [])
       k, v = hash.first
       if hash.size == 1
-        if k.start_with?('Fn::')
+        if k.start_with?("Fn::")
           {self.class.const_get(:FN_MAPPING).fetch(k, k) => attr_mapping(*v)}
-        elsif k == 'Ref'
+        elsif k == "Ref"
           if resources.key?(v)
-            {'get_resource' => v}
+            {"get_resource" => v}
           else
-            {'get_param' => self.class.const_get(:REF_MAPPING).fetch(v, v)}
+            {"get_param" => self.class.const_get(:REF_MAPPING).fetch(v, v)}
           end
         else
           hash
@@ -283,7 +283,7 @@ class SparkleFormation
       result = [resource_name, value]
       if r = resources[resource_name]
         attr_map = self.class.const_get(:FN_ATT_MAPPING)
-        if attr_map[r['Type']] && replacement = attr_map[r['Type']][value]
+        if attr_map[r["Type"]] && replacement = attr_map[r["Type"]][value]
           result = [resource_name, *[replacement].flatten.compact]
         end
       end
@@ -299,11 +299,11 @@ class SparkleFormation
     #   replacements using the REF_MAPPING constant
     def apply_function(hash, funcs = [])
       k, v = hash.first
-      if hash.size == 1 && (k.start_with?('Fn') || k == 'Ref') && (funcs.empty? || funcs.include?(k))
+      if hash.size == 1 && (k.start_with?("Fn") || k == "Ref") && (funcs.empty? || funcs.include?(k))
         case k
-        when 'Fn::Join'
+        when "Fn::Join"
           v.last.join(v.first)
-        when 'Fn::FindInMap'
+        when "Fn::FindInMap"
           map_holder = mappings[v[0]]
           if map_holder
             map_item = map_holder[dereference(v[1])]
@@ -315,8 +315,8 @@ class SparkleFormation
           else
             raise "Failed to find mapping! (#{v[0]})"
           end
-        when 'Ref'
-          {'Ref' => self.class.const_get(:REF_MAPPING).fetch(v, v)}
+        when "Ref"
+          {"Ref" => self.class.const_get(:REF_MAPPING).fetch(v, v)}
         else
           hash
         end

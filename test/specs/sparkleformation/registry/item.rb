@@ -1,3 +1,3 @@
 SfnRegistry.register(:item) do
-  'item value'
+  "item value"
 end

@@ -1,4 +1,4 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 class SparkleFormation
 
@@ -91,7 +91,7 @@ class SparkleFormation
       if args.empty?
         super
       else
-        @table['_function_'] = _klass_new(name, *args)
+        @table["_function_"] = _klass_new(name, *args)
       end
     end
 
@@ -115,7 +115,7 @@ class SparkleFormation
         key, value = @table.first
         suffix = _eval_join(
           *[
-          key == '_function_' ? nil : key,
+          key == "_function_" ? nil : key,
           !value.nil? ? value._dump : nil,
         ].compact
         )
@@ -132,7 +132,7 @@ class SparkleFormation
           else
             arg.inspect
           end
-        end.join(', ')
+        end.join(", ")
         unless _fn_name.to_s.empty?
           function_name = args.empty? ? "#{_fn_name}#{__empty_argument_list}" : "#{_fn_name}(#{args})"
         end
@@ -165,7 +165,7 @@ class SparkleFormation
       args = args.compact
       args.delete_if &:empty?
       args.slice(1, args.size).to_a.inject(args.first) do |memo, item|
-        if item.start_with?('[')
+        if item.start_with?("[")
           memo += item
         else
           memo += ".#{item}"
@@ -189,17 +189,17 @@ class SparkleFormation
 
     # @return [String] start character(s) used to anchor function call
     def __anchor_start
-      '['
+      "["
     end
 
     # @return [String] stop character(s) used to anchor function call
     def __anchor_stop
-      ']'
+      "]"
     end
 
     # @return [String] value to use when argument list is empty
     def __empty_argument_list
-      '()'
+      "()"
     end
 
     # @return [String] dump from root
@@ -239,9 +239,9 @@ class SparkleFormation
       if _fn_context && _fn_context.root!.data![_fn_name] && _fn_context.root!.data![_fn_name].data![_fn_args.first]
         __valid_keys = _fn_context.root!.data![_fn_name].data![_fn_args.first].keys!
         __current_key = @table.keys.first
-        __match_key = __current_key.to_s.downcase.gsub('_', '')
+        __match_key = __current_key.to_s.downcase.gsub("_", "")
         __key_remap = __valid_keys.detect do |__nested_key|
-          __nested_key.to_s.downcase.gsub('_', '') == __match_key
+          __nested_key.to_s.downcase.gsub("_", "") == __match_key
         end
         if __key_remap
           @table[__key_remap] = @table.delete(@table.keys.first)
@@ -261,17 +261,17 @@ class SparkleFormation
 
     # @return [String] start character(s) used to anchor function call
     def __anchor_start
-      '{{ '
+      "{{ "
     end
 
     # @return [String] stop character(s) used to anchor function call
     def __anchor_stop
-      ' }}'
+      " }}"
     end
 
     # @return [String] value to use when argument list is empty
     def __empty_argument_list
-      ''
+      ""
     end
 
     # @return [FalseClass] disable single quote string generation
@@ -290,17 +290,17 @@ class SparkleFormation
 
     # @return [String] start character(s) used to anchor function call
     def __anchor_start
-      '{% '
+      "{% "
     end
 
     # @return [String] stop character(s) used to anchor function call
     def __anchor_stop
-      ' %}'
+      " %}"
     end
 
     # @return [String] value to use when argument list is empty
     def __empty_argument_list
-      ''
+      ""
     end
 
     # @return [FalseClass] disable single quote string generation
@@ -319,17 +319,17 @@ class SparkleFormation
 
     # @return [String] start character(s) used to anchor function call
     def __anchor_start
-      '$('
+      "$("
     end
 
     # @return [String] stop character(s) used to anchor function call
     def __anchor_stop
-      ')'
+      ")"
     end
 
     # @return [String] value to use when argument list is empty
     def __empty_argument_list
-      ''
+      ""
     end
 
     # @return [FalseClass] disable single quote string generation
@@ -348,17 +348,17 @@ class SparkleFormation
 
     # @return [String] start character(s) used to anchor function call
     def __anchor_start
-      '${'
+      "${"
     end
 
     # @return [String] stop character(s) used to anchor function call
     def __anchor_stop
-      '}'
+      "}"
     end
 
     # @return [String] value to use when argument list is empty
     def __empty_argument_list
-      ''
+      ""
     end
 
     # @return [FalseClass] disable single quote string generation

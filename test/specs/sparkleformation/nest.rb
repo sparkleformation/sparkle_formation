@@ -1,4 +1,4 @@
-SparkleFormation.new('nest') do
+SparkleFormation.new("nest") do
   nest!(:dummy)
   nest!(:simple)
   nest!(:dummy, :second)

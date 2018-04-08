@@ -1,3 +1,3 @@
 SfnRegistry.register(:shared, :provider => :shared) do
-  'shared'
+  "shared"
 end

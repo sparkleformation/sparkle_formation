@@ -1,1 +1,1 @@
-SfnRegistry.register(:item) { 'Customvalue' }
+SfnRegistry.register(:item) { "Customvalue" }

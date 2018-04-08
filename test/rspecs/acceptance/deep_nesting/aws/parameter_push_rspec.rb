@@ -1,32 +1,32 @@
-require_relative '../../../../rspecs'
+require_relative "../../../../rspecs"
 
-RSpec.describe 'Acceptance -> Deep Nesting -> Aws' do
-  describe '-> Deep nesting parameter push' do
+RSpec.describe "Acceptance -> Deep Nesting -> Aws" do
+  describe "-> Deep nesting parameter push" do
     let(:root) do
       SparkleFormation.new(:root) do
-        parameters.test_param.type 'String'
+        parameters.test_param.type "String"
       end
     end
 
     let(:with_param) do
       SparkleFormation.new(:with_param) do
-        parameters.test_param.type 'String'
+        parameters.test_param.type "String"
       end
     end
 
     let(:with_param_2) do
       SparkleFormation.new(:with_param_2) do
-        parameters.test_param.type 'String'
+        parameters.test_param.type "String"
       end
     end
 
     let(:without_param) do
       SparkleFormation.new(:without_param) do
-        parameters.different_param.type 'String'
+        parameters.different_param.type "String"
       end
     end
 
-    context 'with single nested parameter path' do
+    context "with single nested parameter path" do
       before do
         prm = with_param
         root.overrides do
@@ -38,14 +38,14 @@ RSpec.describe 'Acceptance -> Deep Nesting -> Aws' do
         prm.parent = root
       end
 
-      it 'should map root parameter to nested stack' do
+      it "should map root parameter to nested stack" do
         root.apply_deep_nesting
         result = root.sparkle_dump.to_smash
-        nested_params = result.get('Resources', 'Nested', 'Properties', 'Parameters')
-        expect(nested_params).to eq('TestParam' => {'Ref' => 'TestParam'})
+        nested_params = result.get("Resources", "Nested", "Properties", "Parameters")
+        expect(nested_params).to eq("TestParam" => {"Ref" => "TestParam"})
       end
 
-      context 'with double nested parameter path' do
+      context "with double nested parameter path" do
         before do
           prm2 = with_param_2
           with_param.overrides do
@@ -57,26 +57,26 @@ RSpec.describe 'Acceptance -> Deep Nesting -> Aws' do
           prm2.parent = with_param
         end
 
-        it 'should map root parameter to first nested stack' do
+        it "should map root parameter to first nested stack" do
           root.apply_deep_nesting
           result = root.sparkle_dump.to_smash
-          nested_params = result.get('Resources', 'Nested', 'Properties', 'Parameters')
-          expect(nested_params).to eq('TestParam' => {'Ref' => 'TestParam'})
+          nested_params = result.get("Resources", "Nested", "Properties", "Parameters")
+          expect(nested_params).to eq("TestParam" => {"Ref" => "TestParam"})
         end
 
-        it 'should map root parameter to second nested stack' do
+        it "should map root parameter to second nested stack" do
           root.apply_deep_nesting
           result = root.sparkle_dump.to_smash
           nested_params = result.get(
-            'Resources', 'Nested', 'Properties', 'Stack',
-            'Resources', 'Nested2', 'Properties', 'Parameters'
+            "Resources", "Nested", "Properties", "Stack",
+            "Resources", "Nested2", "Properties", "Parameters"
           )
-          expect(nested_params).to eq('TestParam' => {'Ref' => 'TestParam'})
+          expect(nested_params).to eq("TestParam" => {"Ref" => "TestParam"})
         end
       end
     end
 
-    context 'with double nested no parameter path' do
+    context "with double nested no parameter path" do
       before do
         wo_prm = without_param
         prm = with_param
@@ -96,10 +96,10 @@ RSpec.describe 'Acceptance -> Deep Nesting -> Aws' do
         prm.parent = wo_prm
       end
 
-      it 'should map root parameter to first nested stack' do
+      it "should map root parameter to first nested stack" do
         root.apply_deep_nesting
         result = root.sparkle_dump.to_smash
-        nested_params = result.get('Rsources', 'Nested', 'Properties', 'Parameters')
+        nested_params = result.get("Rsources", "Nested", "Properties", "Parameters")
         expect(nested_params).to be_nil
       end
     end

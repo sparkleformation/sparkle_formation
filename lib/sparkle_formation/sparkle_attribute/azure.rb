@@ -1,4 +1,4 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 class SparkleFormation
 
@@ -14,12 +14,12 @@ class SparkleFormation
       # @param hash [Hash] template dump
       # @return [Hash]
       def self.resources_formatter(hash)
-        if hash.key?('resources') && !hash['resources'].is_a?(Array)
-          resources = hash.delete('resources')
-          hash['resources'] = Array.new
+        if hash.key?("resources") && !hash["resources"].is_a?(Array)
+          resources = hash.delete("resources")
+          hash["resources"] = Array.new
           resources.each do |r_name, r_contents|
-            hash['resources'].push(
-              r_contents.merge('name' => r_name)
+            hash["resources"].push(
+              r_contents.merge("name" => r_name)
             )
           end
         end
@@ -48,33 +48,33 @@ class SparkleFormation
 
       # Valid azure builtin functions
       AZURE_FUNCTIONS = [
-        'add',
-        'copyIndex',
-        'div',
-        'int',
-        'length',
-        'mod',
-        'mul',
-        'sub',
-        'base64',
-        'concat',
-        'padLeft',
-        'replace',
-        'split',
-        'string',
-        'substring',
-        'toLower',
-        'toUpper',
-        'trim',
-        'uniqueString',
-        'uri',
-        'deployment',
-        'parameters',
-        'listKeys',
-        'providers',
-        'reference',
-        'resourceGroup',
-        'subscription',
+        "add",
+        "copyIndex",
+        "div",
+        "int",
+        "length",
+        "mod",
+        "mul",
+        "sub",
+        "base64",
+        "concat",
+        "padLeft",
+        "replace",
+        "split",
+        "string",
+        "substring",
+        "toLower",
+        "toUpper",
+        "trim",
+        "uniqueString",
+        "uri",
+        "deployment",
+        "parameters",
+        "listKeys",
+        "providers",
+        "reference",
+        "resourceGroup",
+        "subscription",
       ]
 
       # NOTE: Alias implementation disabled due to Ruby 2.3 __callee__ bug
@@ -85,7 +85,7 @@ class SparkleFormation
       # @return [SparkleFormation::FunctionStruct]
       def _fn_format(*args)
         src = ::Kernel.__callee__.to_s
-        src = ::Bogo::Utility.camel(src.sub(/(^_|\!$)/, ''), false)
+        src = ::Bogo::Utility.camel(src.sub(/(^_|\!$)/, ""), false)
         ::SparkleFormation::FunctionStruct.new(src, *args)
       end
 
@@ -97,7 +97,7 @@ class SparkleFormation
 
         define_method("_#{f_name}".to_sym) do |*args|
           src = ::Kernel.__callee__.to_s
-          src = ::Bogo::Utility.camel(src.sub(/(^_|\!$)/, ''), false)
+          src = ::Bogo::Utility.camel(src.sub(/(^_|\!$)/, ""), false)
           ::SparkleFormation::FunctionStruct.new(src, *args)
         end
         alias_method "#{f_name}!".to_sym, "_#{f_name}".to_sym
@@ -107,7 +107,7 @@ class SparkleFormation
       #
       # @return [SparkleFormation::AzureVariableStruct]
       def _variables(*args)
-        x = ::SparkleFormation::AzureVariableStruct.new('variables', *args)
+        x = ::SparkleFormation::AzureVariableStruct.new("variables", *args)
         x._fn_context = self
         x
       end
@@ -122,7 +122,7 @@ class SparkleFormation
       # @return [FunctionStruct]
       def _resource_id(*args)
         if args.size > 1
-          ::SparkleFormation::FunctionStruct.new('resourceId', *args)
+          ::SparkleFormation::FunctionStruct.new("resourceId", *args)
         else
           r_name = args.first
           resource = _root.resources.set!(r_name)
@@ -134,7 +134,7 @@ class SparkleFormation
             )
           else
             ::SparkleFormation::FunctionStruct.new(
-              'resourceId',
+              "resourceId",
               resource.type,
               resource.resource_name!
             )
@@ -161,7 +161,7 @@ class SparkleFormation
             if resource.nil?
               ::Kernel.raise ::SparkleFormation::Error::NotFound::Resource.new(:name => item)
             else
-              [resource.type, resource.resource_name!].join('/')
+              [resource.type, resource.resource_name!].join("/")
             end
           else
             item

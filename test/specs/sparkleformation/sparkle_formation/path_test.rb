@@ -1,3 +1,3 @@
 SparkleFormation.new(:path_test) do
-  ref!(['bad', 'type'])
+  ref!(["bad", "type"])
 end

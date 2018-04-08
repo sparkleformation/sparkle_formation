@@ -1,4 +1,4 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 class SparkleFormation
 
@@ -26,7 +26,7 @@ class SparkleFormation
         args = args.map do |thing|
           __attribute_key(thing)
         end
-        {'get_attr' => args}
+        {"get_attr" => args}
       end
 
       alias_method :_attr, :_get_attr
@@ -45,7 +45,7 @@ class SparkleFormation
         unless args.size == 1
           args = [args]
         end
-        {'list_join' => [options[:options][:delimiter] || '', *args]}
+        {"list_join" => [options[:options][:delimiter] || "", *args]}
       end
 
       alias_method :_join, :_list_join
@@ -57,7 +57,7 @@ class SparkleFormation
       # @return [Hash]
       def _get_file(loc)
         __t_stringish(loc)
-        {'get_file' => loc}
+        {"get_file" => loc}
       end
 
       alias_method :_file, :_get_file
@@ -77,7 +77,7 @@ class SparkleFormation
         args = args.map do |thing|
           __attribute_key(thing)
         end
-        {'get_param' => args.size == 1 ? args.first : args}
+        {"get_param" => args.size == 1 ? args.first : args}
       end
 
       alias_method :_param, :_get_param
@@ -89,7 +89,7 @@ class SparkleFormation
       # @return [Hash]
       def _get_resource(r_name)
         __t_stringish(r_name)
-        {'get_resource' => __attribute_key(r_name)}
+        {"get_resource" => __attribute_key(r_name)}
       end
 
       alias_method :_resource, :_get_resource
@@ -99,9 +99,9 @@ class SparkleFormation
       #
       # @param value [String, Hash] thing to be hashed
       # @param algorithm [String] algorithm to use (defaults to 'sha512')
-      def _digest(value, algorithm = 'sha512')
+      def _digest(value, algorithm = "sha512")
         __t_stringish(algorithm)
-        {'digest' => [algorithm, value]}
+        {"digest" => [algorithm, value]}
       end
 
       alias_method :digest!, :_digest
@@ -112,7 +112,7 @@ class SparkleFormation
       # @return [Hash]
       def _resource_facade(type)
         __t_stringish(type)
-        {'resource_facade' => type}
+        {"resource_facade" => type}
       end
 
       alias_method :_facade, :_resource_facade
@@ -127,7 +127,7 @@ class SparkleFormation
       def _str_replace(template, params)
         __t_stringish(template)
         __t_hashish(params)
-        {'str_replace' => {'template' => template, 'params' => params}}
+        {"str_replace" => {"template" => template, "params" => params}}
       end
 
       alias_method :_replace, :_str_replace
@@ -141,7 +141,7 @@ class SparkleFormation
       # @return [Hash]
       def _str_split(splitter, string, idx = nil)
         __t_stringish(splitter) unless splitter.is_a?(Hash)
-        {'str_split' => [splitter, string, idx].compact}
+        {"str_split" => [splitter, string, idx].compact}
       end
 
       alias_method :_split, :_str_split
@@ -153,28 +153,28 @@ class SparkleFormation
       #   @param hash2 [Hash] item to merge
       # @return [Hash]
       def _map_merge(*args)
-        {'map_merge' => args}
+        {"map_merge" => args}
       end
 
       alias_method :map_merge!, :_map_merge
 
       # @return [Hash]
       def _stack_id
-        _get_param('OS::stack_id')
+        _get_param("OS::stack_id")
       end
 
       alias_method :stack_id!, :_stack_id
 
       # @return [Hash]
       def _stack_name
-        _get_param('OS::stack_name')
+        _get_param("OS::stack_name")
       end
 
       alias_method :stack_name!, :_stack_name
 
       # @return [Hash]
       def _project_id
-        _get_param('OS::project_id')
+        _get_param("OS::project_id")
       end
 
       alias_method :project_id!, :_project_id
@@ -189,7 +189,7 @@ class SparkleFormation
       # @return [Array<String>]
       # @note this will directly modify the struct at its current context to inject depends on structure
       def _depends_on(*args)
-        _set('depends_on', [args].flatten.compact.map { |s| __attribute_key(s) })
+        _set("depends_on", [args].flatten.compact.map { |s| __attribute_key(s) })
       end
 
       alias_method :depends_on!, :_depends_on

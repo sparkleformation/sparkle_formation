@@ -1,19 +1,19 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 class SparkleFormation
   # Resources helper
   class Resources
-    autoload :Aws, 'sparkle_formation/resources/aws'
-    autoload :Azure, 'sparkle_formation/resources/azure'
-    autoload :Google, 'sparkle_formation/resources/google'
-    autoload :Heat, 'sparkle_formation/resources/heat'
-    autoload :Rackspace, 'sparkle_formation/resources/rackspace'
-    autoload :Terraform, 'sparkle_formation/resources/terraform'
+    autoload :Aws, "sparkle_formation/resources/aws"
+    autoload :Azure, "sparkle_formation/resources/azure"
+    autoload :Google, "sparkle_formation/resources/google"
+    autoload :Heat, "sparkle_formation/resources/heat"
+    autoload :Rackspace, "sparkle_formation/resources/rackspace"
+    autoload :Terraform, "sparkle_formation/resources/terraform"
 
     # Characters to be removed from supplied key on matching
-    RESOURCE_TYPE_TR = '_:'
+    RESOURCE_TYPE_TR = "_:"
     # String to split for resource namespacing
-    RESOURCE_TYPE_NAMESPACE_SPLITTER = '::'
+    RESOURCE_TYPE_NAMESPACE_SPLITTER = "::"
     # Property update conditionals
     # Format: Smash.new(RESOURCE_TYPE => {PROPERTY_NAME => [PropertyConditional]})
     PROPERTY_UPDATE_CONDITIONALS = Smash.new
@@ -65,7 +65,7 @@ class SparkleFormation
           if result
             result.update_causes
           else
-            'unknown'
+            "unknown"
           end
         else
           self[:update_causes]
@@ -79,7 +79,7 @@ class SparkleFormation
 
       # @return [String] base registry key
       def base_key
-        Bogo::Utility.snake(self.name.split('::').last) # rubocop:disable Style/RedundantSelf
+        Bogo::Utility.snake(self.name.split("::").last) # rubocop:disable Style/RedundantSelf
       end
 
       # Register resource
@@ -148,13 +148,13 @@ class SparkleFormation
           result = key
         else
           o_key = key
-          key = key.to_s.downcase.tr(self.const_get(:RESOURCE_TYPE_TR), '') # rubocop:disable Style/RedundantSelf
+          key = key.to_s.downcase.tr(self.const_get(:RESOURCE_TYPE_TR), "") # rubocop:disable Style/RedundantSelf
           snake_parts = nil
           result = @@registry[base_key].keys.detect do |ref|
             ref = ref.downcase
             snake_parts = ref.split(resource_type_splitter)
             until snake_parts.empty?
-              break if snake_parts.join('') == key
+              break if snake_parts.join("") == key
               snake_parts.shift
             end
             !snake_parts.empty?
@@ -162,12 +162,12 @@ class SparkleFormation
           if result
             collisions = @@registry[base_key].keys.find_all do |ref|
               split_ref = ref.downcase.split(resource_type_splitter)
-              ref = Array(split_ref.slice(split_ref.size - snake_parts.size, split_ref.size)).join('')
+              ref = Array(split_ref.slice(split_ref.size - snake_parts.size, split_ref.size)).join("")
               key == ref
             end
             if collisions.size > 1
-              raise ArgumentError.new 'Ambiguous dynamic name returned multiple matches! ' \
-                                      "`#{o_key.inspect}` -> #{collisions.sort.join(', ')}"
+              raise ArgumentError.new "Ambiguous dynamic name returned multiple matches! " \
+                                      "`#{o_key.inspect}` -> #{collisions.sort.join(", ")}"
             end
           end
         end
@@ -180,7 +180,7 @@ class SparkleFormation
         Regexp.new(
           [self.const_get(:RESOURCE_TYPE_NAMESPACE_SPLITTER)].flatten.compact.map { |value|
             Regexp.escape(value)
-          }.join('|')
+          }.join("|")
         )
       end
 
@@ -217,7 +217,7 @@ class SparkleFormation
       def resource_lookup(type)
         result = registry[type]
         if result
-          properties = result.fetch('full_properties', {}).map do |p_name, p_info|
+          properties = result.fetch("full_properties", {}).map do |p_name, p_info|
             Property.new(p_name,
                          p_info[:description],
                          p_info[:type],

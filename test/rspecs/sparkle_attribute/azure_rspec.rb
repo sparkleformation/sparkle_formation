@@ -1,7 +1,7 @@
-require_relative '../../rspecs'
+require_relative "../../rspecs"
 
 RSpec.describe SparkleFormation::SparkleAttribute::Azure do
-  let(:template) { SparkleFormation.new('test') }
+  let(:template) { SparkleFormation.new("test") }
 
   let(:instance) do
     klass = Class.new(SparkleFormation::SparkleStruct)
@@ -11,7 +11,7 @@ RSpec.describe SparkleFormation::SparkleAttribute::Azure do
     obj
   end
 
-  describe '.resources_formatter' do
+  describe ".resources_formatter" do
     let(:resources_hash) do
       Smash.new(
         :resources => {
@@ -22,13 +22,13 @@ RSpec.describe SparkleFormation::SparkleAttribute::Azure do
       )
     end
 
-    it 'should covert resources Hash into resources Array' do
+    it "should covert resources Hash into resources Array" do
       result = described_class.resources_formatter(resources_hash)
-      expect(result).to eq('resources' => ['name' => 'item_name', 'properties' => []])
+      expect(result).to eq("resources" => ["name" => "item_name", "properties" => []])
     end
   end
 
-  describe 'Azure Functions' do
+  describe "Azure Functions" do
     described_class.const_get(:AZURE_FUNCTIONS).each do |full_name|
       f_name = Bogo::Utility.snake(full_name)
 
@@ -38,61 +38,61 @@ RSpec.describe SparkleFormation::SparkleAttribute::Azure do
           expect(result._dump).to eq("[#{full_name}()]")
         end
 
-        it 'should generate functions with arguments' do
-          result = instance.__send__("_#{f_name}".to_sym, 1, 'string')
+        it "should generate functions with arguments" do
+          result = instance.__send__("_#{f_name}".to_sym, 1, "string")
           expect(result._dump).to eq("[#{full_name}(1, 'string')]")
         end
       end
     end
   end
 
-  describe '#_resource_id' do
-    it 'should raise error if resource is not defined' do
-      expect { instance._resource_id('item') }.to raise_error(SparkleFormation::Error::NotFound::Resource)
+  describe "#_resource_id" do
+    it "should raise error if resource is not defined" do
+      expect { instance._resource_id("item") }.to raise_error(SparkleFormation::Error::NotFound::Resource)
     end
 
-    context 'with resource defined' do
-      before { instance.resources.item.type 'Custom' }
+    context "with resource defined" do
+      before { instance.resources.item.type "Custom" }
 
-      it 'should create a resource id data structure' do
-        expect(instance._resource_id('item')._dump).to eq("[resourceId('Custom', 'Item')]")
+      it "should create a resource id data structure" do
+        expect(instance._resource_id("item")._dump).to eq("[resourceId('Custom', 'Item')]")
       end
     end
   end
 
-  describe '#_depends_on' do
-    before { instance.resources.item.type 'Custom' }
+  describe "#_depends_on" do
+    before { instance.resources.item.type "Custom" }
 
-    it 'should inject depends on data structure into underlying structure' do
+    it "should inject depends on data structure into underlying structure" do
       result = instance._depends_on(:item)
-      expect(instance._dump['DependsOn']).to eq(['Custom/Item'])
+      expect(instance._dump["DependsOn"]).to eq(["Custom/Item"])
     end
   end
 
-  describe '#_stack_output' do
-    it 'should create a stack output data structure' do
-      expect(instance._stack_output('s_name', 's_output')._dump).to eq("[reference('SName').outputs.SOutput.value]")
+  describe "#_stack_output" do
+    it "should create a stack output data structure" do
+      expect(instance._stack_output("s_name", "s_output")._dump).to eq("[reference('SName').outputs.SOutput.value]")
     end
   end
 
-  describe '#_variables' do
-    it 'should generate an azure variable struct' do
-      expect(instance._variables('foo')._klass).to eq(SparkleFormation::AzureVariableStruct)
+  describe "#_variables" do
+    it "should generate an azure variable struct" do
+      expect(instance._variables("foo")._klass).to eq(SparkleFormation::AzureVariableStruct)
     end
 
-    it 'should generate a variables function string on dump' do
-      expect(instance._variables('foo')._dump).to eq("[variables('foo')]")
+    it "should generate a variables function string on dump" do
+      expect(instance._variables("foo")._dump).to eq("[variables('foo')]")
     end
 
-    context 'with local template context' do
+    context "with local template context" do
       let(:template) do
-        SparkleFormation.new('test', :provider => :azure) do
+        SparkleFormation.new("test", :provider => :azure) do
           variables do
-            snake.set!('nested_function_call'.disable_camel!, 'fubar')
+            snake.set!("nested_function_call".disable_camel!, "fubar")
             camel do
-              NestedFunctionCall 'foobar'
+              NestedFunctionCall "foobar"
             end
-            normal.nested_function_call 'phewbar'
+            normal.nested_function_call "phewbar"
           end
           snake variables!(:snake).nested_function_call
           camel variables!(:camel).nested_function_call
@@ -101,19 +101,19 @@ RSpec.describe SparkleFormation::SparkleAttribute::Azure do
         end
       end
 
-      it 'should dump the snake cased function name' do
+      it "should dump the snake cased function name" do
         expect(template.dump.to_smash[:snake]).to eq("[variables('snake').nested_function_call]")
       end
 
-      it 'should dump the camel cased function name' do
+      it "should dump the camel cased function name" do
         expect(template.dump.to_smash[:camel]).to eq("[variables('camel').NestedFunctionCall]")
       end
 
-      it 'should dump the normal cased function name' do
+      it "should dump the normal cased function name" do
         expect(template.dump.to_smash[:normal]).to eq("[variables('normal').nestedFunctionCall]")
       end
 
-      it 'should dump the explicit given function name when variable is unset' do
+      it "should dump the explicit given function name when variable is unset" do
         expect(template.dump.to_smash[:unset]).to eq("[variables('unset').nested_function_call]")
       end
     end

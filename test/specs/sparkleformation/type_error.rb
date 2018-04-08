@@ -1,3 +1,3 @@
 SparkleFormation.new(:type_error) do
-  ref!(['bad', 'type'])
+  ref!(["bad", "type"])
 end

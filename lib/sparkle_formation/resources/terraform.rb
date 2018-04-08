@@ -1,4 +1,4 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 class SparkleFormation
 
@@ -9,7 +9,7 @@ class SparkleFormation
     class Terraform < Resources
 
       # String to split for resource namespacing
-      RESOURCE_TYPE_NAMESPACE_SPLITTER = ['_']
+      RESOURCE_TYPE_NAMESPACE_SPLITTER = ["_"]
 
       class << self
         include Bogo::Memoization
@@ -22,13 +22,13 @@ class SparkleFormation
             load(
               File.join(
                 File.dirname(__FILE__),
-                'terraform_resources.json'
+                "terraform_resources.json"
               )
             )
             # NOTE: Internal resource type used for nesting
-            register('module',
-                     'properties' => [],
-                     'full_properties' => {})
+            register("module",
+                     "properties" => [],
+                     "full_properties" => {})
             true
           end
         end

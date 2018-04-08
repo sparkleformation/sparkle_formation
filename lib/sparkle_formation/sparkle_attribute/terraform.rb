@@ -1,4 +1,4 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 class SparkleFormation
 
@@ -15,7 +15,7 @@ class SparkleFormation
 
       def _var(v_name)
         __t_stringish(v_name)
-        res = ::SparkleFormation::TerraformStruct.new('var').set!(__attribute_key(v_name))
+        res = ::SparkleFormation::TerraformStruct.new("var").set!(__attribute_key(v_name))
       end
 
       alias_method :var!, :_var
@@ -23,27 +23,27 @@ class SparkleFormation
 
       def _path(p_name)
         __t_stringish(p_name)
-        ::SparkleFormation::TerraformStruct.new('path').set!(__attribute_key(p_name))
+        ::SparkleFormation::TerraformStruct.new("path").set!(__attribute_key(p_name))
       end
 
       alias_method :path!, :_path
 
       def _module(m_name)
         __t_stringish(m_name)
-        ::SparkleFormation::TerraformStruct.new('module').set!(__attribute_key(m_name))
+        ::SparkleFormation::TerraformStruct.new("module").set!(__attribute_key(m_name))
       end
 
       alias_method :module!, :_module
 
       def _terraform_self(s_name)
         __t_stringish(s_name)
-        ::SparkleFormation::TerraformStruct.new('self').set!(__attribute_key(s_name))
+        ::SparkleFormation::TerraformStruct.new("self").set!(__attribute_key(s_name))
       end
 
       alias_method :self!, :_terraform_self
 
       def _terraform_lookup(*args)
-        ::SparkleFormation::TerraformStruct.new('lookup', *args)
+        ::SparkleFormation::TerraformStruct.new("lookup", *args)
       end
 
       alias_method :lookup!, :_terraform_lookup
@@ -58,38 +58,38 @@ class SparkleFormation
       alias_method :resource!, :_resource
 
       TERRAFORM_INTRINSIC_FUNCTIONS = [
-        'base64decode',
-        'base64encode',
-        'base64sha256',
-        'cidrhost',
-        'cidrnetmask',
-        'cidrsubnet',
-        'coalesce',
-        'compact',
-        'concat',
-        'distinct',
-        'element',
-        'file',
-        'format',
-        'formatlist',
-        'index',
-        'join',
-        'jsonencode',
-        'length',
-        'list',
-        'lower',
-        'map',
-        'md5',
-        'merge',
-        'uuid',
-        'replace',
-        'sha1',
-        'sha256',
-        'signum',
-        'sort',
-        'split',
-        'trimspace',
-        'upper',
+        "base64decode",
+        "base64encode",
+        "base64sha256",
+        "cidrhost",
+        "cidrnetmask",
+        "cidrsubnet",
+        "coalesce",
+        "compact",
+        "concat",
+        "distinct",
+        "element",
+        "file",
+        "format",
+        "formatlist",
+        "index",
+        "join",
+        "jsonencode",
+        "length",
+        "list",
+        "lower",
+        "map",
+        "md5",
+        "merge",
+        "uuid",
+        "replace",
+        "sha1",
+        "sha256",
+        "signum",
+        "sort",
+        "split",
+        "trimspace",
+        "upper",
       ]
 
       # NOTE: Alias implementation disabled due to Ruby 2.3 __callee__ bug
@@ -100,7 +100,7 @@ class SparkleFormation
       # @return [SparkleFormation::FunctionStruct]
       def _fn_format(*args)
         src = ::Kernel.__callee__.to_s
-        src = ::Bogo::Utility.camel(src.sub(/(^_|\!$)/, ''), false)
+        src = ::Bogo::Utility.camel(src.sub(/(^_|\!$)/, ""), false)
         ::SparkleFormation::TerraformStruct.new(src, *args)
       end
 
@@ -112,7 +112,7 @@ class SparkleFormation
 
         define_method("_#{f_name}".to_sym) do |*args|
           src = ::Kernel.__callee__.to_s
-          src = ::Bogo::Utility.camel(src.sub(/(^_|\!$)/, ''), false)
+          src = ::Bogo::Utility.camel(src.sub(/(^_|\!$)/, ""), false)
           ::SparkleFormation::TerraformStruct.new(src, *args)
         end
         alias_method "#{f_name}!".to_sym, "_#{f_name}".to_sym
@@ -137,7 +137,7 @@ class SparkleFormation
       # @return [Array<String>]
       # @note this will directly modify the struct at its current context to inject depends on structure
       def _depends_on(*args)
-        _set('depends_on', [args].flatten.compact.map { |s| __attribute_key(s) })
+        _set("depends_on", [args].flatten.compact.map { |s| __attribute_key(s) })
       end
 
       alias_method :depends_on!, :_depends_on

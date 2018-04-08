@@ -1,4 +1,4 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 # Unicorns and rainbows
 class SparkleFormation
@@ -20,14 +20,14 @@ class SparkleFormation
           idx = idx ? idx.next : 0
           # Trim from the end to determine path allowing windows paths
           # to not be improperly truncated
-          file = caller[idx].split(':').reverse.drop(2).reverse.join(':')
-          path = File.join(File.dirname(file), 'sparkleformation')
+          file = caller[idx].split(":").reverse.drop(2).reverse.join(":")
+          path = File.join(File.dirname(file), "sparkleformation")
           unless File.directory?(path)
             path = nil
           end
           unless name
             name = File.basename(file)
-            name.sub!(File.extname(name), '')
+            name.sub!(File.extname(name), "")
           end
         end
         unless name
@@ -36,10 +36,10 @@ class SparkleFormation
           end
         end
         unless path
-          raise ArgumentError.new('No SparklePack path provided and failed to auto-detect!')
+          raise ArgumentError.new("No SparklePack path provided and failed to auto-detect!")
         end
         unless name
-          raise ArgumentError.new('No SparklePack name provided and failed to auto-detect!')
+          raise ArgumentError.new("No SparklePack name provided and failed to auto-detect!")
         end
         @@_pack_registry[name] = path
         [name, path]
@@ -65,7 +65,7 @@ class SparkleFormation
       # Evaluation context wrapper for loading SparkleFormation files
       Class.new(BasicObject).new.instance_exec do
         wrapper = ::Class.new(BasicObject)
-        wrapper.class_eval '
+        wrapper.class_eval "
         class SparkleFormation
           attr_accessor :sparkle_path
 
@@ -187,7 +187,7 @@ class SparkleFormation
         def __sfn_registry_id
           SfnRegistry.object_id
         end
-        '
+        "
         wrapper.new
       end
     end
@@ -196,26 +196,26 @@ class SparkleFormation
 
     # Valid directories from cwd to set as root
     VALID_ROOT_DIRS = [
-      'sparkleformation',
-      'sfn',
-      'cloudformation',
-      'cfn',
-      '.',
+      "sparkleformation",
+      "sfn",
+      "cloudformation",
+      "cfn",
+      ".",
     ]
 
     # Reserved directories
     DIRS = [
-      'components',
-      'registry',
-      'dynamics',
+      "components",
+      "registry",
+      "dynamics",
     ]
 
     # Valid types
     TYPES = Smash.new(
-      'component' => 'components',
-      'registry' => 'registries',
-      'dynamic' => 'dynamics',
-      'template' => 'templates',
+      "component" => "components",
+      "registry" => "registries",
+      "dynamic" => "dynamics",
+      "template" => "templates",
     )
 
     # @return [String] path to sparkle directories
@@ -247,7 +247,7 @@ class SparkleFormation
         :registry => [],
         :template => [],
       )
-      @provider = Bogo::Utility.snake(args.fetch(:provider, 'aws').to_s).to_sym
+      @provider = Bogo::Utility.snake(args.fetch(:provider, "aws").to_s).to_sym
       @wrapper = eval_wrapper
       wrapper.part_data(raw_data)
       load_parts! unless @root == :none
@@ -290,19 +290,19 @@ class SparkleFormation
     # @raises [NameError, Error::NotFound]
     def get(type, name, target_provider = nil)
       unless TYPES.keys.include?(type.to_s)
-        raise NameError.new "Invalid type requested (#{type})! Valid types: #{TYPES.keys.join(', ')}"
+        raise NameError.new "Invalid type requested (#{type})! Valid types: #{TYPES.keys.join(", ")}"
       end
       unless target_provider
         target_provider = provider
       end
       result = send(TYPES[type]).get(target_provider, name)
-      if result.nil? && TYPES[type] == 'templates'
+      if result.nil? && TYPES[type] == "templates"
         result = (send(TYPES[type]).fetch(target_provider, Smash.new).detect { |_, v|
           name = name.to_s
-          short_name = v[:path].sub(%r{#{Regexp.escape(root)}/?}, '')
+          short_name = v[:path].sub(%r{#{Regexp.escape(root)}/?}, "")
           v[:path] == name ||
           short_name == name ||
-          short_name.sub('.rb', '').gsub(File::SEPARATOR, '__').tr('-', '_') == name ||
+          short_name.sub(".rb", "").gsub(File::SEPARATOR, "__").tr("-", "_") == name ||
           v[:path].end_with?(name)
         } || []).last
       end
@@ -338,18 +338,18 @@ class SparkleFormation
     # Load all sparkle parts
     def load_parts!
       memoize(:load_parts) do
-        Dir.glob(File.join(root, '**', '**', '*.{json,rb}')).each do |file|
-          slim_path = file.sub("#{root}/", '')
-          if file.end_with?('.rb')
+        Dir.glob(File.join(root, "**", "**", "*.{json,rb}")).each do |file|
+          slim_path = file.sub("#{root}/", "")
+          if file.end_with?(".rb")
             begin
               wrapper.instance_eval(IO.read(file), file, 1)
             rescue TypeError
             end
           end
-          if file.end_with?('.json') || raw_data[:template].first
+          if file.end_with?(".json") || raw_data[:template].first
             data = raw_data[:template].pop || Smash.new
             unless data[:name]
-              data[:name] = slim_path.tr('/', '__').sub(/\.(rb|json)$/, '')
+              data[:name] = slim_path.tr("/", "__").sub(/\.(rb|json)$/, "")
             end
             t_provider = data.fetch(:args, :provider, :aws)
             if templates.get(t_provider, data[:name])
@@ -359,7 +359,7 @@ class SparkleFormation
                           data.merge(
               :type => :template,
               :path => file,
-              :serialized => !file.end_with?('.rb'),
+              :serialized => !file.end_with?(".rb"),
             ))
           end
         end
@@ -369,7 +369,7 @@ class SparkleFormation
               collection = send(TYPES[key])
               name = item.delete(:name)
             else
-              path = item[:block].source_location.first.sub('.rb', '').split(File::SEPARATOR)
+              path = item[:block].source_location.first.sub(".rb", "").split(File::SEPARATOR)
               type, name = path.slice(path.size - 2, 2)
               collection = send(type)
             end

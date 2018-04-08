@@ -1,5 +1,5 @@
-require 'sparkle_formation'
-require 'forwardable'
+require "sparkle_formation"
+require "forwardable"
 
 class SparkleFormation
   class SparkleCollection
@@ -73,7 +73,7 @@ class SparkleFormation
       def monochrome
         Array.new.tap do |result|
           spectrum.each do |item|
-            unless item.get(:args, :layering).to_s == 'merge'
+            unless item.get(:args, :layering).to_s == "merge"
               result.clear
             end
             result << item

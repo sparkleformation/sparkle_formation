@@ -1,4 +1,4 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 class SparkleFormation
   module Provider
@@ -7,7 +7,7 @@ class SparkleFormation
 
       # @return [String] Type string for AWS CFN stack resource
       def stack_resource_type
-        'AWS::CloudFormation::Stack'
+        "AWS::CloudFormation::Stack"
       end
 
       # Generate policy for stack
@@ -17,25 +17,25 @@ class SparkleFormation
         statements = []
         compile.resources.keys!.each do |r_name|
           r_object = compile.resources[r_name]
-          if r_object['Policy']
-            r_object['Policy'].keys!.each do |effect|
+          if r_object["Policy"]
+            r_object["Policy"].keys!.each do |effect|
               statements.push(
-                'Effect' => effect.to_s.capitalize,
-                'Action' => [r_object['Policy'][effect]].flatten.compact.map { |i| "Update:#{i}" },
-                'Resource' => "LogicalResourceId/#{r_name}",
-                'Principal' => '*',
+                "Effect" => effect.to_s.capitalize,
+                "Action" => [r_object["Policy"][effect]].flatten.compact.map { |i| "Update:#{i}" },
+                "Resource" => "LogicalResourceId/#{r_name}",
+                "Principal" => "*",
               )
             end
-            r_object.delete!('Policy')
+            r_object.delete!("Policy")
           end
         end
         statements.push(
-          'Effect' => 'Allow',
-          'Action' => 'Update:*',
-          'Resource' => '*',
-          'Principal' => '*',
+          "Effect" => "Allow",
+          "Action" => "Update:*",
+          "Resource" => "*",
+          "Principal" => "*",
         )
-        Smash.new('Statement' => statements)
+        Smash.new("Statement" => statements)
       end
 
       # Apply deeply nested stacks. This is the new nesting approach and
@@ -95,7 +95,7 @@ class SparkleFormation
         if args.include?(:bubble_outputs)
           outputs_hash = Hash[
             output_map.map do |name, value|
-              [name, {'Value' => {'Fn::GetAtt' => value}}]
+              [name, {"Value" => {"Fn::GetAtt" => value}}]
             end
           ]
           unless compile.outputs.nil?
@@ -132,9 +132,9 @@ class SparkleFormation
             end
           end
           raise ArgumentError.new "Failed to detect available bubbling path for output `#{output_name}`. " <<
-                                    'This may be due to a circular dependency! ' <<
-                                    "(Output Path: #{outputs[output_name].root_path.map(&:name).join(' > ')} " <<
-                                    "Requester Path: #{root_path.map(&:name).join(' > ')})"
+                                    "This may be due to a circular dependency! " <<
+                                    "(Output Path: #{outputs[output_name].root_path.map(&:name).join(" > ")} " <<
+                                    "Requester Path: #{root_path.map(&:name).join(" > ")})"
         end
         result = compile.attr!(bubble_path.first.name, "Outputs.#{output_name}")
         if drip_path.size > 1
@@ -143,7 +143,7 @@ class SparkleFormation
           drip_path.each_slice(2) do |base_sparkle, ref_sparkle|
             next unless ref_sparkle
             base_sparkle.compile.resources[ref_sparkle.name].properties.parameters.set!(output_name, result)
-            ref_sparkle.compile.parameters.set!(output_name) { type 'String' } # TODO: <<<<------ type check and prop
+            ref_sparkle.compile.parameters.set!(output_name) { type "String" } # TODO: <<<<------ type check and prop
             result = compile.ref!(output_name)
           end
         end
@@ -168,27 +168,27 @@ class SparkleFormation
         stack_parameters = stack_resource.properties.stack.compile.parameters
         unless stack_parameters.nil?
           stack_parameters._dump.each do |pname, pval|
-            if pval['StackUnique']
+            if pval["StackUnique"]
               check_name = [stack_name, pname].join
             else
               check_name = pname
             end
             if parameters.keys.include?(check_name)
-              if list_type?(parameters[check_name]['Type'])
-                new_val = {'Fn::Join' => [',', {'Ref' => check_name}]}
+              if list_type?(parameters[check_name]["Type"])
+                new_val = {"Fn::Join" => [",", {"Ref" => check_name}]}
               else
-                new_val = {'Ref' => check_name}
+                new_val = {"Ref" => check_name}
               end
               template.resources.set!(stack_name).properties.parameters.set!(pname, new_val)
             elsif output_map[check_name]
               template.resources.set!(stack_name).properties.parameters.set!(
-                pname, 'Fn::GetAtt' => output_map[check_name],
+                pname, "Fn::GetAtt" => output_map[check_name],
               )
             else
-              if list_type?(pval['Type'])
-                new_val = {'Fn::Join' => [',', {'Ref' => check_name}]}
+              if list_type?(pval["Type"])
+                new_val = {"Fn::Join" => [",", {"Ref" => check_name}]}
               else
-                new_val = {'Ref' => check_name}
+                new_val = {"Ref" => check_name}
               end
               template.resources.set!(stack_name).properties.parameters.set!(pname, new_val)
               parameters[check_name] = pval
@@ -208,7 +208,7 @@ class SparkleFormation
       # @param type [String]
       # @return [TrueClass, FalseClass]
       def list_type?(type)
-        type == 'CommaDelimitedList' || type.start_with?('List<')
+        type == "CommaDelimitedList" || type.start_with?("List<")
       end
     end
   end

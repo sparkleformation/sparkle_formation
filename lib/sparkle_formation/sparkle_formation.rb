@@ -1,4 +1,4 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 # Formation container
 class SparkleFormation
@@ -9,13 +9,13 @@ class SparkleFormation
 
   # @return [Array<String>] directory names to ignore
   IGNORE_DIRECTORIES = [
-    'components',
-    'dynamics',
-    'registry',
+    "components",
+    "dynamics",
+    "registry",
   ]
 
   # @return [String] default stack resource name
-  DEFAULT_STACK_RESOURCE = 'AWS::CloudFormation::Stack'
+  DEFAULT_STACK_RESOURCE = "AWS::CloudFormation::Stack"
   # @return [Array<String>] collection of valid stack resource types
   VALID_STACK_RESOURCES = [DEFAULT_STACK_RESOURCE]
 
@@ -40,9 +40,9 @@ class SparkleFormation
     def sparkle_path=(path = nil)
       if path
         custom_paths[:sparkle_path] = path
-        custom_paths[:components_directory] = File.join(path, 'components')
-        custom_paths[:dynamics_directory] = File.join(path, 'dynamics')
-        custom_paths[:registry_directory] = File.join(path, 'registry')
+        custom_paths[:components_directory] = File.join(path, "components")
+        custom_paths[:dynamics_directory] = File.join(path, "dynamics")
+        custom_paths[:registry_directory] = File.join(path, "registry")
       end
       custom_paths[:sparkle_path]
     end
@@ -141,7 +141,7 @@ class SparkleFormation
     # @return [TrueClass]
     def load_dynamics!(directory)
       @loaded_dynamics ||= []
-      Dir.glob(File.join(directory, '*.rb')).each do |dyn|
+      Dir.glob(File.join(directory, "*.rb")).each do |dyn|
         dyn = File.expand_path(dyn)
         next if @loaded_dynamics.include?(dyn)
         instance_eval(IO.read(dyn), dyn, 1)
@@ -156,7 +156,7 @@ class SparkleFormation
     # @param directory [String]
     # @return [TrueClass]
     def load_registry!(directory)
-      Dir.glob(File.join(directory, '*.rb')).each do |reg|
+      Dir.glob(File.join(directory, "*.rb")).each do |reg|
         reg = File.expand_path(reg)
         require reg
       end
@@ -240,13 +240,13 @@ class SparkleFormation
         result = builtin_insert(dynamic_name, struct, *args, &block)
         unless result
           message = "Failed to locate requested dynamic block for insertion: #{dynamic_name} " \
-          "(valid: #{struct._self.sparkle.dynamics.fetch(struct._self.sparkle.provider, {}).keys.sort.join(', ')})"
+          "(valid: #{struct._self.sparkle.dynamics.fetch(struct._self.sparkle.provider, {}).keys.sort.join(", ")})"
           if struct._self.provider_resources && struct._self.provider_resources.registry.keys.size > 1
             t_name = struct._self.provider_resources.registry.keys.first
             valid_t_name = Bogo::Utility.snake(
               t_name.split(
                 struct._self.provider_resources.resource_type_splitter
-              ).join('_')
+              ).join("_")
             )
             message << "\nBuiltin dynamics pattern `#{t_name}` -> `:#{Bogo::Utility.snake(valid_t_name)}`"
           end
@@ -275,12 +275,12 @@ class SparkleFormation
         __t_stringish(item)
       end
       to_nest = struct._self.sparkle.get(:template, template, options[:provider])
-      resource_name = template.to_s.gsub('__', '_')
+      resource_name = template.to_s.gsub("__", "_")
       unless args.empty?
         resource_name = [
           options.delete(:overwrite_name) ? nil : resource_name,
-          args.map { |a| Bogo::Utility.snake(a) }.join('_'),
-        ].flatten.compact.join('_').to_sym
+          args.map { |a| Bogo::Utility.snake(a) }.join("_"),
+        ].flatten.compact.join("_").to_sym
       end
       resource_name = struct._process_key(resource_name.to_sym)
       nested_template = compile(to_nest[:path], :sparkle)
@@ -318,7 +318,7 @@ class SparkleFormation
           resource_name = [
             _name,
             _config.fetch(:resource_name_suffix, dynamic_name),
-          ].compact.join('_').to_sym
+          ].compact.join("_").to_sym
         else
           resource_name = _name._root
         end
@@ -326,9 +326,9 @@ class SparkleFormation
         new_resource = struct.resources.set!(resource_name)
         new_resource.type lookup_key
         properties = new_resource.properties
-        config_keys = _config.keys.zip(_config.keys.map { |k| snake(k).to_s.tr('_', '') })
+        config_keys = _config.keys.zip(_config.keys.map { |k| snake(k).to_s.tr("_", "") })
         struct._self.provider_resources.resource(dynamic_name, :properties).each do |prop_name|
-          key = (config_keys.detect { |k| k.last == snake(prop_name).to_s.tr('_', '') } || []).first
+          key = (config_keys.detect { |k| k.last == snake(prop_name).to_s.tr("_", "") } || []).first
           value = _config[key] if key
           if value
             if value.is_a?(Proc)
@@ -432,7 +432,7 @@ class SparkleFormation
     end
     self.provider = options.fetch(:provider, @parent ? @parent.provider : :aws)
     if provider == :aws || !options[:disable_aws_builtins]
-      require 'sparkle_formation/aws'
+      require "sparkle_formation/aws"
     end
     @parameters = set_generation_parameters!(
       options.fetch(:compile_time_parameters,
@@ -463,12 +463,12 @@ class SparkleFormation
   def seed_self
     memoize(:seed) do
       options = @seed
-      if options[:inherit] && options[:layering].to_s == 'merge'
-        raise ArgumentError.new 'Cannot merge and inherit!'
+      if options[:inherit] && options[:layering].to_s == "merge"
+        raise ArgumentError.new "Cannot merge and inherit!"
       end
       if options[:inherit]
         inherit_from(options[:inherit])
-      elsif options[:layering].to_s == 'merge'
+      elsif options[:layering].to_s == "merge"
         merge_previous!
       end
       true
@@ -521,7 +521,7 @@ class SparkleFormation
                                       :components => template.composition.composite,
                                       :overrides => composition.overrides)
     composition.components.each do |item|
-      if item.respond_to?(:key) && item.key == '__base__'
+      if item.respond_to?(:key) && item.key == "__base__"
         item.key = Smash.new(
           :template => name,
           :component => :__base__,
@@ -592,12 +592,12 @@ class SparkleFormation
 
   # Attributes allowed for generation parameter definitions
   ALLOWED_GENERATION_PARAMETERS = [
-    'type', 'default', 'description', 'multiple', 'prompt_when_nested',
-    'allowed_values', 'allowed_pattern', 'max_length', 'min_length',
-    'max_value', 'min_value',
+    "type", "default", "description", "multiple", "prompt_when_nested",
+    "allowed_values", "allowed_pattern", "max_length", "min_length",
+    "max_value", "min_value",
   ]
   # Allowed data types for parameters
-  VALID_GENERATION_PARAMETER_TYPES = ['String', 'Number', 'Complex']
+  VALID_GENERATION_PARAMETER_TYPES = ["String", "Number", "Complex"]
 
   # Get or set the compile time parameter setting block. If a get
   # request the ancestor path will be searched to root
@@ -663,7 +663,7 @@ class SparkleFormation
       if thing.is_a?(String)
         # NOTE: This needs to be deprecated and removed
         # TODO: deprecate
-        key = File.basename(thing.to_s).sub('.rb', '')
+        key = File.basename(thing.to_s).sub(".rb", "")
         composition.new_component(key, &self.class.load_component(thing))
       else
         composition.new_component(thing)
@@ -701,7 +701,7 @@ class SparkleFormation
       set_compile_time_parameters!
       if provider && SparkleStruct.const_defined?(camel(provider))
         struct_class = SparkleStruct.const_get(camel(provider))
-        struct_name = [SparkleStruct.name, camel(provider)].join('::')
+        struct_name = [SparkleStruct.name, camel(provider)].join("::")
         struct_class.define_singleton_method(:name) { struct_name }
         struct_class.define_singleton_method(:to_s) { struct_name }
       else
@@ -755,7 +755,7 @@ class SparkleFormation
   def set_compiled_state(compiled)
     storage_compile_state = Smash.new
     parameters.each do |param_key, param_config|
-      if param_config.fetch(:type, 'string').to_s.downcase.to_sym != :complex
+      if param_config.fetch(:type, "string").to_s.downcase.to_sym != :complex
         storage_compile_state[param_key] = compile_state[param_key]
       end
     end
@@ -873,7 +873,7 @@ class SparkleFormation
   # @note will auto downcase name prior to comparison
   def output_matched?(p_name, output_names)
     output_names.detect do |o_name|
-      Bogo::Utility.snake(o_name).tr('_', '') == Bogo::Utility.snake(p_name).tr('_', '')
+      Bogo::Utility.snake(o_name).tr("_", "") == Bogo::Utility.snake(p_name).tr("_", "")
     end
   end
 

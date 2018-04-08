@@ -1,6 +1,6 @@
 SparkleFormation.new(:hash_loading) do
   value([
-    :fubar => 'hi',
+    :fubar => "hi",
     :nested => {
       :fubar => true,
     },

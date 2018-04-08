@@ -13,9 +13,9 @@ class SparkleFormation
       # @return [Array<String, Object>] name and new value
       def rackspace_server_network_interfaces_mapping(value, args = {})
         networks = [value].flatten.map do |item|
-          {:uuid => item['NetworkInterfaceId']}
+          {:uuid => item["NetworkInterfaceId"]}
         end
-        ['networks', networks]
+        ["networks", networks]
       end
 
       # Translate override to provide finalization of resources
@@ -32,19 +32,19 @@ class SparkleFormation
       # multiple listeners (ports) have been defined resulting in
       # multiple isolated LB resources
       def complete_launch_config_lb_setups
-        translated['resources'].find_all do |resource_name, resource|
-          resource['type'] == 'Rackspace::AutoScale::Group'
+        translated["resources"].find_all do |resource_name, resource|
+          resource["type"] == "Rackspace::AutoScale::Group"
         end.each do |name, value|
-          if lbs = value['properties'].delete('load_balancers')
+          if lbs = value["properties"].delete("load_balancers")
             lbs.each do |lb_ref|
               lb_name = resource_name(lb_ref)
-              lb_resource = translated['resources'][lb_name]
-              vip_resources = translated['resources'].find_all do |k, v|
-                k.match(/#{lb_name}Vip\d+/) && v['type'] == 'Rackspace::Cloud::LoadBalancer'
+              lb_resource = translated["resources"][lb_name]
+              vip_resources = translated["resources"].find_all do |k, v|
+                k.match(/#{lb_name}Vip\d+/) && v["type"] == "Rackspace::Cloud::LoadBalancer"
               end
-              value['properties']['launchConfiguration']['args'].tap do |lnch_config|
+              value["properties"]["launchConfiguration"]["args"].tap do |lnch_config|
                 lb_instance = {
-                  'loadBalancerId' => lb_ref,
+                  "loadBalancerId" => lb_ref,
                 }
                 # @note search for a port defined within parameters
                 # that matches naming of LB ID for when they are
@@ -52,99 +52,99 @@ class SparkleFormation
                 # Be sure to document this in user docs since it's
                 # weird but needed
                 if lb_resource
-                  lb_instance['port'] = lb_resource['cache_instance_port']
+                  lb_instance["port"] = lb_resource["cache_instance_port"]
                 else
                   key = parameters.keys.find_all do |k|
-                    if k.end_with?('Port')
-                      lb_ref.values.first.start_with?(k.sub('Instance', '').sub(/Port$/, ''))
+                    if k.end_with?("Port")
+                      lb_ref.values.first.start_with?(k.sub("Instance", "").sub(/Port$/, ""))
                     end
                   end
                   key = key.detect do |k|
-                    k.downcase.include?('instance')
+                    k.downcase.include?("instance")
                   end || key.first
                   if key
-                    lb_instance['port'] = {'get_param' => key}
+                    lb_instance["port"] = {"get_param" => key}
                   else
                     raise "Failed to translate load balancer configuartion. No port found! (#{lb_ref})"
                   end
                 end
-                lnch_config['loadBalancers'] = [lb_instance]
+                lnch_config["loadBalancers"] = [lb_instance]
                 vip_resources.each do |vip_name, vip_resource|
-                  lnch_config['loadBalancers'].push(
-                    'loadBalancerId' => {
-                      'Ref' => vip_name,
+                  lnch_config["loadBalancers"].push(
+                    "loadBalancerId" => {
+                      "Ref" => vip_name,
                     },
-                    'port' => vip_resource['cache_instance_port'],
+                    "port" => vip_resource["cache_instance_port"],
                   )
                 end
               end
             end
           end
         end
-        translated['resources'].find_all do |resource_name, resource|
-          resource['type'] == 'Rackspace::Cloud::LoadBalancer' &&
-            !resource['properties']['nodes'].empty?
+        translated["resources"].find_all do |resource_name, resource|
+          resource["type"] == "Rackspace::Cloud::LoadBalancer" &&
+            !resource["properties"]["nodes"].empty?
         end.each do |resource_name, resource|
-          resource['properties']['nodes'].map! do |node_ref|
+          resource["properties"]["nodes"].map! do |node_ref|
             {
-              'addresses' => [
+              "addresses" => [
                 {
-                  'get_attr' => [
+                  "get_attr" => [
                     resource_name(node_ref),
-                    'accessIPv4',
+                    "accessIPv4",
                   ],
                 },
               ],
-              'port' => resource['cache_instance_port'],
-              'condition' => 'ENABLED',
+              "port" => resource["cache_instance_port"],
+              "condition" => "ENABLED",
             }
           end
         end
-        translated['resources'].values.find_all do |resource|
-          resource['type'] == 'Rackspace::Cloud::LoadBalancer'
+        translated["resources"].values.find_all do |resource|
+          resource["type"] == "Rackspace::Cloud::LoadBalancer"
         end.each do |resource|
-          resource.delete('cache_instance_port')
+          resource.delete("cache_instance_port")
         end
         true
       end
 
       # Rackspace translation mapping
       MAP = Heat::MAP
-      MAP[:resources]['AWS::EC2::Instance'][:name] = 'Rackspace::Cloud::Server'
-      MAP[:resources]['AWS::EC2::Instance'][:properties]['NetworkInterfaces'] = :rackspace_server_network_interfaces_mapping # rubocop:disable Metrics/LineLength
-      MAP[:resources]['AWS::AutoScaling::AutoScalingGroup'].tap do |asg|
-        asg[:name] = 'Rackspace::AutoScale::Group'
+      MAP[:resources]["AWS::EC2::Instance"][:name] = "Rackspace::Cloud::Server"
+      MAP[:resources]["AWS::EC2::Instance"][:properties]["NetworkInterfaces"] = :rackspace_server_network_interfaces_mapping # rubocop:disable Metrics/LineLength
+      MAP[:resources]["AWS::AutoScaling::AutoScalingGroup"].tap do |asg|
+        asg[:name] = "Rackspace::AutoScale::Group"
         asg[:finalizer] = :rackspace_asg_finalizer
         asg[:properties].tap do |props|
-          props['MaxSize'] = 'maxEntities'
-          props['MinSize'] = 'minEntities'
-          props['LoadBalancerNames'] = 'load_balancers'
-          props['LaunchConfigurationName'] = :delete
+          props["MaxSize"] = "maxEntities"
+          props["MinSize"] = "minEntities"
+          props["LoadBalancerNames"] = "load_balancers"
+          props["LaunchConfigurationName"] = :delete
         end
       end
-      MAP[:resources]['AWS::EC2::Subnet'] = {}.tap do |subnet|
-        subnet[:name] = 'Rackspace::Cloud::Network'
+      MAP[:resources]["AWS::EC2::Subnet"] = {}.tap do |subnet|
+        subnet[:name] = "Rackspace::Cloud::Network"
         subnet[:finalizer] = :rackspace_subnet_finalizer
         subnet[:properties] = {
-          'CidrBlock' => 'cidr',
+          "CidrBlock" => "cidr",
         }
       end
-      MAP[:resources]['AWS::ElasticLoadBalancing::LoadBalancer'] = {
-        :name => 'Rackspace::Cloud::LoadBalancer',
+      MAP[:resources]["AWS::ElasticLoadBalancing::LoadBalancer"] = {
+        :name => "Rackspace::Cloud::LoadBalancer",
         :finalizer => :rackspace_lb_finalizer,
         :properties => {
-          'LoadBalancerName' => 'name',
-          'Instances' => 'nodes',
-          'Listeners' => 'listeners',
-          'HealthCheck' => 'health_check',
+          "LoadBalancerName" => "name",
+          "Instances" => "nodes",
+          "Listeners" => "listeners",
+          "HealthCheck" => "health_check",
         },
       }
 
       # Attribute map for autoscaling group server properties
       RACKSPACE_ASG_SRV_MAP = {
-        'imageRef' => 'image',
-        'flavorRef' => 'flavor',
-        'networks' => 'networks',
+        "imageRef" => "image",
+        "flavorRef" => "flavor",
+        "networks" => "networks",
       }
 
       # Finalizer for the rackspace load balancer resource. This
@@ -160,58 +160,58 @@ class SparkleFormation
       #
       # @todo make virtualIp creation allow servnet/multiple?
       def rackspace_lb_finalizer(resource_name, new_resource, old_resource)
-        listeners = new_resource['Properties'].delete('listeners') || []
+        listeners = new_resource["Properties"].delete("listeners") || []
         source_listener = listeners.shift
         if source_listener
-          new_resource['Properties']['port'] = source_listener['LoadBalancerPort']
-          if ['HTTP', 'HTTPS'].include?(source_listener['Protocol'])
-            new_resource['Properties']['protocol'] = source_listener['Protocol']
+          new_resource["Properties"]["port"] = source_listener["LoadBalancerPort"]
+          if ["HTTP", "HTTPS"].include?(source_listener["Protocol"])
+            new_resource["Properties"]["protocol"] = source_listener["Protocol"]
           else
-            new_resource['Properties']['protocol'] = 'TCP_CLIENT_FIRST'
+            new_resource["Properties"]["protocol"] = "TCP_CLIENT_FIRST"
           end
-          new_resource['cache_instance_port'] = source_listener['InstancePort']
+          new_resource["cache_instance_port"] = source_listener["InstancePort"]
         end
-        new_resource['Properties']['virtualIps'] = ['type' => 'PUBLIC', 'ipVersion' => 'IPV4']
-        new_resource['Properties']['nodes'] = [] unless new_resource['Properties']['nodes']
-        health_check = new_resource['Properties'].delete('health_check')
+        new_resource["Properties"]["virtualIps"] = ["type" => "PUBLIC", "ipVersion" => "IPV4"]
+        new_resource["Properties"]["nodes"] = [] unless new_resource["Properties"]["nodes"]
+        health_check = new_resource["Properties"].delete("health_check")
         health_check = nil
         if health_check
-          new_resource['Properties']['healthCheck'] = {}.tap do |check|
-            check['timeout'] = health_check['Timeout']
-            check['attemptsBeforeDeactivation'] = health_check['UnhealthyThreshold']
-            check['delay'] = health_check['Interval']
-            check_target = dereference_processor(health_check['Target'])
-            check_args = check_target.split(':')
+          new_resource["Properties"]["healthCheck"] = {}.tap do |check|
+            check["timeout"] = health_check["Timeout"]
+            check["attemptsBeforeDeactivation"] = health_check["UnhealthyThreshold"]
+            check["delay"] = health_check["Interval"]
+            check_target = dereference_processor(health_check["Target"])
+            check_args = check_target.split(":")
             check_type = check_args.shift
-            if check_type == 'HTTP' || check_type == 'HTTPS'
-              check['type'] = check_type
-              check['path'] = check_args.last
+            if check_type == "HTTP" || check_type == "HTTPS"
+              check["type"] = check_type
+              check["path"] = check_args.last
             else
-              check['type'] = 'TCP_CLIENT_FIRST'
+              check["type"] = "TCP_CLIENT_FIRST"
             end
           end
         end
         unless listeners.empty?
           listeners.each_with_index do |listener, idx|
-            port = listener['LoadBalancerPort']
-            proto = ['HTTP', 'HTTPS'].include?(listener['Protocol']) ? listener['Protocol'] : 'TCP_CLIENT_FIRST'
+            port = listener["LoadBalancerPort"]
+            proto = ["HTTP", "HTTPS"].include?(listener["Protocol"]) ? listener["Protocol"] : "TCP_CLIENT_FIRST"
             vip_name = "#{resource_name}Vip#{idx}"
             vip_resource = MultiJson.load(MultiJson.dump(new_resource))
-            vip_resource['Properties']['name'] = vip_name
-            vip_resource['Properties']['protocol'] = proto
-            vip_resource['Properties']['port'] = port
-            vip_resource['Properties']['virtualIps'] = [
-              'id' => {
-                'get_attr' => [
+            vip_resource["Properties"]["name"] = vip_name
+            vip_resource["Properties"]["protocol"] = proto
+            vip_resource["Properties"]["port"] = port
+            vip_resource["Properties"]["virtualIps"] = [
+              "id" => {
+                "get_attr" => [
                   resource_name,
-                  'virtualIps',
+                  "virtualIps",
                   0,
-                  'id',
+                  "id",
                 ],
               },
             ]
-            vip_resource['cache_instance_port'] = listener['InstancePort']
-            translated['Resources'][vip_name] = vip_resource
+            vip_resource["cache_instance_port"] = listener["InstancePort"]
+            translated["Resources"][vip_name] = vip_resource
           end
         end
       end
@@ -225,26 +225,26 @@ class SparkleFormation
       # @param old_resource [Hash]
       # @return [Object]
       def rackspace_asg_finalizer(resource_name, new_resource, old_resource)
-        new_resource['Properties'] = {}.tap do |properties|
-          if lbs = new_resource['Properties'].delete('load_balancers')
-            properties['load_balancers'] = lbs
+        new_resource["Properties"] = {}.tap do |properties|
+          if lbs = new_resource["Properties"].delete("load_balancers")
+            properties["load_balancers"] = lbs
           end
-          properties['groupConfiguration'] = new_resource['Properties'].merge('name' => resource_name)
-          properties['launchConfiguration'] = {}.tap do |config|
-            launch_config_name = resource_name(old_resource['Properties']['LaunchConfigurationName'])
-            config_resource = original['Resources'][launch_config_name]
-            config_resource['Type'] = 'AWS::EC2::Instance'
+          properties["groupConfiguration"] = new_resource["Properties"].merge("name" => resource_name)
+          properties["launchConfiguration"] = {}.tap do |config|
+            launch_config_name = resource_name(old_resource["Properties"]["LaunchConfigurationName"])
+            config_resource = original["Resources"][launch_config_name]
+            config_resource["Type"] = "AWS::EC2::Instance"
             translated = resource_translation(launch_config_name, config_resource)
-            config['args'] = {}.tap do |lnch_args|
-              lnch_args['server'] = {}.tap do |srv|
-                srv['name'] = launch_config_name
+            config["args"] = {}.tap do |lnch_args|
+              lnch_args["server"] = {}.tap do |srv|
+                srv["name"] = launch_config_name
                 RACKSPACE_ASG_SRV_MAP.each do |k, v|
-                  srv[k] = translated['Properties'][v]
+                  srv[k] = translated["Properties"][v]
                 end
-                srv['personality'] = build_personality(config_resource)
+                srv["personality"] = build_personality(config_resource)
               end
             end
-            config['type'] = 'launch_server'
+            config["type"] = "launch_server"
           end
         end
       end
@@ -257,7 +257,7 @@ class SparkleFormation
       # @param old_resource [Hash]
       # @return [Object]
       def rackspace_subnet_finalizer(resource_name, new_resource, old_resource)
-        new_resource['Properties']['label'] = resource_name
+        new_resource["Properties"]["label"] = resource_name
       end
 
       # Custom mapping for server user data. Removes data formatting
@@ -297,8 +297,8 @@ class SparkleFormation
           :serialization_number_of_chunks,
           DEFAULT_NUMBER_OF_CHUNKS
         )
-        init = resource['Metadata']['AWS::CloudFormation::Init']
-        content = MultiJson.dump('AWS::CloudFormation::Init' => init)
+        init = resource["Metadata"]["AWS::CloudFormation::Init"]
+        content = MultiJson.dump("AWS::CloudFormation::Init" => init)
         # Break out our content to extract items required during stack
         # execution (template functions, refs, and the like)
         raw_result = content.scan(/(?=(\{\s*"(Ref|Fn::[A-Za-z]+)"((?:[^{}]++|\{\g<3>\})++)\}))/).map(&:first)
@@ -346,17 +346,17 @@ class SparkleFormation
         # The result set is the final formatted content that
         # now needs to be split and assigned to files
         result_set << new_content unless new_content.empty?
-        leftovers = ''
+        leftovers = ""
 
         # Determine optimal chuck sizing and check if viable
         calculated_chunk_size = (content.size.to_f / num_personality_files).ceil
         if calculated_chunk_size > max_chunk_size
-          logger.error 'ERROR: Unable to split personality files within defined bounds!'
+          logger.error "ERROR: Unable to split personality files within defined bounds!"
           logger.error "  Maximum chunk size: #{max_chunk_size.inspect}"
           logger.error "  Maximum personality files: #{num_personality_files.inspect}"
           logger.error "  Calculated chunk size: #{calculated_chunk_size}"
           logger.error "-> Content: #{content.inspect}"
-          raise ArgumentError.new 'Unable to split personality files within defined bounds'
+          raise ArgumentError.new "Unable to split personality files within defined bounds"
         end
 
         # Do the split!
@@ -367,7 +367,7 @@ class SparkleFormation
             file_content = []
             unless leftovers.empty?
               result_set.unshift leftovers
-              leftovers = ''
+              leftovers = ""
             end
             item = nil
             # @todo need better way to determine length of objects since
@@ -395,8 +395,8 @@ class SparkleFormation
                   end
                 end
                 files["/etc/sprkl/#{file_index}.cfg"] = {
-                  'Fn::Join' => [
-                    '',
+                  "Fn::Join" => [
+                    "",
                     file_content.flatten,
                   ],
                 }
@@ -408,36 +408,36 @@ class SparkleFormation
         if parts.size > num_personality_files
           logger.warn "Failed to split files within defined range! (Max files: #{num_personality_files} " \
                       "Actual files: #{parts.size})"
-          logger.warn 'Appending to last file and hoping for the best!'
+          logger.warn "Appending to last file and hoping for the best!"
           parts = parts.to_a
           extras = parts.slice!(4, parts.length)
           tail_name, tail_contents = parts.pop
           parts = Hash[parts]
           parts[tail_name] = {
-            'Fn::Join' => [
-              '',
+            "Fn::Join" => [
+              "",
               extras.map(&:last).unshift(tail_contents),
             ],
           }
         end
-        parts['/etc/cloud/cloud.cfg.d/99_s.cfg'] = RUNNER
+        parts["/etc/cloud/cloud.cfg.d/99_s.cfg"] = RUNNER
         parts
       end
 
       FN_MAPPING = {
-        'Fn::GetAtt' => 'get_attr',
+        "Fn::GetAtt" => "get_attr",
       # 'Fn::Join' => 'list_join'  # TODO: why is this not working?
       }
 
       FN_ATT_MAPPING = {
-        'AWS::EC2::Instance' => {
-          'PrivateDnsName' => 'accessIPv4', # @todo - need srv net name for access via nets
-          'PublicDnsName' => 'accessIPv4',
-          'PrivateIp' => 'accessIPv4', # @todo - need srv net name for access via nets
-          'PublicIp' => 'accessIPv4',
+        "AWS::EC2::Instance" => {
+          "PrivateDnsName" => "accessIPv4", # @todo - need srv net name for access via nets
+          "PublicDnsName" => "accessIPv4",
+          "PrivateIp" => "accessIPv4", # @todo - need srv net name for access via nets
+          "PublicIp" => "accessIPv4",
         },
-        'AWS::ElasticLoadBalancing::LoadBalancer' => {
-          'DNSName' => 'PublicIp',
+        "AWS::ElasticLoadBalancing::LoadBalancer" => {
+          "DNSName" => "PublicIp",
         },
       }
 

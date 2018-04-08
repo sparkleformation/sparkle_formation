@@ -1,4 +1,4 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 class SparkleFormation
   module Provider
@@ -17,16 +17,16 @@ class SparkleFormation
       # @param parent_names [Array<String>] name of parent resources
       # @return [Smash] dump_copy
       def google_template_extractor(template_hash, dump_copy, parent_names = [])
-        template_hash.fetch('resources', []).each do |t_resource|
-          if t_resource['type'] == stack_resource_type
-            full_names = parent_names + [t_resource['name']]
-            stack = t_resource['properties'].delete('stack')
-            if t_resource['properties'].empty?
-              t_resource.delete('properties')
+        template_hash.fetch("resources", []).each do |t_resource|
+          if t_resource["type"] == stack_resource_type
+            full_names = parent_names + [t_resource["name"]]
+            stack = t_resource["properties"].delete("stack")
+            if t_resource["properties"].empty?
+              t_resource.delete("properties")
             end
             google_template_extractor(stack, dump_copy, full_names)
-            new_type = generate_template_files(full_names.join('-'), stack, dump_copy)
-            t_resource['type'] = new_type
+            new_type = generate_template_files(full_names.join("-"), stack, dump_copy)
+            t_resource["type"] = new_type
           end
         end
         dump_copy
@@ -41,7 +41,7 @@ class SparkleFormation
       # @return [String] new type for stack
       def generate_template_files(r_name, r_stack, dump_copy)
         f_name = "#{r_name}.jinja"
-        r_parameters = r_stack.delete('parameters')
+        r_parameters = r_stack.delete("parameters")
         dump_copy[:imports].push(
           Smash.new(
             :name => f_name,
@@ -101,7 +101,7 @@ class SparkleFormation
       # @note Nested templates aren't defined as a specific type thus no "real"
       #   type exists. So we'll create a custom one!
       def stack_resource_type
-        'sparkleformation.stack'
+        "sparkleformation.stack"
       end
 
       # Generate policy for stack
@@ -147,7 +147,7 @@ class SparkleFormation
       # Forcibly disable shallow nesting as support for it with Google templates doesn't
       # really make much sense.
       def apply_shallow_nesting(*args, &block)
-        raise NotImplementedError.new 'Shallow nesting is not supported for this provider!'
+        raise NotImplementedError.new "Shallow nesting is not supported for this provider!"
       end
 
       # Extract output to make available for stack parameter usage at the
@@ -176,9 +176,9 @@ class SparkleFormation
             end
           end
           raise ArgumentError.new "Failed to detect available bubbling path for output `#{output_name}`. " <<
-                                    'This may be due to a circular dependency! ' <<
-                                    "(Output Path: #{outputs[output_name].root_path.map(&:name).join(' > ')} " <<
-                                    "Requester Path: #{root_path.map(&:name).join(' > ')})"
+                                    "This may be due to a circular dependency! " <<
+                                    "(Output Path: #{outputs[output_name].root_path.map(&:name).join(" > ")} " <<
+                                    "Requester Path: #{root_path.map(&:name).join(" > ")})"
         end
         result = source_stack.compile._stack_output(bubble_path.first.name, output_name)
         if drip_path.size > 1
@@ -187,7 +187,7 @@ class SparkleFormation
           drip_path.each_slice(2) do |base_sparkle, ref_sparkle|
             next unless ref_sparkle
             base_sparkle.compile.resources[ref_sparkle.name].properties.parameters.value._set(output_name, result)
-            ref_sparkle.compile.parameters._set(output_name).type 'string' # TODO: <<<<------ type check and prop
+            ref_sparkle.compile.parameters._set(output_name).type "string" # TODO: <<<<------ type check and prop
             result = compile._parameter(output_name)
           end
         end

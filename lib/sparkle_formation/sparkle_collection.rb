@@ -1,11 +1,11 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 class SparkleFormation
   # Provides a collection of sparkles
   # @todo add unmemoize behavior on collection modification to prevent
   # leak on long running processes with long lasting collections
   class SparkleCollection < Sparkle
-    autoload :Rainbow, 'sparkle_formation/sparkle_collection/rainbow'
+    autoload :Rainbow, "sparkle_formation/sparkle_collection/rainbow"
 
     # @return [Symbol] provider
     attr_accessor :provider
@@ -16,7 +16,7 @@ class SparkleFormation
     # @option args [Symbol, String] :provider name of default provider
     # @return [self]
     def initialize(args = {})
-      @provider = Bogo::Utility.snake(args.to_smash.fetch(:provider, 'aws')).to_sym
+      @provider = Bogo::Utility.snake(args.to_smash.fetch(:provider, "aws")).to_sym
       @root = nil
       @sparkles = []
     end
@@ -164,7 +164,7 @@ class SparkleFormation
         target_provider = provider
       end
       result = send(type_name).get(target_provider, name)
-      if result.nil? && type_name == 'templates'
+      if result.nil? && type_name == "templates"
         t_direct = sparkles.map do |pack|
           begin
             pack.get(:template, name, target_provider)

@@ -1,12 +1,12 @@
-require 'zlib'
-require 'sparkle_formation'
+require "zlib"
+require "sparkle_formation"
 
 class SparkleFormation
   module SparkleAttribute
 
     # Google specific helper implementations
     module Google
-      CHARACTER_COLLECTION = ('a'..'z').to_a
+      CHARACTER_COLLECTION = ("a".."z").to_a
 
       def self.included(klass)
         klass.const_set(:CAMEL_STYLE, :no_leading)
@@ -16,23 +16,23 @@ class SparkleFormation
             result = _non_google_attribute_struct_dump
             if _parent.nil?
               sparkle_root = {}
-              if result.key?('resources') && result['resources'].is_a?(Hash)
-                resources = result.delete('resources') || {}
-                sparkle_root = (resources.delete(_self.name) || {}).fetch('properties', {})
-                result['resources'] = resources.map do |r_name, r_content|
-                  r_content.merge('name' => r_name)
+              if result.key?("resources") && result["resources"].is_a?(Hash)
+                resources = result.delete("resources") || {}
+                sparkle_root = (resources.delete(_self.name) || {}).fetch("properties", {})
+                result["resources"] = resources.map do |r_name, r_content|
+                  r_content.merge("name" => r_name)
                 end
-                outputs = result.delete('outputs') || {}
-                result['outputs'] = outputs.map do |o_name, o_content|
-                  o_content.merge('name' => o_name)
+                outputs = result.delete("outputs") || {}
+                result["outputs"] = outputs.map do |o_name, o_content|
+                  o_content.merge("name" => o_name)
                 end
                 if _self.parent.nil?
                   result = {
-                    'resources' => [{
-                      'name' => _self.name,
-                      'type' => _self.stack_resource_type,
-                      'properties' => {
-                        'stack' => result,
+                    "resources" => [{
+                      "name" => _self.name,
+                      "type" => _self.stack_resource_type,
+                      "properties" => {
+                        "stack" => result,
                       }.merge(sparkle_root),
                     }],
                   }
@@ -57,7 +57,7 @@ class SparkleFormation
       # @note generate unique names using the `:sparkle_unique` argument
       def _google_dynamic!(name, *args, &block)
         if args.delete(:sparkle_unique)
-          seed = Zlib.crc32(_self.root_path.map(&:name).join('-'))
+          seed = Zlib.crc32(_self.root_path.map(&:name).join("-"))
           gen = Random.new(seed)
           suffix = Array.new(10) do
             CHARACTER_COLLECTION.at(
@@ -70,7 +70,7 @@ class SparkleFormation
             args.push(config_hash)
           end
           config_hash[:resource_name_suffix] = "-#{suffix}"
-          args[0] = args.first.to_s.tr('_', '-').downcase
+          args[0] = args.first.to_s.tr("_", "-").downcase
         end
         _non_google_dynamic!(name, *args, &block)
       end
@@ -85,7 +85,7 @@ class SparkleFormation
         if _root.resources.set!(r_name).nil?
           ::Kernel.raise ::SparkleFormation::Error::NotFound::Resource.new(:name => r_name)
         else
-          ::SparkleFormation::GoogleStruct.new('ref').set!(__attribute_key(r_name))
+          ::SparkleFormation::GoogleStruct.new("ref").set!(__attribute_key(r_name))
         end
       end
 

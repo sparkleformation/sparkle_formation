@@ -1,18 +1,18 @@
-require 'sparkle_formation'
+require "sparkle_formation"
 
 class SparkleFormation
   # Internal template composition
   class Composition
 
     # Component item of composition
-    Component = Struct.new('Component', :origin, :key, :block) do
+    Component = Struct.new("Component", :origin, :key, :block) do
       def key
         self[:key].to_s
       end
     end
 
     # Override item of composition
-    Override = Struct.new('Override', :origin, :args, :block)
+    Override = Struct.new("Override", :origin, :args, :block)
 
     # @return [SparkleFormation] owner of composition
     attr_reader :origin
@@ -26,7 +26,7 @@ class SparkleFormation
     # @return [self]
     def initialize(origin, args = {})
       unless origin.is_a?(SparkleFormation)
-        raise TypeError.new 'Composition requires `SparkleFormation` instance as origin. ' \
+        raise TypeError.new "Composition requires `SparkleFormation` instance as origin. " \
                             "Received origin type `#{origin.class}`."
       end
       @origin = origin
@@ -75,7 +75,7 @@ class SparkleFormation
         when :prepend
           components_list.unshift(item)
         else
-          raise ArgumentError.new 'Unknown addition location provided. Valid: `:append, :prepend`. ' \
+          raise ArgumentError.new "Unknown addition location provided. Valid: `:append, :prepend`. " \
                                   "Received: `#{location.inspect}`"
         end
       end
@@ -97,7 +97,7 @@ class SparkleFormation
       when :prepend
         overrides_list.unshift(item)
       else
-        raise ArgumentError.new 'Unknown addition location provided. Valid: ' \
+        raise ArgumentError.new "Unknown addition location provided. Valid: " \
                                 "`:append, :prepend`. Received: `#{location.inspect}`"
       end
       self
@@ -169,7 +169,7 @@ class SparkleFormation
           end
           unless valid_item
             raise TypeError.new "Invalid type encountered within collection `#{item.class}`. " \
-                                "Expected `#{type.map(&:to_s).join('`, `')}`."
+                                "Expected `#{type.map(&:to_s).join("`, `")}`."
           end
         end
         items.dup
