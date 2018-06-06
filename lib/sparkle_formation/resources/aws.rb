@@ -93,6 +93,14 @@ class SparkleFormation
             }),
             UpdateCausesConditional.new("replacement", true),
           ],
+          "Tenancy" => [
+            UpdateCausesConditional.new("none", lambda { |final, original|
+                ["host", "dedicated"].any?{ |val| final.get("Properties", "Tenancy") == val } &&
+                  ["host", "dedicated"].any?{ |val| original.get("Properties", "Tenancy") == val }
+              }
+            ),
+            UpdateCausesConditional.new("replacement", true),
+          ],
           "UserData" => [
             UpdateCausesConditional.new("unknown", true), # EBS AMI dependent
           ],
@@ -162,6 +170,83 @@ class SparkleFormation
             UpdateCausesConditional.new("none", true),
           ],
         },
+        "AWS::KinesisFirehose::DeliveryStream" => {
+          "ElasticsearchDestinationConfiguration" => [
+            UpdateCausesConditional.new("interrupt", lambda { |final, original|
+                !!original.get("Properties", "ElasticsearchDestinationConfiguration")
+              }
+            ),
+            UpdateCausesConditional.new("none", true),
+          ],
+          "ExtendedS3DestinationConfiguration" => [
+            UpdateCausesConditional.new("interrupt", lambda { |final, original|
+                !!original.get("Properties", "ExtendedS3DestinationConfiguration")
+              }
+            ),
+            UpdateCausesConditional.new("none", true),
+          ],
+          "RedshiftDestinationConfiguration" => [
+            UpdateCausesConditional.new("interrupt", lambda { |final, original|
+                !!original.get("Properties", "RedshiftDestinationConfiguration")
+              }
+            ),
+            UpdateCausesConditional.new("none", true),
+          ],
+          "S3DestinationConfiguration" => [
+            UpdateCausesConditional.new("interrupt", lambda { |final, original|
+                !!original.get("Properties", "S3DestinationConfiguration")
+              }
+            ),
+            UpdateCausesConditional.new("none", true),
+          ],
+        },
+        "AWS::Neptune::DBCluster" => {
+          "BackupRetentionPeriod" => [
+            # Not clear within documentation
+            UpdateCausesConditional.new("unknown", true),
+          ],
+          "PreferredMaintenanceWindow" => [
+            # Not clear within documentation
+            UpdateCausesConditional.new("unknown", true),
+          ],
+        },
+        "AWS::Neptune::DBClusterParameterGroup" => {
+          "Parameters" => [
+            # dependent on what parameters have been changed. doesn't
+            # look like parameter modifications are applied immediately?
+            # set as unknown for safety
+            UpdateCausesConditional.new("unknown", true),
+          ],
+        },
+        "AWS::Neptune::DBInstance" => {
+          "AutoMinorVersionUpgrade" => [
+            # Documentation does not indicate condition when no
+            # interruption occurs, so set as interrupt for safety
+            UpdateCausesConditional.new("interrupt", true),
+          ],
+          "DBParameterGroupName" => [
+            UpdateCausesConditional.new("interrupt", true),
+          ],
+          "PreferredMaintenanceWindow" => [
+            UpdateCausesConditional.new("interrupt", true),
+          ],
+        },
+        "AWS::Neptune::DBParameterGroup" => {
+          # Interrupt is only caused when parameters are static
+          # values. Dynamic values are applied immediately
+          "Parameters" => [
+            UpdateCausesConditional.new("interrupt", lambda { |final, original|
+                o_params = original.fetch("Properties", "Parameters", {})
+                f_params = final.fetch("Properties", "Parameters", {})
+                f_params.any? { |key, value|
+                  o_params[key].nil? ||
+                    o_params[key].is_a?(Hash)
+                }
+              }
+            ),
+            UpdateCausesConditional.new("none", true),
+          ]
+        },
         "AWS::RDS::DBCluster" => {
           "BackupRetentionPeriod" => [
             UpdateCausesConditional.new("interrupt",
@@ -208,6 +293,11 @@ class SparkleFormation
             # still be considered an interrupt? setting as unknown
             # for safety
             UpdateCausesConditional.new("unknown", true),
+          ],
+          "MonitoringInterval" => [
+            # There can be an interruption or nothing. No clear distinction
+            # on when an interrupt so just default to interrupt for safety
+            UpdateCausesConditional.new("interrupt", true),
           ],
           "PreferredMaintenanceWindow" => [
             # can interrupt if apply immediately is set on api call but
