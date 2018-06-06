@@ -1,3 +1,6 @@
+# v3.0.32
+* Update AWS builtin resources
+
 # v3.0.30
 * Fix race condition in pack loading (#241)
 
