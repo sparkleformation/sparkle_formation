@@ -18,6 +18,10 @@ class SparkleFormation
   DEFAULT_STACK_RESOURCE = "AWS::CloudFormation::Stack"
   # @return [Array<String>] collection of valid stack resource types
   VALID_STACK_RESOURCES = [DEFAULT_STACK_RESOURCE]
+  # @return [Hash] name mappings for providers used in lookups (resources/sparkles)
+  PROVIDER_MAPPINGS = Smash.new(
+    :open_stack => :heat,
+  ).freeze
 
   class << self
     include SparkleFormation::Utils::TypeCheckers
@@ -707,10 +711,7 @@ class SparkleFormation
       else
         struct_class = SparkleStruct
       end
-      if Resources.const_defined?(camel(provider))
-        @provider_resources = Resources.const_get(camel(provider))
-        provider_resources.load!
-      end
+      load_resources!
       compiled = struct_class.new
       compiled._set_self(self)
       compiled._struct_class = struct_class
@@ -993,5 +994,18 @@ class SparkleFormation
       argument.respond_to?(:to_h) ? argument.to_h : argument
     end
     MultiJson.dump(compile.dump!, *args)
+  end
+
+  protected
+
+  # Load provider specific resources handling
+  def load_resources!
+    if provider && @provider_resources.nil?
+      provider_name = camel(PROVIDER_MAPPINGS.fetch(provider, provider))
+      if Resources.const_defined?(provider_name)
+        @provider_resources = Resources.const_get(provider_name)
+        provider_resources.load!
+      end
+    end
   end
 end

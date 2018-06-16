@@ -44,4 +44,39 @@ RSpec.describe SparkleFormation do
       end
     end
   end
+
+  describe "#load_resources!" do
+    let(:instance_args) { {provider: provider} }
+    let(:provider) { nil }
+
+    before { instance.send(:load_resources!) }
+
+    it "should not load any provider resources" do
+      expect(instance.provider_resources).to be_nil
+    end
+
+    context "with provider set to known provider" do
+      let(:provider) { :aws }
+
+      it "should load the provider resources" do
+        expect(instance.provider_resources).to eq(SparkleFormation::Resources::Aws)
+      end
+    end
+
+    context "with provider set to unknown provider" do
+      let(:provider) { :unknown }
+
+      it "should not load any provider resources" do
+        expect(instance.provider_resources).to be_nil
+      end
+    end
+
+    context "with provider that is a mapped" do
+      let(:provider) { :open_stack }
+
+      it "should load the mapped provider resources" do
+        expect(instance.provider_resources).to eq(SparkleFormation::Resources::Heat)
+      end
+    end
+  end
 end
