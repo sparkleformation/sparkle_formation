@@ -1,4 +1,129 @@
 {
+  "AWS::AmazonMQ::Broker": {
+    "full_properties": {
+      "AutoMinorVersionUpgrade": {
+        "description": "Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions. The automatic upgrades occur during the maintenance window of the broker or after a manual broker reboot.",
+        "required": true,
+        "type": "Boolean",
+        "update_causes": "replacement"
+      },
+      "BrokerName": {
+        "description": "The name of the broker. This value must be unique in your AWS account, 1-50 characters long, must contain only letters, numbers, dashes, and underscores, and must not contain whitespaces, brackets, wildcard characters, or special characters.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Users": {
+        "description": "The list of all ActiveMQ usernames for the specified broker.",
+        "required": true,
+        "type": "Array",
+        "update_causes": "interrupt"
+      },
+      "Configuration": {
+        "description": "The broker configuration. If no configuration exists for a broker, Amazon MQ creates a default configuration",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "DeploymentMode": {
+        "description": "The deployment mode of the broker. SINGLE_INSTANCE creates a single-instance broker in a single Availability Zone. ACTIVE_STANDBY_MULTI_AZ creates an active/standby broker for high availability.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "EngineType": {
+        "description": "The type of broker engine",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "EngineVersion": {
+        "description": "The version of the broker engine",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "HostInstanceType": {
+        "description": "The broker's instance type",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "MaintenanceWindowStartTime": {
+        "description": "The parameters that determine the WeeklyStartTime",
+        "required": false,
+        "type": "Hash",
+        "update_causes": "replacement"
+      },
+      "PubliclyAccessible": {
+        "description": "Enables connections from applications outside of the VPC that hosts the broker's subnets",
+        "required": true,
+        "type": "Boolean",
+        "update_causes": "replacement"
+      },
+      "SecurityGroups": {
+        "description": "The list of rules (1 minimum, 125 maximum) that authorize connections to brokers",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "SubnetIds": {
+        "description": "The list of groups (2 maximum) that define which subnets and IP ranges the broker can use from different Availability Zones. A SINGLE_INSTANCE deployment requires one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ deployment requires two subnets.",
+        "required": "false",
+        "type": "Array",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-amazonmq-broker.html",
+    "properties": [
+      "AutoMinorVersionUpgrade",
+      "BrokerName",
+      "Users",
+      "Configuration",
+      "DeploymentMode",
+      "EngineType",
+      "EngineVersion",
+      "HostInstanceType",
+      "MaintenanceWindowStartTime",
+      "PublicalyAccessible",
+      "SecurityGroups",
+      "SubnetIds"
+    ]
+  },
+  "AWS::AmazonMQ::Configuration": {
+    "full_properties": {
+      "Description": {
+        "description": "The description of the configuration for activemq",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Data": {
+        "description": "The base64-encoded XML configuration for activemq",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "EngineType": {
+        "description": "The broker engine to use with amazonmq. Currently only ACTIVEMQ supported",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "EngineVersion": {
+        "description": "The version of broker engine to run. Currently only version 5.15.0 is supported",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-amazonmq-configuration.html",
+    "properties": [
+      "Data",
+      "EngineType",
+      "EngineVersion"
+    ]
+  },
   "AWS::ApiGateway::Account": {
     "full_properties": {
       "CloudWatchRoleArn": {
