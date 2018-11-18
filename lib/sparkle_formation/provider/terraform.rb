@@ -23,7 +23,15 @@ class SparkleFormation
         if resources = result.delete(:resource)
           result[:resource] = Smash.new
           resources.each do |r_name, r_info|
-            result.set(:resource, r_info[:type], r_name, r_info[:properties])
+            if !r_info[:type]
+              r_type = r_name
+              r_info.each do |r_name, r_props|
+                r_info = Smash.new(type: r_type, properties: r_props)
+                result.set(:resource, r_info[:type], r_name, r_info[:properties])
+              end
+            else
+              result.set(:resource, r_info[:type], r_name, r_info[:properties])
+            end
           end
         end
         result
