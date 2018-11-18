@@ -118,13 +118,32 @@ class SparkleFormation
         alias_method "#{f_name}!".to_sym, "_#{f_name}".to_sym
       end
 
+      # Lookup resource based on name and provide formatted
+      # reference to the resource with type included.
+      #
+      # @param name [String, Symbol] resource name
+      # @return [String] resource name
       def __resource_lookup(name)
-        resource = root!.resources[name]
-        if resource.nil?
-          name
-        else
-          "#{resource.type}.#{name}"
+        return name.to_s if name.to_s.include?(".")
+        if root!.key?(:resources) && root!.resources.key?(name)
+          resource = root!.resources[name]
+          if resource.key?(:type)
+            return "#{resource.type}.#{name}"
+          end
         end
+        if root!.key?(:resource)
+          types = root!.resource._keys
+          matches = types.find_all do |type|
+            root!.resource._set(type).key?(name)
+          end
+          if matches.size > 1
+            raise ArgumentError.new "Non-unique resource name. Multiple type " \
+                                    "matches for resource `#{name}`"
+          elsif matches.size == 1
+            return "#{matches.first}.#{name}"
+          end
+        end
+        name.to_s
       end
 
       # Resource dependency generator
