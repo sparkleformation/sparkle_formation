@@ -1,0 +1,74 @@
+#!/usr/bin/env ruby
+
+%w(bogo multi_json nokogiri fileutils).each do |lib|
+  begin
+    require lib
+  rescue LoadError
+    $stderr.puts "Failed to load required library: `#{lib}` !"
+    $stderr.puts "  > gem install #{lib}"
+    exit -1
+  end
+end
+
+STORE = "/tmp/tf-docs"
+
+unless (File.directory?(STORE))
+  FileUtils.mkdir_p(STORE)
+  Dir.chdir(STORE) do
+    unless (system('wget -q -r --regex-type pcre --accept-regex "providers/.*html" "https://www.terraform.io/docs/providers/index.html"'))
+      puts "FAILED: Documentation fetching failed!"
+      exit -1
+    end
+  end
+end
+
+resources = {}
+files = {}
+
+Dir.glob(File.join(STORE, "**/**/providers/**/**/r/*.html")).each do |path|
+  path_resource = File.basename(path).sub(".html", "")
+  resource = nil
+  file = Nokogiri::HTML(File.open(path, "r"))
+  resource = file.css("h1").text.sub(/^.+ /m, "").strip.gsub("\\", "_")
+  next if resource.to_s.empty?
+  if resource.match(/[A-Z]/)
+    $stderr.puts "WARN: Failed to parse #{path_resource} correctly (!= #{resource}): #{path}"
+    next
+  end
+  prefix = resource.split("_").first
+  property_information = {}
+  result = file.xpath("//ul")
+  match = result.detect { |x| !x.css("li a code").empty? }
+  next unless match
+  match.css("li").each do |property|
+    pname = property.css("a code").text
+    info = {}
+    data = property.text.match(
+      /^#{pname}:?\s*-?\s*(\((?<requirement>.+?)\))?\s*(?<description>.+)$/
+    )
+    if data
+      info[:description] = data[:description]
+      info[:required] = data[:requirement].to_s.downcase == "required"
+    else
+      $stderr.puts "Failed data extraction: #{property.text.inspect}"
+    end
+    property_information[pname] = info
+  end
+  resources[prefix] ||= {}
+  resources[prefix][resource] = {
+    full_properties: property_information,
+    properties: property_information.keys,
+    path: path.sub(/^.*www.terraform.io/, ""),
+  }
+end
+
+resources.each do |prefix, r|
+  file_path = File.join(File.dirname(File.dirname(__FILE__)),
+                        "lib", "sparkle_formation", "resources", "terraform_#{prefix}_resources.json")
+  $stdout.puts "Writing resource file: #{file_path}"
+  File.open(file_path, "w+") do |file|
+    file.puts MultiJson.dump(resources[prefix].to_smash(:sorted), :pretty => true)
+  end
+end
+
+$stdout.puts "Complete!"
