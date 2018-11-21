@@ -1,0 +1,24 @@
+{
+  "bucket": {
+    "full_properties": {
+      "google_storage_bucket_iam_binding": {
+        "description": "Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the storage bucket are preserved.",
+        "required": false
+      },
+      "google_storage_bucket_iam_member": {
+        "description": "Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the storage bucket are preserved.",
+        "required": false
+      },
+      "google_storage_bucket_iam_policy": {
+        "description": "Setting a policy removes all other permissions on the bucket, and if done incorrectly, there's a real chance you will lock yourself out of the bucket. If possible for your use case, using multiple google_storage_bucket_iam_binding resources will be much safer. See the usage example on how to work with policy correctly.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/google/r/storage_bucket_iam.html",
+    "properties": [
+      "google_storage_bucket_iam_binding",
+      "google_storage_bucket_iam_member",
+      "google_storage_bucket_iam_policy"
+    ]
+  }
+}

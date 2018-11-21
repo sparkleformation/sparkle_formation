@@ -1,0 +1,68 @@
+{
+  "influxdb_continuous_query": {
+    "full_properties": {
+      "database": {
+        "description": "The database for the continuous_query. This must be an existing influxdb database.",
+        "required": true
+      },
+      "name": {
+        "description": "The name for the continuous_query. This must be unique on the InfluxDB server.",
+        "required": true
+      },
+      "query": {
+        "description": "The query for the continuous_query. ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/influxdb/r/continuous_query.html",
+    "properties": [
+      "name",
+      "database",
+      "query"
+    ]
+  },
+  "influxdb_database": {
+    "full_properties": {
+      "name": {
+        "description": "The name for the database. This must be unique on the",
+        "required": true
+      },
+      "retention_policies": {
+        "description": "A list of retention policies for specified database",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/influxdb/r/database.html",
+    "properties": [
+      "name",
+      "retention_policies"
+    ]
+  },
+  "influxdb_user": {
+    "full_properties": {
+      "admin": {
+        "description": "Mark the user as admin.",
+        "required": false
+      },
+      "grant": {
+        "description": "A list of grants for non-admin users",
+        "required": false
+      },
+      "name": {
+        "description": "The name for the user. ",
+        "required": true
+      },
+      "password": {
+        "description": "The password for the user. ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/influxdb/r/user.html",
+    "properties": [
+      "name",
+      "password",
+      "admin",
+      "grant"
+    ]
+  }
+}

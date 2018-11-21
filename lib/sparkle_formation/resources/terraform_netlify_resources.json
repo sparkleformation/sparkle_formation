@@ -1,0 +1,90 @@
+{
+  "netlify_build_hook": {
+    "full_properties": {
+      "branch": {
+        "description": "branch to be built when the hook is triggered",
+        "required": true
+      },
+      "site_id": {
+        "description": "Your netlify site's unique id",
+        "required": true
+      },
+      "title": {
+        "description": "name of the webhook - this is purely for organization and",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/netlify/r/netlify_build_hook.html",
+    "properties": [
+      "site_id",
+      "branch",
+      "title"
+    ]
+  },
+  "netlify_deploy_key": {
+    "full_properties": {
+      "public_key": {
+        "description": "Public Key",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/netlify/r/netlify_deploy_key.html",
+    "properties": [
+      "public_key"
+    ]
+  },
+  "netlify_hook": {
+    "full_properties": {
+      "data": {
+        "description": "object/hash of data to be sent along with the webhook. this varies depending on the type",
+        "required": true
+      },
+      "event": {
+        "description": "- when to send the data, for example on deploy create, succeed, fail, etc",
+        "required": true
+      },
+      "site_id": {
+        "description": "- id of the site on netlify",
+        "required": true
+      },
+      "type": {
+        "description": "- type of outgoing webhook, for example slack, email, github commit status, etc",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/netlify/r/netlify_hook.html",
+    "properties": [
+      "site_id",
+      "type",
+      "event",
+      "data"
+    ]
+  },
+  "netlify_site": {
+    "full_properties": {
+      "custom_domain": {
+        "description": "- a custom domain name, must be configured using a cname in accordance with netlify's docs",
+        "required": false
+      },
+      "deploy_url": {
+        "description": "(Optional)",
+        "required": false
+      },
+      "name": {
+        "description": "- name of your site on netlify",
+        "required": true
+      },
+      "repo": {
+        "description": "See Repository",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/netlify/r/netlify_site.html",
+    "properties": [
+      "name",
+      "repo",
+      "custom_domain",
+      "deploy_url"
+    ]
+  }
+}

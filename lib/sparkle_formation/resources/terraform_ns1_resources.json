@@ -1,0 +1,320 @@
+{
+  "ns1_apikey": {
+    "full_properties": {
+      "key": {
+        "description": "The apikeys authentication token.",
+        "required": true
+      },
+      "name": {
+        "description": "The free form name of the apikey.",
+        "required": true
+      },
+      "permissions": {
+        "description": "The allowed permissions of the apikey. Permissions documented below.",
+        "required": false
+      },
+      "teams": {
+        "description": "The teams that the apikey belongs to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ns1/r/apikey.html",
+    "properties": [
+      "name",
+      "key",
+      "teams",
+      "permissions"
+    ]
+  },
+  "ns1_datafeed": {
+    "full_properties": {
+      "config": {
+        "description": "The feeds configuration matching the specification in 'feed_config' from /data/sourcetypes.",
+        "required": false
+      },
+      "name": {
+        "description": "The free form name of the data feed.",
+        "required": true
+      },
+      "source_id": {
+        "description": "The data source id that this feed is connected to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ns1/r/datafeed.html",
+    "properties": [
+      "source_id",
+      "name",
+      "config"
+    ]
+  },
+  "ns1_datasource": {
+    "full_properties": {
+      "config": {
+        "description": "The data source configuration, determined by its type.",
+        "required": false
+      },
+      "name": {
+        "description": "The free form name of the data source.",
+        "required": true
+      },
+      "sourcetype": {
+        "description": "The data sources type, listed in API endpoint https://api.nsone.net/v1/data/sourcetypes.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ns1/r/datasource.html",
+    "properties": [
+      "name",
+      "sourcetype",
+      "config"
+    ]
+  },
+  "ns1_monitoringjob": {
+    "full_properties": {
+      "active": {
+        "description": "Indicates if the job is active or temporaril.y disabled.",
+        "required": true
+      },
+      "config": {
+        "description": "A configuration dictionary with keys and values depending on the jobs' type.",
+        "required": true
+      },
+      "frequency": {
+        "description": "The frequency, in seconds, at which to run the monitoring job in each region.",
+        "required": true
+      },
+      "job_type": {
+        "description": "The type of monitoring job to be run.",
+        "required": true
+      },
+      "name": {
+        "description": "The free-form display name for the monitoring job.",
+        "required": true
+      },
+      "notes": {
+        "description": "Freeform notes to be included in any notifications about this job.",
+        "required": false
+      },
+      "notify_delay": {
+        "description": "The time in seconds after a failure to wait before sending a notification.",
+        "required": false
+      },
+      "notify_failback": {
+        "description": "If true, a notification is sent when a job returns to an \"up\" state.",
+        "required": false
+      },
+      "notify_list": {
+        "description": "The id of the notification list to send notifications to.",
+        "required": false
+      },
+      "notify_regional": {
+        "description": "If true, notifications are sent for any regional failure (and failback if desired), in addition to global state notifications.",
+        "required": false
+      },
+      "notify_repeat": {
+        "description": "The time in seconds between repeat notifications of a failed job.",
+        "required": false
+      },
+      "policy": {
+        "description": "The policy for determining the monitor's global status based on the status of the job in all regions.",
+        "required": true
+      },
+      "rapid_recheck": {
+        "description": "If true, on any apparent state change, the job is quickly re-run after one second to confirm the state change before notification.",
+        "required": true
+      },
+      "regions": {
+        "description": "The list of region codes in which to run the monitoring job.",
+        "required": true
+      },
+      "rules": {
+        "description": "A list of rules for determining failure conditions. Job Rules are documented below.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/ns1/r/monitoringjob.html",
+    "properties": [
+      "name",
+      "job_type",
+      "active",
+      "regions",
+      "frequency",
+      "rapid_recheck",
+      "policy",
+      "config",
+      "notify_delay",
+      "notify_repeat",
+      "notify_failback",
+      "notify_regional",
+      "notify_list",
+      "notes",
+      "rules"
+    ]
+  },
+  "ns1_notifylist": {
+    "full_properties": {
+      "name": {
+        "description": "The free-form display name for the notify list.",
+        "required": true
+      },
+      "notifications": {
+        "description": "A list of notifiers. All notifiers in a notification list will receive notifications whenever an event is send to the list (e.g., when a monitoring job fails). Notifiers are documented below.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/ns1/r/notifylist.html",
+    "properties": [
+      "name",
+      "notifications"
+    ]
+  },
+  "ns1_record": {
+    "full_properties": {
+      "answers": {
+        "description": "One or more NS1 answers for the records' specified type. Answers are documented below.",
+        "required": false
+      },
+      "domain": {
+        "description": "The records' domain.",
+        "required": true
+      },
+      "filters": {
+        "description": "One or more NS1 filters for the record(order matters). Filters are documented below.",
+        "required": false
+      },
+      "link": {
+        "description": "The target record to link to. This means this record is a 'linked' record, and it inherits all properties from its target.",
+        "required": false
+      },
+      "ttl": {
+        "description": "The records' time to live.",
+        "required": false
+      },
+      "type": {
+        "description": "The records' RR type.",
+        "required": true
+      },
+      "use_client_subnet": {
+        "description": "Whether to use EDNS client subnet data when available(in filter chain).",
+        "required": false
+      },
+      "zone": {
+        "description": "The zone the record belongs to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ns1/r/record.html",
+    "properties": [
+      "zone",
+      "domain",
+      "type",
+      "ttl",
+      "link",
+      "use_client_subnet",
+      "answers",
+      "filters"
+    ]
+  },
+  "ns1_team": {
+    "full_properties": {
+      "name": {
+        "description": "The free form name of the team.",
+        "required": true
+      },
+      "permissions": {
+        "description": "The allowed permissions of the team. Permissions documented below.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/ns1/r/team.html",
+    "properties": [
+      "name",
+      "permissions"
+    ]
+  },
+  "ns1_user": {
+    "full_properties": {
+      "email": {
+        "description": "The email address of the user.",
+        "required": true
+      },
+      "name": {
+        "description": "The free form name of the user.",
+        "required": true
+      },
+      "notify": {
+        "description": "The Whether or not to notify the user of specified events. Only billing is available currently.",
+        "required": true
+      },
+      "permissions": {
+        "description": "The allowed permissions of the user. Permissions documented below.",
+        "required": false
+      },
+      "teams": {
+        "description": "The teams that the user belongs to.",
+        "required": true
+      },
+      "username": {
+        "description": "The users login name.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ns1/r/user.html",
+    "properties": [
+      "name",
+      "username",
+      "email",
+      "notify",
+      "teams",
+      "permissions"
+    ]
+  },
+  "ns1_zone": {
+    "full_properties": {
+      "expiry": {
+        "description": "The SOA Expiry.",
+        "required": false
+      },
+      "link": {
+        "description": "The target zone(domain name) to link to.",
+        "required": false
+      },
+      "nx_ttl": {
+        "description": "The SOA NX TTL.",
+        "required": false
+      },
+      "primary": {
+        "description": "The primary zones' ip. This makes the zone a secondary.",
+        "required": false
+      },
+      "refresh": {
+        "description": "The SOA Refresh.",
+        "required": false
+      },
+      "retry": {
+        "description": "The SOA Retry.",
+        "required": false
+      },
+      "ttl": {
+        "description": "The SOA TTL.",
+        "required": false
+      },
+      "zone": {
+        "description": "The domain name of the zone.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ns1/r/zone.html",
+    "properties": [
+      "zone",
+      "link",
+      "ttl",
+      "refresh",
+      "retry",
+      "expiry",
+      "nx_ttl",
+      "primary"
+    ]
+  }
+}

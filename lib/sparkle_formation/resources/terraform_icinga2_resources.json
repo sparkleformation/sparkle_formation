@@ -1,0 +1,100 @@
+{
+  "icinga2_checkcommand": {
+    "full_properties": {
+      "arguments": {
+        "description": "A mapping of arguments to include with the command.",
+        "required": false
+      },
+      "command": {
+        "description": "Path to the command te be executed.",
+        "required": true
+      },
+      "name": {
+        "description": "Name by which to reference the checkcommand",
+        "required": true
+      },
+      "templates": {
+        "description": "A list of Icinga2 templates to assign to the host.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/icinga2/r/checkcommands.html",
+    "properties": [
+      "arguments",
+      "command",
+      "name",
+      "templates"
+    ]
+  },
+  "icinga2_host": {
+    "full_properties": {
+      "address": {
+        "description": "The address of the host.",
+        "required": true
+      },
+      "check_command": {
+        "description": "The name of an existing Icinga2 CheckCommand object that is used to determine if the host is available or not.",
+        "required": true
+      },
+      "hostname": {
+        "description": "The hostname of the host.",
+        "required": true
+      },
+      "templates": {
+        "description": "A list of Icinga2 templates to assign to the host.",
+        "required": false
+      },
+      "vars": {
+        "description": "A mapping of variables to assign to the host.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/icinga2/r/host.html",
+    "properties": [
+      "address",
+      "check_command",
+      "hostname",
+      "templates",
+      "vars"
+    ]
+  },
+  "icinga2_hostgroup": {
+    "full_properties": {
+      "display_name": {
+        "description": "The name of the hostgroup to display in the Icinga2 interface.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the hostgroup.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/icinga2/r/hostgroup.html",
+    "properties": [
+      "name",
+      "display_name"
+    ]
+  },
+  "icinga2_service": {
+    "full_properties": {
+      "check_command": {
+        "description": "The name of an existing Icinga2 CheckCommand object that is used to determine if the service is available on the host.",
+        "required": true
+      },
+      "hostname": {
+        "description": "The host to check the service's status on",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the Service object.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/icinga2/r/service.html",
+    "properties": [
+      "name",
+      "check_command",
+      "hostname"
+    ]
+  }
+}

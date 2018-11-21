@@ -1,0 +1,551 @@
+{
+  "oraclepaas_application_container": {
+    "full_properties": {
+      "archive_url": {
+        "description": "Location of the application archive file in Oracle Storage Cloud Service, in the format app-name/file-name.",
+        "required": false
+      },
+      "auth_type": {
+        "description": "Uses Oracle Identity Cloud Service to control who can access your Java SE 7 or 8, Node.js, or PHP application. Allowed values are basic and oauth.",
+        "required": false
+      },
+      "availability_domain": {
+        "description": "A list of one or more datacenter locations in the OCI region. Required on OCI.",
+        "required": false
+      },
+      "deployment": {
+        "description": "The deployment attributes related to deploying an application. Use either deployment_file or deployment when specifying",
+        "required": false
+      },
+      "deployment_file": {
+        "description": "The json deployment file containing the attributes related to deploying an application. Use either deployment_file or deployment_attributes when specifying",
+        "required": false
+      },
+      "git_password": {
+        "description": "The password for the user with access to the git repository if the repository is private.",
+        "required": false
+      },
+      "git_repository": {
+        "description": "The URL of the git repository to use the application container.",
+        "required": false
+      },
+      "git_username": {
+        "description": "The username of a user with access to the git respository if the repository is private.",
+        "required": false
+      },
+      "load_balancer_subnets": {
+        "description": "Two load balancer subnets. Required on OCI.",
+        "required": false
+      },
+      "manifest": {
+        "description": "The manifest attributes related to launching an application. Use either manifest_file or manifest when specifying ",
+        "required": false
+      },
+      "manifest_file": {
+        "description": "The json manifest file containing the attributes related to launching an application. Use either manifest_file or manifest_attributes when specifying ",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the Application Container.",
+        "required": true
+      },
+      "notes": {
+        "description": "Comments about the application deployment.",
+        "required": false
+      },
+      "notification_email": {
+        "description": "Email address to which application deployment status updates are sent.",
+        "required": false
+      },
+      "region": {
+        "description": "The name of the region where the application container will be deployed. Required on OCI.",
+        "required": false
+      },
+      "repository": {
+        "description": "Repository of the application. The only allowed value is 'dockerhub'.",
+        "required": false
+      },
+      "runtime": {
+        "description": "The allowed runtime environment variables. The allowed variables are java, node, php, python, golang, dotnet, or ruby. The default is java.",
+        "required": false
+      },
+      "subscription_type": {
+        "description": "Whether the subscription type is hourly or monthly. The default is hourly.",
+        "required": false
+      },
+      "tags": {
+        "description": "A map of tags for the application container.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oraclepaas/r/oraclepaas_application_container.html",
+    "properties": [
+      "name",
+      "manifest_file",
+      "manifest",
+      "deployment_file",
+      "deployment",
+      "archive_url",
+      "auth_type",
+      "availability_domain",
+      "git_repository",
+      "git_username",
+      "git_password",
+      "load_balancer_subnets",
+      "notes",
+      "notification_email",
+      "region",
+      "repository",
+      "runtime",
+      "subscription_type",
+      "tags"
+    ]
+  },
+  "oraclepaas_database_access_rule": {
+    "full_properties": {
+      "description": {
+        "description": "The description of the Access Rule",
+        "required": true
+      },
+      "enabled": {
+        "description": "Determines whether the access rule is enabled. Default is true.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the Access Rule",
+        "required": true
+      },
+      "ports": {
+        "description": "The port or range of ports to allow traffic on",
+        "required": true
+      },
+      "service_instance_id": {
+        "description": "The name of the database service instance to attach",
+        "required": true
+      },
+      "source": {
+        "description": "The IP addresses and subnets from which traffic is allowed. Valid values are",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oraclepaas/r/oraclepaas_database_access_rule.html",
+    "properties": [
+      "name",
+      "service_instance_id",
+      "description",
+      "ports",
+      "source",
+      "enabled"
+    ]
+  },
+  "oraclepaas_database_service_instance": {
+    "full_properties": {
+      "backups": {
+        "description": "Provides Cloud Storage information for how to implement service instance backups. Backups is documented below",
+        "required": false
+      },
+      "bring_your_own_license": {
+        "description": "Specify if you want to use an existing perpetual license to Oracle Database to establish the right to use Oracle Database on the new instance.",
+        "required": false
+      },
+      "database_configuration": {
+        "description": "Specifies the details on how to configure the database. Database configuration is documented below.",
+        "required": true
+      },
+      "default_access_rules": {
+        "description": "Specifies the details on which default access rules are enable or disabled. Default Access Rules",
+        "required": false
+      },
+      "description": {
+        "description": "A description of the Service Instance.",
+        "required": false
+      },
+      "desired_state": {
+        "description": "Specifies the desired state of the service instance. Allowed values are start, stop,",
+        "required": false
+      },
+      "edition": {
+        "description": "Database edition for the service instance. Possible values are SE, EE, EE_HP, or EE_EP.",
+        "required": true
+      },
+      "high_performance_storage": {
+        "description": "Specifies whether the service instance will be provisioned with high performance storage.",
+        "required": false
+      },
+      "hybrid_disastery_recovery": {
+        "description": "Provides information about an Oracle Hybrid Disaster Recovery configuration. Hybrid Disaster Recovery is documented below.",
+        "required": false
+      },
+      "instantiate_from_backup": {
+        "description": "Specify if the service instance's database should, after the instance is created, be replaced by a database",
+        "required": false
+      },
+      "ip_network": {
+        "description": "This attribute is only applicable to accounts where regions are supported. The three-part name of an IP network to which the service instance is added. For example: /Compute-identity_domain/user/object",
+        "required": false
+      },
+      "ip_reservations": {
+        "description": "Groups one or more IP reservations in use on this service instance. This attribute is only applicable to accounts where regions are supported.",
+        "required": false
+      },
+      "level": {
+        "description": "Service level for the service instance. Possible values are BASIC or PAAS.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the Service Instance.",
+        "required": true
+      },
+      "notification_email": {
+        "description": "The email address to send notifications around successful or unsuccessful completions of the instance-creation operation.",
+        "required": false
+      },
+      "region": {
+        "description": "Specifies the location where the service instance is provisioned (only for accounts where regions are supported).",
+        "required": false
+      },
+      "shape": {
+        "description": "Desired compute shape. Possible values are oc3, oc4, oc5, oc6, oc1m, oc2m, oc3m, or oc4m.",
+        "required": true
+      },
+      "standby": {
+        "description": "Specifies the configuration details of the standby database. This is only applicable in Oracle Cloud Infrastructure Regions. failover_database and",
+        "required": false
+      },
+      "subnet": {
+        "description": "Name of the subnet within the region where the Oracle Database Cloud Service instance is to be provisioned.",
+        "required": false
+      },
+      "subscription_type": {
+        "description": "Billing unit. Possible values are HOURLY or MONTHLY.",
+        "required": true
+      },
+      "version": {
+        "description": "Oracle Database software version; one of: 12.2.0.1, 12.1.0.2, or 11.2.0.4.",
+        "required": true
+      },
+      "vm_public_key": {
+        "description": "Public key for the secure shell (SSH). This key will be used for authentication when connecting to the Database Cloud Service instance using an SSH client.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oraclepaas/r/oraclepaas_database_service_instance.html",
+    "properties": [
+      "name",
+      "edition",
+      "level",
+      "shape",
+      "subscription_type",
+      "version",
+      "vm_public_key",
+      "database_configuration",
+      "default_access_rules",
+      "desired_state",
+      "instantiate_from_backup",
+      "ip_network",
+      "ip_reservations",
+      "backups",
+      "bring_your_own_license",
+      "description",
+      "high_performance_storage",
+      "hybrid_disastery_recovery",
+      "notification_email",
+      "region",
+      "standby",
+      "subnet"
+    ]
+  },
+  "oraclepaas_java_access_rule": {
+    "full_properties": {
+      "description": {
+        "description": "The description of the Access Rule",
+        "required": true
+      },
+      "destination": {
+        "description": "Destination to which traffic is allowed. Valid values include WLS_ADMIN, WLS_ADMIN_SERVER, OTD_ADMIN_HOST, OTD",
+        "required": true
+      },
+      "enabled": {
+        "description": "Determines whether the access rule is enabled. Default is true.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the Access Rule",
+        "required": true
+      },
+      "ports": {
+        "description": "The port or range of ports to allow traffic on",
+        "required": true
+      },
+      "protocol": {
+        "description": "Specifies the communication protocol. Valid values are tcp or udp.",
+        "required": false
+      },
+      "service_instance_id": {
+        "description": "The name of the java service instance to attach",
+        "required": true
+      },
+      "source": {
+        "description": "The IP addresses and subnets from which traffic is allowed. Valid values include WLS_ADMIN, WLS_ADMIN_SERVER,",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oraclepaas/r/oraclepaas_java_access_rule.html",
+    "properties": [
+      "name",
+      "service_instance_id",
+      "description",
+      "ports",
+      "destination",
+      "source",
+      "enabled",
+      "protocol"
+    ]
+  },
+  "oraclepaas_java_service_instance": {
+    "full_properties": {
+      "assign_public_ip": {
+        "description": "Flag that specifies whether to assign (true) or not assign (false) public IP addresses to the nodes in your service instance. The default is true, which means any node added during service instance provisioning, or later added as part of a scaling operation, will have a public IP address assigned to it. This attribute is only applicable when provisioning an Oracle Java Cloud Service instance in a region on Oracle Cloud Infrastructure Classic, and a custom IP network is specified in ip_network",
+        "required": false
+      },
+      "availability_domain": {
+        "description": "Name of a data center location in the Oracle Cloud Infrastructure region that is specified in region. This is",
+        "required": false
+      },
+      "backup_destination": {
+        "description": "Specifies whether to enable backups for this Oracle Java Cloud Service instance.",
+        "required": false
+      },
+      "backups": {
+        "description": "Provides Cloud Storage information for service instance backups. Backups",
+        "required": true
+      },
+      "bring_your_own_license": {
+        "description": "Flag that specifies whether to apply an existing on-premises license for Oracle WebLogic Server (true) to the new",
+        "required": false
+      },
+      "description": {
+        "description": "Provides additional on the java service instance.",
+        "required": false
+      },
+      "desired_state": {
+        "description": "Specifies the desired state of the service instance. Allowed values are running or shutdown.",
+        "required": false
+      },
+      "edition": {
+        "description": "The edition for the service instance. Possible values are SE, EE, or SUITE.",
+        "required": true
+      },
+      "enable_admin_console": {
+        "description": "Flag that specifies whether to enable (true) or disable (false) the access",
+        "required": false
+      },
+      "force_delete": {
+        "description": "Flag that specifies whether you want to force the removal of the service instance even if the database",
+        "required": false
+      },
+      "ip_network": {
+        "description": "The three-part name of a custom IP network to attach this service instance to. For example: /Compute-identity_domain/user/object.",
+        "required": false
+      },
+      "level": {
+        "description": "Service level for the service instance. Possible values are BASIC or PAAS. Default",
+        "required": false
+      },
+      "metering_frequency": {
+        "description": "Billing unit. Possible values are HOURLY or MONTHLY. Default value is HOURLY.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the Service Instance.",
+        "required": true
+      },
+      "oracle_traffic_director": {
+        "description": "The attributes required to create an Oracle Traffic Director (Load balancer). OTD is",
+        "required": false
+      },
+      "region": {
+        "description": "Name of the region where the Oracle Java Cloud Service instance is to be provisioned.",
+        "required": false
+      },
+      "service_version": {
+        "description": "Oracle WebLogic Server software version. Valid values are: 12cRelease213, 12cRelease212, 12cR3, or 11gR1",
+        "required": true
+      },
+      "snapshot_name": {
+        "description": "Name of the snapshot to clone from.",
+        "required": false
+      },
+      "source_service_name": {
+        "description": "Name of the existing Oracle Java Cloud Service instance that has the snapshot from which you are creating a clone.",
+        "required": false
+      },
+      "ssh_public_key": {
+        "description": "The ssh key to connect to the java service instance.",
+        "required": true
+      },
+      "subnet": {
+        "description": "A subdivision of a cloud network that is set up in the data center as specified in availability_domain.",
+        "required": false
+      },
+      "use_identity_service": {
+        "description": "Flag that specifies whether to use Oracle Identity Cloud Service (true) or the local WebLogic identity store",
+        "required": false
+      },
+      "weblogic_server": {
+        "description": "The attributes required to create a WebLogic server alongside the java service instance.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oraclepaas/r/oraclepaas_java_service_instance.html",
+    "properties": [
+      "name",
+      "ssh_public_key",
+      "edition",
+      "service_version",
+      "backups",
+      "metering_frequency",
+      "availability_domain",
+      "snapshot_name",
+      "source_service_name",
+      "subnet",
+      "use_identity_service",
+      "weblogic_server",
+      "oracle_traffic_director",
+      "level",
+      "backup_destination",
+      "desired_state",
+      "description",
+      "enable_admin_console",
+      "ip_network",
+      "assign_public_ip",
+      "region",
+      "bring_your_own_license",
+      "force_delete"
+    ]
+  },
+  "oraclepaas_mysql_access_rule": {
+    "full_properties": {
+      "description": {
+        "description": "Description of the rule.",
+        "required": false
+      },
+      "destination": {
+        "description": "The service component to allow traffic to. For example, mysql_MASTER.",
+        "required": true
+      },
+      "enabled": {
+        "description": "Determines whether the access rule is enabled. Valid values are true and false. The Default is true.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the rule.",
+        "required": true
+      },
+      "ports": {
+        "description": "Ports for the rule. This can be a single port or a port range.",
+        "required": true
+      },
+      "protocol": {
+        "description": "Communication protocol for the rule. For example, tcp.",
+        "required": false
+      },
+      "service_instance_id": {
+        "description": "The name of MySQL instance to attach the access rule to.",
+        "required": true
+      },
+      "source": {
+        "description": "The hosts from which traffic is allowed. For example, PUBLIC-INTERNET for any host on the Internet, a single IP address or a comma-separated list of subnets (in CIDR format) or IPv4 addresses.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oraclepaas/r/oraclepaas_mysql_access_rule.html",
+    "properties": [
+      "service_instance_id",
+      "name",
+      "description",
+      "protocol",
+      "ports",
+      "source",
+      "destination",
+      "enabled"
+    ]
+  },
+  "oraclepaas_mysql_service_instance": {
+    "full_properties": {
+      "availability_domain": {
+        "description": "Name of the availability domain within the region where the Oracle Database Cloud Service instance is to be provisioned. This is applicable only if you wish to provision to an OCI instance.",
+        "required": false
+      },
+      "backup_destination": {
+        "description": "The destination where the database backups will be stored.",
+        "required": true
+      },
+      "backups": {
+        "description": "Provides Cloud Storage information for how to implement service instance backups. Backups is documented below",
+        "required": false
+      },
+      "description": {
+        "description": ". A description of the MySQL Instance",
+        "required": false
+      },
+      "ip_network": {
+        "description": "This attribute is only applicable to accounts where regions are supported. The three-part name of an IP network to which the service instance is added. For example: /Compute-identity_domain/user/object",
+        "required": false
+      },
+      "metering_frequency": {
+        "description": ". The billing frequency of the service instance. Allowed values are MONTHLY and HOURLY",
+        "required": false
+      },
+      "mysql_configuration": {
+        "description": "Specified the detail of how to configure the MySQL database. mysql_configuration is documented below.",
+        "required": true
+      },
+      "name": {
+        "description": ". The name of MySQL Cloud Service instance.",
+        "required": true
+      },
+      "notification_email": {
+        "description": "The email address to send notifications around successful or unsuccessful completions of the instance-creation operation.",
+        "required": false
+      },
+      "region": {
+        "description": ". Specifies the region where the instance will be provisioned.",
+        "required": false
+      },
+      "shape": {
+        "description": "The desired compute shape.  A shape defines the number of Oracle Compute Units (OCPUs) and amount of memory (RAM). See About Shapes in Using Oracle Compute Cloud Service for more information about shapes.",
+        "required": true
+      },
+      "ssh_public_key": {
+        "description": ". The public key for the secure shell (SSH). This key wil be used for authentication when the user logs on to the instance over SSH.",
+        "required": true
+      },
+      "subnet": {
+        "description": "This attribute is relevant to only Oracle Cloud Infrastructure. Specify the Oracle Cloud Identifier (OCID) of a subnet from a virtual cloud network (VCN) that you had created previously in Oracle Cloud Infrastructure. For the instructions to create a VCN and subnet, see Prerequisites for Oracle Platform Services on Oracle Cloud Infrastructure in the Oracle Cloud Infrastructure documentation.",
+        "required": false
+      },
+      "vm_user": {
+        "description": "The user name of account to be created in the VM.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oraclepaas/r/oraclepaas_mysql_service_instance.html",
+    "properties": [
+      "name",
+      "description",
+      "ssh_public_key",
+      "backup_destination",
+      "shape",
+      "metering_frequency",
+      "region",
+      "availability_domain",
+      "notification_email",
+      "ip_network",
+      "subnet",
+      "vm_user",
+      "backups",
+      "mysql_configuration"
+    ]
+  }
+}

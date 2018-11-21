@@ -1,0 +1,140 @@
+{
+  "logicmonitor_collector": {
+    "full_properties": {
+      "backup_collector_id": {
+        "description": "The Id of the failover Collector configured for this Collector",
+        "required": false
+      },
+      "collector_group_id": {
+        "description": "The Id of the group the Collector is in",
+        "required": false
+      },
+      "description": {
+        "description": "The Collector's description",
+        "required": false
+      },
+      "enable_collector_device_failover": {
+        "description": "Whether or not the device the Collector is installed on is enabled for fail over",
+        "required": false
+      },
+      "enable_failback": {
+        "description": "Whether or not automatic failback is enabled for the Collector",
+        "required": false
+      },
+      "escalation_chain_id": {
+        "description": "The Id of the escalation chain associated with this Collector",
+        "required": false
+      },
+      "resend_interval": {
+        "description": "The interval, in minutes, after which alert notifications for the Collector will be resent",
+        "required": false
+      },
+      "suppress_alert_clear": {
+        "description": "Whether alert clear notifications are suppressed for the Collector",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/logicmonitor/r/collector.html",
+    "properties": [
+      "backup_collector_id",
+      "collector_group_id",
+      "description",
+      "enable_failback",
+      "enable_collector_device_failover",
+      "escalation_chain_id",
+      "resend_interval",
+      "suppress_alert_clear"
+    ]
+  },
+  "logicmonitor_collector_group": {
+    "full_properties": {
+      "description": {
+        "description": "Set description of collector group",
+        "required": false
+      },
+      "name": {
+        "description": "Name of collector group",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/logicmonitor/r/collectorgroup.html",
+    "properties": [
+      "name",
+      "description"
+    ]
+  },
+  "logicmonitor_device": {
+    "full_properties": {
+      "collector": {
+        "description": "The id of the collector that will monitoring the device",
+        "required": true
+      },
+      "disable_alerting": {
+        "description": "The host is created with alerting disabled (default is true)",
+        "required": false
+      },
+      "display_name": {
+        "description": "Display name of device, (default is ip_addr)",
+        "required": false
+      },
+      "hostgroup_id": {
+        "description": "The host group id that specifies which group the device belongs to (multiple host group ids can be added, represented by a comma separated string)",
+        "required": false
+      },
+      "ip_addr": {
+        "description": "Ip Address/Hostname of device",
+        "required": true
+      },
+      "properties": {
+        "description": "The properties associated with this device group. Any string value pair will work (see example).",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/logicmonitor/r/device.html",
+    "properties": [
+      "ip_addr",
+      "collector",
+      "display_name",
+      "disable_alerting",
+      "hostgroup_id",
+      "properties"
+    ]
+  },
+  "logicmonitor_device_group": {
+    "full_properties": {
+      "applies_to": {
+        "description": "The Applies to custom query for this group. Setting this field will make this a dynamic group.",
+        "required": false
+      },
+      "description": {
+        "description": "Description of device group",
+        "required": false
+      },
+      "disable_alerting": {
+        "description": "Indicates whether alerting is disabled (true) or enabled (false) for this device group",
+        "required": false
+      },
+      "name": {
+        "description": "Name of device group",
+        "required": true
+      },
+      "parent_id": {
+        "description": "The id of the parent group for this device group (the root device group has an Id of 1)",
+        "required": false
+      },
+      "properties": {
+        "description": "The properties associated with this device group. Any string value pair will work (see example).",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/logicmonitor/r/devicegroup.html",
+    "properties": [
+      "name",
+      "description",
+      "parent_id",
+      "applies_to",
+      "disable_alerting",
+      "properties"
+    ]
+  }
+}

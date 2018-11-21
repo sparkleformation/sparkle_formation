@@ -1,0 +1,136 @@
+{
+  "softlayer_ssh_key": {
+    "full_properties": {
+      "name": {
+        "description": "A descriptive name used to identify an SSH key.",
+        "required": true
+      },
+      "notes": {
+        "description": "A small note about an SSH key to use at your discretion.",
+        "required": false
+      },
+      "public_key": {
+        "description": "The public SSH key.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/softlayer/r/ssh_key.html",
+    "properties": [
+      "name",
+      "public_key",
+      "notes"
+    ]
+  },
+  "softlayer_virtual_guest": {
+    "full_properties": {
+      "": {
+        "description": "Optional",
+        "required": false
+      },
+      "backend_vlan_id": {
+        "description": "| int",
+        "required": false
+      },
+      "block_device_template_group_gid": {
+        "description": "| string",
+        "required": false
+      },
+      "cpu": {
+        "description": "| int",
+        "required": false
+      },
+      "dedicated_acct_host_only": {
+        "description": "| boolean",
+        "required": false
+      },
+      "disks": {
+        "description": "| array",
+        "required": false
+      },
+      "domain": {
+        "description": "| string",
+        "required": false
+      },
+      "frontend_vlan_id": {
+        "description": "| int",
+        "required": false
+      },
+      "hourly_billing": {
+        "description": "| boolean",
+        "required": false
+      },
+      "image": {
+        "description": "| string",
+        "required": false
+      },
+      "ipv4_address": {
+        "description": "| string",
+        "required": false
+      },
+      "ipv4_address_private": {
+        "description": "| string",
+        "required": false
+      },
+      "local_disk": {
+        "description": "| boolean",
+        "required": false
+      },
+      "name": {
+        "description": "| string",
+        "required": false
+      },
+      "post_install_script_uri": {
+        "description": "| string",
+        "required": false
+      },
+      "private_network_only": {
+        "description": "| boolean",
+        "required": false
+      },
+      "public_network_speed": {
+        "description": "| int",
+        "required": false
+      },
+      "ram": {
+        "description": "| int",
+        "required": false
+      },
+      "region": {
+        "description": "| string",
+        "required": false
+      },
+      "ssh_keys": {
+        "description": "| array",
+        "required": false
+      },
+      "user_data": {
+        "description": "| string",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/softlayer/r/virtual_guest.html",
+    "properties": [
+      "name",
+      "",
+      "domain",
+      "cpu",
+      "ram",
+      "region",
+      "hourly_billing",
+      "local_disk",
+      "dedicated_acct_host_only",
+      "image",
+      "block_device_template_group_gid",
+      "public_network_speed",
+      "private_network_only",
+      "frontend_vlan_id",
+      "backend_vlan_id",
+      "disks",
+      "user_data",
+      "ssh_keys",
+      "ipv4_address",
+      "ipv4_address_private",
+      "post_install_script_uri"
+    ]
+  }
+}

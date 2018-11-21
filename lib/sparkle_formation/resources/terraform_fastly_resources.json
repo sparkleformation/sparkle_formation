@@ -1,0 +1,124 @@
+{
+  "fastly_service_v1": {
+    "full_properties": {
+      "backend": {
+        "description": "A set of Backends to service requests from your Domains.",
+        "required": false
+      },
+      "bigquerylogging": {
+        "description": "A BigQuery endpoint to send streaming logs too.",
+        "required": false
+      },
+      "cache_setting": {
+        "description": "A set of Cache Settings, allowing you to override",
+        "required": false
+      },
+      "condition": {
+        "description": "A set of conditions to add logic to any basic",
+        "required": false
+      },
+      "default_host": {
+        "description": "The default hostname.",
+        "required": false
+      },
+      "default_ttl": {
+        "description": "The default Time-to-live (TTL) for",
+        "required": false
+      },
+      "director": {
+        "description": "A director to allow more control over balancing traffic over backends.",
+        "required": false
+      },
+      "domain": {
+        "description": "A set of Domain names to serve as entry points for your",
+        "required": true
+      },
+      "force_destroy": {
+        "description": "Services that are active cannot be destroyed. In",
+        "required": false
+      },
+      "gcslogging": {
+        "description": "A gcs endpoint to send streaming logs too.",
+        "required": false
+      },
+      "gzip": {
+        "description": "A set of gzip rules to control automatic gzipping of",
+        "required": true
+      },
+      "header": {
+        "description": "A set of Headers to manipulate for each request. Defined",
+        "required": false
+      },
+      "healthcheck": {
+        "description": "Automated healthchecks on the cache that can change how fastly interacts with the cache based on its health.",
+        "required": false
+      },
+      "logentries": {
+        "description": "A logentries endpoint to send streaming logs too.",
+        "required": false
+      },
+      "name": {
+        "description": "The unique name for the Service to create.",
+        "required": true
+      },
+      "papertrail": {
+        "description": "A Papertrail endpoint to send streaming logs too.",
+        "required": false
+      },
+      "request_setting": {
+        "description": "A set of Request modifiers. Defined below",
+        "required": false
+      },
+      "response_object": {
+        "description": "Allows you to create synthetic responses that exist entirely on the varnish machine. Useful for creating error or maintenance pages that exists outside the scope of your datacenter. Best when used with Condition objects.",
+        "required": false
+      },
+      "s3logging": {
+        "description": "A set of S3 Buckets to send streaming logs too.",
+        "required": false
+      },
+      "snippet": {
+        "description": "A set of custom, \"regular\" (non-dynamic) VCL Snippet configuration blocks.  Defined below.",
+        "required": false
+      },
+      "sumologic": {
+        "description": "A Sumologic endpoint to send streaming logs too.",
+        "required": false
+      },
+      "syslog": {
+        "description": "A syslog endpoint to send streaming logs too.",
+        "required": false
+      },
+      "vcl": {
+        "description": "A set of custom VCL configuration blocks. The",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/fastly/r/service_v1.html",
+    "properties": [
+      "name",
+      "domain",
+      "backend",
+      "condition",
+      "cache_setting",
+      "director",
+      "gzip",
+      "header",
+      "healthcheck",
+      "default_host",
+      "default_ttl",
+      "force_destroy",
+      "request_setting",
+      "s3logging",
+      "papertrail",
+      "sumologic",
+      "gcslogging",
+      "bigquerylogging",
+      "syslog",
+      "logentries",
+      "response_object",
+      "snippet",
+      "vcl"
+    ]
+  }
+}

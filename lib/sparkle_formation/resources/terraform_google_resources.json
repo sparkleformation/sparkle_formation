@@ -1,0 +1,2485 @@
+{
+  "google_app_engine_application": {
+    "full_properties": {
+      "auth_domain": {
+        "description": "The domain to authenticate users with when using App Engine's User API.",
+        "required": false
+      },
+      "feature_settingssplit_health_checks": {
+      },
+      "location_id": {
+        "description": "The location",
+        "required": true
+      },
+      "serving_status": {
+        "description": "The serving status of the app.",
+        "required": false
+      },
+      "split_health_checks": {
+        "description": "Set to false to use the legacy health check instead of the readiness",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/google/r/app_engine_application.html",
+    "properties": [
+      "location_id",
+      "auth_domain",
+      "serving_status",
+      "feature_settingssplit_health_checks",
+      "split_health_checks"
+    ]
+  },
+  "google_bigquery_dataset": {
+    "full_properties": {
+      "access": {
+        "description": "An array of objects that define dataset access for",
+        "required": false
+      },
+      "dataset_id": {
+        "description": "A unique ID for the resource.",
+        "required": true
+      },
+      "default_table_expiration_ms": {
+        "description": "The default lifetime of all",
+        "required": false
+      },
+      "description": {
+        "description": "A user-friendly description of the dataset.",
+        "required": false
+      },
+      "friendly_name": {
+        "description": "A descriptive name for the dataset.",
+        "required": false
+      },
+      "labels": {
+        "description": "A mapping of labels to assign to the resource.",
+        "required": false
+      },
+      "location": {
+        "description": "The geographic location where the dataset should reside.",
+        "required": false
+      },
+      "project": {
+        "description": "The ID of the project in which the resource belongs. If it",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/google/r/bigquery_dataset.html",
+    "properties": [
+      "dataset_id",
+      "project",
+      "friendly_name",
+      "description",
+      "location",
+      "default_table_expiration_ms",
+      "labels",
+      "access"
+    ]
+  },
+  "google_bigquery_table": {
+    "full_properties": {
+      "dataset_id": {
+        "description": "The dataset ID to create the table in.",
+        "required": true
+      },
+      "description": {
+        "description": "The field description.",
+        "required": false
+      },
+      "expiration_time": {
+        "description": "The time when this table expires, in",
+        "required": false
+      },
+      "friendly_name": {
+        "description": "A descriptive name for the table.",
+        "required": false
+      },
+      "labels": {
+        "description": "A mapping of labels to assign to the resource.",
+        "required": false
+      },
+      "project": {
+        "description": "The ID of the project in which the resource belongs. If it",
+        "required": false
+      },
+      "schema": {
+        "description": "A JSON schema for the table.",
+        "required": false
+      },
+      "table_id": {
+        "description": "A unique ID for the resource.",
+        "required": true
+      },
+      "time_partitioning": {
+        "description": "If specified, configures time-based",
+        "required": false
+      },
+      "view": {
+        "description": "If specified, configures this table as a view.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/google/r/bigquery_table.html",
+    "properties": [
+      "dataset_id",
+      "table_id",
+      "project",
+      "description",
+      "expiration_time",
+      "friendly_name",
+      "labels",
+      "schema",
+      "time_partitioning",
+      "view"
+    ]
+  },
+  "google_bigtable_instance": {
+    "full_properties": {
+      "cluster": {
+        "description": "A block of cluster configuration options. Either cluster or cluster_id must be used. Only one cluster may be specified. See structure below.",
+        "required": false
+      },
+      "cluster_id": {
+        "description": "The ID of the Cloud Bigtable cluster. Use cluster.cluster_id instead.",
+        "required": false
+      },
+      "display_name": {
+        "description": "The human-readable display name of the Bigtable instance. Defaults to the instance name.",
+        "required": false
+      },
+      "instance_type": {
+        "description": "The instance type to create. One of \"DEVELOPMENT\" or \"PRODUCTION\". Defaults to \"PRODUCTION\".",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the Cloud Bigtable instance.",
+        "required": true
+      },
+      "num_nodes": {
+        "description": "The number of nodes in your Cloud Bigtable cluster. Minimum of 3 for a PRODUCTION instance. Cannot be set for a DEVELOPMENT instance. Use cluster.num_nodes instead.",
+        "required": false
+      },
+      "project": {
+        "description": "The ID of the project in which the resource belongs. If it",
+        "required": false
+      },
+      "storage_type": {
+        "description": "The storage type to use. One of \"SSD\" or \"HDD\". Defaults to \"SSD\". Use cluster.storage_type instead.",
+        "required": false
+      },
+      "zone": {
+        "description": "The zone to create the Cloud Bigtable cluster in. Zones that support Bigtable instances are noted on the Cloud Bigtable locations page. Use cluster.zone instead.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/google/r/bigtable_instance.html",
+    "properties": [
+      "name",
+      "instance_type",
+      "project",
+      "display_name",
+      "cluster",
+      "cluster_id",
+      "zone",
+      "num_nodes",
+      "storage_type"
+    ]
+  },
+  "google_bigtable_table": {
+    "full_properties": {
+      "instance_name": {
+        "description": "The name of the Bigtable instance.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the table.",
+        "required": true
+      },
+      "project": {
+        "description": "The ID of the project in which the resource belongs. If it",
+        "required": false
+      },
+      "split_keys": {
+        "description": "A list of predefined keys to split the table on.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/google/r/bigtable_table.html",
+    "properties": [
+      "name",
+      "instance_name",
+      "split_keys",
+      "project"
+    ]
+  },
+  "google_binary_authorization_attestor": {
+    "full_properties": {
+      "attestation_authority_note": {
+        "description": "A Container Analysis ATTESTATION_AUTHORITY Note, created by the user.  Structure is documented below.",
+        "required": true
+      },
+      "name": {
+        "description": "The resource name.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/binaryauthorization_attestor.html",
+    "properties": [
+      "name",
+      "attestation_authority_note"
+    ]
+  },
+  "google_binary_authorization_policy": {
+    "full_properties": {
+      "default_admission_rule": {
+        "description": "Default admission rule for a cluster without a per-cluster admission",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/binaryauthorization_policy.html",
+    "properties": [
+      "default_admission_rule"
+    ]
+  },
+  "google_cloudbuild_trigger": {
+    "full_properties": {
+      "": {
+        "description": "The length of a parameter key and the length of a parameter value",
+        "required": false
+      },
+      "$BRANCH_NAME": {
+      },
+      "$BUILD_ID": {
+      },
+      "$PROJECT_ID": {
+      },
+      "$REPO_NAME": {
+      },
+      "$REVISION_ID": {
+      },
+      "$SHORT_SHA": {
+      },
+      "$TAG_NAME": {
+      },
+      "build$PROJECT_ID$BUILD_ID$REPO_NAME$BRANCH_NAME$TAG_NAME$REVISION_ID$SHORT_SHA": {
+      },
+      "description": {
+        "description": "A brief description of this resource.",
+        "required": false
+      },
+      "filename": {
+        "description": "Specify the path to a Cloud Build configuration file",
+        "required": false
+      },
+      "project": {
+        "description": "The ID of the project that the trigger will be created in.",
+        "required": false
+      },
+      "substitutions": {
+        "description": "User-defined substitutions.",
+        "required": false
+      },
+      "trigger_template": {
+        "description": "Location of the source in a Google",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/google/r/cloudbuild_trigger.html",
+    "properties": [
+      "build$PROJECT_ID$BUILD_ID$REPO_NAME$BRANCH_NAME$TAG_NAME$REVISION_ID$SHORT_SHA",
+      "$PROJECT_ID",
+      "$BUILD_ID",
+      "$REPO_NAME",
+      "$BRANCH_NAME",
+      "$TAG_NAME",
+      "$REVISION_ID",
+      "$SHORT_SHA",
+      "description",
+      "filename",
+      "project",
+      "substitutions",
+      "",
+      "trigger_template"
+    ]
+  },
+  "google_cloudfunctions_function": {
+    "full_properties": {
+      "name": {
+        "description": "A user-defined name of the function. Function names must be unique globally.",
+        "required": true
+      },
+      "source_archive_bucket": {
+        "description": "The GCS bucket containing the zip archive which contains the function.",
+        "required": true
+      },
+      "source_archive_object": {
+        "description": "The source archive object (file) in archive bucket.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/cloudfunctions_function.html",
+    "properties": [
+      "name",
+      "source_archive_bucket",
+      "source_archive_object"
+    ]
+  },
+  "google_cloudiot_registry": {
+    "full_properties": {
+      "name": {
+        "description": "A unique name for the resource, required by device registry.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/cloudiot_registry.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_composer_environment": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the environment",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/composer_environment.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_compute_address": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the resource. The name must be 1-63 characters long, and",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_address.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_compute_attached_disk": {
+    "full_properties": {
+      "disk": {
+        "description": "name or self_link of the disk that will be attached.",
+        "required": true
+      },
+      "instance": {
+        "description": "name or self_link of the compute instance that the disk will be attached to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_attached_disk.html",
+    "properties": [
+      "instance",
+      "disk"
+    ]
+  },
+  "google_compute_autoscaler": {
+    "full_properties": {
+      "autoscaling_policy": {
+        "description": "The configuration parameters for the autoscaling algorithm. You can",
+        "required": true
+      },
+      "name": {
+        "description": "Name of the resource. The name must be 1-63 characters long and match",
+        "required": true
+      },
+      "target": {
+        "description": "URL of the managed instance group that this autoscaler will scale.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_autoscaler.html",
+    "properties": [
+      "name",
+      "autoscaling_policy",
+      "target"
+    ]
+  },
+  "google_compute_backend_bucket": {
+    "full_properties": {
+      "bucket_name": {
+        "description": "Cloud Storage bucket name.",
+        "required": true
+      },
+      "name": {
+        "description": "Name of the resource. Provided by the client when the resource is",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_backend_bucket.html",
+    "properties": [
+      "bucket_name",
+      "name"
+    ]
+  },
+  "google_compute_backend_service": {
+    "full_properties": {
+      "health_checks": {
+        "description": "Specifies a list of HTTP/HTTPS health checks",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the backend service.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_backend_service.html",
+    "properties": [
+      "name",
+      "health_checks"
+    ]
+  },
+  "google_compute_disk": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the resource. Provided by the client when the resource is",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_disk.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_compute_firewall": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the resource. Provided by the client when the resource is",
+        "required": true
+      },
+      "network": {
+        "description": "The name or self_link of the network to attach this firewall to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_firewall.html",
+    "properties": [
+      "name",
+      "network"
+    ]
+  },
+  "google_compute_forwarding_rule": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the resource; provided by the client when the resource is",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_forwarding_rule.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_compute_global_address": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the resource. Provided by the client when the resource is",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_global_address.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_compute_global_forwarding_rule": {
+    "full_properties": {
+      "name": {
+        "description": "A unique name for the resource, required by GCE. Changing",
+        "required": true
+      },
+      "target": {
+        "description": "URL of target HTTP or HTTPS proxy.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_global_forwarding_rule.html",
+    "properties": [
+      "name",
+      "target"
+    ]
+  },
+  "google_compute_health_check": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the resource. Provided by the client when the resource is",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_health_check.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_compute_http_health_check": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the resource. Provided by the client when the resource is",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_http_health_check.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_compute_https_health_check": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the resource. Provided by the client when the resource is",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_https_health_check.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_compute_image": {
+    "full_properties": {
+      "name": {
+        "description": "A unique name for the resource, required by GCE.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_image.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_compute_instance": {
+    "full_properties": {
+      "boot_disk": {
+        "description": "The boot disk for the instance.",
+        "required": true
+      },
+      "machine_typeallow_stopping_for_update": {
+      },
+      "name": {
+        "description": "A unique name for the resource, required by GCE.",
+        "required": true
+      },
+      "network_interface": {
+        "description": "Networks to attach to the instance. This can",
+        "required": true
+      },
+      "zone": {
+        "description": "The zone that the machine should be created in.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_instance.html",
+    "properties": [
+      "boot_disk",
+      "machine_typeallow_stopping_for_update",
+      "name",
+      "zone",
+      "network_interface"
+    ]
+  },
+  "google_compute_instance_from_template": {
+    "full_properties": {
+      "name": {
+        "description": "A unique name for the resource, required by GCE.",
+        "required": true
+      },
+      "source_instance_template": {
+        "description": "Name or self link of an instance",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_instance_from_template.html",
+    "properties": [
+      "name",
+      "source_instance_template"
+    ]
+  },
+  "google_compute_instance_group": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the instance group. Must be 1-63",
+        "required": true
+      },
+      "zone": {
+        "description": "The zone that this instance group should be created in.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_instance_group.html",
+    "properties": [
+      "name",
+      "zone"
+    ]
+  },
+  "google_compute_instance_group_manager": {
+    "full_properties": {
+      "base_instance_name": {
+        "description": "The base instance name to use for",
+        "required": true
+      },
+      "instance_template": {
+        "description": "The full URL to an instance template from",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the instance group manager. Must be 1-63",
+        "required": true
+      },
+      "version": {
+        "description": "Application versions managed by this instance group. Each",
+        "required": false
+      },
+      "zone": {
+        "description": "The zone that instances in this group should be created",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_instance_group_manager.html",
+    "properties": [
+      "base_instance_name",
+      "instance_template",
+      "version",
+      "name",
+      "zone"
+    ]
+  },
+  "google_compute_instance_template": {
+    "full_properties": {
+      "disk": {
+        "description": "Disks to attach to instances created from this template.",
+        "required": true
+      },
+      "machine_typeallow_stopping_for_update": {
+      }
+    },
+    "path": "/docs/providers/google/r/compute_instance_template.html",
+    "properties": [
+      "disk",
+      "machine_typeallow_stopping_for_update"
+    ]
+  },
+  "google_compute_network": {
+    "full_properties": {
+      "name": {
+        "description": "A unique name for the resource, required by GCE.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_network.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_compute_network_peering": {
+    "full_properties": {
+      "auto_create_routes": {
+        "description": "If set to true, the routes between the two networks will",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the peering.",
+        "required": true
+      },
+      "network": {
+        "description": "Resource link of the network to add a peering to.",
+        "required": true
+      },
+      "peer_network": {
+        "description": "Resource link of the peer network.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_network_peering.html",
+    "properties": [
+      "name",
+      "network",
+      "peer_network",
+      "auto_create_routes"
+    ]
+  },
+  "google_compute_project_metadata": {
+    "full_properties": {
+      "metadata": {
+        "description": "A series of key value pairs. Changing this resource",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_project_metadata.html",
+    "properties": [
+      "metadata"
+    ]
+  },
+  "google_compute_project_metadata_item": {
+    "full_properties": {
+      "key": {
+        "description": "The metadata key to set.",
+        "required": true
+      },
+      "value": {
+        "description": "The value to set for the given metadata key.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_project_metadata_item.html",
+    "properties": [
+      "key",
+      "value"
+    ]
+  },
+  "google_compute_region_autoscaler": {
+    "full_properties": {
+      "autoscaling_policy": {
+        "description": "The configuration parameters for the autoscaling algorithm. You can",
+        "required": true
+      },
+      "name": {
+        "description": "Name of the resource. The name must be 1-63 characters long and match",
+        "required": true
+      },
+      "target": {
+        "description": "URL of the managed instance group that this autoscaler will scale.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_region_autoscaler.html",
+    "properties": [
+      "name",
+      "autoscaling_policy",
+      "target"
+    ]
+  },
+  "google_compute_region_backend_service": {
+    "full_properties": {
+      "health_checks": {
+        "description": "Specifies a list of health checks",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the backend service.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_region_backend_service.html",
+    "properties": [
+      "name",
+      "health_checks"
+    ]
+  },
+  "google_compute_region_disk": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the resource. Provided by the client when the resource is",
+        "required": true
+      },
+      "replica_zones": {
+        "description": "URLs of the zones where the disk should be replicated to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_region_disk.html",
+    "properties": [
+      "name",
+      "replica_zones"
+    ]
+  },
+  "google_compute_region_instance_group_manager": {
+    "full_properties": {
+      "base_instance_name": {
+        "description": "The base instance name to use for",
+        "required": true
+      },
+      "instance_template": {
+        "description": "The full URL to an instance template from",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the instance group manager. Must be 1-63",
+        "required": true
+      },
+      "region": {
+        "description": "The region where the managed instance group resides.",
+        "required": true
+      },
+      "version": {
+        "description": "Application versions managed by this instance group. Each",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/google/r/compute_region_instance_group_manager.html",
+    "properties": [
+      "base_instance_name",
+      "instance_template",
+      "version",
+      "name",
+      "region"
+    ]
+  },
+  "google_compute_route": {
+    "full_properties": {
+      "dest_range": {
+        "description": "The destination range of outgoing packets that this route applies to.",
+        "required": true
+      },
+      "name": {
+        "description": "Name of the resource. Provided by the client when the resource is",
+        "required": true
+      },
+      "network": {
+        "description": "The network that this route applies to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_route.html",
+    "properties": [
+      "dest_range",
+      "name",
+      "network"
+    ]
+  },
+  "google_compute_router": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the resource. The name must be 1-63 characters long, and",
+        "required": true
+      },
+      "network": {
+        "description": "A reference to the network to which this router belongs.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_router.html",
+    "properties": [
+      "name",
+      "network"
+    ]
+  },
+  "google_compute_router_interface": {
+    "full_properties": {
+      "name": {
+        "description": "A unique name for the interface, required by GCE. Changing",
+        "required": true
+      },
+      "router": {
+        "description": "The name of the router this interface will be attached to.",
+        "required": true
+      },
+      "vpn_tunnel": {
+        "description": "The name or resource link to the VPN tunnel this",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_router_interface.html",
+    "properties": [
+      "name",
+      "router",
+      "vpn_tunnel"
+    ]
+  },
+  "google_compute_router_peer": {
+    "full_properties": {
+      "interface": {
+        "description": "The name of the interface the BGP peer is associated with.",
+        "required": true
+      },
+      "name": {
+        "description": "A unique name for BGP peer, required by GCE. Changing",
+        "required": true
+      },
+      "peer_asn": {
+        "description": "Peer BGP Autonomous System Number (ASN).",
+        "required": true
+      },
+      "peer_ip_address": {
+        "description": "IP address of the BGP interface outside Google Cloud.",
+        "required": true
+      },
+      "router": {
+        "description": "The name of the router in which this BGP peer will be configured.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_router_peer.html",
+    "properties": [
+      "name",
+      "router",
+      "interface",
+      "peer_ip_address",
+      "peer_asn"
+    ]
+  },
+  "google_compute_security_policy": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the security policy.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_security_policy.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_compute_shared_vpc_host_project": {
+    "full_properties": {
+      "project": {
+        "description": "The ID of the project that will serve as a Shared VPC host project",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_shared_vpc_host_project.html",
+    "properties": [
+      "project"
+    ]
+  },
+  "google_compute_shared_vpc_service_project": {
+    "full_properties": {
+      "host_project": {
+        "description": "The ID of a host project to associate.",
+        "required": true
+      },
+      "service_project": {
+        "description": "The ID of the project that will serve as a Shared VPC service project.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_shared_vpc_service_project.html",
+    "properties": [
+      "host_project",
+      "service_project"
+    ]
+  },
+  "google_compute_snapshot": {
+    "full_properties": {
+      "name": {
+        "description": "A unique name for the resource, required by GCE.",
+        "required": true
+      },
+      "source_disk": {
+        "description": "The disk which will be used as the source of the snapshot.",
+        "required": true
+      },
+      "zone": {
+        "description": "The zone where the source disk is located.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_snapshot.html",
+    "properties": [
+      "name",
+      "zone",
+      "source_disk"
+    ]
+  },
+  "google_compute_ssl_certificate": {
+    "full_properties": {
+      "certificate": {
+        "description": "The certificate in PEM format.",
+        "required": true
+      },
+      "private_key": {
+        "description": "The write-only private key in PEM format.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_ssl_certificate.html",
+    "properties": [
+      "certificate",
+      "private_key"
+    ]
+  },
+  "google_compute_ssl_policy": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the resource. Provided by the client when the resource is",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_ssl_policy.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_compute_subnetwork": {
+    "full_properties": {
+      "ip_cidr_range": {
+        "description": "The range of internal addresses that are owned by this subnetwork.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the resource, provided by the client when initially",
+        "required": true
+      },
+      "network": {
+        "description": "The network this subnet belongs to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_subnetwork.html",
+    "properties": [
+      "ip_cidr_range",
+      "name",
+      "network"
+    ]
+  },
+  "google_compute_target_http_proxy": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the resource. Provided by the client when the resource is",
+        "required": true
+      },
+      "url_map": {
+        "description": "A reference to the UrlMap resource that defines the mapping from URL",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_target_http_proxy.html",
+    "properties": [
+      "name",
+      "url_map"
+    ]
+  },
+  "google_compute_target_https_proxy": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the resource. Provided by the client when the resource is",
+        "required": true
+      },
+      "ssl_certificates": {
+        "description": "A list of SslCertificate resources that are used to authenticate",
+        "required": true
+      },
+      "url_map": {
+        "description": "A reference to the UrlMap resource that defines the mapping from URL",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_target_https_proxy.html",
+    "properties": [
+      "name",
+      "ssl_certificates",
+      "url_map"
+    ]
+  },
+  "google_compute_target_pool": {
+    "full_properties": {
+      "name": {
+        "description": "A unique name for the resource, required by GCE. Changing",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_target_pool.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_compute_target_ssl_proxy": {
+    "full_properties": {
+      "backend_service": {
+        "description": "A reference to the BackendService resource.",
+        "required": true
+      },
+      "name": {
+        "description": "Name of the resource. Provided by the client when the resource is",
+        "required": true
+      },
+      "ssl_certificates": {
+        "description": "A list of SslCertificate resources that are used to authenticate",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_target_ssl_proxy.html",
+    "properties": [
+      "name",
+      "backend_service",
+      "ssl_certificates"
+    ]
+  },
+  "google_compute_target_tcp_proxy": {
+    "full_properties": {
+      "backend_service": {
+        "description": "A reference to the BackendService resource.",
+        "required": true
+      },
+      "name": {
+        "description": "Name of the resource. Provided by the client when the resource is",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_target_tcp_proxy.html",
+    "properties": [
+      "name",
+      "backend_service"
+    ]
+  },
+  "google_compute_url_map": {
+    "full_properties": {
+      "default_service": {
+        "description": "The backend service or backend bucket to use when none of the given rules match.",
+        "required": true
+      },
+      "name": {
+        "description": "A unique name for the resource, required by GCE.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_url_map.html",
+    "properties": [
+      "default_service",
+      "name"
+    ]
+  },
+  "google_compute_vpn_gateway": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the resource. Provided by the client when the resource is",
+        "required": true
+      },
+      "network": {
+        "description": "The network this VPN gateway is accepting traffic for.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_vpn_gateway.html",
+    "properties": [
+      "name",
+      "network"
+    ]
+  },
+  "google_compute_vpn_tunnel": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the resource. The name must be 1-63 characters long, and",
+        "required": true
+      },
+      "peer_ip": {
+        "description": "IP address of the peer VPN gateway. Only IPv4 is supported.",
+        "required": true
+      },
+      "shared_secret": {
+        "description": "Shared secret used to set the secure session between the Cloud VPN",
+        "required": true
+      },
+      "target_vpn_gateway": {
+        "description": "URL of the Target VPN gateway with which this VPN tunnel is",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/compute_vpn_tunnel.html",
+    "properties": [
+      "name",
+      "target_vpn_gateway",
+      "peer_ip",
+      "shared_secret"
+    ]
+  },
+  "google_container_analysis_note": {
+    "full_properties": {
+      "attestation_authority": {
+        "description": "Note kind that represents a logical attestation \"role\" or \"authority\".",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the note.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/containeranalysis_note.html",
+    "properties": [
+      "name",
+      "attestation_authority"
+    ]
+  },
+  "google_container_cluster": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the cluster, unique within the project and",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/container_cluster.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_container_node_pool": {
+    "full_properties": {
+      "cluster": {
+        "description": "The cluster to create the node pool for.  Cluster must be present in zone provided for zonal clusters.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which the cluster resides (for regional clusters).",
+        "required": false
+      },
+      "zone": {
+        "description": "The zone in which the cluster resides.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/google/r/container_node_pool.html",
+    "properties": [
+      "zone",
+      "region",
+      "cluster"
+    ]
+  },
+  "google_dataflow_job": {
+    "full_properties": {
+      "name": {
+        "description": "A unique name for the resource, required by Dataflow.",
+        "required": true
+      },
+      "temp_gcs_location": {
+        "description": "A writeable location on GCS for the Dataflow job to dump its temporary data.",
+        "required": true
+      },
+      "template_gcs_path": {
+        "description": "The GCS path to the Dataflow job template.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/dataflow_job.html",
+    "properties": [
+      "name",
+      "template_gcs_path",
+      "temp_gcs_location"
+    ]
+  },
+  "google_dataproc_cluster": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the cluster, unique within the project and",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/dataproc_cluster.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_dataproc_job": {
+    "full_properties": {
+      "": {
+        "description": "sparksql_config - Submits a Spark SQL job to the cluster",
+        "required": false
+      },
+      "placement.cluster_name": {
+        "description": "The name of the cluster where the job ",
+        "required": true
+      },
+      "xxx_config": {
+        "description": "Exactly one of the specific job types to run on the",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/dataproc_job.html",
+    "properties": [
+      "placement.cluster_name",
+      "xxx_config",
+      ""
+    ]
+  },
+  "google_dns_managed_zone": {
+    "full_properties": {
+      "dns_name": {
+        "description": "The fully qualified DNS name of this zone, e.g. terraform.io..",
+        "required": true
+      },
+      "name": {
+        "description": "A unique name for the resource, required by GCE.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/dns_managed_zone.html",
+    "properties": [
+      "dns_name",
+      "name"
+    ]
+  },
+  "google_dns_record_set": {
+    "full_properties": {
+      "managed_zone": {
+        "description": "The name of the zone in which this record set will",
+        "required": true
+      },
+      "name": {
+        "description": "The DNS name this record set will apply to.",
+        "required": true
+      },
+      "rrdatas": {
+        "description": "The string data for the records in this record set",
+        "required": true
+      },
+      "ttl": {
+        "description": "The time-to-live of this record set (seconds).",
+        "required": true
+      },
+      "type": {
+        "description": "The DNS record set type.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/dns_record_set.html",
+    "properties": [
+      "managed_zone",
+      "name",
+      "rrdatas",
+      "ttl",
+      "type"
+    ]
+  },
+  "google_endpoints_service": {
+    "full_properties": {
+      "methods": {
+        "description": "A list of Method objects; structure is documented below.",
+        "required": false
+      },
+      "name": {
+        "description": "The FQDN of the API as described in the provided config.",
+        "required": false
+      },
+      "syntax": {
+        "description": "SYNTAX_PROTO2 or SYNTAX_PROTO3.",
+        "required": false
+      },
+      "version": {
+        "description": "A version string for this api. If specified, will have the form major-version.minor-version, e.g. 1.10.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/google/r/endpoints_service.html",
+    "properties": [
+      "name",
+      "syntax",
+      "version",
+      "methods"
+    ]
+  },
+  "google_filestore_instance": {
+    "full_properties": {
+      "file_shares": {
+        "description": "File system shares on the instance. For this version, only a",
+        "required": true
+      },
+      "name": {
+        "description": "The resource name of the instance.",
+        "required": true
+      },
+      "networks": {
+        "description": "VPC networks to which the instance is connected. For this version,",
+        "required": true
+      },
+      "tier": {
+        "description": "The service tier of the instance.",
+        "required": true
+      },
+      "zone": {
+        "description": "The name of the Filestore zone of the instance.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/filestore_instance.html",
+    "properties": [
+      "name",
+      "tier",
+      "file_shares",
+      "networks",
+      "zone"
+    ]
+  },
+  "google_folder": {
+    "full_properties": {
+      "display_name": {
+        "description": "The folder’s display name.",
+        "required": true
+      },
+      "parent": {
+        "description": "The resource name of the parent Folder or Organization.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/google_folder.html",
+    "properties": [
+      "display_name",
+      "parent"
+    ]
+  },
+  "google_folder_iam_binding": {
+    "full_properties": {
+      "": {
+        "description": "domain:{domain}: A G Suite domain (primary, instead of alias) name that represents all the users of that domain. For example, google.com or example.com.",
+        "required": false
+      },
+      "folder": {
+        "description": "The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.",
+        "required": true
+      },
+      "members": {
+        "description": "- An array of identites that will be granted the privilege in the role.",
+        "required": true
+      },
+      "role": {
+        "description": "The role that should be applied. Only one",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/google_folder_iam_binding.html",
+    "properties": [
+      "folder",
+      "members",
+      "",
+      "role"
+    ]
+  },
+  "google_folder_iam_member": {
+    "full_properties": {
+      "": {
+        "description": "domain:{domain}: A G Suite domain (primary, instead of alias) name that represents all the users of that domain. For example, google.com or example.com.",
+        "required": false
+      },
+      "folder": {
+        "description": "The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.",
+        "required": true
+      },
+      "member": {
+        "description": "The identity that will be granted the privilege in the role.",
+        "required": true
+      },
+      "role": {
+        "description": "The role that should be applied. Note that custom roles must be of the format",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/google_folder_iam_member.html",
+    "properties": [
+      "folder",
+      "member",
+      "",
+      "role"
+    ]
+  },
+  "google_folder_iam_policy": {
+    "full_properties": {
+      "folder": {
+        "description": "The resource name of the folder the policy is attached to. Its format is folders/{folder_id}.",
+        "required": true
+      },
+      "policy_data": {
+        "description": "The google_iam_policy data source that represents",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/google_folder_iam_policy.html",
+    "properties": [
+      "folder",
+      "policy_data"
+    ]
+  },
+  "google_folder_organization_policy": {
+    "full_properties": {
+      "constraint": {
+        "description": "The name of the Constraint the Policy is configuring, for example, serviceuser.services. Check out the complete list of available constraints.",
+        "required": true
+      },
+      "folder": {
+        "description": "The resource name of the folder to set the policy for. Its format is folders/{folder_id}.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/google_folder_organization_policy.html",
+    "properties": [
+      "folder",
+      "constraint"
+    ]
+  },
+  "google_kms_crypto_key": {
+    "full_properties": {
+      "key_ring": {
+        "description": "The id of the Google Cloud Platform KeyRing to which the key shall belong.",
+        "required": true
+      },
+      "name": {
+        "description": "The CryptoKey's name.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/google_kms_crypto_key.html",
+    "properties": [
+      "name",
+      "key_ring"
+    ]
+  },
+  "google_kms_crypto_key_iam_binding": {
+    "full_properties": {
+      "crypto_key_id": {
+        "description": "The crypto key ID, in the form",
+        "required": true
+      },
+      "members": {
+        "description": "A list of users that the role should apply to.",
+        "required": true
+      },
+      "role": {
+        "description": "The role that should be applied. Only one",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/google_kms_crypto_key_iam_binding.html",
+    "properties": [
+      "members",
+      "role",
+      "crypto_key_id"
+    ]
+  },
+  "google_kms_crypto_key_iam_member": {
+    "full_properties": {
+      "crypto_key_id": {
+        "description": "The key ring ID, in the form",
+        "required": true
+      },
+      "member": {
+        "description": "The user that the role should apply to.",
+        "required": true
+      },
+      "role": {
+        "description": "The role that should be applied. Note that custom roles must be of the format",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/google_kms_crypto_key_iam_member.html",
+    "properties": [
+      "member",
+      "role",
+      "crypto_key_id"
+    ]
+  },
+  "google_kms_key_ring": {
+    "full_properties": {
+      "location": {
+        "description": "The Google Cloud Platform location for the KeyRing.",
+        "required": true
+      },
+      "name": {
+        "description": "The KeyRing's name.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/google_kms_key_ring.html",
+    "properties": [
+      "name",
+      "location"
+    ]
+  },
+  "google_logging_billing_account_exclusion": {
+    "full_properties": {
+      "billing_account": {
+        "description": "The billing account to create the exclusion for.",
+        "required": true
+      },
+      "description": {
+        "description": "A human-readable description.",
+        "required": false
+      },
+      "disabled": {
+        "description": "Whether this exclusion rule should be disabled or not. This defaults to",
+        "required": false
+      },
+      "filter": {
+        "description": "The filter to apply when excluding logs. Only log entries that match the filter are excluded.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the logging exclusion.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/logging_billing_account_exclusion.html",
+    "properties": [
+      "billing_account",
+      "name",
+      "description",
+      "disabled",
+      "filter"
+    ]
+  },
+  "google_logging_billing_account_sink": {
+    "full_properties": {
+      "billing_account": {
+        "description": "The billing account exported to the sink.",
+        "required": true
+      },
+      "destination": {
+        "description": "The destination of the sink (or, in other words, where logs are written to). Can be a",
+        "required": true
+      },
+      "filter": {
+        "description": "The filter to apply when exporting logs. Only log entries that match the filter are exported.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the logging sink.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/logging_billing_account_sink.html",
+    "properties": [
+      "name",
+      "billing_account",
+      "destination",
+      "filter"
+    ]
+  },
+  "google_logging_folder_exclusion": {
+    "full_properties": {
+      "description": {
+        "description": "A human-readable description.",
+        "required": false
+      },
+      "disabled": {
+        "description": "Whether this exclusion rule should be disabled or not. This defaults to",
+        "required": false
+      },
+      "filter": {
+        "description": "The filter to apply when excluding logs. Only log entries that match the filter are excluded.",
+        "required": true
+      },
+      "folder": {
+        "description": "The folder to be exported to the sink. Note that either [FOLDER_ID] or \"folders/[FOLDER_ID]\" is",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the logging exclusion.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/logging_folder_exclusion.html",
+    "properties": [
+      "folder",
+      "name",
+      "description",
+      "disabled",
+      "filter"
+    ]
+  },
+  "google_logging_folder_sink": {
+    "full_properties": {
+      "destination": {
+        "description": "The destination of the sink (or, in other words, where logs are written to). Can be a",
+        "required": true
+      },
+      "filter": {
+        "description": "The filter to apply when exporting logs. Only log entries that match the filter are exported.",
+        "required": false
+      },
+      "folder": {
+        "description": "The folder to be exported to the sink. Note that either [FOLDER_ID] or \"folders/[FOLDER_ID]\" is",
+        "required": true
+      },
+      "include_children": {
+        "description": "Whether or not to include children folders in the sink export. If true, logs",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the logging sink.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/logging_folder_sink.html",
+    "properties": [
+      "name",
+      "folder",
+      "destination",
+      "filter",
+      "include_children"
+    ]
+  },
+  "google_logging_organization_exclusion": {
+    "full_properties": {
+      "description": {
+        "description": "A human-readable description.",
+        "required": false
+      },
+      "disabled": {
+        "description": "Whether this exclusion rule should be disabled or not. This defaults to",
+        "required": false
+      },
+      "filter": {
+        "description": "The filter to apply when excluding logs. Only log entries that match the filter are excluded.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the logging exclusion.",
+        "required": true
+      },
+      "org_id": {
+        "description": "The organization to create the exclusion in.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/logging_organization_exclusion.html",
+    "properties": [
+      "name",
+      "org_id",
+      "description",
+      "disabled",
+      "filter"
+    ]
+  },
+  "google_logging_organization_sink": {
+    "full_properties": {
+      "destination": {
+        "description": "The destination of the sink (or, in other words, where logs are written to). Can be a",
+        "required": true
+      },
+      "filter": {
+        "description": "The filter to apply when exporting logs. Only log entries that match the filter are exported.",
+        "required": false
+      },
+      "include_children": {
+        "description": "Whether or not to include children organizations in the sink export. If true, logs",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the logging sink.",
+        "required": true
+      },
+      "org_id": {
+        "description": "The numeric ID of the organization to be exported to the sink.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/logging_organization_sink.html",
+    "properties": [
+      "name",
+      "org_id",
+      "destination",
+      "filter",
+      "include_children"
+    ]
+  },
+  "google_logging_project_exclusion": {
+    "full_properties": {
+      "description": {
+        "description": "A human-readable description.",
+        "required": false
+      },
+      "disabled": {
+        "description": "Whether this exclusion rule should be disabled or not. This defaults to",
+        "required": false
+      },
+      "filter": {
+        "description": "The filter to apply when excluding logs. Only log entries that match the filter are excluded.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the logging exclusion.",
+        "required": true
+      },
+      "project": {
+        "description": "The project to create the exclusion in. If omitted, the project associated with the provider is",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/google/r/logging_project_exclusion.html",
+    "properties": [
+      "filter",
+      "name",
+      "description",
+      "disabled",
+      "project"
+    ]
+  },
+  "google_logging_project_sink": {
+    "full_properties": {
+      "destination": {
+        "description": "The destination of the sink (or, in other words, where logs are written to). Can be a",
+        "required": true
+      },
+      "filter": {
+        "description": "The filter to apply when exporting logs. Only log entries that match the filter are exported.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the logging sink.",
+        "required": true
+      },
+      "project": {
+        "description": "The ID of the project to create the sink in. If omitted, the project associated with the provider is",
+        "required": false
+      },
+      "unique_writer_identity": {
+        "description": "Whether or not to create a unique identity associated with this sink. If false",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/google/r/logging_project_sink.html",
+    "properties": [
+      "name",
+      "destination",
+      "filter",
+      "project",
+      "unique_writer_identity"
+    ]
+  },
+  "google_monitoring_alert_policy": {
+    "full_properties": {
+      "combiner": {
+        "description": "How to combine the results of multiple conditions to",
+        "required": true
+      },
+      "conditions": {
+        "description": "A list of conditions for the policy. The conditions are combined by",
+        "required": true
+      },
+      "display_name": {
+        "description": "A short name or phrase used to identify the policy in",
+        "required": true
+      },
+      "enabled": {
+        "description": "Whether or not the policy is enabled.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/monitoring_alert_policy.html",
+    "properties": [
+      "display_name",
+      "combiner",
+      "enabled",
+      "conditions"
+    ]
+  },
+  "google_organization_iam_binding": {
+    "full_properties": {
+      "members": {
+        "description": "A list of users that the role should apply to.",
+        "required": true
+      },
+      "org_id": {
+        "description": "The numeric ID of the organization in which you want to create a custom role.",
+        "required": true
+      },
+      "role": {
+        "description": "The role that should be applied. Only one",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/google_organization_iam_binding.html",
+    "properties": [
+      "org_id",
+      "role",
+      "members"
+    ]
+  },
+  "google_organization_iam_custom_role": {
+    "full_properties": {
+      "deleted": {
+        "description": "The current deleted state of the role. Defaults to false.",
+        "required": false
+      },
+      "description": {
+        "description": "A human-readable description for the role.",
+        "required": false
+      },
+      "org_id": {
+        "description": "The numeric ID of the organization in which you want to create a custom role.",
+        "required": true
+      },
+      "permissions": {
+        "description": "The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.",
+        "required": true
+      },
+      "role_id": {
+        "description": "The role id to use for this role.",
+        "required": true
+      },
+      "stage": {
+        "description": "The current launch stage of the role.",
+        "required": false
+      },
+      "title": {
+        "description": "A human-readable title for the role.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/google_organization_iam_custom_role.html",
+    "properties": [
+      "role_id",
+      "org_id",
+      "title",
+      "permissions",
+      "stage",
+      "description",
+      "deleted"
+    ]
+  },
+  "google_organization_iam_member": {
+    "full_properties": {
+      "member": {
+        "description": "The user that the role should apply to.",
+        "required": true
+      },
+      "org_id": {
+        "description": "The numeric ID of the organization in which you want to create a custom role.",
+        "required": true
+      },
+      "role": {
+        "description": "The role that should be applied. Note that custom roles must be of the format",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/google_organization_iam_member.html",
+    "properties": [
+      "org_id",
+      "role",
+      "member"
+    ]
+  },
+  "google_organization_iam_policy": {
+    "full_properties": {
+      "org_id": {
+        "description": "The numeric ID of the organization in which you want to create a custom role.",
+        "required": true
+      },
+      "policy_data": {
+        "description": "The google_iam_policy data source that represents",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/google_organization_iam_policy.html",
+    "properties": [
+      "org_id",
+      "policy_data"
+    ]
+  },
+  "google_organization_policy": {
+    "full_properties": {
+      "constraint": {
+        "description": "The name of the Constraint the Policy is configuring, for example, serviceuser.services. Check out the complete list of available constraints.",
+        "required": true
+      },
+      "org_id": {
+        "description": "The numeric ID of the organization to set the policy for.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/google_organization_policy.html",
+    "properties": [
+      "org_id",
+      "constraint"
+    ]
+  },
+  "google_project": {
+    "full_properties": {
+      "app_engine": {
+        "description": "A block of configuration to enable an App Engine app. Setting this",
+        "required": false
+      },
+      "auto_create_network": {
+        "description": "Create the 'default' network automatically.  Default true.",
+        "required": false
+      },
+      "billing_account": {
+        "description": "The alphanumeric ID of the billing account this project",
+        "required": false
+      },
+      "folder_id": {
+        "description": "The numeric ID of the folder this project should be",
+        "required": false
+      },
+      "labels": {
+        "description": "A set of key/value label pairs to assign to the project.",
+        "required": false
+      },
+      "name": {
+        "description": "The display name of the project.",
+        "required": true
+      },
+      "org_id": {
+        "description": "The numeric ID of the organization this project belongs to.",
+        "required": false
+      },
+      "policy_data": {
+        "description": "The IAM policy associated with the project.",
+        "required": false
+      },
+      "project_id": {
+        "description": "The project ID. Changing this forces a new project to be created.",
+        "required": true
+      },
+      "skip_delete": {
+        "description": "If true, the Terraform resource can be deleted",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/google/r/google_project.html",
+    "properties": [
+      "name",
+      "project_id",
+      "org_id",
+      "folder_id",
+      "billing_account",
+      "skip_delete",
+      "policy_data",
+      "labels",
+      "auto_create_network",
+      "app_engine"
+    ]
+  },
+  "google_project_iam_custom_role": {
+    "full_properties": {
+      "description": {
+        "description": "A human-readable description for the role.",
+        "required": false
+      },
+      "permissions": {
+        "description": "The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.",
+        "required": true
+      },
+      "project": {
+        "description": "The project that the service account will be created in.",
+        "required": false
+      },
+      "role_id": {
+        "description": "The role id to use for this role.",
+        "required": true
+      },
+      "stage": {
+        "description": "The current launch stage of the role.",
+        "required": false
+      },
+      "title": {
+        "description": "A human-readable title for the role.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/google_project_iam_custom_role.html",
+    "properties": [
+      "role_id",
+      "title",
+      "permissions",
+      "project",
+      "stage",
+      "description"
+    ]
+  },
+  "google_project_organization_policy": {
+    "full_properties": {
+      "constraint": {
+        "description": "The name of the Constraint the Policy is configuring, for example, serviceuser.services. Check out the complete list of available constraints.",
+        "required": true
+      },
+      "project": {
+        "description": "The project id of the project to set the policy for.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/google_project_organization_policy.html",
+    "properties": [
+      "project",
+      "constraint"
+    ]
+  },
+  "google_project_service": {
+    "full_properties": {
+      "disable_on_destroy": {
+        "description": "If true, disable the service when the terraform resource is destroyed.  Defaults to true.  May be useful in the event that a project is long-lived but the infrastructure running in that project changes frequently.",
+        "required": false
+      },
+      "project": {
+        "description": "The project ID. If not provided, the provider project is used.",
+        "required": false
+      },
+      "service": {
+        "description": "The service to enable.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/google_project_service.html",
+    "properties": [
+      "service",
+      "project",
+      "disable_on_destroy"
+    ]
+  },
+  "google_project_services": {
+    "full_properties": {
+      "project": {
+        "description": "The project ID.",
+        "required": true
+      },
+      "services": {
+        "description": "The list of services that are enabled. Supports",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/google_project_services.html",
+    "properties": [
+      "project",
+      "services"
+    ]
+  },
+  "google_project_usage_export_bucket": {
+    "full_properties": {
+      "bucket_name": {
+        "description": "The bucket to store reports in.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/usage_export_bucket.html",
+    "properties": [
+      "bucket_name"
+    ]
+  },
+  "google_pubsub_subscription": {
+    "full_properties": {
+      "name": {
+        "description": "A unique name for the resource, required by pubsub.",
+        "required": true
+      },
+      "topic": {
+        "description": "The topic name or id to bind this subscription to, required by pubsub.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/pubsub_subscription.html",
+    "properties": [
+      "name",
+      "topic"
+    ]
+  },
+  "google_pubsub_topic": {
+    "full_properties": {
+      "name": {
+        "description": "A unique name for the pubsub topic.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/pubsub_topic.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_redis_instance": {
+    "full_properties": {
+      "memory_size_gb": {
+        "description": "Redis memory size in GiB.",
+        "required": true
+      },
+      "name": {
+        "description": "The ID of the instance or a fully qualified identifier for the instance.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/redis_instance.html",
+    "properties": [
+      "name",
+      "memory_size_gb"
+    ]
+  },
+  "google_resource_manager_lien": {
+    "full_properties": {
+      "origin": {
+        "description": "A stable, user-visible/meaningful string identifying the origin",
+        "required": true
+      },
+      "parent": {
+        "description": "A reference to the resource this Lien is attached to.",
+        "required": true
+      },
+      "reason": {
+        "description": "Concise user-visible strings indicating why an action cannot be performed",
+        "required": true
+      },
+      "restrictions": {
+        "description": "The types of operations which should be blocked as a result of this Lien.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/resourcemanager_lien.html",
+    "properties": [
+      "reason",
+      "origin",
+      "parent",
+      "restrictions"
+    ]
+  },
+  "google_runtimeconfig_config": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the runtime config.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/runtimeconfig_config.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_runtimeconfig_variable": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the variable to manage. Note that variable",
+        "required": true
+      },
+      "parent": {
+        "description": "The name of the RuntimeConfig resource containing this",
+        "required": true
+      },
+      "text": {
+        "description": "or value - (Required) The content to associate with the variable.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/google/r/runtimeconfig_variable.html",
+    "properties": [
+      "name",
+      "parent",
+      "text"
+    ]
+  },
+  "google_service_account": {
+    "full_properties": {
+      "account_id": {
+        "description": "The service account ID.",
+        "required": true
+      },
+      "display_name": {
+        "description": "The display name for the service account.",
+        "required": false
+      },
+      "policy_data": {
+        "description": "The google_iam_policy data source that represents",
+        "required": false
+      },
+      "project": {
+        "description": "The ID of the project that the service account will be created in.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/google/r/google_service_account.html",
+    "properties": [
+      "account_id",
+      "display_name",
+      "project",
+      "policy_data"
+    ]
+  },
+  "google_service_account_key": {
+    "full_properties": {
+      "key_algorithm": {
+        "description": "The algorithm used to generate the key. KEY_ALG_RSA_2048 is the default algorithm.",
+        "required": false
+      },
+      "pgp_key": {
+        "description": "– (Optional) An optional PGP key to encrypt the resulting private",
+        "required": false
+      },
+      "private_key_type": {
+        "description": "The output format of the private key. TYPE_GOOGLE_CREDENTIALS_FILE is the default output format.",
+        "required": false
+      },
+      "public_key_type": {
+        "description": "The output format of the public key requested. X509_PEM is the default output format.",
+        "required": false
+      },
+      "service_account_id": {
+        "description": "The Service account id of the Key Pair. This can be a string in the format",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/google_service_account_key.html",
+    "properties": [
+      "service_account_id",
+      "key_algorithm",
+      "public_key_type",
+      "private_key_type",
+      "pgp_key"
+    ]
+  },
+  "google_sourcerepo_repository": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the repository that will be created.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/sourcerepo_repository.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_spanner_instance": {
+    "full_properties": {
+      "instance": {
+        "description": "The name of the instance that will serve the new database.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the database.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/spanner_database.html",
+    "properties": [
+      "instance",
+      "name"
+    ]
+  },
+  "google_sql_database": {
+    "full_properties": {
+      "instance": {
+        "description": "The name of containing instance.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the database.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/sql_database.html",
+    "properties": [
+      "name",
+      "instance"
+    ]
+  },
+  "google_sql_database_instance": {
+    "full_properties": {
+      "region": {
+        "description": "The region the instance will sit in. Note, first-generation Cloud SQL instance",
+        "required": true
+      },
+      "settings": {
+        "description": "The settings to use for the database. The",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/sql_database_instance.html",
+    "properties": [
+      "region",
+      "settings"
+    ]
+  },
+  "google_sql_user": {
+    "full_properties": {
+      "instance": {
+        "description": "The name of the Cloud SQL instance. Changing this",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the user. Changing this forces a new resource",
+        "required": true
+      },
+      "password": {
+        "description": "The password for the user. Can be updated.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/google/r/sql_user.html",
+    "properties": [
+      "instance",
+      "name",
+      "password"
+    ]
+  },
+  "google_storage_bucket": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the bucket.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/storage_bucket.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "google_storage_bucket_acl": {
+    "full_properties": {
+      "bucket": {
+        "description": "The name of the bucket it applies to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/storage_bucket_acl.html",
+    "properties": [
+      "bucket"
+    ]
+  },
+  "google_storage_bucket_object": {
+    "full_properties": {
+      "bucket": {
+        "description": "The name of the containing bucket.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the object.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/storage_bucket_object.html",
+    "properties": [
+      "bucket",
+      "name"
+    ]
+  },
+  "google_storage_default_object_acl": {
+    "full_properties": {
+      "bucket": {
+        "description": "The name of the bucket it applies to.",
+        "required": true
+      },
+      "role_entity": {
+        "description": "List of role/entity pairs in the form ROLE:entity. See GCS Object ACL documentation for more details.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/storage_default_object_acl.html",
+    "properties": [
+      "bucket",
+      "role_entity"
+    ]
+  },
+  "google_storage_notification": {
+    "full_properties": {
+      "bucket": {
+        "description": "The name of the bucket.",
+        "required": true
+      },
+      "payload_format": {
+        "description": "The desired content of the Payload. One of \"JSON_API_V1\" or \"NONE\".",
+        "required": true
+      },
+      "topic": {
+        "description": "The Cloud PubSub topic to which this subscription publishes. Expects either the ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/storage_notification.html",
+    "properties": [
+      "bucket",
+      "payload_format",
+      "topic"
+    ]
+  },
+  "google_storage_object_acl": {
+    "full_properties": {
+      "bucket": {
+        "description": "The name of the bucket it applies to.",
+        "required": true
+      },
+      "object": {
+        "description": "The name of the object it applies to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/google/r/storage_object_acl.html",
+    "properties": [
+      "bucket",
+      "object"
+    ]
+  }
+}

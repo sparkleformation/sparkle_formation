@@ -1,0 +1,24 @@
+{
+  "ses_identity_notification_topic": {
+    "full_properties": {
+      "identity": {
+        "description": "The identity for which the Amazon SNS topic will be set. You can specify an identity by using its name or by using its Amazon Resource Name (ARN).",
+        "required": true
+      },
+      "notification_type": {
+        "description": "The type of notifications that will be published to the specified Amazon SNS topic. Valid Values: Bounce, Complaint or Delivery.",
+        "required": true
+      },
+      "topic_arn": {
+        "description": "The Amazon Resource Name (ARN) of the Amazon SNS topic. Can be set to \"\" (an empty string) to disable publishing.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/aws/r/ses_identity_notification_topic.html",
+    "properties": [
+      "topic_arn",
+      "notification_type",
+      "identity"
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "local_file": {
+    "full_properties": {
+      "content": {
+        "description": "The content of file to create.",
+        "required": true
+      },
+      "filename": {
+        "description": "The path of the file to create.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/local/r/file.html",
+    "properties": [
+      "content",
+      "filename"
+    ]
+  }
+}

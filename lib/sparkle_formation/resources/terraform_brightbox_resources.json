@@ -1,0 +1,283 @@
+{
+  "brightbox_cloudip": {
+    "full_properties": {
+      "name": {
+        "description": "a label to assign to the CloudIP",
+        "required": false
+      },
+      "reverse_dns": {
+        "description": "The reverse DNS entry for the CloudIP",
+        "required": false
+      },
+      "target": {
+        "description": "The CloudIP mapping target. This is the interface from a server, or the id of a load balancer or cloud sql resource",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/brightbox/r/cloudip.html",
+    "properties": [
+      "target",
+      "name",
+      "reverse_dns"
+    ]
+  },
+  "brightbox_container": {
+    "full_properties": {
+      "description": {
+        "description": "A further description of the Container",
+        "required": false
+      },
+      "name": {
+        "description": "A label assigned to the Container",
+        "required": true
+      },
+      "orbit_url": {
+        "description": "The Orbit URL you wish to talk to. This defaults to either https://orbit.brightbox.com/v1/ or the contents of the BRIGHTBOX_ORBIT_URL environment variable if set.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/brightbox/r/container.html",
+    "properties": [
+      "name",
+      "description",
+      "orbit_url"
+    ]
+  },
+  "brightbox_database_server": {
+    "full_properties": {
+      "allow_access": {
+        "description": "- A list of server group ids, server ids or IPv4 address references the database server should be accessible from. There must be at least one entry in the list",
+        "required": true
+      },
+      "database_engine": {
+        "description": "Database engine to request. Default is mysql.",
+        "required": false
+      },
+      "database_type": {
+        "description": "ID of the Database Type required.",
+        "required": false
+      },
+      "database_version": {
+        "description": "Database version to request. Default is 5.5.",
+        "required": false
+      },
+      "description": {
+        "description": "A further description of the Database Server",
+        "required": false
+      },
+      "maintenance_hour": {
+        "description": "Number representing 24hr time start of maintenance window hour for x:00-x:59 (0-23). Default is 6",
+        "required": false
+      },
+      "maintenance_weekday": {
+        "description": "Numerical index of weekday (0 is Sunday, 1 is Monday...) to set when automatic updates may be performed. Default is 0 (Sunday). ",
+        "required": false
+      },
+      "name": {
+        "description": "A label assigned to the Database Server",
+        "required": false
+      },
+      "snapshot": {
+        "description": "- Database snapshot id to build from",
+        "required": false
+      },
+      "zone": {
+        "description": "The handle of the zone required (gb1-a, gb1-b)",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/brightbox/r/database_server.html",
+    "properties": [
+      "allow_access",
+      "name",
+      "description",
+      "maintenance_weekday",
+      "maintenance_hour",
+      "database_engine",
+      "database_version",
+      "database_type",
+      "snapshot",
+      "zone"
+    ]
+  },
+  "brightbox_firewall_policy": {
+    "full_properties": {
+      "description": {
+        "description": "A further description of the Firewall Policy",
+        "required": false
+      },
+      "name": {
+        "description": "A label to assign to the Firewall Policy",
+        "required": false
+      },
+      "server_group": {
+        "description": "The ID of the Server Group the policy will be applied to",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/brightbox/r/firewall_policy.html",
+    "properties": [
+      "server_group",
+      "name",
+      "description"
+    ]
+  },
+  "brightbox_firewall_rule": {
+    "full_properties": {
+      "description": {
+        "description": "A further description of the Firewall Rule",
+        "required": false
+      },
+      "destination": {
+        "description": "Subnet, ServerGroup or ServerID. any,10.1.1.23/32 or srv-4ktk4",
+        "required": false
+      },
+      "destination_port": {
+        "description": "single port, multiple ports or range separated by - or :; upto 255 characters. Example - 80, 80,443,21 or 3000-3999",
+        "required": false
+      },
+      "firewall_policy": {
+        "description": "The ID of the firewall policy this rule belongs to",
+        "required": true
+      },
+      "icmp_type_name": {
+        "description": "ICMP type name. echo-request, echo-reply. Only allowed if protocol is icmp.",
+        "required": false
+      },
+      "protocol": {
+        "description": "Protocol Number or one of tcp, udp, icmp",
+        "required": false
+      },
+      "source": {
+        "description": "Subnet, ServerGroup or ServerID. any,10.1.1.23/32 or srv-4ktk4",
+        "required": false
+      },
+      "source_port": {
+        "description": "single port, multiple ports or range separated by - or :; upto 255 characters. Example - 80, 80,443,21 or 3000-3999",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/brightbox/r/firewall_rule.html",
+    "properties": [
+      "firewall_policy",
+      "protocol",
+      "source",
+      "source_port",
+      "destination",
+      "destination_port",
+      "icmp_type_name",
+      "description"
+    ]
+  },
+  "brightbox_load_balancer": {
+    "full_properties": {
+      "buffer_size": {
+        "description": "Buffer size in bytes",
+        "required": false
+      },
+      "certificate_pem": {
+        "description": "A X509 SSL certificate in PEM format. Must be included along with certificate_key. If intermediate certificates are required they should be concatenated after the main certificate",
+        "required": false
+      },
+      "certificate_private_key": {
+        "description": "The RSA private key used to sign the certificate in PEM format. Must be included along with certificate_pem",
+        "required": false
+      },
+      "healthcheck": {
+        "description": "A healthcheck block. The Healthcheck block is described below",
+        "required": true
+      },
+      "listener": {
+        "description": "An array of listener blocks. The Listener block is described below",
+        "required": true
+      },
+      "name": {
+        "description": "A label assigned to the Load Balancer",
+        "required": false
+      },
+      "nodes": {
+        "description": "An array of Server IDs",
+        "required": false
+      },
+      "policy": {
+        "description": "Method of load balancing to use, either least-connections or round-robin",
+        "required": false
+      },
+      "sslv3": {
+        "description": "Allow SSL v3 to be used. Default is false",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/brightbox/r/load_balancer.html",
+    "properties": [
+      "name",
+      "policy",
+      "certificate_pem",
+      "certificate_private_key",
+      "sslv3",
+      "buffer_size",
+      "nodes",
+      "listener",
+      "healthcheck"
+    ]
+  },
+  "brightbox_server": {
+    "full_properties": {
+      "image": {
+        "description": "The Server image ID",
+        "required": true
+      },
+      "name": {
+        "description": "The Server name",
+        "required": false
+      },
+      "server_groups": {
+        "description": "- An array of server group ids the server",
+        "required": true
+      },
+      "type": {
+        "description": "The handle of the server type required (1gb.ssd, etc)",
+        "required": false
+      },
+      "user_data": {
+        "description": "- A string of the desired User Data for the Server.",
+        "required": false
+      },
+      "user_data_base64": {
+        "description": "- Already encrypted User Data - for use",
+        "required": false
+      },
+      "zone": {
+        "description": "The handle of the zone required (gb1-a, gb1-b)",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/brightbox/r/server.html",
+    "properties": [
+      "image",
+      "server_groups",
+      "name",
+      "type",
+      "zone",
+      "user_data",
+      "user_data_base64"
+    ]
+  },
+  "brightbox_server_group": {
+    "full_properties": {
+      "description": {
+        "description": "A further description of the Server Group",
+        "required": false
+      },
+      "name": {
+        "description": "A label assigned to the Server Group",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/brightbox/r/server_group.html",
+    "properties": [
+      "name",
+      "description"
+    ]
+  }
+}

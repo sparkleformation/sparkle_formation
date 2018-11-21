@@ -1,0 +1,267 @@
+{
+  "gitlab_deploy_key": {
+    "full_properties": {
+      "can_push": {
+        "description": "Allow this deploy key to be used to push changes to the project.  Defaults to false. NOTE:: this cannot currently be managed.",
+        "required": false
+      },
+      "key": {
+        "description": "The public ssh key body.",
+        "required": false
+      },
+      "project": {
+        "description": "The name or id of the project to add the deploy key to.",
+        "required": false
+      },
+      "title": {
+        "description": "A title to describe the deploy key with.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/gitlab/r/deploy_key.html",
+    "properties": [
+      "project",
+      "title",
+      "key",
+      "can_push"
+    ]
+  },
+  "gitlab_group": {
+    "full_properties": {
+      "description": {
+        "description": "The description of the group.",
+        "required": false
+      },
+      "lfs_enabled": {
+        "description": "Boolean, defaults to true.  Whether to enable LFS",
+        "required": false
+      },
+      "name": {
+        "description": "The name of this group.",
+        "required": true
+      },
+      "parent_id": {
+        "description": "Integer, id of the parent group (creates a nested group).",
+        "required": false
+      },
+      "path": {
+        "description": "The path of the group.",
+        "required": true
+      },
+      "request_access_enabled": {
+        "description": "Boolean, defaults to false.  Whether to",
+        "required": false
+      },
+      "visibility_level": {
+        "description": "Set to public to create a public group.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/gitlab/r/group.html",
+    "properties": [
+      "name",
+      "path",
+      "description",
+      "lfs_enabled",
+      "request_access_enabled",
+      "visibility_level",
+      "parent_id"
+    ]
+  },
+  "gitlab_label": {
+    "full_properties": {
+      "color": {
+        "description": "The color of the label given in 6-digit hex notation with leading '#' sign (e.g. #FFAABB) or one of the CSS color names.",
+        "required": true
+      },
+      "description": {
+        "description": "The description of the label.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the label.",
+        "required": true
+      },
+      "project": {
+        "description": "The name or id of the project to add the label to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/gitlab/r/label.html",
+    "properties": [
+      "project",
+      "name",
+      "color",
+      "description"
+    ]
+  },
+  "gitlab_project": {
+    "full_properties": {
+      "default_branch": {
+        "description": "The default branch for the project.",
+        "required": false
+      },
+      "description": {
+        "description": "A description of the project.",
+        "required": false
+      },
+      "issues_enabled": {
+        "description": "Enable issue tracking for the project.",
+        "required": false
+      },
+      "merge_requests_enabled": {
+        "description": "Enable merge requests for the project.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the project.",
+        "required": true
+      },
+      "namespace_idgitlab_group": {
+      },
+      "path": {
+        "description": "The path of the repository.",
+        "required": false
+      },
+      "snippets_enabled": {
+        "description": "Enable snippets for the project.",
+        "required": false
+      },
+      "visibility_level": {
+        "description": "Set to public to create a public project.",
+        "required": false
+      },
+      "wiki_enabled": {
+        "description": "Enable wiki for the project.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/gitlab/r/project.html",
+    "properties": [
+      "name",
+      "path",
+      "namespace_idgitlab_group",
+      "description",
+      "default_branch",
+      "issues_enabled",
+      "merge_requests_enabled",
+      "wiki_enabled",
+      "snippets_enabled",
+      "visibility_level"
+    ]
+  },
+  "gitlab_project_hook": {
+    "full_properties": {
+      "enable_ssl_verification": {
+        "description": "Enable ssl verification when invoking",
+        "required": false
+      },
+      "issues_events": {
+        "description": "Invoke the hook for issues events.",
+        "required": false
+      },
+      "job_events": {
+        "description": "Invoke the hook for job events.",
+        "required": false
+      },
+      "merge_requests_events": {
+        "description": "Invoke the hook for merge requests.",
+        "required": false
+      },
+      "note_events": {
+        "description": "Invoke the hook for notes events.",
+        "required": false
+      },
+      "pipeline_events": {
+        "description": "Invoke the hook for pipeline events.",
+        "required": false
+      },
+      "project": {
+        "description": "The name or id of the project to add the hook to.",
+        "required": true
+      },
+      "push_events": {
+        "description": "Invoke the hook for push events.",
+        "required": false
+      },
+      "tag_push_events": {
+        "description": "Invoke the hook for tag push events.",
+        "required": false
+      },
+      "token": {
+        "description": "A token to present when invoking the hook.",
+        "required": false
+      },
+      "url": {
+        "description": "The url of the hook to invoke.",
+        "required": true
+      },
+      "wiki_page_events": {
+        "description": "Invoke the hook for wiki page events.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/gitlab/r/project_hook.html",
+    "properties": [
+      "project",
+      "url",
+      "token",
+      "enable_ssl_verification",
+      "push_events",
+      "issues_events",
+      "merge_requests_events",
+      "tag_push_events",
+      "note_events",
+      "job_events",
+      "pipeline_events",
+      "wiki_page_events"
+    ]
+  },
+  "gitlab_user": {
+    "full_properties": {
+      "can_create_group": {
+        "description": "Boolean, defaults to false. Whether to allow the user to create groups.",
+        "required": false
+      },
+      "email": {
+        "description": "The e-mail address of the user.",
+        "required": true
+      },
+      "is_admin": {
+        "description": "Boolean, defaults to false.  Whether to enable administrative priviledges",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the user.",
+        "required": true
+      },
+      "password": {
+        "description": "The password of the user.",
+        "required": true
+      },
+      "projects_limit": {
+        "description": "Integer, defaults to 0.  Number of projects user can create.",
+        "required": false
+      },
+      "skip_confirmation": {
+        "description": "Boolean, defaults to true. Whether to skip confirmation.",
+        "required": false
+      },
+      "username": {
+        "description": "The username of the user.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/gitlab/r/user.html",
+    "properties": [
+      "name",
+      "username",
+      "password",
+      "email",
+      "is_admin",
+      "projects_limit",
+      "can_create_group",
+      "skip_confirmation"
+    ]
+  }
+}

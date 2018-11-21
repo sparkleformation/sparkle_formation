@@ -1,0 +1,291 @@
+{
+  "triton_fabric": {
+    "full_properties": {
+      "description": {
+        "description": "Optional description of network.",
+        "required": false
+      },
+      "gateway": {
+        "description": "Optional gateway IP.",
+        "required": false
+      },
+      "internet_nat": {
+        "description": "If a NAT zone is provisioned at Gateway IP address. Default is true.",
+        "required": false
+      },
+      "name": {
+        "description": "Network name.",
+        "required": false
+      },
+      "provision_end_ip": {
+        "description": "Last assignable IP on the network.",
+        "required": false
+      },
+      "provision_start_ip": {
+        "description": "First IP on the network that can be assigned.",
+        "required": false
+      },
+      "resolvers": {
+        "description": "Array of IP addresses for resolvers.",
+        "required": false
+      },
+      "routes": {
+        "description": "Map of CIDR block to Gateway IP address.",
+        "required": false
+      },
+      "subnet": {
+        "description": "CIDR formatted string describing network.",
+        "required": false
+      },
+      "vlan_id": {
+        "description": "VLAN id the network is on. Number between 0-4095 indicating VLAN ID.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/triton/r/triton_fabric.html",
+    "properties": [
+      "name",
+      "description",
+      "subnet",
+      "provision_start_ip",
+      "provision_end_ip",
+      "gateway",
+      "resolvers",
+      "routes",
+      "internet_nat",
+      "vlan_id"
+    ]
+  },
+  "triton_firewall_rule": {
+    "full_properties": {
+      "description": {
+        "description": "Description of the firewall rule",
+        "required": false
+      },
+      "enabled": {
+        "description": "Default: false",
+        "required": false
+      },
+      "rule": {
+        "description": "The firewall rule described using the Cloud API rule syntax defined at https://docs.joyent.com/public-cloud/network/firewall/cloud-firewall-rules-reference.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/triton/r/triton_firewall_rule.html",
+    "properties": [
+      "rule",
+      "enabled",
+      "description"
+    ]
+  },
+  "triton_instance_template": {
+    "full_properties": {
+      "firewall_enabled": {
+        "description": "Whether to enable the firewall for group instances. Default is false.",
+        "required": false
+      },
+      "image": {
+        "description": "UUID of the image.",
+        "required": false
+      },
+      "metadata": {
+        "description": "Metadata for group instances.",
+        "required": false
+      },
+      "networks": {
+        "description": "Network IDs for group instances.",
+        "required": false
+      },
+      "package": {
+        "description": "Package name used for provisioning.",
+        "required": false
+      },
+      "tags": {
+        "description": "Tags for group instances.",
+        "required": false
+      },
+      "template_name": {
+        "description": "Friendly name for the instance template.",
+        "required": false
+      },
+      "userdata": {
+        "description": "Data copied to instance on boot.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/triton/r/triton_instance_template.html",
+    "properties": [
+      "template_name",
+      "image",
+      "package",
+      "firewall_enabled",
+      "tags",
+      "networks",
+      "metadata",
+      "userdata"
+    ]
+  },
+  "triton_key": {
+    "full_properties": {
+      "key": {
+        "description": "The SSH key material. In order to read this from a file, use the file interpolation.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the key. If this is left empty, the name is inferred from the comment in the SSH key material.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/triton/r/triton_key.html",
+    "properties": [
+      "name",
+      "key"
+    ]
+  },
+  "triton_machine": {
+    "full_properties": {
+      "(Deprecated) locality": {
+      },
+      "administrator_pw": {
+        "description": "The initial password for the Administrator user. Only used for Windows virtual machines.",
+        "required": false
+      },
+      "affinity": {
+        "description": "A list of valid Affinity Rules to apply to the machine which assist in data center placement. Using this attribute will force resource creation to be serial. NOTE: Affinity rules are best guess and assist in placing instances across a data center. They're used at creation and not referenced after.",
+        "required": false
+      },
+      "cloud_config": {
+        "description": "Cloud-init configuration for Linux brand machines, used instead of user_data.",
+        "required": false
+      },
+      "cns": {
+        "description": "A mapping of CNS attributes to apply to the machine.",
+        "required": false
+      },
+      "deletion_protection_enabled": {
+        "description": "Whether an instance is destroyable. Default is false.",
+        "required": false
+      },
+      "firewall_enabled": {
+        "description": "Default: false",
+        "required": false
+      },
+      "image": {
+        "description": "The UUID of the image to provision.",
+        "required": false
+      },
+      "metadata": {
+        "description": "A mapping of metadata to apply to the machine.",
+        "required": false
+      },
+      "name": {
+        "description": "The friendly name for the machine. Triton will generate a name if one is not specified.",
+        "required": false
+      },
+      "networks": {
+        "description": "The list of networks to associate with the machine. The network ID will be in hex form, e.g xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.",
+        "required": false
+      },
+      "package": {
+        "description": "The name of the package to use for provisioning.",
+        "required": false
+      },
+      "root_authorized_keys": {
+        "description": "The public keys authorized for root access via SSH to the machine.",
+        "required": false
+      },
+      "tags": {
+        "description": "A mapping of tags to apply to the machine.",
+        "required": false
+      },
+      "user_data": {
+        "description": "Data to be copied to the machine on boot. NOTE: The content of user_data",
+        "required": false
+      },
+      "user_script": {
+        "description": "The user script to run on boot (every boot on SmartMachines). To learn more about",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/triton/r/triton_machine.html",
+    "properties": [
+      "name",
+      "tags",
+      "cns",
+      "metadata",
+      "package",
+      "image",
+      "networks",
+      "affinity",
+      "(Deprecated) locality",
+      "firewall_enabled",
+      "root_authorized_keys",
+      "user_data",
+      "user_script",
+      "administrator_pw",
+      "cloud_config",
+      "deletion_protection_enabled"
+    ]
+  },
+  "triton_service_group": {
+    "full_properties": {
+      "capacity": {
+        "description": "Number of instances to launch and monitor.",
+        "required": false
+      },
+      "group_name": {
+        "description": "Friendly name for the service group.",
+        "required": false
+      },
+      "template": {
+        "description": "Identifier of an instance template.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/triton/r/triton_service_group.html",
+    "properties": [
+      "group_name",
+      "template",
+      "capacity"
+    ]
+  },
+  "triton_snapshot": {
+    "full_properties": {
+      "machine_id": {
+        "description": "The ID of the machine of which to take a snapshot.",
+        "required": false
+      },
+      "name": {
+        "description": "The name for the snapshot.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/triton/r/triton_snapshot.html",
+    "properties": [
+      "name",
+      "machine_id"
+    ]
+  },
+  "triton_vlan": {
+    "full_properties": {
+      "description": {
+        "description": "Description of the VLAN",
+        "required": false
+      },
+      "name": {
+        "description": "Unique name to identify VLAN",
+        "required": false
+      },
+      "vlan_id": {
+        "description": "Number between 0-4095 indicating VLAN ID",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/triton/r/triton_vlan.html",
+    "properties": [
+      "vlan_id",
+      "name",
+      "description"
+    ]
+  }
+}

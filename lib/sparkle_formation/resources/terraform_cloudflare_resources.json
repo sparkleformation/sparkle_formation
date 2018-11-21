@@ -1,0 +1,638 @@
+{
+  "cloudflare_access_application": {
+    "full_properties": {
+      "domain": {
+        "description": "The complete URL of the asset you wish to put",
+        "required": true
+      },
+      "name": {
+        "description": "Friendly name of the Access Application.",
+        "required": true
+      },
+      "session_duration": {
+        "description": "How often a user will be forced to",
+        "required": false
+      },
+      "zone_id": {
+        "description": "The DNS zone to which the access rule should be added.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudflare/r/access_application.html",
+    "properties": [
+      "zone_id",
+      "name",
+      "domain",
+      "session_duration"
+    ]
+  },
+  "cloudflare_access_policy": {
+    "full_properties": {
+      "application_id": {
+        "description": "The ID of the application the policy is",
+        "required": true
+      },
+      "decision": {
+        "description": "The complete URL of the asset you wish to put",
+        "required": true
+      },
+      "exclude": {
+        "description": "A series of access conditions, see below for",
+        "required": false
+      },
+      "include": {
+        "description": "A series of access conditions, see below for",
+        "required": true
+      },
+      "name": {
+        "description": "Friendly name of the Access Application.",
+        "required": true
+      },
+      "precedence": {
+        "description": "Friendly name of the Access Application.",
+        "required": false
+      },
+      "require": {
+        "description": "A series of access conditions, see below for",
+        "required": false
+      },
+      "zone_id": {
+        "description": "The DNS zone to which the access rule should be",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudflare/r/access_policy.html",
+    "properties": [
+      "application_id",
+      "zone_id",
+      "decision",
+      "name",
+      "precedence",
+      "require",
+      "exclude",
+      "include"
+    ]
+  },
+  "cloudflare_access_rule": {
+    "full_properties": {
+      "configuration": {
+        "description": "Rule configuration to apply to a matched request. It's a complex value. See description below.",
+        "required": true
+      },
+      "mode": {
+        "description": "The action to apply to a matched request. Allowed values: \"block\", \"challenge\", \"whitelist\", \"js_challenge\"",
+        "required": true
+      },
+      "notes": {
+        "description": "A personal note about the rule. Typically used as a reminder or explanation for the rule.",
+        "required": false
+      },
+      "zone": {
+        "description": "The DNS zone to which the access rule should be added. Will be resolved to zone_id upon creation.",
+        "required": false
+      },
+      "zone_id": {
+        "description": "The DNS zone to which the access rule should be added.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cloudflare/r/access_rule.html",
+    "properties": [
+      "zone",
+      "zone_id",
+      "mode",
+      "notes",
+      "configuration"
+    ]
+  },
+  "cloudflare_account_member": {
+    "full_properties": {
+      "email_address": {
+        "description": "The email address of the user who you wish to manage. Note: Following creation, this field becomes read only via the API and cannot be updated.",
+        "required": true
+      },
+      "role_ids": {
+        "description": "Array of account role IDs that you want to assign to a member.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudflare/r/account_member.html",
+    "properties": [
+      "email_address",
+      "role_ids"
+    ]
+  },
+  "cloudflare_custom_pages": {
+    "full_properties": {
+      "account_id": {
+        "description": "The account ID where the custom pages should be",
+        "required": false
+      },
+      "state": {
+        "description": "Managed state of the custom page. Must be one of",
+        "required": true
+      },
+      "type": {
+        "description": "The type of custom page you wish to update. Must",
+        "required": true
+      },
+      "url": {
+        "description": "URL of where the custom page source is located.",
+        "required": true
+      },
+      "zone_id": {
+        "description": "The zone ID where the custom pages should be",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cloudflare/r/custom_pages.html",
+    "properties": [
+      "zone_id",
+      "account_id",
+      "type",
+      "url",
+      "state"
+    ]
+  },
+  "cloudflare_filter": {
+    "full_properties": {
+      "description": {
+        "description": "A note that you can use to describe the purpose of the filter.",
+        "required": false
+      },
+      "expression": {
+        "description": "The filter expression to be used.",
+        "required": true
+      },
+      "paused": {
+        "description": "Whether this filter is currently paused. Boolean value.",
+        "required": false
+      },
+      "ref": {
+        "description": "Short reference tag to quickly select related rules.",
+        "required": false
+      },
+      "zone": {
+        "description": "The DNS zone to which the Filter should be added. Will be resolved to zone_id upon creation.",
+        "required": false
+      },
+      "zone_id": {
+        "description": "The DNS zone to which the Filter should be added.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cloudflare/r/filter.html",
+    "properties": [
+      "zone",
+      "zone_id",
+      "paused",
+      "expression",
+      "description",
+      "ref"
+    ]
+  },
+  "cloudflare_load_balancer": {
+    "full_properties": {
+      "default_pool_ids": {
+        "description": "A list of pool IDs ordered by their failover priority. Used whenever region/pop pools are not defined.",
+        "required": true
+      },
+      "description": {
+        "description": "Free text description.",
+        "required": false
+      },
+      "fallback_pool_id": {
+        "description": "The pool ID to use when all other pools are detected as unhealthy.",
+        "required": true
+      },
+      "name": {
+        "description": "The DNS name to associate with the load balancer.",
+        "required": true
+      },
+      "pop_pools": {
+        "description": "A set containing mappings of Cloudflare Point-of-Presence (PoP) identifiers to a list of pool IDs (ordered by their failover priority) for the PoP (datacenter). This feature is only available to enterprise customers. Fields documented below.",
+        "required": false
+      },
+      "proxied": {
+        "description": "Whether the hostname gets Cloudflare's origin protection. Defaults to false.",
+        "required": false
+      },
+      "region_pools": {
+        "description": "A set containing mappings of region/country codes to a list of pool IDs (ordered by their failover priority) for the given region. Fields documented below.",
+        "required": false
+      },
+      "session_affinity": {
+        "description": "Associates all requests coming from an end-user with a single origin. Cloudflare will set a cookie on the initial response to the client, such that consequent requests with the cookie in the request will go to the same origin, so long as it is available.",
+        "required": false
+      },
+      "steering_policy": {
+        "description": "Determine which method the load balancer uses to determine the fastest route to your origin. Valid values  are: \"off\", \"geo\", \"dynamic_latency\" or \"\". Default is \"\".",
+        "required": false
+      },
+      "ttl": {
+        "description": "Time to live (TTL) of this load balancer's DNS name. Conflicts with proxied - this cannot be set for proxied load balancers. Default is 30.",
+        "required": false
+      },
+      "zone": {
+        "description": "The zone to add the load balancer to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudflare/r/load_balancer.html",
+    "properties": [
+      "zone",
+      "name",
+      "fallback_pool_id",
+      "default_pool_ids",
+      "description",
+      "ttl",
+      "steering_policy",
+      "proxied",
+      "region_pools",
+      "pop_pools",
+      "session_affinity"
+    ]
+  },
+  "cloudflare_load_balancer_monitor": {
+    "full_properties": {
+      "description": {
+        "description": "Free text description.",
+        "required": false
+      },
+      "expected_body": {
+        "description": "A case-insensitive sub-string to look for in the response body. If this string is not found, the origin will be marked as unhealthy.",
+        "required": true
+      },
+      "expected_codes": {
+        "description": "The expected HTTP response code or code range of the health check. Eg 2xx",
+        "required": true
+      },
+      "header": {
+        "description": "The HTTP request headers to send in the health check. It is recommended you set a Host header by default. The User-Agent header cannot be overridden. Fields documented below.",
+        "required": false
+      },
+      "interval": {
+        "description": "The interval between each health check. Shorter intervals may improve failover time, but will increase load on the origins as we check from multiple locations. Default: 60.",
+        "required": false
+      },
+      "method": {
+        "description": "The HTTP method to use for the health check. Default: \"GET\".",
+        "required": false
+      },
+      "path": {
+        "description": "The endpoint path to health check against. Default: \"/\".",
+        "required": false
+      },
+      "retries": {
+        "description": "The number of retries to attempt in case of a timeout before marking the origin as unhealthy. Retries are attempted immediately. Default: 2.",
+        "required": false
+      },
+      "timeout": {
+        "description": "The timeout (in seconds) before marking the health check as failed. Default: 5.",
+        "required": false
+      },
+      "type": {
+        "description": "The protocol to use for the healthcheck. Currently supported protocols are 'HTTP' and 'HTTPS'. Default: \"http\".",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cloudflare/r/load_balancer_monitor.html",
+    "properties": [
+      "expected_body",
+      "expected_codes",
+      "method",
+      "timeout",
+      "path",
+      "interval",
+      "retries",
+      "header",
+      "type",
+      "description"
+    ]
+  },
+  "cloudflare_load_balancer_pool": {
+    "full_properties": {
+      "check_regions": {
+        "description": "A list of regions (specified by region code) from which to run health checks. Empty means every Cloudflare data center (the default), but requires an Enterprise plan. Region codes can be found here.",
+        "required": false
+      },
+      "description": {
+        "description": "Free text description.",
+        "required": false
+      },
+      "enabled": {
+        "description": "Whether to enable (the default) this pool. Disabled pools will not receive traffic and are excluded from health checks. Disabling a pool will cause any load balancers using it to failover to the next pool (if any).",
+        "required": false
+      },
+      "minimum_origins": {
+        "description": "The minimum number of origins that must be healthy for this pool to serve traffic. If the number of healthy origins falls below this number, the pool will be marked unhealthy and we will failover to the next available pool. Default: 1.",
+        "required": false
+      },
+      "monitor": {
+        "description": "The ID of the Monitor to use for health checking origins within this pool.",
+        "required": false
+      },
+      "name": {
+        "description": "A short name (tag) for the pool. Only alphanumeric characters, hyphens, and underscores are allowed.",
+        "required": true
+      },
+      "notification_email": {
+        "description": "The email address to send health status notifications to. This can be an individual mailbox or a mailing list.",
+        "required": false
+      },
+      "origins": {
+        "description": "The list of origins within this pool. Traffic directed at this pool is balanced across all currently healthy origins, provided the pool itself is healthy. It's a complex value. See description below.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudflare/r/load_balancer_pool.html",
+    "properties": [
+      "name",
+      "origins",
+      "check_regions",
+      "description",
+      "enabled",
+      "minimum_origins",
+      "monitor",
+      "notification_email"
+    ]
+  },
+  "cloudflare_page_rule": {
+    "full_properties": {
+      "actions": {
+        "description": "The actions taken by the page rule, options given below.",
+        "required": true
+      },
+      "priority": {
+        "description": "The priority of the page rule among others for this target.",
+        "required": false
+      },
+      "status": {
+        "description": "Whether the page rule is active or disabled.",
+        "required": false
+      },
+      "target": {
+        "description": "The URL pattern to target with the page rule.",
+        "required": true
+      },
+      "zone": {
+        "description": "The DNS zone to which the page rule should be added.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudflare/r/page_rule.html",
+    "properties": [
+      "zone",
+      "target",
+      "actions",
+      "priority",
+      "status"
+    ]
+  },
+  "cloudflare_rate_limit": {
+    "full_properties": {
+      "action": {
+        "description": "The action to be performed when the threshold of matched traffic within the period defined is exceeded.",
+        "required": true
+      },
+      "bypass_url_patterns": {
+        "description": "URLs matching the patterns specified here will be excluded from rate limiting.",
+        "required": false
+      },
+      "correlate": {
+        "description": "Determines how rate limiting is applied. By default if not specified, rate limiting applies to the clients IP address.",
+        "required": false
+      },
+      "description": {
+        "description": "A note that you can use to describe the reason for a rate limit. This value is sanitized and all tags are removed.",
+        "required": false
+      },
+      "disabled": {
+        "description": "Whether this ratelimit is currently disabled. Default: false.",
+        "required": false
+      },
+      "match": {
+        "description": "Determines which traffic the rate limit counts towards the threshold. By default matches all traffic in the zone. See definition below.",
+        "required": false
+      },
+      "period": {
+        "description": "The time in seconds to count matching traffic. If the count exceeds threshold within this period the action will be performed (min: 1, max: 86,400).",
+        "required": true
+      },
+      "threshold": {
+        "description": "The threshold that triggers the rate limit mitigations, combine with period. i.e. threshold per period (min: 2, max: 1,000,000).",
+        "required": true
+      },
+      "zone": {
+        "description": "The DNS zone to apply rate limiting to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudflare/r/rate_limit.html",
+    "properties": [
+      "zone",
+      "threshold",
+      "period",
+      "action",
+      "match",
+      "disabled",
+      "description",
+      "bypass_url_patterns",
+      "correlate"
+    ]
+  },
+  "cloudflare_record": {
+    "full_properties": {
+      "data": {
+        "description": "Map of attributes that constitute the record value. Primarily used for LOC and SRV record types. Either this or value must be specified",
+        "required": false
+      },
+      "domain": {
+        "description": "The DNS zone to add the record to",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the record",
+        "required": true
+      },
+      "priority": {
+        "description": "The priority of the record",
+        "required": false
+      },
+      "proxied": {
+        "description": "Whether the record gets Cloudflare's origin protection; defaults to false.",
+        "required": false
+      },
+      "ttl": {
+        "description": "The TTL of the record (automatic: '1')",
+        "required": false
+      },
+      "type": {
+        "description": "The type of the record",
+        "required": true
+      },
+      "value": {
+        "description": "The (string) value of the record. Either this or data must be specified",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cloudflare/r/record.html",
+    "properties": [
+      "domain",
+      "name",
+      "type",
+      "value",
+      "data",
+      "ttl",
+      "priority",
+      "proxied"
+    ]
+  },
+  "cloudflare_waf_rule": {
+    "full_properties": {
+      "mode": {
+        "description": "The mode of the rule, can be one of [\"block\", \"challenge\", \"default\", \"disable, \"simulate\"].",
+        "required": true
+      },
+      "rule_id": {
+        "description": "The WAF Rule ID.",
+        "required": true
+      },
+      "zone": {
+        "description": "The DNS zone to apply to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudflare/r/waf_rule.html",
+    "properties": [
+      "zone",
+      "rule_id",
+      "mode"
+    ]
+  },
+  "cloudflare_worker_route": {
+    "full_properties": {
+      "enabled": {
+        "description": "Whether to run the worker script for requests that match the route pattern. Default is false",
+        "required": false
+      },
+      "pattern": {
+        "description": "The route pattern",
+        "required": true
+      },
+      "script_name": {
+        "description": "Which worker script to run for requests that match the route pattern. If script_name is empty, workers will be skipped for matching requests.",
+        "required": false
+      },
+      "zone": {
+        "description": "The zone to add the route to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudflare/r/worker_route.html",
+    "properties": [
+      "zone",
+      "pattern",
+      "enabled",
+      "script_name"
+    ]
+  },
+  "cloudflare_worker_script": {
+    "full_properties": {
+      "content": {
+        "description": "The script content.",
+        "required": true
+      },
+      "name": {
+        "description": "The name for the script. ",
+        "required": false
+      },
+      "zone": {
+        "description": "The zone for the script.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cloudflare/r/worker_script.html",
+    "properties": [
+      "zone",
+      "name",
+      "content"
+    ]
+  },
+  "cloudflare_zone": {
+    "full_properties": {
+      "jump_start": {
+        "description": "Boolean of whether to scan for DNS records on creation. Ignored after zone is created. Default: false.",
+        "required": false
+      },
+      "paused": {
+        "description": "Boolean of whether this zone is paused (traffic bypasses Cloudflare). Default: false.",
+        "required": false
+      },
+      "zone": {
+        "description": "The DNS zone name which will be added.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudflare/r/zone.html",
+    "properties": [
+      "zone",
+      "paused",
+      "jump_start"
+    ]
+  },
+  "cloudflare_zone_lockdown": {
+    "full_properties": {
+      "configurations": {
+        "description": "A list of IP addresses or IP ranges to match the request against specified in target, value pairs.  It's a complex value. See description below.   The order of the configuration entries is unimportant.",
+        "required": true
+      },
+      "description": {
+        "description": "A description about the lockdown entry. Typically used as a reminder or explanation for the lockdown.",
+        "required": false
+      },
+      "paused": {
+        "description": "Boolean of whether this zone lockdown is currently paused. Default: false.",
+        "required": false
+      },
+      "urls": {
+        "description": "A list of simple wildcard patterns to match requests against. The order of the urls is unimportant.",
+        "required": true
+      },
+      "zone": {
+        "description": "The DNS zone to which the lockdown will be added. Will be resolved to zone_id upon creation.",
+        "required": false
+      },
+      "zone_id": {
+        "description": "The DNS zone to which the access rule should be added.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cloudflare/r/zone_lockdown.html",
+    "properties": [
+      "zone",
+      "zone_id",
+      "description",
+      "urls",
+      "configurations",
+      "paused"
+    ]
+  },
+  "cloudflare_zone_settings_override": {
+    "full_properties": {
+      "name": {
+        "description": "The DNS zone to which apply settings.",
+        "required": true
+      },
+      "settings": {
+        "description": "Settings overrides that will be applied to the zone. If a setting is not specified the existing setting will be used. For a full list of available settings see below.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cloudflare/r/zone_settings_override.html",
+    "properties": [
+      "name",
+      "settings"
+    ]
+  }
+}

@@ -1,0 +1,2508 @@
+{
+  "huaweicloud_as_configuration_v1": {
+    "full_properties": {
+      "instance_config": {
+        "description": "The information about instance configurations. The instance_config",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to create the AS configuration. If",
+        "required": false
+      },
+      "scaling_configuration_name": {
+        "description": "The name of the AS configuration. The name can contain letters,",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/as_configuration_v1.html",
+    "properties": [
+      "region",
+      "scaling_configuration_name",
+      "instance_config"
+    ]
+  },
+  "huaweicloud_as_group_v1": {
+    "full_properties": {
+      "available_zones": {
+        "description": "The availability zones in which to create",
+        "required": false
+      },
+      "cool_down_time": {
+        "description": "The cooling duration (in seconds). The value ranges",
+        "required": false
+      },
+      "delete_instances": {
+        "description": "Whether to delete the instances in the AS group",
+        "required": false
+      },
+      "delete_publicip": {
+        "description": "Whether to delete the elastic IP address bound to the",
+        "required": false
+      },
+      "desire_instance_number": {
+        "description": "The expected number of instances. The default",
+        "required": false
+      },
+      "health_periodic_audit_method": {
+        "description": "The health check method for instances",
+        "required": false
+      },
+      "health_periodic_audit_time": {
+        "description": "The health check period for instances.",
+        "required": false
+      },
+      "instance_terminate_policy": {
+        "description": "The instance removal policy. The policy has",
+        "required": false
+      },
+      "lb_listener_id": {
+        "description": "The ELB listener IDs. The system supports up to",
+        "required": false
+      },
+      "max_instance_number": {
+        "description": "The maximum number of instances.",
+        "required": false
+      },
+      "min_instance_number": {
+        "description": "The minimum number of instances.",
+        "required": false
+      },
+      "networks": {
+        "description": "An array of one or more network IDs.",
+        "required": true
+      },
+      "notifications": {
+        "description": "The notification mode. The system only supports EMAIL",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to create the AS group. If",
+        "required": false
+      },
+      "scaling_configuration_id": {
+        "description": "The configuration ID which defines",
+        "required": false
+      },
+      "scaling_group_name": {
+        "description": "The name of the scaling group. The name can contain letters,",
+        "required": true
+      },
+      "security_groups": {
+        "description": "An array of one or more security group IDs",
+        "required": true
+      },
+      "vpc_id": {
+        "description": "The VPC ID. Changing this creates a new group.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/as_group_v1.html",
+    "properties": [
+      "region",
+      "scaling_group_name",
+      "scaling_configuration_id",
+      "desire_instance_number",
+      "min_instance_number",
+      "max_instance_number",
+      "cool_down_time",
+      "lb_listener_id",
+      "available_zones",
+      "networks",
+      "security_groups",
+      "vpc_id",
+      "health_periodic_audit_method",
+      "health_periodic_audit_time",
+      "instance_terminate_policy",
+      "notifications",
+      "delete_publicip",
+      "delete_instances"
+    ]
+  },
+  "huaweicloud_as_policy_v1": {
+    "full_properties": {
+      "alarm_id": {
+        "description": "The alarm rule ID. This argument is mandatory",
+        "required": false
+      },
+      "cool_down_time": {
+        "description": "The cooling duration (in seconds), and is 900 by default.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to create the AS policy. If",
+        "required": false
+      },
+      "scaling_group_id": {
+        "description": "The AS group ID. Changing this creates a new AS policy.",
+        "required": true
+      },
+      "scaling_policy_action": {
+        "description": "The action of the AS policy. The scaling_policy_action",
+        "required": false
+      },
+      "scaling_policy_name": {
+        "description": "The name of the AS policy. The name can contain letters,",
+        "required": true
+      },
+      "scaling_policy_type": {
+        "description": "The AS policy type. The values can be ALARM, SCHEDULED,",
+        "required": true
+      },
+      "scheduled_policy": {
+        "description": "The periodic or scheduled AS policy. This argument is mandatory",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/as_policy_v1.html",
+    "properties": [
+      "region",
+      "scaling_policy_name",
+      "scaling_group_id",
+      "scaling_policy_type",
+      "alarm_id",
+      "scheduled_policy",
+      "scaling_policy_action",
+      "cool_down_time"
+    ]
+  },
+  "huaweicloud_blockstorage_volume_v2": {
+    "full_properties": {
+      "availability_zone": {
+        "description": "The availability zone for the volume.",
+        "required": false
+      },
+      "consistency_group_id": {
+        "description": "The consistency group to place the volume",
+        "required": false
+      },
+      "description": {
+        "description": "A description of the volume. Changing this updates",
+        "required": false
+      },
+      "image_id": {
+        "description": "The image ID from which to create the volume.",
+        "required": false
+      },
+      "metadata": {
+        "description": "Metadata key/value pairs to associate with the volume.",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the volume. Changing this updates the",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to create the volume. If",
+        "required": false
+      },
+      "size": {
+        "description": "The size of the volume to create (in gigabytes). Changing",
+        "required": true
+      },
+      "snapshot_id": {
+        "description": "The snapshot ID from which to create the volume.",
+        "required": false
+      },
+      "source_replica": {
+        "description": "The volume ID to replicate with.",
+        "required": false
+      },
+      "source_vol_id": {
+        "description": "The volume ID from which to create the volume.",
+        "required": false
+      },
+      "volume_type": {
+        "description": "The type of volume to create. Available types are",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/blockstorage_volume_v2.html",
+    "properties": [
+      "region",
+      "size",
+      "availability_zone",
+      "consistency_group_id",
+      "description",
+      "image_id",
+      "metadata",
+      "name",
+      "snapshot_id",
+      "source_replica",
+      "source_vol_id",
+      "volume_type"
+    ]
+  },
+  "huaweicloud_ces_alarmrule": {
+    "full_properties": {
+      "alarm_action_enabled": {
+        "description": "Specifies whether to enable the action",
+        "required": false
+      },
+      "alarm_actions": {
+        "description": "Specifies the action triggered by an alarm. The",
+        "required": false
+      },
+      "alarm_description": {
+        "description": "The value can be a string of 0 to 256 characters.",
+        "required": false
+      },
+      "alarm_enabled": {
+        "description": "Specifies whether to enable the alarm. The default",
+        "required": false
+      },
+      "alarm_name": {
+        "description": "Specifies the name of an alarm rule. The value can",
+        "required": true
+      },
+      "condition": {
+        "description": "Specifies the alarm triggering condition. The structure",
+        "required": true
+      },
+      "insufficientdata_actions": {
+        "description": "Specifies the action triggered by",
+        "required": false
+      },
+      "metric": {
+        "description": "Specifies the alarm metrics. The structure is described",
+        "required": true
+      },
+      "ok_actions": {
+        "description": "Specifies the action triggered by the clearing of",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/ces_alarmrule.html",
+    "properties": [
+      "alarm_name",
+      "alarm_description",
+      "metric",
+      "condition",
+      "alarm_actions",
+      "insufficientdata_actions",
+      "ok_actions",
+      "alarm_enabled",
+      "alarm_action_enabled"
+    ]
+  },
+  "huaweicloud_compute_floatingip_associate_v2": {
+    "full_properties": {
+      "fixed_ip": {
+        "description": "The specific IP address to direct traffic to.",
+        "required": false
+      },
+      "floating_ip": {
+        "description": "The floating IP to associate.",
+        "required": true
+      },
+      "instance_id": {
+        "description": "The instance to associte the floating IP with.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/compute_floatingip_associate_v2.html",
+    "properties": [
+      "region",
+      "floating_ip",
+      "instance_id",
+      "fixed_ip"
+    ]
+  },
+  "huaweicloud_compute_floatingip_v2": {
+    "full_properties": {
+      "pool": {
+        "description": "The name of the pool from which to obtain the floating",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/compute_floatingip_v2.html",
+    "properties": [
+      "region",
+      "pool"
+    ]
+  },
+  "huaweicloud_compute_instance_v2": {
+    "full_properties": {
+      "admin_pass": {
+        "description": "The administrative password to assign to the server.",
+        "required": false
+      },
+      "availability_zone": {
+        "description": "The availability zone in which to create",
+        "required": true
+      },
+      "block_device": {
+        "description": "Configuration of block devices. The block_device",
+        "required": false
+      },
+      "config_drive": {
+        "description": "Whether to use the config_drive feature to",
+        "required": false
+      },
+      "flavor_id": {
+        "description": "The flavor ID of",
+        "required": false
+      },
+      "flavor_name": {
+        "description": "The name of the",
+        "required": false
+      },
+      "image_id": {
+        "description": "(Optional; Required if image_name is empty and not booting",
+        "required": false
+      },
+      "image_name": {
+        "description": "(Optional; Required if image_id is empty and not booting",
+        "required": false
+      },
+      "key_pair": {
+        "description": "The name of a key pair to put on the server. The key",
+        "required": false
+      },
+      "metadata": {
+        "description": "Metadata key/value pairs to make available from",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the resource.",
+        "required": true
+      },
+      "network": {
+        "description": "An array of one or more networks to attach to the",
+        "required": false
+      },
+      "personality": {
+        "description": "Customize the personality of an instance by",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to create the server instance. If",
+        "required": false
+      },
+      "scheduler_hints": {
+        "description": "Provide the Nova scheduler with hints on how",
+        "required": false
+      },
+      "security_groups": {
+        "description": "An array of one or more security group names",
+        "required": false
+      },
+      "stop_before_destroy": {
+        "description": "Whether to try stop instance gracefully",
+        "required": false
+      },
+      "user_data": {
+        "description": "The user data to provide when launching the instance.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/compute_instance_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "image_id",
+      "image_name",
+      "flavor_id",
+      "flavor_name",
+      "user_data",
+      "security_groups",
+      "availability_zone",
+      "network",
+      "metadata",
+      "config_drive",
+      "admin_pass",
+      "key_pair",
+      "block_device",
+      "scheduler_hints",
+      "personality",
+      "stop_before_destroy"
+    ]
+  },
+  "huaweicloud_compute_keypair_v2": {
+    "full_properties": {
+      "name": {
+        "description": "A unique name for the keypair. Changing this creates a new",
+        "required": true
+      },
+      "public_key": {
+        "description": "A pregenerated OpenSSH-formatted public key.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/compute_keypair_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "public_key",
+      "value_specs"
+    ]
+  },
+  "huaweicloud_compute_secgroup_v2": {
+    "full_properties": {
+      "description": {
+        "description": "A description for the security group. Changing this",
+        "required": true
+      },
+      "name": {
+        "description": "A unique name for the security group. Changing this",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      },
+      "rule": {
+        "description": "A rule describing how the security group operates. The",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/compute_secgroup_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "description",
+      "rule"
+    ]
+  },
+  "huaweicloud_compute_servergroup_v2": {
+    "full_properties": {
+      "name": {
+        "description": "A unique name for the server group. Changing this creates",
+        "required": true
+      },
+      "policies": {
+        "description": "The set of policies for the server group. Only two",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/compute_servergroup_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "policies",
+      "value_specs"
+    ]
+  },
+  "huaweicloud_compute_volume_attach_v2": {
+    "full_properties": {
+      "device": {
+        "description": "The device of the volume attachment (ex: /dev/vdc).",
+        "required": false
+      },
+      "instance_id": {
+        "description": "The ID of the Instance to attach the Volume to.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      },
+      "volume_id": {
+        "description": "The ID of the Volume to attach to an Instance.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/compute_volume_attach_v2.html",
+    "properties": [
+      "region",
+      "instance_id",
+      "volume_id",
+      "device"
+    ]
+  },
+  "huaweicloud_dns_recordset_v2": {
+    "full_properties": {
+      "description": {
+        "description": "A description of the record set.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the record set. Note the . at the end of the name.",
+        "required": true
+      },
+      "records": {
+        "description": "An array of DNS records.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 DNS client.",
+        "required": false
+      },
+      "ttl": {
+        "description": "The time to live (TTL) of the record set (in seconds). The value",
+        "required": false
+      },
+      "type": {
+        "description": "The type of record set. The options include A, AAAA, MX,",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options. Changing this creates a",
+        "required": false
+      },
+      "zone_id": {
+        "description": "The ID of the zone in which to create the record set.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/dns_recordset_v2.html",
+    "properties": [
+      "region",
+      "zone_id",
+      "name",
+      "type",
+      "ttl",
+      "description",
+      "records",
+      "value_specs"
+    ]
+  },
+  "huaweicloud_dns_zone_v2": {
+    "full_properties": {
+      "description": {
+        "description": "A description of the zone. Changing this creates a new DNS zone.",
+        "required": false
+      },
+      "email": {
+        "description": "The email contact for the zone record.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the zone. Note the . at the end of the name.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      },
+      "router": {
+        "description": "Router configuration block which is required if zone_type is private.",
+        "required": false
+      },
+      "ttl": {
+        "description": "The time to live (TTL) of the zone. Changing this creates a new DNS zone.",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options. Changing this creates a",
+        "required": false
+      },
+      "zone_type": {
+        "description": "The type of zone. Can either be public or private.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/dns_zone_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "email",
+      "zone_type",
+      "router",
+      "ttl",
+      "description",
+      "value_specs"
+    ]
+  },
+  "huaweicloud_elb_backendecs": {
+    "full_properties": {
+      "listener_id": {
+        "description": "Specifies the listener ID.",
+        "required": true
+      },
+      "private_address": {
+        "description": "Specifies the private IP address of the backend member.",
+        "required": true
+      },
+      "server_id": {
+        "description": "Specifies the backend member ID.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/elb_backendecs.html",
+    "properties": [
+      "listener_id",
+      "server_id",
+      "private_address"
+    ]
+  },
+  "huaweicloud_elb_healthcheck": {
+    "full_properties": {
+      "healthcheck_connect_port": {
+        "description": "Specifies the port used for the health",
+        "required": false
+      },
+      "healthcheck_interval": {
+        "description": "Specifies the maximum interval (s) for",
+        "required": false
+      },
+      "healthcheck_protocol": {
+        "description": "Specifies the protocol used for the health",
+        "required": false
+      },
+      "healthcheck_timeout": {
+        "description": "Specifies the maximum timeout duration",
+        "required": false
+      },
+      "healthcheck_uri": {
+        "description": "Specifies the URI for health check. This parameter",
+        "required": false
+      },
+      "healthy_threshold": {
+        "description": "Specifies the threshold at which the health",
+        "required": false
+      },
+      "listener_id": {
+        "description": "Specifies the ID of the listener to which the health",
+        "required": true
+      },
+      "unhealthy_threshold": {
+        "description": "Specifies the threshold at which the health",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/elb_healthcheck.html",
+    "properties": [
+      "listener_id",
+      "healthcheck_protocol",
+      "healthcheck_uri",
+      "healthcheck_connect_port",
+      "healthy_threshold",
+      "unhealthy_threshold",
+      "healthcheck_timeout",
+      "healthcheck_interval"
+    ]
+  },
+  "huaweicloud_elb_listener": {
+    "full_properties": {
+      "backend_port": {
+        "description": "Specifies the backend port. The value ranges from",
+        "required": true
+      },
+      "backend_protocol": {
+        "description": "Specifies the backend protocol. If the value",
+        "required": true
+      },
+      "certificate_id": {
+        "description": "Specifies the ID of the SSL certificate used",
+        "required": false
+      },
+      "cookie_timeout": {
+        "description": "Specifies the cookie timeout period (minutes).",
+        "required": false
+      },
+      "description": {
+        "description": "Provides supplementary information about the listener.",
+        "required": false
+      },
+      "lb_algorithm": {
+        "description": "Specifies the load balancing algorithm for the",
+        "required": true
+      },
+      "loadbalancer_id": {
+        "description": "Specifies the ID of the load balancer to which",
+        "required": true
+      },
+      "name": {
+        "description": "Specifies the load balancer name. The name is a string",
+        "required": true
+      },
+      "port": {
+        "description": "Specifies the listening port. The value ranges from 1",
+        "required": true
+      },
+      "protocol": {
+        "description": "Specifies the listening protocol used for layer 4",
+        "required": true
+      },
+      "session_sticky": {
+        "description": "Specifies whether to enable sticky session.",
+        "required": false
+      },
+      "ssl_ciphers": {
+        "description": "Specifies the cipher suite of an encryption protocol.",
+        "required": false
+      },
+      "ssl_protocols": {
+        "description": "Specifies the SSL protocol standard supported",
+        "required": false
+      },
+      "sticky_session_type": {
+        "description": "Specifies the cookie processing method.",
+        "required": false
+      },
+      "tcp_draining": {
+        "description": "Specifies whether to maintain the TCP connection",
+        "required": false
+      },
+      "tcp_draining_timeout": {
+        "description": "Specifies the timeout duration (minutes)",
+        "required": false
+      },
+      "tcp_timeout": {
+        "description": "Specifies the TCP timeout period (minutes). This",
+        "required": false
+      },
+      "udp_timeout": {
+        "description": "Specifies the UDP timeout duration (minutes). This",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/elb_listener.html",
+    "properties": [
+      "name",
+      "description",
+      "loadbalancer_id",
+      "protocol",
+      "port",
+      "backend_protocol",
+      "backend_port",
+      "lb_algorithm",
+      "session_sticky",
+      "sticky_session_type",
+      "cookie_timeout",
+      "tcp_timeout",
+      "tcp_draining",
+      "tcp_draining_timeout",
+      "certificate_id",
+      "udp_timeout",
+      "ssl_protocols",
+      "ssl_ciphers"
+    ]
+  },
+  "huaweicloud_elb_loadbalancer": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "Specifies the status of the load balancer.",
+        "required": true
+      },
+      "az": {
+        "description": "Specifies the ID of the availability zone (AZ). This",
+        "required": false
+      },
+      "bandwidth": {
+        "description": "Specifies the bandwidth (Mbit/s). This parameter",
+        "required": false
+      },
+      "charge_mode": {
+        "description": "This is a reserved field. If the system supports",
+        "required": false
+      },
+      "description": {
+        "description": "Provides supplementary information about the",
+        "required": false
+      },
+      "eip_type": {
+        "description": "This parameter is reserved.",
+        "required": false
+      },
+      "name": {
+        "description": "Specifies the load balancer name. The name is a string",
+        "required": true
+      },
+      "security_group_id": {
+        "description": "Specifies the security group ID. The",
+        "required": false
+      },
+      "tenantid": {
+        "description": "Specifies the tenant ID. This parameter is mandatory",
+        "required": false
+      },
+      "type": {
+        "description": "Specifies the load balancer type. The value can be",
+        "required": true
+      },
+      "vip_address": {
+        "description": "Specifies the IP address provided by ELB.",
+        "required": false
+      },
+      "vip_subnet_id": {
+        "description": "Specifies the ID of the private network",
+        "required": false
+      },
+      "vpc_id": {
+        "description": "Specifies the VPC ID.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/elb_loadbalancer.html",
+    "properties": [
+      "name",
+      "description",
+      "vpc_id",
+      "bandwidth",
+      "type",
+      "admin_state_up",
+      "vip_subnet_id",
+      "az",
+      "charge_mode",
+      "eip_type",
+      "security_group_id",
+      "vip_address",
+      "tenantid"
+    ]
+  },
+  "huaweicloud_fw_firewall_group_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "Administrative up/down status for the firewall group",
+        "required": false
+      },
+      "description": {
+        "description": "A description for the firewall group. Changing this",
+        "required": true
+      },
+      "egress_policy_id": {
+        "description": "The egress policy resource id for the firewall group. Changing",
+        "required": false
+      },
+      "ingress_policy_id": {
+        "description": "The ingress policy resource id for the firewall group. Changing",
+        "required": false
+      },
+      "name": {
+        "description": "A name for the firewall group. Changing this",
+        "required": false
+      },
+      "ports": {
+        "description": "Port(s) to associate this firewall group instance",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the v2 networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the floating IP. Required if admin wants",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/fw_firewall_group_v2.html",
+    "properties": [
+      "region",
+      "ingress_policy_id",
+      "egress_policy_id",
+      "name",
+      "description",
+      "admin_state_up",
+      "tenant_id",
+      "ports",
+      "value_specs"
+    ]
+  },
+  "huaweicloud_fw_policy_v2": {
+    "full_properties": {
+      "audited": {
+        "description": "Audit status of the firewall policy",
+        "required": false
+      },
+      "description": {
+        "description": "A description for the firewall policy. Changing",
+        "required": false
+      },
+      "name": {
+        "description": "A name for the firewall policy. Changing this",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the v2 networking client.",
+        "required": false
+      },
+      "rules": {
+        "description": "An array of one or more firewall rules that comprise",
+        "required": false
+      },
+      "shared": {
+        "description": "Sharing status of the firewall policy (must be \"true\"",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the firewall policy. Required if admin wants",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/fw_policy_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "description",
+      "rules",
+      "audited",
+      "shared",
+      "tenant_id",
+      "value_specs"
+    ]
+  },
+  "huaweicloud_fw_rule_v2": {
+    "full_properties": {
+      "action": {
+        "description": "Action to be taken ( must be \"allow\" or \"deny\") when the",
+        "required": true
+      },
+      "description": {
+        "description": "A description for the firewall rule. Changing this",
+        "required": false
+      },
+      "destination_ip_address": {
+        "description": "The destination IP address on which the",
+        "required": false
+      },
+      "destination_port": {
+        "description": "The destination port on which the firewall",
+        "required": false
+      },
+      "enabled": {
+        "description": "Enabled status for the firewall rule (must be \"true\"",
+        "required": false
+      },
+      "ip_version": {
+        "description": "IP version, either 4 (default) or 6. Changing this",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the firewall rule. Changing this",
+        "required": false
+      },
+      "protocol": {
+        "description": "The protocol type on which the firewall rule operates.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the v2 Networking client.",
+        "required": false
+      },
+      "source_ip_address": {
+        "description": "The source IP address on which the firewall",
+        "required": false
+      },
+      "source_port": {
+        "description": "The source port on which the firewall",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the firewall rule. Required if admin",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/fw_rule_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "description",
+      "protocol",
+      "action",
+      "ip_version",
+      "source_ip_address",
+      "destination_ip_address",
+      "source_port",
+      "destination_port",
+      "enabled",
+      "tenant_id",
+      "value_specs"
+    ]
+  },
+  "huaweicloud_iam_agency_v3": {
+    "full_properties": {
+      "delegated_domain_name": {
+        "description": "The name of delegated domain.",
+        "required": true
+      },
+      "description": {
+        "description": "Provides supplementary information about the",
+        "required": false
+      },
+      "domain_roles": {
+        "description": "An array of role names which stand for the",
+        "required": false
+      },
+      "name": {
+        "description": "The name of agency. The name is a string of 1 to 64",
+        "required": true
+      },
+      "project_role": {
+        "description": "An array of roles and projects which are used to",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/iam_agency_v3.html",
+    "properties": [
+      "name",
+      "description",
+      "delegated_domain_name",
+      "project_role",
+      "domain_roles"
+    ]
+  },
+  "huaweicloud_images_image_v2": {
+    "full_properties": {
+      "container_format": {
+        "description": "The container format. Must be \"bare\".",
+        "required": true
+      },
+      "disk_format": {
+        "description": "The disk format. Must be one of \"qcow2\", \"vhd\".",
+        "required": true
+      },
+      "image_cache_path": {
+        "description": "This is the directory where the images will",
+        "required": false
+      },
+      "image_source_url": {
+        "description": "This is the url of the raw image that will",
+        "required": false
+      },
+      "local_file_path": {
+        "description": "This is the filepath of the raw image file",
+        "required": false
+      },
+      "min_disk_gb": {
+        "description": "Amount of disk space (in GB) required to boot image.",
+        "required": false
+      },
+      "min_ram_mb": {
+        "description": "Amount of ram (in MB) required to boot image.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the image.",
+        "required": true
+      },
+      "protected": {
+        "description": "If true, image will not be deletable.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Glance client.",
+        "required": false
+      },
+      "tags": {
+        "description": "The tags of the image. It must be a list of strings.",
+        "required": false
+      },
+      "visibility": {
+        "description": "The visibility of the image. Must be \"private\".",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/images_image_v2.html",
+    "properties": [
+      "container_format",
+      "disk_format",
+      "local_file_path",
+      "image_cache_path",
+      "image_source_url",
+      "min_disk_gb",
+      "min_ram_mb",
+      "name",
+      "protected",
+      "region",
+      "tags",
+      "visibility"
+    ]
+  },
+  "huaweicloud_kms_key_v1": {
+    "full_properties": {
+      "is_enabled": {
+        "description": "Specifies whether the key is enabled. Defaults to true.",
+        "required": false
+      },
+      "key_alias": {
+        "description": "The alias in which to create the key. It is required when",
+        "required": true
+      },
+      "key_description": {
+        "description": "The description of the key as viewed in Huawei console.",
+        "required": false
+      },
+      "pending_days": {
+        "description": "Duration in days after which the key is deleted",
+        "required": false
+      },
+      "realm": {
+        "description": "Region where a key resides. Changing this creates a new key.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/kms_key_v1.html",
+    "properties": [
+      "key_alias",
+      "key_description",
+      "realm",
+      "pending_days",
+      "is_enabled"
+    ]
+  },
+  "huaweicloud_lb_listener_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "The administrative state of the Listener.",
+        "required": false
+      },
+      "connection_limit": {
+        "description": "The maximum number of connections allowed",
+        "required": false
+      },
+      "default_pool_id": {
+        "description": "The ID of the default pool with which the",
+        "required": false
+      },
+      "default_tls_container_ref": {
+        "description": "A reference to a Barbican Secrets",
+        "required": false
+      },
+      "description": {
+        "description": "Human-readable description for the Listener.",
+        "required": false
+      },
+      "loadbalancer_id": {
+        "description": "The load balancer on which to provision this",
+        "required": true
+      },
+      "name": {
+        "description": "Human-readable name for the Listener. Does not have",
+        "required": false
+      },
+      "protocol": {
+        "description": "The protocol - can either be TCP, HTTP, HTTPS or TERMINATED_HTTPS.",
+        "required": true
+      },
+      "protocol_port": {
+        "description": "The port on which to listen for client traffic.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "sni_container_refs": {
+        "description": "A list of references to Barbican Secrets",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "Required for admins. The UUID of the tenant who owns",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/lb_listener_v2.html",
+    "properties": [
+      "region",
+      "protocol",
+      "protocol_port",
+      "tenant_id",
+      "loadbalancer_id",
+      "name",
+      "default_pool_id",
+      "description",
+      "connection_limit",
+      "default_tls_container_ref",
+      "sni_container_refs",
+      "admin_state_up"
+    ]
+  },
+  "huaweicloud_lb_loadbalancer_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "The administrative state of the Loadbalancer.",
+        "required": false
+      },
+      "description": {
+        "description": "Human-readable description for the Loadbalancer.",
+        "required": false
+      },
+      "flavor": {
+        "description": "The UUID of a flavor. Changing this creates a new",
+        "required": false
+      },
+      "loadbalancer_provider": {
+        "description": "The name of the provider. Changing this",
+        "required": false
+      },
+      "name": {
+        "description": "Human-readable name for the Loadbalancer. Does not have",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "security_group_ids": {
+        "description": "A list of security group IDs to apply to the",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "Required for admins. The UUID of the tenant who owns",
+        "required": false
+      },
+      "vip_address": {
+        "description": "The ip address of the load balancer.",
+        "required": false
+      },
+      "vip_subnet_id": {
+        "description": "The network on which to allocate the",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/lb_loadbalancer_v2.html",
+    "properties": [
+      "region",
+      "vip_subnet_id",
+      "name",
+      "description",
+      "tenant_id",
+      "vip_address",
+      "admin_state_up",
+      "flavor",
+      "loadbalancer_provider",
+      "security_group_ids"
+    ]
+  },
+  "huaweicloud_lb_member_v2": {
+    "full_properties": {
+      "address": {
+        "description": "The IP address of the member to receive traffic from",
+        "required": true
+      },
+      "admin_state_up": {
+        "description": "The administrative state of the member.",
+        "required": false
+      },
+      "name": {
+        "description": "Human-readable name for the member.",
+        "required": false
+      },
+      "pool_id": {
+        "description": "The id of the pool that this member will be",
+        "required": true
+      },
+      "protocol_port": {
+        "description": "The port on which to listen for client traffic.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "subnet_id": {
+        "description": "The subnet in which to access the member",
+        "required": true
+      },
+      "tenant_id": {
+        "description": "Required for admins. The UUID of the tenant who owns",
+        "required": false
+      },
+      "weight": {
+        "description": "A positive integer value that indicates the relative",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/lb_member_v2.html",
+    "properties": [
+      "region",
+      "pool_id",
+      "subnet_id",
+      "name",
+      "tenant_id",
+      "address",
+      "protocol_port",
+      "weight",
+      "admin_state_up"
+    ]
+  },
+  "huaweicloud_lb_monitor_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "The administrative state of the monitor.",
+        "required": false
+      },
+      "delay": {
+        "description": "The time, in seconds, between sending probes to members.",
+        "required": true
+      },
+      "expected_codes": {
+        "description": "Required for HTTP(S) types. Expected HTTP codes",
+        "required": false
+      },
+      "http_method": {
+        "description": "Required for HTTP(S) types. The HTTP method used",
+        "required": false
+      },
+      "max_retries": {
+        "description": "Number of permissible ping failures before",
+        "required": true
+      },
+      "name": {
+        "description": "The Name of the Monitor.",
+        "required": false
+      },
+      "pool_id": {
+        "description": "The id of the pool that this monitor will be assigned to.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "Required for admins. The UUID of the tenant who owns",
+        "required": false
+      },
+      "timeout": {
+        "description": "Maximum number of seconds for a monitor to wait for a",
+        "required": true
+      },
+      "type": {
+        "description": "The type of probe, which is PING, TCP, HTTP, or HTTPS,",
+        "required": true
+      },
+      "url_path": {
+        "description": "Required for HTTP(S) types. URI path that will be",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/lb_monitor_v2.html",
+    "properties": [
+      "region",
+      "pool_id",
+      "name",
+      "tenant_id",
+      "type",
+      "delay",
+      "timeout",
+      "max_retries",
+      "url_path",
+      "http_method",
+      "expected_codes",
+      "admin_state_up"
+    ]
+  },
+  "huaweicloud_lb_pool_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "The administrative state of the pool.",
+        "required": false
+      },
+      "description": {
+        "description": "Human-readable description for the pool.",
+        "required": false
+      },
+      "lb_method": {
+        "description": "The load balancing algorithm to",
+        "required": true
+      },
+      "listener_id": {
+        "description": "The Listener on which the members of the pool",
+        "required": false
+      },
+      "loadbalancer_id": {
+        "description": "The load balancer on which to provision this",
+        "required": false
+      },
+      "name": {
+        "description": "Human-readable name for the pool.",
+        "required": false
+      },
+      "persistence": {
+        "description": "Omit this field to prevent session persistence.  Indicates",
+        "required": false
+      },
+      "protocol": {
+        "description": "= (Required) The protocol - can either be TCP, HTTP or HTTPS.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "Required for admins. The UUID of the tenant who owns",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/lb_pool_v2.html",
+    "properties": [
+      "region",
+      "tenant_id",
+      "name",
+      "description",
+      "protocol",
+      "loadbalancer_id",
+      "listener_id",
+      "lb_method",
+      "persistence",
+      "admin_state_up"
+    ]
+  },
+  "huaweicloud_nat_gateway_v2": {
+    "full_properties": {
+      "description": {
+        "description": "The description of the nat gateway.",
+        "required": false
+      },
+      "internal_network_id": {
+        "description": "ID of the network this nat gateway connects to.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the nat gateway.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 nat client.",
+        "required": false
+      },
+      "router_id": {
+        "description": "ID of the router this nat gateway belongs to. Changing",
+        "required": true
+      },
+      "spec": {
+        "description": "The specification of the nat gateway, valid values are \"1\",",
+        "required": true
+      },
+      "tenant_id": {
+        "description": "The target tenant ID in which to allocate the nat",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/nat_gateway_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "description",
+      "spec",
+      "tenant_id",
+      "router_id",
+      "internal_network_id"
+    ]
+  },
+  "huaweicloud_nat_snat_rule_v2": {
+    "full_properties": {
+      "floating_ip_id": {
+        "description": "ID of the floating ip this snat rule connets to.",
+        "required": true
+      },
+      "nat_gateway_id": {
+        "description": "ID of the nat gateway this snat rule belongs to.",
+        "required": true
+      },
+      "network_id": {
+        "description": "ID of the network this snat rule connects to.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 nat client.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/nat_snat_rule_v2.html",
+    "properties": [
+      "region",
+      "nat_gateway_id",
+      "network_id",
+      "floating_ip_id"
+    ]
+  },
+  "huaweicloud_networking_floatingip_v2": {
+    "full_properties": {
+      "fixed_ip": {
+        "description": "Fixed IP of the port to associate with this floating IP. Required if",
+        "required": false
+      },
+      "pool": {
+        "description": "The name of the pool from which to obtain the floating",
+        "required": true
+      },
+      "port_id": {
+        "description": "ID of an existing port with at least one IP address to",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The target tenant ID in which to allocate the floating",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/networking_floatingip_v2.html",
+    "properties": [
+      "region",
+      "pool",
+      "port_id",
+      "tenant_id",
+      "fixed_ip",
+      "value_specs"
+    ]
+  },
+  "huaweicloud_networking_network_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "The administrative state of the network.",
+        "required": false
+      },
+      "availability_zone_hints": {
+        "description": "An availability zone is used to make",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the network. Changing this updates the name of",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "segments": {
+        "description": "An array of one or more provider segment objects.",
+        "required": false
+      },
+      "shared": {
+        "description": "Specifies whether the network resource can be accessed",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the network. Required if admin wants to",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/networking_network_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "shared",
+      "tenant_id",
+      "admin_state_up",
+      "segments",
+      "value_specs",
+      "availability_zone_hints"
+    ]
+  },
+  "huaweicloud_networking_port_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "Administrative up/down status for the port",
+        "required": false
+      },
+      "allowed_address_pairs": {
+        "description": "An IP/MAC Address pair of additional IP",
+        "required": false
+      },
+      "device_id": {
+        "description": "The ID of the device attached to the port. Changing this",
+        "required": false
+      },
+      "device_owner": {
+        "description": "The device owner of the Port. Changing this creates",
+        "required": false
+      },
+      "fixed_ip": {
+        "description": "An array of desired IPs for this port. The structure is",
+        "required": false
+      },
+      "mac_address": {
+        "description": "Specify a specific MAC address for the port. Changing",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the port. Changing this",
+        "required": false
+      },
+      "network_id": {
+        "description": "The ID of the network to attach the port to. Changing",
+        "required": true
+      },
+      "no_security_groups": {
+        "description": "If set to",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "security_group_ids": {
+        "description": "A list",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the Port. Required if admin wants",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/networking_port_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "network_id",
+      "admin_state_up",
+      "mac_address",
+      "tenant_id",
+      "device_owner",
+      "security_group_ids",
+      "no_security_groups",
+      "device_id",
+      "fixed_ip",
+      "allowed_address_pairs",
+      "value_specs"
+    ]
+  },
+  "huaweicloud_networking_router_interface_v2": {
+    "full_properties": {
+      "port_id": {
+        "description": "ID of the port this interface connects to. Changing",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "router_id": {
+        "description": "ID of the router this interface belongs to. Changing",
+        "required": true
+      },
+      "subnet_id": {
+        "description": "ID of the subnet this interface connects to. Changing",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/networking_router_interface_v2.html",
+    "properties": [
+      "region",
+      "router_id",
+      "subnet_id",
+      "port_id"
+    ]
+  },
+  "huaweicloud_networking_router_route_v2": {
+    "full_properties": {
+      "destination_cidr": {
+        "description": "CIDR block to match on the packet’s destination IP. Changing",
+        "required": true
+      },
+      "next_hop": {
+        "description": "IP address of the next hop gateway.  Changing",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "router_id": {
+        "description": "ID of the router this routing entry belongs to. Changing",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/networking_router_route_v2.html",
+    "properties": [
+      "region",
+      "router_id",
+      "destination_cidr",
+      "next_hop"
+    ]
+  },
+  "huaweicloud_networking_router_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "Administrative up/down status for the router",
+        "required": false
+      },
+      "availability_zone_hints": {
+        "description": "An availability zone is used to make ",
+        "required": false
+      },
+      "distributed": {
+        "description": "Indicates whether or not to create a",
+        "required": false
+      },
+      "enable_snat": {
+        "description": "Enable Source NAT for the router. Valid values are",
+        "required": false
+      },
+      "external_fixed_ip": {
+        "description": "An external fixed IP for the router. This",
+        "required": false
+      },
+      "external_network_id": {
+        "description": "The network UUID of an external gateway",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the router. Changing this",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the floating IP. Required if admin wants",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional driver-specific options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/networking_router_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "admin_state_up",
+      "distributed",
+      "external_network_id",
+      "enable_snat",
+      "external_fixed_ip",
+      "tenant_id",
+      "value_specs",
+      "availability_zone_hints"
+    ]
+  },
+  "huaweicloud_networking_secgroup_rule_v2": {
+    "full_properties": {
+      "": {
+        "description": "vrrp",
+        "required": false
+      },
+      "direction": {
+        "description": "The direction of the rule, valid values are ingress",
+        "required": true
+      },
+      "ethertype": {
+        "description": "The layer 3 protocol type, valid values are IPv4",
+        "required": true
+      },
+      "port_range_max": {
+        "description": "The higher part of the allowed port range, valid",
+        "required": false
+      },
+      "port_range_min": {
+        "description": "The lower part of the allowed port range, valid",
+        "required": false
+      },
+      "protocol": {
+        "description": "The layer 4 protocol type, valid values are following. Changing this creates a new security group rule. This is required if you want to specify a port range.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "remote_group_id": {
+        "description": "The remote group id, the value needs to be an",
+        "required": false
+      },
+      "remote_ip_prefix": {
+        "description": "The remote CIDR, the value needs to be a valid",
+        "required": false
+      },
+      "security_group_id": {
+        "description": "The security group id the rule should belong",
+        "required": true
+      },
+      "tenant_id": {
+        "description": "The owner of the security group. Required if admin",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/networking_secgroup_rule_v2.html",
+    "properties": [
+      "region",
+      "direction",
+      "ethertype",
+      "protocol",
+      "",
+      "port_range_min",
+      "port_range_max",
+      "remote_ip_prefix",
+      "remote_group_id",
+      "security_group_id",
+      "tenant_id"
+    ]
+  },
+  "huaweicloud_networking_secgroup_v2": {
+    "full_properties": {
+      "delete_default_rules": {
+        "description": "Whether or not to delete the default",
+        "required": false
+      },
+      "description": {
+        "description": "A unique name for the security group.",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the security group.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the security group. Required if admin",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/networking_secgroup_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "description",
+      "tenant_id",
+      "delete_default_rules"
+    ]
+  },
+  "huaweicloud_networking_subnet_v2": {
+    "full_properties": {
+      "allocation_pools": {
+        "description": "An array of sub-ranges of CIDR available for",
+        "required": false
+      },
+      "cidr": {
+        "description": "CIDR representing IP range for this subnet, based on IP",
+        "required": true
+      },
+      "dns_nameservers": {
+        "description": "An array of DNS name server names used by hosts",
+        "required": false
+      },
+      "enable_dhcp": {
+        "description": "The administrative state of the network.",
+        "required": false
+      },
+      "gateway_ip": {
+        "description": "Default gateway used by devices in this subnet.",
+        "required": false
+      },
+      "host_routes": {
+        "description": "An array of routes that should be used by devices",
+        "required": false
+      },
+      "ip_version": {
+        "description": "IP version, either 4 (default) or 6. Changing this creates a",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the subnet. Changing this updates the name of",
+        "required": false
+      },
+      "network_id": {
+        "description": "The UUID of the parent network. Changing this",
+        "required": true
+      },
+      "no_gateway": {
+        "description": "Do not set a gateway IP on this subnet. Changing",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the subnet. Required if admin wants to",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/networking_subnet_v2.html",
+    "properties": [
+      "region",
+      "network_id",
+      "cidr",
+      "ip_version",
+      "name",
+      "tenant_id",
+      "allocation_pools",
+      "gateway_ip",
+      "no_gateway",
+      "enable_dhcp",
+      "dns_nameservers",
+      "host_routes",
+      "value_specs"
+    ]
+  },
+  "huaweicloud_rds_instance_v1": {
+    "full_properties": {
+      "availabilityzone": {
+        "description": "Specifies the ID of the AZ.",
+        "required": true
+      },
+      "backupstrategy": {
+        "description": "Specifies the advanced backup policy. The structure",
+        "required": false
+      },
+      "datastore": {
+        "description": "Specifies database information. The structure is",
+        "required": true
+      },
+      "dbport": {
+        "description": "Specifies the database port number.",
+        "required": false
+      },
+      "dbrtpd": {
+        "description": "Specifies the password for user root of the database.",
+        "required": true
+      },
+      "flavorref": {
+        "description": "Specifies the specification ID (flavors.id in the",
+        "required": true
+      },
+      "ha": {
+        "description": "Specifies the parameters configured on HA and is used when",
+        "required": false
+      },
+      "name": {
+        "description": "Specifies the DB instance name. The DB instance name of",
+        "required": true
+      },
+      "nics": {
+        "description": "Specifies the nics information. For details about how",
+        "required": true
+      },
+      "region": {
+        "description": "Specifies the region ID.",
+        "required": true
+      },
+      "securitygroup": {
+        "description": "Specifies the security group which the RDS DB",
+        "required": true
+      },
+      "volume": {
+        "description": "Specifies the volume information. The structure is described",
+        "required": true
+      },
+      "vpc": {
+        "description": "Specifies the VPC ID. For details about how to obtain this",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/rds_instance_v1.html",
+    "properties": [
+      "name",
+      "datastore",
+      "flavorref",
+      "volume",
+      "region",
+      "availabilityzone",
+      "vpc",
+      "nics",
+      "securitygroup",
+      "dbport",
+      "backupstrategy",
+      "dbrtpd",
+      "ha"
+    ]
+  },
+  "huaweicloud_rts_stack_v1_": {
+    "full_properties": {
+      "disable_rollback": {
+        "description": "Specifies whether to perform a rollback if the creation fails.",
+        "required": false
+      },
+      "environment": {
+        "description": "Specifies the environment information about the stack.",
+        "required": false
+      },
+      "files": {
+        "description": "Specifies files used in the environment.",
+        "required": false
+      },
+      "parameters": {
+        "description": "Specifies parameter information of the stack.",
+        "required": false
+      },
+      "stack_id": {
+        "description": "Specifies the stack UUID.",
+        "required": true
+      },
+      "stack_name": {
+        "description": "Specifies the stack name. The value must meet the regular expression rule ([a-zA-Z][a-zA-Z0-9_.-]{0,254}$). Changing this will create a new stack.",
+        "required": true
+      },
+      "template": {
+        "description": "Specifies the template. The template content must use the json syntax.",
+        "required": false
+      },
+      "template_url": {
+        "description": "Specifies the template URL.",
+        "required": false
+      },
+      "timeout_mins": {
+        "description": "Specifies the timeout duration.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/rts_stack_v1.html",
+    "properties": [
+      "stack_name",
+      "stack_id",
+      "template",
+      "environment",
+      "files",
+      "parameters",
+      "timeout_mins",
+      "template_url",
+      "disable_rollback"
+    ]
+  },
+  "huaweicloud_s3_bucket": {
+    "full_properties": {
+      "acl": {
+        "description": "The canned ACL to apply. Defaults to \"private\".",
+        "required": false
+      },
+      "bucket": {
+        "description": "The name of the bucket. If omitted, Terraform will assign a random, unique name.",
+        "required": false
+      },
+      "bucket_prefix": {
+        "description": "Creates a unique bucket name beginning with the specified prefix. Conflicts with bucket.",
+        "required": false
+      },
+      "cors_rule": {
+        "description": "A rule of Cross-Origin Resource Sharing (documented below).",
+        "required": false
+      },
+      "force_destroy": {
+        "description": "A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are not recoverable.",
+        "required": false
+      },
+      "lifecycle_rule": {
+        "description": "A configuration of object lifecycle management (documented below).",
+        "required": false
+      },
+      "logging": {
+        "description": "A settings of bucket logging (documented below).",
+        "required": false
+      },
+      "policy": {
+        "description": "A valid bucket policy JSON document. Note that if the policy document is not specific enough (but still valid), Terraform may view the policy as constantly changing in a terraform plan. In this case, please make sure you use the verbose/specific version of the policy.",
+        "required": false
+      },
+      "region": {
+        "description": "If specified, the region this bucket should reside in. Otherwise, the region used by the callee.",
+        "required": false
+      },
+      "versioning": {
+        "description": "A state of versioning (documented below)",
+        "required": false
+      },
+      "website": {
+        "description": "A website object (documented below).",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/s3_bucket.html",
+    "properties": [
+      "bucket",
+      "bucket_prefix",
+      "acl",
+      "policy",
+      "force_destroy",
+      "website",
+      "cors_rule",
+      "versioning",
+      "logging",
+      "lifecycle_rule",
+      "region"
+    ]
+  },
+  "huaweicloud_s3_bucket_object": {
+    "full_properties": {
+      "acl": {
+        "description": "The canned ACL to apply. Defaults to \"private\".",
+        "required": false
+      },
+      "bucket": {
+        "description": "The name of the bucket to put the file in.",
+        "required": true
+      },
+      "cache_control": {
+        "description": "Specifies caching behavior along the request/reply chain Read w3c cache_control for further details.",
+        "required": false
+      },
+      "content": {
+        "description": "The literal content being uploaded to the bucket.",
+        "required": false
+      },
+      "content_disposition": {
+        "description": "Specifies presentational information for the object. Read wc3 content_disposition for further information.",
+        "required": false
+      },
+      "content_encoding": {
+        "description": "Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field. Read w3c content encoding for further information.",
+        "required": false
+      },
+      "content_language": {
+        "description": "The language the content is in e.g. en-US or en-GB.",
+        "required": false
+      },
+      "content_type": {
+        "description": "A standard MIME type describing the format of the object data, e.g. application/octet-stream. All Valid MIME Types are valid for this input.",
+        "required": false
+      },
+      "etag": {
+        "description": "Used to trigger updates. The only meaningful value is ${md5(file(\"path/to/file\"))}.",
+        "required": false
+      },
+      "key": {
+        "description": "The name of the object once it is in the bucket.",
+        "required": true
+      },
+      "server_side_encryption": {
+        "description": "Specifies server-side encryption of the object in S3. Valid values are \"AES256\" and \"aws:kms\".",
+        "required": false
+      },
+      "source": {
+        "description": "The path to the source file being uploaded to the bucket.",
+        "required": true
+      },
+      "sse_kms_key_id": {
+        "description": "The ID of the kms key.",
+        "required": false
+      },
+      "website_redirect": {
+        "description": "Specifies a target URL for website redirect.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/s3_bucket_object.html",
+    "properties": [
+      "bucket",
+      "key",
+      "source",
+      "content",
+      "acl",
+      "cache_control",
+      "content_disposition",
+      "content_encoding",
+      "content_language",
+      "content_type",
+      "website_redirect",
+      "etag",
+      "server_side_encryption",
+      "sse_kms_key_id"
+    ]
+  },
+  "huaweicloud_s3_bucket_policy": {
+    "full_properties": {
+      "bucket": {
+        "description": "The name of the bucket to which to apply the policy.",
+        "required": true
+      },
+      "policy": {
+        "description": "The text of the policy.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/s3_bucket_policy.html",
+    "properties": [
+      "bucket",
+      "policy"
+    ]
+  },
+  "huaweicloud_sfs_file_system_v2": {
+    "full_properties": {
+      "access_level": {
+        "description": "The access level of the shared file system. Changing this will create a new access rule.",
+        "required": true
+      },
+      "access_to": {
+        "description": "The access that the back end grants or denies. Changing this will create a new access rule",
+        "required": true
+      },
+      "access_type": {
+        "description": "The type of the share access rule. Changing this will create a new access rule.",
+        "required": false
+      },
+      "availability_zone": {
+        "description": "The availability zone name.Changing this parameter will create a new resource.",
+        "required": false
+      },
+      "description": {
+        "description": "Describes the shared file system.",
+        "required": false
+      },
+      "is_public": {
+        "description": "The level of visibility for the shared file system.",
+        "required": false
+      },
+      "metadata": {
+        "description": "Metadata key and value pairs as a dictionary of strings.Changing this will create a new resource.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the shared file system.",
+        "required": false
+      },
+      "share_proto": {
+        "description": "The protocol for sharing file systems. The default value is NFS.",
+        "required": false
+      },
+      "size": {
+        "description": "The size (GB) of the shared file system.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/sfs_file_system_v2.html",
+    "properties": [
+      "size",
+      "share_proto",
+      "name",
+      "description",
+      "is_public",
+      "metadata",
+      "availability_zone",
+      "access_level",
+      "access_type",
+      "access_to"
+    ]
+  },
+  "huaweicloud_smn_subscription_v2": {
+    "full_properties": {
+      "endpoint": {
+        "description": "Message endpoint.",
+        "required": true
+      },
+      "owner": {
+        "description": "Project ID of the topic creator.",
+        "required": false
+      },
+      "protocol": {
+        "description": "Protocol of the message endpoint. Currently, email,",
+        "required": true
+      },
+      "remark": {
+        "description": "Remark information. The remarks must be a UTF-8-coded",
+        "required": false
+      },
+      "status": {
+        "description": "Subscription status.",
+        "required": false
+      },
+      "subscription_urn": {
+        "description": "Resource identifier of a subscription, which",
+        "required": false
+      },
+      "topic_urn": {
+        "description": "Resource identifier of a topic, which is unique.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/smn_subscription_v2.html",
+    "properties": [
+      "topic_urn",
+      "endpoint",
+      "protocol",
+      "remark",
+      "subscription_urn",
+      "owner",
+      "status"
+    ]
+  },
+  "huaweicloud_smn_topic_v2": {
+    "full_properties": {
+      "create_time": {
+        "description": "Time when the topic was created.",
+        "required": false
+      },
+      "display_name": {
+        "description": "Topic display name, which is presented as the",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the topic to be created.",
+        "required": true
+      },
+      "push_policy": {
+        "description": "Message pushing policy. 0 indicates that the message",
+        "required": false
+      },
+      "topic_urn": {
+        "description": "Resource identifier of a topic, which is unique.",
+        "required": false
+      },
+      "update_time": {
+        "description": "Time when the topic was updated.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/smn_topic_v2.html",
+    "properties": [
+      "name",
+      "display_name",
+      "topic_urn",
+      "push_policy",
+      "create_time",
+      "update_time"
+    ]
+  },
+  "huaweicloud_vpc_eip_v1": {
+    "full_properties": {
+      "bandwidth": {
+        "description": "The bandwidth object.",
+        "required": true
+      },
+      "publicip": {
+        "description": "The elastic IP address object.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to create the eip. If omitted,",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/vpc_eip_v1.html",
+    "properties": [
+      "region",
+      "publicip",
+      "bandwidth"
+    ]
+  },
+  "huaweicloud_vpc_peering_connection_accepter_v2": {
+    "full_properties": {
+      "accept": {
+        "description": "- Whether or not to accept the peering request. Defaults to false.",
+        "required": false
+      },
+      "vpc_peering_connection_id": {
+        "description": "- The VPC Peering Connection ID to manage. Changing this creates a new VPC peering connection accepter.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/vpc_peering_accepter_v2.html",
+    "properties": [
+      "vpc_peering_connection_id",
+      "accept"
+    ]
+  },
+  "huaweicloud_vpc_peering_connection_v2": {
+    "full_properties": {
+      "name": {
+        "description": "- Specifies the name of the VPC peering connection. The value can contain 1 to 64 characters.",
+        "required": true
+      },
+      "peer_tenant_id": {
+        "description": "- Specified the Tenant Id of the accepter tenant. Changing this creates a new VPC peering connection.",
+        "required": false
+      },
+      "peer_vpc_id": {
+        "description": "- Specifies the VPC ID of the accepter tenant. Changing this creates a new VPC peering connection.",
+        "required": true
+      },
+      "vpc_id": {
+        "description": "- Specifies the ID of a VPC involved in a VPC peering connection. Changing this creates a new VPC peering connection.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/vpc_peering_v2.html",
+    "properties": [
+      "name",
+      "vpc_id",
+      "peer_vpc_id",
+      "peer_tenant_id"
+    ]
+  },
+  "huaweicloud_vpc_route_v2": {
+    "full_properties": {
+      "destination": {
+        "description": "- Specifies the destination IP address or CIDR block. Changing this creates a new Route.",
+        "required": true
+      },
+      "nexthop": {
+        "description": "- Specifies the next hop. If the route type is peering, enter the VPC peering connection ID. Changing this creates a new Route.",
+        "required": true
+      },
+      "tenant_id": {
+        "description": "- Specifies the tenant ID. Only the administrator can specify the tenant ID of other tenant. Changing this creates a new Route.",
+        "required": false
+      },
+      "type": {
+        "description": "- Specifies the route type. Currently, the value can only be peering. Changing this creates a new Route.",
+        "required": true
+      },
+      "vpc_id": {
+        "description": "- Specifies the VPC for which a route is to be added. Changing this creates a new Route.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/vpc_route_v2.html",
+    "properties": [
+      "destination",
+      "nexthop",
+      "type",
+      "vpc_id",
+      "tenant_id"
+    ]
+  },
+  "huaweicloud_vpc_v1": {
+    "full_properties": {
+      "cidr": {
+        "description": "The range of available subnets in the VPC. The value ranges from 10.0.0.0/8 to 10.255.255.0/24, 172.16.0.0/12 to 172.31.255.0/24, or 192.168.0.0/16 to 192.168.255.0/24.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the VPC. The name must be unique for a tenant. The value is a string of no more than 64 characters and can contain digits, letters, underscores (_), and hyphens (-). Changing this updates the name of the existing VPC.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V1 VPC client. A VPC client is needed to create a VPC. If omitted, the region argument of the provider is used. Changing this creates a new VPC.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/huaweicloud/r/vpc_v1.html",
+    "properties": [
+      "cidr",
+      "region",
+      "name"
+    ]
+  }
+}

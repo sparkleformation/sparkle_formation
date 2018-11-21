@@ -1,0 +1,541 @@
+{
+  "ovh_cloud_network_private": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the network.",
+        "required": true
+      },
+      "project_id": {
+        "description": "The id of the public cloud project. If omitted,",
+        "required": true
+      },
+      "regions": {
+        "description": "an array of valid OVH public cloud region ID in which the network",
+        "required": false
+      },
+      "vlan_id": {
+        "description": "a vlan id to associate with the network.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/ovh/r/cloud_network_private.html",
+    "properties": [
+      "project_id",
+      "name",
+      "vlan_id",
+      "regions"
+    ]
+  },
+  "ovh_cloud_network_private_subnet": {
+    "full_properties": {
+      "dhcp": {
+        "description": "Enable DHCP.",
+        "required": false
+      },
+      "end": {
+        "description": "Last ip for this region.",
+        "required": true
+      },
+      "network": {
+        "description": "Global network in CIDR format.",
+        "required": true
+      },
+      "network_id": {
+        "description": "The id of the network.",
+        "required": true
+      },
+      "no_gateway": {
+        "description": "Set to true if you don't want to set a default gateway IP.",
+        "required": false
+      },
+      "project_id": {
+        "description": "The id of the public cloud project. If omitted,",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which the network subnet will be created.",
+        "required": false
+      },
+      "start": {
+        "description": "First ip for this region.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ovh/r/cloud_network_private_subnet.html",
+    "properties": [
+      "project_id",
+      "network_id",
+      "dhcp",
+      "start",
+      "end",
+      "network",
+      "region",
+      "no_gateway"
+    ]
+  },
+  "ovh_cloud_user": {
+    "full_properties": {
+      "description": {
+        "description": "A description associated with the user.",
+        "required": false
+      },
+      "project_id": {
+        "description": "The id of the public cloud project. If omitted,",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ovh/r/cloud_user.html",
+    "properties": [
+      "project_id",
+      "description"
+    ]
+  },
+  "ovh_domain_zone_record": {
+    "full_properties": {
+      "fieldtype": {
+        "description": "The type of the record",
+        "required": true
+      },
+      "subdomain": {
+        "description": "The name of the record",
+        "required": true
+      },
+      "target": {
+        "description": "The value of the record",
+        "required": true
+      },
+      "ttl": {
+        "description": "The TTL of the record",
+        "required": false
+      },
+      "zone": {
+        "description": "The domain to add the record to",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ovh/r/ovh_domain_zone_record.html",
+    "properties": [
+      "zone",
+      "subdomain",
+      "target",
+      "fieldtype",
+      "ttl"
+    ]
+  },
+  "ovh_domain_zone_redirection": {
+    "full_properties": {
+      "description": {
+        "description": "A description of this redirection",
+        "required": false
+      },
+      "invisible": {
+        "description": "> Redirection by html frame",
+        "required": false
+      },
+      "keywords": {
+        "description": "Keywords to describe this redirection",
+        "required": false
+      },
+      "subdomain": {
+        "description": "The name of the redirection",
+        "required": false
+      },
+      "target": {
+        "description": "The value of the redirection",
+        "required": true
+      },
+      "title": {
+        "description": "Title of this redirection",
+        "required": false
+      },
+      "typevisiblevisiblePermanentinvisible": {
+      },
+      "visible": {
+        "description": "> Redirection by http code 302",
+        "required": false
+      },
+      "visiblePermanent": {
+        "description": "> Redirection by http code 301",
+        "required": false
+      },
+      "zone": {
+        "description": "The domain to add the redirection to",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ovh/r/ovh_domain_zone_redirection.html",
+    "properties": [
+      "zone",
+      "subdomain",
+      "target",
+      "typevisiblevisiblePermanentinvisible",
+      "visible",
+      "visiblePermanent",
+      "invisible",
+      "description",
+      "keywords",
+      "title"
+    ]
+  },
+  "ovh_iploadbalancing_http_route": {
+    "full_properties": {
+      "action.status": {
+        "description": "HTTP status code for \"redirect\" and \"reject\" actions",
+        "required": false
+      },
+      "action.target": {
+        "description": "Farm ID for \"farm\" action type or URL template for \"redirect\" action. You may use ${uri}, ${protocol}, ${host}, ${port} and ${path} variables in redirect target",
+        "required": false
+      },
+      "action.type": {
+        "description": "Action to trigger if all the rules of this route matches",
+        "required": true
+      },
+      "display_name": {
+        "description": "Human readable name for your route, this field is for you",
+        "required": false
+      },
+      "frontend_id": {
+        "description": "Route traffic for this frontend",
+        "required": false
+      },
+      "service_name": {
+        "description": "The internal name of your IP load balancing",
+        "required": true
+      },
+      "weight": {
+        "description": "Route priority ([0..255]). 0 if null. Highest priority routes are evaluated first. Only the first matching route will trigger an action",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/ovh/r/iploadbalancing_http_route.html",
+    "properties": [
+      "service_name",
+      "display_name",
+      "weight",
+      "action.status",
+      "action.target",
+      "action.type",
+      "frontend_id"
+    ]
+  },
+  "ovh_iploadbalancing_http_route_rule": {
+    "full_properties": {
+      "display_name": {
+        "description": "Human readable name for your rule, this field is for you",
+        "required": false
+      },
+      "field": {
+        "description": "Name of the field to match like \"protocol\" or \"host\". See \"/ipLoadbalancing/{serviceName}/availableRouteRules\" for a list of available rules",
+        "required": true
+      },
+      "match": {
+        "description": "Matching operator. Not all operators are available for all fields. See \"/ipLoadbalancing/{serviceName}/availableRouteRules\"",
+        "required": true
+      },
+      "negate": {
+        "description": "Invert the matching operator effect",
+        "required": false
+      },
+      "pattern": {
+        "description": "Value to match against this match. Interpretation if this field depends on the match and field",
+        "required": false
+      },
+      "route_id": {
+        "description": "The route to apply this rule",
+        "required": true
+      },
+      "service_name": {
+        "description": "The internal name of your IP load balancing",
+        "required": true
+      },
+      "sub_field": {
+        "description": "Name of sub-field, if applicable. This may be a Cookie or Header name for instance",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/ovh/r/iploadbalancing_http_route_rule.html",
+    "properties": [
+      "service_name",
+      "route_id",
+      "display_name",
+      "field",
+      "match",
+      "negate",
+      "pattern",
+      "sub_field"
+    ]
+  },
+  "ovh_iploadbalancing_tcp_farm": {
+    "full_properties": {
+      "balance": {
+        "description": "Load balancing algorithm. roundrobin if null (first, leastconn, roundrobin, source)",
+        "required": false
+      },
+      "display_name": {
+        "description": "Readable label for loadbalancer farm",
+        "required": false
+      },
+      "force_ssl": {
+        "description": "Force use of SSL (TLS)",
+        "required": false
+      },
+      "interval": {
+        "description": "probe interval, Value between 30 and 3600 seconds, default 30",
+        "required": false
+      },
+      "match": {
+        "description": "What to mach pattern against (contains, default, internal, matches, status)",
+        "required": false
+      },
+      "method": {
+        "description": "HTTP probe method (GET, HEAD, OPTIONS, internal)",
+        "required": false
+      },
+      "negate": {
+        "description": "Negate probe result",
+        "required": false
+      },
+      "pattern": {
+        "description": "Pattern to match against match",
+        "required": false
+      },
+      "port": {
+        "description": "Port for backends to recieve traffic on.",
+        "required": false
+      },
+      "probetypeintervalmatchportnegatepatternforce_sslurlmethod": {
+      },
+      "service_name": {
+        "description": "The internal name of your IP load balancing",
+        "required": true
+      },
+      "stickiness": {
+        "description": "Stickiness type. No stickiness if null (sourceIp)",
+        "required": false
+      },
+      "type": {
+        "description": "Valid values : http, internal, mysql, oko, pgsql, smtp, tcp",
+        "required": true
+      },
+      "url": {
+        "description": "URL for HTTP probe type.",
+        "required": false
+      },
+      "vrack_network_id": {
+        "description": "Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack",
+        "required": false
+      },
+      "zone": {
+        "description": "Zone where the farm will be defined (ie. GRA, BHS also supports ALL)",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ovh/r/iploadbalancing_tcp_farm.html",
+    "properties": [
+      "service_name",
+      "balance",
+      "display_name",
+      "port",
+      "stickiness",
+      "vrack_network_id",
+      "zone",
+      "probetypeintervalmatchportnegatepatternforce_sslurlmethod",
+      "type",
+      "interval",
+      "match",
+      "negate",
+      "pattern",
+      "force_ssl",
+      "url",
+      "method"
+    ]
+  },
+  "ovh_iploadbalancing_tcp_farm_server": {
+    "full_properties": {
+      "address": {
+        "description": "Address of the backend server (IP from either internal or OVH network)",
+        "required": false
+      },
+      "backup": {
+        "description": "is it a backup server used in case of failure of all the non-backup backends",
+        "required": false
+      },
+      "display_name": {
+        "description": "Label for the server",
+        "required": false
+      },
+      "farm_id": {
+        "description": "ID of the farm this server is attached to",
+        "required": false
+      },
+      "port": {
+        "description": "Port that backend will respond on",
+        "required": false
+      },
+      "probe": {
+        "description": "defines if backend will be probed to determine health and keep as active in farm if healthy",
+        "required": false
+      },
+      "proxy_protocol_version": {
+        "description": "version of the PROXY protocol used to pass origin connection information from loadbalancer to recieving service (v1, v2, v2-ssl, v2-ssl-cn)",
+        "required": false
+      },
+      "service_name": {
+        "description": "The internal name of your IP load balancing",
+        "required": true
+      },
+      "ssl": {
+        "description": "is the connection ciphered with SSL (TLS)",
+        "required": false
+      },
+      "status": {
+        "description": "backend status - active or inactive",
+        "required": false
+      },
+      "weight": {
+        "description": "used in loadbalancing algorithm",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/ovh/r/iploadbalancing_tcp_farm_server.html",
+    "properties": [
+      "service_name",
+      "farm_id",
+      "display_name",
+      "address",
+      "status",
+      "port",
+      "proxy_protocol_version",
+      "weight",
+      "probe",
+      "ssl",
+      "backup"
+    ]
+  },
+  "ovh_publiccloud_private_network": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the network.",
+        "required": true
+      },
+      "project_id": {
+        "description": "The id of the public cloud project. If omitted,",
+        "required": true
+      },
+      "regions": {
+        "description": "an array of valid OVH public cloud region ID in which the network",
+        "required": false
+      },
+      "vlan_id": {
+        "description": "a vlan id to associate with the network.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/ovh/r/publiccloud_private_network.html",
+    "properties": [
+      "project_id",
+      "name",
+      "vlan_id",
+      "regions"
+    ]
+  },
+  "ovh_publiccloud_private_network_subnet": {
+    "full_properties": {
+      "dhcp": {
+        "description": "Enable DHCP.",
+        "required": false
+      },
+      "end": {
+        "description": "Last ip for this region.",
+        "required": true
+      },
+      "network": {
+        "description": "Global network in CIDR format.",
+        "required": true
+      },
+      "network_id": {
+        "description": "The id of the network.",
+        "required": true
+      },
+      "no_gateway": {
+        "description": "Set to true if you don't want to set a default gateway IP.",
+        "required": false
+      },
+      "project_id": {
+        "description": "The id of the public cloud project. If omitted,",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which the network subnet will be created.",
+        "required": false
+      },
+      "start": {
+        "description": "First ip for this region.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ovh/r/publiccloud_private_network_subnet.html",
+    "properties": [
+      "project_id",
+      "network_id",
+      "dhcp",
+      "start",
+      "end",
+      "network",
+      "region",
+      "no_gateway"
+    ]
+  },
+  "ovh_publiccloud_user": {
+    "full_properties": {
+      "description": {
+        "description": "A description associated with the user.",
+        "required": false
+      },
+      "project_id": {
+        "description": "The id of the public cloud project. If omitted,",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ovh/r/publiccloud_user.html",
+    "properties": [
+      "project_id",
+      "description"
+    ]
+  },
+  "ovh_vrack_cloudproject": {
+    "full_properties": {
+      "project_id": {
+        "description": "The id of the public cloud project. If omitted,",
+        "required": true
+      },
+      "vrack_id": {
+        "description": "The id of the vrack. If omitted, the OVH_VRACK_ID",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ovh/r/vrack_cloudproject.html",
+    "properties": [
+      "vrack_id",
+      "project_id"
+    ]
+  },
+  "ovh_vrack_publiccloud_attachment": {
+    "full_properties": {
+      "project_id": {
+        "description": "The id of the public cloud project. If omitted,",
+        "required": true
+      },
+      "vrack_id": {
+        "description": "The id of the vrack. If omitted, the OVH_VRACK_ID",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ovh/r/vrack_publiccloud_attachment.html",
+    "properties": [
+      "vrack_id",
+      "project_id"
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "dme_record": {
+    "full_properties": {
+      "": {
+        "description": "the record value - (Required) The value of the record; its usage",
+        "required": false
+      },
+      "domainid": {
+        "description": "The domain id to add the",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the record type - (Required) The type of",
+        "required": true
+      },
+      "ttl": {
+        "description": "The TTL of the record gtdLocation - (String,",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/dme/r/record.html",
+    "properties": [
+      "domainid",
+      "name",
+      "",
+      "ttl"
+    ]
+  }
+}

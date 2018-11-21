@@ -1,0 +1,59 @@
+{
+  "acme_certificate": {
+    "full_properties": {
+      "account_key_pem": {
+        "description": "- The private key of the account that is",
+        "required": true
+      },
+      "certificate_request_pemtls_cert_request": {
+      },
+      "common_name": {
+        "description": "The certificate's common name, the primary domain that the",
+        "required": false
+      },
+      "dns_challenge": {
+        "description": "- The DNS challenge to use",
+        "required": true
+      },
+      "key_type": {
+        "description": "The key type for the certificate's private key. Can be one of:",
+        "required": false
+      },
+      "must_staple": {
+        "description": "Enables the OCSP Stapling Required",
+        "required": false
+      },
+      "subject_alternative_names": {
+        "description": "The certificate's subject alternative names,",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/acme/r/certificate.html",
+    "properties": [
+      "account_key_pem",
+      "common_name",
+      "subject_alternative_names",
+      "key_type",
+      "certificate_request_pemtls_cert_request",
+      "dns_challenge",
+      "must_staple"
+    ]
+  },
+  "acme_registration": {
+    "full_properties": {
+      "account_key_pem": {
+        "description": "- The private key used to identity the account.",
+        "required": true
+      },
+      "email_address": {
+        "description": "- The contact email address for the account.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/acme/r/registration.html",
+    "properties": [
+      "account_key_pem",
+      "email_address"
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "template_dir": {
+    "full_properties": {
+      "destination_dir": {
+        "description": "Path to the directory where the templated files will be written.",
+        "required": true
+      },
+      "source_dir": {
+        "description": "Path to the directory where the files to template reside.",
+        "required": true
+      },
+      "vars": {
+        "description": "Variables for interpolation within the template. Note",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/template/r/dir.html",
+    "properties": [
+      "source_dir",
+      "destination_dir",
+      "vars"
+    ]
+  }
+}

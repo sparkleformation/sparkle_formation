@@ -1,0 +1,572 @@
+{
+  "azure_affinity_group": {
+    "full_properties": {
+      "description": {
+        "description": "A description for the affinity group.",
+        "required": false
+      },
+      "label": {
+        "description": "A label to be used for tracking purposes.",
+        "required": true
+      },
+      "location": {
+        "description": "The location where the affinity group should be created.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the affinity group. Must be unique on your",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azure/r/affinity_group.html",
+    "properties": [
+      "name",
+      "location",
+      "label",
+      "description"
+    ]
+  },
+  "azure_data_disk": {
+    "full_properties": {
+      "caching": {
+        "description": "The caching behavior of data disk. Valid options are:",
+        "required": false
+      },
+      "label": {
+        "description": "The identifier of the data disk. Changing this forces a",
+        "required": false
+      },
+      "lun": {
+        "description": "The Logical Unit Number (LUN) for the disk. The LUN",
+        "required": true
+      },
+      "media_link": {
+        "description": "The location of the blob in storage where the VHD",
+        "required": false
+      },
+      "name": {
+        "description": "The name of an existing registered disk to attach to the",
+        "required": false
+      },
+      "size": {
+        "description": "The size, in GB, of an empty disk to be attached to the",
+        "required": false
+      },
+      "source_media_link": {
+        "description": "The location of a blob in storage where a",
+        "required": false
+      },
+      "storage_service_name": {
+        "description": "The name of an existing storage account",
+        "required": false
+      },
+      "virtual_machine": {
+        "description": "The name of the virtual machine the disk will",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azure/r/data_disk.html",
+    "properties": [
+      "name",
+      "label",
+      "lun",
+      "size",
+      "caching",
+      "storage_service_name",
+      "media_link",
+      "source_media_link",
+      "virtual_machine"
+    ]
+  },
+  "azure_dns_server": {
+    "full_properties": {
+      "dns_address": {
+        "description": "The IP address of the DNS server.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the DNS server reference. Changing this",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azure/r/dns_server.html",
+    "properties": [
+      "name",
+      "dns_address"
+    ]
+  },
+  "azure_hosted_service": {
+    "full_properties": {
+      "description": {
+        "description": "A description for the hosted service.",
+        "required": false
+      },
+      "ephemeral_contents": {
+        "description": "A boolean value (true|false), specifying",
+        "required": true
+      },
+      "label": {
+        "description": "A label to be used for tracking purposes. Must be",
+        "required": false
+      },
+      "location": {
+        "description": "The location where the hosted service should be created.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the hosted service. Must be unique on Azure.",
+        "required": true
+      },
+      "reverse_dns_fqdn": {
+        "description": "The reverse of the fully qualified domain name",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/azure/r/hosted_service.html",
+    "properties": [
+      "name",
+      "location",
+      "ephemeral_contents",
+      "reverse_dns_fqdn",
+      "label",
+      "description"
+    ]
+  },
+  "azure_instance": {
+    "full_properties": {
+      "automatic_updates": {
+        "description": "If true this will enable automatic updates.",
+        "required": false
+      },
+      "custom_data": {
+        "description": "The custom data to provide when launching the",
+        "required": false
+      },
+      "description": {
+        "description": "The description for the associated hosted service.",
+        "required": false
+      },
+      "domain_name": {
+        "description": "The name of an Active Directory domain to join.",
+        "required": false
+      },
+      "domain_ou": {
+        "description": "Specifies the LDAP Organizational Unit to place the",
+        "required": false
+      },
+      "domain_password": {
+        "description": "The password for the domain_username account",
+        "required": false
+      },
+      "domain_username": {
+        "description": "The username of an account with permission to",
+        "required": false
+      },
+      "endpoint": {
+        "description": "Can be specified multiple times to define multiple",
+        "required": false
+      },
+      "hosted_service_name": {
+        "description": "The name of the hosted service the",
+        "required": false
+      },
+      "image": {
+        "description": "The name of an existing VM or OS image to use for this",
+        "required": true
+      },
+      "location": {
+        "description": "The location/region where the cloud service is",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the instance. Changing this forces a new",
+        "required": true
+      },
+      "password": {
+        "description": "The password of the new user that will be created",
+        "required": false
+      },
+      "reverse_dns": {
+        "description": "The DNS address to which the IP address of the",
+        "required": false
+      },
+      "security_group": {
+        "description": "The Network Security Group to associate with",
+        "required": false
+      },
+      "size": {
+        "description": "The size of the instance.",
+        "required": true
+      },
+      "ssh_key_thumbprint": {
+        "description": "The SSH thumbprint of an existing SSH key",
+        "required": false
+      },
+      "storage_service_name": {
+        "description": "The name of an existing storage account",
+        "required": false
+      },
+      "subnet": {
+        "description": "The name of the subnet to connect this instance to. If",
+        "required": false
+      },
+      "time_zone": {
+        "description": "The appropriate time zone for this instance in the",
+        "required": false
+      },
+      "username": {
+        "description": "The username of a new user that will be created while",
+        "required": true
+      },
+      "virtual_network": {
+        "description": "The name of the virtual network the subnet",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/azure/r/instance.html",
+    "properties": [
+      "name",
+      "hosted_service_name",
+      "description",
+      "image",
+      "size",
+      "subnet",
+      "virtual_network",
+      "storage_service_name",
+      "reverse_dns",
+      "location",
+      "automatic_updates",
+      "time_zone",
+      "username",
+      "password",
+      "ssh_key_thumbprint",
+      "security_group",
+      "endpoint",
+      "domain_name",
+      "domain_ou",
+      "domain_username",
+      "domain_password",
+      "custom_data"
+    ]
+  },
+  "azure_local_network_connection": {
+    "full_properties": {
+      "address_space_prefixes": {
+        "description": "List of address spaces accessible",
+        "required": true
+      },
+      "name": {
+        "description": "The name by which this local network connection will",
+        "required": true
+      },
+      "vpn_gateway_address": {
+        "description": "The public IPv4 of the VPN endpoint.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azure/r/local_network_connection.html",
+    "properties": [
+      "name",
+      "vpn_gateway_address",
+      "address_space_prefixes"
+    ]
+  },
+  "azure_security_group": {
+    "full_properties": {
+      "label": {
+        "description": "The identifier for the security group. The label can be",
+        "required": false
+      },
+      "location": {
+        "description": "The location/region where the security group is",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the security group. Changing this forces a",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azure/r/security_group.html",
+    "properties": [
+      "name",
+      "label",
+      "location"
+    ]
+  },
+  "azure_security_group_rule": {
+    "full_properties": {
+      "action": {
+        "description": "The action that is performed when the security rule is",
+        "required": false
+      },
+      "destination_address_prefix": {
+        "description": "The address prefix of packet",
+        "required": true
+      },
+      "destination_port_range": {
+        "description": "The destination port or range. This value",
+        "required": true
+      },
+      "priority": {
+        "description": "The priority of the network security rule. Rules with",
+        "required": true
+      },
+      "protocol": {
+        "description": "The protocol of the security rule. Valid options are:",
+        "required": false
+      },
+      "security_group_names": {
+        "description": "A list of the names of the security groups",
+        "required": true
+      },
+      "source_address_prefix": {
+        "description": "The address prefix of packet sources that",
+        "required": true
+      },
+      "source_port_range": {
+        "description": "The source port or range. This value can be",
+        "required": true
+      },
+      "type": {
+        "description": "The type of the security rule. Valid options are:",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azure/r/security_group_rule.html",
+    "properties": [
+      "security_group_names",
+      "type",
+      "priority",
+      "action",
+      "source_address_prefix",
+      "source_port_range",
+      "destination_address_prefix",
+      "destination_port_range",
+      "protocol"
+    ]
+  },
+  "azure_sql_database_server": {
+    "full_properties": {
+      "location": {
+        "description": "The location where the database server should be created.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the database server. It is determined upon",
+        "required": false
+      },
+      "password": {
+        "description": "The password for the administrator of the database server.",
+        "required": true
+      },
+      "url": {
+        "description": "The fully qualified domain name of the database server.",
+        "required": false
+      },
+      "username": {
+        "description": "The username for the administrator of the database server.",
+        "required": true
+      },
+      "version": {
+        "description": "The version of the database server to be used. Can be any",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/azure/r/sql_database_server.html",
+    "properties": [
+      "name",
+      "location",
+      "username",
+      "password",
+      "version",
+      "url"
+    ]
+  },
+  "azure_sql_database_service": {
+    "full_properties": {
+      "collation": {
+        "description": "The collation to be used within the database service.",
+        "required": false
+      },
+      "database_server_name": {
+        "description": "The name of the database server this service",
+        "required": true
+      },
+      "edition": {
+        "description": "The edition of the database service. For more information",
+        "required": false
+      },
+      "max_size_bytes": {
+        "description": "The maximum size in bytes the database service",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the database service.",
+        "required": true
+      },
+      "service_level_id": {
+        "description": "The ID corresponding to the service level per",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/azure/r/sql_database_service.html",
+    "properties": [
+      "name",
+      "database_server_name",
+      "edition",
+      "collation",
+      "max_size_bytes",
+      "service_level_id"
+    ]
+  },
+  "azure_storage_blob": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the storage blob. Must be unique within",
+        "required": true
+      },
+      "size": {
+        "description": "Used only for PageBlob's to specify the size in bytes",
+        "required": false
+      },
+      "storage_container_name": {
+        "description": "The name of the storage container",
+        "required": true
+      },
+      "storage_service_name": {
+        "description": "The name of the storage service within",
+        "required": true
+      },
+      "type": {
+        "description": "The type of the storage blob to be created. One of either",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azure/r/storage_blob.html",
+    "properties": [
+      "name",
+      "storage_service_name",
+      "storage_container_name",
+      "type",
+      "size"
+    ]
+  },
+  "azure_storage_container": {
+    "full_properties": {
+      "container_access_type": {
+        "description": "The 'interface' for access the container",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the storage container. Must be unique within",
+        "required": true
+      },
+      "properties": {
+        "description": "Key-value definition of additional properties",
+        "required": false
+      },
+      "storage_service_name": {
+        "description": "The name of the storage service within",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azure/r/storage_container.html",
+    "properties": [
+      "name",
+      "storage_service_name",
+      "container_access_type",
+      "properties"
+    ]
+  },
+  "azure_storage_queue": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the storage queue. Must be unique within",
+        "required": true
+      },
+      "storage_service_name": {
+        "description": "The name of the storage service within",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azure/r/storage_queue.html",
+    "properties": [
+      "name",
+      "storage_service_name"
+    ]
+  },
+  "azure_storage_service": {
+    "full_properties": {
+      "account_type": {
+        "description": "The type of storage account to be created.",
+        "required": true
+      },
+      "affinity_group": {
+        "description": "The affinity group the storage service should",
+        "required": false
+      },
+      "description": {
+        "description": "A description for the storage service.",
+        "required": false
+      },
+      "label": {
+        "description": "A label to be used for tracking purposes. Must be",
+        "required": false
+      },
+      "location": {
+        "description": "The location where the storage service should be created.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the storage service. Must be between 4 and 24",
+        "required": true
+      },
+      "properties": {
+        "description": "Key-value definition of additional properties",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/azure/r/storage_service.html",
+    "properties": [
+      "name",
+      "location",
+      "account_type",
+      "affinity_group",
+      "properties",
+      "label",
+      "description"
+    ]
+  },
+  "azure_virtual_network": {
+    "full_properties": {
+      "address_space": {
+        "description": "The address space that is used the virtual",
+        "required": true
+      },
+      "dns_servers": {
+        "description": "List of names of DNS servers previously registered",
+        "required": false
+      },
+      "location": {
+        "description": "The location/region where the virtual network is",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the virtual network. Changing this forces a",
+        "required": true
+      },
+      "subnet": {
+        "description": "Can be specified multiple times to define multiple",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azure/r/virtual_network.html",
+    "properties": [
+      "name",
+      "address_space",
+      "location",
+      "dns_servers",
+      "subnet"
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "dnsimple_record": {
+    "full_properties": {
+      "domain": {
+        "description": "The domain to add the record to",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the record",
+        "required": true
+      },
+      "priority": {
+        "description": "The priority of the record - only useful for some record types",
+        "required": false
+      },
+      "ttl": {
+        "description": "The TTL of the record",
+        "required": false
+      },
+      "type": {
+        "description": "The type of the record",
+        "required": true
+      },
+      "value": {
+        "description": "The value of the record",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/dnsimple/r/record.html",
+    "properties": [
+      "domain",
+      "name",
+      "value",
+      "type",
+      "ttl",
+      "priority"
+    ]
+  }
+}

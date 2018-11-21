@@ -1,0 +1,161 @@
+{
+  "rabbitmq_binding": {
+    "full_properties": {
+      "arguments": {
+        "description": "Additional key/value arguments for the binding.",
+        "required": false
+      },
+      "destination": {
+        "description": "The destination queue or exchange.",
+        "required": true
+      },
+      "destination_type": {
+        "description": "The type of destination (queue or exchange).",
+        "required": true
+      },
+      "routing_key": {
+        "description": "A routing key for the binding.",
+        "required": false
+      },
+      "source": {
+        "description": "The source exchange.",
+        "required": true
+      },
+      "vhost": {
+        "description": "The vhost to create the resource in.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rabbitmq/r/binding.html",
+    "properties": [
+      "source",
+      "vhost",
+      "destination",
+      "destination_type",
+      "routing_key",
+      "arguments"
+    ]
+  },
+  "rabbitmq_exchange": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the exchange.",
+        "required": true
+      },
+      "settings": {
+        "description": "The settings of the exchange. The structure is",
+        "required": true
+      },
+      "vhost": {
+        "description": "The vhost to create the resource in.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rabbitmq/r/exchange.html",
+    "properties": [
+      "name",
+      "vhost",
+      "settings"
+    ]
+  },
+  "rabbitmq_permissions": {
+    "full_properties": {
+      "permissions": {
+        "description": "The settings of the permissions. The structure is",
+        "required": true
+      },
+      "user": {
+        "description": "The user to apply the permissions to.",
+        "required": true
+      },
+      "vhost": {
+        "description": "The vhost to create the resource in.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rabbitmq/r/permissions.html",
+    "properties": [
+      "user",
+      "vhost",
+      "permissions"
+    ]
+  },
+  "rabbitmq_policy": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the policy.",
+        "required": true
+      },
+      "policy": {
+        "description": "The settings of the policy. The structure is",
+        "required": true
+      },
+      "vhost": {
+        "description": "The vhost to create the resource in.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rabbitmq/r/policy.html",
+    "properties": [
+      "name",
+      "vhost",
+      "policy"
+    ]
+  },
+  "rabbitmq_queue": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the queue.",
+        "required": true
+      },
+      "settings": {
+        "description": "The settings of the queue. The structure is",
+        "required": true
+      },
+      "vhost": {
+        "description": "The vhost to create the resource in.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rabbitmq/r/queue.html",
+    "properties": [
+      "name",
+      "vhost",
+      "settings"
+    ]
+  },
+  "rabbitmq_user": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the user.",
+        "required": true
+      },
+      "password": {
+        "description": "The password of the user. The value of this argument",
+        "required": true
+      },
+      "tags": {
+        "description": "Which permission model to apply to the user. Valid",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/rabbitmq/r/user.html",
+    "properties": [
+      "name",
+      "password",
+      "tags"
+    ]
+  },
+  "rabbitmq_vhost": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the vhost.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rabbitmq/r/vhost.html",
+    "properties": [
+      "name"
+    ]
+  }
+}

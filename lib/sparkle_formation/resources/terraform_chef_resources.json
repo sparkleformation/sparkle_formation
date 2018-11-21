@@ -1,0 +1,132 @@
+{
+  "chef_data_bag": {
+    "full_properties": {
+      "name": {
+        "description": "The unique name to assign to the data bag. This is the",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/chef/r/data_bag.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "chef_data_bag_item": {
+    "full_properties": {
+      "content_json": {
+        "description": "A string containing a JSON object that will be",
+        "required": true
+      },
+      "data_bag_name": {
+        "description": "The name of the data bag into which this item",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/chef/r/data_bag_item.html",
+    "properties": [
+      "data_bag_name",
+      "content_json"
+    ]
+  },
+  "chef_environment": {
+    "full_properties": {
+      "cookbook_constraints": {
+        "description": "Mapping of cookbook names to cookbook",
+        "required": false
+      },
+      "default_attributes_json": {
+        "description": "String containing a JSON-serialized",
+        "required": false
+      },
+      "description": {
+        "description": "A human-friendly description of the environment.",
+        "required": false
+      },
+      "name": {
+        "description": "The unique name to assign to the environment. This name",
+        "required": true
+      },
+      "override_attributes_json": {
+        "description": "String containing a JSON-serialized",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/chef/r/environment.html",
+    "properties": [
+      "name",
+      "description",
+      "default_attributes_json",
+      "override_attributes_json",
+      "cookbook_constraints"
+    ]
+  },
+  "chef_node": {
+    "full_properties": {
+      "automatic_attributes_json": {
+        "description": "String containing a JSON-serialized",
+        "required": false
+      },
+      "default_attributes_json": {
+        "description": "String containing a JSON-serialized",
+        "required": false
+      },
+      "name": {
+        "description": "The unique name to assign to the node.",
+        "required": true
+      },
+      "normal_attributes_json": {
+        "description": "String containing a JSON-serialized",
+        "required": false
+      },
+      "override_attributes_json": {
+        "description": "String containing a JSON-serialized",
+        "required": false
+      },
+      "run_list": {
+        "description": "List of strings to set as the",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/chef/r/node.html",
+    "properties": [
+      "name",
+      "automatic_attributes_json",
+      "normal_attributes_json",
+      "default_attributes_json",
+      "override_attributes_json",
+      "run_list"
+    ]
+  },
+  "chef_role": {
+    "full_properties": {
+      "default_attributes_json": {
+        "description": "String containing a JSON-serialized",
+        "required": false
+      },
+      "description": {
+        "description": "A human-friendly description of the role.",
+        "required": false
+      },
+      "name": {
+        "description": "The unique name to assign to the role.",
+        "required": true
+      },
+      "override_attributes_json": {
+        "description": "String containing a JSON-serialized",
+        "required": false
+      },
+      "run_list": {
+        "description": "List of strings to set as the",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/chef/r/role.html",
+    "properties": [
+      "name",
+      "description",
+      "default_attributes_json",
+      "override_attributes_json",
+      "run_list"
+    ]
+  }
+}

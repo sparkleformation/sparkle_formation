@@ -1,0 +1,311 @@
+{
+  "vcd_dnat": {
+    "full_properties": {
+      "edge_gateway": {
+        "description": "The name of the edge gateway on which to apply the DNAT",
+        "required": true
+      },
+      "external_ip": {
+        "description": "One of the external IPs available on your Edge Gateway",
+        "required": true
+      },
+      "internal_ip": {
+        "description": "The IP of the VM to map to",
+        "required": true
+      },
+      "port": {
+        "description": "The port number to map",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vcd/r/dnat.html",
+    "properties": [
+      "edge_gateway",
+      "external_ip",
+      "port",
+      "internal_ip"
+    ]
+  },
+  "vcd_edgegateway_vpn": {
+    "full_properties": {
+      "description": {
+        "description": "A description for the VPN",
+        "required": true
+      },
+      "edge_gateway": {
+        "description": "The name of the edge gateway on which to apply the Firewall Rules",
+        "required": true
+      },
+      "encryption_protocol": {
+        "description": "- E.g. AES256",
+        "required": true
+      },
+      "local_id": {
+        "description": "- Local ID",
+        "required": true
+      },
+      "local_ip_address": {
+        "description": "- Local IP Address",
+        "required": true
+      },
+      "local_subnets": {
+        "description": "- List of Local Subnets see Local Subnets below for details.",
+        "required": true
+      },
+      "mtu": {
+        "description": "- The MTU setting",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the VPN ",
+        "required": true
+      },
+      "peer_id": {
+        "description": "- Peer ID",
+        "required": true
+      },
+      "peer_ip_address": {
+        "description": "- Peer IP Address",
+        "required": true
+      },
+      "peer_subnets": {
+        "description": "- List of Peer Subnets see Peer Subnets below for details.",
+        "required": true
+      },
+      "shared_secret": {
+        "description": "- Shared Secret",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vcd/r/edgegateway_vpn.html",
+    "properties": [
+      "edge_gateway",
+      "name",
+      "description",
+      "encryption_protocol",
+      "local_ip_address",
+      "local_id",
+      "mtu",
+      "peer_ip_address",
+      "peer_id",
+      "shared_secret",
+      "local_subnets",
+      "peer_subnets"
+    ]
+  },
+  "vcd_firewall_rules": {
+    "full_properties": {
+      "default_action": {
+        "description": "Either \"allow\" or \"deny\". Specifies what to do should none of the rules match",
+        "required": true
+      },
+      "edge_gateway": {
+        "description": "The name of the edge gateway on which to apply the Firewall Rules",
+        "required": true
+      },
+      "rule": {
+        "description": "Configures a firewall rule; see Rules below for details.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vcd/r/firewall_rules.html",
+    "properties": [
+      "edge_gateway",
+      "default_action",
+      "rule"
+    ]
+  },
+  "vcd_network": {
+    "full_properties": {
+      "dhcp_pool": {
+        "description": "A range of IPs to issue to virtual machines that don't",
+        "required": false
+      },
+      "dns1": {
+        "description": "First DNS server to use. Defaults to 8.8.8.8",
+        "required": false
+      },
+      "dns2": {
+        "description": "Second DNS server to use. Defaults to 8.8.4.4",
+        "required": false
+      },
+      "dns_suffix": {
+        "description": "A FQDN for the virtual machines on this network",
+        "required": false
+      },
+      "edge_gateway": {
+        "description": "The name of the edge gateway",
+        "required": true
+      },
+      "gateway": {
+        "description": "The gateway for this network",
+        "required": true
+      },
+      "name": {
+        "description": "A unique name for the network",
+        "required": true
+      },
+      "netmask": {
+        "description": "The netmask for the new network. Defaults to 255.255.255.0",
+        "required": false
+      },
+      "static_ip_pool": {
+        "description": "A range of IPs permitted to be used as static IPs for",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vcd/r/network.html",
+    "properties": [
+      "name",
+      "edge_gateway",
+      "netmask",
+      "gateway",
+      "dns1",
+      "dns2",
+      "dns_suffix",
+      "dhcp_pool",
+      "static_ip_pool"
+    ]
+  },
+  "vcd_snat": {
+    "full_properties": {
+      "edge_gateway": {
+        "description": "The name of the edge gateway on which to apply the SNAT",
+        "required": true
+      },
+      "external_ip": {
+        "description": "One of the external IPs available on your Edge Gateway",
+        "required": true
+      },
+      "internal_ip": {
+        "description": "The IP or IP Range of the VM(s) to map from",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vcd/r/snat.html",
+    "properties": [
+      "edge_gateway",
+      "external_ip",
+      "internal_ip"
+    ]
+  },
+  "vcd_vapp": {
+    "full_properties": {
+      "catalog_name": {
+        "description": "The catalog name in which to find the given vApp Template",
+        "required": false
+      },
+      "cpus": {
+        "description": "The number of virtual CPUs to allocate to the vApp",
+        "required": false
+      },
+      "initscript": {
+        "description": "A script to be run only on initial boot",
+        "required": false
+      },
+      "ip": {
+        "description": "The IP to assign to this vApp. Must be an IP address or",
+        "required": false
+      },
+      "memory": {
+        "description": "The amount of RAM (in MB) to allocate to the vApp",
+        "required": false
+      },
+      "metadata": {
+        "description": "Key value map of metadata to assign to this vApp",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the vApp",
+        "required": true
+      },
+      "network_href": {
+        "description": "The vCloud Director generated href of the network this vApp",
+        "required": false
+      },
+      "network_name": {
+        "description": "Name of the network this vApp should join",
+        "required": false
+      },
+      "ovf": {
+        "description": "Key value map of ovf parameters to assign to VM product section",
+        "required": false
+      },
+      "power_on": {
+        "description": "A boolean value stating if this vApp should be powered on. Default to true",
+        "required": false
+      },
+      "template_name": {
+        "description": "The name of the vApp Template to use",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vcd/r/vapp.html",
+    "properties": [
+      "name",
+      "catalog_name",
+      "template_name",
+      "memory",
+      "cpus",
+      "initscript",
+      "network_name",
+      "network_href",
+      "ip",
+      "metadata",
+      "ovf",
+      "power_on"
+    ]
+  },
+  "vcd_vapp_vm": {
+    "full_properties": {
+      "catalog_name": {
+        "description": "The catalog name in which to find the given vApp Template",
+        "required": true
+      },
+      "cpus": {
+        "description": "The number of virtual CPUs to allocate to the vApp",
+        "required": false
+      },
+      "initscript": {
+        "description": "A script to be run only on initial boot",
+        "required": false
+      },
+      "ip": {
+        "description": "The IP to assign to this vApp. Must be an IP address or",
+        "required": false
+      },
+      "memory": {
+        "description": "The amount of RAM (in MB) to allocate to the vApp",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the vApp",
+        "required": true
+      },
+      "power_on": {
+        "description": "A boolean value stating if this vApp should be powered on. Default to true",
+        "required": false
+      },
+      "template_name": {
+        "description": "The name of the vApp Template to use",
+        "required": true
+      },
+      "vapp_name": {
+        "description": "The vApp this VM should belong to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vcd/r/vapp_vm.html",
+    "properties": [
+      "vapp_name",
+      "name",
+      "catalog_name",
+      "template_name",
+      "memory",
+      "cpus",
+      "initscript",
+      "ip",
+      "power_on"
+    ]
+  }
+}

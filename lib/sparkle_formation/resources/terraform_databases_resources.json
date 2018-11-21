@@ -1,0 +1,14 @@
+{
+  "databases": {
+    "full_properties": {
+      "google_spanner_database_iam_policy": {
+        "description": "Authoritative. Sets the IAM policy for the database and replaces any existing policy already attached.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/google/r/spanner_database_iam.html",
+    "properties": [
+      "google_spanner_database_iam_policy"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "sfn_activity": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the activity to create.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/aws/r/sfn_activity.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "sfn_state_machine": {
+    "full_properties": {
+      "definition": {
+        "description": "The Amazon States Language definition of the state machine.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the state machine.",
+        "required": true
+      },
+      "role_arn": {
+        "description": "The Amazon Resource Name (ARN) of the IAM role to use for this state machine.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/aws/r/sfn_state_machine.html",
+    "properties": [
+      "name",
+      "definition",
+      "role_arn"
+    ]
+  }
+}

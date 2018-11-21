@@ -1,0 +1,266 @@
+{
+  "docker_config": {
+    "full_properties": {
+      "data": {
+        "description": "The base64 encoded data of the config.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the Docker config.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/docker/r/config.html",
+    "properties": [
+      "name",
+      "data"
+    ]
+  },
+  "docker_container": {
+    "full_properties": {
+      "command": {
+        "description": "The command to use to start the",
+        "required": false
+      },
+      "dns": {
+        "description": "Set of DNS servers.",
+        "required": false
+      },
+      "dns_opts": {
+        "description": "Set of DNS options used by the DNS provider(s), see resolv.conf documentation for valid list of options.",
+        "required": false
+      },
+      "dns_search": {
+        "description": "Set of DNS search domains that are used when bare unqualified hostnames are used inside of the container.",
+        "required": false
+      },
+      "entrypoint": {
+        "description": "The command to use as the",
+        "required": false
+      },
+      "env": {
+        "description": "Environment variables to set.",
+        "required": false
+      },
+      "image": {
+        "description": "The ID of the image to back this container.",
+        "required": false
+      },
+      "labels": {
+        "description": "Key/value pairs to set as labels on the",
+        "required": false
+      },
+      "links": {
+        "description": "Set of links for link based",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the Docker container.",
+        "required": false
+      },
+      "user": {
+        "description": "User used for run the first process. Format is",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/docker/r/container.html",
+    "properties": [
+      "name",
+      "image",
+      "command",
+      "entrypoint",
+      "user",
+      "dns",
+      "dns_opts",
+      "dns_search",
+      "env",
+      "labels",
+      "links"
+    ]
+  },
+  "docker_image": {
+    "full_properties": {
+      "keep_locally": {
+        "description": "If true, then the Docker image won't be",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the Docker image, including any tags or SHA256 repo digests.",
+        "required": false
+      },
+      "pull_trigger": {
+        "description": "Deprecated, use pull_triggers instead.",
+        "required": false
+      },
+      "pull_triggers": {
+        "description": "List of values which cause an",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/docker/r/image.html",
+    "properties": [
+      "name",
+      "keep_locally",
+      "pull_triggers",
+      "pull_trigger"
+    ]
+  },
+  "docker_network": {
+    "full_properties": {
+      "attachable": {
+        "description": "Enable manual container attachment to the network.",
+        "required": false
+      },
+      "check_duplicate": {
+        "description": "Requests daemon to check for networks",
+        "required": false
+      },
+      "driver": {
+        "description": "Name of the network driver to use. Defaults to",
+        "required": false
+      },
+      "ingress": {
+        "description": "Create swarm routing-mesh network.",
+        "required": false
+      },
+      "internal": {
+        "description": "Restrict external access to the network.",
+        "required": false
+      },
+      "ipam_config": {
+        "description": "See IPAM config below for",
+        "required": false
+      },
+      "ipam_driver": {
+        "description": "Driver used by the custom IP scheme of the",
+        "required": false
+      },
+      "ipv6": {
+        "description": "Enable IPv6 networking.",
+        "required": false
+      },
+      "labels": {
+        "description": "User-defined key/value metadata.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the Docker network.",
+        "required": false
+      },
+      "options": {
+        "description": "Network specific options to be used by",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/docker/r/network.html",
+    "properties": [
+      "name",
+      "labels",
+      "check_duplicate",
+      "driver",
+      "options",
+      "internal",
+      "attachable",
+      "ingress",
+      "ipv6",
+      "ipam_driver",
+      "ipam_config"
+    ]
+  },
+  "docker_secret": {
+    "full_properties": {
+      "data": {
+        "description": "The base64 encoded data of the secret.",
+        "required": false
+      },
+      "labels": {
+        "description": "User-defined key/value metadata.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the Docker secret.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/docker/r/secret.html",
+    "properties": [
+      "name",
+      "data",
+      "labels"
+    ]
+  },
+  "docker_service": {
+    "full_properties": {
+      "auth": {
+        "description": "See Auth below for details.",
+        "required": false
+      },
+      "converge_config": {
+        "description": "See Converge Config below for details.",
+        "required": false
+      },
+      "endpoint_spec": {
+        "description": "See EndpointSpec below for details.",
+        "required": false
+      },
+      "mode": {
+        "description": "See Mode below for details.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the Docker service.",
+        "required": false
+      },
+      "rollback_config": {
+        "description": "See RollbackConfig below for details.",
+        "required": false
+      },
+      "task_spec": {
+        "description": "See TaskSpec below for details.",
+        "required": false
+      },
+      "update_config": {
+        "description": "See UpdateConfig below for details.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/docker/r/service.html",
+    "properties": [
+      "auth",
+      "name",
+      "task_spec",
+      "mode",
+      "update_config",
+      "rollback_config",
+      "endpoint_spec",
+      "converge_config"
+    ]
+  },
+  "docker_volume": {
+    "full_properties": {
+      "driver": {
+        "description": "Driver type for the volume (defaults to local).",
+        "required": false
+      },
+      "driver_opts": {
+        "description": "Options specific to the driver.",
+        "required": false
+      },
+      "labels": {
+        "description": "User-defined key/value metadata.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the Docker volume (generated if not",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/docker/r/volume.html",
+    "properties": [
+      "name",
+      "labels",
+      "driver",
+      "driver_opts"
+    ]
+  }
+}

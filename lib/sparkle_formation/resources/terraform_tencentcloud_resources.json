@@ -1,0 +1,656 @@
+{
+  "tencentcloud_alb_server_attachment": {
+    "full_properties": {
+      "backends": {
+        "description": "list of backend server. Valid value range [1-100].",
+        "required": true
+      },
+      "listener_id": {
+        "description": "listener ID.",
+        "required": false
+      },
+      "loadbalancer_id": {
+        "description": "loadbalancer ID.",
+        "required": false
+      },
+      "location_id": {
+        "description": "location ID only support for layer 7 loadbalancer",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/tencentcloud/r/alb_server_attachment.html",
+    "properties": [
+      "loadbalancer_id",
+      "listener_id",
+      "location_id",
+      "backends"
+    ]
+  },
+  "tencentcloud_cbs_snapshot": {
+    "full_properties": {
+      "snapshot_name": {
+        "description": "The name of the snapshot. This snapshot_name can have a string of 1 to 64 characters. It is supported to modify snapshot_name after the snapshot is created.",
+        "required": false
+      },
+      "storage_id": {
+        "description": "Source Storage to create this snapshot.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/tencentcloud/r/snapshot.html",
+    "properties": [
+      "storage_id",
+      "snapshot_name"
+    ]
+  },
+  "tencentcloud_cbs_storage": {
+    "full_properties": {
+      "availability_zone": {
+        "description": "The available zone that the CBS instance locates at. NOTE, availability_zone do not support modification.",
+        "required": true
+      },
+      "period": {
+        "description": "The tenancy (time unit is month) of the perpaid storage, the legal values are [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36, 48, 60]. NOTE, period do not support modification.",
+        "required": true
+      },
+      "snapshot_id": {
+        "description": "For a new storage, this indicate which snapshot to use to create the new storage. For a exist storage, change this field whill case a rollback operation: your storage will rollback to the moment the snapshot created, your must change this filed carefully, please ensure your data in this storage is saved or out of use.",
+        "required": false
+      },
+      "storage_name": {
+        "description": "The name of the CBS. This storage_name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphens, such as \"-\",\".\",\"_\". If not specified, the default name is CBS-Instance. It is supported to modify storage_name after the storage is created",
+        "required": false
+      },
+      "storage_size": {
+        "description": "Size of the storage (GB). The value range is 10GB - 4,000GB (HDD cloud storages), 500GB - 4,000GB (Premium cloud storages), 100GB - 4,000GB (SSD cloud storages). The increment is 10GB. NOTE,  storage_size do not support modification.",
+        "required": true
+      },
+      "storage_type": {
+        "description": "Type of CBS medium. cloudBasic refers to a HDD cloud storage, cloudPremium refers to a Premium cloud storage, cloudSSD refers to a SSD cloud storage. NOTE, storage_type do not support modification.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/tencentcloud/r/cbs_storage.html",
+    "properties": [
+      "storage_type",
+      "storage_size",
+      "period",
+      "availability_zone",
+      "storage_name",
+      "snapshot_id"
+    ]
+  },
+  "tencentcloud_container_cluster": {
+    "full_properties": {
+      "bandwidth": {
+        "description": "The network bandwidth of the node. ",
+        "required": true
+      },
+      "bandwidth_type": {
+        "description": "The network type of the node. ",
+        "required": true
+      },
+      "cluster_cidr": {
+        "description": "The CIDR which the cluster is going to use. ",
+        "required": true
+      },
+      "cluster_desc": {
+        "description": "The descirption of the cluster. ",
+        "required": false
+      },
+      "cluster_name": {
+        "description": "The name of the cluster. ",
+        "required": true
+      },
+      "cluster_version": {
+        "description": "The kubernetes version of the cluster. ",
+        "required": false
+      },
+      "cpu": {
+        "description": "The cpu of the node. ",
+        "required": true
+      },
+      "cvm_type": {
+        "description": "The type of node needed by cvm. ",
+        "required": false
+      },
+      "docker_graph_path": {
+        "description": "The docker graph path is going to mounted. ",
+        "required": false
+      },
+      "goods_num": {
+        "description": "The node number is going to create in the cluster. ",
+        "required": true
+      },
+      "instance_name": {
+        "description": "The name ot node. ",
+        "required": false
+      },
+      "instance_type": {
+        "description": "The instance type of the node needed by cvm. ",
+        "required": false
+      },
+      "is_vpc_gateway": {
+        "description": "Describe whether the node enable the gateway capability. ",
+        "required": true
+      },
+      "key_id": {
+        "description": "The key_id of each node(if using key pair to access).",
+        "required": false
+      },
+      "mem": {
+        "description": "The memory of the node. ",
+        "required": true
+      },
+      "mount_target": {
+        "description": "The path which volumn is going to be mounted. ",
+        "required": false
+      },
+      "os_name": {
+        "description": "The system os name of the node. ",
+        "required": true
+      },
+      "password": {
+        "description": "The password of each node. ",
+        "required": false
+      },
+      "period": {
+        "description": "The puchase duration of the node needed by cvm. ",
+        "required": false
+      },
+      "require_wan_ip": {
+        "description": "Indicate whether wan ip is needed.",
+        "required": false
+      },
+      "root_size": {
+        "description": "The size of the root volumn.",
+        "required": true
+      },
+      "root_type": {
+        "description": "The type of the root volumn. see more from CVM.",
+        "required": false
+      },
+      "sg_id": {
+        "description": "The safe-group id. ",
+        "required": false
+      },
+      "storage_size": {
+        "description": "The size of the data volumn.",
+        "required": true
+      },
+      "storage_type": {
+        "description": "The type of the data volumn. see more from CVM.",
+        "required": false
+      },
+      "subnet_id": {
+        "description": "The subnet id which the node stays in. ",
+        "required": true
+      },
+      "user_script": {
+        "description": "User defined script in a base64-format. The script runs after the kubernetes component is ready on node. see more from CCS api documents.",
+        "required": false
+      },
+      "vpc_id": {
+        "description": "Specify vpc which the node(s) stay in. ",
+        "required": true
+      },
+      "zone_id": {
+        "description": "The zone which the node stays in. ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/tencentcloud/r/container_cluster.html",
+    "properties": [
+      "cluster_name",
+      "cpu",
+      "mem",
+      "os_name",
+      "bandwidth",
+      "bandwidth_type",
+      "subnet_id",
+      "is_vpc_gateway",
+      "storage_size",
+      "storage_type",
+      "root_size",
+      "root_type",
+      "goods_num",
+      "vpc_id",
+      "cluster_cidr",
+      "cluster_desc",
+      "cvm_type",
+      "period",
+      "zone_id",
+      "instance_type",
+      "sg_id",
+      "mount_target",
+      "docker_graph_path",
+      "instance_name",
+      "cluster_version",
+      "password",
+      "key_id",
+      "require_wan_ip",
+      "user_script"
+    ]
+  },
+  "tencentcloud_container_cluster_instance": {
+    "full_properties": {
+      "bandwidth": {
+        "description": "The network bandwidth of the node.",
+        "required": true
+      },
+      "bandwidth_type": {
+        "description": "The network type of the node.",
+        "required": true
+      },
+      "cluster_id": {
+        "description": "The id of the cluster.",
+        "required": true
+      },
+      "cpu": {
+        "description": "The cpu of the node.",
+        "required": true
+      },
+      "cvm_type": {
+        "description": "The type of node needed by cvm.",
+        "required": false
+      },
+      "docker_graph_path": {
+        "description": "The docker graph path is going to mounted.",
+        "required": false
+      },
+      "instance_type": {
+        "description": "The instance type of the node needed by cvm.",
+        "required": false
+      },
+      "is_vpc_gateway": {
+        "description": "Describe whether the node enable the gateway capability.",
+        "required": true
+      },
+      "key_id": {
+        "description": "The key_id of each node(if using key pair to access).",
+        "required": false
+      },
+      "mem": {
+        "description": "The memory of the node.",
+        "required": true
+      },
+      "mount_target": {
+        "description": "The path which volumn is going to be mounted.",
+        "required": false
+      },
+      "password": {
+        "description": "The password of each node.",
+        "required": false
+      },
+      "period": {
+        "description": "The puchase duration of the node needed by cvm.",
+        "required": false
+      },
+      "require_wan_ip": {
+        "description": "Indicate whether wan ip is needed.",
+        "required": false
+      },
+      "root_size": {
+        "description": "The size of the root volumn.",
+        "required": true
+      },
+      "root_type": {
+        "description": "The type of the root volumn. see more from CVM.",
+        "required": false
+      },
+      "sg_id": {
+        "description": "The safe-group id.",
+        "required": false
+      },
+      "storage_size": {
+        "description": "The size of the data volumn.",
+        "required": true
+      },
+      "storage_type": {
+        "description": "The type of the data volumn. see more from CVM.",
+        "required": false
+      },
+      "subnet_id": {
+        "description": "The subnet id which the node stays in.",
+        "required": true
+      },
+      "unschedulable": {
+        "description": "Determine whether the node will be schedulable. 0 is the default meaning node will be schedulable. 1 for unschedulable.",
+        "required": false
+      },
+      "user_script": {
+        "description": "User defined script in a base64-format. The script runs after the kubernetes component is ready on node. see more from CCS api documents.",
+        "required": false
+      },
+      "vpc_id": {
+        "description": "Specify vpc which the node(s) stay in.",
+        "required": true
+      },
+      "zone_id": {
+        "description": "The zone which the node stays in.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/tencentcloud/r/container_cluster_instance.html",
+    "properties": [
+      "cluster_id",
+      "cpu",
+      "mem",
+      "bandwidth",
+      "bandwidth_type",
+      "require_wan_ip",
+      "subnet_id",
+      "is_vpc_gateway",
+      "storage_size",
+      "storage_type",
+      "root_size",
+      "root_type",
+      "vpc_id",
+      "cvm_type",
+      "period",
+      "zone_id",
+      "instance_type",
+      "sg_id",
+      "mount_target",
+      "docker_graph_path",
+      "password",
+      "key_id",
+      "unschedulable",
+      "user_script"
+    ]
+  },
+  "tencentcloud_dnat": {
+    "full_properties": {
+      "elastic_ip": {
+        "description": "The elastic IP of NAT gateway association, must a Elastic IP.",
+        "required": false
+      },
+      "elastic_port": {
+        "description": "The external port, valid value is 1~65535.",
+        "required": false
+      },
+      "nat_id": {
+        "description": "The ID for the NAT Gateway.",
+        "required": false
+      },
+      "private_ip": {
+        "description": "The internal ip, must a private ip (VPC IP).",
+        "required": false
+      },
+      "private_port": {
+        "description": "The internal port, valid value is 1~65535",
+        "required": false
+      },
+      "protocol": {
+        "description": "The ip protocal, valid value is tcp|udp.",
+        "required": false
+      },
+      "vpc_id": {
+        "description": "The VPC ID for the NAT Gateway.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/tencentcloud/r/dnat.html",
+    "properties": [
+      "nat_id",
+      "vpc_id",
+      "protocol",
+      "elastic_ip",
+      "elastic_port",
+      "private_ip",
+      "private_port"
+    ]
+  },
+  "tencentcloud_eip": {
+    "full_properties": {
+      "name": {
+        "description": "The eip's name. ",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/tencentcloud/r/eip.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "tencentcloud_eip_association": {
+    "full_properties": {
+      "eip_id": {
+        "description": "The eip's id.",
+        "required": true
+      },
+      "instance_id": {
+        "description": "The instance id going to bind with the EIP. This field is conflict with network_interface_id and private_ip fields.",
+        "required": false
+      },
+      "network_interface_id": {
+        "description": "Indicates the network interface id like eni-xxxxxx. This field is conflict with instance_id.",
+        "required": false
+      },
+      "private_ip": {
+        "description": "Indicates an IP belongs to the network_interface_id. This field is conflict with instance_id.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/tencentcloud/r/eip_association.html",
+    "properties": [
+      "eip_id",
+      "instance_id",
+      "network_interface_id",
+      "private_ip"
+    ]
+  },
+  "tencentcloud_instance": {
+    "full_properties": {
+      "instance_id": {
+        "description": "ID of the CVM instance to attache to.",
+        "required": false
+      },
+      "storage_id": {
+        "description": "ID of the storage to be attached.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/tencentcloud/r/cbs_storage_attachment.html",
+    "properties": [
+      "storage_id",
+      "instance_id"
+    ]
+  },
+  "tencentcloud_key_pair": {
+    "full_properties": {
+      "key_name": {
+        "description": "The key pair's name. It is the only in one TencentCloud account.",
+        "required": false
+      },
+      "public_key": {
+        "description": "You can import an existing public key and using TencentCloud key pair to manage it.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/tencentcloud/r/key_pair.html",
+    "properties": [
+      "key_name",
+      "public_key"
+    ]
+  },
+  "tencentcloud_nat_gateway": {
+    "full_properties": {
+      "assigned_eip_set": {
+        "description": "Elastic IP arrays bound to the gateway, For more information on elastic IP, please refer to Elastic IP.",
+        "required": true
+      },
+      "bandwidth": {
+        "description": "The maximum public network output bandwidth of the gateway (unit: Mbps), for example: 10, 20, 50, 100, 200, 500, 1000, 2000, 5000. For more information, please refer to Virtual Private Cloud Gateway Description.",
+        "required": true
+      },
+      "max_concurrent": {
+        "description": "The upper limit of concurrent connection of NAT gateway, for example: 1000000, 3000000, 10000000. To learn more, please refer to Virtual Private Cloud Gateway Description.",
+        "required": true
+      },
+      "name": {
+        "description": "The name for the NAT Gateway.",
+        "required": true
+      },
+      "vpc_id": {
+        "description": "The VPC ID.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/tencentcloud/r/nat_gateway.html",
+    "properties": [
+      "name",
+      "vpc_id",
+      "max_concurrent",
+      "bandwidth",
+      "assigned_eip_set"
+    ]
+  },
+  "tencentcloud_route_entry": {
+    "full_properties": {
+      "cidr_block": {
+        "description": "The RouteEntry's target network segment.",
+        "required": false
+      },
+      "next_hub": {
+        "description": "The route entry's next hub. CVM instance ID or VPC router interface ID.",
+        "required": false
+      },
+      "next_type": {
+        "description": "The next hop type. Available value is public_gateway、vpn_gateway、sslvpn_gateway、dc_gateway、peering_connection、nat_gateway and instance. instance points to CVM Instance.",
+        "required": false
+      },
+      "route_table_id": {
+        "description": "The ID of the route table.",
+        "required": false
+      },
+      "vpc_id": {
+        "description": "The VPC ID.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/tencentcloud/r/route_entry.html",
+    "properties": [
+      "vpc_id",
+      "route_table_id",
+      "cidr_block",
+      "next_type",
+      "next_hub"
+    ]
+  },
+  "tencentcloud_route_table": {
+    "full_properties": {
+      "name": {
+        "description": "The name for the Route Table.",
+        "required": true
+      },
+      "vpc_id": {
+        "description": "The VPC ID.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/tencentcloud/r/route_table.html",
+    "properties": [
+      "name",
+      "vpc_id"
+    ]
+  },
+  "tencentcloud_security_group": {
+    "full_properties": {
+      "description": {
+        "description": "The security group's description, maximum length is 100 characters.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the security group. Name should be unique in each project, and no more than 60 characters.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/tencentcloud/r/security_group.html",
+    "properties": [
+      "name",
+      "description"
+    ]
+  },
+  "tencentcloud_security_group_rule": {
+    "full_properties": {
+      "cidr_ip": {
+        "description": "can be IP, or CIDR block.",
+        "required": false
+      },
+      "ip_protocol": {
+        "description": "Support \"UDP\"、\"TCP\"、\"ICMP\", Not configured means all protocols.",
+        "required": false
+      },
+      "policy": {
+        "description": "Policy of rule, \"accept\" or \"drop\".",
+        "required": false
+      },
+      "port_range": {
+        "description": "examples, Single port: \"53\"、Multiple ports: \"80,8080,443\"、Continuous port: \"80-90\", Not configured to represent all ports.",
+        "required": false
+      },
+      "security_group_id": {
+        "description": "The security group to apply this rule to.",
+        "required": false
+      },
+      "type": {
+        "description": "The type of rule being created. Valid options are \"ingress\" (inbound) or \"egress\" (outbound).",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/tencentcloud/r/security_group_rule.html",
+    "properties": [
+      "security_group_id",
+      "type",
+      "cidr_ip",
+      "ip_protocol",
+      "port_range",
+      "policy"
+    ]
+  },
+  "tencentcloud_subnet": {
+    "full_properties": {
+      "availability_zone": {
+        "description": "The AZ for the subnet.",
+        "required": false
+      },
+      "cidr_block": {
+        "description": "The CIDR block for the Subnet.",
+        "required": false
+      },
+      "name": {
+        "description": "The name for the Subnet.",
+        "required": true
+      },
+      "vpc_id": {
+        "description": "The VPC ID.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/tencentcloud/r/subnet.html",
+    "properties": [
+      "name",
+      "cidr_block",
+      "availability_zone",
+      "vpc_id"
+    ]
+  },
+  "tencentcloud_vpc": {
+    "full_properties": {
+      "cidr_block": {
+        "description": "The CIDR block for the VPC.",
+        "required": true
+      },
+      "name": {
+        "description": "The name for the VPC.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/tencentcloud/r/vpc.html",
+    "properties": [
+      "name",
+      "cidr_block"
+    ]
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "mysql_database": {
+    "full_properties": {
+      "default_character_set": {
+        "description": "The default character set to use when",
+        "required": false
+      },
+      "default_collation": {
+        "description": "The default collation to use when a table",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the database. This must be unique within",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/mysql/r/database.html",
+    "properties": [
+      "name",
+      "default_character_set",
+      "default_collation"
+    ]
+  },
+  "mysql_grant": {
+    "full_properties": {
+      "database": {
+        "description": "The database to grant privileges on.",
+        "required": true
+      },
+      "grant": {
+        "description": "Whether to also give the user privileges to grant the same privileges to other users.",
+        "required": false
+      },
+      "host": {
+        "description": "The source host of the user. Defaults to \"localhost\". Conflicts with role.",
+        "required": false
+      },
+      "privileges": {
+        "description": "A list of privileges to grant to the user. Refer to a list of privileges (such as here) for applicable privileges. Conflicts with roles.",
+        "required": false
+      },
+      "role": {
+        "description": "The role to grant privileges to. Conflicts with user and host.",
+        "required": false
+      },
+      "roles": {
+        "description": "A list of rols to grant to the user. Conflicts with privileges.",
+        "required": false
+      },
+      "table": {
+        "description": "Which table to grant privileges on. Defaults to *, which is all tables.",
+        "required": false
+      },
+      "tls_optionGRANT": {
+      },
+      "user": {
+        "description": "The name of the user. Conflicts with role.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/mysql/r/grant.html",
+    "properties": [
+      "user",
+      "host",
+      "role",
+      "database",
+      "table",
+      "privileges",
+      "roles",
+      "tls_optionGRANT",
+      "grant"
+    ]
+  },
+  "mysql_role": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the role.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/mysql/r/role.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "mysql_user": {
+    "full_properties": {
+      "auth_plugin": {
+        "description": "Use an authentication plugin to authenticate the user instead of using password authentication.  Description of the fields allowed in the block below. Conflicts with password and plaintext_password.",
+        "required": false
+      },
+      "host": {
+        "description": "The source host of the user. Defaults to \"localhost\".",
+        "required": false
+      },
+      "password": {
+        "description": "Deprecated alias of plaintext_password, whose value is stored as plaintext in state. Prefer to use plaintext_password instead, which stores the password as an unsalted hash. Conflicts with auth_plugin.",
+        "required": false
+      },
+      "plaintext_password": {
+        "description": "The password for the user. This must be provided in plain text, so the data source for it must be secured. An unsalted hash of the provided password is stored in state. Conflicts with auth_plugin.",
+        "required": false
+      },
+      "tls_optionCREATE USER": {
+      },
+      "user": {
+        "description": "The name of the user.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/mysql/r/user.html",
+    "properties": [
+      "user",
+      "host",
+      "plaintext_password",
+      "password",
+      "auth_plugin",
+      "tls_optionCREATE USER"
+    ]
+  },
+  "mysql_user_password": {
+    "full_properties": {
+      "host": {
+        "description": "The source host of the user. Defaults to localhost.",
+        "required": false
+      },
+      "pgp_key": {
+        "description": "Either a base-64 encoded PGP public key, or a keybase username in the form keybase:some_person_that_exists.",
+        "required": false
+      },
+      "user": {
+        "description": "The IAM user to associate with this access key.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/mysql/r/user_password.html",
+    "properties": [
+      "user",
+      "host",
+      "pgp_key"
+    ]
+  }
+}

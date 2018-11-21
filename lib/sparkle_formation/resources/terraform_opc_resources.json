@@ -1,0 +1,1224 @@
+{
+  "opc_compute_acl": {
+    "full_properties": {
+      "description": {
+        "description": "A description of the ACL.",
+        "required": false
+      },
+      "enabled": {
+        "description": "Enables or disables the ACL. Set to true by default.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the ACL.",
+        "required": true
+      },
+      "tags": {
+        "description": "List of tags that may be applied to the ACL.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_acl.html",
+    "properties": [
+      "name",
+      "enabled",
+      "description",
+      "tags"
+    ]
+  },
+  "opc_compute_image_list": {
+    "full_properties": {
+      "default": {
+        "description": "The image list entry to be used, by default, when launching instances using this image list. Defaults to 1.",
+        "required": true
+      },
+      "description": {
+        "description": "A description of the Image List.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the Image List.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_image_list.html",
+    "properties": [
+      "name",
+      "description",
+      "default"
+    ]
+  },
+  "opc_compute_image_list_entry": {
+    "full_properties": {
+      "attributes": {
+        "description": "JSON String of optional data that will be passed to an instance of this machine image when it is launched.",
+        "required": false
+      },
+      "machine_images": {
+        "description": "An array of machine images.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the Image List.",
+        "required": true
+      },
+      "version": {
+        "description": "The unique version of the image list entry, as an integer.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_image_list_entry.html",
+    "properties": [
+      "name",
+      "machine_images",
+      "version",
+      "attributes"
+    ]
+  },
+  "opc_compute_instance": {
+    "full_properties": {
+      "boot_order": {
+        "description": "The index number of the bootable storage volume, presented as a list, that should be used to boot the instance. The only valid value is [1]. If you set this attribute, you must also specify a bootable storage volume with index number 1 in the volume sub-parameter of storage_attachments. When you specify boot_order, you don't need to specify the imagelist attribute, because the instance is booted using the image on the specified bootable storage volume. If you specify both boot_order and imagelist, the imagelist attribute is ignored.",
+        "required": false
+      },
+      "desired_state": {
+        "description": "Set the desire state of the instance to running (default) or shutdown. You can use this request to shut down and restart individual instances which use a persistent bootable storage volume.",
+        "required": false
+      },
+      "hostname": {
+        "description": "The host name assigned to the instance. On an Oracle Linux instance, this host name is displayed in response to the hostname command. Only relative DNS is supported. The domain name is suffixed to the host name that you specify. The host name must not end with a period. If you don't specify a host name, then a name is generated automatically.",
+        "required": false
+      },
+      "image_list": {
+        "description": "The imageList of the instance, e.g. /oracle/public/oel_6.4_2GB_v1.",
+        "required": false
+      },
+      "instance_attributes": {
+        "description": "A JSON string of custom attributes. See Attributes below for more information.",
+        "required": false
+      },
+      "label": {
+        "description": "The label to apply to the instance.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the instance.",
+        "required": true
+      },
+      "networking_info": {
+        "description": "Information pertaining to an individual network interface to be created and attached to the instance. If left unspecified, the instance will be created within the shared_network. See Networking Info below for more information.",
+        "required": false
+      },
+      "reverse_dns": {
+        "description": "If set to true (default), then reverse DNS records are created. If set to false, no reverse DNS records are created.",
+        "required": false
+      },
+      "shape": {
+        "description": "The shape of the instance, e.g. oc4.",
+        "required": true
+      },
+      "ssh_keys": {
+        "description": "A list of the names of the SSH Keys that can be used to log into the instance.",
+        "required": false
+      },
+      "storage": {
+        "description": "Information pertaining to an individual storage attachment to be created during instance creation. Please see Storage Attachments below for more information.",
+        "required": false
+      },
+      "tags": {
+        "description": "A list of strings that should be supplied to the instance as tags.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_instance.html",
+    "properties": [
+      "name",
+      "shape",
+      "instance_attributes",
+      "boot_order",
+      "hostname",
+      "image_list",
+      "label",
+      "desired_state",
+      "networking_info",
+      "storage",
+      "reverse_dns",
+      "ssh_keys",
+      "tags"
+    ]
+  },
+  "opc_compute_ip_address_association": {
+    "full_properties": {
+      "description": {
+        "description": "A description of the ip address association.",
+        "required": false
+      },
+      "ip_address_reservation": {
+        "description": "The name of the NAT IP address reservation.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the ip address association.",
+        "required": true
+      },
+      "tags": {
+        "description": "List of tags that may be applied to the ip address association.",
+        "required": false
+      },
+      "vnic": {
+        "description": "The name of the virtual NIC associated with this NAT IP reservation.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_ip_address_association.html",
+    "properties": [
+      "name",
+      "ip_address_reservation",
+      "vnic",
+      "description",
+      "tags"
+    ]
+  },
+  "opc_compute_ip_address_prefix_set": {
+    "full_properties": {
+      "description": {
+        "description": "A description of the ip address prefix set.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the ip address prefix set.",
+        "required": true
+      },
+      "prefixes": {
+        "description": "List of CIDR IPv4 prefixes assigned in the virtual network.",
+        "required": false
+      },
+      "tags": {
+        "description": "List of tags that may be applied to the ip address prefix set.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_ip_address_prefix_set.html",
+    "properties": [
+      "name",
+      "prefixes",
+      "description",
+      "tags"
+    ]
+  },
+  "opc_compute_ip_address_reservation": {
+    "full_properties": {
+      "description": {
+        "description": "A description of the ip address reservation.",
+        "required": false
+      },
+      "ip_address_pool": {
+        "description": "The IP address pool from which you want to reserve an IP address. Typically one of either public-ippool or cloud-ippool.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the ip address reservation.",
+        "required": true
+      },
+      "tags": {
+        "description": "List of tags that may be applied to the IP address reservation.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_ip_address_reservation.html",
+    "properties": [
+      "name",
+      "ip_address_pool",
+      "description",
+      "tags"
+    ]
+  },
+  "opc_compute_ip_association": {
+    "full_properties": {
+      "parent_pool": {
+        "description": "The pool from which to take an IP address. To associate a specific reserved IP address, use",
+        "required": true
+      },
+      "vcable": {
+        "description": "The vcable of the instance to associate the IP address with.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_ip_association.html",
+    "properties": [
+      "vcable",
+      "parent_pool"
+    ]
+  },
+  "opc_compute_ip_network": {
+    "full_properties": {
+      "description": {
+        "description": "The description of the IP Network.",
+        "required": false
+      },
+      "ip_address_prefix": {
+        "description": "The IPv4 address prefix, in CIDR format.",
+        "required": true
+      },
+      "ip_network_exchange": {
+        "description": "Specify the IP Network exchange to which the IP Network belongs to.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the IP Network. Changing this name forces a new resource to be created.",
+        "required": true
+      },
+      "public_napt_enabled": {
+        "description": "If true, enable public internet access using NAPT for VNICs without any public IP Reservation. Defaults to false.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_ip_network.html",
+    "properties": [
+      "name",
+      "ip_address_prefix",
+      "description",
+      "ip_network_exchange",
+      "public_napt_enabled"
+    ]
+  },
+  "opc_compute_ip_network_exchange": {
+    "full_properties": {
+      "description": {
+        "description": "A description of the ip network exchange.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the ip network exchange.",
+        "required": true
+      },
+      "tags": {
+        "description": "List of tags that may be applied to the IP network exchange.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_ip_network_exchange.html",
+    "properties": [
+      "name",
+      "description",
+      "tags"
+    ]
+  },
+  "opc_compute_ip_reservation": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the IP Reservation. Will be generated if unspecified.",
+        "required": false
+      },
+      "parent_pool": {
+        "description": "The pool from which to allocate the IP address. Defaults to /oracle/public/ippool, and is currently the only acceptable input.",
+        "required": false
+      },
+      "permanent": {
+        "description": "Whether the IP address remains reserved even when it is no longer associated with an instance",
+        "required": true
+      },
+      "tags": {
+        "description": "List of tags that may be applied to the IP reservation.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_ip_reservation.html",
+    "properties": [
+      "permanent",
+      "parent_pool",
+      "name",
+      "tags"
+    ]
+  },
+  "opc_compute_machine_image": {
+    "full_properties": {
+      "account": {
+        "description": "The two part name of the compute object storage account in the format /Compute-{identity_domain}/cloud_storage",
+        "required": true
+      },
+      "attributes": {
+        "description": "An optional JSON object of arbitrary attributes to be made available to the instance. These are user-defined tags. After defining attributes, you can view them from within an instance at http://192.0.0.192/",
+        "required": false
+      },
+      "description": {
+        "description": "A description of the Machine Image.",
+        "required": false
+      },
+      "file": {
+        "description": "The name of the Machine Image .tar.gz file in the compute_images storage container.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the Machine Image.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_machine_image.html",
+    "properties": [
+      "account",
+      "name",
+      "file",
+      "description",
+      "attributes"
+    ]
+  },
+  "opc_compute_orchestrated_instance": {
+    "full_properties": {
+      "active": {
+        "description": "all resource (instances) declared in the orchestration are created",
+        "required": false
+      },
+      "description": {
+        "description": "The description of the orchestration.",
+        "required": false
+      },
+      "desired_stateactivesuspendinactive": {
+      },
+      "inactive": {
+        "description": "all resources (instances) declared in the orchestration are removed including the instances that have",
+        "required": false
+      },
+      "instance": {
+        "description": "The information pertaining to creating an instance through the orchestration API.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the orchestration.",
+        "required": true
+      },
+      "suspend": {
+        "description": "all resources (instances) declared in the orchestration are removed unless the instances has",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_orchestrated_instance.html",
+    "properties": [
+      "name",
+      "desired_stateactivesuspendinactive",
+      "active",
+      "suspend",
+      "inactive",
+      "instance",
+      "description"
+    ]
+  },
+  "opc_compute_route": {
+    "full_properties": {
+      "admin_distance": {
+        "description": "The route's administrative distance. Defaults to 0.",
+        "required": false
+      },
+      "description": {
+        "description": "The description of the route.",
+        "required": false
+      },
+      "ip_address_prefix": {
+        "description": "The IPv4 address prefix, in CIDR format, of the external network from which to route traffic.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the route.",
+        "required": true
+      },
+      "next_hop_vnic_set": {
+        "description": "Name of the virtual NIC set to route matching packets to. Routed flows are load-balanced among all the virtual NICs in the virtual NIC set.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_route.html",
+    "properties": [
+      "name",
+      "description",
+      "admin_distance",
+      "ip_address_prefix",
+      "next_hop_vnic_set"
+    ]
+  },
+  "opc_compute_sec_rule": {
+    "full_properties": {
+      "action": {
+        "description": "Whether to permit, refuse or deny packets to which this rule applies. This will ordinarily",
+        "required": true
+      },
+      "application": {
+        "description": "The name of the application to which the rule applies.",
+        "required": true
+      },
+      "description": {
+        "description": "A description for this security rule.",
+        "required": false
+      },
+      "destination_list": {
+        "description": "The destination security list (prefixed with seclist:), or security IP list (prefixed with",
+        "required": true
+      },
+      "disabled": {
+        "description": "Whether to disable this security rule. This is useful if you want to temporarily disable a rule",
+        "required": false
+      },
+      "name": {
+        "description": "The unique (within the identity domain) name of the security rule.",
+        "required": true
+      },
+      "source_listdestination_list": {
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_sec_rule.html",
+    "properties": [
+      "name",
+      "description",
+      "source_listdestination_list",
+      "destination_list",
+      "application",
+      "action",
+      "disabled"
+    ]
+  },
+  "opc_compute_security_application": {
+    "full_properties": {
+      "dport": {
+        "description": "The port, or range of ports, to enable for this application, e.g 8080, 6000-7000. This must be set if the protocol is set to tcp or udp.",
+        "required": true
+      },
+      "icmpcode": {
+        "description": "The ICMP code to enable for this application, if the protocol is icmp. Must be one of",
+        "required": false
+      },
+      "icmptype": {
+        "description": "The ICMP type to enable for this application, if the protocol is icmp. Must be one of",
+        "required": false
+      },
+      "name": {
+        "description": "The unique (within the identity domain) name of the application",
+        "required": true
+      },
+      "protocol": {
+        "description": "The protocol to enable for this application. Must be one of",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_security_application.html",
+    "properties": [
+      "name",
+      "protocol",
+      "dport",
+      "icmptype",
+      "icmpcode"
+    ]
+  },
+  "opc_compute_security_association": {
+    "full_properties": {
+      "name": {
+        "description": "The Name for the Security Association. If not specified, one is created automatically. Changing this forces a new resource to be created.",
+        "required": false
+      },
+      "seclist": {
+        "description": "The name of the security list to associate the instance to.",
+        "required": true
+      },
+      "vcable": {
+        "description": "The vcable of the instance to associate to the security list.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_security_association.html",
+    "properties": [
+      "name",
+      "vcable",
+      "seclist"
+    ]
+  },
+  "opc_compute_security_ip_list": {
+    "full_properties": {
+      "description": {
+        "description": "The description of the security ip list.",
+        "required": false
+      },
+      "ip_entries": {
+        "description": "The IP addresses to include in the list.",
+        "required": true
+      },
+      "name": {
+        "description": "The unique (within the identity domain) name of the security IP list.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_security_ip_list.html",
+    "properties": [
+      "name",
+      "ip_entries",
+      "description"
+    ]
+  },
+  "opc_compute_security_list": {
+    "full_properties": {
+      "name": {
+        "description": "The unique (within the identity domain) name of the security list.",
+        "required": true
+      },
+      "output_cidr_policy": {
+        "description": "The policy for outbound traffic from the security list. Must be one of permit,",
+        "required": true
+      },
+      "policy": {
+        "description": "The policy to apply to instances associated with this list. Must be one of permit,",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_security_list.html",
+    "properties": [
+      "name",
+      "policy",
+      "output_cidr_policy"
+    ]
+  },
+  "opc_compute_security_protocol": {
+    "full_properties": {
+      "description": {
+        "description": "A description of the security protocol.",
+        "required": false
+      },
+      "dst_ports": {
+        "description": "Enter a list of port numbers or port range strings.",
+        "required": false
+      },
+      "ip_protocol": {
+        "description": "The protocol used in the data portion of the IP datagram.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the security protocol.",
+        "required": true
+      },
+      "src_ports": {
+        "description": "Enter a list of port numbers or port range strings.",
+        "required": false
+      },
+      "tags": {
+        "description": "List of tags that may be applied to the security protocol.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_security_protocol.html",
+    "properties": [
+      "name",
+      "dst_ports",
+      "src_ports",
+      "ip_protocol",
+      "description",
+      "tags"
+    ]
+  },
+  "opc_compute_security_rule": {
+    "full_properties": {
+      "acl": {
+        "description": "Name of the ACL that contains this security rule.",
+        "required": false
+      },
+      "description": {
+        "description": "A description of the security rule.",
+        "required": false
+      },
+      "disabled": {
+        "description": "Whether to disable this security rule. This is useful if you want to temporarily disable a rule without removing it outright from your Terraform resource definition. Defaults to false.",
+        "required": false
+      },
+      "dst_ip_address_prefixes": {
+        "description": "List of IP address prefix set names to match the packet's destination IP address.",
+        "required": false
+      },
+      "dst_vnic_set": {
+        "description": "Name of virtual NIC set containing the packet's destination virtual NIC.",
+        "required": false
+      },
+      "flow_direction": {
+        "description": "Specify the direction of flow of traffic, which is relative to the instances, for this security rule. Allowed values are ingress or egress.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the security rule.",
+        "required": true
+      },
+      "security_protocols": {
+        "description": "List of security protocol object names to match the packet's protocol and port.",
+        "required": false
+      },
+      "src_ip_address_prefixes": {
+        "description": "List of names of IP address prefix set to match the packet's source IP address.",
+        "required": false
+      },
+      "src_vnic_set": {
+        "description": "Name of virtual NIC set containing the packet's source virtual NIC.",
+        "required": false
+      },
+      "tags": {
+        "description": "List of tags that may be applied to the security rule.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_security_rule.html",
+    "properties": [
+      "name",
+      "flow_direction",
+      "disabled",
+      "acl",
+      "dst_ip_address_prefixes",
+      "src_ip_address_prefixes",
+      "dst_vnic_set",
+      "src_vnic_set",
+      "security_protocols",
+      "description",
+      "tags"
+    ]
+  },
+  "opc_compute_ssh_key": {
+    "full_properties": {
+      "enabled": {
+        "description": "Whether or not the key is enabled. This is useful if you want to temporarily disable an SSH key,",
+        "required": false
+      },
+      "key": {
+        "description": "The SSH key itself",
+        "required": true
+      },
+      "name": {
+        "description": "The unique (within this identity domain) name of the SSH key.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_ssh_key.html",
+    "properties": [
+      "name",
+      "key",
+      "enabled"
+    ]
+  },
+  "opc_compute_storage_volume": {
+    "full_properties": {
+      "bootable": {
+        "description": "Is the Volume Bootable? Defaults to false.",
+        "required": false
+      },
+      "description": {
+        "description": "The description of the storage volume.",
+        "required": false
+      },
+      "image_list": {
+        "description": "Defines an image list.",
+        "required": false
+      },
+      "image_list_entry": {
+        "description": "Defines an image list entry.",
+        "required": false
+      },
+      "name": {
+        "description": "The name for the Storage Account.",
+        "required": true
+      },
+      "size": {
+        "description": "The size of this storage volume in GB. The allowed range is from 1 GB to 2 TB (2048 GB).",
+        "required": true
+      },
+      "snapshot": {
+        "description": "The name of the parent snapshot from which the storage volume is restored or cloned. See Snapshots, below for more information.",
+        "required": false
+      },
+      "snapshot_account": {
+        "description": "The Account of the parent snapshot from which the storage volume is restored. See Snapshots, below for more information.",
+        "required": false
+      },
+      "snapshot_id": {
+        "description": "The Id of the parent snapshot from which the storage volume is restored or cloned. See Snapshots, below for more information.",
+        "required": false
+      },
+      "storage_type": {
+        "description": "- The Type of Storage to provision. Defaults to /oracle/public/storage/default.",
+        "required": false
+      },
+      "tags": {
+        "description": "Comma-separated strings that tag the storage volume.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_storage_volume.html",
+    "properties": [
+      "name",
+      "description",
+      "size",
+      "storage_type",
+      "bootable",
+      "image_list",
+      "image_list_entry",
+      "snapshot",
+      "snapshot_id",
+      "snapshot_account",
+      "tags"
+    ]
+  },
+  "opc_compute_storage_volume_attachment": {
+    "full_properties": {
+      "index": {
+        "description": "The index on the instance that the storage volume will be attached to.",
+        "required": true
+      },
+      "instance": {
+        "description": "The name of the instance the volume will be attached to.",
+        "required": true
+      },
+      "storage_volume": {
+        "description": "The name of the storage volume that will be attached to the",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_storage_volume_attachment.html",
+    "properties": [
+      "instance",
+      "storage_volume",
+      "index"
+    ]
+  },
+  "opc_compute_storage_volume_snapshot": {
+    "full_properties": {
+      "collocated": {
+        "description": "Boolean specifying whether the snapshot is collocated or remote. Defaults to false.",
+        "required": false
+      },
+      "description": {
+        "description": "The description of the storage volume snapshot.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the storage volume snapshot. Will be generated if unspecified.",
+        "required": false
+      },
+      "parent_volume_bootable": {
+        "description": "A string value of whether or not the parent volume is 'bootable' or not. Defaults to \"false\".",
+        "required": false
+      },
+      "tags": {
+        "description": "Comma-separated strings that tag the storage volume.",
+        "required": false
+      },
+      "volume_name": {
+        "description": "The name of the storage volume to create the snapshot from.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_storage_volume_snapshot.html",
+    "properties": [
+      "volume_name",
+      "description",
+      "name",
+      "parent_volume_bootable",
+      "collocated",
+      "tags"
+    ]
+  },
+  "opc_compute_vnic_set": {
+    "full_properties": {
+      "applied_acls": {
+        "description": "A list of the ACLs to apply to the virtual nics in the set.",
+        "required": false
+      },
+      "description": {
+        "description": "A description of the virtual nic set.",
+        "required": false
+      },
+      "name": {
+        "description": "The unique (within this identity domain) name of the virtual nic set.",
+        "required": true
+      },
+      "tags": {
+        "description": "A list of tags to apply to the storage volume.",
+        "required": false
+      },
+      "virtual_nics": {
+        "description": "List of virtual NICs associated with this virtual NIC set.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_vnic_set.html",
+    "properties": [
+      "name",
+      "description",
+      "applied_acls",
+      "virtual_nics",
+      "tags"
+    ]
+  },
+  "opc_compute_vpn_endpoint_v2": {
+    "full_properties": {
+      "customer_vpn_gateway": {
+        "description": "The ip address of the VPN gateway in your data center through which you want to connect to the Oracle Cloud VPN gateway.",
+        "required": true
+      },
+      "description": {
+        "description": "A description of the VPN Endpoint V2.",
+        "required": false
+      },
+      "enabled": {
+        "description": "Enables or disables the VPN Endpoint V2. Set to true by default.",
+        "required": false
+      },
+      "ike_identifier": {
+        "description": "The Internet Key Exchange (IKE) ID. If you don't specify a value, the default value is the public IP address of the cloud gateway.",
+        "required": false
+      },
+      "ip_network": {
+        "description": "The name of the IP network on which the cloud gateway is created by VPNaaS.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the VPN Endpoint V2.",
+        "required": true
+      },
+      "phase_one_settings": {
+        "description": "Settings for the phase one protocol (IKE). Phase One Settings are detailed below.",
+        "required": false
+      },
+      "phase_two_settings": {
+        "description": "Settings for the phase two protocol (IPSEC). Phase Two Settings are detailed below.",
+        "required": false
+      },
+      "pre_shared_key": {
+        "description": "The pre-shared VPN key",
+        "required": true
+      },
+      "reachable_routes": {
+        "description": "A list of routes (CIDR prefixes) that are reachable through this VPN tunnel.",
+        "required": true
+      },
+      "require_perfect_forward_secrecy": {
+        "description": "Boolean specificying whether Perfect Forward Secrecy is enabled. Set to true by default.",
+        "required": false
+      },
+      "tags": {
+        "description": "List of tags that may be applied to the VPN Endpoint V2.",
+        "required": false
+      },
+      "vnic_sets": {
+        "description": "A list of vnic sets that traffics is allowed to and from.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_compute_vpn_endpoint_v2.html",
+    "properties": [
+      "name",
+      "customer_vpn_gateway",
+      "ip_network",
+      "pre_shared_key",
+      "reachable_routes",
+      "vnic_sets",
+      "description",
+      "enabled",
+      "ike_identifier",
+      "require_perfect_forward_secrecy",
+      "phase_one_settings",
+      "phase_two_settings",
+      "tags"
+    ]
+  },
+  "opc_lbaas_certificate": {
+    "full_properties": {
+      "certificate_body": {
+        "description": "The Certificate data in PEM format.",
+        "required": true
+      },
+      "certificate_chain": {
+        "description": "PEM encoded bodies of all certificates in the chain up to and including the CA certificate. This is not need when the certificate is self signed.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the Certificate.",
+        "required": true
+      },
+      "private_key": {
+        "description": "The private key data in PEM format. Only required for Server Certificates",
+        "required": false
+      },
+      "type": {
+        "description": "Sets the Certificate Type. TRUSTED or SERVER.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_lbaas_certificate.html",
+    "properties": [
+      "name",
+      "certificate_body",
+      "type",
+      "certificate_chain",
+      "private_key"
+    ]
+  },
+  "opc_lbaas_listener": {
+    "full_properties": {
+      "balancer_protocol": {
+        "description": "transport protocol that will be accepted for all incoming requests to the selected load balancer listener. HTTP or HTTPS. If set to HTTPS then you must also set the server certificates.",
+        "required": true
+      },
+      "certificates": {
+        "description": "The URI of the server security certificate.",
+        "required": false
+      },
+      "enabled": {
+        "description": "Boolean flag to enable or disable the Listener. Default is true (enabled).",
+        "required": false
+      },
+      "load_balancer": {
+        "description": "The parent Load Balancer the Listener.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the Listener.",
+        "required": true
+      },
+      "path_prefixes": {
+        "description": "List of paths to configure the listener to accept only requests that are targeted to a specific path within the URI of the request.",
+        "required": false
+      },
+      "polices": {
+        "description": "List of the Load Balancer Policy URIs to apply to the listener.",
+        "required": false
+      },
+      "port": {
+        "description": "The port on which the Load Balancer is listening.",
+        "required": true
+      },
+      "server_pool": {
+        "description": "URI of the Server Pool resource to which the load balancer distributes requests.",
+        "required": false
+      },
+      "server_protocol": {
+        "description": "The protocol to be used for routing traffic to the origin servers in the server pool. HTTP or HTTPS. If set to HTTPS then you must include a Trusted Certificate Policy in the policies",
+        "required": true
+      },
+      "tags": {
+        "description": "List of tags.",
+        "required": false
+      },
+      "virtual_hosts": {
+        "description": "Configure the listener to only accept URI requests that include the host names listed in this field.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_lbaas_listener.html",
+    "properties": [
+      "name",
+      "load_balancer",
+      "balancer_protocol",
+      "port",
+      "server_protocol",
+      "enabled",
+      "path_prefixes",
+      "polices",
+      "server_pool",
+      "certificates",
+      "tags",
+      "virtual_hosts"
+    ]
+  },
+  "opc_lbaas_load_balancer": {
+    "full_properties": {
+      "INTERNAL": {
+        "description": "Create an internal load balancer in a given IP network for sole consumption of other clients inside the same network.",
+        "required": false
+      },
+      "INTERNET_FACING": {
+        "description": "Create an internet-facing load balancer in a given IP network.",
+        "required": false
+      },
+      "description": {
+        "description": "A short description for the load balancer. The description must not exceed 1000 characters.",
+        "required": false
+      },
+      "enabled": {
+        "description": "Boolean flag to enable or disable the Load Balancer. Default is true (enabled).",
+        "required": false
+      },
+      "ip_network": {
+        "description": "Fully qualified three part name of the IP network to be associated with the load balancer.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the Load Balancer.",
+        "required": true
+      },
+      "parent_load_balancer": {
+        "description": "Select a parent load balancer if you want to create a dependent load balancer.",
+        "required": false
+      },
+      "permitted_clients": {
+        "description": "List of permitted client IP addresses or CIDR ranges which can connect to this load balancer on the configured Listener ports. If not set all connections are permitted.",
+        "required": false
+      },
+      "permitted_methods": {
+        "description": "List of permitted HTTP methods. e.g. GET, POST, PUT, PATCH, DELETE, HEAD or you can also create your own custom methods. Requests with methods not listed in this field will result in a 403 (unauthorized access) response.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to create the Load Balancer, e.g. uscom-central-1",
+        "required": true
+      },
+      "schemeINTERNET_FACINGINTERNAL": {
+      },
+      "tags": {
+        "description": "List of tags.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_lbaas_load_balancer.html",
+    "properties": [
+      "name",
+      "region",
+      "schemeINTERNET_FACINGINTERNAL",
+      "INTERNET_FACING",
+      "INTERNAL",
+      "description",
+      "enabled",
+      "ip_network",
+      "parent_load_balancer",
+      "permitted_clients",
+      "permitted_methods",
+      "tags"
+    ]
+  },
+  "opc_lbaas_policy": {
+    "full_properties": {
+      "load_balancer": {
+        "description": "The parent Load Balancer the Listener.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the Listener.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_lbaas_policy.html",
+    "properties": [
+      "name",
+      "load_balancer"
+    ]
+  },
+  "opc_lbaas_server_pool": {
+    "full_properties": {
+      "enabled": {
+        "description": "Boolean flag to enable or disable the Server Pool. Default is true (enabled).",
+        "required": false
+      },
+      "health_check": {
+        "description": "Enables Load Balancer health check, see Health Check Attributes",
+        "required": false
+      },
+      "load_balancer": {
+        "description": "The parent Load Balancer the Origin Server Pool.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the Server Pool.",
+        "required": true
+      },
+      "servers": {
+        "description": "List of servers in the Server Pool. To define the server in the server pool, provide IP address or DNS name of the compute instances, and port for load balancer to direct traffic to, in the format host:port",
+        "required": true
+      },
+      "tags": {
+        "description": "List of tags.",
+        "required": false
+      },
+      "vnic_set": {
+        "description": "Fully qualified three part name of a vNICSet to be associated with the server pool vNIC. Load Balancer uses this vNICSet to set the right ACLs to allow egress traffic from the load balancer.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_lbaas_server_pool.html",
+    "properties": [
+      "name",
+      "load_balancer",
+      "servers",
+      "enabled",
+      "health_check",
+      "tags",
+      "vnic_set"
+    ]
+  },
+  "opc_storage_container": {
+    "full_properties": {
+      "allowed_origins": {
+        "description": "List of origins that are allowed to make cross-origin requests.",
+        "required": false
+      },
+      "exposed_headers": {
+        "description": "List of headers exposed to the user agent (e.g. browser) in the actual request response",
+        "required": false
+      },
+      "max_age": {
+        "description": "Maximum age in seconds for the origin to hold the preflight results.",
+        "required": false
+      },
+      "metadata": {
+        "description": "Additional object metadata headers. See Container Metadata  below for more information.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the Storage Container.",
+        "required": true
+      },
+      "primary_key": {
+        "description": "The primary secret key value for temporary URLs.",
+        "required": false
+      },
+      "quota_bytes": {
+        "description": "Maximum size of the container, in bytes",
+        "required": false
+      },
+      "quota_count": {
+        "description": "Maximum object count of the container",
+        "required": false
+      },
+      "read_acls": {
+        "description": "The list of ACLs that grant read access. See Setting Container ACLs.",
+        "required": false
+      },
+      "secondary_key": {
+        "description": "The secondary secret key value for temporary URLs.",
+        "required": false
+      },
+      "write_acls": {
+        "description": "The list of ACLs that grant write access. See Setting Container ACLs.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_storage_container.html",
+    "properties": [
+      "name",
+      "read_acls",
+      "write_acls",
+      "primary_key",
+      "secondary_key",
+      "allowed_origins",
+      "exposed_headers",
+      "max_age",
+      "quota_bytes",
+      "quota_count",
+      "metadata"
+    ]
+  },
+  "opc_storage_object": {
+    "full_properties": {
+      "container": {
+        "description": "The name of Storage Container the store the object in.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the Storage Object.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/opc/r/opc_storage_object.html",
+    "properties": [
+      "name",
+      "container"
+    ]
+  }
+}

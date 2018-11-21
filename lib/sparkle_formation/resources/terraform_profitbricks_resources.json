@@ -1,0 +1,523 @@
+{
+  "profitbricks_datacenter": {
+    "full_properties": {
+      "description": {
+        "description": "[string] Description for the Virtual Data Center.",
+        "required": false
+      },
+      "location": {
+        "description": "[string] The regional location where the Virtual Data Center will be created.",
+        "required": true
+      },
+      "name": {
+        "description": "[string] The name of the Virtual Data Center.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/profitbricks/r/profitbricks_datacenter.html",
+    "properties": [
+      "name",
+      "location",
+      "description"
+    ]
+  },
+  "profitbricks_firewall": {
+    "full_properties": {
+      "datacenter_id": {
+        "description": "[string] The Virtual Data Center ID.",
+        "required": true
+      },
+      "icmp_code": {
+        "description": "[string] Defines the allowed code (from 0 to 254) if protocol ICMP is chosen.",
+        "required": false
+      },
+      "icmp_type": {
+        "description": "[string] Defines the allowed type (from 0 to 254) if the protocol ICMP is chosen.",
+        "required": false
+      },
+      "name": {
+        "description": "[string] The name of the firewall rule.",
+        "required": false
+      },
+      "nic_id": {
+        "description": "[string] The NIC ID.",
+        "required": true
+      },
+      "port_range_end": {
+        "description": "[string] Defines the end range of the allowed port (from 1 to 65534) if the protocol TCP or UDP is chosen.",
+        "required": false
+      },
+      "port_range_start": {
+        "description": "[string] Defines the start range of the allowed port (from 1 to 65534) if protocol TCP or UDP is chosen.",
+        "required": false
+      },
+      "protocol": {
+        "description": "[string] The protocol for the rule: TCP, UDP, ICMP, ANY.",
+        "required": true
+      },
+      "server_id": {
+        "description": "[string] The Server ID.",
+        "required": true
+      },
+      "source_ip": {
+        "description": "[string] Only traffic originating from the respective IPv4 address is allowed.",
+        "required": false
+      },
+      "source_mac": {
+        "description": "[string] Only traffic originating from the respective MAC address is allowed. Valid format: aa:bb:cc:dd:ee:ff.",
+        "required": false
+      },
+      "target_ip": {
+        "description": "[string] Only traffic directed to the respective IP address of the NIC is allowed.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/profitbricks/r/profitbricks_firewall.html",
+    "properties": [
+      "datacenter_id",
+      "server_id",
+      "nic_id",
+      "protocol",
+      "name",
+      "source_mac",
+      "source_ip",
+      "target_ip",
+      "port_range_start",
+      "port_range_end",
+      "icmp_type",
+      "icmp_code"
+    ]
+  },
+  "profitbricks_group": {
+    "full_properties": {
+      "access_activity_log": {
+        "description": "[Boolean] The group will be allowed to access the activity log.",
+        "required": true
+      },
+      "create_datacenter": {
+        "description": "[Boolean] The group will be allowed to create virtual data centers.",
+        "required": false
+      },
+      "create_snapshot": {
+        "description": "[Boolean] The group will be allowed to create snapshots.",
+        "required": false
+      },
+      "name": {
+        "description": "[string] A name for the group.",
+        "required": false
+      },
+      "reserve_ip": {
+        "description": "[Boolean] The group will be allowed to reserve IP addresses.",
+        "required": false
+      },
+      "user_id": {
+        "description": "[string] The ID of the specific user to add to the group.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/profitbricks/r/profitbricks_group.html",
+    "properties": [
+      "access_activity_log",
+      "create_datacenter",
+      "create_snapshot",
+      "name",
+      "reserve_ip",
+      "user_id"
+    ]
+  },
+  "profitbricks_ipblock": {
+    "full_properties": {
+      "ips": {
+        "description": "[integer] The list of IP addresses associated with this block.",
+        "required": false
+      },
+      "location": {
+        "description": "[string] The regional location for this IP Block: us/las, us/ewr, de/fra, de/fkb.",
+        "required": true
+      },
+      "size": {
+        "description": "[integer] The number of IP addresses to reserve for this block.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/profitbricks/r/profitbricks_ipblock.html",
+    "properties": [
+      "location",
+      "size",
+      "ips"
+    ]
+  },
+  "profitbricks_ipfailover": {
+    "full_properties": {
+      "datacenter_id": {
+        "description": "[string] The ID of a Virtual Data Center.",
+        "required": true
+      },
+      "ip": {
+        "description": "[string] The reserved IP address to be used in the IP failover group.",
+        "required": true
+      },
+      "lan_id": {
+        "description": "[string] The ID of a LAN.",
+        "required": true
+      },
+      "nicuuid": {
+        "description": "[string] The ID of a NIC.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/profitbricks/r/profitbricks_ipfailover.html",
+    "properties": [
+      "datacenter_id",
+      "ip",
+      "lan_id",
+      "nicuuid"
+    ]
+  },
+  "profitbricks_lan": {
+    "full_properties": {
+      "datacenter_id": {
+        "description": "[string] The ID of a Virtual Data Center.",
+        "required": true
+      },
+      "name": {
+        "description": "[string] The name of the LAN.",
+        "required": false
+      },
+      "public": {
+        "description": "[Boolean] Indicates if the LAN faces the public Internet (true) or not (false).",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/profitbricks/r/profitbricks_lan.html",
+    "properties": [
+      "datacenter_id",
+      "name",
+      "public"
+    ]
+  },
+  "profitbricks_loadbalancer": {
+    "full_properties": {
+      "datacenter_id": {
+        "description": "[string] The ID of a Virtual Data Center.",
+        "required": true
+      },
+      "dhcp": {
+        "description": "[Boolean] Indicates if the load balancer will reserve an IP using DHCP.",
+        "required": false
+      },
+      "ip": {
+        "description": "[string] IPv4 address of the load balancer.",
+        "required": false
+      },
+      "name": {
+        "description": "[string] The name of the load balancer.",
+        "required": true
+      },
+      "nic_ids": {
+        "description": "[list] A list of NIC IDs that are part of the load balancer.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/profitbricks/r/profitbricks_loadbalancer.html",
+    "properties": [
+      "name",
+      "datacenter_id",
+      "nic_ids",
+      "dhcp",
+      "ip"
+    ]
+  },
+  "profitbricks_nic": {
+    "full_properties": {
+      "datacenter_id": {
+        "description": "[string] The ID of a Virtual Data Center.",
+        "required": true
+      },
+      "dhcp": {
+        "description": "[Boolean] Indicates if the NIC should get an IP address using DHCP (true) or not (false).",
+        "required": false
+      },
+      "firewall_active": {
+        "description": "[Boolean] If this resource is set to true and is nested under a server resource firewall, with open SSH port, resource must be nested under the NIC.",
+        "required": false
+      },
+      "ip": {
+        "description": "[string] IP assigned to the NIC.",
+        "required": false
+      },
+      "ips": {
+        "description": "The IP address or addresses assigned to the NIC.",
+        "required": false
+      },
+      "lan": {
+        "description": "[integer] The LAN ID the NIC will sit on.",
+        "required": true
+      },
+      "name": {
+        "description": "[string] The name of the LAN.",
+        "required": false
+      },
+      "nat": {
+        "description": "[Boolean] Boolean value indicating if the private IP address has outbound access to the public internet.",
+        "required": false
+      },
+      "server_id": {
+        "description": "[string] The ID of a server.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/profitbricks/r/profitbricks_nic.html",
+    "properties": [
+      "datacenter_id",
+      "server_id",
+      "lan",
+      "name",
+      "dhcp",
+      "ip",
+      "firewall_active",
+      "nat",
+      "ips"
+    ]
+  },
+  "profitbricks_server": {
+    "full_properties": {
+      "availability_zone": {
+        "description": "[string] The availability zone in which the server should exist.",
+        "required": false
+      },
+      "boot_cdrom": {
+        "description": "The associated boot drive, if any.",
+        "required": false
+      },
+      "boot_image": {
+        "description": "[string] The image or snapshot UUID. May also be an image alias. It is required if licence_type is not provided.",
+        "required": false
+      },
+      "boot_volume": {
+        "description": "The associated boot volume.",
+        "required": false
+      },
+      "cores": {
+        "description": "[integer] Number of server CPU cores.",
+        "required": true
+      },
+      "cpu_family": {
+        "description": "[string] Sets the CPU type. \"AMD_OPTERON\" or \"INTEL_XEON\". Defaults to \"AMD_OPTERON\".",
+        "required": false
+      },
+      "datacenter_id": {
+        "description": "[string] The ID of a Virtual Data Center.",
+        "required": true
+      },
+      "image_password": {
+        "description": "[string] Required if sshkey_path is not provided.",
+        "required": false
+      },
+      "licence_type": {
+        "description": "[string] Sets the OS type of the server.",
+        "required": false
+      },
+      "name": {
+        "description": "[string] The name of the server.",
+        "required": true
+      },
+      "nic": {
+        "description": "See the NIC section.",
+        "required": true
+      },
+      "primary_ip": {
+        "description": "The associated IP address.",
+        "required": false
+      },
+      "primary_nic": {
+        "description": "The associated NIC.",
+        "required": false
+      },
+      "ram": {
+        "description": "[integer] The amount of memory for the server in MB.",
+        "required": true
+      },
+      "ssh_key_path": {
+        "description": "[list] List of paths to files containing a public SSH key that will be injected into ProfitBricks provided Linux images. Required for ProfitBricks Linux images. Required if image_password is not provided.",
+        "required": true
+      },
+      "volume": {
+        "description": "See the Volume section.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/profitbricks/r/profitbricks_server.html",
+    "properties": [
+      "name",
+      "datacenter_id",
+      "cores",
+      "ram",
+      "availability_zone",
+      "licence_type",
+      "cpu_family",
+      "volume",
+      "nic",
+      "boot_volume",
+      "boot_cdrom",
+      "boot_image",
+      "primary_nic",
+      "primary_ip",
+      "image_password",
+      "ssh_key_path"
+    ]
+  },
+  "profitbricks_share": {
+    "full_properties": {
+      "edit_privilege": {
+        "description": "[Boolean] The group has permission to edit privileges on this resource.",
+        "required": true
+      },
+      "group_id": {
+        "description": "[string] The ID of the specific group containing the resource to update.",
+        "required": true
+      },
+      "resource_id": {
+        "description": "[string] The ID of the specific resource to update.",
+        "required": true
+      },
+      "share_privilege": {
+        "description": "[Boolean] The group has permission to share this resource.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/profitbricks/r/profitbricks_share.html",
+    "properties": [
+      "edit_privilege",
+      "group_id",
+      "resource_id",
+      "share_privilege"
+    ]
+  },
+  "profitbricks_snapshot": {
+    "full_properties": {
+      "datacenter_id": {
+        "description": "[string] The ID of the Virtual Data Center.",
+        "required": true
+      },
+      "name": {
+        "description": "[string] The name of the snapshot.",
+        "required": true
+      },
+      "volume_id": {
+        "description": "[string] The ID of the specific volume to take the snapshot from.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/profitbricks/r/profitbricks_snapshot.html",
+    "properties": [
+      "datacenter_id",
+      "name",
+      "volume_id"
+    ]
+  },
+  "profitbricks_user": {
+    "full_properties": {
+      "administrator": {
+        "description": "[Boolean] The group has permission to edit privileges on this resource.",
+        "required": true
+      },
+      "email": {
+        "description": "[string] An e-mail address for the user.",
+        "required": true
+      },
+      "first_name": {
+        "description": "[string] A first name for the user.",
+        "required": true
+      },
+      "force_sec_auth": {
+        "description": "[Boolean] Indicates if secure (two-factor) authentication should be enabled for the user (true) or not (false).",
+        "required": true
+      },
+      "last_name": {
+        "description": "[string] A last name for the user.",
+        "required": true
+      },
+      "password": {
+        "description": "[string] A password for the user.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/profitbricks/r/profitbricks_user.html",
+    "properties": [
+      "administrator",
+      "email",
+      "first_name",
+      "force_sec_auth",
+      "last_name",
+      "password"
+    ]
+  },
+  "profitbricks_volume": {
+    "full_properties": {
+      "availability_zone": {
+        "description": "[string] The storage availability zone assigned to the volume: AUTO, ZONE_1, ZONE_2, or ZONE_3.",
+        "required": false
+      },
+      "bus": {
+        "description": "[Boolean] The bus type of the volume: VIRTIO or IDE.",
+        "required": true
+      },
+      "datacenter_id": {
+        "description": "[string] The ID of a Virtual Data Center.",
+        "required": true
+      },
+      "disk_type": {
+        "description": "[string] The volume type: HDD or SSD.",
+        "required": true
+      },
+      "image_name": {
+        "description": "[string] The image or snapshot UUID. May also be an image alias. It is required if licence_type is not provided.",
+        "required": false
+      },
+      "image_password": {
+        "description": "[string] Required if sshkey_path is not provided.",
+        "required": false
+      },
+      "licence_type": {
+        "description": "[string] Required if image_name is not provided.",
+        "required": false
+      },
+      "name": {
+        "description": "[string] The name of the volume.",
+        "required": false
+      },
+      "server_id": {
+        "description": "[string] The ID of a server.",
+        "required": true
+      },
+      "size": {
+        "description": "[integer] The size of the volume in GB.",
+        "required": true
+      },
+      "ssh_key_path": {
+        "description": "[list] List of paths to files containing a public SSH key that will be injected into ProfitBricks provided Linux images. Required for ProfitBricks Linux images. Required if image_password is not provided.",
+        "required": true
+      },
+      "sshkey": {
+        "description": "The associated public SSH key.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/profitbricks/r/profitbricks_volume.html",
+    "properties": [
+      "datacenter_id",
+      "server_id",
+      "disk_type",
+      "bus",
+      "size",
+      "ssh_key_path",
+      "sshkey",
+      "image_password",
+      "image_name",
+      "licence_type",
+      "name",
+      "availability_zone"
+    ]
+  }
+}

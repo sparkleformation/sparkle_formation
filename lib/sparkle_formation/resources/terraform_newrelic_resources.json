@@ -1,0 +1,298 @@
+{
+  "newrelic_alert_channel": {
+    "full_properties": {
+      "configuration": {
+        "description": "A map of key / value pairs with channel type specific values.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the channel.",
+        "required": true
+      },
+      "type": {
+        "description": "The type of channel.  One of: campfire, email, hipchat, opsgenie, pagerduty, slack, victorops, or webhook.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/newrelic/r/alert_channel.html",
+    "properties": [
+      "name",
+      "type",
+      "configuration"
+    ]
+  },
+  "newrelic_alert_condition": {
+    "full_properties": {
+      "condition_scope": {
+        "description": "instance or application.  This is required if you are using the JVM plugin in New Relic.",
+        "required": false
+      },
+      "entities": {
+        "description": "The instance IDS associated with this condition.",
+        "required": true
+      },
+      "gc_metric": {
+        "description": "A valid Garbage Collection metric e.g. GC/G1 Young Generation. This is required if you are using apm_jvm_metric with gc_cpu_time condition type.",
+        "required": false
+      },
+      "metric": {
+        "description": "The metric field accepts parameters based on the type set.",
+        "required": true
+      },
+      "name": {
+        "description": "The title of the condition",
+        "required": true
+      },
+      "policy_id": {
+        "description": "The ID of the policy where this condition should be used.",
+        "required": true
+      },
+      "runbook_url": {
+        "description": "Runbook URL to display in notifications.",
+        "required": false
+      },
+      "term": {
+        "description": "A list of terms for this condition. See Terms below for details.",
+        "required": true
+      },
+      "type": {
+        "description": "The type of condition. One of: apm_app_metric, apm_jvm_metric, apm_kt_metric, servers_metric, browser_metric, mobile_metric",
+        "required": true
+      },
+      "user_defined_metric": {
+        "description": "A custom metric to be evaluated.",
+        "required": false
+      },
+      "user_defined_value_function": {
+        "description": "One of: average, min, max, total, or sample_size.",
+        "required": false
+      },
+      "violation_close_timer": {
+        "description": "Automatically close instance-based violations, including JVM health metric violations, after the number of hours specified. Must be: 1, 2, 4, 8, 12 or 24.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/newrelic/r/alert_condition.html",
+    "properties": [
+      "policy_id",
+      "name",
+      "type",
+      "entities",
+      "metric",
+      "gc_metric",
+      "violation_close_timer",
+      "runbook_url",
+      "condition_scope",
+      "term",
+      "user_defined_metric",
+      "user_defined_value_function"
+    ]
+  },
+  "newrelic_alert_policy": {
+    "full_properties": {
+      "incident_preference": {
+        "description": "The rollup strategy for the policy.  Options include: PER_POLICY, PER_CONDITION, or PER_CONDITION_AND_TARGET.  The default is PER_POLICY.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the policy.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/newrelic/r/alert_policy.html",
+    "properties": [
+      "name",
+      "incident_preference"
+    ]
+  },
+  "newrelic_alert_policy_channel": {
+    "full_properties": {
+      "channel_id": {
+        "description": "The ID of the channel.",
+        "required": true
+      },
+      "policy_id": {
+        "description": "The ID of the policy.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/newrelic/r/alert_policy_channel.html",
+    "properties": [
+      "policy_id",
+      "channel_id"
+    ]
+  },
+  "newrelic_dashboard": {
+    "full_properties": {
+      "editable": {
+        "description": "Who can edit the dashboard in an account. Must be read_only, editable_by_owner, editable_by_all, or all. Defaults to editable_by_all.",
+        "required": false
+      },
+      "icon": {
+        "description": "The icon for the dashboard.  Defaults to bar-chart.",
+        "required": false
+      },
+      "title": {
+        "description": "The title of the dashboard.",
+        "required": true
+      },
+      "visibility": {
+        "description": "Who can see the dashboard in an account. Must be owner or all. Defaults to all.",
+        "required": false
+      },
+      "widget": {
+        "description": "A widget that describes a visualization. See Widgets below for details.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/newrelic/r/dashboard.html",
+    "properties": [
+      "title",
+      "icon",
+      "visibility",
+      "widget",
+      "editable"
+    ]
+  },
+  "newrelic_infra_alert_condition": {
+    "full_properties": {
+      "comparison": {
+        "description": "The operator used to evaluate the threshold value; \"above\", \"below\", \"equal\".",
+        "required": true
+      },
+      "critical": {
+        "description": "Identifies the critical threshold parameters for triggering an alert notification. See Thresholds below for details.",
+        "required": true
+      },
+      "enabled": {
+        "description": "Set whether to enable the alert condition. Defaults to true.",
+        "required": false
+      },
+      "event": {
+        "description": "The metric event; for example, system metrics, process metrics, storage metrics, or network metrics.",
+        "required": true
+      },
+      "integration_provider": {
+        "description": "For alerts on integrations, use this instead of event. ",
+        "required": false
+      },
+      "name": {
+        "description": "The Infrastructure alert condition's name.",
+        "required": true
+      },
+      "policy_id": {
+        "description": "The ID of the alert policy where this condition should be used.",
+        "required": true
+      },
+      "process_where": {
+        "description": "Any filters applied to processes; for example: \"commandName = 'java'\".",
+        "required": false
+      },
+      "select": {
+        "description": "The attribute name to identify the type of metric condition; for example, \"network\", \"process\", \"system\", or \"storage\".",
+        "required": true
+      },
+      "type": {
+        "description": "The type of Infrastructure alert condition: \"infra_process_running\", \"infra_metric\", or \"infra_host_not_reporting\".",
+        "required": true
+      },
+      "warning": {
+        "description": "Identifies the warning threshold parameters. See Thresholds below for details.",
+        "required": false
+      },
+      "where": {
+        "description": "Infrastructure host filter for the alert condition.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/newrelic/r/infra_alert_condition.html",
+    "properties": [
+      "policy_id",
+      "name",
+      "enabled",
+      "type",
+      "event",
+      "select",
+      "comparison",
+      "critical",
+      "warning",
+      "where",
+      "process_where",
+      "integration_provider"
+    ]
+  },
+  "newrelic_nrql_alert_condition": {
+    "full_properties": {
+      "enabled": {
+        "description": "Set whether to enable the alert condition. Defaults to true.",
+        "required": false
+      },
+      "name": {
+        "description": "The title of the condition",
+        "required": true
+      },
+      "nrql": {
+        "description": "A NRQL query. See NRQL below for details.",
+        "required": true
+      },
+      "policy_id": {
+        "description": "The ID of the policy where this condition should be used.",
+        "required": true
+      },
+      "runbook_url": {
+        "description": "Runbook URL to display in notifications.",
+        "required": false
+      },
+      "term": {
+        "description": "A list of terms for this condition. See Terms below for details.",
+        "required": true
+      },
+      "value_function": {
+        "description": "Possible values are single_value, sum.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/newrelic/r/nrql_alert_condition.html",
+    "properties": [
+      "policy_id",
+      "name",
+      "runbook_url",
+      "enabled",
+      "term",
+      "nrql",
+      "value_function"
+    ]
+  },
+  "newrelic_synthetics_alert_condition": {
+    "full_properties": {
+      "enabled": {
+        "description": "Set whether to enable the alert condition. Defaults to true.",
+        "required": false
+      },
+      "monitor_id": {
+        "description": "The ID of the Synthetics monitor to be referenced in the alert condition. ",
+        "required": true
+      },
+      "name": {
+        "description": "The title of this condition.",
+        "required": true
+      },
+      "policy_id": {
+        "description": "The ID of the policy where this condition should be used.",
+        "required": true
+      },
+      "runbook_url": {
+        "description": "Runbook URL to display in notifications.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/newrelic/r/synthetics_alert_condition.html",
+    "properties": [
+      "policy_id",
+      "name",
+      "monitor_id",
+      "runbook_url",
+      "enabled"
+    ]
+  }
+}

@@ -1,0 +1,252 @@
+{
+  "linode_domain": {
+    "full_properties": {
+      "domain": {
+        "description": "The domain this Domain represents. These must be unique in our system; you cannot have two Domains representing the same domain.",
+        "required": true
+      },
+      "master_ips": {
+        "description": "The IP addresses representing the master DNS for this Domain.",
+        "required": false
+      },
+      "soa_email": {
+        "description": "Start of Authority email address. This is required for master Domains.",
+        "required": true
+      },
+      "type": {
+        "description": "If this Domain represents the authoritative source of information for the domain it describes, or if it is a read-only copy of a master (also called a slave).",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/linode/r/domain.html",
+    "properties": [
+      "domain",
+      "type",
+      "soa_email",
+      "master_ips"
+    ]
+  },
+  "linode_image": {
+    "full_properties": {
+      "disk_id": {
+        "description": "The ID of the Linode Disk that this Image will be created from.",
+        "required": true
+      },
+      "label": {
+        "description": "A short description of the Image. Labels cannot contain special characters.",
+        "required": true
+      },
+      "linode_id": {
+        "description": "The ID of the Linode that this Image will be created from.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/linode/r/image.html",
+    "properties": [
+      "label",
+      "disk_id",
+      "linode_id"
+    ]
+  },
+  "linode_instance": {
+    "full_properties": {
+      "alerts.0.cpu": {
+        "description": "The percentage of CPU usage required to trigger an alert. If the average CPU usage over two hours exceeds this value, we'll send you an alert. If this is set to 0, the alert is disabled.",
+        "required": false
+      },
+      "alerts.0.io": {
+        "description": "The amount of disk IO operation per second required to trigger an alert. If the average disk IO over two hours exceeds this value, we'll send you an alert. If set to 0, this alert is disabled.",
+        "required": false
+      },
+      "alerts.0.network_in": {
+        "description": "The amount of incoming traffic, in Mbit/s, required to trigger an alert. If the average incoming traffic over two hours exceeds this value, we'll send you an alert. If this is set to 0 (zero), the alert is disabled.",
+        "required": false
+      },
+      "alerts.0.network_out": {
+        "description": "The amount of outbound traffic, in Mbit/s, required to trigger an alert. If the average outbound traffic over two hours exceeds this value, we'll send you an alert. If this is set to 0 (zero), the alert is disabled.",
+        "required": false
+      },
+      "alerts.0.transfer_quota": {
+        "description": "The percentage of network transfer that may be used before an alert is triggered. When this value is exceeded, we'll alert you. If this is set to 0 (zero), the alert is disabled.",
+        "required": false
+      },
+      "backups_enabled": {
+        "description": "If this field is set to true, the created Linode will automatically be enrolled in the Linode Backup service. This will incur an additional charge. The cost for the Backup service is dependent on the Type of Linode deployed.",
+        "required": false
+      },
+      "group": {
+        "description": "The display group of the Linode instance.",
+        "required": false
+      },
+      "label": {
+        "description": "The Linode's label is for display purposes only. If no label is provided for a Linode, a default will be assigned.",
+        "required": false
+      },
+      "private_ip": {
+        "description": "If true, the created Linode will have private networking enabled, allowing use of the 192.168.128.0/17 network within the Linode's region. It can be enabled on an existing Linode but it can't be disabled.",
+        "required": false
+      },
+      "region": {
+        "description": "This is the location where the Linode is deployed. Examples are \"us-east\", \"us-west\", \"ap-south\", etc.  Changing region forces the creation of a new Linode Instance..",
+        "required": true
+      },
+      "tags": {
+        "description": "A list of tags applied to this object. Tags are for organizational purposes only.",
+        "required": false
+      },
+      "type": {
+        "description": "The Linode type defines the pricing, CPU, disk, and RAM specs of the instance.  Examples are \"g6-nanode-1\", \"g6-standard-2\", \"g6-highmem-16\", etc.",
+        "required": true
+      },
+      "watchdog_enabled": {
+        "description": "The watchdog, named Lassie, is a Shutdown Watchdog that monitors your Linode and will reboot it if it powers off unexpectedly. It works by issuing a boot job when your Linode powers off without a shutdown job being responsible. To prevent a loop, Lassie will give up if there have been more than 5 boot jobs issued within 15 minutes.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/linode/r/instance.html",
+    "properties": [
+      "region",
+      "type",
+      "label",
+      "group",
+      "tags",
+      "private_ip",
+      "alerts.0.cpu",
+      "alerts.0.network_in",
+      "alerts.0.network_out",
+      "alerts.0.transfer_quota",
+      "alerts.0.io",
+      "backups_enabled",
+      "watchdog_enabled"
+    ]
+  },
+  "linode_nodebalancer": {
+    "full_properties": {
+      "region": {
+        "description": "The region where this NodeBalancer will be deployed.  Examples are \"us-east\", \"us-west\", \"ap-south\", etc.  Changing region forces the creation of a new Linode NodeBalancer..",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/linode/r/nodebalancer.html",
+    "properties": [
+      "region"
+    ]
+  },
+  "linode_nodebalancer_config": {
+    "full_properties": {
+      "nodebalancer_id": {
+        "description": "The ID of the NodeBalancer to access.",
+        "required": true
+      },
+      "region": {
+        "description": "The region where this nodebalancer_config will be deployed.  Examples are \"us-east\", \"us-west\", \"ap-south\", etc.  Changing region forces the creation of a new Linode NodeBalancer Config..",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/linode/r/nodebalancer_config.html",
+    "properties": [
+      "nodebalancer_id",
+      "region"
+    ]
+  },
+  "linode_nodebalancer_node": {
+    "full_properties": {
+      "address": {
+        "description": "The private IP Address where this backend can be reached. This must be a private IP address.",
+        "required": true
+      },
+      "label": {
+        "description": "The label of the Linode NodeBalancer Node. This is for display purposes only.",
+        "required": true
+      },
+      "region": {
+        "description": "The region where this nodebalancer_node will be deployed.  Examples are \"us-east\", \"us-west\", \"ap-south\", etc.  Changing region forces the creation of a new Linode NodeBalancer Node..",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/linode/r/nodebalancer_node.html",
+    "properties": [
+      "label",
+      "region",
+      "address"
+    ]
+  },
+  "linode_sshkey": {
+    "full_properties": {
+      "label": {
+        "description": "A label for the SSH Key.",
+        "required": false
+      },
+      "ssh_key": {
+        "description": "The public SSH Key, which is used to authenticate to the root user of the Linodes you deploy.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/linode/r/sshkey.html",
+    "properties": [
+      "label",
+      "ssh_key"
+    ]
+  },
+  "linode_stackscript": {
+    "full_properties": {
+      "description": {
+        "description": "A description for the StackScript.",
+        "required": true
+      },
+      "label": {
+        "description": "The StackScript's label is for display purposes only.",
+        "required": true
+      },
+      "script": {
+        "description": "The script to execute when provisioning a new Linode with this StackScript.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/linode/r/stackscript.html",
+    "properties": [
+      "label",
+      "script",
+      "description"
+    ]
+  },
+  "linode_token": {
+    "full_properties": {
+      "expiry": {
+        "description": "When this token will expire. Personal Access Tokens cannot be renewed, so after this time the token will be completely unusable and a new token will need to be generated. Tokens may be created with 'null' as their expiry and will never expire unless revoked.",
+        "required": false
+      },
+      "label": {
+        "description": "A label for the Token.",
+        "required": false
+      },
+      "scopes": {
+        "description": "The scopes this token was created with. These define what parts of the Account the token can be used to access. Many command-line tools, such as the Linode CLI, require tokens with access to *. Tokens with more restrictive scopes are generally more secure.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/linode/r/token.html",
+    "properties": [
+      "label",
+      "scopes",
+      "expiry"
+    ]
+  },
+  "linode_volume": {
+    "full_properties": {
+      "label": {
+        "description": "The label of the Linode Volume",
+        "required": true
+      },
+      "region": {
+        "description": "The region where this volume will be deployed.  Examples are \"us-east\", \"us-west\", \"ap-south\", etc.  Changing region forces the creation of a new Linode Volume..",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/linode/r/volume.html",
+    "properties": [
+      "label",
+      "region"
+    ]
+  }
+}

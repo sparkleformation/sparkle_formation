@@ -1,0 +1,449 @@
+{
+  "github_branch_protection": {
+    "full_properties": {
+      "branch": {
+        "description": "The Git branch to protect.",
+        "required": true
+      },
+      "enforce_admins": {
+        "description": "Boolean, setting this to true enforces status checks for repository administrators.",
+        "required": false
+      },
+      "repository": {
+        "description": "The GitHub repository name.",
+        "required": true
+      },
+      "required_pull_request_reviews": {
+        "description": "Enforce restrictions for pull request reviews. See Required Pull Request Reviews below for details.",
+        "required": false
+      },
+      "required_status_checks": {
+        "description": "Enforce restrictions for required status checks. See Required Status Checks below for details.",
+        "required": false
+      },
+      "restrictions": {
+        "description": "Enforce restrictions for the users and teams that may push to the branch. See Restrictions below for details.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/github/r/branch_protection.html",
+    "properties": [
+      "repository",
+      "branch",
+      "enforce_admins",
+      "required_status_checks",
+      "required_pull_request_reviews",
+      "restrictions"
+    ]
+  },
+  "github_issue_label": {
+    "full_properties": {
+      "color": {
+        "description": "A 6 character hex code, without the leading #, identifying the color of the label.",
+        "required": true
+      },
+      "description": {
+        "description": "A short description of the label.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the label.",
+        "required": true
+      },
+      "repository": {
+        "description": "The GitHub repository",
+        "required": true
+      },
+      "url": {
+        "description": "The URL to the issue label",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/github/r/issue_label.html",
+    "properties": [
+      "repository",
+      "name",
+      "color",
+      "description",
+      "url"
+    ]
+  },
+  "github_membership": {
+    "full_properties": {
+      "role": {
+        "description": "The role of the user within the organization.",
+        "required": false
+      },
+      "username": {
+        "description": "The user to add to the organization.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/github/r/membership.html",
+    "properties": [
+      "username",
+      "role"
+    ]
+  },
+  "github_organization_project": {
+    "full_properties": {
+      "body": {
+        "description": "The body of the project.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the project.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/github/r/organization_project.html",
+    "properties": [
+      "name",
+      "body"
+    ]
+  },
+  "github_organization_webhook": {
+    "full_properties": {
+      "active": {
+        "description": "Indicate of the webhook should receive events. Defaults to true.",
+        "required": false
+      },
+      "configuration": {
+        "description": "key/value pair of configuration for this webhook. Available keys are url, content_type, secret and insecure_ssl.",
+        "required": true
+      },
+      "events": {
+        "description": "A list of events which should trigger the webhook. See a list of available events",
+        "required": true
+      },
+      "name": {
+        "description": "The type of the webhook. See a list of available hooks.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/github/r/organization_webhook.html",
+    "properties": [
+      "name",
+      "events",
+      "configuration",
+      "active"
+    ]
+  },
+  "github_project_column": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the column.",
+        "required": true
+      },
+      "project_id": {
+        "description": "The id of an existing project that the column will be created in.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/github/r/project_column.html",
+    "properties": [
+      "project_id",
+      "name"
+    ]
+  },
+  "github_repository": {
+    "full_properties": {
+      "allow_merge_commit": {
+        "description": "Set to false to disable merge commits on the repository.",
+        "required": false
+      },
+      "allow_rebase_merge": {
+        "description": "Set to false to disable rebase merges on the repository.",
+        "required": false
+      },
+      "allow_squash_merge": {
+        "description": "Set to false to disable squash merges on the repository.",
+        "required": false
+      },
+      "archived": {
+        "description": "Specifies if the repository should be archived. Defaults to false.",
+        "required": false
+      },
+      "auto_init": {
+        "description": "Meaningful only during create; set to true to",
+        "required": false
+      },
+      "default_branch": {
+        "description": "The name of the default branch of the repository. NOTE: This can only be set after a repository has already been created,",
+        "required": false
+      },
+      "description": {
+        "description": "A description of the repository.",
+        "required": false
+      },
+      "gitignore_template": {
+        "description": "Meaningful only during create, will be ignored after repository creation. Use the name of the template without the extension. For example, \"Haskell\".",
+        "required": false
+      },
+      "has_downloads": {
+        "description": "Set to true to enable the (deprecated)",
+        "required": false
+      },
+      "has_issues": {
+        "description": "Set to true to enable the GitHub Issues features",
+        "required": false
+      },
+      "has_projects": {
+        "description": "Set to true to enable the GitHub Projects features on the repository. Per the github documentation when in an organization that has disabled repository projects it will default to false and will otherwise default to true. If you specify true when it has been disabled it will return an error.",
+        "required": false
+      },
+      "has_wiki": {
+        "description": "Set to true to enable the GitHub Wiki features on",
+        "required": false
+      },
+      "homepage_url": {
+        "description": "URL of a page describing the project.",
+        "required": false
+      },
+      "license_template": {
+        "description": "Meaningful only during create, will be ignored after repository creation. Use the name of the template without the extension. For example, \"mit\" or \"mpl-2.0\".",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the repository.",
+        "required": true
+      },
+      "private": {
+        "description": "Set to true to create a private repository.",
+        "required": false
+      },
+      "topics": {
+        "description": "The list of topics of the repository.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/github/r/repository.html",
+    "properties": [
+      "name",
+      "description",
+      "homepage_url",
+      "private",
+      "has_issues",
+      "has_projects",
+      "has_wiki",
+      "allow_merge_commit",
+      "allow_squash_merge",
+      "allow_rebase_merge",
+      "has_downloads",
+      "auto_init",
+      "gitignore_template",
+      "license_template",
+      "default_branch",
+      "archived",
+      "topics"
+    ]
+  },
+  "github_repository_collaborator": {
+    "full_properties": {
+      "permission": {
+        "description": "The permission of the outside collaborator for the repository.",
+        "required": false
+      },
+      "repository": {
+        "description": "The GitHub repository",
+        "required": true
+      },
+      "username": {
+        "description": "The user to add to the repository as a collaborator.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/github/r/repository_collaborator.html",
+    "properties": [
+      "repository",
+      "username",
+      "permission"
+    ]
+  },
+  "github_repository_deploy_key": {
+    "full_properties": {
+      "key": {
+        "description": "A ssh key.",
+        "required": true
+      },
+      "read_only": {
+        "description": "A boolean qualifying the key to be either read only or read/write.",
+        "required": true
+      },
+      "repository": {
+        "description": "Name of the GitHub repository.",
+        "required": true
+      },
+      "title": {
+        "description": "A title.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/github/r/repository_deploy_key.html",
+    "properties": [
+      "key",
+      "read_only",
+      "repository",
+      "title"
+    ]
+  },
+  "github_repository_project": {
+    "full_properties": {
+      "body": {
+        "description": "The body of the project.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the project.",
+        "required": true
+      },
+      "repository": {
+        "description": "The repository of the project.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/github/r/repository_project.html",
+    "properties": [
+      "name",
+      "repository",
+      "body"
+    ]
+  },
+  "github_repository_webhook": {
+    "full_properties": {
+      "active": {
+        "description": "Indicate of the webhook should receive events. Defaults to true.",
+        "required": false
+      },
+      "configuration": {
+        "description": "key/value pair of configuration for this webhook. Available keys are url, content_type, secret and insecure_ssl.",
+        "required": true
+      },
+      "events": {
+        "description": "A list of events which should trigger the webhook. See a list of available events",
+        "required": true
+      },
+      "name": {
+        "description": "The type of the webhook. See a list of available hooks.",
+        "required": true
+      },
+      "repository": {
+        "description": "The repository of the webhook.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/github/r/repository_webhook.html",
+    "properties": [
+      "name",
+      "repository",
+      "events",
+      "configuration",
+      "active"
+    ]
+  },
+  "github_team": {
+    "full_properties": {
+      "description": {
+        "description": "A description of the team.",
+        "required": false
+      },
+      "ldap_dn": {
+        "description": "The LDAP Distinguished Name of the group where membership will be synchronized. Only available in GitHub Enterprise.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the team.",
+        "required": true
+      },
+      "parent_team_id": {
+        "description": "The ID of the parent team, if this is a nested team.",
+        "required": false
+      },
+      "privacy": {
+        "description": "The level of privacy for the team. Must be one of secret or closed.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/github/r/team.html",
+    "properties": [
+      "name",
+      "description",
+      "privacy",
+      "parent_team_id",
+      "ldap_dn"
+    ]
+  },
+  "github_team_membership": {
+    "full_properties": {
+      "role": {
+        "description": "The role of the user within the team.",
+        "required": false
+      },
+      "team_id": {
+        "description": "The GitHub team id",
+        "required": true
+      },
+      "username": {
+        "description": "The user to add to the team.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/github/r/team_membership.html",
+    "properties": [
+      "team_id",
+      "username",
+      "role"
+    ]
+  },
+  "github_team_repository": {
+    "full_properties": {
+      "permission": {
+        "description": "The permissions of team members regarding the repository.",
+        "required": false
+      },
+      "repository": {
+        "description": "The repository to add to the team.",
+        "required": true
+      },
+      "team_id": {
+        "description": "The GitHub team id",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/github/r/team_repository.html",
+    "properties": [
+      "team_id",
+      "repository",
+      "permission"
+    ]
+  },
+  "github_user_gpg_key": {
+    "full_properties": {
+      "armored_public_key": {
+        "description": "Your pulic GPG key, generated in ASCII-armored format.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/github/r/user_gpg_key.html",
+    "properties": [
+      "armored_public_key"
+    ]
+  },
+  "github_user_ssh_key": {
+    "full_properties": {
+      "key": {
+        "description": "The public SSH key to add to your GitHub account.",
+        "required": true
+      },
+      "title": {
+        "description": "A descriptive name for the new key. e.g. Personal MacBook Air",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/github/r/user_ssh_key.html",
+    "properties": [
+      "title",
+      "key"
+    ]
+  }
+}

@@ -1,0 +1,796 @@
+{
+  "rightscale_credential": {
+    "full_properties": {
+      "description": {
+        "description": "Description of the credential.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the credential.",
+        "required": true
+      },
+      "value": {
+        "description": "Value of the credential.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rightscale/r/cm_credential.html",
+    "properties": [
+      "name",
+      "value",
+      "description"
+    ]
+  },
+  "rightscale_cwf_process": {
+    "full_properties": {
+      "parameters": {
+        "description": "Parameters for the RCL function. It consists of an array of values corresponding to the values being passed to the function defined in the \"source\" field in order of declaration. The values are defined as string maps with the \"kind\" and \"value\" keys. \"kind\" contains the type of the value being passed, could be one of \"array\", \"boolean\", \"collection\", \"datetime\", \"declaration\", \"null\", \"number\", \"object\", \"string\". The \"value\" key contains the value",
+        "required": false
+      },
+      "source": {
+        "description": "Source code to be executed, written in RCL (RightScale CloudWorkFlow Language). Several functions can be defined but the entry function should be called main. Example:",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rightscale/r/cwf_process.html",
+    "properties": [
+      "source",
+      "parameters"
+    ]
+  },
+  "rightscale_deployment": {
+    "full_properties": {
+      "description": {
+        "description": "Deployment description.",
+        "required": false
+      },
+      "locked": {
+        "description": "Set to true to lock the deployment.",
+        "required": false
+      },
+      "name": {
+        "description": "Deployment name.",
+        "required": true
+      },
+      "resource_group_href": {
+        "description": "Href of the Windows Azure Resource Group attached to the deployment.",
+        "required": false
+      },
+      "server_tag_scope": {
+        "description": "Routing scope for tags for servers in the deployment.  Options are 'account' or 'deployment,' defaults to 'deployment.'",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/rightscale/r/cm_deployment.html",
+    "properties": [
+      "name",
+      "description",
+      "resource_group_href",
+      "locked",
+      "server_tag_scope"
+    ]
+  },
+  "rightscale_instance": {
+    "full_properties": {
+      "admin_username": {
+        "description": "The user that will be granted administrative privileges. Supported by AzureRM cloud only.",
+        "required": false
+      },
+      "associate_public_ip_address": {
+        "description": "Indicates if the instance will get a Public IP address.",
+        "required": false
+      },
+      "automatic_instance_store_mapping": {
+        "description": "A flag indicating whether instance store mapping should be enabled.  Only available on clouds supporting automatic instance store mapping.",
+        "required": false
+      },
+      "availability_set": {
+        "description": "Availability set for raw instance. Supported by Azure v2 cloud only.",
+        "required": false
+      },
+      "cloud_href": {
+        "description": "The cloud_href the instance belongs to.",
+        "required": true
+      },
+      "cloud_specific_attributesadmin_usernameautomatic_instance_store_mappingavailability_setcreate_boot_volumecreate_default_port_forwarding_rulesdelete_boot_volumedisk_gbebs_optimizediam_instance_profilekeep_alive_idlocal_ssd_countlocal_ssd_interfacemax_spot_pricememory_mbmetadata\"num_coresplacement_tenancypreemptiblepricing_typeroot_volume_performanceroot_volume_sizeroot_volume_type_uidservice_account": {
+      },
+      "create_boot_volume": {
+        "description": "If enabled, the instance will launch into volume storage. Otherwise, it will boot to local storage.  Only available on clouds supporting this option.",
+        "required": false
+      },
+      "create_default_port_forwarding_rules": {
+        "description": "Automatically create default port forwarding rules (enabled by default). Supported by Azure cloud only.",
+        "required": false
+      },
+      "datacenter_href": {
+        "description": "The href of the datacenter that holds the instance (e.g. /api/clouds/6/datacenters/6IHONC8ANOUHI).",
+        "required": false
+      },
+      "delete_boot_volume": {
+        "description": "If enabled, the associated volume will be deleted when the instance is terminated.  Only available on clouds supporting this option.",
+        "required": false
+      },
+      "deployment_href": {
+        "description": "The href of the deployment that contains the instance (e.g. /api/deployments/594684003).",
+        "required": false
+      },
+      "disk_gb": {
+        "description": "The size of root disk. Supported by UCA cloud only.",
+        "required": false
+      },
+      "ebs_optimized": {
+        "description": "Whether the instance is able to connect to IOPS-enabled volumes.  AWS clouds only.",
+        "required": false
+      },
+      "iam_instance_profile": {
+        "description": "The name or ARN of the IAM Instance Profile (IIP) to associate with the instance. AWS clouds only.",
+        "required": false
+      },
+      "image_href": {
+        "description": "The href of the instance image.",
+        "required": true
+      },
+      "inputs": {
+        "description": "Inputs associated with an instance when incarnated from a server or server_array.",
+        "required": false
+      },
+      "instance_type_href": {
+        "description": "The href of the instance type.",
+        "required": true
+      },
+      "ip_forwarding_enabled": {
+        "description": "Allows this Instance to send and receive network traffic when the source and destination IP addresses do not match the IP address of this Instance.",
+        "required": false
+      },
+      "keep_alive_id": {
+        "description": "The id of keep alive. Supported by UCA cloud only.",
+        "required": false
+      },
+      "kernel_image_href": {
+        "description": "The href of the instance kernel image.",
+        "required": false
+      },
+      "local_ssd_count": {
+        "description": "Additional local SSDs. Supported by GCE cloud only.",
+        "required": false
+      },
+      "local_ssd_interface": {
+        "description": "The type of SSD(s) to be created. Supported by GCE cloud only.",
+        "required": false
+      },
+      "locked": {
+        "description": "Whether instance is locked, a locked instance cannot be terminated or deleted.",
+        "required": false
+      },
+      "max_spot_price": {
+        "description": "Specify the max spot price you will pay for. Required when 'pricing_type' is 'spot'. Only applies to clouds which support spot-pricing and when 'spot' is chosen as the 'pricing_type'. Should be a Float value >= 0.001, eg: 0.095, 0.123, 1.23, etc... AWS clouds only.",
+        "required": false
+      },
+      "memory_mb": {
+        "description": "The size of instance memory. Supported by UCA cloud only.",
+        "required": false
+      },
+      "metadata\"": {
+        "description": "Extra data used for configuration, in query string format. AWS clouds only.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the instance.",
+        "required": true
+      },
+      "num_cores": {
+        "description": "The number of instance cores. Supported by UCA cloud only.",
+        "required": false
+      },
+      "placement_group_href": {
+        "description": "The href of the placement_group that contains the instance (e.g. /api/placement_groups/512SV3FUJA7OO).",
+        "required": false
+      },
+      "placement_tenancy": {
+        "description": "The tenancy of the server you want to launch. A server with a tenancy of dedicated runs on single-tenant hardware and can only be launched into a VPC.  AWS clouds only.",
+        "required": false
+      },
+      "preemptible": {
+        "description": "Launch a preemptible instance. A preemptible instance costs much less, but lasts only 24 hours. It can be terminated sooner due to system demands. Supported by GCE cloud only.",
+        "required": false
+      },
+      "pricing_type": {
+        "description": "Specify whether or not you want to utilize 'fixed' (on-demand) or 'spot' pricing. Defaults to 'fixed' and only applies to clouds which support spot instances. Can only be set on when creating a new Instance, Server, or ServerArray, or when updating a Server or ServerArray's next_instance.  AWS clouds only.",
+        "required": false
+      },
+      "private_ip_address": {
+        "description": "The private ip address of this instance.",
+        "required": false
+      },
+      "ramdisk_image_href": {
+        "description": "The href of the instance ramdisk image.",
+        "required": false
+      },
+      "root_volume_performance": {
+        "description": "The number of IOPS (I/O Operations Per Second) this root volume should support. Only available on clouds supporting performance provisioning.",
+        "required": false
+      },
+      "root_volume_size": {
+        "description": "The size for root disk. Only available on clouds supporting dynamic resizing of root volume size.",
+        "required": false
+      },
+      "root_volume_type_uid": {
+        "description": "The type of root volume for instance. Only available on clouds supporting root volume type.",
+        "required": false
+      },
+      "security_group_hrefs": {
+        "description": "The href of the instance security groups.",
+        "required": false
+      },
+      "server_template_href": {
+        "description": "The href of the instance server template resource.",
+        "required": false
+      },
+      "service_account": {
+        "description": "Email of service account for instance. Scope will default to cloud-platform. Supported by GCE cloud only.",
+        "required": false
+      },
+      "ssh_key_href": {
+        "description": "The href of the SSH key to use.",
+        "required": false
+      },
+      "subnet_hrefs": {
+        "description": "The hrefs of the instance subnet.",
+        "required": false
+      },
+      "user_data": {
+        "description": "User data that RightScale automatically passes to your instance at boot time.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/rightscale/r/cm_instance.html",
+    "properties": [
+      "name",
+      "cloud_href",
+      "image_href",
+      "instance_type_href",
+      "server_template_href",
+      "inputs",
+      "associate_public_ip_address",
+      "datacenter_href",
+      "deployment_href",
+      "ip_forwarding_enabled",
+      "private_ip_address",
+      "kernel_image_href",
+      "ramdisk_image_href",
+      "security_group_hrefs",
+      "placement_group_href",
+      "ssh_key_href",
+      "subnet_hrefs",
+      "user_data",
+      "locked",
+      "cloud_specific_attributesadmin_usernameautomatic_instance_store_mappingavailability_setcreate_boot_volumecreate_default_port_forwarding_rulesdelete_boot_volumedisk_gbebs_optimizediam_instance_profilekeep_alive_idlocal_ssd_countlocal_ssd_interfacemax_spot_pricememory_mbmetadata\"num_coresplacement_tenancypreemptiblepricing_typeroot_volume_performanceroot_volume_sizeroot_volume_type_uidservice_account",
+      "admin_username",
+      "automatic_instance_store_mapping",
+      "availability_set",
+      "create_boot_volume",
+      "create_default_port_forwarding_rules",
+      "delete_boot_volume",
+      "disk_gb",
+      "ebs_optimized",
+      "iam_instance_profile",
+      "keep_alive_id",
+      "local_ssd_count",
+      "local_ssd_interface",
+      "max_spot_price",
+      "memory_mb",
+      "metadata\"",
+      "num_cores",
+      "placement_tenancy",
+      "preemptible",
+      "pricing_type",
+      "root_volume_performance",
+      "root_volume_size",
+      "root_volume_type_uid",
+      "service_account"
+    ]
+  },
+  "rightscale_network": {
+    "full_properties": {
+      "cidr_block": {
+        "description": "Cloud-specific.  Some clouds require this field, others do not.",
+        "required": false
+      },
+      "cloud_href": {
+        "description": "Cloud you want to create the network in.",
+        "required": true
+      },
+      "deployment_href": {
+        "description": "Href of the deployment that owns the network.  If you wish to use a deployment object as top level ownership construct, perhaps allocating the new network to a single deployment, then provide this href.",
+        "required": false
+      },
+      "description": {
+        "description": "Network description.",
+        "required": false
+      },
+      "instance_tenancy": {
+        "description": "Launch policy for AWS instances in the network. Specify 'dedicated' to force all instances to be launched as 'dedicated'.  Defaults to 'default.'",
+        "required": false
+      },
+      "name": {
+        "description": "Network name.",
+        "required": false
+      },
+      "route_table_href": {
+        "description": "Sets the default route table for this network, useful if you create the route table with a different resource.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/rightscale/r/cm_network.html",
+    "properties": [
+      "cloud_href",
+      "cidr_block",
+      "name",
+      "description",
+      "instance_tenancy",
+      "route_table_href",
+      "deployment_href"
+    ]
+  },
+  "rightscale_network_gateway": {
+    "full_properties": {
+      "cloud_href": {
+        "description": "Cloud you want to create the network gateway in.",
+        "required": true
+      },
+      "description": {
+        "description": "Network gateway description.",
+        "required": false
+      },
+      "name": {
+        "description": "Network gateway name.",
+        "required": true
+      },
+      "network_href": {
+        "description": "Href of network you want to attach the network gateway to.",
+        "required": false
+      },
+      "type": {
+        "description": "Type of network gateway.  Options are \"internet\" or \"vpc\".",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rightscale/r/cm_network_gateway.html",
+    "properties": [
+      "cloud_href",
+      "type",
+      "name",
+      "description",
+      "network_href"
+    ]
+  },
+  "rightscale_route": {
+    "full_properties": {
+      "description": {
+        "description": "Route description.",
+        "required": false
+      },
+      "destination_cidr_block": {
+        "description": "Destination network in CIDR nodation.",
+        "required": true
+      },
+      "next_hop_href": {
+        "description": "The href of the Route's next hop. Required if 'next_hop_type' is 'instance', 'network_interface', or 'network_gateway'.",
+        "required": false
+      },
+      "next_hop_ip": {
+        "description": "The IP Address of the Route's next hop. Required if 'next_hop_type' is 'ip_string'.",
+        "required": false
+      },
+      "next_hop_type": {
+        "description": "The route next hop type.  Options are 'instance', 'network_interface', 'network_gateway', 'ip_string', and 'url'.",
+        "required": true
+      },
+      "next_hop_url": {
+        "description": "The URL of the Route's next hop. Required if 'next_hop_type' is 'url'.",
+        "required": false
+      },
+      "route_table_href": {
+        "description": "Href of route table in which to create new route.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rightscale/r/cm_route.html",
+    "properties": [
+      "route_table_href",
+      "destination_cidr_block",
+      "next_hop_type",
+      "next_hop_href",
+      "next_hop_ip",
+      "next_hop_url",
+      "description"
+    ]
+  },
+  "rightscale_route_table": {
+    "full_properties": {
+      "cloud_href": {
+        "description": "Href of the cloud you want to create the route table in.",
+        "required": true
+      },
+      "description": {
+        "description": "Route table description.",
+        "required": false
+      },
+      "name": {
+        "description": "Route table name.",
+        "required": true
+      },
+      "network_href": {
+        "description": "Href of the network that owns the route table.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rightscale/r/cm_route_table.html",
+    "properties": [
+      "cloud_href",
+      "network_href",
+      "name",
+      "description"
+    ]
+  },
+  "rightscale_security_group": {
+    "full_properties": {
+      "cloud_href": {
+        "description": "Href of the cloud you want to create the security group in.",
+        "required": true
+      },
+      "deployment_href": {
+        "description": "Href of the deployment that owns the security group.  If you wish to use a deployment object as top level ownership construct, perhaps allocating the new security group to a single deployment, then provide this href.",
+        "required": false
+      },
+      "description": {
+        "description": "Security group description.",
+        "required": false
+      },
+      "name": {
+        "description": "Security group name.",
+        "required": true
+      },
+      "network_href": {
+        "description": "Href of the network to create the security group in.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rightscale/r/cm_security_group.html",
+    "properties": [
+      "cloud_href",
+      "network_href",
+      "name",
+      "description",
+      "deployment_href"
+    ]
+  },
+  "rightscale_security_group_rule": {
+    "full_properties": {
+      "cidr_ips": {
+        "description": "An IP address range in CIDR notation. Required if source_type is 'cidr'. Conflicts with 'group_name' and 'group_owner'.",
+        "required": false
+      },
+      "direction": {
+        "description": "Direction of traffic to apply rule against.  Options are 'ingress' or 'egress'.",
+        "required": false
+      },
+      "end_port": {
+        "description": "- End of port range (inclusive). Required if protocol is 'tcp' or 'udp'.",
+        "required": false
+      },
+      "group_name": {
+        "description": "Name of source Security Group. Required if source_type is 'group'.  Conflicts with 'cidr_ips'.",
+        "required": false
+      },
+      "group_owner": {
+        "description": "Owner of source Security Group. Required if source_type is 'group'. Conflicts with 'cidr_ips'.",
+        "required": false
+      },
+      "icmp_code": {
+        "description": "- ICMP code. Required if protocol is 'icmp'.",
+        "required": false
+      },
+      "icmp_type": {
+        "description": "- ICMP type. Required if protocol is 'icmp'.",
+        "required": false
+      },
+      "priority": {
+        "description": "Lower takes precedence. Supported by security group rules created in Microsoft Azure only.",
+        "required": false
+      },
+      "protocol": {
+        "description": "Protocol to filter on.  Options are 'tcp', 'udp', 'icmp' and 'all'.",
+        "required": true
+      },
+      "protocol_detailsstart_portend_porticmp_codeicmp_type": {
+      },
+      "security_group_href": {
+        "description": "Href of parent security group.",
+        "required": true
+      },
+      "source_type": {
+        "description": "Source type. May be a CIDR block or another Security Group. Options are 'cidr_ips' or 'group'.",
+        "required": true
+      },
+      "start_port": {
+        "description": "- Start of port range (inclusive). Required if protocol is 'tcp' or 'udp'.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/rightscale/r/cm_security_group_rule.html",
+    "properties": [
+      "source_type",
+      "protocol",
+      "security_group_href",
+      "protocol_detailsstart_portend_porticmp_codeicmp_type",
+      "start_port",
+      "end_port",
+      "icmp_code",
+      "icmp_type",
+      "cidr_ips",
+      "group_name",
+      "group_owner",
+      "direction",
+      "priority"
+    ]
+  },
+  "rightscale_server": {
+    "full_properties": {
+      "cloud_href": {
+        "description": "The Href of the cloud the server will be launched in.",
+        "required": true
+      },
+      "deployment_href": {
+        "description": "The href of the deployment the server will be placed in.",
+        "required": true
+      },
+      "description": {
+        "description": "A description of the server.",
+        "required": false
+      },
+      "instance": {
+        "description": "See rightscale_instance",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the server",
+        "required": true
+      },
+      "optimized": {
+        "description": "A flag indicating whether instances of this server should be optimized for high-performance volumes.",
+        "required": false
+      },
+      "tags": {
+        "description": "Any tags you want attached to the server and any instances created from this server object.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/rightscale/r/cm_server.html",
+    "properties": [
+      "name",
+      "deployment_href",
+      "instance",
+      "cloud_href",
+      "description",
+      "optimized",
+      "tags"
+    ]
+  },
+  "rightscale_server_array": {
+    "full_properties": {
+      "alert_specific_params": {
+        "description": "(Required if alert array_type specified)",
+        "required": false
+      },
+      "algorithm": {
+        "description": "The algorithm that defines how an item's age will be determined, either by the average age or max (oldest) age.",
+        "required": false
+      },
+      "array_type": {
+        "description": "The type of server_array. One of \"alert\" or \"queue\"",
+        "required": true
+      },
+      "bounds": {
+        "description": "(Required)",
+        "required": false
+      },
+      "collect_audit_entries": {
+        "description": "The audit SQS queue that will store audit entries.",
+        "required": false
+      },
+      "datacenter_href": {
+        "description": "The href of the server_array's datacenter / zone.",
+        "required": true
+      },
+      "datacenter_policydatacenter_hrefmaxweight": {
+      },
+      "day": {
+        "description": "Specifies the day when an alert-based array resizes. One of \"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\".",
+        "required": true
+      },
+      "decision_threshold": {
+        "description": "The percentage of servers that must agree in order to trigger an alert before an action is taken.",
+        "required": true
+      },
+      "deployment_href": {
+        "description": "Href of deployment in which to create server_array",
+        "required": true
+      },
+      "description": {
+        "description": "Description of the server_array",
+        "required": false
+      },
+      "elasticity_paramsboundsmin_countmax_countpacingresize_down_byresize_up_byresize_calm_timealert_specific_paramsdecision_thresholdvoters_tag_predicatequeue_specific_paramscollect_audit_entriesitem_agealgorithmmax_ageregexpqueue_size": {
+      },
+      "instance": {
+        "description": "See rightscale_instance",
+        "required": true
+      },
+      "item_agealgorithmmax_ageregexpqueue_size": {
+      },
+      "max": {
+        "description": "Maximum numbers of servers that can be allocated in this datacenter (0 for unlimited).",
+        "required": true
+      },
+      "max_age": {
+        "description": "The threshold (in seconds) before a resize action occurs on the server array.",
+        "required": false
+      },
+      "max_count": {
+        "description": "The maximum number of servers that must be operational at all times in the server array. NOTE: Any changes that are made to the min/max count in the server array schedule will overwrite the array's default min/max count settings.",
+        "required": true
+      },
+      "min_count": {
+        "description": "The minimum number of servers that must be operational at all times in the server array. NOTE: Any changes that are made to the min/max count in the server array schedule will overwrite the array's default min/max count settings.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the server_array",
+        "required": true
+      },
+      "optimized": {
+        "description": "A flag indicating whether Instances of this ServerArray should be optimized for high-performance volumes (e.g. Volumes supporting a specified number of IOPS). Not supported in all Clouds.",
+        "required": false
+      },
+      "pacingresize_down_byresize_up_byresize_calm_time": {
+      },
+      "queue_size": {
+        "description": "Defines the ratio of worker instances per items in the queue. Example: If there are 50 items in the queue and \\\"Items per instance\\\" is set to 10, the server array will resize to 5 worker instances (50/10). Default = 1",
+        "required": true
+      },
+      "queue_specific_params": {
+        "description": "(Required if queue alert_type specified)",
+        "required": false
+      },
+      "regexp": {
+        "description": "The regexp that helps the system determine an item's \\\"age\\\" in the queue. Example: created_at: (\\d\\d\\d\\d-\\d\\d-\\d\\d \\d\\d:\\d\\d:\\d\\d UTC)",
+        "required": false
+      },
+      "resize_calm_time": {
+        "description": "The time (in minutes) on how long you want to wait before you repeat another action.",
+        "required": false
+      },
+      "resize_down_by": {
+        "description": "The number of servers to scale down by.",
+        "required": true
+      },
+      "resize_up_by": {
+        "description": "The number of servers to scale up by.",
+        "required": true
+      },
+      "scheduledaymax_countmin_counttime": {
+      },
+      "state": {
+        "description": "he status of the server array. If enabled, the server array is enabled for scaling actions. One of \"enabled\" or \"disabled\"",
+        "required": true
+      },
+      "time": {
+        "description": "Specifies the time when an alert-based array resizes.",
+        "required": true
+      },
+      "voters_tag_predicate": {
+        "description": "The Voters Tag that RightScale will use in order to determine when to scale up/down.",
+        "required": false
+      },
+      "weight": {
+        "description": "Instance allocation (should total 100% accross datacenter_policies).",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rightscale/r/cm_server_array.html",
+    "properties": [
+      "name",
+      "description",
+      "state",
+      "deployment_href",
+      "array_type",
+      "optimized",
+      "datacenter_policydatacenter_hrefmaxweight",
+      "datacenter_href",
+      "max",
+      "weight",
+      "elasticity_paramsboundsmin_countmax_countpacingresize_down_byresize_up_byresize_calm_timealert_specific_paramsdecision_thresholdvoters_tag_predicatequeue_specific_paramscollect_audit_entriesitem_agealgorithmmax_ageregexpqueue_size",
+      "bounds",
+      "min_count",
+      "max_count",
+      "pacingresize_down_byresize_up_byresize_calm_time",
+      "resize_down_by",
+      "resize_up_by",
+      "resize_calm_time",
+      "alert_specific_params",
+      "decision_threshold",
+      "voters_tag_predicate",
+      "queue_specific_params",
+      "collect_audit_entries",
+      "item_agealgorithmmax_ageregexpqueue_size",
+      "algorithm",
+      "max_age",
+      "regexp",
+      "queue_size",
+      "scheduledaymax_countmin_counttime",
+      "day",
+      "time",
+      "instance"
+    ]
+  },
+  "rightscale_ssh_key": {
+    "full_properties": {
+      "cloud_href": {
+        "description": "The href of the cloud with the ssh key you want.",
+        "required": true
+      },
+      "name": {
+        "description": "SSH Key name.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rightscale/r/cm_ssh_key.html",
+    "properties": [
+      "cloud_href",
+      "name"
+    ]
+  },
+  "rightscale_subnet": {
+    "full_properties": {
+      "cidr_block": {
+        "description": "Subnet allocation range in CIDR notation.",
+        "required": true
+      },
+      "cloud_href": {
+        "description": "Href of cloud you want to create the subnet in.",
+        "required": true
+      },
+      "datacenter_href": {
+        "description": "Href of cloud datacenter to assign subnet to.",
+        "required": false
+      },
+      "description": {
+        "description": "Subnet description.",
+        "required": false
+      },
+      "name": {
+        "description": "Subnet name.",
+        "required": false
+      },
+      "network_href": {
+        "description": "Href of network to create subnet in.",
+        "required": true
+      },
+      "route_table_href": {
+        "description": "Sets the default route table for this subnet, useful if you create the route table with a different resource.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/rightscale/r/cm_subnet.html",
+    "properties": [
+      "cloud_href",
+      "network_href",
+      "cidr_block",
+      "name",
+      "description",
+      "datacenter_href",
+      "route_table_href"
+    ]
+  }
+}

@@ -1,0 +1,277 @@
+{
+  "kubernetes_cluster_role_binding": {
+    "full_properties": {
+      "metadata": {
+        "description": "Standard kubernetes metadata. For more info see Kubernetes reference",
+        "required": true
+      },
+      "role_ref": {
+        "description": "The ClusterRole to bind Subjects to. For more info see Kubernetes reference",
+        "required": true
+      },
+      "subject": {
+        "description": "The Users, Groups, or ServiceAccounts to grand permissions to. For more info see Kubernetes reference",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/kubernetes/r/cluster_role_binding.html",
+    "properties": [
+      "metadata",
+      "role_ref",
+      "subject"
+    ]
+  },
+  "kubernetes_config_map": {
+    "full_properties": {
+      "data": {
+        "description": "A map of the configuration data.",
+        "required": false
+      },
+      "metadata": {
+        "description": "Standard config map's metadata. For more info see Kubernetes reference",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/kubernetes/r/config_map.html",
+    "properties": [
+      "data",
+      "metadata"
+    ]
+  },
+  "kubernetes_deployment": {
+    "full_properties": {
+      "metadata": {
+        "description": "Standard deployment's metadata. For more info see Kubernetes reference",
+        "required": true
+      },
+      "spec": {
+        "description": "Spec defines the specification of the desired behavior of the deployment. For more info see Kubernetes reference",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/kubernetes/r/deployment.html",
+    "properties": [
+      "metadata",
+      "spec"
+    ]
+  },
+  "kubernetes_horizontal_pod_autoscaler": {
+    "full_properties": {
+      "metadata": {
+        "description": "Standard horizontal pod autoscaler's metadata. For more info see Kubernetes reference",
+        "required": true
+      },
+      "spec": {
+        "description": "Behaviour of the autoscaler. For more info see Kubernetes reference",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/kubernetes/r/horizontal_pod_autoscaler.html",
+    "properties": [
+      "metadata",
+      "spec"
+    ]
+  },
+  "kubernetes_limit_range": {
+    "full_properties": {
+      "metadata": {
+        "description": "Standard limit range's metadata. For more info see Kubernetes reference",
+        "required": true
+      },
+      "spec": {
+        "description": "Spec defines the limits enforced. For more info see Kubernetes reference",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/kubernetes/r/limit_range.html",
+    "properties": [
+      "metadata",
+      "spec"
+    ]
+  },
+  "kubernetes_namespace": {
+    "full_properties": {
+      "metadata": {
+        "description": "Standard namespace's metadata.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/kubernetes/r/namespace.html",
+    "properties": [
+      "metadata"
+    ]
+  },
+  "kubernetes_persistent_volume": {
+    "full_properties": {
+      "metadata": {
+        "description": "Standard persistent volume's metadata. For more info see Kubernetes reference",
+        "required": true
+      },
+      "spec": {
+        "description": "Spec of the persistent volume owned by the cluster. See below.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/kubernetes/r/persistent_volume.html",
+    "properties": [
+      "metadata",
+      "spec"
+    ]
+  },
+  "kubernetes_persistent_volume_claim": {
+    "full_properties": {
+      "metadata": {
+        "description": "Standard persistent volume claim's metadata. For more info see Kubernetes reference",
+        "required": true
+      },
+      "spec": {
+        "description": "Spec defines the desired characteristics of a volume requested by a pod author. For more info see Kubernetes reference",
+        "required": true
+      },
+      "wait_until_bound": {
+        "description": "Whether to wait for the claim to reach Bound state (to find volume in which to claim the space)",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/kubernetes/r/persistent_volume_claim.html",
+    "properties": [
+      "metadata",
+      "spec",
+      "wait_until_bound"
+    ]
+  },
+  "kubernetes_pod": {
+    "full_properties": {
+      "metadata": {
+        "description": "Standard pod's metadata. For more info see Kubernetes reference",
+        "required": true
+      },
+      "spec": {
+        "description": "Spec of the pod owned by the cluster",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/kubernetes/r/pod.html",
+    "properties": [
+      "metadata",
+      "spec"
+    ]
+  },
+  "kubernetes_replication_controller": {
+    "full_properties": {
+      "metadata": {
+        "description": "Standard replication controller's metadata. For more info see Kubernetes reference",
+        "required": true
+      },
+      "spec": {
+        "description": "Spec defines the specification of the desired behavior of the replication controller. For more info see Kubernetes reference",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/kubernetes/r/replication_controller.html",
+    "properties": [
+      "metadata",
+      "spec"
+    ]
+  },
+  "kubernetes_resource_quota": {
+    "full_properties": {
+      "metadata": {
+        "description": "Standard resource quota's metadata. For more info see Kubernetes reference",
+        "required": true
+      },
+      "spec": {
+        "description": "Spec defines the desired quota. Kubernetes reference",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/kubernetes/r/resource_quota.html",
+    "properties": [
+      "metadata",
+      "spec"
+    ]
+  },
+  "kubernetes_secret": {
+    "full_properties": {
+      "data": {
+        "description": "A map of the secret data.",
+        "required": false
+      },
+      "metadata": {
+        "description": "Standard secret's metadata. For more info see Kubernetes reference",
+        "required": true
+      },
+      "type": {
+        "description": "The secret type. Defaults to Opaque. For more info see Kubernetes reference",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/kubernetes/r/secret.html",
+    "properties": [
+      "data",
+      "metadata",
+      "type"
+    ]
+  },
+  "kubernetes_service": {
+    "full_properties": {
+      "metadata": {
+        "description": "Standard service's metadata. For more info see Kubernetes reference",
+        "required": true
+      },
+      "spec": {
+        "description": "Spec defines the behavior of a service. Kubernetes reference",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/kubernetes/r/service.html",
+    "properties": [
+      "metadata",
+      "spec"
+    ]
+  },
+  "kubernetes_service_account": {
+    "full_properties": {
+      "image_pull_secret": {
+        "description": "A list of references to secrets in the same namespace to use for pulling any images in pods that reference this Service Account. For more info see Kubernetes reference",
+        "required": false
+      },
+      "metadata": {
+        "description": "Standard service account's metadata. For more info see Kubernetes reference",
+        "required": true
+      },
+      "secret": {
+        "description": "A list of secrets allowed to be used by pods running using this Service Account. For more info see Kubernetes reference",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/kubernetes/r/service_account.html",
+    "properties": [
+      "metadata",
+      "image_pull_secret",
+      "secret"
+    ]
+  },
+  "kubernetes_storage_class": {
+    "full_properties": {
+      "metadata": {
+        "description": "Standard storage class's metadata. For more info see Kubernetes reference",
+        "required": true
+      },
+      "parameters": {
+        "description": "The parameters for the provisioner that should create volumes of this storage class.",
+        "required": false
+      },
+      "storage_provisioner": {
+        "description": "Indicates the type of the provisioner",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/kubernetes/r/storage_class.html",
+    "properties": [
+      "metadata",
+      "parameters",
+      "storage_provisioner"
+    ]
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "random_id": {
+    "full_properties": {
+      "byte_length": {
+        "description": "The number of random bytes to produce. The",
+        "required": true
+      },
+      "keepers": {
+        "description": "Arbitrary map of values that, when changed, will",
+        "required": false
+      },
+      "prefix": {
+        "description": "Arbitrary string to prefix the output value with. This",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/random/r/id.html",
+    "properties": [
+      "byte_length",
+      "keepers",
+      "prefix"
+    ]
+  },
+  "random_integer": {
+    "full_properties": {
+      "keepers": {
+        "description": "Arbitrary map of values that, when changed, will",
+        "required": false
+      },
+      "max": {
+        "description": "The maximum inclusive value of the range.",
+        "required": false
+      },
+      "min": {
+        "description": "The minimum inclusive value of the range.",
+        "required": false
+      },
+      "seed": {
+        "description": "A custom seed to always produce the same value.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/random/r/integer.html",
+    "properties": [
+      "min",
+      "max",
+      "keepers",
+      "seed"
+    ]
+  },
+  "random_pet": {
+    "full_properties": {
+      "keepers": {
+        "description": "Arbitrary map of values that, when changed, will",
+        "required": false
+      },
+      "length": {
+        "description": "The length (in words) of the pet name.",
+        "required": false
+      },
+      "prefix": {
+        "description": "A string to prefix the name with.",
+        "required": false
+      },
+      "separator": {
+        "description": "The character to separate words in the pet name.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/random/r/pet.html",
+    "properties": [
+      "keepers",
+      "length",
+      "prefix",
+      "separator"
+    ]
+  },
+  "random_shuffle": {
+    "full_properties": {
+      "input": {
+        "description": "The list of strings to shuffle.",
+        "required": true
+      },
+      "keepers": {
+        "description": "Arbitrary map of values that, when changed, will",
+        "required": false
+      },
+      "result_count": {
+        "description": "The number of results to return. Defaults to",
+        "required": false
+      },
+      "seed": {
+        "description": "Arbitrary string with which to seed the random number",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/random/r/shuffle.html",
+    "properties": [
+      "input",
+      "result_count",
+      "keepers",
+      "seed"
+    ]
+  },
+  "random_string": {
+    "full_properties": {
+      "keepers": {
+        "description": "Arbitrary map of values that, when changed, will",
+        "required": false
+      },
+      "length": {
+        "description": "The length of the string desired",
+        "required": true
+      },
+      "lower": {
+        "description": "(default true) Include lowercase alphabet characters",
+        "required": false
+      },
+      "min_lower": {
+        "description": "(default 0) Minimum number of lowercase alphabet",
+        "required": false
+      },
+      "min_numeric": {
+        "description": "(default 0) Minimum number of numeric characters",
+        "required": false
+      },
+      "min_special": {
+        "description": "(default 0) Minimum number of special characters",
+        "required": false
+      },
+      "min_upper": {
+        "description": "(default 0) Minimum number of uppercase alphabet",
+        "required": false
+      },
+      "number": {
+        "description": "(default true) Include numeric characters in random",
+        "required": false
+      },
+      "override_special": {
+        "description": "Supply your own list of special characters to",
+        "required": false
+      },
+      "special": {
+        "description": "(default true) Include special characters in random",
+        "required": false
+      },
+      "upper": {
+        "description": "(default true) Include uppercase alphabet characters",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/random/r/string.html",
+    "properties": [
+      "length",
+      "upper",
+      "min_upper",
+      "lower",
+      "min_lower",
+      "number",
+      "min_numeric",
+      "special",
+      "min_special",
+      "override_special",
+      "keepers"
+    ]
+  }
+}

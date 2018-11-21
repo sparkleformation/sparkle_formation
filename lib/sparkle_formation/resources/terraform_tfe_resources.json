@@ -1,0 +1,306 @@
+{
+  "tfe_organization": {
+    "full_properties": {
+      "collaborator_auth_policy": {
+        "description": "Authentication policy (password",
+        "required": false
+      },
+      "email": {
+        "description": "Admin email address.",
+        "required": true
+      },
+      "name": {
+        "description": "Name of the organization.",
+        "required": true
+      },
+      "session_remember_minutes": {
+        "description": "Session expiration. Defaults to",
+        "required": false
+      },
+      "session_timeout_minutes": {
+        "description": "Session timeout after inactivity.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/tfe/r/organization.html",
+    "properties": [
+      "name",
+      "email",
+      "session_timeout_minutes",
+      "session_remember_minutes",
+      "collaborator_auth_policy"
+    ]
+  },
+  "tfe_organization_token": {
+    "full_properties": {
+      "force_regenerate": {
+        "description": "If set to true, a new token will be",
+        "required": false
+      },
+      "organization": {
+        "description": "Name of the organization.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/tfe/r/organization_token.html",
+    "properties": [
+      "organization",
+      "force_regenerate"
+    ]
+  },
+  "tfe_policy_set": {
+    "full_properties": {
+      "description": {
+        "description": "A description of the policy set's purpose.",
+        "required": false
+      },
+      "global": {
+        "description": "Whether or not policies in this set will apply to",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the policy set.",
+        "required": true
+      },
+      "organization": {
+        "description": "Name of the organization.",
+        "required": true
+      },
+      "policy_ids": {
+        "description": "A list of Sentinel policy IDs.",
+        "required": true
+      },
+      "workspace_external_ids": {
+        "description": "A list of workspace external IDs. If the policy set is",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/tfe/r/policy_set.html",
+    "properties": [
+      "name",
+      "description",
+      "global",
+      "organization",
+      "policy_ids",
+      "workspace_external_ids"
+    ]
+  },
+  "tfe_sentinel_policy": {
+    "full_properties": {
+      "description": {
+        "description": "A description of the policy's purpose.",
+        "required": false
+      },
+      "enforce_mode": {
+        "description": "The enforcement level of the policy. Valid",
+        "required": true
+      },
+      "name": {
+        "description": "Name of the policy.",
+        "required": true
+      },
+      "organization": {
+        "description": "Name of the organization.",
+        "required": true
+      },
+      "policy": {
+        "description": "The actual policy itself.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/tfe/r/sentinel_policy.html",
+    "properties": [
+      "name",
+      "description",
+      "organization",
+      "policy",
+      "enforce_mode"
+    ]
+  },
+  "tfe_ssh_key": {
+    "full_properties": {
+      "key": {
+        "description": "The text of the SSH private key.",
+        "required": true
+      },
+      "name": {
+        "description": "Name to identify the SSH key.",
+        "required": true
+      },
+      "organization": {
+        "description": "Name of the organization.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/tfe/r/ssh_key.html",
+    "properties": [
+      "name",
+      "organization",
+      "key"
+    ]
+  },
+  "tfe_team": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the team.",
+        "required": true
+      },
+      "organization": {
+        "description": "Name of the organization.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/tfe/r/team.html",
+    "properties": [
+      "name",
+      "organization"
+    ]
+  },
+  "tfe_team_access": {
+    "full_properties": {
+      "access": {
+        "description": "Type of access to grant. Valid values are admin,",
+        "required": true
+      },
+      "team_id": {
+        "description": "ID of the team to add to the workspace.",
+        "required": true
+      },
+      "workspace_id": {
+        "description": "Workspace ID to which the team will be added.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/tfe/r/team_access.html",
+    "properties": [
+      "access",
+      "team_id",
+      "workspace_id"
+    ]
+  },
+  "tfe_team_member": {
+    "full_properties": {
+      "team_id": {
+        "description": "ID of the team.",
+        "required": true
+      },
+      "username": {
+        "description": "Name of the user to add.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/tfe/r/team_member.html",
+    "properties": [
+      "team_id",
+      "username"
+    ]
+  },
+  "tfe_team_members": {
+    "full_properties": {
+      "team_id": {
+        "description": "ID of the team.",
+        "required": true
+      },
+      "usernames": {
+        "description": "Names of the users to add.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/tfe/r/team_members.html",
+    "properties": [
+      "team_id",
+      "usernames"
+    ]
+  },
+  "tfe_team_token": {
+    "full_properties": {
+      "force_regenerate": {
+        "description": "If set to true, a new token will be",
+        "required": false
+      },
+      "team_id": {
+        "description": "ID of the team.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/tfe/r/team_token.html",
+    "properties": [
+      "team_id",
+      "force_regenerate"
+    ]
+  },
+  "tfe_variable": {
+    "full_properties": {
+      "category": {
+        "description": "Whether this is a Terraform or environment variable.",
+        "required": true
+      },
+      "hcl": {
+        "description": "Whether to evaluate the value of the variable as a string",
+        "required": false
+      },
+      "key": {
+        "description": "Name of the variable.",
+        "required": true
+      },
+      "sensitive": {
+        "description": "Whether the value is sensitive. If true then the",
+        "required": false
+      },
+      "value": {
+        "description": "Value of the variable.",
+        "required": true
+      },
+      "workspace_id": {
+        "description": "ID of the workspace that owns the variable.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/tfe/r/variable.html",
+    "properties": [
+      "key",
+      "value",
+      "category",
+      "hcl",
+      "sensitive",
+      "workspace_id"
+    ]
+  },
+  "tfe_workspace": {
+    "full_properties": {
+      "auto_apply": {
+        "description": "Whether to automatically apply changes when a",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the workspace.",
+        "required": true
+      },
+      "organization": {
+        "description": "Name of the organization.",
+        "required": true
+      },
+      "terraform_version": {
+        "description": "The version of Terraform to use for this",
+        "required": false
+      },
+      "vcs_repo": {
+        "description": "Settings for the workspace's VCS repository.",
+        "required": false
+      },
+      "working_directory": {
+        "description": "A relative path that Terraform will execute",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/tfe/r/workspace.html",
+    "properties": [
+      "name",
+      "organization",
+      "auto_apply",
+      "terraform_version",
+      "working_directory",
+      "vcs_repo"
+    ]
+  }
+}

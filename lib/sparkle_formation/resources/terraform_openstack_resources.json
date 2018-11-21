@@ -1,0 +1,3293 @@
+{
+  "openstack_blockstorage_volume_attach_v2": {
+    "full_properties": {
+      "attach_mode": {
+        "description": "Specify whether to attach the volume as Read-Only",
+        "required": false
+      },
+      "device": {
+        "description": "The device to tell the Block Storage service this",
+        "required": false
+      },
+      "host_name": {
+        "description": "The host to attach the volume to.",
+        "required": true
+      },
+      "initiator": {
+        "description": "The iSCSI initiator string to make the connection.",
+        "required": false
+      },
+      "ip_address": {
+        "description": "The IP address of the host_name above.",
+        "required": false
+      },
+      "multipath": {
+        "description": "Whether to connect to this volume via multipath.",
+        "required": false
+      },
+      "os_type": {
+        "description": "The iSCSI initiator OS type.",
+        "required": false
+      },
+      "platform": {
+        "description": "The iSCSI initiator platform.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Block Storage",
+        "required": false
+      },
+      "volume_id": {
+        "description": "The ID of the Volume to attach to an Instance.",
+        "required": true
+      },
+      "wwnn": {
+        "description": "A wwnn name. Used for Fibre Channel connections.",
+        "required": false
+      },
+      "wwpn": {
+        "description": "An array of wwpn strings. Used for Fibre Channel",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/blockstorage_volume_attach_v2.html",
+    "properties": [
+      "region",
+      "attach_mode",
+      "device",
+      "host_name",
+      "initiator",
+      "ip_address",
+      "multipath",
+      "os_type",
+      "platform",
+      "volume_id",
+      "wwpn",
+      "wwnn"
+    ]
+  },
+  "openstack_blockstorage_volume_attach_v3": {
+    "full_properties": {
+      "attach_mode": {
+        "description": "Specify whether to attach the volume as Read-Only",
+        "required": false
+      },
+      "device": {
+        "description": "The device to tell the Block Storage service this",
+        "required": false
+      },
+      "host_name": {
+        "description": "The host to attach the volume to.",
+        "required": true
+      },
+      "initiator": {
+        "description": "The iSCSI initiator string to make the connection.",
+        "required": false
+      },
+      "ip_address": {
+        "description": "The IP address of the host_name above.",
+        "required": false
+      },
+      "multipath": {
+        "description": "Whether to connect to this volume via multipath.",
+        "required": false
+      },
+      "os_type": {
+        "description": "The iSCSI initiator OS type.",
+        "required": false
+      },
+      "platform": {
+        "description": "The iSCSI initiator platform.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V3 Block Storage",
+        "required": false
+      },
+      "volume_id": {
+        "description": "The ID of the Volume to attach to an Instance.",
+        "required": true
+      },
+      "wwnn": {
+        "description": "A wwnn name. Used for Fibre Channel connections.",
+        "required": false
+      },
+      "wwpn": {
+        "description": "An array of wwpn strings. Used for Fibre Channel",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/blockstorage_volume_attach_v3.html",
+    "properties": [
+      "region",
+      "attach_mode",
+      "device",
+      "host_name",
+      "initiator",
+      "ip_address",
+      "multipath",
+      "os_type",
+      "platform",
+      "volume_id",
+      "wwpn",
+      "wwnn"
+    ]
+  },
+  "openstack_blockstorage_volume_v1": {
+    "full_properties": {
+      "availability_zone": {
+        "description": "The availability zone for the volume.",
+        "required": false
+      },
+      "description": {
+        "description": "A description of the volume. Changing this updates",
+        "required": false
+      },
+      "image_id": {
+        "description": "The image ID from which to create the volume.",
+        "required": false
+      },
+      "metadata": {
+        "description": "Metadata key/value pairs to associate with the volume.",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the volume. Changing this updates the",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to create the volume. If",
+        "required": false
+      },
+      "size": {
+        "description": "The size of the volume to create (in gigabytes). Changing",
+        "required": true
+      },
+      "snapshot_id": {
+        "description": "The snapshot ID from which to create the volume.",
+        "required": false
+      },
+      "source_vol_id": {
+        "description": "The volume ID from which to create the volume.",
+        "required": false
+      },
+      "volume_type": {
+        "description": "The type of volume to create.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/blockstorage_volume_v1.html",
+    "properties": [
+      "region",
+      "size",
+      "name",
+      "description",
+      "availability_zone",
+      "image_id",
+      "snapshot_id",
+      "source_vol_id",
+      "metadata",
+      "volume_type"
+    ]
+  },
+  "openstack_blockstorage_volume_v2": {
+    "full_properties": {
+      "availability_zone": {
+        "description": "The availability zone for the volume.",
+        "required": false
+      },
+      "consistency_group_id": {
+        "description": "The consistency group to place the volume",
+        "required": false
+      },
+      "description": {
+        "description": "A description of the volume. Changing this updates",
+        "required": false
+      },
+      "image_id": {
+        "description": "The image ID from which to create the volume.",
+        "required": false
+      },
+      "metadata": {
+        "description": "Metadata key/value pairs to associate with the volume.",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the volume. Changing this updates the",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to create the volume. If",
+        "required": false
+      },
+      "size": {
+        "description": "The size of the volume to create (in gigabytes). Changing",
+        "required": true
+      },
+      "snapshot_id": {
+        "description": "The snapshot ID from which to create the volume.",
+        "required": false
+      },
+      "source_replica": {
+        "description": "The volume ID to replicate with.",
+        "required": false
+      },
+      "source_vol_id": {
+        "description": "The volume ID from which to create the volume.",
+        "required": false
+      },
+      "volume_type": {
+        "description": "The type of volume to create.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/blockstorage_volume_v2.html",
+    "properties": [
+      "region",
+      "size",
+      "availability_zone",
+      "consistency_group_id",
+      "description",
+      "image_id",
+      "metadata",
+      "name",
+      "snapshot_id",
+      "source_replica",
+      "source_vol_id",
+      "volume_type"
+    ]
+  },
+  "openstack_blockstorage_volume_v3": {
+    "full_properties": {
+      "availability_zone": {
+        "description": "The availability zone for the volume.",
+        "required": false
+      },
+      "consistency_group_id": {
+        "description": "The consistency group to place the volume",
+        "required": false
+      },
+      "description": {
+        "description": "A description of the volume. Changing this updates",
+        "required": false
+      },
+      "enable_online_resize": {
+        "description": "When this option is set it allows extending",
+        "required": false
+      },
+      "image_id": {
+        "description": "The image ID from which to create the volume.",
+        "required": false
+      },
+      "metadata": {
+        "description": "Metadata key/value pairs to associate with the volume.",
+        "required": false
+      },
+      "multiattach": {
+        "description": "Allow the volume to be attached to more than one Compute instance.",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the volume. Changing this updates the",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to create the volume. If",
+        "required": false
+      },
+      "size": {
+        "description": "The size of the volume to create (in gigabytes).",
+        "required": true
+      },
+      "snapshot_id": {
+        "description": "The snapshot ID from which to create the volume.",
+        "required": false
+      },
+      "source_replica": {
+        "description": "The volume ID to replicate with.",
+        "required": false
+      },
+      "source_vol_id": {
+        "description": "The volume ID from which to create the volume.",
+        "required": false
+      },
+      "volume_type": {
+        "description": "The type of volume to create.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/blockstorage_volume_v3.html",
+    "properties": [
+      "region",
+      "size",
+      "enable_online_resize",
+      "availability_zone",
+      "consistency_group_id",
+      "description",
+      "image_id",
+      "metadata",
+      "name",
+      "snapshot_id",
+      "source_replica",
+      "source_vol_id",
+      "volume_type",
+      "multiattach"
+    ]
+  },
+  "openstack_compute_flavor_access_v2": {
+    "full_properties": {
+      "flavor_id": {
+        "description": "The UUID of flavor to use. Changing this creates a new flavor access.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The UUID of tenant which is allowed to use the flavor.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/openstack/r/compute_flavor_access_v2.html",
+    "properties": [
+      "region",
+      "flavor_id",
+      "tenant_id"
+    ]
+  },
+  "openstack_compute_flavor_v2": {
+    "full_properties": {
+      "disk": {
+        "description": "The amount of disk space in gigabytes to use for the root",
+        "required": true
+      },
+      "extra_specs": {
+        "description": "Key/Value pairs of metadata for the flavor.",
+        "required": false
+      },
+      "is_public": {
+        "description": "Whether the flavor is public. Changing this creates",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the flavor. Changing this creates a new",
+        "required": true
+      },
+      "ram": {
+        "description": "The amount of RAM to use, in megabytes. Changing this",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      },
+      "rx_tx_factor": {
+        "description": "RX/TX bandwith factor. The default is 1. Changing",
+        "required": false
+      },
+      "swap": {
+        "description": "The amount of disk space in megabytes to use. If",
+        "required": false
+      },
+      "vcpus": {
+        "description": "The number of virtual CPUs to use. Changing this creates",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/openstack/r/compute_flavor_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "ram",
+      "vcpus",
+      "disk",
+      "swap",
+      "rx_tx_factor",
+      "is_public",
+      "extra_specs"
+    ]
+  },
+  "openstack_compute_floatingip_associate_v2": {
+    "full_properties": {
+      "fixed_ip": {
+        "description": "The specific IP address to direct traffic to.",
+        "required": false
+      },
+      "floating_ip": {
+        "description": "The floating IP to associate.",
+        "required": true
+      },
+      "instance_id": {
+        "description": "The instance to associte the floating IP with.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      },
+      "wait_until_associated": {
+        "description": "In cases where the OpenStack environment",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/compute_floatingip_associate_v2.html",
+    "properties": [
+      "region",
+      "floating_ip",
+      "instance_id",
+      "fixed_ip",
+      "wait_until_associated"
+    ]
+  },
+  "openstack_compute_floatingip_v2": {
+    "full_properties": {
+      "pool": {
+        "description": "The name of the pool from which to obtain the floating",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/compute_floatingip_v2.html",
+    "properties": [
+      "region",
+      "pool"
+    ]
+  },
+  "openstack_compute_instance_v2": {
+    "full_properties": {
+      "admin_pass": {
+        "description": "The administrative password to assign to the server.",
+        "required": false
+      },
+      "availability_zone": {
+        "description": "The availability zone in which to create",
+        "required": false
+      },
+      "block_device": {
+        "description": "Configuration of block devices. The block_device",
+        "required": false
+      },
+      "config_drive": {
+        "description": "Whether to use the config_drive feature to",
+        "required": false
+      },
+      "flavor_id": {
+        "description": "The flavor ID of",
+        "required": false
+      },
+      "flavor_name": {
+        "description": "The name of the",
+        "required": false
+      },
+      "force_delete": {
+        "description": "Whether to force the OpenStack instance to be",
+        "required": false
+      },
+      "image_id": {
+        "description": "(Optional; Required if image_name is empty and not booting",
+        "required": false
+      },
+      "image_name": {
+        "description": "(Optional; Required if image_id is empty and not booting",
+        "required": false
+      },
+      "key_pair": {
+        "description": "The name of a key pair to put on the server. The key",
+        "required": false
+      },
+      "metadata": {
+        "description": "Metadata key/value pairs to make available from",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the resource.",
+        "required": true
+      },
+      "network": {
+        "description": "An array of one or more networks to attach to the",
+        "required": false
+      },
+      "personality": {
+        "description": "Customize the personality of an instance by",
+        "required": false
+      },
+      "power_state": {
+        "description": "Provide the VM state. Only 'active' and 'shutoff'",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to create the server instance. If",
+        "required": false
+      },
+      "scheduler_hints": {
+        "description": "Provide the Nova scheduler with hints on how",
+        "required": false
+      },
+      "security_groups": {
+        "description": "An array of one or more security group names",
+        "required": false
+      },
+      "stop_before_destroy": {
+        "description": "Whether to try stop instance gracefully",
+        "required": false
+      },
+      "user_data": {
+        "description": "The user data to provide when launching the instance.",
+        "required": false
+      },
+      "vendor_options": {
+        "description": "Map of additional vendor-specific options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/compute_instance_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "image_id",
+      "image_name",
+      "flavor_id",
+      "flavor_name",
+      "user_data",
+      "security_groups",
+      "availability_zone",
+      "network",
+      "metadata",
+      "config_drive",
+      "admin_pass",
+      "key_pair",
+      "block_device",
+      "scheduler_hints",
+      "personality",
+      "stop_before_destroy",
+      "force_delete",
+      "power_state",
+      "vendor_options"
+    ]
+  },
+  "openstack_compute_interface_attach_v2": {
+    "full_properties": {
+      "fixed_ip": {
+        "description": "An IP address to assosciate with the port.",
+        "required": false
+      },
+      "instance_id": {
+        "description": "The ID of the Instance to attach the Port or Network to.",
+        "required": true
+      },
+      "network_id": {
+        "description": "The ID of the Network to attach to an Instance. A port will be created automatically.",
+        "required": false
+      },
+      "port_id": {
+        "description": "The ID of the Port to attach to an Instance.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to create the interface attachment.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/compute_interface_attach_v2.html",
+    "properties": [
+      "region",
+      "instance_id",
+      "port_id",
+      "network_id",
+      "fixed_ip"
+    ]
+  },
+  "openstack_compute_keypair_v2": {
+    "full_properties": {
+      "name": {
+        "description": "A unique name for the keypair. Changing this creates a new",
+        "required": true
+      },
+      "public_key": {
+        "description": "A pregenerated OpenSSH-formatted public key.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/compute_keypair_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "public_key",
+      "value_specs"
+    ]
+  },
+  "openstack_compute_secgroup_v2": {
+    "full_properties": {
+      "description": {
+        "description": "A description for the security group. Changing this",
+        "required": true
+      },
+      "name": {
+        "description": "A unique name for the security group. Changing this",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      },
+      "rule": {
+        "description": "A rule describing how the security group operates. The",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/compute_secgroup_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "description",
+      "rule"
+    ]
+  },
+  "openstack_compute_servergroup_v2": {
+    "full_properties": {
+      "name": {
+        "description": "A unique name for the server group. Changing this creates",
+        "required": true
+      },
+      "policies": {
+        "description": "The set of policies for the server group. Only two",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/compute_servergroup_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "policies",
+      "value_specs"
+    ]
+  },
+  "openstack_compute_volume_attach_v2": {
+    "full_properties": {
+      "device": {
+        "description": "The device of the volume attachment (ex: /dev/vdc).",
+        "required": false
+      },
+      "instance_id": {
+        "description": "The ID of the Instance to attach the Volume to.",
+        "required": true
+      },
+      "multiattach": {
+        "description": "Enable attachment of multiattach-capable volumes.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      },
+      "volume_id": {
+        "description": "The ID of the Volume to attach to an Instance.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/openstack/r/compute_volume_attach_v2.html",
+    "properties": [
+      "region",
+      "instance_id",
+      "volume_id",
+      "device",
+      "multiattach"
+    ]
+  },
+  "openstack_containerinfra_cluster_v1": {
+    "full_properties": {
+      "cluster_template_id": {
+        "description": "The UUID of the V1 Container Infra cluster",
+        "required": true
+      },
+      "create_timeout": {
+        "description": "The timeout (in minutes) for creating the",
+        "required": false
+      },
+      "discovery_url": {
+        "description": "The URL used for cluster node discovery.",
+        "required": false
+      },
+      "docker_volume_size": {
+        "description": "The size (in GB) of the Docker volume.",
+        "required": false
+      },
+      "flavor": {
+        "description": "The flavor for the nodes of the cluster. Can be set via",
+        "required": false
+      },
+      "keypair": {
+        "description": "The name of the Compute service SSH keypair. Changing",
+        "required": false
+      },
+      "labels": {
+        "description": "The list of key value pairs representing additional",
+        "required": false
+      },
+      "master_count": {
+        "description": "The number of master nodes for the cluster.",
+        "required": false
+      },
+      "master_flavor": {
+        "description": "The flavor for the master nodes. Can be set via",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the cluster. Changing this updates the name",
+        "required": true
+      },
+      "node_count": {
+        "description": "The number of nodes for the cluster. Changing this",
+        "required": false
+      },
+      "project_id": {
+        "description": "The project of the cluster. Required if admin wants",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V1 Container Infra",
+        "required": false
+      },
+      "user_id": {
+        "description": "The user of the cluster. Required if admin wants to",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/containerinfra_cluster_v1.html",
+    "properties": [
+      "region",
+      "name",
+      "project_id",
+      "user_id",
+      "cluster_template_id",
+      "create_timeout",
+      "discovery_url",
+      "docker_volume_size",
+      "flavor",
+      "master_flavor",
+      "keypair",
+      "labels",
+      "master_count",
+      "node_count"
+    ]
+  },
+  "openstack_containerinfra_clustertemplate_v1": {
+    "full_properties": {
+      "apiserver_port": {
+        "description": "The API server port for the Container",
+        "required": false
+      },
+      "cluster_distro": {
+        "description": "The distro for the cluster (fedora-atomic,",
+        "required": false
+      },
+      "coe": {
+        "description": "The Container Orchestration Engine for this cluster",
+        "required": true
+      },
+      "dns_nameserver": {
+        "description": "Address of the DNS nameserver that is used in",
+        "required": false
+      },
+      "docker_storage_driver": {
+        "description": "Docker storage driver. Changing this",
+        "required": false
+      },
+      "docker_volume_size": {
+        "description": "The size (in GB) of the Docker volume.",
+        "required": false
+      },
+      "external_network_id": {
+        "description": "The ID of the external network that will",
+        "required": false
+      },
+      "fixed_network": {
+        "description": "The fixed network that will be attached to the",
+        "required": false
+      },
+      "fixed_subnet": {
+        "description": "The fixed subnet that will be attached to the",
+        "required": false
+      },
+      "flavor": {
+        "description": "The flavor for the nodes of the cluster. Can be set via",
+        "required": false
+      },
+      "floating_ip_enabled": {
+        "description": "Indicates whether created cluster should",
+        "required": false
+      },
+      "http_proxy": {
+        "description": "The address of a proxy for receiving all HTTP",
+        "required": false
+      },
+      "https_proxy": {
+        "description": "The address of a proxy for receiving all HTTPS",
+        "required": false
+      },
+      "image": {
+        "description": "The reference to an image that is used for nodes of the",
+        "required": true
+      },
+      "insecure_registry": {
+        "description": "The insecure registry URL for the cluster",
+        "required": false
+      },
+      "keypair_id": {
+        "description": "The name of the Compute service SSH keypair.",
+        "required": false
+      },
+      "labels": {
+        "description": "The list of key value pairs representing additional",
+        "required": false
+      },
+      "master_flavor": {
+        "description": "The flavor for the master nodes. Can be set via",
+        "required": false
+      },
+      "master_lb_enabled": {
+        "description": "Indicates whether created cluster should",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the cluster template. Changing this updates",
+        "required": true
+      },
+      "network_driver": {
+        "description": "The name of the driver for the container",
+        "required": false
+      },
+      "no_proxy": {
+        "description": "A comma-separated list of IP addresses that shouldn't",
+        "required": false
+      },
+      "project_id": {
+        "description": "The project of the cluster template. Required if",
+        "required": false
+      },
+      "public": {
+        "description": "Indicates whether cluster template should be public.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V1 Container Infra",
+        "required": false
+      },
+      "registry_enabled": {
+        "description": "Indicates whether Docker registry is enabled",
+        "required": false
+      },
+      "server_type": {
+        "description": "The server type for the cluster template. Changing",
+        "required": false
+      },
+      "tls_disabled": {
+        "description": "Indicates whether the TLS should be disabled in",
+        "required": false
+      },
+      "user_id": {
+        "description": "The user of the cluster template. Required if admin",
+        "required": false
+      },
+      "volume_driver": {
+        "description": "The name of the driver that is used for the",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/containerinfra_clustertemplate_v1.html",
+    "properties": [
+      "region",
+      "name",
+      "project_id",
+      "user_id",
+      "apiserver_port",
+      "coe",
+      "cluster_distro",
+      "dns_nameserver",
+      "docker_storage_driver",
+      "docker_volume_size",
+      "external_network_id",
+      "fixed_network",
+      "fixed_subnet",
+      "flavor",
+      "master_flavor",
+      "floating_ip_enabled",
+      "http_proxy",
+      "https_proxy",
+      "image",
+      "insecure_registry",
+      "keypair_id",
+      "labels",
+      "master_lb_enabled",
+      "network_driver",
+      "no_proxy",
+      "public",
+      "registry_enabled",
+      "server_type",
+      "tls_disabled",
+      "volume_driver"
+    ]
+  },
+  "openstack_db_configuration_v1": {
+    "full_properties": {
+      "configuration": {
+        "description": "An array of configuration parameter name and value. Can be specified multiple times. The configuration object structure is documented below.",
+        "required": false
+      },
+      "datastore": {
+        "description": "An array of database engine type and version. The datastore",
+        "required": true
+      },
+      "description": {
+        "description": "Description of the resource.",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the resource.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to create the db instance. Changing this",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/openstack/r/db_configuration_v1.html",
+    "properties": [
+      "region",
+      "name",
+      "description",
+      "datastore",
+      "configuration"
+    ]
+  },
+  "openstack_db_database_v1": {
+    "full_properties": {
+      "instance_id": {
+        "description": "The ID for the database instance.",
+        "required": true
+      },
+      "name": {
+        "description": "A unique name for the resource.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/openstack/r/db_database_v1.html",
+    "properties": [
+      "name",
+      "instance_id"
+    ]
+  },
+  "openstack_db_instance_v1": {
+    "full_properties": {
+      "configuration_id": {
+        "description": "Configuration ID to be attached to the instance. Database instance",
+        "required": false
+      },
+      "database": {
+        "description": "An array of database name, charset and collate. The database",
+        "required": false
+      },
+      "datastore": {
+        "description": "An array of database engine type and version. The datastore",
+        "required": true
+      },
+      "flavor_id": {
+        "description": "The flavor ID of the desired flavor for the instance.",
+        "required": true
+      },
+      "name": {
+        "description": "A unique name for the resource.",
+        "required": true
+      },
+      "network": {
+        "description": "An array of one or more networks to attach to the",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to create the db instance. Changing this",
+        "required": true
+      },
+      "size": {
+        "description": "Specifies the volume size in GB. Changing this creates new instance.",
+        "required": true
+      },
+      "user": {
+        "description": "An array of username, password, host and databases. The user",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/db_instance_v1.html",
+    "properties": [
+      "region",
+      "name",
+      "flavor_id",
+      "configuration_id",
+      "size",
+      "datastore",
+      "network",
+      "user",
+      "database"
+    ]
+  },
+  "openstack_db_user_v1": {
+    "full_properties": {
+      "databases": {
+        "description": "A list of database user should have access to.",
+        "required": false
+      },
+      "instance": {
+        "description": "The ID for the database instance.",
+        "required": true
+      },
+      "name": {
+        "description": "A unique name for the resource.",
+        "required": true
+      },
+      "password": {
+        "description": "User's password.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/openstack/r/db_user_v1.html",
+    "properties": [
+      "name",
+      "instance",
+      "password",
+      "databases"
+    ]
+  },
+  "openstack_dns_recordset_v2": {
+    "full_properties": {
+      "description": {
+        "description": "A description of the  record set.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the record set. Note the . at the end of the name.",
+        "required": true
+      },
+      "records": {
+        "description": "An array of DNS records.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 DNS client.",
+        "required": false
+      },
+      "ttl": {
+        "description": "The time to live (TTL) of the record set.",
+        "required": false
+      },
+      "type": {
+        "description": "The type of record set. Examples: \"A\", \"MX\".",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options. Changing this creates a",
+        "required": false
+      },
+      "zone_id": {
+        "description": "The ID of the zone in which to create the record set.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/openstack/r/dns_recordset_v2.html",
+    "properties": [
+      "region",
+      "zone_id",
+      "name",
+      "type",
+      "ttl",
+      "description",
+      "records",
+      "value_specs"
+    ]
+  },
+  "openstack_dns_zone_v2": {
+    "full_properties": {
+      "attributes": {
+        "description": "Attributes for the DNS Service scheduler.",
+        "required": false
+      },
+      "description": {
+        "description": "A description of the zone.",
+        "required": false
+      },
+      "email": {
+        "description": "The email contact for the zone record.",
+        "required": false
+      },
+      "masters": {
+        "description": "An array of master DNS servers. For when type is",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the zone. Note the . at the end of the name.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      },
+      "ttl": {
+        "description": "The time to live (TTL) of the zone.",
+        "required": false
+      },
+      "type": {
+        "description": "The type of zone. Can either be PRIMARY or SECONDARY.",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options. Changing this creates a",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/dns_zone_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "email",
+      "type",
+      "attributes",
+      "ttl",
+      "description",
+      "masters",
+      "value_specs"
+    ]
+  },
+  "openstack_fw_firewall_v1": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "Administrative up/down status for the firewall",
+        "required": false
+      },
+      "associated_routers": {
+        "description": "Router(s) to associate this firewall instance",
+        "required": false
+      },
+      "description": {
+        "description": "A description for the firewall. Changing this",
+        "required": true
+      },
+      "name": {
+        "description": "A name for the firewall. Changing this",
+        "required": false
+      },
+      "no_routers": {
+        "description": "Should this firewall not be associated with any routers",
+        "required": false
+      },
+      "policy_id": {
+        "description": "The policy resource id for the firewall. Changing",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the v1 networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the floating IP. Required if admin wants",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/fw_firewall_v1.html",
+    "properties": [
+      "region",
+      "policy_id",
+      "name",
+      "description",
+      "admin_state_up",
+      "tenant_id",
+      "associated_routers",
+      "no_routers",
+      "value_specs"
+    ]
+  },
+  "openstack_fw_policy_v1": {
+    "full_properties": {
+      "audited": {
+        "description": "Audit status of the firewall policy",
+        "required": false
+      },
+      "description": {
+        "description": "A description for the firewall policy. Changing",
+        "required": false
+      },
+      "name": {
+        "description": "A name for the firewall policy. Changing this",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the v1 networking client.",
+        "required": false
+      },
+      "rules": {
+        "description": "An array of one or more firewall rules that comprise",
+        "required": false
+      },
+      "shared": {
+        "description": "Sharing status of the firewall policy (must be \"true\"",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/fw_policy_v1.html",
+    "properties": [
+      "region",
+      "name",
+      "description",
+      "rules",
+      "audited",
+      "shared",
+      "value_specs"
+    ]
+  },
+  "openstack_fw_rule_v1": {
+    "full_properties": {
+      "action": {
+        "description": "Action to be taken ( must be \"allow\" or \"deny\") when the",
+        "required": true
+      },
+      "description": {
+        "description": "A description for the firewall rule. Changing this",
+        "required": false
+      },
+      "destination_ip_address": {
+        "description": "The destination IP address on which the",
+        "required": false
+      },
+      "destination_port": {
+        "description": "The destination port on which the firewall",
+        "required": false
+      },
+      "enabled": {
+        "description": "Enabled status for the firewall rule (must be \"true\"",
+        "required": false
+      },
+      "ip_version": {
+        "description": "IP version, either 4 (default) or 6. Changing this",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the firewall rule. Changing this",
+        "required": false
+      },
+      "protocol": {
+        "description": "The protocol type on which the firewall rule operates.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the v1 Compute client.",
+        "required": false
+      },
+      "source_ip_address": {
+        "description": "The source IP address on which the firewall",
+        "required": false
+      },
+      "source_port": {
+        "description": "The source port on which the firewall",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the firewall rule. Required if admin",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/fw_rule_v1.html",
+    "properties": [
+      "region",
+      "name",
+      "description",
+      "protocol",
+      "action",
+      "ip_version",
+      "source_ip_address",
+      "destination_ip_address",
+      "source_port",
+      "destination_port",
+      "enabled",
+      "tenant_id",
+      "value_specs"
+    ]
+  },
+  "openstack_identity_project_v3": {
+    "full_properties": {
+      "description": {
+        "description": "A description of the project.",
+        "required": false
+      },
+      "domain_id": {
+        "description": "The domain this project belongs to.",
+        "required": false
+      },
+      "enabled": {
+        "description": "Whether the project is enabled or disabled. Valid",
+        "required": false
+      },
+      "is_domain": {
+        "description": "Whether this project is a domain. Valid values",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the project.",
+        "required": false
+      },
+      "parent_id": {
+        "description": "The parent of this project.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V3 Keystone client.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/identity_project_v3.html",
+    "properties": [
+      "description",
+      "domain_id",
+      "enabled",
+      "is_domain",
+      "name",
+      "parent_id",
+      "region"
+    ]
+  },
+  "openstack_identity_role_assignment_v3": {
+    "full_properties": {
+      "domain_id": {
+        "description": "The domain to assign the role in.",
+        "required": false
+      },
+      "group_id": {
+        "description": "The group to assign the role to.",
+        "required": false
+      },
+      "project_id": {
+        "description": "The project to assign the role in.",
+        "required": false
+      },
+      "role_id": {
+        "description": "The role to assign.",
+        "required": true
+      },
+      "user_id": {
+        "description": "The user to assign the role to.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/identity_role_assignment_v3.html",
+    "properties": [
+      "domain_id",
+      "group_id",
+      "project_id",
+      "user_id",
+      "role_id"
+    ]
+  },
+  "openstack_identity_role_v3": {
+    "full_properties": {
+      "domain_id": {
+        "description": "The domain the role belongs to.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the role.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V3 Keystone client.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/identity_role_v3.html",
+    "properties": [
+      "name",
+      "domain_id",
+      "region"
+    ]
+  },
+  "openstack_identity_user_v3": {
+    "full_properties": {
+      "default_project_id": {
+        "description": "The default project this user belongs to.",
+        "required": false
+      },
+      "description": {
+        "description": "A description of the user.",
+        "required": false
+      },
+      "domain_id": {
+        "description": "The domain this user belongs to.",
+        "required": false
+      },
+      "enabled": {
+        "description": "Whether the user is enabled or disabled. Valid",
+        "required": false
+      },
+      "extra": {
+        "description": "Free-form key/value pairs of extra information.",
+        "required": false
+      },
+      "ignore_change_password_upon_first_use": {
+        "description": "User will not have to",
+        "required": false
+      },
+      "ignore_lockout_failure_attempts": {
+        "description": "User will not have a failure",
+        "required": false
+      },
+      "ignore_password_expiry": {
+        "description": "User's password will not expire.",
+        "required": false
+      },
+      "multi_factor_auth_enabled": {
+        "description": "Whether to enable multi-factor",
+        "required": false
+      },
+      "multi_factor_auth_rule": {
+        "description": "A multi-factor authentication rule.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the user.",
+        "required": false
+      },
+      "password": {
+        "description": "The password for the user.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V3 Keystone client.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/identity_user_v3.html",
+    "properties": [
+      "description",
+      "default_project_id",
+      "domain_id",
+      "enabled",
+      "extra",
+      "ignore_change_password_upon_first_use",
+      "ignore_password_expiry",
+      "ignore_lockout_failure_attempts",
+      "multi_factor_auth_enabled",
+      "multi_factor_auth_rule",
+      "name",
+      "password",
+      "region"
+    ]
+  },
+  "openstack_images_image_v2": {
+    "full_properties": {
+      "container_format": {
+        "description": "The container format. Must be one of",
+        "required": true
+      },
+      "disk_format": {
+        "description": "The disk format. Must be one of",
+        "required": true
+      },
+      "image_cache_path": {
+        "description": "This is the directory where the images will",
+        "required": false
+      },
+      "image_source_url": {
+        "description": "This is the url of the raw image that will",
+        "required": false
+      },
+      "local_file_path": {
+        "description": "This is the filepath of the raw image file",
+        "required": false
+      },
+      "min_disk_gb": {
+        "description": "Amount of disk space (in GB) required to boot image.",
+        "required": false
+      },
+      "min_ram_mb": {
+        "description": "Amount of ram (in MB) required to boot image.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the image.",
+        "required": true
+      },
+      "properties": {
+        "description": "A map of key/value pairs to set freeform",
+        "required": false
+      },
+      "protected": {
+        "description": "If true, image will not be deletable.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Glance client.",
+        "required": false
+      },
+      "tags": {
+        "description": "The tags of the image. It must be a list of strings.",
+        "required": false
+      },
+      "verify_checksum": {
+        "description": "If false, the checksum will not be verified",
+        "required": false
+      },
+      "visibility": {
+        "description": "The visibility of the image. Must be one of",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/images_image_v2.html",
+    "properties": [
+      "container_format",
+      "disk_format",
+      "local_file_path",
+      "image_cache_path",
+      "image_source_url",
+      "min_disk_gb",
+      "min_ram_mb",
+      "name",
+      "properties",
+      "protected",
+      "region",
+      "tags",
+      "verify_checksum",
+      "visibility"
+    ]
+  },
+  "openstack_lb_listener_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "The administrative state of the Listener.",
+        "required": false
+      },
+      "connection_limit": {
+        "description": "The maximum number of connections allowed",
+        "required": false
+      },
+      "default_pool_id": {
+        "description": "The ID of the default pool with which the",
+        "required": false
+      },
+      "default_tls_container_ref": {
+        "description": "A reference to a Barbican Secrets",
+        "required": false
+      },
+      "description": {
+        "description": "Human-readable description for the Listener.",
+        "required": false
+      },
+      "loadbalancer_id": {
+        "description": "The load balancer on which to provision this",
+        "required": true
+      },
+      "name": {
+        "description": "Human-readable name for the Listener. Does not have",
+        "required": false
+      },
+      "protocol": {
+        "description": "The protocol - can either be TCP, HTTP, HTTPS or TERMINATED_HTTPS.",
+        "required": true
+      },
+      "protocol_port": {
+        "description": "The port on which to listen for client traffic.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "sni_container_refs": {
+        "description": "A list of references to Barbican Secrets",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "Required for admins. The UUID of the tenant who owns",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/lb_listener_v2.html",
+    "properties": [
+      "region",
+      "protocol",
+      "protocol_port",
+      "tenant_id",
+      "loadbalancer_id",
+      "name",
+      "default_pool_id",
+      "description",
+      "connection_limit",
+      "default_tls_container_ref",
+      "sni_container_refs",
+      "admin_state_up"
+    ]
+  },
+  "openstack_lb_loadbalancer_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "The administrative state of the Loadbalancer.",
+        "required": false
+      },
+      "description": {
+        "description": "Human-readable description for the Loadbalancer.",
+        "required": false
+      },
+      "flavor": {
+        "description": "The UUID of a flavor. Changing this creates a new",
+        "required": false
+      },
+      "loadbalancer_provider": {
+        "description": "The name of the provider. Changing this",
+        "required": false
+      },
+      "name": {
+        "description": "Human-readable name for the Loadbalancer. Does not have",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "security_group_ids": {
+        "description": "A list of security group IDs to apply to the",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "Required for admins. The UUID of the tenant who owns",
+        "required": false
+      },
+      "vip_address": {
+        "description": "The ip address of the load balancer.",
+        "required": false
+      },
+      "vip_subnet_id": {
+        "description": "The network on which to allocate the",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/openstack/r/lb_loadbalancer_v2.html",
+    "properties": [
+      "region",
+      "vip_subnet_id",
+      "name",
+      "description",
+      "tenant_id",
+      "vip_address",
+      "admin_state_up",
+      "flavor",
+      "loadbalancer_provider",
+      "security_group_ids"
+    ]
+  },
+  "openstack_lb_member_v1": {
+    "full_properties": {
+      "address": {
+        "description": "The IP address of the member. Changing this creates a",
+        "required": true
+      },
+      "admin_state_up": {
+        "description": "The administrative state of the member.",
+        "required": false
+      },
+      "pool_id": {
+        "description": "The ID of the LB pool. Changing this creates a new",
+        "required": true
+      },
+      "port": {
+        "description": "An integer representing the port on which the member is",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the member. Required if admin wants to",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/lb_member_v1.html",
+    "properties": [
+      "region",
+      "pool_id",
+      "address",
+      "port",
+      "admin_state_up",
+      "tenant_id"
+    ]
+  },
+  "openstack_lb_member_v2": {
+    "full_properties": {
+      "address": {
+        "description": "The IP address of the member to receive traffic from",
+        "required": true
+      },
+      "admin_state_up": {
+        "description": "The administrative state of the member.",
+        "required": false
+      },
+      "name": {
+        "description": "Human-readable name for the member.",
+        "required": false
+      },
+      "pool_id": {
+        "description": "The id of the pool that this member will be",
+        "required": true
+      },
+      "protocol_port": {
+        "description": "The port on which to listen for client traffic.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "subnet_id": {
+        "description": "The subnet in which to access the member",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "Required for admins. The UUID of the tenant who owns",
+        "required": false
+      },
+      "weight": {
+        "description": "A positive integer value that indicates the relative",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/lb_member_v2.html",
+    "properties": [
+      "region",
+      "pool_id",
+      "subnet_id",
+      "name",
+      "tenant_id",
+      "address",
+      "protocol_port",
+      "weight",
+      "admin_state_up"
+    ]
+  },
+  "openstack_lb_monitor_v1": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "The administrative state of the monitor.",
+        "required": false
+      },
+      "delay": {
+        "description": "The time, in seconds, between sending probes to members.",
+        "required": true
+      },
+      "expected_codes": {
+        "description": "Required for HTTP(S) types. Expected HTTP codes",
+        "required": false
+      },
+      "http_method": {
+        "description": "Required for HTTP(S) types. The HTTP method used",
+        "required": false
+      },
+      "max_retries": {
+        "description": "Number of permissible ping failures before changing",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the monitor. Required if admin wants to",
+        "required": false
+      },
+      "timeout": {
+        "description": "Maximum number of seconds for a monitor to wait for a",
+        "required": true
+      },
+      "type": {
+        "description": "The type of probe, which is PING, TCP, HTTP, or HTTPS,",
+        "required": true
+      },
+      "url_path": {
+        "description": "Required for HTTP(S) types. URI path that will be",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/lb_monitor_v1.html",
+    "properties": [
+      "region",
+      "type",
+      "delay",
+      "timeout",
+      "max_retries",
+      "url_path",
+      "http_method",
+      "expected_codes",
+      "admin_state_up",
+      "tenant_id"
+    ]
+  },
+  "openstack_lb_monitor_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "The administrative state of the monitor.",
+        "required": false
+      },
+      "delay": {
+        "description": "The time, in seconds, between sending probes to members.",
+        "required": true
+      },
+      "expected_codes": {
+        "description": "Required for HTTP(S) types. Expected HTTP codes",
+        "required": false
+      },
+      "http_method": {
+        "description": "Required for HTTP(S) types. The HTTP method used",
+        "required": false
+      },
+      "max_retries": {
+        "description": "Number of permissible ping failures before",
+        "required": true
+      },
+      "name": {
+        "description": "The Name of the Monitor.",
+        "required": false
+      },
+      "pool_id": {
+        "description": "The id of the pool that this monitor will be assigned to.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "Required for admins. The UUID of the tenant who owns",
+        "required": false
+      },
+      "timeout": {
+        "description": "Maximum number of seconds for a monitor to wait for a",
+        "required": true
+      },
+      "type": {
+        "description": "The type of probe, which is PING, TCP, HTTP, or HTTPS,",
+        "required": true
+      },
+      "url_path": {
+        "description": "Required for HTTP(S) types. URI path that will be",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/lb_monitor_v2.html",
+    "properties": [
+      "region",
+      "pool_id",
+      "name",
+      "tenant_id",
+      "type",
+      "delay",
+      "timeout",
+      "max_retries",
+      "url_path",
+      "http_method",
+      "expected_codes",
+      "admin_state_up"
+    ]
+  },
+  "openstack_lb_pool_v1": {
+    "full_properties": {
+      "lb_method": {
+        "description": "The algorithm used to distribute load between the",
+        "required": true
+      },
+      "lb_provider": {
+        "description": "The backend load balancing provider. For example:",
+        "required": false
+      },
+      "member": {
+        "description": "An existing node to add to the pool. Changing this",
+        "required": false
+      },
+      "monitor_ids": {
+        "description": "A list of IDs of monitors to associate with the",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the pool. Changing this updates the name of",
+        "required": true
+      },
+      "protocol": {
+        "description": "The protocol used by the pool members, you can use",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "subnet_id": {
+        "description": "The network on which the members of the pool will be",
+        "required": true
+      },
+      "tenant_id": {
+        "description": "The owner of the pool. Required if admin wants to",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/lb_pool_v1.html",
+    "properties": [
+      "region",
+      "name",
+      "protocol",
+      "subnet_id",
+      "lb_method",
+      "lb_provider",
+      "tenant_id",
+      "monitor_ids",
+      "member"
+    ]
+  },
+  "openstack_lb_pool_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "The administrative state of the pool.",
+        "required": false
+      },
+      "description": {
+        "description": "Human-readable description for the pool.",
+        "required": false
+      },
+      "lb_method": {
+        "description": "The load balancing algorithm to",
+        "required": true
+      },
+      "listener_id": {
+        "description": "The Listener on which the members of the pool",
+        "required": false
+      },
+      "loadbalancer_id": {
+        "description": "The load balancer on which to provision this",
+        "required": false
+      },
+      "name": {
+        "description": "Human-readable name for the pool.",
+        "required": false
+      },
+      "persistence": {
+        "description": "Omit this field to prevent session persistence.  Indicates",
+        "required": false
+      },
+      "protocol": {
+        "description": "= (Required) The protocol - can either be TCP, HTTP, HTTPS or PROXY.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "Required for admins. The UUID of the tenant who owns",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/lb_pool_v2.html",
+    "properties": [
+      "region",
+      "tenant_id",
+      "name",
+      "description",
+      "protocol",
+      "loadbalancer_id",
+      "listener_id",
+      "lb_method",
+      "persistence",
+      "admin_state_up"
+    ]
+  },
+  "openstack_lb_vip_v1": {
+    "full_properties": {
+      "address": {
+        "description": "The IP address of the vip. Changing this creates a new",
+        "required": false
+      },
+      "admin_state_up": {
+        "description": "The administrative state of the vip.",
+        "required": false
+      },
+      "conn_limit": {
+        "description": "The maximum number of connections allowed for the",
+        "required": false
+      },
+      "description": {
+        "description": "Human-readable description for the vip. Changing",
+        "required": false
+      },
+      "floating_ip": {
+        "description": "A Networking Floating IP that will be associated",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the vip. Changing this updates the name of",
+        "required": true
+      },
+      "persistence": {
+        "description": "Omit this field to prevent session persistence.",
+        "required": false
+      },
+      "pool_id": {
+        "description": "The ID of the pool with which the vip is associated.",
+        "required": true
+      },
+      "port": {
+        "description": "The port on which to listen for client traffic. Changing",
+        "required": true
+      },
+      "protocol": {
+        "description": "The protocol - can be either 'TCP, 'HTTP', or",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "subnet_id": {
+        "description": "The network on which to allocate the vip's address. A",
+        "required": true
+      },
+      "tenant_id": {
+        "description": "The owner of the vip. Required if admin wants to",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/lb_vip_v1.html",
+    "properties": [
+      "region",
+      "name",
+      "subnet_id",
+      "protocol",
+      "port",
+      "pool_id",
+      "tenant_id",
+      "address",
+      "description",
+      "persistence",
+      "conn_limit",
+      "floating_ip",
+      "admin_state_up"
+    ]
+  },
+  "openstack_networking_floatingip_associate_v2": {
+    "full_properties": {
+      "floating_ip": {
+        "description": "IP Address of an existing floating IP.",
+        "required": true
+      },
+      "port_id": {
+        "description": "ID of an existing port with at least one IP address to",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/networking_floatingip_associate_v2.html",
+    "properties": [
+      "region",
+      "floating_ip",
+      "port_id"
+    ]
+  },
+  "openstack_networking_floatingip_v2": {
+    "full_properties": {
+      "address": {
+        "description": "The actual/specific floating IP to obtain. By default,",
+        "required": false
+      },
+      "fixed_ip": {
+        "description": "Fixed IP of the port to associate with this floating IP. Required if",
+        "required": false
+      },
+      "pool": {
+        "description": "The name of the pool from which to obtain the floating",
+        "required": true
+      },
+      "port_id": {
+        "description": "ID of an existing port with at least one IP address to",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "subnet_id": {
+        "description": "The subnet ID of the floating IP pool. Specify this if",
+        "required": false
+      },
+      "tags": {
+        "description": "A set of string tags for the floating IP.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The target tenant ID in which to allocate the floating",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/networking_floatingip_v2.html",
+    "properties": [
+      "region",
+      "pool",
+      "port_id",
+      "tenant_id",
+      "address",
+      "fixed_ip",
+      "subnet_id",
+      "value_specs",
+      "tags"
+    ]
+  },
+  "openstack_networking_network_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "The administrative state of the network.",
+        "required": false
+      },
+      "availability_zone_hints": {
+        "description": "An availability zone is used to make",
+        "required": false
+      },
+      "external": {
+        "description": "Specifies whether the network resource has the",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the network. Changing this updates the name of",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "segments": {
+        "description": "An array of one or more provider segment objects.",
+        "required": false
+      },
+      "shared": {
+        "description": "Specifies whether the network resource can be accessed",
+        "required": false
+      },
+      "tags": {
+        "description": "A set of string tags for the network.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the network. Required if admin wants to",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/networking_network_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "shared",
+      "external",
+      "tenant_id",
+      "admin_state_up",
+      "segments",
+      "value_specs",
+      "availability_zone_hints",
+      "tags"
+    ]
+  },
+  "openstack_networking_port_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "Administrative up/down status for the port",
+        "required": false
+      },
+      "allowed_address_pairs": {
+        "description": "An IP/MAC Address pair of additional IP",
+        "required": false
+      },
+      "device_id": {
+        "description": "The ID of the device attached to the port. Changing this",
+        "required": false
+      },
+      "device_owner": {
+        "description": "The device owner of the Port. Changing this creates",
+        "required": false
+      },
+      "extra_dhcp_option": {
+        "description": "An extra DHCP option that needs to be configured",
+        "required": false
+      },
+      "fixed_ip": {
+        "description": "An array of desired IPs for",
+        "required": false
+      },
+      "mac_address": {
+        "description": "Specify a specific MAC address for the port. Changing",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the port. Changing this",
+        "required": false
+      },
+      "network_id": {
+        "description": "The ID of the network to attach the port to. Changing",
+        "required": true
+      },
+      "no_fixed_ip": {
+        "description": "Create a port with no fixed",
+        "required": false
+      },
+      "no_security_groups": {
+        "description": "If set to",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "security_group_ids": {
+        "description": "A list",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the Port. Required if admin wants",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/networking_port_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "network_id",
+      "admin_state_up",
+      "mac_address",
+      "tenant_id",
+      "device_owner",
+      "security_group_ids",
+      "no_security_groups",
+      "device_id",
+      "fixed_ip",
+      "no_fixed_ip",
+      "allowed_address_pairs",
+      "extra_dhcp_option",
+      "value_specs"
+    ]
+  },
+  "openstack_networking_router_interface_v2": {
+    "full_properties": {
+      "port_id": {
+        "description": "ID of the port this interface connects to. Changing",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "router_id": {
+        "description": "ID of the router this interface belongs to. Changing",
+        "required": true
+      },
+      "subnet_id": {
+        "description": "ID of the subnet this interface connects to. Changing",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/networking_router_interface_v2.html",
+    "properties": [
+      "region",
+      "router_id",
+      "subnet_id",
+      "port_id"
+    ]
+  },
+  "openstack_networking_router_route_v2": {
+    "full_properties": {
+      "destination_cidr": {
+        "description": "CIDR block to match on the packet’s destination IP. Changing",
+        "required": true
+      },
+      "next_hop": {
+        "description": "IP address of the next hop gateway.  Changing",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "router_id": {
+        "description": "ID of the router this routing entry belongs to. Changing",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/openstack/r/networking_router_route_v2.html",
+    "properties": [
+      "region",
+      "router_id",
+      "destination_cidr",
+      "next_hop"
+    ]
+  },
+  "openstack_networking_router_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "Administrative up/down status for the router",
+        "required": false
+      },
+      "availability_zone_hints": {
+        "description": "An availability zone is used to make ",
+        "required": false
+      },
+      "distributed": {
+        "description": "Indicates whether or not to create a",
+        "required": false
+      },
+      "enable_snat": {
+        "description": "Enable Source NAT for the router. Valid values are",
+        "required": false
+      },
+      "external_fixed_ip": {
+        "description": "An external fixed IP for the router. This",
+        "required": false
+      },
+      "external_gateway": {
+        "description": "The",
+        "required": false
+      },
+      "external_network_id": {
+        "description": "The network UUID of an external gateway",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the router. Changing this",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "tags": {
+        "description": "A set of string tags for the router.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the floating IP. Required if admin wants",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional driver-specific options.",
+        "required": false
+      },
+      "vendor_options": {
+        "description": "Map of additional vendor-specific options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/networking_router_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "admin_state_up",
+      "distributed",
+      "external_gateway",
+      "external_network_id",
+      "enable_snat",
+      "external_fixed_ip",
+      "tenant_id",
+      "value_specs",
+      "tags",
+      "vendor_options",
+      "availability_zone_hints"
+    ]
+  },
+  "openstack_networking_secgroup_rule_v2": {
+    "full_properties": {
+      "": {
+        "description": "vrrp",
+        "required": false
+      },
+      "description": {
+        "description": "A description of the rule. Changing this creates a new security group rule.",
+        "required": false
+      },
+      "direction": {
+        "description": "The direction of the rule, valid values are ingress",
+        "required": true
+      },
+      "ethertype": {
+        "description": "The layer 3 protocol type, valid values are IPv4",
+        "required": true
+      },
+      "port_range_max": {
+        "description": "The higher part of the allowed port range, valid",
+        "required": false
+      },
+      "port_range_min": {
+        "description": "The lower part of the allowed port range, valid",
+        "required": false
+      },
+      "protocol": {
+        "description": "The layer 4 protocol type, valid values are following. Changing this creates a new security group rule. This is required if you want to specify a port range.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "remote_group_id": {
+        "description": "The remote group id, the value needs to be an",
+        "required": false
+      },
+      "remote_ip_prefix": {
+        "description": "The remote CIDR, the value needs to be a valid",
+        "required": false
+      },
+      "security_group_id": {
+        "description": "The security group id the rule should belong",
+        "required": true
+      },
+      "tenant_id": {
+        "description": "The owner of the security group. Required if admin",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/networking_secgroup_rule_v2.html",
+    "properties": [
+      "region",
+      "description",
+      "direction",
+      "ethertype",
+      "protocol",
+      "",
+      "port_range_min",
+      "port_range_max",
+      "remote_ip_prefix",
+      "remote_group_id",
+      "security_group_id",
+      "tenant_id"
+    ]
+  },
+  "openstack_networking_secgroup_v2": {
+    "full_properties": {
+      "delete_default_rules": {
+        "description": "Whether or not to delete the default",
+        "required": false
+      },
+      "description": {
+        "description": "A unique name for the security group.",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the security group.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "tags": {
+        "description": "A set of string tags for the security group.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the security group. Required if admin",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/networking_secgroup_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "description",
+      "tenant_id",
+      "delete_default_rules",
+      "tags"
+    ]
+  },
+  "openstack_networking_subnet_route_v2": {
+    "full_properties": {
+      "destination_cidr": {
+        "description": "CIDR block to match on the packet’s destination IP. Changing",
+        "required": true
+      },
+      "next_hop": {
+        "description": "IP address of the next hop gateway.  Changing",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "subnet_id": {
+        "description": "ID of the subnet this routing entry belongs to. Changing",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/openstack/r/networking_subnet_route_v2.html",
+    "properties": [
+      "region",
+      "subnet_id",
+      "destination_cidr",
+      "next_hop"
+    ]
+  },
+  "openstack_networking_subnet_v2": {
+    "full_properties": {
+      "allocation_pools": {
+        "description": "An array of sub-ranges of CIDR available for",
+        "required": false
+      },
+      "cidr": {
+        "description": "CIDR representing IP range for this subnet, based on IP",
+        "required": false
+      },
+      "dns_nameservers": {
+        "description": "An array of DNS name server names used by hosts",
+        "required": false
+      },
+      "enable_dhcp": {
+        "description": "The administrative state of the network.",
+        "required": false
+      },
+      "gateway_ip": {
+        "description": "Default gateway used by devices in this subnet.",
+        "required": false
+      },
+      "host_routes": {
+        "description": "An array of routes that should be used by devices",
+        "required": false
+      },
+      "ip_version": {
+        "description": "IP version, either 4 (default) or 6. Changing this creates a",
+        "required": false
+      },
+      "ipv6_address_mode": {
+        "description": "The IPv6 address mode. Valid values are",
+        "required": false
+      },
+      "ipv6_ra_mode": {
+        "description": "The IPv6 Router Advertisement mode. Valid values",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the subnet. Changing this updates the name of",
+        "required": false
+      },
+      "network_id": {
+        "description": "The UUID of the parent network. Changing this",
+        "required": true
+      },
+      "no_gateway": {
+        "description": "Do not set a gateway IP on this subnet. Changing",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "subnetpool_id": {
+        "description": "The ID of the subnetpool associated with the subnet.",
+        "required": false
+      },
+      "tags": {
+        "description": "A set of string tags for the subnet.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the subnet. Required if admin wants to",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/networking_subnet_v2.html",
+    "properties": [
+      "region",
+      "network_id",
+      "cidr",
+      "ip_version",
+      "ipv6_address_mode",
+      "ipv6_ra_mode",
+      "name",
+      "tenant_id",
+      "allocation_pools",
+      "gateway_ip",
+      "no_gateway",
+      "enable_dhcp",
+      "dns_nameservers",
+      "host_routes",
+      "subnetpool_id",
+      "value_specs",
+      "tags"
+    ]
+  },
+  "openstack_networking_subnetpool_v2": {
+    "full_properties": {
+      "address_scope_id": {
+        "description": "The Neutron address scope to assign to the",
+        "required": false
+      },
+      "default_prefixlen": {
+        "description": "The size of the prefix to allocate when the cidr",
+        "required": false
+      },
+      "default_quota": {
+        "description": "The per-project quota on the prefix space that can be",
+        "required": false
+      },
+      "description": {
+        "description": "The human-readable description for the subnetpool.",
+        "required": false
+      },
+      "is_default": {
+        "description": "Indicates whether the subnetpool is default",
+        "required": false
+      },
+      "max_prefixlen": {
+        "description": "The maximum prefix size that can be allocated from",
+        "required": false
+      },
+      "min_prefixlen": {
+        "description": "The smallest prefix that can be allocated from a",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the subnetpool. Changing this updates the name of",
+        "required": true
+      },
+      "prefixes": {
+        "description": "A list of subnet prefixes to assign to the subnetpool.",
+        "required": true
+      },
+      "project_id": {
+        "description": "The owner of the subnetpool. Required if admin wants to",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "shared": {
+        "description": "Indicates whether this subnetpool is shared across",
+        "required": false
+      },
+      "tags": {
+        "description": "A set of string tags for the subnetpool.",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/networking_subnetpool_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "default_quota",
+      "project_id",
+      "prefixes",
+      "default_prefixlen",
+      "min_prefixlen",
+      "max_prefixlen",
+      "address_scope_id",
+      "shared",
+      "description",
+      "is_default",
+      "value_specs",
+      "tags"
+    ]
+  },
+  "openstack_networking_trunk_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "Administrative up/down status for the trunk",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the port. Changing this",
+        "required": false
+      },
+      "port_id": {
+        "description": "The ID of the port to be used as the parent port of the",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "sub_port": {
+        "description": "The set of ports that will be made subports of the trunk.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the Trunk. Required if admin wants",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/networking_trunk_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "port_id",
+      "admin_state_up",
+      "tenant_id",
+      "sub_port"
+    ]
+  },
+  "openstack_objectstorage_container_v1": {
+    "full_properties": {
+      "container_read": {
+        "description": "Sets an access control list (ACL) that grants",
+        "required": false
+      },
+      "container_sync_key": {
+        "description": "The secret key for container synchronization.",
+        "required": false
+      },
+      "container_sync_to": {
+        "description": "The destination for container synchronization.",
+        "required": false
+      },
+      "container_write": {
+        "description": "Sets an ACL that grants write access.",
+        "required": false
+      },
+      "content_type": {
+        "description": "The MIME type for the container. Changing this",
+        "required": false
+      },
+      "force_destroy": {
+        "description": "A boolean that indicates all objects should be deleted from the container so that the container can be destroyed without error. These objects are not recoverable.",
+        "required": false
+      },
+      "metadata": {
+        "description": "Custom key/value pairs to associate with the container.",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the container. Changing this creates a",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to create the container. If",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/objectstorage_container_v1.html",
+    "properties": [
+      "region",
+      "name",
+      "container_read",
+      "container_sync_to",
+      "container_sync_key",
+      "container_write",
+      "metadata",
+      "content_type",
+      "force_destroy"
+    ]
+  },
+  "openstack_objectstorage_object_v1": {
+    "full_properties": {
+      "container_name": {
+        "description": "A unique (within an account) name for the container. ",
+        "required": true
+      },
+      "content": {
+        "description": "A string representing the content of the object. Conflicts with",
+        "required": false
+      },
+      "content_disposition": {
+        "description": "A string which specifies the override behavior for ",
+        "required": false
+      },
+      "content_encoding": {
+        "description": "A string representing the value of the Content-Encoding",
+        "required": false
+      },
+      "content_type": {
+        "description": "A string which sets the MIME type for the object.",
+        "required": false
+      },
+      "copy_from": {
+        "description": "A string representing the name of an object ",
+        "required": false
+      },
+      "delete_after": {
+        "description": "An integer representing the number of seconds after which the",
+        "required": false
+      },
+      "delete_at": {
+        "description": "An string representing the date when the system removes the object. ",
+        "required": false
+      },
+      "detect_content_type": {
+        "description": "If set to true, Object Storage guesses the content ",
+        "required": false
+      },
+      "etag": {
+        "description": "Used to trigger updates. The only meaningful value is ${md5(file(\"path/to/file\"))}.",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the object.",
+        "required": true
+      },
+      "object_manifest": {
+        "description": "A string set to specify that this is a dynamic large ",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to create the container. If",
+        "required": false
+      },
+      "source": {
+        "description": "A string representing the local path of a file which will be used",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/objectstorage_object_v1.html",
+    "properties": [
+      "container_name",
+      "content",
+      "content_disposition",
+      "content_encoding",
+      "content_type",
+      "copy_from",
+      "delete_after",
+      "delete_at",
+      "detect_content_type",
+      "etag",
+      "name",
+      "object_manifest",
+      "region",
+      "source"
+    ]
+  },
+  "openstack_objectstorage_tempurl_v1": {
+    "full_properties": {
+      "container": {
+        "description": "The container name the object belongs to.",
+        "required": true
+      },
+      "method": {
+        "description": "The method allowed when accessing this URL.",
+        "required": false
+      },
+      "object": {
+        "description": "The object name the tempurl is for.",
+        "required": true
+      },
+      "regenerate": {
+        "description": "Whether to automatically regenerate the URL when",
+        "required": false
+      },
+      "region": {
+        "description": "The region the tempurl is located in.",
+        "required": false
+      },
+      "ttl": {
+        "description": "The TTL, in seconds, for the URL. For how long it should",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/openstack/r/objectstorage_tempurl_v1.html",
+    "properties": [
+      "region",
+      "container",
+      "object",
+      "ttl",
+      "method",
+      "regenerate"
+    ]
+  },
+  "openstack_vpnaas_endpoint_group_v2": {
+    "full_properties": {
+      "description": {
+        "description": "The human-readable description for the group.",
+        "required": false
+      },
+      "endpoints": {
+        "description": "List of endpoints of the same type, for the endpoint group. The values will depend on the type.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the group. Changing this updates the name of",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the group. Required if admin wants to",
+        "required": false
+      },
+      "type": {
+        "description": "The type of the endpoints in the group. A valid value is subnet, cidr, network, router, or vlan.",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/vpnaas_endpoint_group_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "tenant_id",
+      "description",
+      "type",
+      "endpoints",
+      "value_specs"
+    ]
+  },
+  "openstack_vpnaas_ike_policy_v2": {
+    "full_properties": {
+      "auth_algorithm": {
+        "description": "The authentication hash algorithm. Valid values are sha1, sha256, sha384, sha512.",
+        "required": false
+      },
+      "description": {
+        "description": "The human-readable description for the policy.",
+        "required": false
+      },
+      "encryption_algorithm": {
+        "description": "The encryption algorithm. Valid values are 3des, aes-128, aes-192 and so on.",
+        "required": false
+      },
+      "ike_version": {
+        "description": "The IKE mode. A valid value is v1 or v2. Default is v1.",
+        "required": false
+      },
+      "lifetimeunitvalue": {
+      },
+      "name": {
+        "description": "The name of the policy. Changing this updates the name of",
+        "required": false
+      },
+      "pfs": {
+        "description": "The perfect forward secrecy mode. Valid values are Group2, Group5 and Group14. Default is Group5.",
+        "required": false
+      },
+      "phase1_negotiation_mode": {
+        "description": "The IKE mode. A valid value is main, which is the default.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the policy. Required if admin wants to",
+        "required": false
+      },
+      "unit": {
+        "description": "The units for the lifetime of the security association. Can be either seconds or kilobytes.",
+        "required": false
+      },
+      "value": {
+        "description": "The value for the lifetime of the security association. Must be a positive integer.",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/vpnaas_ike_policy_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "tenant_id",
+      "description",
+      "auth_algorithm",
+      "encryption_algorithm",
+      "pfs",
+      "phase1_negotiation_mode",
+      "ike_version",
+      "lifetimeunitvalue",
+      "unit",
+      "value",
+      "value_specs"
+    ]
+  },
+  "openstack_vpnaas_ipsec_policy_v2": {
+    "full_properties": {
+      "auth_algorithm": {
+        "description": "The authentication hash algorithm. Valid values are sha1, sha256, sha384, sha512.",
+        "required": false
+      },
+      "description": {
+        "description": "The human-readable description for the policy.",
+        "required": false
+      },
+      "encapsulation_mode": {
+        "description": "The encapsulation mode. Valid values are tunnel and transport. Default is tunnel.",
+        "required": false
+      },
+      "encryption_algorithm": {
+        "description": "The encryption algorithm. Valid values are 3des, aes-128, aes-192 and so on.",
+        "required": false
+      },
+      "lifetimeunitvalue": {
+      },
+      "name": {
+        "description": "The name of the policy. Changing this updates the name of",
+        "required": false
+      },
+      "pfs": {
+        "description": "The perfect forward secrecy mode. Valid values are Group2, Group5 and Group14. Default is Group5.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the policy. Required if admin wants to",
+        "required": false
+      },
+      "transform_protocol": {
+        "description": "The transform protocol. Valid values are ESP, AH and AH-ESP.",
+        "required": false
+      },
+      "unit": {
+        "description": "The units for the lifetime of the security association. Can be either seconds or kilobytes.",
+        "required": false
+      },
+      "value": {
+        "description": "The value for the lifetime of the security association. Must be a positive integer.",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/vpnaas_ipsec_policy_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "tenant_id",
+      "description",
+      "auth_algorithm",
+      "encapsulation_mode",
+      "encryption_algorithm",
+      "pfs",
+      "transform_protocol",
+      "lifetimeunitvalue",
+      "unit",
+      "value",
+      "value_specs"
+    ]
+  },
+  "openstack_vpnaas_service_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "The administrative state of the resource. Can either be up(true) or down(false).",
+        "required": false
+      },
+      "description": {
+        "description": "The human-readable description for the service.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the service. Changing this updates the name of",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "router_id": {
+        "description": "The ID of the router. Changing this creates a new service.",
+        "required": true
+      },
+      "subnet_id": {
+        "description": "SubnetID is the ID of the subnet. Default is null.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the service. Required if admin wants to",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/openstack/r/vpnaas_service_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "tenant_id",
+      "description",
+      "admin_state_up",
+      "subnet_id",
+      "router_id",
+      "value_specs"
+    ]
+  },
+  "openstack_vpnaas_site_connection_v2": {
+    "full_properties": {
+      "action": {
+        "description": "The dead peer detection (DPD) action.",
+        "required": false
+      },
+      "admin_state_up": {
+        "description": "The administrative state of the resource. Can either be up(true) or down(false).",
+        "required": false
+      },
+      "description": {
+        "description": "The human-readable description for the connection.",
+        "required": false
+      },
+      "dpdactiontimeoutinterval": {
+      },
+      "ikepolicy_id": {
+        "description": "The ID of the IKE policy. Changing this creates a new connection.",
+        "required": true
+      },
+      "initiator": {
+        "description": "A valid value is response-only or bi-directional. Default is bi-directional.",
+        "required": false
+      },
+      "interval": {
+        "description": "The dead peer detection (DPD) interval, in seconds.",
+        "required": false
+      },
+      "ipsecpolicy_id": {
+        "description": "The ID of the IPsec policy. Changing this creates a new connection.",
+        "required": true
+      },
+      "local_ep_group_id": {
+        "description": "The ID for the endpoint group that contains private subnets for the local side of the connection.",
+        "required": false
+      },
+      "local_id": {
+        "description": "An ID to be used instead of the external IP address for a virtual router used in traffic between instances on different networks in east-west traffic.",
+        "required": false
+      },
+      "mtu": {
+        "description": "The maximum transmission unit (MTU) value to address fragmentation.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the connection. Changing this updates the name of",
+        "required": false
+      },
+      "peer_address": {
+        "description": "The peer gateway public IPv4 or IPv6 address or FQDN.",
+        "required": true
+      },
+      "peer_cidrs": {
+        "description": "Unique list of valid peer private CIDRs in the form < net_address > / < prefix > .",
+        "required": false
+      },
+      "peer_ep_group_id": {
+        "description": "The ID for the endpoint group that contains private CIDRs in the form < net_address > / < prefix > for the peer side of the connection.",
+        "required": false
+      },
+      "peer_id": {
+        "description": "The peer router identity for authentication. A valid value is an IPv4 address, IPv6 address, e-mail address, key ID, or FQDN.",
+        "required": true
+      },
+      "psk": {
+        "description": "The pre-shared key. A valid value is any string.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the connection. Required if admin wants to",
+        "required": false
+      },
+      "timeout": {
+        "description": "The dead peer detection (DPD) timeout in seconds.",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      },
+      "vpnservice_id": {
+        "description": "The ID of the VPN service. Changing this creates a new connection.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/openstack/r/vpnaas_site_connection_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "tenant_id",
+      "description",
+      "admin_state_up",
+      "ikepolicy_id",
+      "vpnservice_id",
+      "local_ep_group_id",
+      "ipsecpolicy_id",
+      "peer_id",
+      "peer_ep_group_id",
+      "local_id",
+      "peer_address",
+      "psk",
+      "initiator",
+      "peer_cidrs",
+      "dpdactiontimeoutinterval",
+      "action",
+      "timeout",
+      "interval",
+      "mtu",
+      "value_specs"
+    ]
+  }
+}

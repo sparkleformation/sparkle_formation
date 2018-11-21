@@ -1,0 +1,34 @@
+{
+  "dyn_record": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the record.",
+        "required": true
+      },
+      "ttl": {
+        "description": "The TTL of the record. Default uses the zone default.",
+        "required": false
+      },
+      "type": {
+        "description": "The type of the record.",
+        "required": true
+      },
+      "value": {
+        "description": "The value of the record.",
+        "required": true
+      },
+      "zone": {
+        "description": "The DNS zone to add the record to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/dyn/r/record.html",
+    "properties": [
+      "name",
+      "type",
+      "value",
+      "zone",
+      "ttl"
+    ]
+  }
+}

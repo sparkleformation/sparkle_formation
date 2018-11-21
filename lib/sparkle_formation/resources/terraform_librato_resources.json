@@ -1,0 +1,167 @@
+{
+  "librato_alert": {
+    "full_properties": {
+      "active": {
+        "description": "whether the alert is active (can be triggered). Defaults to true.",
+        "required": false
+      },
+      "attributes": {
+        "description": "A hash of additional attribtues for the alert. Attributes documented below.",
+        "required": false
+      },
+      "condition": {
+        "description": "A trigger condition for the alert. Conditions documented below.",
+        "required": false
+      },
+      "description": {
+        "description": "Description of the alert.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the alert.",
+        "required": true
+      },
+      "rearm_seconds": {
+        "description": "minimum amount of time between sending alert notifications, in seconds.",
+        "required": false
+      },
+      "services": {
+        "description": "list of notification service IDs.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/librato/r/alert.html",
+    "properties": [
+      "name",
+      "description",
+      "active",
+      "rearm_seconds",
+      "services",
+      "condition",
+      "attributes"
+    ]
+  },
+  "librato_metric": {
+    "full_properties": {
+      "attributes": {
+        "description": "The attributes hash configures specific components of a metric’s visualization.",
+        "required": false
+      },
+      "composite": {
+        "description": "The definition of the composite metric.",
+        "required": false
+      },
+      "description": {
+        "description": "Text that can be used to explain precisely what the metric is measuring.",
+        "required": false
+      },
+      "display_name": {
+        "description": "The name which will be used for the metric when viewing the Metrics website.",
+        "required": false
+      },
+      "name": {
+        "description": "The unique identifier of the metric.",
+        "required": true
+      },
+      "period": {
+        "description": "Number of seconds that is the standard reporting period of the metric.",
+        "required": false
+      },
+      "type": {
+        "description": "The type of metric to create (gauge, counter, or composite).",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/librato/r/metric.html",
+    "properties": [
+      "type",
+      "name",
+      "display_name",
+      "description",
+      "period",
+      "attributes",
+      "composite"
+    ]
+  },
+  "librato_service": {
+    "full_properties": {
+      "settings": {
+        "description": "a JSON hash of settings specific to the alert type.",
+        "required": true
+      },
+      "title": {
+        "description": "The alert title.",
+        "required": true
+      },
+      "type": {
+        "description": "The type of notificaion.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/librato/r/service.html",
+    "properties": [
+      "type",
+      "title",
+      "settings"
+    ]
+  },
+  "librato_space": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the space.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/librato/r/space.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "librato_space_chart": {
+    "full_properties": {
+      "label": {
+        "description": "The Y-axis label.",
+        "required": false
+      },
+      "max": {
+        "description": "The maximum display value of the chart's Y-axis.",
+        "required": false
+      },
+      "min": {
+        "description": "The minimum display value of the chart's Y-axis.",
+        "required": false
+      },
+      "name": {
+        "description": "The title of the chart when it is displayed.",
+        "required": true
+      },
+      "related_space": {
+        "description": "The ID of another space to which this chart is",
+        "required": false
+      },
+      "space_id": {
+        "description": "The ID of the space this chart should be in.",
+        "required": true
+      },
+      "stream": {
+        "description": "Nested block describing a metric to use for data in the",
+        "required": false
+      },
+      "type": {
+        "description": "Indicates the type of chart. Must be one of line or",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/librato/r/space_chart.html",
+    "properties": [
+      "space_id",
+      "name",
+      "type",
+      "min",
+      "max",
+      "label",
+      "related_space",
+      "stream"
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "opsgenie_team": {
+    "full_properties": {
+      "description": {
+        "description": "A description for this team.",
+        "required": false
+      },
+      "member": {
+        "description": "A Member block as documented below.",
+        "required": false
+      },
+      "name": {
+        "description": "The name associated with this team. OpsGenie defines that this must not be longer than 100 characters.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/opsgenie/r/team.html",
+    "properties": [
+      "name",
+      "description",
+      "member"
+    ]
+  },
+  "opsgenie_user": {
+    "full_properties": {
+      "full_name": {
+        "description": "The Full Name of the User.",
+        "required": true
+      },
+      "locale": {
+        "description": "Location information for the user. Please look at Supported Locale Ids for available locales - Defaults to \"en_US\".",
+        "required": false
+      },
+      "role": {
+        "description": "The Role assigned to the User. Either a built-in such as 'Owner', 'Admin' or 'User' - or the name of a custom role.",
+        "required": true
+      },
+      "timezone": {
+        "description": "Timezone information of the user. Please look at Supported Timezone Ids for available timezones - Defaults to \"America/New_York\".",
+        "required": false
+      },
+      "username": {
+        "description": "The email address associated with this user. OpsGenie defines that this must not be longer than 100 characters.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/opsgenie/r/user.html",
+    "properties": [
+      "username",
+      "full_name",
+      "role",
+      "locale",
+      "timezone"
+    ]
+  }
+}

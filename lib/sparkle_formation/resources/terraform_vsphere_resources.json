@@ -1,0 +1,1076 @@
+{
+  "vsphere_compute_cluster": {
+    "full_properties": {
+      "datacenter_id": {
+        "description": "The managed object ID of",
+        "required": true
+      },
+      "folder": {
+        "description": "The relative path to a folder to put this cluster in.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the cluster.",
+        "required": true
+      },
+      "tags": {
+        "description": "The IDs of any tags to attach to this resource. See",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vsphere/r/compute_cluster.html",
+    "properties": [
+      "name",
+      "datacenter_id",
+      "folder",
+      "tags"
+    ]
+  },
+  "vsphere_compute_cluster_host_group": {
+    "full_properties": {
+      "compute_cluster_id": {
+        "description": "The managed object reference",
+        "required": true
+      },
+      "host_system_ids": {
+        "description": "The managed object IDs of",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the host group. This must be unique in the",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vsphere/r/compute_cluster_host_group.html",
+    "properties": [
+      "name",
+      "compute_cluster_id",
+      "host_system_ids"
+    ]
+  },
+  "vsphere_compute_cluster_vm_affinity_rule": {
+    "full_properties": {
+      "compute_cluster_id": {
+        "description": "The managed object reference",
+        "required": true
+      },
+      "enabled": {
+        "description": "Enable this rule in the cluster. Default: true.",
+        "required": false
+      },
+      "mandatory": {
+        "description": "When this value is true, prevents any virtual",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the rule. This must be unique in the cluster.",
+        "required": true
+      },
+      "virtual_machine_ids": {
+        "description": "The UUIDs of the virtual machines to run",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vsphere/r/compute_cluster_vm_affinity_rule.html",
+    "properties": [
+      "compute_cluster_id",
+      "name",
+      "virtual_machine_ids",
+      "enabled",
+      "mandatory"
+    ]
+  },
+  "vsphere_compute_cluster_vm_anti_affinity_rule": {
+    "full_properties": {
+      "compute_cluster_id": {
+        "description": "The managed object reference",
+        "required": true
+      },
+      "enabled": {
+        "description": "Enable this rule in the cluster. Default: true.",
+        "required": false
+      },
+      "mandatory": {
+        "description": "When this value is true, prevents any virtual",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the rule. This must be unique in the cluster.",
+        "required": true
+      },
+      "virtual_machine_ids": {
+        "description": "The UUIDs of the virtual machines to run",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vsphere/r/compute_cluster_vm_anti_affinity_rule.html",
+    "properties": [
+      "compute_cluster_id",
+      "name",
+      "virtual_machine_ids",
+      "enabled",
+      "mandatory"
+    ]
+  },
+  "vsphere_compute_cluster_vm_dependency_rule": {
+    "full_properties": {
+      "compute_cluster_id": {
+        "description": "The managed object reference",
+        "required": true
+      },
+      "dependency_vm_group_namevm_group_name": {
+      },
+      "enabled": {
+        "description": "Enable this rule in the cluster. Default: true.",
+        "required": false
+      },
+      "mandatory": {
+        "description": "When this value is true, prevents any virtual",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the rule. This must be unique in the",
+        "required": true
+      },
+      "vm_group_namedependency_vm_group_name": {
+      }
+    },
+    "path": "/docs/providers/vsphere/r/compute_cluster_vm_dependency_rule.html",
+    "properties": [
+      "compute_cluster_id",
+      "name",
+      "dependency_vm_group_namevm_group_name",
+      "vm_group_namedependency_vm_group_name",
+      "enabled",
+      "mandatory"
+    ]
+  },
+  "vsphere_compute_cluster_vm_group": {
+    "full_properties": {
+      "compute_cluster_id": {
+        "description": "The managed object reference",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the VM group. This must be unique in the",
+        "required": true
+      },
+      "virtual_machine_ids": {
+        "description": "The UUIDs of the virtual machines in this",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vsphere/r/compute_cluster_vm_group.html",
+    "properties": [
+      "name",
+      "compute_cluster_id",
+      "virtual_machine_ids"
+    ]
+  },
+  "vsphere_compute_cluster_vm_host_rule": {
+    "full_properties": {
+      "affinity_host_group_namevm_group_name": {
+      },
+      "anti_affinity_host_group_namevm_group_name": {
+      },
+      "compute_cluster_id": {
+        "description": "The managed object reference",
+        "required": true
+      },
+      "enabled": {
+        "description": "Enable this rule in the cluster. Default: true.",
+        "required": false
+      },
+      "mandatory": {
+        "description": "When this value is true, prevents any virtual",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the rule. This must be unique in the",
+        "required": true
+      },
+      "vm_group_name": {
+        "description": "The name of the virtual machine group to use",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vsphere/r/compute_cluster_vm_host_rule.html",
+    "properties": [
+      "compute_cluster_id",
+      "name",
+      "vm_group_name",
+      "affinity_host_group_namevm_group_name",
+      "anti_affinity_host_group_namevm_group_name",
+      "enabled",
+      "mandatory"
+    ]
+  },
+  "vsphere_custom_attribute": {
+    "full_properties": {
+      "managed_object_type": {
+        "description": "The object type that this attribute may be",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the custom attribute.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vsphere/r/custom_attribute.html",
+    "properties": [
+      "name",
+      "managed_object_type"
+    ]
+  },
+  "vsphere_datacenter": {
+    "full_properties": {
+      "folder": {
+        "description": "The folder where the datacenter should be created.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the datacenter. This name needs to be unique",
+        "required": true
+      },
+      "tags": {
+        "description": "The IDs of any tags to attach to this resource. See",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vsphere/r/datacenter.html",
+    "properties": [
+      "name",
+      "folder",
+      "tags"
+    ]
+  },
+  "vsphere_datastore_cluster": {
+    "full_properties": {
+      "datacenter_id": {
+        "description": "The managed object ID of",
+        "required": true
+      },
+      "folder": {
+        "description": "The relative path to a folder to put this datastore",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the datastore cluster.",
+        "required": true
+      },
+      "sdrs_enabled": {
+        "description": "Enable Storage DRS for this datastore cluster.",
+        "required": false
+      },
+      "tags": {
+        "description": "The IDs of any tags to attach to this resource. See",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vsphere/r/datastore_cluster.html",
+    "properties": [
+      "name",
+      "datacenter_id",
+      "folder",
+      "sdrs_enabled",
+      "tags"
+    ]
+  },
+  "vsphere_datastore_cluster_vm_anti_affinity_rule": {
+    "full_properties": {
+      "datastore_cluster_id": {
+        "description": "The managed object reference",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the rule. This must be unique in the cluster.",
+        "required": true
+      },
+      "virtual_machine_ids": {
+        "description": "The UUIDs of the virtual machines to run",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vsphere/r/datastore_cluster_vm_anti_affinity_rule.html",
+    "properties": [
+      "datastore_cluster_id",
+      "name",
+      "virtual_machine_ids"
+    ]
+  },
+  "vsphere_distributed_port_group": {
+    "full_properties": {
+      "auto_expand": {
+        "description": "Allows the port group to create additional ports",
+        "required": false
+      },
+      "description": {
+        "description": "An optional description for the port group.",
+        "required": false
+      },
+      "distributed_virtual_switch_uuid": {
+        "description": "The ID of the DVS to add the",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the port group.",
+        "required": true
+      },
+      "number_of_ports": {
+        "description": "The number of ports available on this port",
+        "required": false
+      },
+      "type": {
+        "description": "The port group type. Can be one of earlyBinding (static",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vsphere/r/distributed_port_group.html",
+    "properties": [
+      "name",
+      "distributed_virtual_switch_uuid",
+      "type",
+      "description",
+      "number_of_ports",
+      "auto_expand"
+    ]
+  },
+  "vsphere_distributed_virtual_switch": {
+    "full_properties": {
+      "contact_detail": {
+        "description": "The detailed contact information for the person",
+        "required": false
+      },
+      "contact_name": {
+        "description": "The name of the person who is responsible for the",
+        "required": false
+      },
+      "datacenter_id": {
+        "description": "The ID of the datacenter where the distributed",
+        "required": true
+      },
+      "description": {
+        "description": "A detailed description for the DVS.",
+        "required": false
+      },
+      "folder": {
+        "description": "The folder to create the DVS in. Forces a new resource",
+        "required": false
+      },
+      "ipv4_address": {
+        "description": "An IPv4 address to identify the switch. This is",
+        "required": false
+      },
+      "lacp_api_version": {
+        "description": "The Link Aggregation Control Protocol group",
+        "required": false
+      },
+      "link_discovery_operation": {
+        "description": "Whether to advertise or listen",
+        "required": false
+      },
+      "link_discovery_protocol": {
+        "description": "The discovery protocol type. Valid",
+        "required": false
+      },
+      "max_mtu": {
+        "description": "The maximum transmission unit (MTU) for the virtual",
+        "required": false
+      },
+      "multicast_filtering_mode": {
+        "description": "The multicast filtering mode to use",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the distributed virtual switch.",
+        "required": true
+      },
+      "tags": {
+        "description": "The IDs of any tags to attach to this resource. See",
+        "required": false
+      },
+      "version": {
+        "description": "- The version of the DVS to create. The default is to",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vsphere/r/distributed_virtual_switch.html",
+    "properties": [
+      "name",
+      "datacenter_id",
+      "folder",
+      "description",
+      "contact_name",
+      "contact_detail",
+      "ipv4_address",
+      "lacp_api_version",
+      "link_discovery_operation",
+      "link_discovery_protocol",
+      "max_mtu",
+      "multicast_filtering_mode",
+      "version",
+      "tags"
+    ]
+  },
+  "vsphere_dpm_host_override": {
+    "full_properties": {
+      "compute_cluster_id": {
+        "description": "The managed object reference",
+        "required": true
+      },
+      "dpm_automation_level": {
+        "description": "The automation level for host power",
+        "required": false
+      },
+      "dpm_enabled": {
+        "description": "Enable DPM support for this host. Default:",
+        "required": false
+      },
+      "host_system_ids": {
+        "description": "The managed object ID of",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vsphere/r/dpm_host_override.html",
+    "properties": [
+      "compute_cluster_id",
+      "host_system_ids",
+      "dpm_enabled",
+      "dpm_automation_level"
+    ]
+  },
+  "vsphere_drs_vm_override": {
+    "full_properties": {
+      "compute_cluster_id": {
+        "description": "The managed object reference",
+        "required": true
+      },
+      "drs_automation_level": {
+        "description": "Overrides the automation level for this virtual",
+        "required": false
+      },
+      "drs_enabled": {
+        "description": "Overrides the default DRS setting for this virtual",
+        "required": false
+      },
+      "virtual_machine_id": {
+        "description": "The UUID of the virtual machine to create",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vsphere/r/drs_vm_override.html",
+    "properties": [
+      "compute_cluster_id",
+      "virtual_machine_id",
+      "drs_enabled",
+      "drs_automation_level"
+    ]
+  },
+  "vsphere_file": {
+    "full_properties": {
+      "create_directories": {
+        "description": "Create directories in destination_file",
+        "required": false
+      },
+      "datacenter": {
+        "description": "The name of a datacenter in which the file will be",
+        "required": false
+      },
+      "datastore": {
+        "description": "The name of the datastore in which to upload the",
+        "required": true
+      },
+      "destination_file": {
+        "description": "The path to where the file should be uploaded",
+        "required": true
+      },
+      "source_datacenter": {
+        "description": "The name of a datacenter in which the file",
+        "required": false
+      },
+      "source_datastore": {
+        "description": "The name of the datastore in which file will",
+        "required": false
+      },
+      "source_file": {
+        "description": "The path to the file being uploaded from the",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vsphere/r/file.html",
+    "properties": [
+      "source_file",
+      "destination_file",
+      "source_datacenter",
+      "datacenter",
+      "source_datastore",
+      "datastore",
+      "create_directories"
+    ]
+  },
+  "vsphere_folder": {
+    "full_properties": {
+      "path": {
+        "description": "The path of the folder to be created. This is relative to",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vsphere/r/folder.html",
+    "properties": [
+      "path"
+    ]
+  },
+  "vsphere_ha_vm_override": {
+    "full_properties": {
+      "compute_cluster_id": {
+        "description": "The managed object reference",
+        "required": true
+      },
+      "virtual_machine_id": {
+        "description": "The UUID of the virtual machine to create",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vsphere/r/ha_vm_override.html",
+    "properties": [
+      "compute_cluster_id",
+      "virtual_machine_id"
+    ]
+  },
+  "vsphere_host_port_group": {
+    "full_properties": {
+      "host_system_id": {
+        "description": "The managed object ID of",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the port group.  Forces a new resource if",
+        "required": true
+      },
+      "virtual_switch_name": {
+        "description": "The name of the virtual switch to bind",
+        "required": true
+      },
+      "vlan_id": {
+        "description": "The VLAN ID/trunk mode for this port group.  An ID of",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vsphere/r/host_port_group.html",
+    "properties": [
+      "name",
+      "host_system_id",
+      "virtual_switch_name",
+      "vlan_id"
+    ]
+  },
+  "vsphere_host_virtual_switch": {
+    "full_properties": {
+      "host_system_id": {
+        "description": "The managed object ID of",
+        "required": true
+      },
+      "mtu": {
+        "description": "The maximum transmission unit (MTU) for the virtual",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the virtual switch. Forces a new resource if",
+        "required": true
+      },
+      "number_of_ports": {
+        "description": "The number of ports to create with this",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vsphere/r/host_virtual_switch.html",
+    "properties": [
+      "name",
+      "host_system_id",
+      "mtu",
+      "number_of_ports"
+    ]
+  },
+  "vsphere_license": {
+    "full_properties": {
+      "labels": {
+        "description": "A map of key/value pairs to be attached as labels (tags) to the license key.",
+        "required": false
+      },
+      "license_key": {
+        "description": "The license key to add.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vsphere/r/license.html",
+    "properties": [
+      "license_key",
+      "labels"
+    ]
+  },
+  "vsphere_nas_datastore": {
+    "full_properties": {
+      "access_mode": {
+        "description": "Access mode for the mount point. Can be one of",
+        "required": false
+      },
+      "datastore_cluster_id": {
+        "description": "The managed object",
+        "required": false
+      },
+      "folder": {
+        "description": "The relative path to a folder to put this datastore in.",
+        "required": false
+      },
+      "host_system_ids": {
+        "description": "The managed object IDs of",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the datastore. Forces a new resource if",
+        "required": true
+      },
+      "remote_hosts": {
+        "description": "The hostnames or IP addresses of the remote",
+        "required": true
+      },
+      "remote_path": {
+        "description": "The remote path of the mount point. Forces a new",
+        "required": true
+      },
+      "security_type": {
+        "description": "The security type to use when using NFS v4.1.",
+        "required": false
+      },
+      "tags": {
+        "description": "The IDs of any tags to attach to this resource. See",
+        "required": false
+      },
+      "type": {
+        "description": "The type of NAS volume. Can be one of NFS (to denote",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vsphere/r/nas_datastore.html",
+    "properties": [
+      "name",
+      "host_system_ids",
+      "type",
+      "remote_hosts",
+      "remote_path",
+      "access_mode",
+      "security_type",
+      "folder",
+      "datastore_cluster_id",
+      "tags"
+    ]
+  },
+  "vsphere_resource_pool": {
+    "full_properties": {
+      "cpu_expandable": {
+        "description": "Determines if the reservation on a resource",
+        "required": false
+      },
+      "cpu_limit": {
+        "description": "The CPU utilization of a resource pool will not exceed",
+        "required": false
+      },
+      "cpu_reservation": {
+        "description": "Amount of CPU (MHz) that is guaranteed",
+        "required": false
+      },
+      "cpu_share_level": {
+        "description": "The CPU allocation level. The level is a",
+        "required": false
+      },
+      "cpu_shares": {
+        "description": "The number of shares allocated for CPU. Used to",
+        "required": false
+      },
+      "memory_expandable": {
+        "description": "Determines if the reservation on a resource",
+        "required": false
+      },
+      "memory_limit": {
+        "description": "The CPU utilization of a resource pool will not exceed",
+        "required": false
+      },
+      "memory_reservation": {
+        "description": "Amount of CPU (MHz) that is guaranteed",
+        "required": false
+      },
+      "memory_share_level": {
+        "description": "The CPU allocation level. The level is a",
+        "required": false
+      },
+      "memory_shares": {
+        "description": "The number of shares allocated for CPU. Used to",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the resource pool.",
+        "required": true
+      },
+      "parent_resource_pool_id": {
+        "description": "The managed object ID",
+        "required": true
+      },
+      "tags": {
+        "description": "The IDs of any tags to attach to this resource. See",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vsphere/r/resource_pool.html",
+    "properties": [
+      "name",
+      "parent_resource_pool_id",
+      "cpu_share_level",
+      "cpu_shares",
+      "cpu_reservation",
+      "cpu_expandable",
+      "cpu_limit",
+      "memory_share_level",
+      "memory_shares",
+      "memory_reservation",
+      "memory_expandable",
+      "memory_limit",
+      "tags"
+    ]
+  },
+  "vsphere_storage_drs_vm_override": {
+    "full_properties": {
+      "datastore_cluster_id": {
+        "description": "The managed object reference",
+        "required": true
+      },
+      "sdrs_automation_level": {
+        "description": "Overrides any Storage DRS automation",
+        "required": false
+      },
+      "sdrs_enabled": {
+        "description": "Overrides the default Storage DRS setting for",
+        "required": false
+      },
+      "sdrs_intra_vm_affinity": {
+        "description": "Overrides the intra-VM affinity setting",
+        "required": false
+      },
+      "virtual_machine_id": {
+        "description": "The UUID of the virtual machine to create",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vsphere/r/storage_drs_vm_override.html",
+    "properties": [
+      "datastore_cluster_id",
+      "virtual_machine_id",
+      "sdrs_enabled",
+      "sdrs_automation_level",
+      "sdrs_intra_vm_affinity"
+    ]
+  },
+  "vsphere_tag": {
+    "full_properties": {
+      "category_id": {
+        "description": "The unique identifier of the parent category in",
+        "required": true
+      },
+      "description": {
+        "description": "A description for the tag.",
+        "required": false
+      },
+      "name": {
+        "description": "The display name of the tag. The name must be unique",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vsphere/r/tag.html",
+    "properties": [
+      "name",
+      "category_id",
+      "description"
+    ]
+  },
+  "vsphere_tag_category": {
+    "full_properties": {
+      "associable_types": {
+        "description": "A list object types that this category is",
+        "required": true
+      },
+      "cardinality": {
+        "description": "The number of tags that can be assigned from this",
+        "required": true
+      },
+      "description": {
+        "description": "A description for the category.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the category.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vsphere/r/tag_category.html",
+    "properties": [
+      "name",
+      "cardinality",
+      "associable_types",
+      "description"
+    ]
+  },
+  "vsphere_vapp_container": {
+    "full_properties": {
+      "cpu_expandable": {
+        "description": "Determines if the reservation on a vApp",
+        "required": false
+      },
+      "cpu_limit": {
+        "description": "The CPU utilization of a vApp container will not",
+        "required": false
+      },
+      "cpu_reservation": {
+        "description": "Amount of CPU (MHz) that is guaranteed",
+        "required": false
+      },
+      "cpu_share_level": {
+        "description": "The CPU allocation level. The level is a",
+        "required": false
+      },
+      "cpu_shares": {
+        "description": "The number of shares allocated for CPU. Used to",
+        "required": false
+      },
+      "memory_expandable": {
+        "description": "Determines if the reservation on a vApp",
+        "required": false
+      },
+      "memory_limit": {
+        "description": "The CPU utilization of a vApp container will not",
+        "required": false
+      },
+      "memory_reservation": {
+        "description": "Amount of CPU (MHz) that is guaranteed",
+        "required": false
+      },
+      "memory_share_level": {
+        "description": "The CPU allocation level. The level is a",
+        "required": false
+      },
+      "memory_shares": {
+        "description": "The number of shares allocated for CPU. Used to",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the vApp container.",
+        "required": true
+      },
+      "parent_folder_id": {
+        "description": "The managed object ID of",
+        "required": false
+      },
+      "parent_resource_pool_id": {
+        "description": "The managed object ID",
+        "required": true
+      },
+      "tags": {
+        "description": "The IDs of any tags to attach to this resource. See",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vsphere/r/vapp_container.html",
+    "properties": [
+      "name",
+      "parent_resource_pool_id",
+      "parent_folder_id",
+      "cpu_share_level",
+      "cpu_shares",
+      "cpu_reservation",
+      "cpu_expandable",
+      "cpu_limit",
+      "memory_share_level",
+      "memory_shares",
+      "memory_reservation",
+      "memory_expandable",
+      "memory_limit",
+      "tags"
+    ]
+  },
+  "vsphere_vapp_entity": {
+    "full_properties": {
+      "container_id": {
+        "description": "[Managed object ID|docs-about-morefs] of the vApp",
+        "required": true
+      },
+      "start_action": {
+        "description": "How to start the entity. Valid settings are none",
+        "required": false
+      },
+      "start_delay": {
+        "description": "Delay in seconds before continuing with the next",
+        "required": false
+      },
+      "start_order": {
+        "description": "Order to start and stop target in vApp. Default: 1",
+        "required": false
+      },
+      "stop_action": {
+        "description": "Defines the stop action for the entity. Can be set",
+        "required": false
+      },
+      "stop_delay": {
+        "description": "Delay in seconds before continuing with the next",
+        "required": false
+      },
+      "target_id": {
+        "description": "[Managed object ID|docs-about-morefs] of the entity",
+        "required": true
+      },
+      "wait_for_guest": {
+        "description": "Determines if the VM should be marked as being",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vsphere/r/vapp_entity.html",
+    "properties": [
+      "target_id",
+      "container_id",
+      "start_order",
+      "start_action",
+      "start_delay",
+      "stop_action",
+      "stop_delay",
+      "wait_for_guest"
+    ]
+  },
+  "vsphere_virtual_disk": {
+    "full_properties": {
+      "adapter_type": {
+        "description": "The adapter type for this virtual disk. Can be",
+        "required": false
+      },
+      "datacenter": {
+        "description": "The name of the datacenter in which to create the",
+        "required": false
+      },
+      "datastore": {
+        "description": "The name of the datastore in which to create the",
+        "required": true
+      },
+      "size": {
+        "description": "Size of the disk (in GB).",
+        "required": true
+      },
+      "type": {
+        "description": "The type of disk to create. Can be one of",
+        "required": false
+      },
+      "vmdk_path": {
+        "description": "The path, including filename, of the virtual disk to",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vsphere/r/virtual_disk.html",
+    "properties": [
+      "vmdk_path",
+      "datastore",
+      "size",
+      "datacenter",
+      "type",
+      "adapter_type"
+    ]
+  },
+  "vsphere_virtual_machine": {
+    "full_properties": {
+      "timeout": {
+        "description": "setting in the customization",
+        "required": false
+      },
+      "wait_for_guest_net_timeoutwait_for_guest_net_routable": {
+      }
+    },
+    "path": "/docs/providers/vsphere/r/virtual_machine.html",
+    "properties": [
+      "timeout",
+      "wait_for_guest_net_timeoutwait_for_guest_net_routable"
+    ]
+  },
+  "vsphere_virtual_machine_snapshot": {
+    "full_properties": {
+      "consolidate": {
+        "description": "If set to true, the delta disks involved in this",
+        "required": false
+      },
+      "description": {
+        "description": "A description for the snapshot.",
+        "required": true
+      },
+      "memory": {
+        "description": "If set to true, a dump of the internal state of the",
+        "required": true
+      },
+      "quiesce": {
+        "description": "If set to true, and the virtual machine is powered",
+        "required": true
+      },
+      "remove_children": {
+        "description": "If set to true, the entire snapshot subtree",
+        "required": false
+      },
+      "snapshot_name": {
+        "description": "The name of the snapshot.",
+        "required": true
+      },
+      "virtual_machine_uuid": {
+        "description": "The virtual machine UUID.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vsphere/r/virtual_machine_snapshot.html",
+    "properties": [
+      "virtual_machine_uuid",
+      "snapshot_name",
+      "description",
+      "memory",
+      "quiesce",
+      "remove_children",
+      "consolidate"
+    ]
+  },
+  "vsphere_vmfs_datastore": {
+    "full_properties": {
+      "datastore_cluster_id": {
+        "description": "The managed object",
+        "required": false
+      },
+      "disks": {
+        "description": "The disks to use with the datastore.",
+        "required": true
+      },
+      "folder": {
+        "description": "The relative path to a folder to put this datastore in.",
+        "required": false
+      },
+      "host_system_id": {
+        "description": "The managed object ID of",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the datastore. Forces a new resource if",
+        "required": true
+      },
+      "tags": {
+        "description": "The IDs of any tags to attach to this resource. See",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vsphere/r/vmfs_datastore.html",
+    "properties": [
+      "name",
+      "host_system_id",
+      "disks",
+      "folder",
+      "datastore_cluster_id",
+      "tags"
+    ]
+  }
+}

@@ -1,0 +1,222 @@
+{
+  "ultradns_dirpool": {
+    "full_properties": {
+      "conflict_resolve": {
+        "description": "String. Valid: \"GEO\" or \"IP\". Default: \"GEO\".",
+        "required": false
+      },
+      "description": {
+        "description": "Description of the Traffic Controller pool. Valid values are strings less than 256 characters.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the record",
+        "required": true
+      },
+      "no_response": {
+        "description": "a single Record Data block, without any host attribute. Record Data documented below.",
+        "required": false
+      },
+      "rdata": {
+        "description": "a list of Record Data blocks, one for each member in the pool. Record Data documented below.",
+        "required": true
+      },
+      "ttl": {
+        "description": "The TTL of the record. Default: 3600.",
+        "required": false
+      },
+      "type": {
+        "description": "The Record Type of the record",
+        "required": true
+      },
+      "zone": {
+        "description": "The domain to add the record to",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ultradns/r/dirpool.html",
+    "properties": [
+      "zone",
+      "name",
+      "type",
+      "description",
+      "rdata",
+      "ttl",
+      "conflict_resolve",
+      "no_response"
+    ]
+  },
+  "ultradns_probe_http": {
+    "full_properties": {
+      "agents": {
+        "description": "List of locations that will be used for probing. One or more values must be specified. Valid values are \"NEW_YORK\", \"PALO_ALTO\", \"DALLAS\" & \"AMSTERDAM\".",
+        "required": true
+      },
+      "http_probe": {
+        "description": "an HTTP Probe block.",
+        "required": true
+      },
+      "interval": {
+        "description": "Length of time between probes in minutes. Valid values are \"HALF_MINUTE\", \"ONE_MINUTE\", \"TWO_MINUTES\", \"FIVE_MINUTES\", \"TEN_MINUTES\" & \"FIFTEEN_MINUTE\". Default: \"FIVE_MINUTES\".",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the pool to probe.",
+        "required": true
+      },
+      "pool_record": {
+        "description": "IP address or domain. If provided, a record-level probe is created, otherwise a pool-level probe is created.",
+        "required": false
+      },
+      "threshold": {
+        "description": "Number of agents that must agree for a probe state to be changed.",
+        "required": true
+      },
+      "zone": {
+        "description": "The domain of the pool to probe.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ultradns/r/probe_http.html",
+    "properties": [
+      "zone",
+      "name",
+      "pool_record",
+      "agents",
+      "threshold",
+      "http_probe",
+      "interval"
+    ]
+  },
+  "ultradns_probe_ping": {
+    "full_properties": {
+      "agents": {
+        "description": "List of locations that will be used for probing. One or more values must be specified. Valid values are \"NEW_YORK\", \"PALO_ALTO\", \"DALLAS\" & \"AMSTERDAM\".",
+        "required": true
+      },
+      "interval": {
+        "description": "Length of time between probes in minutes. Valid values are \"HALF_MINUTE\", \"ONE_MINUTE\", \"TWO_MINUTES\", \"FIVE_MINUTES\", \"TEN_MINUTES\" & \"FIFTEEN_MINUTE\". Default: \"FIVE_MINUTES\".",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the pool to probe.",
+        "required": true
+      },
+      "ping_probe": {
+        "description": "a Ping Probe block.",
+        "required": true
+      },
+      "pool_record": {
+        "description": "IP address or domain. If provided, a record-level probe is created, otherwise a pool-level probe is created.",
+        "required": false
+      },
+      "threshold": {
+        "description": "Number of agents that must agree for a probe state to be changed.",
+        "required": true
+      },
+      "zone": {
+        "description": "The domain of the pool to probe.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ultradns/r/probe_ping.html",
+    "properties": [
+      "zone",
+      "name",
+      "pool_record",
+      "agents",
+      "threshold",
+      "ping_probe",
+      "interval"
+    ]
+  },
+  "ultradns_record": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the record",
+        "required": true
+      },
+      "rdata": {
+        "description": "An array containing the values of the record",
+        "required": true
+      },
+      "ttl": {
+        "description": "The TTL of the record",
+        "required": false
+      },
+      "type": {
+        "description": "The type of the record",
+        "required": true
+      },
+      "zone": {
+        "description": "The domain to add the record to",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ultradns/r/record.html",
+    "properties": [
+      "zone",
+      "name",
+      "rdata",
+      "type",
+      "ttl"
+    ]
+  },
+  "ultradns_tcpool": {
+    "full_properties": {
+      "act_on_probes": {
+        "description": "Boolean to enable and disable pool records when probes are run. Default: true.",
+        "required": false
+      },
+      "backup_record_failover_delay": {
+        "description": "Time in minutes that Traffic Controller waits after detecting that the pool record has failed before activating primary records. Valid values are integers 0 - 30. Default: 0.",
+        "required": false
+      },
+      "backup_record_rdata": {
+        "description": "IPv4 address or CNAME for the backup record. Default: nil.",
+        "required": false
+      },
+      "description": {
+        "description": "Description of the Traffic Controller pool. Valid values are strings less than 256 characters.",
+        "required": true
+      },
+      "max_to_lb": {
+        "description": "Determines the number of records to balance between. Valid values are integers  0 - len(rdata). Default: 0.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the record",
+        "required": true
+      },
+      "rdata": {
+        "description": "a list of rdata blocks, one for each member in the pool. Record Data documented below.",
+        "required": true
+      },
+      "run_probes": {
+        "description": "Boolean to run probes for this pool. Default: true.",
+        "required": false
+      },
+      "ttl": {
+        "description": "The TTL of the record. Default: 3600.",
+        "required": false
+      },
+      "zone": {
+        "description": "The domain to add the record to",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/ultradns/r/tcpool.html",
+    "properties": [
+      "zone",
+      "name",
+      "rdata",
+      "description",
+      "ttl",
+      "run_probes",
+      "act_on_probes",
+      "max_to_lb",
+      "backup_record_rdata",
+      "backup_record_failover_delay"
+    ]
+  }
+}

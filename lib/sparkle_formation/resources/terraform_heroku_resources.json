@@ -1,0 +1,447 @@
+{
+  "heroku_account_feature": {
+    "full_properties": {
+      "enabled": {
+        "description": "Enable or disable the account feature",
+        "required": true
+      },
+      "name": {
+        "description": "Name of the account feature",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/heroku/r/account_feature.html",
+    "properties": [
+      "name",
+      "enabled"
+    ]
+  },
+  "heroku_addon": {
+    "full_properties": {
+      "app": {
+        "description": "The Heroku app to add to.",
+        "required": true
+      },
+      "config": {
+        "description": "Optional plan configuration.",
+        "required": false
+      },
+      "plan": {
+        "description": "The addon to add.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/heroku/r/addon.html",
+    "properties": [
+      "app",
+      "plan",
+      "config"
+    ]
+  },
+  "heroku_addon_attachment": {
+    "full_properties": {
+      "addon_id": {
+        "description": "The ID of the existing Heroku Addon to attach.",
+        "required": true
+      },
+      "app_id": {
+        "description": "The ID of the Heroku App to attach to.",
+        "required": true
+      },
+      "name": {
+        "description": "A friendly name for the Heroku Addon Attachment.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/heroku/r/addon_attachment.html",
+    "properties": [
+      "app_id",
+      "addon_id",
+      "name"
+    ]
+  },
+  "heroku_app": {
+    "full_properties": {
+      "acm": {
+        "description": "The flag representing Automated Certificate Management for the app.",
+        "required": false
+      },
+      "buildpacks": {
+        "description": "Buildpack names or URLs for the application.",
+        "required": false
+      },
+      "config_vars": {
+        "description": "Configuration variables for the application.",
+        "required": false
+      },
+      "internal_routing": {
+        "description": "If true, the application will be routable",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the application. In Heroku, this is also the",
+        "required": true
+      },
+      "organization": {
+        "description": "A block that can be specified once to define",
+        "required": false
+      },
+      "region": {
+        "description": "The region that the app should be deployed in.",
+        "required": true
+      },
+      "space": {
+        "description": "The name of a private space to create the app in.",
+        "required": false
+      },
+      "stack": {
+        "description": "The application stack is what platform to run the application",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/heroku/r/app.html",
+    "properties": [
+      "name",
+      "region",
+      "stack",
+      "buildpacks",
+      "config_vars",
+      "space",
+      "internal_routing",
+      "organization",
+      "acm"
+    ]
+  },
+  "heroku_app_feature": {
+    "full_properties": {
+      "app": {
+        "description": "The Heroku app to link to.",
+        "required": true
+      },
+      "enabled": {
+        "description": "Whether to enable or disable the App Feature. The default value is true.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the App Feature to manage.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/heroku/r/app_feature.html",
+    "properties": [
+      "app",
+      "name",
+      "enabled"
+    ]
+  },
+  "heroku_app_release": {
+    "full_properties": {
+      "app": {
+        "description": "The name of the application",
+        "required": true
+      },
+      "description": {
+        "description": "description of changes in this release",
+        "required": false
+      },
+      "slug_id": {
+        "description": "unique identifier of slug",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/heroku/r/app_release.html",
+    "properties": [
+      "app",
+      "slug_id",
+      "description"
+    ]
+  },
+  "heroku_cert": {
+    "full_properties": {
+      "app": {
+        "description": "The Heroku app to add to.",
+        "required": true
+      },
+      "certificate_chain": {
+        "description": "The certificate chain to add",
+        "required": true
+      },
+      "private_key": {
+        "description": "The private key for a given certificate chain",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/heroku/r/cert.html",
+    "properties": [
+      "app",
+      "certificate_chain",
+      "private_key"
+    ]
+  },
+  "heroku_domain": {
+    "full_properties": {
+      "app": {
+        "description": "The Heroku app to link to.",
+        "required": true
+      },
+      "hostname": {
+        "description": "The hostname to serve requests from.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/heroku/r/domain.html",
+    "properties": [
+      "hostname",
+      "app"
+    ]
+  },
+  "heroku_drain": {
+    "full_properties": {
+      "app": {
+        "description": "The Heroku app to link to.",
+        "required": true
+      },
+      "url": {
+        "description": "The URL for Heroku to drain your logs to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/heroku/r/drain.html",
+    "properties": [
+      "url",
+      "app"
+    ]
+  },
+  "heroku_formation": {
+    "full_properties": {
+      "app": {
+        "description": "The name of the application",
+        "required": true
+      },
+      "quantity": {
+        "description": "number of processes to maintain",
+        "required": true
+      },
+      "size": {
+        "description": "dyno size (Example: “standard-1X”). Capitalization does not matter.",
+        "required": true
+      },
+      "type": {
+        "description": "type of process such as \"web\"",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/heroku/r/formation.html",
+    "properties": [
+      "app",
+      "type",
+      "quantity",
+      "size"
+    ]
+  },
+  "heroku_pipeline": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the pipeline.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/heroku/r/pipeline.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "heroku_pipeline_coupling": {
+    "full_properties": {
+      "app": {
+        "description": "The name of the app for this coupling.",
+        "required": true
+      },
+      "pipeline": {
+        "description": "The ID of the pipeline to add this app to.",
+        "required": true
+      },
+      "stage": {
+        "description": "The stage to couple this app to. Must be one of",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/heroku/r/pipeline_coupling.html",
+    "properties": [
+      "app",
+      "pipeline",
+      "stage"
+    ]
+  },
+  "heroku_slug": {
+    "full_properties": {
+      "": {
+        "description": "The file_url is only fetched during resource creation. To trigger another fetch the file_url should be changed, then a new resource will be forced on the next plan/apply.",
+        "required": false
+      },
+      "file_url": {
+        "description": "or file_path must reference a file containing a slug archive of executable code and must follow the prescribed layout from Create slug archive in the Heroku Dev Center (nested within an ./app directory)",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/heroku/r/slug.html",
+    "properties": [
+      "file_url",
+      ""
+    ]
+  },
+  "heroku_space": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the space.",
+        "required": true
+      },
+      "organization": {
+        "description": "The name of the organization which will own the space.",
+        "required": true
+      },
+      "region": {
+        "description": "The region that the space should be created in.",
+        "required": false
+      },
+      "shield": {
+        "description": "Whether or not the private space should be shielded.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/heroku/r/space.html",
+    "properties": [
+      "name",
+      "organization",
+      "region",
+      "shield"
+    ]
+  },
+  "heroku_space_inbound_ruleset": {
+    "full_properties": {
+      "rule": {
+        "description": "At least one rule block. Rules are documented below.",
+        "required": true
+      },
+      "space": {
+        "description": "The name of the space.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/heroku/r/space_inbound_ruleset.html",
+    "properties": [
+      "space",
+      "rule"
+    ]
+  },
+  "heroku_space_member": {
+    "full_properties": {
+      "email": {
+        "description": "The email of the team member to set permissions for.",
+        "required": true
+      },
+      "permissions": {
+        "description": "The permissions to grant the team member for the space. Currently create_apps is the only supported permission. If not provided the member will have no permissions to the space. Members with admin role will always have create_apps permissions, which cannot be removed.",
+        "required": true
+      },
+      "space": {
+        "description": "The name of the space.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/heroku/r/space_app_access.html",
+    "properties": [
+      "space",
+      "email",
+      "permissions"
+    ]
+  },
+  "heroku_space_peering_connection_accepter": {
+    "full_properties": {
+      "space": {
+        "description": "The name of the space.",
+        "required": true
+      },
+      "vpc_peering_connection_id": {
+        "description": "The peering connection request ID.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/heroku/r/space_peering_connection_accepter.html",
+    "properties": [
+      "space",
+      "vpc_peering_connection_id"
+    ]
+  },
+  "heroku_space_vpn_connection": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the VPN connection.",
+        "required": true
+      },
+      "public_ip": {
+        "description": "The public IP address of the VPN endpoint on the network where the VPN connection will be established.",
+        "required": true
+      },
+      "routable_cidrs": {
+        "description": "A list of IPv4 CIDR blocks used by the network where the VPN connection will be established.",
+        "required": true
+      },
+      "space": {
+        "description": "The name of the Heroku Private Space where the VPN connection will be established.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/heroku/r/space_vpn_connection.html",
+    "properties": [
+      "name",
+      "space",
+      "public_ip",
+      "routable_cidrs"
+    ]
+  },
+  "heroku_team_collaborator": {
+    "full_properties": {
+      "app": {
+        "description": "The name of the team app that the team collaborator will be added to.",
+        "required": true
+      },
+      "email": {
+        "description": "Email address of the team collaborator",
+        "required": true
+      },
+      "permissions": {
+        "description": "List of permissions that will be granted to the team collaborator. The order in which",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/heroku/r/team_collaborator.html",
+    "properties": [
+      "app",
+      "email",
+      "permissions"
+    ]
+  },
+  "heroku_team_member": {
+    "full_properties": {
+      "email": {
+        "description": "Email address of the team collaborator",
+        "required": true
+      },
+      "role": {
+        "description": "The role to assign the team member. See the API docs for available options.",
+        "required": true
+      },
+      "team": {
+        "description": "The name of the Heroku team that the team member will be added to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/heroku/r/team_member.html",
+    "properties": [
+      "team",
+      "email",
+      "role"
+    ]
+  }
+}

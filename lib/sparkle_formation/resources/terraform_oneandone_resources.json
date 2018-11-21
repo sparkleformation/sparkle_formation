@@ -1,0 +1,221 @@
+{
+  "oneandone_baremetal": {
+    "full_properties": {
+      "baremetal_model_id": {
+        "description": "ID of a baremetal model",
+        "required": true
+      },
+      "datacenter": {
+        "description": "Location of desired 1and1 datacenter. Can be DE, GB, US or ES",
+        "required": false
+      },
+      "description": {
+        "description": "Description of the server",
+        "required": false
+      },
+      "firewall_policy_id": {
+        "description": "ID of firewall policy",
+        "required": false
+      },
+      "image": {
+        "description": "The name of a desired image to be provisioned with the server",
+        "required": true
+      },
+      "ip": {
+        "description": "IP address for the server",
+        "required": false
+      },
+      "loadbalancer_id": {
+        "description": "ID of the load balancer",
+        "required": false
+      },
+      "monitoring_policy_id": {
+        "description": "ID of monitoring policy",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the server.",
+        "required": true
+      },
+      "password": {
+        "description": "Desired password.",
+        "required": false
+      },
+      "ssh_key_path": {
+        "description": "Path to private ssh key",
+        "required": false
+      },
+      "ssh_key_public": {
+        "description": "The public key data in OpenSSH authorized_keys format.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oneandone/r/baremetal.html",
+    "properties": [
+      "datacenter",
+      "description",
+      "firewall_policy_id",
+      "baremetal_model_id",
+      "image",
+      "ip",
+      "loadbalancer_id",
+      "monitoring_policy_id",
+      "name",
+      "password",
+      "ssh_key_path",
+      "ssh_key_public"
+    ]
+  },
+  "oneandone_block_storage": {
+    "full_properties": {
+      "datacenter": {
+        "description": "Location of desired 1and1 datacenter, where the block storage will be created. Can be DE, GB, US or ES",
+        "required": false
+      },
+      "description": {
+        "description": "Description for the block storage",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the storage",
+        "required": true
+      },
+      "server_id": {
+        "description": "ID of the server that the block storage will be attached to",
+        "required": false
+      },
+      "size": {
+        "description": "Size of the block storage (min: 20, max: 500, multipleOf: 10)",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oneandone/r/block_storage.html",
+    "properties": [
+      "datacenter",
+      "description",
+      "name",
+      "server_id",
+      "size"
+    ]
+  },
+  "oneandone_instance_size": {
+    "full_properties": {
+      "name": {
+        "description": "Number of cores per processor",
+        "required": false
+      },
+      "ram": {
+        "description": "Size of ram in GB",
+        "required": false
+      },
+      "vcores": {
+        "description": "Number of vcores",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oneandone/r/instance_size.html",
+    "properties": [
+      "name",
+      "ram",
+      "vcores"
+    ]
+  },
+  "oneandone_ip": {
+    "full_properties": {
+      "datacenter": {
+        "description": "Location of desired 1and1 datacenter. Can be DE, GB, US or ES.",
+        "required": false
+      },
+      "ip_address": {
+        "description": "The IP address.",
+        "required": false
+      },
+      "ip_type": {
+        "description": "IP type. Can be IPV4 or IPV6",
+        "required": true
+      },
+      "reverse_dns": {
+        "description": " ",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oneandone/r/public_ip.html",
+    "properties": [
+      "ip_type",
+      "reverse_dns",
+      "datacenter",
+      "ip_address"
+    ]
+  },
+  "oneandone_server": {
+    "full_properties": {
+      "description": {
+        "description": "Description for the VPN",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the VPN.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oneandone/r/firewall_policy.html",
+    "properties": [
+      "description",
+      "name"
+    ]
+  },
+  "oneandone_ssh_key": {
+    "full_properties": {
+      "description": {
+        "description": "Description for the ssh key",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the storage",
+        "required": true
+      },
+      "public_key": {
+        "description": "Public key to import. If not given, new SSH key pair will be created and the private key is returned in the response",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oneandone/r/ssh_key.html",
+    "properties": [
+      "description",
+      "name",
+      "public_key"
+    ]
+  },
+  "oneandone_vpn": {
+    "full_properties": {
+      "datacenter": {
+        "description": "Location of desired 1and1 datacenter. Can be DE, GB, US or ES.",
+        "required": false
+      },
+      "description": {
+        "description": "(Optional)",
+        "required": false
+      },
+      "download_path": {
+        "description": "(Optional)",
+        "required": false
+      },
+      "file_name": {
+        "description": "(Optional)",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the VPN",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oneandone/r/vpn.html",
+    "properties": [
+      "datacenter",
+      "name",
+      "description",
+      "download_path",
+      "file_name"
+    ]
+  }
+}

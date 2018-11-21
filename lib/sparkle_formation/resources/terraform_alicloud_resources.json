@@ -1,0 +1,4023 @@
+{
+  "alicloud_api_gateway_api": {
+    "full_properties": {
+      "auth_type": {
+        "description": "The authorization Type including APP and ANONYMOUS. Defaults to null.",
+        "required": true
+      },
+      "constant_parameters": {
+        "description": "http_service_config defines the config when service_type selected 'HTTP'.",
+        "required": false
+      },
+      "description": {
+        "description": "The description of the api. Defaults to null.",
+        "required": true
+      },
+      "group_id": {
+        "description": "The api gateway that the api belongs to. Defaults to null.",
+        "required": false
+      },
+      "http_service_config": {
+        "description": "http_service_config defines the config when service_type selected 'HTTP'.",
+        "required": false
+      },
+      "http_vpc_service_config": {
+        "description": "http_service_config defines the config when service_type selected 'HTTP'.",
+        "required": false
+      },
+      "mock_service_config": {
+        "description": "http_service_config defines the config when service_type selected 'HTTP'.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the api gateway api. Defaults to null.",
+        "required": true
+      },
+      "request_config": {
+        "description": "Request_config defines how users can send requests to your API.",
+        "required": false
+      },
+      "request_parameters": {
+        "description": "request_parameters defines .",
+        "required": false
+      },
+      "service_type": {
+        "description": "The type of backend service. Type including HTTP,VPC and MOCK. Defaults to null.",
+        "required": true
+      },
+      "system_parameters": {
+        "description": "http_service_config defines the config when service_type selected 'HTTP'.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/api_gateway_api.html",
+    "properties": [
+      "name",
+      "group_id",
+      "description",
+      "auth_type",
+      "request_config",
+      "service_type",
+      "http_service_config",
+      "http_vpc_service_config",
+      "mock_service_config",
+      "request_parameters",
+      "constant_parameters",
+      "system_parameters"
+    ]
+  },
+  "alicloud_api_gateway_app": {
+    "full_properties": {
+      "description": {
+        "description": "The description of the app. Defaults to null.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the app. Defaults to null.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/api_gateway_app.html",
+    "properties": [
+      "name",
+      "description"
+    ]
+  },
+  "alicloud_api_gateway_app_attachment": {
+    "full_properties": {
+      "api_id": {
+        "description": "The api_id that app apply to access.",
+        "required": false
+      },
+      "app_id": {
+        "description": "The app that apply to the authorization.",
+        "required": false
+      },
+      "group_id": {
+        "description": "The group that the api belongs to.",
+        "required": false
+      },
+      "stage_name": {
+        "description": "Stage that the app apply to access.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/api_gateway_app_attachment.html",
+    "properties": [
+      "api_id",
+      "group_id",
+      "app_id",
+      "stage_name"
+    ]
+  },
+  "alicloud_api_gateway_group": {
+    "full_properties": {
+      "description": {
+        "description": "The description of the api gateway group. Defaults to null.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the api gateway group. Defaults to null.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/api_gateway_group.html",
+    "properties": [
+      "name",
+      "description"
+    ]
+  },
+  "alicloud_cdn_domain": {
+    "full_properties": {
+      "cdn_type": {
+        "description": "Cdn type of the accelerated domain. Valid values are web, download, video, liveStream.",
+        "required": true
+      },
+      "domain_name": {
+        "description": "Name of the accelerated domain. This name without suffix can have a string of 1 to 63 characters, must contain only alphanumeric characters or \"-\", and must not begin or end with \"-\", and \"-\" must not in the 3th and 4th character positions at the same time. Suffix .sh and .tel are not supported.",
+        "required": true
+      },
+      "scope": {
+        "description": "Scope of the accelerated domain. Valid values are domestic, overseas, global. Default value is domestic. This parameter's setting is valid Only for the international users and domestic L3 and above users .",
+        "required": false
+      },
+      "source_port": {
+        "description": "Source port of the accelerated domain. Valid values are 80 and 443. Default value is 80. You must use 80 when the source_type is oss.",
+        "required": false
+      },
+      "source_type": {
+        "description": "Source type of the accelerated domain. Valid values are ipaddr, domain, oss. You must set this parameter when cdn_type value is not liveStream.",
+        "required": false
+      },
+      "sources": {
+        "description": "Sources of the accelerated domain. It's a list of domain names or IP address and consists of at most 20 items. You must set this parameter when cdn_type value is not liveStream.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/cdn_domain.html",
+    "properties": [
+      "domain_name",
+      "cdn_type",
+      "source_type",
+      "source_port",
+      "sources",
+      "scope"
+    ]
+  },
+  "alicloud_cen_bandwidth_limit": {
+    "full_properties": {
+      "bandwidth_limit": {
+        "description": "The bandwidth configured for the interconnected regions communication.",
+        "required": true
+      },
+      "instance_id": {
+        "description": "The ID of the CEN.",
+        "required": true
+      },
+      "region_ids": {
+        "description": "List of the two regions to interconnect. ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/cen_bandwidth_limit.html",
+    "properties": [
+      "instance_id",
+      "region_ids",
+      "bandwidth_limit"
+    ]
+  },
+  "alicloud_cen_bandwidth_package": {
+    "full_properties": {
+      "bandwidth": {
+        "description": "The bandwidth in Mbps of the bandwidth package. Cannot be less than 1Mbps.",
+        "required": true
+      },
+      "charge_type": {
+        "description": "The billing method. Valid value: PostPaid | PrePaid. Default to PostPaid. If set to PrePaid, the bandwidth package can't be deleted before expired time.",
+        "required": false
+      },
+      "description": {
+        "description": "The description of the bandwidth package. Default to null.",
+        "required": false
+      },
+      "geographic_region_ids": {
+        "description": "List of the two areas to connect. Valid value: China | North-America | Asia-Pacific | Europe | Middle-East.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the bandwidth package. Defaults to null.",
+        "required": false
+      },
+      "period": {
+        "description": "The purchase period in month. Valid value: 1, 2, 3, 6, 12. Default to 1.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/cen_bandwidth_package.html",
+    "properties": [
+      "bandwidth",
+      "geographic_region_ids",
+      "name",
+      "description",
+      "charge_type",
+      "period"
+    ]
+  },
+  "alicloud_cen_bandwidth_package_attachment": {
+    "full_properties": {
+      "bandwidth_package_id": {
+        "description": "The ID of the bandwidth package.",
+        "required": true
+      },
+      "instance_id": {
+        "description": "The ID of the CEN.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/cen_bandwidth_package_attachment.html",
+    "properties": [
+      "instance_id",
+      "bandwidth_package_id"
+    ]
+  },
+  "alicloud_cen_instance": {
+    "full_properties": {
+      "description": {
+        "description": "The description of the CEN instance. Defaults to null.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the CEN instance. Defaults to null.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/cen_instance.html",
+    "properties": [
+      "name",
+      "description"
+    ]
+  },
+  "alicloud_cen_instance_attachment": {
+    "full_properties": {
+      "child_instance_id": {
+        "description": "The ID of the child instance to attach.",
+        "required": true
+      },
+      "child_instance_region_id": {
+        "description": "The region ID of the child instance to attach.",
+        "required": true
+      },
+      "instance_id": {
+        "description": "The ID of the CEN.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/cen_instance_attachment.html",
+    "properties": [
+      "instance_id",
+      "child_instance_id",
+      "child_instance_region_id"
+    ]
+  },
+  "alicloud_cen_route_entry": {
+    "full_properties": {
+      "cidr_block": {
+        "description": "The destination CIDR block of the route entry to publish.",
+        "required": true
+      },
+      "instance_id": {
+        "description": "The ID of the CEN.",
+        "required": true
+      },
+      "route_table_id": {
+        "description": "The route table of the attached VBR or VPC.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/cen_route_entry.html",
+    "properties": [
+      "instance_id",
+      "route_table_id",
+      "cidr_block"
+    ]
+  },
+  "alicloud_cms_alarm": {
+    "full_properties": {
+      "contact_groups": {
+        "description": "List contact groups of the alarm rule, which must have been created on the console.",
+        "required": true
+      },
+      "dimensions": {
+        "description": "Map of the resources associated with the alarm rule, such as \"instanceId\", \"device\" and \"port\". Each key's value is a string and it uses comma to split multiple items. For more information, see Metrics Reference.",
+        "required": false
+      },
+      "enabled": {
+        "description": "Whether to enable alarm rule. Default to true.",
+        "required": false
+      },
+      "end_time": {
+        "description": "End time of the alarm effective period. Default value 24 and it indicates the time 24:00. Valid value range: [0, 24].",
+        "required": false
+      },
+      "metric": {
+        "description": "Name of the monitoring metrics corresponding to a project, such as \"CPUUtilization\" and \"networkin_rate\". For more information, see Metrics Reference.",
+        "required": false
+      },
+      "name": {
+        "description": "The alarm rule name.",
+        "required": true
+      },
+      "notify_type": {
+        "description": "Notification type. Valid value [0, 1]. The value 0 indicates TradeManager+email, and the value 1 indicates that TradeManager+email+SMS",
+        "required": false
+      },
+      "operator": {
+        "description": "Alarm comparison operator. Valid values: [\"<=\", \"<\", \">\", \">=\", \"==\", \"!=\"]. Default to \"==\".",
+        "required": false
+      },
+      "period": {
+        "description": "Index query cycle, which must be consistent with that defined for metrics. Default to 300, in seconds.",
+        "required": false
+      },
+      "project": {
+        "description": "Monitor project name, such as \"acs_ecs_dashboard\" and \"acs_rds_dashboard\". For more information, see Metrics Reference.",
+        "required": false
+      },
+      "silence_time": {
+        "description": "Notification silence period in the alarm state, in seconds. Valid value range: [300, 86400]. Default to 86400",
+        "required": false
+      },
+      "start_time": {
+        "description": "Start time of the alarm effective period. Default to 0 and it indicates the time 00:00. Valid value range: [0, 24].",
+        "required": false
+      },
+      "statistics": {
+        "description": "Statistical method. It must be consistent with that defined for metrics. Valid values: [\"Average\", \"Minimum\", \"Maximum\"]. Default to \"Average\".",
+        "required": false
+      },
+      "threshold": {
+        "description": "Alarm threshold value, which must be a numeric value currently.",
+        "required": true
+      },
+      "triggered_count": {
+        "description": "Number of consecutive times it has been detected that the values exceed the threshold. Default to 3.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/cms_alarm.html",
+    "properties": [
+      "name",
+      "project",
+      "metric",
+      "dimensions",
+      "period",
+      "statistics",
+      "operator",
+      "threshold",
+      "triggered_count",
+      "contact_groups",
+      "start_time",
+      "end_time",
+      "silence_time",
+      "notify_type",
+      "enabled"
+    ]
+  },
+  "alicloud_common_bandwidth_package": {
+    "full_properties": {
+      "bandwidth": {
+        "description": "The bandwidth of the common bandwidth package, in Mbps.",
+        "required": true
+      },
+      "description": {
+        "description": "The description of the common bandwidth package instance.",
+        "required": false
+      },
+      "internet_charge_type": {
+        "description": "The billing method of the common bandwidth package. Valid values are \"PayByBandwidth\" and \"PayBy95\" and \"PayByTraffic\". \"PayBy95\" is pay by month 95% peak bandwidth. International Account doesn't supports \"PayByBandwidth\" and \"PayBy95\". Default to \"PayByTraffic\".",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the common bandwidth package.",
+        "required": false
+      },
+      "ratio": {
+        "description": "Ratio of the common bandwidth package. It is valid when internet_charge_type is PayBy95. Default to 100. Valid values: [10-100].",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/common_bandwidth_package.html",
+    "properties": [
+      "bandwidth",
+      "internet_charge_type",
+      "ratio",
+      "name",
+      "description"
+    ]
+  },
+  "alicloud_common_bandwidth_package_attachment": {
+    "full_properties": {
+      "bandwidth_package_id": {
+        "description": "The bandwidth_package_id of the common bandwidth package attachment, the field can't be changed.",
+        "required": false
+      },
+      "instance_id": {
+        "description": "The instance_id of the common bandwidth package attachment, the field can't be changed.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/common_bandwidth_package_attachment.html",
+    "properties": [
+      "bandwidth_package_id",
+      "instance_id"
+    ]
+  },
+  "alicloud_cs_application": {
+    "full_properties": {
+      "blue_green": {
+        "description": "Wherther to use \"Blue Green\" method when release a new version. Default to false.",
+        "required": false
+      },
+      "blue_green_confirm": {
+        "description": "Whether to confirm a \"Blue Green\" application. Default to false. It will be ignored when blue_green is false.",
+        "required": false
+      },
+      "cluster_name": {
+        "description": "The swarm cluster's name.",
+        "required": false
+      },
+      "description": {
+        "description": "The description of application.",
+        "required": false
+      },
+      "environment": {
+        "description": "A key/value map used to replace the variable parameter in the Compose template.",
+        "required": false
+      },
+      "latest_image": {
+        "description": "Whether to use latest docker image while each updating application. Default to false.",
+        "required": false
+      },
+      "name": {
+        "description": "The application name. It should be 1-64 characters long, and can contain numbers, English letters and hyphens, but cannot start with hyphens.",
+        "required": false
+      },
+      "template": {
+        "description": "The application deployment template and it must be Docker Compose format.",
+        "required": false
+      },
+      "version": {
+        "description": "The application deploying version. Each updating, it must be different with current. Default to \"1.0\"",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/cs_application.html",
+    "properties": [
+      "cluster_name",
+      "name",
+      "description",
+      "version",
+      "template",
+      "environment",
+      "latest_image",
+      "blue_green",
+      "blue_green_confirm"
+    ]
+  },
+  "alicloud_cs_kubernetes": {
+    "full_properties": {
+      "availability_zone": {
+        "description": "The Zone where new kubernetes cluster will be located. If it is not be specified, the value will be vswitch's zone.",
+        "required": false
+      },
+      "client_cert": {
+        "description": "The path of client certificate, like ~/.kube/client-cert.pem.",
+        "required": false
+      },
+      "client_key": {
+        "description": "The path of client key, like ~/.kube/client-key.pem.",
+        "required": false
+      },
+      "cluster_ca_cert": {
+        "description": "The path of cluster ca certificate, like ~/.kube/cluster-ca-cert.pem",
+        "required": false
+      },
+      "cluster_network_type": {
+        "description": "The network that cluster uses, use flannel or terway.",
+        "required": false
+      },
+      "enable_ssh": {
+        "description": "Whether to allow to SSH login kubernetes. Default to false.",
+        "required": false
+      },
+      "install_cloud_monitor": {
+        "description": "Whether to install cloud monitor for the kubernetes' node.",
+        "required": false
+      },
+      "is_outdated": {
+        "description": "Whether to use outdated instance type. Default to false.",
+        "required": false
+      },
+      "key_name": {
+        "description": "The keypair of ssh login cluster node, you have to create it first.",
+        "required": false
+      },
+      "kube_config": {
+        "description": "The path of kube config, like ~/.kube/config.",
+        "required": false
+      },
+      "log_configtypeproject": {
+      },
+      "master_disk_category": {
+        "description": "The system disk category of master node. Its valid value are cloud_ssd and cloud_efficiency. Default to cloud_efficiency.",
+        "required": false
+      },
+      "master_disk_size": {
+        "description": "The system disk size of master node. Its valid value range [20~32768] in GB. Default to 20.",
+        "required": false
+      },
+      "master_instance_type": {
+        "description": "(Required, Force new resource) The instance type of master node.",
+        "required": false
+      },
+      "master_instance_types": {
+        "description": "The instance type of master node. Specify one type for single AZ Cluster, three types for MultiAZ Cluster.",
+        "required": false
+      },
+      "name": {
+        "description": "The kubernetes cluster's name. It is the only in one Alicloud account.",
+        "required": false
+      },
+      "name_prefix": {
+        "description": "The kubernetes cluster name's prefix. It is conflict with name. If it is specified, terraform will using it to build the only cluster name. Default to \"Terraform-Creation\".",
+        "required": false
+      },
+      "new_nat_gateway": {
+        "description": "Whether to create a new nat gateway while creating kubernetes cluster. Default to true.",
+        "required": false
+      },
+      "node_cidr_mask": {
+        "description": "The network mask used on pods for each node, ranging from 24 to 28.",
+        "required": false
+      },
+      "password": {
+        "description": "The password of ssh login cluster node. You have to specify one of password and key_name fields.",
+        "required": false
+      },
+      "pod_cidr": {
+        "description": "The CIDR block for the pod network. It will be allocated automatically when vswitch_ids is not specified.",
+        "required": false
+      },
+      "project": {
+        "description": "Log Service project name, cluster logs will output to this project.",
+        "required": false
+      },
+      "service_cidr": {
+        "description": "The CIDR block for the service network.  It will be allocated automatically when vswitch_id is not specified.",
+        "required": false
+      },
+      "slb_internet_enabled": {
+        "description": "Whether to create internet load balancer for API Server. Default to true.",
+        "required": false
+      },
+      "type": {
+        "description": "Type of collecting logs, only SLS are supported currently.",
+        "required": false
+      },
+      "vswitch_id": {
+        "description": "(Force new resource) The vswitch where new kubernetes cluster will be located. If it is not specified, a new VPC and VSwicth will be built. It must be in the zone which availability_zone specified.",
+        "required": false
+      },
+      "vswitch_ids": {
+        "description": "The vswitch where new kubernetes cluster will be located. For SingleAZ Cluster, if it is not specified, a new VPC and VSwicth will be built. It must be in the zone which availability_zone specified. For MultiAZ Cluster, you must create three vswitches firstly, specify them here.",
+        "required": false
+      },
+      "worker_data_disk_category": {
+        "description": "The data disk category of worker node. Its valid value are cloud_ssd and cloud_efficiency, if not set, data disk will not be created.",
+        "required": false
+      },
+      "worker_data_disk_size": {
+        "description": "The data disk size of worker node. Its valid value range [20~32768] in GB. When worker_data_disk_category is presented, it defaults to 40.",
+        "required": false
+      },
+      "worker_disk_category": {
+        "description": "The system disk category of worker node. Its valid value are cloud_ssd and cloud_efficiency. Default to cloud_efficiency.",
+        "required": false
+      },
+      "worker_disk_size": {
+        "description": "The system disk size of worker node. Its valid value range [20~32768] in GB. Default to 20.",
+        "required": false
+      },
+      "worker_instance_type": {
+        "description": "(Required, Force new resource) The instance type of worker node.",
+        "required": false
+      },
+      "worker_instance_types": {
+        "description": "The instance type of worker node. Specify one type for single AZ Cluster, three types for MultiAZ Cluster.",
+        "required": false
+      },
+      "worker_number": {
+        "description": "The worker node number of the kubernetes cluster. Default to 3. It is limited up to 50 and if you want to enlarge it, please apply white list or contact with us.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/cs_kubernetes.html",
+    "properties": [
+      "name",
+      "name_prefix",
+      "availability_zone",
+      "vswitch_id",
+      "vswitch_ids",
+      "new_nat_gateway",
+      "master_instance_type",
+      "master_instance_types",
+      "worker_instance_type",
+      "worker_instance_types",
+      "worker_number",
+      "password",
+      "key_name",
+      "cluster_network_type",
+      "pod_cidr",
+      "service_cidr",
+      "node_cidr_mask",
+      "log_configtypeproject",
+      "type",
+      "project",
+      "enable_ssh",
+      "slb_internet_enabled",
+      "master_disk_category",
+      "master_disk_size",
+      "worker_disk_category",
+      "worker_disk_size",
+      "worker_data_disk_size",
+      "worker_data_disk_category",
+      "install_cloud_monitor",
+      "is_outdated",
+      "kube_config",
+      "client_cert",
+      "client_key",
+      "cluster_ca_cert"
+    ]
+  },
+  "alicloud_cs_swarm": {
+    "full_properties": {
+      "": {
+        "description": "10.0.0.0/16",
+        "required": false
+      },
+      "cidr_block": {
+        "description": "The CIDR block for the Container. It can not be same as the CIDR used by the VPC.",
+        "required": false
+      },
+      "name": {
+        "description": "The container cluster's name. It is the only in one Alicloud account.",
+        "required": false
+      },
+      "name_prefix": {
+        "description": "The container cluster name's prefix. It is conflict with name. If it is specified, terraform will using it to build the only cluster name. Default to 'Terraform-Creation'.",
+        "required": false
+      },
+      "node_number": {
+        "description": "The ECS node number of the container cluster. Its value choices are 1~50, and default to 1.",
+        "required": false
+      },
+      "size": {
+        "description": "Field 'size' has been deprecated from provider version 1.9.1. New field 'node_number' replaces it.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/cs_swarm.html",
+    "properties": [
+      "name",
+      "name_prefix",
+      "size",
+      "node_number",
+      "cidr_block",
+      ""
+    ]
+  },
+  "alicloud_datahub_project": {
+    "full_properties": {
+      "comment": {
+        "description": "Comment of the datahub project. It cannot be longer than 255 characters.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the datahub project. Its length is limited to 3-32 and only characters such as letters, digits and '_' are allowed. It is case-insensitive.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/datahub_project.html",
+    "properties": [
+      "name",
+      "comment"
+    ]
+  },
+  "alicloud_datahub_subscription": {
+    "full_properties": {
+      "comment": {
+        "description": "Comment of the datahub subscription. It cannot be longer than 255 characters.",
+        "required": false
+      },
+      "project_name": {
+        "description": "The name of the datahub project that the subscription belongs to. Its length is limited to 3-32 and only characters such as letters, digits and '_' are allowed. It is case-insensitive.",
+        "required": false
+      },
+      "topic_name": {
+        "description": "The name of the datahub topic that the subscription belongs to. Its length is limited to 1-128 and only characters such as letters, digits and '_' are allowed. It is case-insensitive.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/datahub_subscription.html",
+    "properties": [
+      "project_name",
+      "topic_name",
+      "comment"
+    ]
+  },
+  "alicloud_datahub_topic": {
+    "full_properties": {
+      "": {
+        "description": "TIMESTAMP",
+        "required": false
+      },
+      "comment": {
+        "description": "Comment of the datahub topic. It cannot be longer than 255 characters.",
+        "required": false
+      },
+      "life_cycle": {
+        "description": "How many days this topic lives. The permitted range of values is [1, 7]. The default value is 3.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the datahub topic. Its length is limited to 1-128 and only characters such as letters, digits and '_' are allowed. It is case-insensitive.",
+        "required": false
+      },
+      "project_name": {
+        "description": "The name of the datahub project that this topic belongs to. It is case-insensitive.",
+        "required": false
+      },
+      "record_schema": {
+        "description": "Schema of this topic, required only for TUPLE topic. Supported data types (case-insensitive) are:",
+        "required": false
+      },
+      "record_type": {
+        "description": "The type of this topic. Its value must be one of {BLOB, TUPLE}. For BLOB topic, data will be organized as binary and encoded by BASE64. For TUPLE topic, data has fixed schema. The default value is \"TUPLE\" with a schema {STRING}.",
+        "required": false
+      },
+      "shard_count": {
+        "description": "The number of shards this topic contains. The permitted range of values is [1, 10]. The default value is 1.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/datahub_topic.html",
+    "properties": [
+      "name",
+      "project_name",
+      "shard_count",
+      "life_cycle",
+      "record_type",
+      "record_schema",
+      "",
+      "comment"
+    ]
+  },
+  "alicloud_db_account": {
+    "full_properties": {
+      "": {
+        "description": "Super: High privilege.",
+        "required": false
+      },
+      "description": {
+        "description": "Database description. It cannot begin with https://. It must start with a Chinese character or English letter. It can include Chinese and English characters, underlines (_), hyphens (-), and numbers. The length may be 2-256 characters.",
+        "required": false
+      },
+      "instance_id": {
+        "description": "The Id of instance in which account belongs.",
+        "required": true
+      },
+      "name": {
+        "description": "Operation account requiring a uniqueness check. It may consist of lower case letters, numbers, and underlines, and must start with a letter and have no more than 16 characters.",
+        "required": true
+      },
+      "password": {
+        "description": "Operation password. It may consist of letters, digits, or underlines, with a length of 6 to 32 characters.",
+        "required": true
+      },
+      "type": {
+        "description": "Privilege type of account.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/db_account.html",
+    "properties": [
+      "instance_id",
+      "name",
+      "password",
+      "description",
+      "type",
+      ""
+    ]
+  },
+  "alicloud_db_account_privilege": {
+    "full_properties": {
+      "account_name": {
+        "description": "A specified account name.",
+        "required": true
+      },
+      "db_names": {
+        "description": "List of specified database name.",
+        "required": false
+      },
+      "instance_id": {
+        "description": "The Id of instance in which account belongs.",
+        "required": true
+      },
+      "privilege": {
+        "description": "The privilege of one account access database. Valid values: [\"ReadOnly\", \"ReadWrite\"]. Default to \"ReadOnly\".",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/db_account_privilege.html",
+    "properties": [
+      "instance_id",
+      "account_name",
+      "privilege",
+      "db_names"
+    ]
+  },
+  "alicloud_db_backup_policy": {
+    "full_properties": {
+      "backup_period": {
+        "description": "DB Instance backup period. Valid values: [Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday]. Default to [\"Tuesday\", \"Thursday\", \"Saturday\"].",
+        "required": false
+      },
+      "backup_time": {
+        "description": "DB instance backup time, in the format of HH:mmZ- HH:mmZ. Time setting interval is one hour. Default to \"02:00Z-03:00Z\". China time is 8 hours behind it.",
+        "required": false
+      },
+      "instance_id": {
+        "description": "The Id of instance that can run database.",
+        "required": true
+      },
+      "log_backup": {
+        "description": "Whether to backup instance log. Default to true.",
+        "required": false
+      },
+      "log_retention_period": {
+        "description": "Instance log backup retention days. Valid values: [7-730]. Default to 7. It can be larger than 'retention_period'.",
+        "required": false
+      },
+      "retention_period": {
+        "description": "Instance backup retention days. Valid values: [7-730]. Default to 7.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/db_backup_policy.html",
+    "properties": [
+      "instance_id",
+      "backup_period",
+      "backup_time",
+      "retention_period",
+      "log_backup",
+      "log_retention_period"
+    ]
+  },
+  "alicloud_db_connection": {
+    "full_properties": {
+      "connection_prefix": {
+        "description": "Prefix of an Internet connection string. It must be checked for uniqueness. It may consist of lowercase letters, numbers, and underlines, and must start with a letter and have no more than 30 characters. Default to  + 'tf'.",
+        "required": false
+      },
+      "instance_id": {
+        "description": "The Id of instance that can run database.",
+        "required": true
+      },
+      "port": {
+        "description": "Internet connection port. Valid value: [3001-3999]. Default to 3306.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/db_connection.html",
+    "properties": [
+      "instance_id",
+      "connection_prefix",
+      "port"
+    ]
+  },
+  "alicloud_db_database": {
+    "full_properties": {
+      "": {
+        "description": "SQLServer: [ Chinese_PRC_CI_AS, Chinese_PRC_CS_AS, SQL_Latin1_General_CP1_CI_AS, SQL_Latin1_General_CP1_CS_AS, Chinese_PRC_BIN ]",
+        "required": false
+      },
+      "character_set": {
+        "description": "Character set. The value range is limited to the following:",
+        "required": true
+      },
+      "description": {
+        "description": "Database description. It cannot begin with https://. It must start with a Chinese character or English letter. It can include Chinese and English characters, underlines (_), hyphens (-), and numbers. The length may be 2-256 characters.",
+        "required": false
+      },
+      "instance_id": {
+        "description": "The Id of instance that can run database.",
+        "required": true
+      },
+      "name": {
+        "description": "Name of the database requiring a uniqueness check. It may consist of lower case letters, numbers, and underlines, and must start with a letter",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/db_database.html",
+    "properties": [
+      "instance_id",
+      "name",
+      "character_set",
+      "",
+      "description"
+    ]
+  },
+  "alicloud_db_instance": {
+    "full_properties": {
+      "": {
+        "description": "[20,2000] for SQL Server 2012 basic single node edition",
+        "required": false
+      },
+      "allocate_public_connection": {
+        "description": "It has been deprecated from version 1.5.0. If you want to allocate public connection string, please use new resource alicloud_db_connection.",
+        "required": false
+      },
+      "backup_retention_period": {
+        "description": "It has been deprecated from version 1.5.0. New resource alicloud_db_backup_policy field 'retention_period' replaces it.",
+        "required": false
+      },
+      "db_instance_class": {
+        "description": "It has been deprecated from version 1.5.0 and use 'instance_type' to replace.",
+        "required": false
+      },
+      "db_instance_net_type": {
+        "description": "It has been deprecated from version 1.5.0. If you want to set public connection, please use new resource alicloud_db_connection. Default to Intranet.",
+        "required": false
+      },
+      "db_instance_storage": {
+        "description": "It has been deprecated from version 1.5.0 and use 'instance_storage' to replace.",
+        "required": false
+      },
+      "db_mappings": {
+        "description": "It has been deprecated from version 1.5.0. New resource alicloud_db_database replaces it.",
+        "required": false
+      },
+      "engine": {
+        "description": "Database type. Value options: MySQL, SQLServer, PostgreSQL, and PPAS.",
+        "required": true
+      },
+      "engine_version": {
+        "description": "Database version. Value options: ",
+        "required": true
+      },
+      "instance_charge_type": {
+        "description": "Valid values are Prepaid, Postpaid, Default to Postpaid.",
+        "required": false
+      },
+      "instance_name": {
+        "description": "The name of DB instance. It a string of 2 to 256 characters.",
+        "required": false
+      },
+      "instance_network_type": {
+        "description": "It has been deprecated from version 1.5.0. If you want to create instances in VPC network, this parameter must be set.",
+        "required": false
+      },
+      "instance_storage": {
+        "description": "User-defined DB instance storage space. Value range:",
+        "required": true
+      },
+      "instance_type": {
+        "description": "DB Instance type. For details, see Instance type table.",
+        "required": true
+      },
+      "master_user_name": {
+        "description": "It has been deprecated from version 1.5.0. New resource alicloud_db_account field 'name' replaces it.",
+        "required": false
+      },
+      "master_user_password": {
+        "description": "It has been deprecated from version 1.5.0. New resource alicloud_db_account field 'password' replaces it.",
+        "required": false
+      },
+      "multi_az": {
+        "description": "It has been deprecated from version 1.8.1, and zone_id can support multiple zone.",
+        "required": false
+      },
+      "period": {
+        "description": "The duration that you will buy DB instance (in month). It is valid when instance_charge_type is PrePaid. Valid values: [1~9], 12, 24, 36. Default to 1.",
+        "required": false
+      },
+      "preferred_backup_period": {
+        "description": "It has been deprecated from version 1.5.0. New resource alicloud_db_backup_policy field 'backup_period' replaces it.",
+        "required": false
+      },
+      "preferred_backup_time": {
+        "description": "It has been deprecated from version 1.5.0. New resource alicloud_db_backup_policy field 'backup_time' replaces it.",
+        "required": false
+      },
+      "security_ips": {
+        "description": "List of IP addresses allowed to access all databases of an instance. The list contains up to 1,000 IP addresses, separated by commas. Supported formats include 0.0.0.0/0, 10.23.12.24 (IP), and 10.23.12.24/24 (Classless Inter-Domain Routing (CIDR) mode. /24 represents the length of the prefix in an IP address. The range of the prefix length is [1,32]).",
+        "required": false
+      },
+      "vswitch_id": {
+        "description": "The virtual switch ID to launch DB instances in one VPC.",
+        "required": false
+      },
+      "zone_id": {
+        "description": "The Zone to launch the DB instance. From version 1.8.1, it supports multiple zone.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/db_instance.html",
+    "properties": [
+      "engine",
+      "engine_version",
+      "",
+      "db_instance_class",
+      "instance_type",
+      "db_instance_storage",
+      "instance_storage",
+      "instance_name",
+      "instance_charge_type",
+      "period",
+      "zone_id",
+      "multi_az",
+      "db_instance_net_type",
+      "allocate_public_connection",
+      "instance_network_type",
+      "vswitch_id",
+      "master_user_name",
+      "master_user_password",
+      "preferred_backup_period",
+      "preferred_backup_time",
+      "backup_retention_period",
+      "security_ips",
+      "db_mappings"
+    ]
+  },
+  "alicloud_disk": {
+    "full_properties": {
+      "availability_zone": {
+        "description": "The Zone to create the disk in.",
+        "required": false
+      },
+      "category": {
+        "description": "Category of the disk. Valid values are cloud, cloud_efficiency and cloud_ssd. Default is cloud_efficiency.",
+        "required": false
+      },
+      "description": {
+        "description": "Description of the disk. This description can have a string of 2 to 256 characters, It cannot begin with http:// or https://. Default value is null.",
+        "required": false
+      },
+      "encrypted": {
+        "description": "If true, the disk will be encrypted",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the ECS disk. This name can have a string of 2 to 128 characters, must contain only alphanumeric characters or hyphens, such as \"-\",\".\",\"_\", and must not begin or end with a hyphen, and must not begin with http:// or https://. Default value is null.",
+        "required": false
+      },
+      "size": {
+        "description": "The size of the disk in GiBs, and it value range: 20 ~ 32768.",
+        "required": true
+      },
+      "snapshot_id": {
+        "description": "A snapshot to base the disk off of. If it is specified, size will be invalid and the disk size is equals to the snapshot size.",
+        "required": false
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the resource.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/disk.html",
+    "properties": [
+      "availability_zone",
+      "name",
+      "description",
+      "category",
+      "size",
+      "snapshot_id",
+      "tags",
+      "encrypted"
+    ]
+  },
+  "alicloud_disk_attachment": {
+    "full_properties": {
+      "device_name": {
+        "description": "The device name has been deprecated, and when attaching disk, it will be allocated automatically by system according to default order from /dev/xvdb to /dev/xvdz.",
+        "required": false
+      },
+      "disk_id": {
+        "description": "ID of the Disk to be attached.",
+        "required": false
+      },
+      "instance_id": {
+        "description": "ID of the Instance to attach to.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/disk_attachment.html",
+    "properties": [
+      "instance_id",
+      "disk_id",
+      "device_name"
+    ]
+  },
+  "alicloud_dns": {
+    "full_properties": {
+      "group_id": {
+        "description": "Id of the group in which the domain will add. If not supplied, then use default group.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the domain. This name without suffix can have a string of 1 to 63 characters, must contain only alphanumeric characters or \"-\", and must not begin or end with \"-\", and \"-\" must not in the 3th and 4th character positions at the same time. Suffix .sh and .tel are not supported.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/dns.html",
+    "properties": [
+      "name",
+      "group_id"
+    ]
+  },
+  "alicloud_dns_group": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the domain group.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/dns_group.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "alicloud_eip": {
+    "full_properties": {
+      "bandwidth": {
+        "description": "Maximum bandwidth to the elastic public network, measured in Mbps (Mega bit per second). If this value is not specified, then automatically sets it to 5 Mbps.",
+        "required": false
+      },
+      "description": {
+        "description": "Description of the EIP instance, This description can have a string of 2 to 256 characters, It cannot begin with http:// or https://. Default value is null.",
+        "required": false
+      },
+      "instance_charge_type": {
+        "description": "Elastic IP instance charge type. Valid values are \"PrePaid\" and \"PostPaid\". Default to \"PostPaid\".",
+        "required": false
+      },
+      "internet_charge_type": {
+        "description": "Internet charge type of the EIP, Valid values are PayByBandwidth, PayByTraffic. Default to PayByBandwidth. From version 1.7.1, default to PayByTraffic.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the EIP instance. This name can have a string of 2 to 128 characters, must contain only alphanumeric characters or hyphens, such as \"-\",\".\",\"_\", and must not begin or end with a hyphen, and must not begin with http:// or https://.",
+        "required": false
+      },
+      "period": {
+        "description": "The duration that you will buy the resource, in month. It is valid when instance_charge_type is PrePaid.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/eip.html",
+    "properties": [
+      "name",
+      "description",
+      "bandwidth",
+      "internet_charge_type",
+      "instance_charge_type",
+      "period"
+    ]
+  },
+  "alicloud_eip_association": {
+    "full_properties": {
+      "allocation_id": {
+        "description": "The allocation EIP ID.",
+        "required": false
+      },
+      "instance_id": {
+        "description": "The ID of the ECS or SLB instance or Nat Gateway.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/eip_association.html",
+    "properties": [
+      "allocation_id",
+      "instance_id"
+    ]
+  },
+  "alicloud_ess_alarm": {
+    "full_properties": {
+      "alarm_actions": {
+        "description": "The list of actions to execute when this alarm transition into an ALARM state. Each action is specified as ess scaling rule ari.",
+        "required": true
+      },
+      "cloud_monitor_group_id": {
+        "description": "Defines the application group id defined by CMS which is assigned when you upload custom metric to CMS, only available for custom metirc.",
+        "required": false
+      },
+      "comparison_operator": {
+        "description": "The arithmetic operation to use when comparing the specified Statistic and Threshold. The specified Statistic value is used as the first operand. Supported value: >=, <=, >, <. Defaults to >=.",
+        "required": false
+      },
+      "description": {
+        "description": "The description for the alarm.",
+        "required": false
+      },
+      "dimensions": {
+        "description": "The dimension map for the alarm's associated metric (documented below). For all metrics, you can not set the dimension key as \"scaling_group\" or \"userId\", which is set by default, the second dimension for metric, such as \"device\" for \"PackagesNetIn\", need to be set by users.",
+        "required": false
+      },
+      "evaluation_count": {
+        "description": "The number of times that needs to satisfies comparison condition before transition into ALARM state. Defaults to 3.",
+        "required": false
+      },
+      "metric_name": {
+        "description": "The name for the alarm's associated metric.",
+        "required": true
+      },
+      "metric_type": {
+        "description": "The type for the alarm's associated metric. Supported value: system, custom. \"system\" means the metric data is collected by Aliyun Cloud Monitor Service(CMS), \"custom\" means the metric data is upload to CMS by users. Defaults to system. ",
+        "required": false
+      },
+      "name": {
+        "description": "The name for ess alarm.",
+        "required": false
+      },
+      "period": {
+        "description": "The period in seconds over which the specified statistic is applied. Supported value: 60, 120, 300, 900. Defaults to 300.",
+        "required": false
+      },
+      "scaling_group_id": {
+        "description": "The scaling group associated with this alarm.",
+        "required": true
+      },
+      "statistics": {
+        "description": "The statistic to apply to the alarm's associated metric. Supported value: Average, Minimum, Maximum. Defaults to Average.",
+        "required": false
+      },
+      "threshold": {
+        "description": "The value against which the specified statistics is compared.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ess_alarm.html",
+    "properties": [
+      "name",
+      "description",
+      "alarm_actions",
+      "scaling_group_id",
+      "metric_type",
+      "metric_name",
+      "period",
+      "statistics",
+      "threshold",
+      "comparison_operator",
+      "evaluation_count",
+      "cloud_monitor_group_id",
+      "dimensions"
+    ]
+  },
+  "alicloud_ess_attachment": {
+    "full_properties": {
+      "force": {
+        "description": "Whether to remove forcibly \"AutoCreated\" ECS instances in order to release scaling group capacity \"MaxSize\" for attaching ECS instances. Default to false.",
+        "required": false
+      },
+      "instance_ids": {
+        "description": "ID of the ECS instance to be attached to the scaling group. You can input up to 20 IDs.",
+        "required": true
+      },
+      "scaling_group_id": {
+        "description": "ID of the scaling group of a scaling configuration.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ess_attachment.html",
+    "properties": [
+      "scaling_group_id",
+      "instance_ids",
+      "force"
+    ]
+  },
+  "alicloud_ess_lifecycle_hook": {
+    "full_properties": {
+      "default_result": {
+        "description": "Defines the action the Auto Scaling group should take when the lifecycle hook timeout elapses. Applicable value: CONTINUE, ABANDON, default value: CONTINUE.",
+        "required": false
+      },
+      "heartbeat_timeout": {
+        "description": "Defines the amount of time, in seconds, that can elapse before the lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action defined in the default_result parameter. Default value: 600.",
+        "required": false
+      },
+      "lifecycle_transition": {
+        "description": "Type of Scaling activity attached to lifecycle hook. Supported value: SCALE_OUT, SCALE_IN.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the lifecycle hook, which is a string containing 2 to 40 English or Chinese characters. If this parameter value is not specified, the default value is lifecycle hook id.",
+        "required": false
+      },
+      "notification_arn": {
+        "description": "The Arn of notification target.",
+        "required": false
+      },
+      "notification_metadata": {
+        "description": "Additional information that you want to include when Auto Scaling sends a message to the notification target.",
+        "required": false
+      },
+      "scaling_group_id": {
+        "description": "The ID of the Auto Scaling group to which you want to assign the lifecycle hook.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ess_scaling_lifecycle_hook.html",
+    "properties": [
+      "scaling_group_id",
+      "name",
+      "lifecycle_transition",
+      "heartbeat_timeout",
+      "default_result",
+      "notification_arn",
+      "notification_metadata"
+    ]
+  },
+  "alicloud_ess_scaling_configuration": {
+    "full_properties": {
+      "active": {
+        "description": "Whether active current scaling configuration in the specified scaling group. Default to false.",
+        "required": false
+      },
+      "data_disk": {
+        "description": "DataDisk mappings to attach to ecs instance. See Block datadisk below for details.",
+        "required": false
+      },
+      "enable": {
+        "description": "Whether enable the specified scaling group(make it active) to which the current scaling configuration belongs.",
+        "required": false
+      },
+      "force_delete": {
+        "description": "The last scaling configuration will be deleted forcibly with deleting its scaling group. Default to false.",
+        "required": false
+      },
+      "image_id": {
+        "description": "ID of an image file, indicating the image resource selected when an instance is enabled.",
+        "required": true
+      },
+      "instance_ids": {
+        "description": "It has been deprecated from version 1.6.0. New resource alicloud_ess_attachment replaces it.",
+        "required": false
+      },
+      "instance_name": {
+        "description": "Name of an ECS instance. Default to \"ESS-Instance\". It is valid from version 1.7.1.",
+        "required": false
+      },
+      "instance_type": {
+        "description": "Resource type of an ECS instance.",
+        "required": true
+      },
+      "internet_charge_type": {
+        "description": "Network billing type, Values: PayByBandwidth or PayByTraffic. Default to PayByBandwidth.",
+        "required": false
+      },
+      "internet_max_bandwidth_in": {
+        "description": "Maximum incoming bandwidth from the public network, measured in Mbps (Mega bit per second). The value range is [1,200].",
+        "required": false
+      },
+      "internet_max_bandwidth_out": {
+        "description": "Maximum outgoing bandwidth from the public network, measured in Mbps (Mega bit per second). The value range for PayByBandwidth is [0,100].",
+        "required": false
+      },
+      "io_optimized": {
+        "description": "It has been deprecated on instance resource. All the launched alicloud instances will be I/O optimized.",
+        "required": false
+      },
+      "is_outdated": {
+        "description": "Whether to use outdated instance type. Default to false.",
+        "required": false
+      },
+      "key_name": {
+        "description": "The name of key pair that can login ECS instance successfully without password. If it is specified, the password would be invalid.",
+        "required": false
+      },
+      "role_name": {
+        "description": "Instance RAM role name. The name is provided and maintained by RAM. You can use alicloud_ram_role to create a new one.",
+        "required": false
+      },
+      "scaling_configuration_name": {
+        "description": "Name shown for the scheduled task. If this parameter value is not specified, the default value is ScalingConfigurationId.",
+        "required": false
+      },
+      "scaling_group_id": {
+        "description": "ID of the scaling group of a scaling configuration.",
+        "required": true
+      },
+      "security_group_id": {
+        "description": "ID of the security group to which a newly created instance belongs.",
+        "required": true
+      },
+      "substitute": {
+        "description": "The another scaling configuration which will be active automatically and replace current configuration when setting active to 'false'. It is invalid when active is 'true'.",
+        "required": false
+      },
+      "system_disk_category": {
+        "description": "Category of the system disk. The parameter value options are cloud_efficiency, cloud_ssd and cloud. cloud only is used to some no I/O optimized instance. Default to cloud_efficiency.",
+        "required": false
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the resource. It will be applied for ECS instances finally.",
+        "required": false
+      },
+      "user_data": {
+        "description": "User-defined data to customize the startup behaviors of the ECS instance and to pass data into the ECS instance.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ess_scaling_configuration.html",
+    "properties": [
+      "scaling_group_id",
+      "image_id",
+      "instance_type",
+      "instance_name",
+      "io_optimized",
+      "is_outdated",
+      "security_group_id",
+      "scaling_configuration_name",
+      "internet_charge_type",
+      "internet_max_bandwidth_in",
+      "internet_max_bandwidth_out",
+      "system_disk_category",
+      "enable",
+      "active",
+      "substitute",
+      "user_data",
+      "key_name",
+      "role_name",
+      "force_delete",
+      "data_disk",
+      "instance_ids",
+      "tags"
+    ]
+  },
+  "alicloud_ess_scaling_group": {
+    "full_properties": {
+      "": {
+        "description": "The default weight of an ECS instance attached to the Server Load Balancer instance is 50.",
+        "required": false
+      },
+      "db_instance_ids": {
+        "description": "If an RDS instance is specified in the scaling group, the scaling group automatically attaches the Intranet IP addresses of its ECS instances to the RDS access whitelist.",
+        "required": false
+      },
+      "default_cooldown": {
+        "description": "Default cool-down time (in seconds) of the scaling group. Value range: [0, 86400]. The default value is 300s.",
+        "required": false
+      },
+      "loadbalancer_ids": {
+        "description": "If a Server Load Balancer instance is specified in the scaling group, the scaling group automatically attaches its ECS instances to the Server Load Balancer instance.",
+        "required": false
+      },
+      "max_size": {
+        "description": "Maximum number of ECS instances in the scaling group. Value range: [0, 100].",
+        "required": true
+      },
+      "min_size": {
+        "description": "Minimum number of ECS instances in the scaling group. Value range: [0, 100].",
+        "required": true
+      },
+      "multi_az_policy": {
+        "description": "Multi-AZ scaling group ECS instance expansion and contraction strategy. PRIORITY or BALANCE.",
+        "required": false
+      },
+      "removal_policies": {
+        "description": "RemovalPolicy is used to select the ECS instances you want to remove from the scaling group when multiple candidates for removal exist. Optional values:",
+        "required": false
+      },
+      "scaling_group_name": {
+        "description": "Name shown for the scaling group, which must contain 2-40 characters (English or Chinese). If this parameter is not specified, the default value is ScalingGroupId.",
+        "required": false
+      },
+      "vswitch_id": {
+        "description": "It has been deprecated from version 1.7.1 and new field 'vswitch_ids' replaces it.",
+        "required": false
+      },
+      "vswitch_ids": {
+        "description": "List of virtual switch IDs in which the ecs instances to be launched.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ess_scaling_group.html",
+    "properties": [
+      "min_size",
+      "max_size",
+      "scaling_group_name",
+      "default_cooldown",
+      "vswitch_id",
+      "vswitch_ids",
+      "removal_policies",
+      "",
+      "db_instance_ids",
+      "loadbalancer_ids",
+      "multi_az_policy"
+    ]
+  },
+  "alicloud_ess_scaling_rule": {
+    "full_properties": {
+      "": {
+        "description": "TotalCapacity：[0, 100]",
+        "required": false
+      },
+      "adjustment_type": {
+        "description": "Adjustment mode of a scaling rule. Optional values:",
+        "required": true
+      },
+      "adjustment_value": {
+        "description": "Adjusted value of a scaling rule. Value range:",
+        "required": true
+      },
+      "cooldown": {
+        "description": "Cool-down time of a scaling rule. Value range: [0, 86,400], in seconds. The default value is empty.",
+        "required": false
+      },
+      "scaling_group_id": {
+        "description": "ID of the scaling group of a scaling rule.",
+        "required": true
+      },
+      "scaling_rule_name": {
+        "description": "Name shown for the scaling rule, which is a string containing 2 to 40 English or Chinese characters.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ess_scaling_rule.html",
+    "properties": [
+      "scaling_group_id",
+      "adjustment_type",
+      "",
+      "adjustment_value",
+      "scaling_rule_name",
+      "cooldown"
+    ]
+  },
+  "alicloud_ess_schedule": {
+    "full_properties": {
+      "": {
+        "description": "Monthly: In the format of A-B. The value range of A and B is 1 to 31, and the B value must be greater than the A value.",
+        "required": false
+      },
+      "description": {
+        "description": "Description of the scheduled task, which is 2-200 characters (English or Chinese) long.",
+        "required": false
+      },
+      "launch_expiration_time": {
+        "description": "Time period within which the failed scheduled task is retried. The default value is 600s. Value range: [0, 21600]",
+        "required": false
+      },
+      "launch_time": {
+        "description": "Operations performed when the scheduled task is triggered. Fill in the unique identifier of the scaling rule.",
+        "required": true
+      },
+      "recurrence_end_time": {
+        "description": "End time of the scheduled task to be repeated. The date format follows the ISO8601 standard and uses UTC time. It is in the format of YYYY-MM-DDThh:mmZ. A time point 90 days after creation or modification cannot be entered. RecurrenceType, RecurrenceValue and RecurrenceEndTime must be specified.",
+        "required": false
+      },
+      "recurrence_type": {
+        "description": "Type of the scheduled task to be repeated. RecurrenceType, RecurrenceValue and RecurrenceEndTime must be specified. Optional values:",
+        "required": false
+      },
+      "recurrence_value": {
+        "description": "Value of the scheduled task to be repeated. RecurrenceType, RecurrenceValue and RecurrenceEndTime must be specified.",
+        "required": false
+      },
+      "scheduled_action": {
+        "description": "Operations performed when the scheduled task is triggered. Fill in the unique identifier of the scaling rule.",
+        "required": true
+      },
+      "scheduled_task_name": {
+        "description": "Display name of the scheduled task, which must be 2-40 characters (English or Chinese) long.",
+        "required": false
+      },
+      "task_enabled": {
+        "description": "Whether to enable the scheduled task. The default value is true.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ess_schedule.html",
+    "properties": [
+      "scheduled_action",
+      "launch_time",
+      "scheduled_task_name",
+      "description",
+      "launch_expiration_time",
+      "recurrence_type",
+      "",
+      "recurrence_value",
+      "recurrence_end_time",
+      "task_enabled"
+    ]
+  },
+  "alicloud_fc_function": {
+    "full_properties": {
+      "description": {
+        "description": "The Function Compute function description.",
+        "required": false
+      },
+      "filename": {
+        "description": "The path to the function's deployment package within the local filesystem. It is conflict with the oss_-prefixed options.",
+        "required": false
+      },
+      "handler": {
+        "description": "The function entry point in your code.",
+        "required": true
+      },
+      "memory_size": {
+        "description": "Amount of memory in MB your Function can use at runtime. Defaults to 128. Limits to [128, 3072].",
+        "required": false
+      },
+      "name": {
+        "description": "The Function Compute function name. It is the only in one service and is conflict with \"name_prefix\".",
+        "required": false
+      },
+      "name_prefix": {
+        "description": "Setting a prefix to get a only function name. It is conflict with \"name\".",
+        "required": false
+      },
+      "oss_bucket": {
+        "description": "The OSS bucket location containing the function's deployment package. Conflicts with filename. This bucket must reside in the same Alibaba Cloud region where you are creating the function.",
+        "required": false
+      },
+      "oss_key": {
+        "description": "The OSS key of an object containing the function's deployment package. Conflicts with filename.",
+        "required": false
+      },
+      "runtime": {
+        "description": "See [Runtimes][https://www.alibabacloud.com/help/doc-detail/52077.htm] for valid values.",
+        "required": true
+      },
+      "service": {
+        "description": "The Function Compute service name.",
+        "required": false
+      },
+      "timeout": {
+        "description": "The amount of time your Function has to run in seconds.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/fc_function.html",
+    "properties": [
+      "service",
+      "name",
+      "name_prefix",
+      "description",
+      "filename",
+      "oss_bucket",
+      "oss_key",
+      "handler",
+      "memory_size",
+      "runtime",
+      "timeout"
+    ]
+  },
+  "alicloud_fc_service": {
+    "full_properties": {
+      "description": {
+        "description": "The function compute service description.",
+        "required": false
+      },
+      "internet_access": {
+        "description": "Whether to allow the service to access Internet. Default to \"true\".",
+        "required": false
+      },
+      "log_config": {
+        "description": "Provide this to store your FC service logs. Fields documented below. See Create a Service.",
+        "required": false
+      },
+      "name": {
+        "description": "The Function Compute service name. It is the only in one Alicloud account and is conflict with \"name_prefix\".",
+        "required": false
+      },
+      "name_prefix": {
+        "description": "Setting a prefix to get a only name. It is conflict with \"name\".",
+        "required": false
+      },
+      "role": {
+        "description": "RAM role arn attached to the Function Compute service. This governs both who / what can invoke your Function, as well as what resources our Function has access to. See User Permissions for more details.",
+        "required": false
+      },
+      "vpc_config": {
+        "description": "Provide this to allow your FC service to access your VPC. Fields documented below. See Function Compute Service in VPC.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/fc_service.html",
+    "properties": [
+      "name",
+      "name_prefix",
+      "description",
+      "internet_access",
+      "role",
+      "log_config",
+      "vpc_config"
+    ]
+  },
+  "alicloud_forward": {
+    "full_properties": {
+      "external_ip": {
+        "description": "The external ip address, the ip must along bandwidth package public ip which alicloud_nat_gateway argument bandwidth_packages.",
+        "required": false
+      },
+      "external_port": {
+        "description": "The external port, valid value is 1~65535|any.",
+        "required": true
+      },
+      "forward_table_id": {
+        "description": "The value can get from alicloud_nat_gateway Attributes \"forward_table_ids\".",
+        "required": false
+      },
+      "internal_ip": {
+        "description": "The internal ip, must a private ip.",
+        "required": true
+      },
+      "internal_port": {
+        "description": "The internal port, valid value is 1~65535|any.",
+        "required": true
+      },
+      "ip_protocol": {
+        "description": "The ip protocal, valid value is tcp|udp|any.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/forward.html",
+    "properties": [
+      "forward_table_id",
+      "external_ip",
+      "external_port",
+      "ip_protocol",
+      "internal_ip",
+      "internal_port"
+    ]
+  },
+  "alicloud_instance": {
+    "full_properties": {
+      "": {
+        "description": "Deactive: Disable security enhancement strategy, it works on all images.",
+        "required": false
+      },
+      "AutoRenewal": {
+        "description": "Enable auto renewal.",
+        "required": false
+      },
+      "Normal": {
+        "description": "Disable auto renewal.",
+        "required": false
+      },
+      "NotRenewal": {
+        "description": "No renewal any longer. After you specify this value, Alibaba Cloud stop sending notification of instance expiry, and only gives a brief reminder on the third day before the instance expiry.",
+        "required": false
+      },
+      "allocate_public_ip": {
+        "description": "It has been deprecated from version \"1.7.0\". Setting \"internet_max_bandwidth_out\" larger than 0 can allocate a public ip address for an instance.",
+        "required": false
+      },
+      "auto_renew_period": {
+        "description": "Auto renewal period of an instance, in the unit of month. It is valid when instance_charge_type is PrePaid. Default to 1. Valid value:",
+        "required": false
+      },
+      "availability_zone": {
+        "description": "The Zone to start the instance in. It is ignored and will be computed when set vswitch_id.",
+        "required": false
+      },
+      "description": {
+        "description": "Description of the instance, This description can have a string of 2 to 256 characters, It cannot begin with http:// or https://. Default value is null.",
+        "required": false
+      },
+      "dry_run": {
+        "description": "Whether to pre-detection. When it is true, only pre-detection and not actually modify the payment type operation. It is valid when instance_charge_type is 'PrePaid'. Default to false.",
+        "required": false
+      },
+      "force_delete": {
+        "description": "If it is true, the \"PrePaid\" instance will be change to \"PostPaid\" and then deleted forcibly.",
+        "required": false
+      },
+      "host_name": {
+        "description": "Host name of the ECS, which is a string of at least two characters. “hostname” cannot start or end with “.” or “-“. In addition, two or more consecutive “.” or “-“ symbols are not allowed. On Windows, the host name can contain a maximum of 15 characters, which can be a combination of uppercase/lowercase letters, numerals, and “-“. The host name cannot contain dots (“.”) or contain only numeric characters.",
+        "required": false
+      },
+      "image_id": {
+        "description": "The Image to use for the instance. ECS instance's image can be replaced via changing 'image_id'. When it is changed, the instance will reboot to make the change take effect.",
+        "required": true
+      },
+      "include_data_disks": {
+        "description": "Whether to change instance disks charge type when changing instance charge type.",
+        "required": false
+      },
+      "instance_charge_type": {
+        "description": "Valid values are PrePaid, PostPaid, The default is PostPaid.",
+        "required": false
+      },
+      "instance_name": {
+        "description": "The name of the ECS. This instance_name can have a string of 2 to 128 characters, must contain only alphanumeric characters or hyphens, such as \"-\",\".\",\"_\", and must not begin or end with a hyphen, and must not begin with http:// or https://. If not specified, ",
+        "required": false
+      },
+      "instance_type": {
+        "description": "The type of instance to start.",
+        "required": true
+      },
+      "internet_charge_type": {
+        "description": "Internet charge type of the instance, Valid values are PayByBandwidth, PayByTraffic. Default is PayByTraffic. At present, 'PrePaid' instance cannot change the value to \"PayByBandwidth\" from \"PayByTraffic\".",
+        "required": false
+      },
+      "internet_max_bandwidth_in": {
+        "description": "Maximum incoming bandwidth from the public network, measured in Mbps (Mega bit per second). Value range: [1, 200]. If this value is not specified, then automatically sets it to 200 Mbps.",
+        "required": false
+      },
+      "internet_max_bandwidth_out": {
+        "description": "Maximum outgoing bandwidth to the public network, measured in Mbps (Mega bit per second). Value range:  [0, 100]. Default to 0 Mbps.",
+        "required": false
+      },
+      "io_optimized": {
+        "description": "It has been deprecated on instance resource. All the launched alicloud instances will be I/O optimized.",
+        "required": false
+      },
+      "is_outdated": {
+        "description": "Whether to use outdated instance type. Default to false.",
+        "required": false
+      },
+      "key_name": {
+        "description": "The name of key pair that can login ECS instance successfully without password. If it is specified, the password would be invalid.",
+        "required": false
+      },
+      "password": {
+        "description": "Password to an instance is a string of 8 to 30 characters. It must contain uppercase/lowercase letters and numerals, but cannot contain special symbols. When it is changed, the instance will reboot to make the change take effect.",
+        "required": false
+      },
+      "period": {
+        "description": "The duration that you will buy the resource, in month. It is valid when instance_charge_type is PrePaid. Default to 1. Valid values:",
+        "required": false
+      },
+      "period_unit": {
+        "description": "The duration unit that you will buy the resource. It is valid when instance_charge_type is 'PrePaid'. Valid value: [\"Week\", \"Month\"]. Default to \"Month\".",
+        "required": false
+      },
+      "private_ip": {
+        "description": "Instance private IP address can be specified when you creating new instance. It is valid when vswitch_id is specified.",
+        "required": false
+      },
+      "renewal_statusAutoRenewalNormalNotRenewal": {
+      },
+      "role_name": {
+        "description": "Instance RAM role name. The name is provided and maintained by RAM. You can use alicloud_ram_role to create a new one.",
+        "required": false
+      },
+      "security_enhancement_strategy": {
+        "description": "The security enhancement strategy.",
+        "required": false
+      },
+      "security_groups": {
+        "description": "A list of security group ids to associate with.",
+        "required": true
+      },
+      "spot_price_limit": {
+        "description": "The hourly price threshold of a instance, and it takes effect only when parameter 'spot_strategy' is 'SpotWithPriceLimit'. Three decimals is allowed at most.",
+        "required": false
+      },
+      "spot_strategy": {
+        "description": "The spot strategy of a Pay-As-You-Go instance, and it takes effect only when parameter instance_charge_type is 'PostPaid'. Value range:",
+        "required": false
+      },
+      "system_disk_category": {
+        "description": "Valid values are cloud_efficiency, cloud_ssd and cloud. cloud only is used to some none I/O optimized instance. Default to cloud_efficiency.",
+        "required": false
+      },
+      "system_disk_size": {
+        "description": "Size of the system disk, value range: 40GB ~ 500GB. Default is 40GB. ECS instance's system disk can be reset when replacing system disk.",
+        "required": false
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the resource.",
+        "required": false
+      },
+      "user_data": {
+        "description": "User-defined data to customize the startup behaviors of an ECS instance and to pass data into an ECS instance.",
+        "required": false
+      },
+      "vswitch_id": {
+        "description": "The virtual switch ID to launch in VPC. If you want to create instances in VPC network, this parameter must be set.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/instance.html",
+    "properties": [
+      "image_id",
+      "instance_type",
+      "io_optimized",
+      "is_outdated",
+      "security_groups",
+      "availability_zone",
+      "instance_name",
+      "allocate_public_ip",
+      "system_disk_category",
+      "system_disk_size",
+      "description",
+      "internet_charge_type",
+      "internet_max_bandwidth_in",
+      "internet_max_bandwidth_out",
+      "host_name",
+      "password",
+      "vswitch_id",
+      "instance_charge_type",
+      "period_unit",
+      "period",
+      "",
+      "renewal_statusAutoRenewalNormalNotRenewal",
+      "AutoRenewal",
+      "Normal",
+      "NotRenewal",
+      "auto_renew_period",
+      "tags",
+      "user_data",
+      "key_name",
+      "role_name",
+      "include_data_disks",
+      "dry_run",
+      "private_ip",
+      "spot_strategy",
+      "spot_price_limit",
+      "force_delete",
+      "security_enhancement_strategy"
+    ]
+  },
+  "alicloud_key_pair": {
+    "full_properties": {
+      "key_file": {
+        "description": "The name of file to save your new key pair's private key. Strongly suggest you to specified it when you creating key pair, otherwise, you wouldn't get its private key ever.",
+        "required": false
+      },
+      "key_name": {
+        "description": "The key pair's name. It is the only in one Alicloud account.",
+        "required": false
+      },
+      "key_name_prefix": {
+        "description": "The key pair name's prefix. It is conflict with key_name. If it is specified, terraform will using it to build the only key name.",
+        "required": false
+      },
+      "public_key": {
+        "description": "You can import an existing public key and using Alicloud key pair to manage it.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/key_pair.html",
+    "properties": [
+      "key_name",
+      "key_name_prefix",
+      "public_key",
+      "key_file"
+    ]
+  },
+  "alicloud_key_pair_attachment": {
+    "full_properties": {
+      "force": {
+        "description": "Set it to true and it will reboot instances which attached with the key pair to make key pair affect immediately.",
+        "required": false
+      },
+      "instance_ids": {
+        "description": "The list of ECS instance's IDs.",
+        "required": false
+      },
+      "key_name": {
+        "description": "The name of key pair used to bind.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/key_pair_attachment.html",
+    "properties": [
+      "key_name",
+      "instance_ids",
+      "force"
+    ]
+  },
+  "alicloud_kms_key": {
+    "full_properties": {
+      "deletion_window_in_days": {
+        "description": "Duration in days after which the key is deleted",
+        "required": false
+      },
+      "description": {
+        "description": "The description of the key as viewed in Alicloud console. Default to \"From Terraform\".",
+        "required": false
+      },
+      "is_enabled": {
+        "description": "Specifies whether the key is enabled. Defaults to true.",
+        "required": false
+      },
+      "key_usage": {
+        "description": "Specifies the usage of CMK. Currently, default to 'ENCRYPT/DECRYPT', indicating that CMK is used for encryption and decryption.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/kms_key.html",
+    "properties": [
+      "description",
+      "key_usage",
+      "deletion_window_in_days",
+      "is_enabled"
+    ]
+  },
+  "alicloud_kvstore_backup_policy": {
+    "full_properties": {
+      "instance_id": {
+        "description": "The id of ApsaraDB for Redis or Memcache intance.",
+        "required": true
+      },
+      "preferred_backup_period": {
+        "description": "Backup Cycle. Allowed values: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday",
+        "required": true
+      },
+      "preferred_backup_time": {
+        "description": "Backup time, in the format of HH:mmZ- HH:mm Z",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/kvstore_backup_policy.html",
+    "properties": [
+      "instance_id",
+      "preferred_backup_time",
+      "preferred_backup_period"
+    ]
+  },
+  "alicloud_kvstore_instance": {
+    "full_properties": {
+      "availability_zone": {
+        "description": "The Zone to launch the DB instance.",
+        "required": false
+      },
+      "backup_id": {
+        "description": "If an instance created based on a backup set generated by another instance is valid, this parameter indicates the ID of the generated backup set.",
+        "required": false
+      },
+      "engine_version": {
+        "description": "Engine version. Supported values: 2.8 and 4.0. Default value: 2.8.",
+        "required": false
+      },
+      "instance_charge_type": {
+        "description": "Valid values are PrePaid, PostPaid, Default to PostPaid.",
+        "required": false
+      },
+      "instance_class": {
+        "description": "Type of the applied ApsaraDB for Redis instance.",
+        "required": true
+      },
+      "instance_name": {
+        "description": "The name of DB instance. It a string of 2 to 256 characters.",
+        "required": false
+      },
+      "instance_type": {
+        "description": "The engine to use: Redis or Memcache. Defaults to Redis.",
+        "required": false
+      },
+      "password": {
+        "description": "The password of the DB instance. The password is a string of 8 to 30 characters and must contain uppercase letters, lowercase letters, and numbers. ",
+        "required": true
+      },
+      "period": {
+        "description": "The duration that you will buy DB instance (in month). It is valid when instance_charge_type is PrePaid. Valid values: [1~9], 12, 24, 36. Default to 1.",
+        "required": false
+      },
+      "private_ip": {
+        "description": "Set the instance's private IP.",
+        "required": false
+      },
+      "security_ips": {
+        "description": "Set the instance's IP whitelist of the default security group.",
+        "required": false
+      },
+      "vswitch_id": {
+        "description": "The ID of VSwitch.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/kvstore_instance.html",
+    "properties": [
+      "instance_name",
+      "password",
+      "instance_class",
+      "availability_zone",
+      "instance_charge_type",
+      "period",
+      "instance_type",
+      "vswitch_id",
+      "engine_version",
+      "security_ips",
+      "private_ip",
+      "backup_id"
+    ]
+  },
+  "alicloud_log_machine_group": {
+    "full_properties": {
+      "identify_list": {
+        "description": "The specific machine identification, which can be an IP address or user-defined identity.",
+        "required": false
+      },
+      "identify_type": {
+        "description": "The machine identification type, including IP and user-defined identity. Valid values are \"ip\" and \"userdefined\". Default to \"ip\".",
+        "required": false
+      },
+      "name": {
+        "description": "The machine group name, which is unique in the same project.",
+        "required": false
+      },
+      "project": {
+        "description": "The project name to the machine group belongs.",
+        "required": false
+      },
+      "topic": {
+        "description": "The topic of a machine group.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/log_machine_group.html",
+    "properties": [
+      "project",
+      "name",
+      "identify_type",
+      "identify_list",
+      "topic"
+    ]
+  },
+  "alicloud_log_project": {
+    "full_properties": {
+      "description": {
+        "description": "Description of the log project. At present, it is not modified by terraform.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the log project. It is the only in one Alicloud account.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/log_project.html",
+    "properties": [
+      "name",
+      "description"
+    ]
+  },
+  "alicloud_log_store": {
+    "full_properties": {
+      "append_meta": {
+        "description": "Determines whether to append log meta automatically. The meta includes log receive time and client IP address. Default to true.",
+        "required": false
+      },
+      "auto_split": {
+        "description": "Determines whether to automatically split a shard. Default to true.",
+        "required": false
+      },
+      "enable_web_tracking": {
+        "description": "Determines whether to enable Web Tracking. Default false.",
+        "required": false
+      },
+      "max_split_shard_count": {
+        "description": "The maximum number of shards for automatic split, which is in the range of 1 to 64. You must specify this parameter when autoSplit is true.",
+        "required": false
+      },
+      "name": {
+        "description": "The log store, which is unique in the same project.",
+        "required": false
+      },
+      "project": {
+        "description": "The project name to the log store belongs.",
+        "required": false
+      },
+      "retention_period": {
+        "description": "The data retention time (in days). Valid values: [1-3650]. Default to 30. Log store data will be stored permanently when the value is \"3650\".",
+        "required": false
+      },
+      "shard_count": {
+        "description": "The number of shards in this log store. Default to 2. You can modify it by \"Split\" or \"Merge\" operations. Refer to details",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/log_store.html",
+    "properties": [
+      "project",
+      "name",
+      "retention_period",
+      "shard_count",
+      "auto_split",
+      "max_split_shard_count",
+      "append_meta",
+      "enable_web_tracking"
+    ]
+  },
+  "alicloud_log_store_index": {
+    "full_properties": {
+      "alias": {
+        "description": "The alias of one field",
+        "required": false
+      },
+      "case_sensitive": {
+        "description": "Whether the case sensitive for the field. Default to false. It is valid when \"type\" is \"text\" or \"json\".",
+        "required": false
+      },
+      "enable_analytics": {
+        "description": "Whether to enable field analytics. Default to true.",
+        "required": false
+      },
+      "field_searchnametypealiascase_sensitiveinclude_chinesetokenenable_analytics": {
+      },
+      "full_textcase_sensitiveinclude_chinesetoken": {
+      },
+      "include_chinese": {
+        "description": "Whether includes the chinese for the field. Default to false. It is valid when \"type\" is \"text\" or \"json\".",
+        "required": false
+      },
+      "logstore": {
+        "description": "The log store name to the query index belongs.",
+        "required": false
+      },
+      "name": {
+        "description": "The field name, which is unique in the same log store.",
+        "required": true
+      },
+      "project": {
+        "description": "The project name to the log store belongs.",
+        "required": false
+      },
+      "token": {
+        "description": "The string of several split words, like \"\\r\", \"#\". It is valid when \"type\" is \"text\" or \"json\".",
+        "required": false
+      },
+      "type": {
+        "description": "The type of one field. Valid values: [\"long\", \"text\", \"double\", \"json\"]. Default to \"long\".",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/log_store_index.html",
+    "properties": [
+      "project",
+      "logstore",
+      "full_textcase_sensitiveinclude_chinesetoken",
+      "case_sensitive",
+      "include_chinese",
+      "token",
+      "field_searchnametypealiascase_sensitiveinclude_chinesetokenenable_analytics",
+      "name",
+      "type",
+      "alias",
+      "enable_analytics"
+    ]
+  },
+  "alicloud_mns_queue": {
+    "full_properties": {
+      "delay_seconds": {
+        "description": "This attribute defines the length of time, in seconds, after which every message sent to the queue is dequeued. Valid value range: 0-604800 seconds, i.e., 0 to 7 days. Default value to 0.",
+        "required": false
+      },
+      "maximum_message_size": {
+        "description": "This indicates the maximum length, in bytes, of any message body sent to the queue. Valid value range: 1024-65536, i.e., 1K to 64K. Default value to 65536.",
+        "required": false
+      },
+      "message_retention_period": {
+        "description": "Messages are deleted from the queue after a specified length of time, whether they have been activated or not. This attribute defines the viability period, in seconds, for every message in the queue. Valid value range: 60-604800 seconds, i.e., 1 minutes to 7 days. Default value to 345600.",
+        "required": false
+      },
+      "name": {
+        "description": "Two queues on a single account in the same region cannot have the same name. A queue name must start with an English letter or a digit, and can contain English letters, digits, and hyphens, with the length not exceeding 256 characters .",
+        "required": false
+      },
+      "polling_wait_seconds": {
+        "description": "Long polling is measured in seconds. When this attribute is set to 0, long polling is disabled. When it is not set to 0, long polling is enabled and message dequeue requests will be processed only when valid messages are received or when long polling times out. Valid value range: 0-30 seconds. Default value to 0.",
+        "required": false
+      },
+      "visibility_timeout": {
+        "description": "The VisibilityTimeout attribute of the queue. A dequeued messages will change from active (visible) status to inactive (invisible) status, and this attribute defines the length of time, in seconds, that messages remain invisible. Messages return to active status after the set period. Valid value range: 1-43200 seconds, i.e., 1 seconds to 12 hours. Default value to 30.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/mns_queue.html",
+    "properties": [
+      "name",
+      "delay_seconds",
+      "maximum_message_size",
+      "message_retention_period",
+      "visibility_timeout",
+      "polling_wait_seconds"
+    ]
+  },
+  "alicloud_mns_topic": {
+    "full_properties": {
+      "logging_enabled": {
+        "description": "Is logging enabled? true or false. Default value to false.",
+        "required": false
+      },
+      "maximum_message_size": {
+        "description": "This indicates the maximum length, in bytes, of any message body sent to the topic. Valid value range: 1024-65536, i.e., 1K to 64K. Default value to 65536.",
+        "required": false
+      },
+      "name": {
+        "description": "Two topics on a single account in the same region cannot have the same name. A topic name must start with an English letter or a digit, and can contain English letters, digits, and hyphens, with the length not exceeding 256 characters.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/mns_topic.html",
+    "properties": [
+      "name",
+      "maximum_message_size",
+      "logging_enabled"
+    ]
+  },
+  "alicloud_mns_topic_subscription": {
+    "full_properties": {
+      "": {
+        "description": "Email Format: mail:directmail:{MailAddress}",
+        "required": false
+      },
+      "endpoint": {
+        "description": "The endpoint has three format. Available values format:",
+        "required": false
+      },
+      "filter_tag": {
+        "description": "The length should be shorter than 16.",
+        "required": false
+      },
+      "name": {
+        "description": "Two topics subscription on a single account in the same topic cannot have the same name. A topic subscription name must start with an English letter or a digit, and can contain English letters, digits, and hyphens, with the length not exceeding 256 characters.",
+        "required": false
+      },
+      "notify_content_format": {
+        "description": "The NotifyContentFormat attribute of Subscription. This attribute specifies the content format of the messages pushed to users. the attribute has two value SIMPLIFIED or XML.Default value to SIMPLIFIED .",
+        "required": false
+      },
+      "notify_strategy": {
+        "description": "The NotifyStrategy attribute of Subscription. This attribute specifies the retry strategy when message sending fails. the attribute has two value EXPONENTIAL_DECAY_RETR or BACKOFF_RETRY. Default value to BACKOFF_RETRY .",
+        "required": false
+      },
+      "topic_name": {
+        "description": "The topic which The subscription belongs to was named with the name.A topic name must start with an English letter or a digit, and can contain English letters, digits, and hyphens, with the length not exceeding 256 characters.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/mns_topic_subscription.html",
+    "properties": [
+      "topic_name",
+      "name",
+      "notify_strategy",
+      "notify_content_format",
+      "endpoint",
+      "",
+      "filter_tag"
+    ]
+  },
+  "alicloud_nat_gateway": {
+    "full_properties": {
+      "bandwidth_packages": {
+        "description": "A list of bandwidth packages for the nat gatway. Only support nat gateway created before 00:00 on November 4, 2017. Available in v1.13.0+ and v1.7.1-.",
+        "required": false
+      },
+      "description": {
+        "description": "Description of the nat gateway, This description can have a string of 2 to 256 characters, It cannot begin with http:// or https://. Defaults to null.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the nat gateway. The value can have a string of 2 to 128 characters, must contain only alphanumeric characters or hyphens, such as \"-\",\".\",\"_\", and must not begin or end with a hyphen, and must not begin with http:// or https://. Defaults to null.",
+        "required": false
+      },
+      "spec": {
+        "description": "It has been deprecated from provider version 1.7.1, and new field 'specification' can replace it.",
+        "required": false
+      },
+      "specification": {
+        "description": "The specification of the nat gateway. Valid values are Small, Middle and Large. Default to Small. Details refer to Nat Gateway Specification.",
+        "required": false
+      },
+      "vpc_id": {
+        "description": "The VPC ID.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/nat_gateway.html",
+    "properties": [
+      "vpc_id",
+      "spec",
+      "specification",
+      "name",
+      "description",
+      "bandwidth_packages"
+    ]
+  },
+  "alicloud_network_interface": {
+    "full_properties": {
+      "description": {
+        "description": "Description of the ENI. This description can have a string of 2 to 256 characters, It cannot begin with http:// or https://. Default value is null.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the ENI. This name can have a string of 2 to 128 characters, must contain only alphanumeric characters or hyphens, such as \"-\", \".\", \"_\", and must not begin or end with a hyphen, and must not begin with http:// or https://. Default value is null.",
+        "required": false
+      },
+      "private_ip": {
+        "description": "The primary private IP of the ENI.",
+        "required": false
+      },
+      "private_ips": {
+        "description": "List of secondary private IPs to assign to the ENI. Don't use both private_ips and private_ips_count in the same ENI resource block.",
+        "required": false
+      },
+      "private_ips_count": {
+        "description": "Number of secondary private IPs to assign to the ENI. Don't use both private_ips and private_ips_count in the same ENI resource block.",
+        "required": false
+      },
+      "security_groups": {
+        "description": "A list of security group ids to associate with.",
+        "required": false
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the resource.",
+        "required": false
+      },
+      "vswitch_id": {
+        "description": "The VSwitch to create the ENI in.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/network_interface.html",
+    "properties": [
+      "vswitch_id",
+      "security_groups",
+      "private_ip",
+      "name",
+      "description",
+      "private_ips",
+      "private_ips_count",
+      "tags"
+    ]
+  },
+  "alicloud_network_interface_attachment": {
+    "full_properties": {
+      "instance_id": {
+        "description": "The instance ID to attach.",
+        "required": false
+      },
+      "network_interface_id": {
+        "description": "The ENI ID to attach.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/network_interface_attachment.html",
+    "properties": [
+      "instance_id",
+      "network_interface_id"
+    ]
+  },
+  "alicloud_oss_bucket": {
+    "full_properties": {
+      "acl": {
+        "description": "The canned ACL to apply. Defaults to \"private\".",
+        "required": false
+      },
+      "bucket": {
+        "description": "The name of the bucket. If omitted, Terraform will assign a random and unique name.",
+        "required": false
+      },
+      "core_rule": {
+        "description": "A rule of Cross-Origin Resource Sharing (documented below). The items of core rule are no more than 10 for every OSS bucket.",
+        "required": false
+      },
+      "lifecycle_rule": {
+        "description": "A configuration of object lifecycle management (documented below).",
+        "required": false
+      },
+      "logging": {
+        "description": "A Settings of bucket logging (documented below).",
+        "required": false
+      },
+      "logging_isenable": {
+        "description": "The flag of using logging enable container. Defaults true.",
+        "required": false
+      },
+      "referer_config": {
+        "description": "The configuration of referer (documented below).",
+        "required": false
+      },
+      "website": {
+        "description": "A website object(documented below).",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/oss_bucket.html",
+    "properties": [
+      "bucket",
+      "acl",
+      "core_rule",
+      "website",
+      "logging",
+      "logging_isenable",
+      "referer_config",
+      "lifecycle_rule"
+    ]
+  },
+  "alicloud_oss_bucket_object": {
+    "full_properties": {
+      "acl": {
+        "description": "The canned ACL to apply. Defaults to \"private\".",
+        "required": false
+      },
+      "bucket": {
+        "description": "The name of the bucket to put the file in.",
+        "required": true
+      },
+      "cache_control": {
+        "description": "Specifies caching behavior along the request/reply chain. Read RFC2616 Cache-Control for further details.",
+        "required": false
+      },
+      "content": {
+        "description": "The literal content being uploaded to the bucket.",
+        "required": false
+      },
+      "content_disposition": {
+        "description": "Specifies presentational information for the object. Read RFC2616 Content-Disposition for further details.",
+        "required": false
+      },
+      "content_encoding": {
+        "description": "Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field. Read RFC2616 Content-Encoding for further details.",
+        "required": false
+      },
+      "content_md5": {
+        "description": "The MD5 value of the content. Read MD5 for computing method.",
+        "required": false
+      },
+      "content_type": {
+        "description": "A standard MIME type describing the format of the object data, e.g. application/octet-stream. All Valid MIME Types are valid for this input.",
+        "required": false
+      },
+      "expires": {
+        "description": "Specifies expire date for the the request/response. Read RFC2616 Expires for further details.",
+        "required": false
+      },
+      "key": {
+        "description": "The name of the object once it is in the bucket.",
+        "required": true
+      },
+      "server_side_encryption": {
+        "description": "Specifies server-side encryption of the object in OSS. At present, it valid value is \"AES256\".",
+        "required": false
+      },
+      "source": {
+        "description": "The path to the source file being uploaded to the bucket.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/oss_bucket_object.html",
+    "properties": [
+      "bucket",
+      "key",
+      "source",
+      "content",
+      "acl",
+      "content_type",
+      "cache_control",
+      "content_disposition",
+      "content_encoding",
+      "content_md5",
+      "expires",
+      "server_side_encryption"
+    ]
+  },
+  "alicloud_ots_instance": {
+    "full_properties": {
+      "Any": {
+        "description": "Allow all network to access the instance.",
+        "required": false
+      },
+      "ConsoleOrVpc": {
+        "description": "Allow web console or the attached VPC to access the instance.",
+        "required": false
+      },
+      "Vpc": {
+        "description": "Only can the attached VPC allow to access the instance.",
+        "required": false
+      },
+      "accessed_byAnyVpcConsoleOrVpc": {
+      },
+      "description": {
+        "description": "The description of the instance.",
+        "required": false
+      },
+      "instance_type": {
+        "description": "The type of instance. Valid values are \"Capacity\" and \"HighPerformance\". Default to \"HighPerformance\".",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the instance.",
+        "required": false
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the instance.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ots_instance.html",
+    "properties": [
+      "name",
+      "accessed_byAnyVpcConsoleOrVpc",
+      "Any",
+      "Vpc",
+      "ConsoleOrVpc",
+      "instance_type",
+      "description",
+      "tags"
+    ]
+  },
+  "alicloud_ots_instance_attachment": {
+    "full_properties": {
+      "instance_name": {
+        "description": "The name of the OTS instance.",
+        "required": false
+      },
+      "vpc_name": {
+        "description": "The name of attaching VPC to instance.",
+        "required": false
+      },
+      "vswitch_id": {
+        "description": "The ID of attaching VSwitch to instance.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ots_instance_attachment.html",
+    "properties": [
+      "instance_name",
+      "vpc_name",
+      "vswitch_id"
+    ]
+  },
+  "alicloud_ots_table": {
+    "full_properties": {
+      "instance_name": {
+        "description": "The name of the OTS instance in which table will located.",
+        "required": false
+      },
+      "max_version": {
+        "description": "The maximum number of versions stored in this table. The valid value is 1-2147483647.",
+        "required": true
+      },
+      "name": {
+        "description": "Name for primary key.",
+        "required": true
+      },
+      "primary_keynametype": {
+      },
+      "table_name": {
+        "description": "The table name of the OTS instance. If changed, a new table would be created.",
+        "required": false
+      },
+      "time_to_live": {
+        "description": "The retention time of data stored in this table (unit: second). The value maximum is 2147483647 and -1 means never expired.",
+        "required": true
+      },
+      "type": {
+        "description": "Type for primary key. Only Integer, String or Binary is allowed.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ots_table.html",
+    "properties": [
+      "instance_name",
+      "table_name",
+      "primary_keynametype",
+      "name",
+      "type",
+      "time_to_live",
+      "max_version"
+    ]
+  },
+  "alicloud_pvtz_zone": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the Private Zone.",
+        "required": false
+      },
+      "remark": {
+        "description": "The remark of the Private Zone.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/pvtz_zone.html",
+    "properties": [
+      "name",
+      "remark"
+    ]
+  },
+  "alicloud_pvtz_zone_attachment": {
+    "full_properties": {
+      "vpc_ids": {
+        "description": "The id List of the VPC, for example:[\"vpc-1\",\"vpc-2\"].",
+        "required": true
+      },
+      "zone_id": {
+        "description": "The name of the Private Zone Record.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/pvtz_zone_attachment.html",
+    "properties": [
+      "zone_id",
+      "vpc_ids"
+    ]
+  },
+  "alicloud_pvtz_zone_record": {
+    "full_properties": {
+      "priority": {
+        "description": "The priority of the Private Zone Record.",
+        "required": false
+      },
+      "resource_record": {
+        "description": "The resource record of the Private Zone Record.",
+        "required": true
+      },
+      "status": {
+        "description": "The status of the Private Zone Record.",
+        "required": false
+      },
+      "ttl": {
+        "description": "The ttl of the Private Zone Record.",
+        "required": false
+      },
+      "type": {
+        "description": "The type of the Private Zone Record.",
+        "required": true
+      },
+      "value": {
+        "description": "The value of the Private Zone Record.",
+        "required": true
+      },
+      "zone_id": {
+        "description": "The name of the Private Zone Record.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/pvtz_zone_record.html",
+    "properties": [
+      "zone_id",
+      "resource_record",
+      "type",
+      "value",
+      "status",
+      "ttl",
+      "priority"
+    ]
+  },
+  "alicloud_ram_access_key": {
+    "full_properties": {
+      "secret_file": {
+        "description": "The name of file that can save access key id and access key secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.",
+        "required": false
+      },
+      "status": {
+        "description": "Status of access key. It must be Active or Inactive. Default value is Active.",
+        "required": false
+      },
+      "user_name": {
+        "description": "Name of the RAM user. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphens, such as \"-\",\".\",\"_\", and must not begin with a hyphen.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ram_access_key.html",
+    "properties": [
+      "user_name",
+      "secret_file",
+      "status"
+    ]
+  },
+  "alicloud_ram_account_alias": {
+    "full_properties": {
+      "account_alias": {
+        "description": "Alias of cloud account. This name can have a string of 3 to 32 characters, must contain only alphanumeric characters or hyphens, such as \"-\", and must not begin with a hyphen.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ram_account_alias.html",
+    "properties": [
+      "account_alias"
+    ]
+  },
+  "alicloud_ram_group": {
+    "full_properties": {
+      "comments": {
+        "description": "Comment of the RAM group. This parameter can have a string of 1 to 128 characters.",
+        "required": false
+      },
+      "force": {
+        "description": "This parameter is used for resource destroy. Default value is false.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the RAM group. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphen \"-\", and must not begin with a hyphen.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ram_group.html",
+    "properties": [
+      "name",
+      "comments",
+      "force"
+    ]
+  },
+  "alicloud_ram_group_membership": {
+    "full_properties": {
+      "group_name": {
+        "description": "Name of the RAM group. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphen \"-\", and must not begin with a hyphen.",
+        "required": false
+      },
+      "user_names": {
+        "description": "Set of user name which will be added to group. Each name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphens, such as \"-\",\".\",\"_\", and must not begin with a hyphen.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ram_group_membership.html",
+    "properties": [
+      "group_name",
+      "user_names"
+    ]
+  },
+  "alicloud_ram_group_policy_attachment": {
+    "full_properties": {
+      "group_name": {
+        "description": "Name of the RAM group. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphen \"-\", and must not begin with a hyphen.",
+        "required": false
+      },
+      "policy_name": {
+        "description": "Name of the RAM policy. This name can have a string of 1 to 128 characters, must contain only alphanumeric characters or hyphen \"-\", and must not begin with a hyphen.",
+        "required": false
+      },
+      "policy_type": {
+        "description": "Type of the RAM policy. It must be Custom or System.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ram_group_policy_attachment.html",
+    "properties": [
+      "group_name",
+      "policy_name",
+      "policy_type"
+    ]
+  },
+  "alicloud_ram_login_profile": {
+    "full_properties": {
+      "mfa_bind_required": {
+        "description": "This parameter indicates whether the MFA needs to be bind when the user first logs in. Default value is false.",
+        "required": false
+      },
+      "password": {
+        "description": "Password of the RAM user.",
+        "required": true
+      },
+      "password_reset_required": {
+        "description": "This parameter indicates whether the password needs to be reset when the user first logs in. Default value is false.",
+        "required": false
+      },
+      "user_name": {
+        "description": "Name of the RAM user. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphens, such as \"-\",\".\",\"_\", and must not begin with a hyphen.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ram_login_profile.html",
+    "properties": [
+      "user_name",
+      "password",
+      "mfa_bind_required",
+      "password_reset_required"
+    ]
+  },
+  "alicloud_ram_policy": {
+    "full_properties": {
+      "action": {
+        "description": "List of operations for the resource. The format of each item in this list is ${service}:${action_name}, such as oss:ListBuckets and ecs:Describe*. The ${service} can be ecs, oss, ots and so on, the ${action_name} refers to the name of an api interface which related to the ${service}.",
+        "required": false
+      },
+      "description": {
+        "description": "Description of the RAM policy. This name can have a string of 1 to 1024 characters.",
+        "required": false
+      },
+      "document": {
+        "description": "Document of the RAM policy. It is required when the statement is not specified.",
+        "required": false
+      },
+      "effect": {
+        "description": "This parameter indicates whether or not the action is allowed. Valid values are Allow and Deny.",
+        "required": true
+      },
+      "force": {
+        "description": "This parameter is used for resource destroy. Default value is false.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the RAM policy. This name can have a string of 1 to 128 characters, must contain only alphanumeric characters or hyphen \"-\", and must not begin with a hyphen.",
+        "required": false
+      },
+      "resource": {
+        "description": "List of specific objects which will be authorized. The format of each item in this list is acs:${service}:${region}:${account_id}:${relative_id}, such as acs:ecs:*:*:instance/inst-002 and acs:oss:*:1234567890000:mybucket. The ${service} can be ecs, oss, ots and so on, the ${region} is the region info which can use * replace when it is not supplied, the ${account_id} refers to someone's Alicloud account id or you can use * to replace, the ${relative_id} is the resource description section which related to the ${service}.",
+        "required": false
+      },
+      "statementresourceactioneffect": {
+      },
+      "version": {
+        "description": "Version of the RAM policy document. Valid value is 1. Default value is 1.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ram_policy.html",
+    "properties": [
+      "name",
+      "statementresourceactioneffect",
+      "resource",
+      "action",
+      "effect",
+      "version",
+      "document",
+      "description",
+      "force"
+    ]
+  },
+  "alicloud_ram_role": {
+    "full_properties": {
+      "description": {
+        "description": "Description of the RAM role. This name can have a string of 1 to 1024 characters.",
+        "required": false
+      },
+      "document": {
+        "description": "Authorization strategy of the RAM role. It is required when the services and ram_users are not specified.",
+        "required": false
+      },
+      "force": {
+        "description": "This parameter is used for resource destroy. Default value is false.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the RAM role. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphens, such as \"-\", \"_\", and must not begin with a hyphen.",
+        "required": false
+      },
+      "ram_users": {
+        "description": "List of ram users who can assume the RAM role. The format of each item in this list is acs:ram::${account_id}:root or acs:ram::${account_id}:user/${user_name}, such as acs:ram::1234567890000:root and acs:ram::1234567890001:user/Mary. The ${user_name} is the name of a RAM user which must exists in the Alicloud account indicated by the ${account_id}.",
+        "required": false
+      },
+      "services": {
+        "description": "List of services which can assume the RAM role. The format of each item in this list is ${service}.aliyuncs.com or ${account_id}@${service}.aliyuncs.com, such as ecs.aliyuncs.com and 1234567890000@ots.aliyuncs.com. The ${service} can be ecs, log, apigateway and so on, the ${account_id} refers to someone's Alicloud account id.",
+        "required": false
+      },
+      "version": {
+        "description": "Version of the RAM role policy document. Valid value is 1. Default value is 1.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ram_role.html",
+    "properties": [
+      "name",
+      "services",
+      "ram_users",
+      "version",
+      "document",
+      "description",
+      "force"
+    ]
+  },
+  "alicloud_ram_role_attachment": {
+    "full_properties": {
+      "instance_ids": {
+        "description": "The list of ECS instance's IDs.",
+        "required": false
+      },
+      "role_name": {
+        "description": "The name of role used to bind. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphens, such as \"-\", \"_\", and must not begin with a hyphen.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ram_role_attachment.html",
+    "properties": [
+      "role_name",
+      "instance_ids"
+    ]
+  },
+  "alicloud_ram_role_policy_attachment": {
+    "full_properties": {
+      "policy_name": {
+        "description": "Name of the RAM policy. This name can have a string of 1 to 128 characters, must contain only alphanumeric characters or hyphen \"-\", and must not begin with a hyphen.",
+        "required": false
+      },
+      "policy_type": {
+        "description": "Type of the RAM policy. It must be Custom or System.",
+        "required": false
+      },
+      "role_name": {
+        "description": "Name of the RAM Role. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphens, such as \"-\", \"_\", and must not begin with a hyphen.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ram_role_policy_attachment.html",
+    "properties": [
+      "role_name",
+      "policy_name",
+      "policy_type"
+    ]
+  },
+  "alicloud_ram_user": {
+    "full_properties": {
+      "comments": {
+        "description": "Comment of the RAM user. This parameter can have a string of 1 to 128 characters.",
+        "required": false
+      },
+      "display_name": {
+        "description": "Name of the RAM user which for display. This name can have a string of 1 to 12 characters or Chinese characters, must contain only alphanumeric characters or Chinese characters or hyphens, such as \"-\",\".\", and must not end with a hyphen.",
+        "required": false
+      },
+      "email": {
+        "description": "Email of the RAM user.",
+        "required": false
+      },
+      "force": {
+        "description": "This parameter is used for resource destroy. Default value is false.",
+        "required": false
+      },
+      "mobile": {
+        "description": "Phone number of the RAM user. This number must contain an international area code prefix, just look like this: 86-18600008888.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the RAM user. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphens, such as \"-\",\".\",\"_\", and must not begin with a hyphen.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ram_user.html",
+    "properties": [
+      "name",
+      "display_name",
+      "mobile",
+      "email",
+      "comments",
+      "force"
+    ]
+  },
+  "alicloud_ram_user_policy_attachment": {
+    "full_properties": {
+      "policy_name": {
+        "description": "Name of the RAM policy. This name can have a string of 1 to 128 characters, must contain only alphanumeric characters or hyphen \"-\", and must not begin with a hyphen.",
+        "required": false
+      },
+      "policy_type": {
+        "description": "Type of the RAM policy. It must be Custom or System.",
+        "required": false
+      },
+      "user_name": {
+        "description": "Name of the RAM user. This name can have a string of 1 to 64 characters, must contain only alphanumeric characters or hyphens, such as \"-\",\".\",\"_\", and must not begin with a hyphen.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ram_user_policy_attachment.html",
+    "properties": [
+      "user_name",
+      "policy_name",
+      "policy_type"
+    ]
+  },
+  "alicloud_route_entry": {
+    "full_properties": {
+      "HaVip": {
+        "description": "Route the traffic destined for the destination CIDR block to an HAVIP.",
+        "required": false
+      },
+      "Instance": {
+        "description": ": Route the traffic destined for the destination CIDR block to an ECS instance in the VPC.",
+        "required": false
+      },
+      "RouterInterface": {
+        "description": "Route the traffic destined for the destination CIDR block to a router interface.",
+        "required": false
+      },
+      "VpnGateway": {
+        "description": "Route the traffic destined for the destination CIDR block to a VPN Gateway.",
+        "required": false
+      },
+      "destination_cidrblock": {
+        "description": "The RouteEntry's target network segment.",
+        "required": false
+      },
+      "nexthop_id": {
+        "description": "The route entry's next hop. ECS instance ID or VPC router interface ID.",
+        "required": false
+      },
+      "nexthop_typeInstanceRouterInterfaceVpnGatewayHaVip": {
+      },
+      "route_table_id": {
+        "description": "The ID of the route table.",
+        "required": false
+      },
+      "router_id": {
+        "description": "This argument has beeb deprecated. Please use other arguments to launch a custom route entry.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/vroute_entry.html",
+    "properties": [
+      "router_id",
+      "route_table_id",
+      "destination_cidrblock",
+      "nexthop_typeInstanceRouterInterfaceVpnGatewayHaVip",
+      "Instance",
+      "RouterInterface",
+      "VpnGateway",
+      "HaVip",
+      "nexthop_id"
+    ]
+  },
+  "alicloud_route_table": {
+    "full_properties": {
+      "description": {
+        "description": "The description of the route table instance.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the route table.",
+        "required": false
+      },
+      "vpc_id": {
+        "description": "The vpc_id of the route table, the field can't be changed.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/route_table.html",
+    "properties": [
+      "vpc_id",
+      "name",
+      "description"
+    ]
+  },
+  "alicloud_route_table_attachment": {
+    "full_properties": {
+      "route_table_id": {
+        "description": "The route_table_id of the route table attachment, the field can't be changed.",
+        "required": false
+      },
+      "vswitch_id": {
+        "description": "The vswitch_id of the route table attachment, the field can't be changed.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/route_table_attachment.html",
+    "properties": [
+      "vswitch_id",
+      "route_table_id"
+    ]
+  },
+  "alicloud_router_interface": {
+    "full_properties": {
+      "access_point_id": {
+        "description": "It has been deprecated from version 1.11.0.",
+        "required": false
+      },
+      "description": {
+        "description": "Description of the router interface. It can be 2-256 characters long or left blank. It cannot start with http:// and https://.",
+        "required": false
+      },
+      "health_check_source_ip": {
+        "description": "Used as the Packet Source IP of health check for disaster recovery or ECMP. It is only valid when router_type is VBR. The IP must be an unused IP in the local VPC. It and health_check_target_ip must be specified at the same time.",
+        "required": false
+      },
+      "health_check_target_ip": {
+        "description": "Used as the Packet Target IP of health check for disaster recovery or ECMP. It is only valid when router_type is VBR. The IP must be an unused IP in the local VPC. It and health_check_source_ip must be specified at the same time.",
+        "required": false
+      },
+      "instance_charge_type": {
+        "description": "The billing method of the router interface. Valid values are \"PrePaid\" and \"PostPaid\". Default to \"PostPaid\".",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the router interface. Length must be 2-80 characters long. Only Chinese characters, English letters, numbers, period (.), underline (_), or dash (-) are permitted.",
+        "required": false
+      },
+      "opposite_access_point_id": {
+        "description": "It has been deprecated from version 1.11.0.",
+        "required": false
+      },
+      "opposite_interface_id": {
+        "description": "It has been deprecated from version 1.11.0. Use resource alicloud_router_interface_connection's 'opposite_router_id' instead.",
+        "required": false
+      },
+      "opposite_interface_owner_id": {
+        "description": "It has been deprecated from version 1.11.0. Use resource alicloud_router_interface_connection's 'opposite_interface_id' instead.",
+        "required": false
+      },
+      "opposite_region": {
+        "description": "The Region of peer side.",
+        "required": false
+      },
+      "opposite_router_id": {
+        "description": "It has been deprecated from version 1.11.0. Use resource alicloud_router_interface_connection's 'opposite_router_id' instead.",
+        "required": false
+      },
+      "opposite_router_type": {
+        "description": "It has been deprecated from version 1.11.0. resource alicloud_router_interface_connection's 'opposite_router_type' instead.",
+        "required": false
+      },
+      "period": {
+        "description": "The duration that you will buy the resource, in month. It is valid when instance_charge_type is PrePaid. Default to 1. Valid values: [1-9, 12, 24, 36]. At present, the provider does not support modify \"period\" and you can do that via web console.",
+        "required": false
+      },
+      "role": {
+        "description": "The role the router interface plays. Optional value: InitiatingSide, AcceptingSide.",
+        "required": false
+      },
+      "router_id": {
+        "description": "The Router ID.",
+        "required": false
+      },
+      "router_type": {
+        "description": "Router Type. Optional value: VRouter, VBR. Accepting side router interface type only be VRouter.",
+        "required": false
+      },
+      "specification": {
+        "description": "Specification of router interfaces. It is valid when role is InitiatingSide. Accepting side's role is default to set as 'Negative'. For more about the specification, refer to Router interface specification.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/router_interface.html",
+    "properties": [
+      "opposite_region",
+      "router_type",
+      "opposite_router_type",
+      "router_id",
+      "opposite_router_id",
+      "role",
+      "specification",
+      "access_point_id",
+      "opposite_access_point_id",
+      "opposite_interface_id",
+      "opposite_interface_owner_id",
+      "name",
+      "description",
+      "health_check_source_ip",
+      "health_check_target_ip",
+      "instance_charge_type",
+      "period"
+    ]
+  },
+  "alicloud_router_interface_connection": {
+    "full_properties": {
+      "interface_id": {
+        "description": "One side router interface ID.",
+        "required": false
+      },
+      "opposite_interface_id": {
+        "description": "Another side router interface ID. It must belong the specified \"opposite_interface_owner_id\" account.",
+        "required": false
+      },
+      "opposite_interface_owner_id": {
+        "description": "Another side router interface account ID. Log on to the Alibaba Cloud console, select User Info > Account Management to check the account ID. Default to Provider account_id.",
+        "required": false
+      },
+      "opposite_router_id": {
+        "description": "Another side router ID. It must belong the specified \"opposite_interface_owner_id\" account. It is valid when field \"opposite_interface_owner_id\" is specified.",
+        "required": false
+      },
+      "opposite_router_type": {
+        "description": "Another side router Type. Optional value: VRouter, VBR. It is valid when field \"opposite_interface_owner_id\" is specified.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/router_interface_connection.html",
+    "properties": [
+      "interface_id",
+      "opposite_interface_id",
+      "opposite_interface_owner_id",
+      "opposite_router_id",
+      "opposite_router_type"
+    ]
+  },
+  "alicloud_security_group": {
+    "full_properties": {
+      "description": {
+        "description": "The security group description. Defaults to null.",
+        "required": false
+      },
+      "inner_access": {
+        "description": "Whether to allow both machines to access each other on all ports in the same security group.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the security group. Defaults to null.",
+        "required": false
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the resource.",
+        "required": false
+      },
+      "vpc_id": {
+        "description": "The VPC ID.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/security_group.html",
+    "properties": [
+      "name",
+      "description",
+      "vpc_id",
+      "inner_access",
+      "tags"
+    ]
+  },
+  "alicloud_security_group_rule": {
+    "full_properties": {
+      "cidr_ip": {
+        "description": "The target IP address range. The default value is 0.0.0.0/0 (which means no restriction will be applied). Other supported formats include 10.159.6.18/12. Only IPv4 is supported.",
+        "required": false
+      },
+      "ip_protocol": {
+        "description": "The protocol. Can be tcp, udp, icmp, gre or all.",
+        "required": true
+      },
+      "nic_type": {
+        "description": "Network type, can be either internet or intranet, the default value is internet.",
+        "required": false
+      },
+      "policy": {
+        "description": "Authorization policy, can be either accept or drop, the default value is accept.",
+        "required": false
+      },
+      "port_range": {
+        "description": "The range of port numbers relevant to the IP protocol. Default to \"-1/-1\". When the protocol is tcp or udp, each side port number range from 1 to 65535 and '-1/-1' will be invalid.",
+        "required": true
+      },
+      "priority": {
+        "description": "Authorization policy priority, with parameter values: 1-100, default value: 1.",
+        "required": false
+      },
+      "security_group_id": {
+        "description": "The security group to apply this rule to.",
+        "required": true
+      },
+      "source_group_owner_account": {
+        "description": "The Alibaba Cloud user account Id of the target security group when security groups are authorized across accounts.  This parameter is invalid if cidr_ip has already been set.",
+        "required": false
+      },
+      "source_security_group_id": {
+        "description": "The target security group ID within the same region. If this field is specified, the nic_type can only select intranet.",
+        "required": false
+      },
+      "type": {
+        "description": "The type of rule being created. Valid options are ingress (inbound) or egress (outbound).",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/security_group_rule.html",
+    "properties": [
+      "type",
+      "ip_protocol",
+      "port_range",
+      "security_group_id",
+      "nic_type",
+      "policy",
+      "priority",
+      "cidr_ip",
+      "source_security_group_id",
+      "source_group_owner_account"
+    ]
+  },
+  "alicloud_slb": {
+    "full_properties": {
+      "bandwidth": {
+        "description": "Valid",
+        "required": false
+      },
+      "internet": {
+        "description": "If true, the SLB addressType will be internet, false will be intranet, Default is false. If load balancer launched in VPC, this value must be \"false\".",
+        "required": false
+      },
+      "internet_charge_type": {
+        "description": "Valid",
+        "required": false
+      },
+      "listener": {
+        "description": "The field has been deprecated from terraform-alicloud-provider version 1.3.0, and use resource alicloud_slb_listener to replace.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the SLB. This name must be unique within your AliCloud account, can have a maximum of 80 characters,",
+        "required": false
+      },
+      "specification": {
+        "description": "The specification of the Server Load Balancer instance. Default to empty string indicating it is \"Shared-Performance\" instance.",
+        "required": false
+      },
+      "vswitch_id": {
+        "description": "The VSwitch ID to launch in.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/slb.html",
+    "properties": [
+      "name",
+      "internet",
+      "internet_charge_type",
+      "bandwidth",
+      "listener",
+      "vswitch_id",
+      "specification"
+    ]
+  },
+  "alicloud_slb_acl": {
+    "full_properties": {
+      "entry_list": {
+        "description": "A list of entry (IP addresses or CIDR blocks) to be added. At most 50 etnry can be supported in one resource. It contains two sub-fields as Entry Block follows.",
+        "required": false
+      },
+      "ip_version": {
+        "description": "The IP Version of access control list is the type of its entry (IP addresses or CIDR blocks). It values ipv4/ipv6. Our plugin provides a default ip_version: \"ipv4\".",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the access control list.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/slb_acl.html",
+    "properties": [
+      "name",
+      "ip_version",
+      "entry_list"
+    ]
+  },
+  "alicloud_slb_attachment": {
+    "full_properties": {
+      "instance_ids": {
+        "description": "A list of instance ids to added backend server in the SLB.",
+        "required": true
+      },
+      "instances": {
+        "description": "It has been deprecated from provider version 1.6.0. New field 'instance_ids' replaces it.",
+        "required": false
+      },
+      "load_balancer_id": {
+        "description": "ID of the load balancer.",
+        "required": true
+      },
+      "slb_id": {
+        "description": "It has been deprecated from provider version 1.6.0. New field 'load_balancer_id' replaces it.",
+        "required": false
+      },
+      "weight": {
+        "description": "Weight of the instances. Valid value range: [0-100]. Default to 100.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/slb_attachment.html",
+    "properties": [
+      "load_balancer_id",
+      "instance_ids",
+      "weight",
+      "slb_id",
+      "instances"
+    ]
+  },
+  "alicloud_slb_ca_certificate": {
+    "full_properties": {
+      "ca_certificate": {
+        "description": "the content of the CA certificate.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the CA Certificate.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/slb_ca_certificate.html",
+    "properties": [
+      "name",
+      "ca_certificate"
+    ]
+  },
+  "alicloud_slb_listener": {
+    "full_properties": {
+      "acl_id": {
+        "description": "the id of access control list to be apply on the listener, is the id of resource alicloud_slb_acl. If acl_status is \"on\", it is mandatory. Otherwise, it will be ignored.",
+        "required": false
+      },
+      "acl_status": {
+        "description": "Whether to enable \"acl(access control list)\", the acl is specified by acl_id. Valid values are on and off. Default to off.",
+        "required": false
+      },
+      "acl_type": {
+        "description": "Mode for handling the acl specified by acl_id. If acl_status is \"on\", it is mandatory. Otherwise, it will be ignored. Valid values are white and black. white means the Listener can only be accessed by client ip belongs to the acl; black means the Listener can not be accessed by client ip belongs to the acl;",
+        "required": false
+      },
+      "backend_port": {
+        "description": "Port used by the Server Load Balancer instance backend. Valid value range: [1-65535].",
+        "required": false
+      },
+      "bandwidth": {
+        "description": "Bandwidth peak of Listener. For the public network instance charged per traffic consumed, the Bandwidth on Listener can be set to -1, indicating the bandwidth peak is unlimited. Valid values are [-1, 1-1000] in Mbps.",
+        "required": true
+      },
+      "cookie": {
+        "description": "The cookie configured on the server. It is mandatory when sticky_session is \"on\" and sticky_session_type is \"server\". Otherwise, it will be ignored. Valid value：String in line with RFC 2965, with length being 1- 200. It only contains characters such as ASCII codes, English letters and digits instead of the comma, semicolon or spacing, and it cannot start with $.",
+        "required": false
+      },
+      "cookie_timeout": {
+        "description": "Cookie timeout. It is mandatory when sticky_session is \"on\" and sticky_session_type is \"insert\". Otherwise, it will be ignored. Valid value range: [1-86400] in seconds.",
+        "required": false
+      },
+      "enable_http2": {
+        "description": "Whether to enable https listener support http2 or not. Valid values are on and off. Default to on.",
+        "required": false
+      },
+      "established_timeout": {
+        "description": "Timeout of tcp listener established connection idle timeout. Valid value range: [10-900] in seconds. Default to 900.",
+        "required": false
+      },
+      "frontend_port": {
+        "description": "Port used by the Server Load Balancer instance frontend. Valid value range: [1-65535].",
+        "required": false
+      },
+      "gzip": {
+        "description": "Whether to enable \"Gzip Compression\". If enabled, files of specific file types will be compressed, otherwise, no files will be compressed. Default to true. Available in v1.13.0+.",
+        "required": false
+      },
+      "health_check": {
+        "description": "Whether to enable health check. Valid values areon and off. TCP and UDP listener's HealthCheck is always on, so it will be ignore when launching TCP or UDP listener.",
+        "required": false
+      },
+      "health_check_connect_port": {
+        "description": "Port used for health check. Valid value range: [1-65535]. Default to \"None\" means the backend server port is used.",
+        "required": false
+      },
+      "health_check_domain": {
+        "description": "Domain name used for health check. When it used to launch TCP listener, health_check_type must be \"http\". Its length is limited to 1-80 and only characters such as letters, digits, ‘-‘ and ‘.’ are allowed. When it is not set or empty,  Server Load Balancer uses the private network IP address of each backend server as Domain used for health check.",
+        "required": false
+      },
+      "health_check_http_code": {
+        "description": "Regular health check HTTP status code. Multiple codes are segmented by “,”. It is required when health_check is on. Default to http_2xx.  Valid values are: http_2xx,  http_3xx, http_4xx and http_5xx.",
+        "required": false
+      },
+      "health_check_interval": {
+        "description": "Time interval of health checks. It is required when health_check is on. Valid value range: [1-50] in seconds. Default to 2.",
+        "required": false
+      },
+      "health_check_timeout": {
+        "description": "Maximum timeout of each health check response. It is required when health_check is on. Valid value range: [1-300] in seconds. Default to 5. Note: If health_check_timeout < health_check_interval, its will be replaced by health_check_interval.",
+        "required": false
+      },
+      "health_check_type": {
+        "description": "Type of health check. Valid values are: tcp and http. Default to tcp . TCP supports TCP and HTTP health check mode, you can select the particular mode depending on your application.",
+        "required": false
+      },
+      "health_check_uri": {
+        "description": "URI used for health check. When it used to launch TCP listener, health_check_type must be \"http\". Its length is limited to 1-80 and it must start with /. Only characters such as letters, digits, ‘-’, ‘/’, ‘.’, ‘%’, ‘?’, #’ and ‘&’ are allowed.",
+        "required": false
+      },
+      "healthy_threshold": {
+        "description": "Threshold determining the result of the health check is success. It is required when health_check is on. Valid value range: [1-10] in seconds. Default to 3.",
+        "required": false
+      },
+      "idle_timeout": {
+        "description": "Timeout of http or https listener established connection idle timeout. Valid value range: [1-60] in seconds. Default to 15.",
+        "required": false
+      },
+      "load_balancer_id": {
+        "description": "The Load Balancer ID which is used to launch a new listener.",
+        "required": false
+      },
+      "persistence_timeout": {
+        "description": "Timeout of connection persistence. Valid value range: [0-3600] in seconds. Default to 0 and means closing it.",
+        "required": false
+      },
+      "protocol": {
+        "description": "The protocol to listen on. Valid values are [http, https, tcp, udp].",
+        "required": false
+      },
+      "request_timeout": {
+        "description": "Timeout of http or https listener request (which does not get response from backend) timeout. Valid value range: [1-180] in seconds. Default to 60.",
+        "required": false
+      },
+      "scheduler": {
+        "description": "Scheduling algorithm, Valid values are wrr and wlc.  Default to \"wrr\".",
+        "required": false
+      },
+      "ssl_certificate_id": {
+        "description": "Security certificate ID. It is required when protocol is https.",
+        "required": false
+      },
+      "sticky_session": {
+        "description": "Whether to enable session persistence, Valid values are on and off. Default to off.",
+        "required": false
+      },
+      "sticky_session_type": {
+        "description": "Mode for handling the cookie. If sticky_session is \"on\", it is mandatory. Otherwise, it will be ignored. Valid values are insert and server. insert means it is inserted from Server Load Balancer; server means the Server Load Balancer learns from the backend server.",
+        "required": false
+      },
+      "tls_cipher_policy": {
+        "description": "Https listener TLS cipher policy. Valid values are tls_cipher_policy_1_0, tls_cipher_policy_1_1, tls_cipher_policy_1_2, tls_cipher_policy_1_2_strict. Default to tls_cipher_policy_1_0.",
+        "required": false
+      },
+      "unhealthy_threshold": {
+        "description": "Threshold determining the result of the health check is fail. It is required when health_check is on. Valid value range: [1-10] in seconds. Default to 3.",
+        "required": false
+      },
+      "x_forwarded_for": {
+        "description": "Whether to set additional HTTP Header field \"X-Forwarded-For\" (documented below). Available in v1.13.0+.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/slb_listener.html",
+    "properties": [
+      "load_balancer_id",
+      "frontend_port",
+      "backend_port",
+      "protocol",
+      "bandwidth",
+      "scheduler",
+      "sticky_session",
+      "sticky_session_type",
+      "cookie_timeout",
+      "cookie",
+      "persistence_timeout",
+      "health_check",
+      "health_check_type",
+      "health_check_domain",
+      "health_check_uri",
+      "health_check_connect_port",
+      "healthy_threshold",
+      "unhealthy_threshold",
+      "health_check_timeout",
+      "health_check_interval",
+      "health_check_http_code",
+      "ssl_certificate_id",
+      "gzip",
+      "x_forwarded_for",
+      "acl_status",
+      "acl_type",
+      "acl_id",
+      "established_timeout",
+      "idle_timeout",
+      "request_timeout",
+      "enable_http2",
+      "tls_cipher_policy"
+    ]
+  },
+  "alicloud_slb_rule": {
+    "full_properties": {
+      "": {
+        "description": "Wildcard domain name: .test.com. wildcard () must be the first character in the format of (*.)",
+        "required": false
+      },
+      "domain": {
+        "description": "Domain name of the forwarding rule. It can contain letters a-z, numbers 0-9, hyphens (-), and periods (.),",
+        "required": false
+      },
+      "frontend_port": {
+        "description": "The listener frontend port which is used to launch the new forwarding rule. Valid range: [1-65535].",
+        "required": false
+      },
+      "load_balancer_id": {
+        "description": "The Load Balancer ID which is used to launch the new forwarding rule.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the forwarding rule. Our plugin provides a default name: \"tf-slb-rule\".",
+        "required": false
+      },
+      "server_group_id": {
+        "description": "ID of a virtual server group that will be forwarded.",
+        "required": true
+      },
+      "url": {
+        "description": "Domain of the forwarding rule. It must be 2-80 characters in length. Only letters a-z, numbers 0-9,",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/slb_rule.html",
+    "properties": [
+      "load_balancer_id",
+      "name",
+      "frontend_port",
+      "domain",
+      "",
+      "url",
+      "server_group_id"
+    ]
+  },
+  "alicloud_slb_server_certificate": {
+    "full_properties": {
+      "alicloud_certificate_id": {
+        "description": "an id of server certificate ssued/proxied by alibaba cloud. but it is not supported on the international site of alibaba cloud now.",
+        "required": false
+      },
+      "alicloud_certificate_name": {
+        "description": "the name of the certificate specified by alicloud_certificate_id.but it is not supported on the international site of alibaba cloud now.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the Server Certificate.",
+        "required": false
+      },
+      "private_key": {
+        "description": "the content of privat key of the ssl certificate specified by server_certificate. where alicloud_certificate_id is null, it is required, otherwise it is ignored.",
+        "required": false
+      },
+      "server_certificate": {
+        "description": "the content of the ssl certificate. where alicloud_certificate_id is null, it is required, otherwise it is ignored.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/slb_server_certificate.html",
+    "properties": [
+      "name",
+      "server_certificate",
+      "private_key",
+      "alicloud_certificate_id",
+      "alicloud_certificate_name"
+    ]
+  },
+  "alicloud_slb_server_group": {
+    "full_properties": {
+      "load_balancer_id": {
+        "description": "The Load Balancer ID which is used to launch a new virtual server group.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the virtual server group. Our plugin provides a default name: \"tf-server-group\".",
+        "required": false
+      },
+      "servers": {
+        "description": "A list of ECS instances to be added. At most 20 ECS instances can be supported in one resource. It contains three sub-fields as Block server follows.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/alicloud/r/slb_server_group.html",
+    "properties": [
+      "load_balancer_id",
+      "name",
+      "servers"
+    ]
+  },
+  "alicloud_snat": {
+    "full_properties": {
+      "snat_ip": {
+        "description": "The SNAT ip address, the ip must along bandwidth package public ip which alicloud_nat_gateway argument bandwidth_packages.",
+        "required": true
+      },
+      "snat_table_id": {
+        "description": "The value can get from alicloud_nat_gateway Attributes \"snat_table_ids\".",
+        "required": false
+      },
+      "source_vswitch_id": {
+        "description": "The vswitch ID.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/snat.html",
+    "properties": [
+      "snat_table_id",
+      "source_vswitch_id",
+      "snat_ip"
+    ]
+  },
+  "alicloud_ssl_vpn_client_cert": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the client certificate.",
+        "required": false
+      },
+      "ssl_vpn_server_id": {
+        "description": "The ID of the SSL-VPN server.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ssl_vpn_client_cert.html",
+    "properties": [
+      "name",
+      "ssl_vpn_server_id"
+    ]
+  },
+  "alicloud_ssl_vpn_server": {
+    "full_properties": {
+      "cipher": {
+        "description": "The encryption algorithm used by the SSL-VPN server. Valid value: AES-128-CBC (default)| AES-192-CBC | AES-256-CBC | none",
+        "required": false
+      },
+      "client_ip_pool": {
+        "description": "The CIDR block from which access addresses are allocated to the virtual network interface card of the client.",
+        "required": true
+      },
+      "compress": {
+        "description": "Specify whether to compress the communication. Valid value: true (default) | false",
+        "required": false
+      },
+      "local_subnet": {
+        "description": "The CIDR block to be accessed by the client through the SSL-VPN connection.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the SSL-VPN server.",
+        "required": false
+      },
+      "port": {
+        "description": "The port used by the SSL-VPN server. The default value is 1194.The following ports cannot be used: [22, 2222, 22222, 9000, 9001, 9002, 7505, 80, 443, 53, 68, 123, 4510, 4560, 500, 4500].",
+        "required": false
+      },
+      "protocol": {
+        "description": "The protocol used by the SSL-VPN server. Valid value: UDP(default) |TCP",
+        "required": false
+      },
+      "vpn_gateway_id": {
+        "description": "The ID of the VPN gateway.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/ssl_vpn_server.html",
+    "properties": [
+      "name",
+      "vpn_gateway_id",
+      "client_ip_pool",
+      "local_subnet",
+      "protocol",
+      "cipher",
+      "port",
+      "compress"
+    ]
+  },
+  "alicloud_vpc": {
+    "full_properties": {
+      "cidr_block": {
+        "description": "The CIDR block for the VPC.",
+        "required": false
+      },
+      "description": {
+        "description": "The VPC description. Defaults to null.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the VPC. Defaults to null.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/vpc.html",
+    "properties": [
+      "cidr_block",
+      "name",
+      "description"
+    ]
+  },
+  "alicloud_vpn_connection": {
+    "full_properties": {
+      "customer_gateway_id": {
+        "description": "The ID of the customer gateway.",
+        "required": true
+      },
+      "effect_immediately": {
+        "description": "Whether to delete a successfully negotiated IPsec tunnel and initiate a negotiation again. Valid value:true,false.",
+        "required": false
+      },
+      "ike_config": {
+        "description": "The configurations of phase-one negotiation.",
+        "required": false
+      },
+      "ipsec_config": {
+        "description": "The configurations of phase-two negotiation.",
+        "required": false
+      },
+      "local_subnet": {
+        "description": "The CIDR block of the VPC to be connected with the local data center. This parameter is used for phase-two negotiation.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the IPsec connection.",
+        "required": false
+      },
+      "remote_subnet": {
+        "description": "The CIDR block of the local data center. This parameter is used for phase-two negotiation.",
+        "required": false
+      },
+      "vpn_gateway_id": {
+        "description": "The ID of the VPN gateway.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/vpn_connection.html",
+    "properties": [
+      "name",
+      "vpn_gateway_id",
+      "customer_gateway_id",
+      "local_subnet",
+      "remote_subnet",
+      "effect_immediately",
+      "ike_config",
+      "ipsec_config"
+    ]
+  },
+  "alicloud_vpn_customer_gateway": {
+    "full_properties": {
+      "description": {
+        "description": "The description of the VPN customer gateway instance.",
+        "required": false
+      },
+      "ip_address": {
+        "description": "The IP address of the customer gateway.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the VPN customer gateway. Defaults to null.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/vpn_customer_gateway.html",
+    "properties": [
+      "name",
+      "ip_address",
+      "description"
+    ]
+  },
+  "alicloud_vpn_gateway": {
+    "full_properties": {
+      "bandwidth": {
+        "description": "The value should be 10 or 100 if the user is postpaid, otherwise it can be 5, 10, 20, 50, 100.",
+        "required": true
+      },
+      "description": {
+        "description": "The description of the VPN instance.",
+        "required": false
+      },
+      "enable_ipsec": {
+        "description": "Enable or Disable IPSec VPN. At least one type of VPN should be enabled.",
+        "required": false
+      },
+      "enable_ssl": {
+        "description": "Enable or Disable SSL VPN.  At least one type of VPN should be enabled.",
+        "required": false
+      },
+      "instance_charge_type": {
+        "description": "The charge type for instance.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the VPN. Defaults to null.",
+        "required": false
+      },
+      "period": {
+        "description": "The filed is only required while the InstanceChargeType is prepaid.",
+        "required": false
+      },
+      "ssl_connections": {
+        "description": "The max connections of SSL VPN.",
+        "required": false
+      },
+      "vpc_id": {
+        "description": "The VPN belongs the vpc_id, the field can't be changed.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/vpn_gateway.html",
+    "properties": [
+      "name",
+      "vpc_id",
+      "instance_charge_type",
+      "period",
+      "bandwidth",
+      "enable_ipsec",
+      "enable_ssl",
+      "ssl_connections",
+      "description"
+    ]
+  },
+  "alicloud_vswitch": {
+    "full_properties": {
+      "availability_zone": {
+        "description": "The AZ for the switch.",
+        "required": false
+      },
+      "cidr_block": {
+        "description": "The CIDR block for the switch.",
+        "required": false
+      },
+      "description": {
+        "description": "The switch description. Defaults to null.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the switch. Defaults to null.",
+        "required": false
+      },
+      "vpc_id": {
+        "description": "The VPC ID.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/alicloud/r/vswitch.html",
+    "properties": [
+      "availability_zone",
+      "vpc_id",
+      "cidr_block",
+      "name",
+      "description"
+    ]
+  }
+}

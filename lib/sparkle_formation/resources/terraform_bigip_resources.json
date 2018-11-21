@@ -1,0 +1,1004 @@
+{
+  "bigip_cm_devicegroup": {
+    "full_properties": {
+      "auto_sync": {
+        "description": "Specifies if the device-group will automatically sync configuration data to its members",
+        "required": false
+      },
+      "bigip_cm_devicegroup": {
+        "description": "Is the resource  used to configure new device group on the BIG-IP.",
+        "required": false
+      },
+      "device": {
+        "description": "Name of the device to be included in device group, this need to be configured before using devicegroup resource",
+        "required": false
+      },
+      "name": {
+        "description": "Is the name of the device Group",
+        "required": false
+      },
+      "type": {
+        "description": "Specifies if the device-group will be used for failover or resource syncing",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_cm_devicegroup.html",
+    "properties": [
+      "bigip_cm_devicegroup",
+      "name",
+      "auto_sync",
+      "type",
+      "device"
+    ]
+  },
+  "bigip_ltm_dns": {
+    "full_properties": {
+      "description": {
+        "description": "Provide description for your DNS server",
+        "required": false
+      },
+      "name_servers": {
+        "description": "Name or IP address of the DNS server",
+        "required": false
+      },
+      "number_of_dots": {
+        "description": "Configures the number of dots needed in a name before an initial absolute query will be made.",
+        "required": false
+      },
+      "search": {
+        "description": "Specify what domains you want to search",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_sys_dns.html",
+    "properties": [
+      "description",
+      "name_servers",
+      "number_of_dots",
+      "search"
+    ]
+  },
+  "bigip_ltm_irule": {
+    "full_properties": {
+      "irule": {
+        "description": "Body of the iRule",
+        "required": true
+      },
+      "name": {
+        "description": "Name of the iRule",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_ltm_irule.html",
+    "properties": [
+      "name",
+      "irule"
+    ]
+  },
+  "bigip_ltm_monitor": {
+    "full_properties": {
+      "destination": {
+        "description": "Specify an alias address for monitoring",
+        "required": false
+      },
+      "interval": {
+        "description": "Check interval in seconds",
+        "required": false
+      },
+      "ip_dscp": {
+        "description": "(Optional)",
+        "required": false
+      },
+      "manual_resume": {
+        "description": "(Optional)",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the monitor",
+        "required": true
+      },
+      "parent": {
+        "description": "Existing LTM monitor to inherit from",
+        "required": true
+      },
+      "receive": {
+        "description": "Expected response string",
+        "required": false
+      },
+      "receive_disable": {
+        "description": "(Optional)",
+        "required": false
+      },
+      "reverse": {
+        "description": "(Optional)",
+        "required": false
+      },
+      "send": {
+        "description": "Request string to send",
+        "required": false
+      },
+      "time_until_up": {
+        "description": "(Optional)",
+        "required": false
+      },
+      "timeout": {
+        "description": "Timeout in seconds",
+        "required": false
+      },
+      "transparent": {
+        "description": "(Optional)",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_ltm_monitor.html",
+    "properties": [
+      "name",
+      "parent",
+      "interval",
+      "timeout",
+      "send",
+      "receive",
+      "receive_disable",
+      "reverse",
+      "transparent",
+      "manual_resume",
+      "ip_dscp",
+      "time_until_up",
+      "destination"
+    ]
+  },
+  "bigip_ltm_node": {
+    "full_properties": {
+      "address": {
+        "description": "IP or hostname of the node",
+        "required": true
+      },
+      "name": {
+        "description": "Name of the node",
+        "required": true
+      },
+      "state": {
+        "description": "Default is \"user-up\" you can set to \"user-down\" if you want to disable",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_ltm_node.html",
+    "properties": [
+      "name",
+      "address",
+      "state"
+    ]
+  },
+  "bigip_ltm_policy": {
+    "full_properties": {
+      "controls": {
+        "description": "Specifies the controls",
+        "required": false
+      },
+      "forward": {
+        "description": "This action will affect forwarding.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the Policy",
+        "required": true
+      },
+      "pool": {
+        "description": "This action will direct the stream to this pool.",
+        "required": false
+      },
+      "published_copy": {
+        "description": "If you want to publish the policy else it will be deployed in Drafts mode.",
+        "required": false
+      },
+      "requires": {
+        "description": "Specifies the protocol",
+        "required": false
+      },
+      "rule": {
+        "description": "Rules can be applied using the policy",
+        "required": false
+      },
+      "strategy": {
+        "description": "Specifies the match strategy",
+        "required": false
+      },
+      "tm_name": {
+        "description": "If Rule is used then you need to provide the tm_name it can be any value",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_ltm_policy.html",
+    "properties": [
+      "name",
+      "strategy",
+      "requires",
+      "published_copy",
+      "controls",
+      "rule",
+      "tm_name",
+      "forward",
+      "pool"
+    ]
+  },
+  "bigip_ltm_pool": {
+    "full_properties": {
+      "allow_nat": {
+        "description": "(Optional)",
+        "required": false
+      },
+      "allow_snat": {
+        "description": "(Optional)",
+        "required": false
+      },
+      "load_balancing_mode": {
+        "description": "(Optional, Default = round-robin)",
+        "required": false
+      },
+      "monitors": {
+        "description": "List of monitor names to associate with the pool",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the pool",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_ltm_pool.html",
+    "properties": [
+      "name",
+      "monitors",
+      "allow_nat",
+      "allow_snat",
+      "load_balancing_mode"
+    ]
+  },
+  "bigip_ltm_pool_attachment": {
+    "full_properties": {
+      "node": {
+        "description": "Node to add to the pool in /Partition/NodeName:Port format (e.g. /Common/Node01:80)",
+        "required": true
+      },
+      "pool": {
+        "description": "Name of the pool in /Partition/Name format",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_ltm_pool_attachment.html",
+    "properties": [
+      "pool",
+      "node"
+    ]
+  },
+  "bigip_ltm_profile_fasthttp": {
+    "full_properties": {
+      "connpool_maxreuse": {
+        "description": "Specifies the maximum number of times that the system can re-use a current connection. The default value is 0 (zero).",
+        "required": false
+      },
+      "connpool_maxsize": {
+        "description": "Specifies the maximum number of connections to a load balancing pool. A setting of 0 specifies that a pool can accept an unlimited number of connections. The default value is 2048.",
+        "required": false
+      },
+      "connpool_minsize": {
+        "description": "Specifies the minimum number of connections to a load balancing pool. A setting of 0 specifies that there is no minimum. The default value is 10.",
+        "required": false
+      },
+      "connpool_replenish": {
+        "description": "The default value is enabled. When this option is enabled, the system replenishes the number of connections to a load balancing pool to the number of connections that existed when the server closed the connection to the pool. When disabled, the system replenishes the connection that was closed by the server, only when there are fewer connections to the pool than the number of connections set in the connpool-min-size connections option. Also see the connpool-min-size option..",
+        "required": false
+      },
+      "connpool_step": {
+        "description": "Specifies the increment in which the system makes additional connections available, when all available connections are in use. The default value is 4.",
+        "required": false
+      },
+      "connpoolidle_timeoutoverride": {
+        "description": "Specifies the number of seconds after which a server-side connection in a OneConnect pool is eligible for deletion, when the connection has no traffic.The value of this option overrides the idle-timeout value that you specify. The default value is 0 (zero) seconds, which disables the override setting.",
+        "required": false
+      },
+      "defaults_from": {
+        "description": "Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified.",
+        "required": false
+      },
+      "forcehttp_10response": {
+        "description": "Specifies whether to rewrite the HTTP version in the status line of the server to HTTP 1.0 to discourage the client from pipelining or chunking data. The default value is disabled.",
+        "required": false
+      },
+      "idle_timeout": {
+        "description": "Specifies an idle timeout in seconds. This setting specifies the number of seconds that a connection is idle before the connection is eligible for deletion.When you specify an idle timeout for the Fast L4 profile, the value must be greater than the bigdb database variable Pva.Scrub time in msec for it to work properly.The default value is 300 seconds.",
+        "required": false
+      },
+      "maxheader_size": {
+        "description": "Specifies the maximum amount of HTTP header data that the system buffers before making a load balancing decision. The default setting is 32768.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the profile_fasthttp",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_ltm_profile_fasthttp.html",
+    "properties": [
+      "name",
+      "defaults_from",
+      "connpoolidle_timeoutoverride",
+      "connpool_maxreuse",
+      "connpool_maxsize",
+      "connpool_replenish",
+      "idle_timeout",
+      "connpool_minsize",
+      "connpool_step",
+      "forcehttp_10response",
+      "maxheader_size"
+    ]
+  },
+  "bigip_ltm_profile_fastl4": {
+    "full_properties": {
+      "client_timeout": {
+        "description": "Specifies late binding client timeout in seconds. This setting specifies the number of seconds allowed for a client to transmit enough data to select a server when late binding is enabled. If it expires timeout-recovery mode will dictate what action to take.",
+        "required": false
+      },
+      "defaults_from": {
+        "description": "Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified.",
+        "required": false
+      },
+      "explicitflow_migration": {
+        "description": "Enables or disables late binding explicit flow migration that allows iRules to control when flows move from software to hardware. Explicit flow migration is disabled by default hence BIG-IP automatically migrates flows from software to hardware.",
+        "required": false
+      },
+      "hardware_syncookie": {
+        "description": "Enables or disables hardware SYN cookie support when PVA10 is present on the system. Note that when you set the hardware syncookie option to enabled, you may also want to set the following bigdb database variables using the \"/sys modify db\" command, based on your requirements: pva.SynCookies.Full.ConnectionThreshold (default: 500000), pva.SynCookies.Assist.ConnectionThreshold (default: 500000) pva.SynCookies.ClientWindow (default: 0). The default value is disabled.",
+        "required": false
+      },
+      "idle_timeout": {
+        "description": "Specifies an idle timeout in seconds. This setting specifies the number of seconds that a connection is idle before the connection is eligible for deletion.When you specify an idle timeout for the Fast L4 profile, the value must be greater than the bigdb database variable Pva.Scrub time in msec for it to work properly.The default value is 300 seconds.",
+        "required": false
+      },
+      "iptos_toclient": {
+        "description": "Specifies an IP ToS number for the client side. This option specifies the Type of Service level that the traffic management system assigns to IP packets when sending them to clients. The default value is 65535 (pass-through), which indicates, do not modify.",
+        "required": false
+      },
+      "iptos_toserver": {
+        "description": "Specifies an IP ToS number for the server side. This setting specifies the Type of Service level that the traffic management system assigns to IP packets when sending them to servers. The default value is 65535 (pass-through), which indicates, do not modify.",
+        "required": false
+      },
+      "keepalive_interval": {
+        "description": "Specifies the keep alive probe interval, in seconds. The default value is disabled (0 seconds).",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the profile_fastl4",
+        "required": true
+      },
+      "partition": {
+        "description": "Displays the administrative partition within which this profile resides",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_ltm_profile_fastl4.html",
+    "properties": [
+      "name",
+      "defaults_from",
+      "partition",
+      "client_timeout",
+      "explicitflow_migration",
+      "hardware_syncookie",
+      "idle_timeout",
+      "iptos_toclient",
+      "iptos_toserver",
+      "keepalive_interval"
+    ]
+  },
+  "bigip_ltm_profile_http2": {
+    "full_properties": {
+      "activation_modes": {
+        "description": "Specifies what will cause an incoming connection to be handled as a HTTP/2 connection. The default values npn and alpn specify that the TLS next-protocol-negotiation and application-layer-protocol-negotiation extensions will be used.",
+        "required": false
+      },
+      "concurrent_streams_per_connection": {
+        "description": "Specifies how many concurrent requests are allowed to be outstanding on a single HTTP/2 connection.",
+        "required": false
+      },
+      "connection_idle_timeout": {
+        "description": "Specifies the number of seconds that a connection is idle before the connection is eligible for deletion..",
+        "required": false
+      },
+      "connpool_maxsize": {
+        "description": "Specifies the maximum number of connections to a load balancing pool. A setting of 0 specifies that a pool can accept an unlimited number of connections. The default value is 2048.",
+        "required": false
+      },
+      "defaults_from": {
+        "description": "Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified.",
+        "required": true
+      },
+      "name": {
+        "description": "Name of the profile_http2",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_ltm_profile_http2.html",
+    "properties": [
+      "name",
+      "defaults_from",
+      "concurrent_streams_per_connection",
+      "connection_idle_timeout",
+      "connpool_maxsize",
+      "activation_modes"
+    ]
+  },
+  "bigip_ltm_profile_httpcompress": {
+    "full_properties": {
+      "defaults_from": {
+        "description": "Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the profile_httpcompress",
+        "required": true
+      },
+      "uri_exclude": {
+        "description": "Disables compression on a specified list of HTTP Request-URI responses. Use a regular expression to specify a list of URIs you do not want to compress.",
+        "required": false
+      },
+      "uri_include": {
+        "description": "Enables compression on a specified list of HTTP Request-URI responses. Use a regular expression to specify a list of URIs you want to compress.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_ltm_profile_httpcompress.html",
+    "properties": [
+      "name",
+      "defaults_from",
+      "uri_exclude",
+      "uri_include"
+    ]
+  },
+  "bigip_ltm_profile_oneconnect": {
+    "full_properties": {
+      "defaults_from": {
+        "description": "Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified.",
+        "required": false
+      },
+      "idle_timeout_override": {
+        "description": "Specifies the number of seconds that a connection is idle before the connection flow is eligible for deletion. Possible values are disabled, indefinite, or a numeric value that you specify. The default value is disabled.",
+        "required": false
+      },
+      "max_age": {
+        "description": "Specifies the maximum age in number of seconds allowed for a connection in the connection reuse pool. For any connection with an age higher than this value, the system removes that connection from the reuse pool. The default value is 86400.",
+        "required": false
+      },
+      "max_reuse": {
+        "description": "Specifies the maximum number of times that a server-side connection can be reused. The default value is 1000.",
+        "required": false
+      },
+      "max_size": {
+        "description": "Specifies the maximum number of connections that the system holds in the connection reuse pool. If the pool is already full, then the server-side connection closes after the response is completed. The default value is 10000.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the profile_oneconnect",
+        "required": true
+      },
+      "partition": {
+        "description": "Displays the administrative partition within which this profile resides",
+        "required": false
+      },
+      "share_pools": {
+        "description": "Specify if you want to share the pool, default value is \"disabled\"",
+        "required": false
+      },
+      "source_mask": {
+        "description": "Specifies a source IP mask. The default value is 0.0.0.0. The system applies the value of this option to the source address to determine its eligibility for reuse. A mask of 0.0.0.0 causes the system to share reused connections across all clients. A host mask (all 1's in binary), causes the system to share only those reused connections originating from the same client IP address.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_ltm_profile_oneconnect.html",
+    "properties": [
+      "name",
+      "partition",
+      "defaults_from",
+      "idle_timeout_override",
+      "share_pools",
+      "max_age",
+      "max_reuse",
+      "max_size",
+      "source_mask"
+    ]
+  },
+  "bigip_ltm_profile_tcp": {
+    "full_properties": {
+      "close_wait_timeout": {
+        "description": "Specifies the number of seconds that a connection remains in a LAST-ACK state before quitting. A value of 0 represents a term of forever (or until the maxrtx of the FIN state). The default value is 5 seconds.",
+        "required": false
+      },
+      "defaults_from": {
+        "description": "Specifies the profile that you want to use as the parent profile. Your new profile inherits all settings and values from the parent profile specified.",
+        "required": false
+      },
+      "deferred_accept": {
+        "description": "Specifies, when enabled, that the system defers allocation of the connection chain context until the client response is received. This option is useful for dealing with 3-way handshake DOS attacks. The default value is disabled.",
+        "required": false
+      },
+      "fast_open": {
+        "description": "When enabled, permits TCP Fast Open, allowing properly equipped TCP clients to send data with the SYN packet.",
+        "required": false
+      },
+      "finwait_2timeout": {
+        "description": "Specifies the number of seconds that a connection is in the FIN-WAIT-2 state before quitting. The default value is 300 seconds. A value of 0 (zero) represents a term of forever (or until the maxrtx of the FIN state).",
+        "required": false
+      },
+      "finwait_timeout": {
+        "description": "Specifies the number of seconds that a connection is in the FIN-WAIT-1 or closing state before quitting. The default value is 5 seconds. A value of 0 (zero) represents a term of forever (or until the maxrtx of the FIN state). You can also specify immediate or indefinite.",
+        "required": false
+      },
+      "idle_timeout": {
+        "description": "Specifies the number of seconds that a connection is idle before the connection is eligible for deletion. The default value is 300 seconds.",
+        "required": false
+      },
+      "keepalive_interval": {
+        "description": "Specifies the keep alive probe interval, in seconds. The default value is 1800 seconds.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the profile_tcp",
+        "required": true
+      },
+      "partition": {
+        "description": "Displays the administrative partition within which this profile resides",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_ltm_profile_tcp.html",
+    "properties": [
+      "name",
+      "partition",
+      "defaults_from",
+      "idle_timeout",
+      "close_wait_timeout",
+      "finwait_timeout",
+      "finwait_2timeout",
+      "keepalive_interval",
+      "fast_open",
+      "deferred_accept"
+    ]
+  },
+  "bigip_ltm_snat": {
+    "full_properties": {
+      "autolasthop": {
+        "description": "Specifies whether to automatically map last hop for pools or not. The default is to use next level's default.",
+        "required": false
+      },
+      "mirror": {
+        "description": "Enables or disables mirroring of SNAT connections.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the snat",
+        "required": true
+      },
+      "origins": {
+        "description": "IP or hostname of the snat",
+        "required": false
+      },
+      "partition": {
+        "description": "Displays the administrative partition within which this profile resides",
+        "required": false
+      },
+      "snatpool": {
+        "description": "Specifies the name of a SNAT pool. You can only use this option when automap and translation are not used.",
+        "required": false
+      },
+      "sourceport": {
+        "description": "Specifies whether the system preserves the source port of the connection. The default is preserve. Use of the preserve-strict setting should be restricted to UDP only under very special circumstances such as nPath or transparent (that is, no translation of any other L3/L4 field), where there is a 1:1 relationship between virtual IP addresses and node addresses, or when clustered multi-processing (CMP) is disabled. The change setting is useful for obfuscating internal network addresses.",
+        "required": false
+      },
+      "translation": {
+        "description": "Specifies the name of a translated IP address. Note that translated addresses are outside the traffic management system. You can only use this option when automap and snatpool are not used.",
+        "required": false
+      },
+      "vlansdisabled": {
+        "description": "Disables the SNAT on all VLANs.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_ltm_snat.html",
+    "properties": [
+      "name",
+      "partition",
+      "origins",
+      "snatpool",
+      "mirror",
+      "autolasthop",
+      "sourceport",
+      "translation",
+      "vlansdisabled"
+    ]
+  },
+  "bigip_ltm_snatpool": {
+    "full_properties": {
+      "members": {
+        "description": "Specifies a translation address to add to or delete from a SNAT pool (at least one address is required)",
+        "required": true
+      },
+      "name": {
+        "description": "Name of the snatpool",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_ltm_snatpool.html",
+    "properties": [
+      "name",
+      "members"
+    ]
+  },
+  "bigip_ltm_virtual_address": {
+    "full_properties": {
+      "advertize_route": {
+        "description": "Enabled dynamic routing of the address",
+        "required": false
+      },
+      "arp": {
+        "description": "Enable or disable ARP for the virtual address",
+        "required": false
+      },
+      "auto_delete": {
+        "description": "Automatically delete the virtual address with the virtual server",
+        "required": false
+      },
+      "conn_limit": {
+        "description": "Max number of connections for virtual address",
+        "required": false
+      },
+      "description": {
+        "description": "Description of the virtual address",
+        "required": false
+      },
+      "enabled": {
+        "description": "Enable or disable the virtual address",
+        "required": false
+      },
+      "icmp_echo": {
+        "description": "Enable/Disable ICMP response to the virtual address",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the virtual address",
+        "required": true
+      },
+      "traffic_group": {
+        "description": "Specify the partition and traffic group",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_ltm_virtual_address.html",
+    "properties": [
+      "name",
+      "description",
+      "advertize_route",
+      "conn_limit",
+      "enabled",
+      "arp",
+      "auto_delete",
+      "icmp_echo",
+      "traffic_group"
+    ]
+  },
+  "bigip_ltm_virtual_server": {
+    "full_properties": {
+      "client_profiles": {
+        "description": "List of client context profiles associated on the virtual server. Not mutually exclusive with profiles and server_profiles",
+        "required": false
+      },
+      "destination": {
+        "description": "Destination IP",
+        "required": true
+      },
+      "fallback_persistence_profile": {
+        "description": "Specifies a fallback persistence profile for the Virtual Server to use when the default persistence profile is not available.",
+        "required": false
+      },
+      "ip_protocol": {
+        "description": "Specify the IP protocol to use with the the virtual server (all, tcp, or udp are valid)",
+        "required": false
+      },
+      "mask": {
+        "description": "Mask can either be in CIDR notation or decimal, i.e.: 24 or 255.255.255.0. A CIDR mask of 0 is the same as 0.0.0.0",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the virtual server",
+        "required": true
+      },
+      "persistence_profiles": {
+        "description": "List of persistence profiles associated with the Virtual Server.",
+        "required": false
+      },
+      "pool": {
+        "description": "Default pool name",
+        "required": false
+      },
+      "port": {
+        "description": "Listen port for the virtual server",
+        "required": true
+      },
+      "profiles": {
+        "description": "List of profiles associated both client and server contexts on the virtual server. This includes protocol, ssl, http, etc.",
+        "required": false
+      },
+      "rules": {
+        "description": "The iRules you want run on this virtual server. iRules help automate the intercepting, processing, and routing of application traffic.",
+        "required": false
+      },
+      "server_profiles": {
+        "description": "List of server context profiles associated on the virtual server. Not mutually exclusive with profiles and client_profiles",
+        "required": false
+      },
+      "snatpool": {
+        "description": "Specifies the name of an existing SNAT pool that you want the virtual server to use to implement selective and intelligent SNATs. DEPRECATED - see Virtual Server Property Groups source-address-translation",
+        "required": false
+      },
+      "source": {
+        "description": "Specifies an IP address or network from which the virtual server will accept traffic.",
+        "required": false
+      },
+      "source_address_translation": {
+        "description": "Can be either omitted for none or the values automap or snat",
+        "required": false
+      },
+      "translate_address": {
+        "description": "Enables or disables address translation for the virtual server. Turn address translation off for a virtual server if you want to use the virtual server to load balance connections to any address. This option is useful when the system is load balancing devices that have the same IP address.",
+        "required": false
+      },
+      "translate_port": {
+        "description": "Enables or disables port translation. Turn port translation off for a virtual server if you want to use the virtual server to load balance connections to any service",
+        "required": false
+      },
+      "vlans": {
+        "description": "The virtual server is enabled/disabled on this set of VLANs. See vlans-disabled and vlans-enabled.",
+        "required": false
+      },
+      "vlans_disabled": {
+        "description": "Disables the virtual server on the VLANs specified by the VLANs option.",
+        "required": false
+      },
+      "vlans_enabled": {
+        "description": "Enables the virtual server on the VLANs specified by the VLANs option.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_ltm_virtual_server.html",
+    "properties": [
+      "name",
+      "port",
+      "destination",
+      "pool",
+      "mask",
+      "source_address_translation",
+      "translate_address",
+      "translate_port",
+      "ip_protocol",
+      "profiles",
+      "client_profiles",
+      "server_profiles",
+      "source",
+      "rules",
+      "snatpool",
+      "vlans",
+      "vlans_enabled",
+      "vlans_disabled",
+      "persistence_profiles",
+      "fallback_persistence_profile"
+    ]
+  },
+  "bigip_net_route": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the route",
+        "required": true
+      },
+      "network": {
+        "description": "Specifies a gateway address for the route.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_net_route.html",
+    "properties": [
+      "name",
+      "network"
+    ]
+  },
+  "bigip_net_selfip": {
+    "full_properties": {
+      "ip": {
+        "description": "The Self IP's address and netmask.",
+        "required": true
+      },
+      "name": {
+        "description": "Name of the selfip",
+        "required": true
+      },
+      "traffic_group": {
+        "description": "Specifies the traffic group, defaults to traffic-group-local-only if not specified.",
+        "required": false
+      },
+      "vlan": {
+        "description": "Specifies the VLAN for which you are setting a self IP address. This setting must be provided when a self IP is created.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_net_selfip.html",
+    "properties": [
+      "name",
+      "ip",
+      "vlan",
+      "traffic_group"
+    ]
+  },
+  "bigip_net_vlan": {
+    "full_properties": {
+      "interfaces": {
+        "description": "Specifies which interfaces you want this VLAN to use for traffic management.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the vlan",
+        "required": true
+      },
+      "tag": {
+        "description": "Specifies a number that the system adds into the header of any frame passing through the VLAN.",
+        "required": false
+      },
+      "tagged": {
+        "description": "Specifies a list of tagged interfaces or trunks associated with this VLAN. Note that you can associate tagged interfaces or trunks with any number of VLANs.",
+        "required": false
+      },
+      "vlanport": {
+        "description": "Physical or virtual port used for traffic",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_net_vlan.html",
+    "properties": [
+      "name",
+      "tag",
+      "interfaces",
+      "vlanport",
+      "tagged"
+    ]
+  },
+  "bigip_sys_iapp": {
+    "full_properties": {
+      "jsonfile": {
+        "description": "Refer to the Json file which will be deployed on F5 BIG-IP.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the iApp.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_sys_iapp.html",
+    "properties": [
+      "name",
+      "jsonfile"
+    ]
+  },
+  "bigip_sys_ntp": {
+    "full_properties": {
+      "/Common/NTP1": {
+        "description": "Is the description of the NTP server in the main or common partition of BIG-IP.",
+        "required": false
+      },
+      "bigip_sys_ntp": {
+        "description": "Is the resource is used to configure ntp server on the BIG-IP.",
+        "required": false
+      },
+      "servers": {
+        "description": "Adds NTP servers to or deletes NTP servers from the BIG-IP system.",
+        "required": false
+      },
+      "time.facebook.com": {
+        "description": "Is the  NTP server configured on the BIG-IP.",
+        "required": false
+      },
+      "timezone": {
+        "description": "Specifies the time zone that you want to use for the system time.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_sys_ntp.html",
+    "properties": [
+      "bigip_sys_ntp",
+      "/Common/NTP1",
+      "time.facebook.com",
+      "servers",
+      "timezone"
+    ]
+  },
+  "bigip_sys_provision": {
+    "full_properties": {
+      "Common/ilx": {
+        "description": "Common is the partition and ilx is the module being enabled it could be asm, afm apm etc.",
+        "required": false
+      },
+      "bigip_sys_provision": {
+        "description": "Is the resource which is used to provision big-ip modules like asm, afm, ilx etc",
+        "required": false
+      },
+      "cpuRatio": {
+        "description": "how much cpu resources you need for this resource",
+        "required": false
+      },
+      "diskRatio": {
+        "description": "how much disk space you want to allocate for this resource.",
+        "required": false
+      },
+      "memoryRatio": {
+        "description": "how much memory you want to deidcate for this resource",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_sys_provision.html",
+    "properties": [
+      "bigip_sys_provision",
+      "Common/ilx",
+      "cpuRatio",
+      "diskRatio",
+      "memoryRatio"
+    ]
+  },
+  "bigip_sys_snmp": {
+    "full_properties": {
+      "allowedaddresses": {
+        "description": "Configures hosts or networks from which snmpd can accept traffic. Entries go directly into hosts.allow.",
+        "required": false
+      },
+      "sys_contact": {
+        "description": "Specifies the contact information for the system administrator.",
+        "required": false
+      },
+      "sys_location": {
+        "description": "Describes the system's physical location.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_sys_snmp.html",
+    "properties": [
+      "sys_contact",
+      "sys_location",
+      "allowedaddresses"
+    ]
+  },
+  "bigip_sys_snmp_traps": {
+    "full_properties": {
+      "community": {
+        "description": "Specifies the community string used for this trap.",
+        "required": false
+      },
+      "description": {
+        "description": "The port that the trap will be sent to.",
+        "required": false
+      },
+      "host": {
+        "description": "The host the trap will be sent to.",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the snmp trap.",
+        "required": false
+      },
+      "port": {
+        "description": "User defined description.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/bigip/r/bigip_sys_snmp_traps.html",
+    "properties": [
+      "name",
+      "community",
+      "host",
+      "description",
+      "port"
+    ]
+  }
+}

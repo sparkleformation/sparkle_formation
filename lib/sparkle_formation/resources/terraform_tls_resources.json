@@ -1,0 +1,120 @@
+{
+  "tls_cert_request": {
+    "full_properties": {
+      "dns_names": {
+        "description": "List of DNS names for which a certificate is being requested.",
+        "required": false
+      },
+      "ip_addresses": {
+        "description": "List of IP addresses for which a certificate is being requested.",
+        "required": false
+      },
+      "key_algorithm": {
+        "description": "The name of the algorithm for the key provided",
+        "required": true
+      },
+      "private_key_pem": {
+        "description": "PEM-encoded private key data. This can be",
+        "required": true
+      },
+      "subject": {
+        "description": "The subject for which a certificate is being requested. This is",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/tls/r/cert_request.html",
+    "properties": [
+      "key_algorithm",
+      "private_key_pem",
+      "subject",
+      "dns_names",
+      "ip_addresses"
+    ]
+  },
+  "tls_locally_signed_cert": {
+    "full_properties": {
+      "allowed_uses": {
+        "description": "List of keywords each describing a use that is permitted",
+        "required": true
+      },
+      "ca_cert_pem": {
+        "description": "PEM-encoded certificate data for the CA.",
+        "required": true
+      },
+      "ca_key_algorithm": {
+        "description": "The name of the algorithm for the key provided",
+        "required": true
+      },
+      "ca_private_key_pem": {
+        "description": "PEM-encoded private key data for the CA.",
+        "required": true
+      },
+      "cert_request_pem": {
+        "description": "PEM-encoded request certificate data.",
+        "required": true
+      },
+      "early_renewal_hours": {
+        "description": "If set, the resource will consider the certificate to",
+        "required": false
+      },
+      "is_ca_certificate": {
+        "description": "Boolean controlling whether the CA flag will be set in the",
+        "required": false
+      },
+      "validity_period_hours": {
+        "description": "The number of hours after initial issuing that the",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/tls/r/locally_signed_cert.html",
+    "properties": [
+      "cert_request_pem",
+      "ca_key_algorithm",
+      "ca_private_key_pem",
+      "ca_cert_pem",
+      "validity_period_hours",
+      "allowed_uses",
+      "early_renewal_hours",
+      "is_ca_certificate"
+    ]
+  },
+  "tls_private_key": {
+    "full_properties": {
+      "algorithm": {
+        "description": "The name of the algorithm to use for",
+        "required": true
+      },
+      "ecdsa_curve": {
+        "description": "When algorithm is \"ECDSA\", the name of the elliptic",
+        "required": false
+      },
+      "rsa_bits": {
+        "description": "When algorithm is \"RSA\", the size of the generated",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/tls/r/private_key.html",
+    "properties": [
+      "algorithm",
+      "rsa_bits",
+      "ecdsa_curve"
+    ]
+  },
+  "tls_self_signed_cert": {
+    "full_properties": {
+      "aws_iam_server_certificate": {
+        "description": "to register certificates for use with AWS Elastic",
+        "required": false
+      },
+      "heroku_cert": {
+        "description": "to register certificates for applications deployed on Heroku.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/tls/r/self_signed_cert.html",
+    "properties": [
+      "aws_iam_server_certificate",
+      "heroku_cert"
+    ]
+  }
+}

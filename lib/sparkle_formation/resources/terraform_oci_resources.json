@@ -1,0 +1,3567 @@
+{
+  "oci_audit_configuration": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "ID of the root compartment (tenancy)",
+        "required": true
+      },
+      "retention_period_days": {
+        "description": "(Updatable) The retention period days",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/audit_configuration.html",
+    "properties": [
+      "compartment_id",
+      "retention_period_days"
+    ]
+  },
+  "oci_containerengine_cluster": {
+    "full_properties": {
+      "add_onsis_kubernetes_dashboard_enabledis_tiller_enabled": {
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment in which to create the cluster.",
+        "required": true
+      },
+      "is_kubernetes_dashboard_enabled": {
+        "description": "Whether or not to enable the Kubernetes Dashboard add-on.",
+        "required": false
+      },
+      "is_tiller_enabled": {
+        "description": "Whether or not to enable the Tiller add-on.",
+        "required": false
+      },
+      "kubernetes_network_configpods_cidrservices_cidr": {
+      },
+      "kubernetes_version": {
+        "description": "(Updatable) The version of Kubernetes to install into the cluster masters.",
+        "required": true
+      },
+      "name": {
+        "description": "(Updatable) The name of the cluster. Avoid entering confidential information.",
+        "required": true
+      },
+      "optionsadd_onsis_kubernetes_dashboard_enabledis_tiller_enabledkubernetes_network_configpods_cidrservices_cidrservice_lb_subnet_ids": {
+      },
+      "pods_cidr": {
+        "description": "The CIDR block for Kubernetes pods.",
+        "required": false
+      },
+      "service_lb_subnet_ids": {
+        "description": "The OCIDs of the subnets used for Kubernetes services load balancers.",
+        "required": false
+      },
+      "services_cidr": {
+        "description": "The CIDR block for Kubernetes services.",
+        "required": false
+      },
+      "vcn_id": {
+        "description": "The OCID of the virtual cloud network (VCN) in which to create the cluster.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/containerengine_cluster.html",
+    "properties": [
+      "compartment_id",
+      "kubernetes_version",
+      "name",
+      "optionsadd_onsis_kubernetes_dashboard_enabledis_tiller_enabledkubernetes_network_configpods_cidrservices_cidrservice_lb_subnet_ids",
+      "add_onsis_kubernetes_dashboard_enabledis_tiller_enabled",
+      "is_kubernetes_dashboard_enabled",
+      "is_tiller_enabled",
+      "kubernetes_network_configpods_cidrservices_cidr",
+      "pods_cidr",
+      "services_cidr",
+      "service_lb_subnet_ids",
+      "vcn_id"
+    ]
+  },
+  "oci_containerengine_node_pool": {
+    "full_properties": {
+      "cluster_id": {
+        "description": "The OCID of the cluster to which this node pool is attached.",
+        "required": true
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment in which the node pool exists.",
+        "required": true
+      },
+      "initial_node_labelskeyvalue": {
+      },
+      "key": {
+        "description": "(Updatable) The key of the pair.",
+        "required": false
+      },
+      "kubernetes_version": {
+        "description": "(Updatable) The version of Kubernetes to install on the nodes in the node pool.",
+        "required": true
+      },
+      "name": {
+        "description": "(Updatable) The name of the node pool. Avoid entering confidential information.",
+        "required": true
+      },
+      "node_image_name": {
+        "description": "The name of the image running on the nodes in the node pool.",
+        "required": true
+      },
+      "node_shape": {
+        "description": "The name of the node shape of the nodes in the node pool.",
+        "required": true
+      },
+      "quantity_per_subnet": {
+        "description": "(Updatable) The number of nodes to create in each subnet.",
+        "required": false
+      },
+      "ssh_public_key": {
+        "description": "The SSH public key to add to each node in the node pool.",
+        "required": false
+      },
+      "subnet_ids": {
+        "description": "(Updatable) The OCIDs of the subnets in which to place nodes for this node pool.",
+        "required": true
+      },
+      "value": {
+        "description": "(Updatable) The value of the pair.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/containerengine_node_pool.html",
+    "properties": [
+      "cluster_id",
+      "compartment_id",
+      "initial_node_labelskeyvalue",
+      "key",
+      "value",
+      "kubernetes_version",
+      "name",
+      "node_image_name",
+      "node_shape",
+      "quantity_per_subnet",
+      "ssh_public_key",
+      "subnet_ids"
+    ]
+  },
+  "oci_core_app_catalog_listing_resource_version_agreement": {
+    "full_properties": {
+      "listing_id": {
+        "description": "The OCID of the listing.",
+        "required": true
+      },
+      "listing_resource_version": {
+        "description": "Listing Resource Version.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_app_catalog_listing_resource_version_agreement.html",
+    "properties": [
+      "listing_id",
+      "listing_resource_version"
+    ]
+  },
+  "oci_core_app_catalog_subscription": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The compartmentID for the subscription.",
+        "required": false
+      },
+      "eula_link": {
+        "description": "EULA link",
+        "required": false
+      },
+      "listing_id": {
+        "description": "The OCID of the listing.",
+        "required": false
+      },
+      "listing_resource_version": {
+        "description": "Listing resource version.",
+        "required": false
+      },
+      "oracle_terms_of_use_link": {
+        "description": "Oracle TOU link",
+        "required": false
+      },
+      "signature": {
+        "description": "A generated signature for this listing resource version retrieved the agreements API.",
+        "required": false
+      },
+      "time_retrieved": {
+        "description": "Date and time the agreements were retrieved, in RFC3339 format. Example: 2018-03-20T12:32:53.532Z ",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/core_app_catalog_subscription.html",
+    "properties": [
+      "compartment_id",
+      "eula_link",
+      "listing_id",
+      "listing_resource_version",
+      "oracle_terms_of_use_link",
+      "signature",
+      "time_retrieved"
+    ]
+  },
+  "oci_core_boot_volume": {
+    "full_properties": {
+      "availability_domain": {
+        "description": "The availability domain of the boot volume.  Example: Uocm:PHX-AD-1 ",
+        "required": true
+      },
+      "backup_policy_id": {
+        "description": "If provided, specifies the ID of the boot volume backup policy to assign to the newly created boot volume. If omitted, no policy will be assigned. ",
+        "required": false
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment that contains the boot volume.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information. ",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"}",
+        "required": false
+      },
+      "id": {
+        "description": "The OCID of the boot volume or boot volume backup.",
+        "required": true
+      },
+      "kms_key_id": {
+        "description": "(Updatable) The OCID of the KMS key to be used as the master encryption key for the boot volume.",
+        "required": false
+      },
+      "size_in_gbs": {
+        "description": "(Updatable) The size of the volume in GBs.",
+        "required": false
+      },
+      "source_detailsidtype": {
+      },
+      "type": {
+        "description": "The type can be one of these values: bootVolume, bootVolumeBackup",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_boot_volume.html",
+    "properties": [
+      "availability_domain",
+      "backup_policy_id",
+      "compartment_id",
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "kms_key_id",
+      "size_in_gbs",
+      "source_detailsidtype",
+      "id",
+      "type"
+    ]
+  },
+  "oci_core_boot_volume_backup": {
+    "full_properties": {
+      "boot_volume_id": {
+        "description": "The OCID of the boot volume that needs to be backed up.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name for the boot volume backup. Does not have to be unique and it's changeable. Avoid entering confidential information. ",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "type": {
+        "description": "The type of backup to create. If omitted, defaults to incremental.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/core_boot_volume_backup.html",
+    "properties": [
+      "boot_volume_id",
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "type"
+    ]
+  },
+  "oci_core_console_history": {
+    "full_properties": {
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. ",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "instance_id": {
+        "description": "The OCID of the instance to get the console history from.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_console_history.html",
+    "properties": [
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "instance_id"
+    ]
+  },
+  "oci_core_cpe": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of the compartment to contain the CPE.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "ip_address": {
+        "description": "The public IP address of the on-premises router.  Example: 143.19.23.16 ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_cpe.html",
+    "properties": [
+      "compartment_id",
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "ip_address"
+    ]
+  },
+  "oci_core_cross_connect": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of the compartment to contain the cross-connect.",
+        "required": true
+      },
+      "cross_connect_group_id": {
+        "description": "The OCID of the cross-connect group to put this cross-connect in.",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information. ",
+        "required": false
+      },
+      "far_cross_connect_or_cross_connect_group_id": {
+        "description": "If you already have an existing cross-connect or cross-connect group at this FastConnect location, and you want this new cross-connect to be on a different router (for the purposes of redundancy), provide the OCID of that existing cross-connect or cross-connect group. ",
+        "required": false
+      },
+      "is_active": {
+        "description": "(Updatable) Set to true to activate the cross-connect. You activate it after the physical cabling is complete, and you've confirmed the cross-connect's light levels are good and your side of the interface is up. Activation indicates to Oracle that the physical connection is ready.",
+        "required": false
+      },
+      "location_name": {
+        "description": "The name of the FastConnect location where this cross-connect will be installed. To get a list of the available locations, see ListCrossConnectLocations.  Example: CyrusOne, Chandler, AZ ",
+        "required": true
+      },
+      "near_cross_connect_or_cross_connect_group_id": {
+        "description": "If you already have an existing cross-connect or cross-connect group at this FastConnect location, and you want this new cross-connect to be on the same router, provide the OCID of that existing cross-connect or cross-connect group. ",
+        "required": false
+      },
+      "port_speed_shape_name": {
+        "description": "The port speed for this cross-connect. To get a list of the available port speeds, see ListCrossConnectPortSpeedShapes.  Example: 10 Gbps ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_cross_connect.html",
+    "properties": [
+      "compartment_id",
+      "cross_connect_group_id",
+      "display_name",
+      "far_cross_connect_or_cross_connect_group_id",
+      "is_active",
+      "location_name",
+      "near_cross_connect_or_cross_connect_group_id",
+      "port_speed_shape_name"
+    ]
+  },
+  "oci_core_cross_connect_group": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of the compartment to contain the cross-connect group.",
+        "required": true
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information. ",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/core_cross_connect_group.html",
+    "properties": [
+      "compartment_id",
+      "display_name"
+    ]
+  },
+  "oci_core_dhcp_options": {
+    "full_properties": {
+      "": {
+        "description": "CustomDnsServer: Instances use a DNS server of your choice (three maximum). ",
+        "required": false
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment to contain the set of DHCP options.",
+        "required": true
+      },
+      "custom_dns_servers": {
+        "description": "(Updatable) If you set serverType to CustomDnsServer, specify the IP address of at least one DNS server of your choice (three maximum). gd ",
+        "required": false
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "optionscustom_dns_serverssearch_domain_namesserver_typetype": {
+      },
+      "search_domain_names": {
+        "description": "(Updatable) A single search domain name according to RFC 952 and RFC 1123. During a DNS query, the OS will append this search domain name to the value being queried.",
+        "required": false
+      },
+      "server_type": {
+        "description": "(Updatable)",
+        "required": false
+      },
+      "type": {
+        "description": "(Updatable) The specific DHCP option. Either DomainNameServer (for DhcpDnsOption) or SearchDomain (for DhcpSearchDomainOption).",
+        "required": true
+      },
+      "vcn_id": {
+        "description": "The OCID of the VCN the set of DHCP options belongs to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_dhcp_options.html",
+    "properties": [
+      "compartment_id",
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "optionscustom_dns_serverssearch_domain_namesserver_typetype",
+      "custom_dns_servers",
+      "search_domain_names",
+      "server_type",
+      "",
+      "type",
+      "vcn_id"
+    ]
+  },
+  "oci_core_drg": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of the compartment to contain the DRG.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/core_drg.html",
+    "properties": [
+      "compartment_id",
+      "defined_tags",
+      "display_name",
+      "freeform_tags"
+    ]
+  },
+  "oci_core_drg_attachment": {
+    "full_properties": {
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique. Avoid entering confidential information.",
+        "required": false
+      },
+      "drg_id": {
+        "description": "The OCID of the DRG.",
+        "required": true
+      },
+      "vcn_id": {
+        "description": "The OCID of the VCN.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_drg_attachment.html",
+    "properties": [
+      "display_name",
+      "drg_id",
+      "vcn_id"
+    ]
+  },
+  "oci_core_image": {
+    "full_properties": {
+      "CUSTOM": {
+        "description": "VM instances launch with custom configuration settings specified in the LaunchOptions parameter. ",
+        "required": false
+      },
+      "EMULATED": {
+        "description": "VM instances launch with emulated devices, such as the E1000 network driver and emulated SCSI disk controller.",
+        "required": false
+      },
+      "NATIVE": {
+        "description": "VM instances launch with iSCSI boot and VFIO devices. The default value for Oracle-provided images.",
+        "required": false
+      },
+      "PARAVIRTUALIZED": {
+        "description": "VM instances launch with paravirtualized devices using virtio drivers.",
+        "required": false
+      },
+      "QCOW2": {
+      },
+      "VMDK": {
+      },
+      "bucket_name": {
+        "description": "The Object Storage bucket for the image.",
+        "required": false
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment containing the instance you want to use as the basis for the image.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name for the image. It does not have to be unique, and it's changeable. Avoid entering confidential information.",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"}",
+        "required": false
+      },
+      "image_source_detailsbucket_namenamespace_nameobject_namesource_image_typeQCOW2VMDKsource_typesource_uri": {
+      },
+      "instance_id": {
+        "description": "The OCID of the instance you want to use as the basis for the image.",
+        "required": false
+      },
+      "launch_modeNATIVEEMULATEDPARAVIRTUALIZEDCUSTOM": {
+      },
+      "namespace_name": {
+        "description": "The Object Storage namespace for the image.",
+        "required": false
+      },
+      "object_name": {
+        "description": "The Object Storage name for the image.",
+        "required": false
+      },
+      "source_image_typeQCOW2VMDK": {
+      },
+      "source_type": {
+        "description": "The source type for the image. Use objectStorageTuple when specifying the namespace, bucket name, and object name. Use objectStorageUri when specifying the Object Storage URL. ",
+        "required": true
+      },
+      "source_uri": {
+        "description": "The Object Storage URL for the image.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/core_image.html",
+    "properties": [
+      "compartment_id",
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "image_source_detailsbucket_namenamespace_nameobject_namesource_image_typeQCOW2VMDKsource_typesource_uri",
+      "bucket_name",
+      "namespace_name",
+      "object_name",
+      "source_image_typeQCOW2VMDK",
+      "QCOW2",
+      "VMDK",
+      "source_type",
+      "source_uri",
+      "instance_id",
+      "launch_modeNATIVEEMULATEDPARAVIRTUALIZEDCUSTOM",
+      "NATIVE",
+      "EMULATED",
+      "PARAVIRTUALIZED",
+      "CUSTOM"
+    ]
+  },
+  "oci_core_instance": {
+    "full_properties": {
+      "": {
+        "description": "Get information about the instance, including the custom metadata that you provide when you launch the instance.",
+        "required": false
+      },
+      "assign_public_ip": {
+        "description": "Whether the VNIC should be assigned a public IP address. Defaults to whether the subnet is public or private. If not set and the VNIC is being created in a private subnet (that is, where prohibitPublicIpOnVnic = true in the Subnet), then no public IP address is assigned. If not set and the subnet is public (prohibitPublicIpOnVnic = false), then a public IP address is assigned. If set to true and prohibitPublicIpOnVnic = true, an error is returned.",
+        "required": false
+      },
+      "availability_domain": {
+        "description": "The availability domain of the instance.  Example: Uocm:PHX-AD-1 ",
+        "required": true
+      },
+      "boot_volume_size_in_gbs": {
+        "description": "The size of the boot volume in GBs. Minimum value is 50 GB and maximum value is 16384 GB (16TB).",
+        "required": false
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment.",
+        "required": true
+      },
+      "create_vnic_detailsassign_public_ipdefined_tagsdisplay_namefreeform_tagshostname_labelprivate_ipskip_source_dest_checksubnet_id": {
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"}",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.  Example: My bare metal instance",
+        "required": false
+      },
+      "extended_metadata": {
+        "description": "(Updatable) Additional metadata key/value pairs that you provide. They serve the same purpose and functionality as fields in the 'metadata' object.",
+        "required": false
+      },
+      "fault_domain": {
+        "description": "A fault domain is a grouping of hardware and infrastructure within an availability domain. Each availability domain contains three fault domains. Fault domains let you distribute your instances so that they are not on the same physical hardware within a single availability domain. A hardware failure or Compute hardware maintenance that affects one fault domain does not affect instances in other fault domains.",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"}",
+        "required": false
+      },
+      "hostname_label": {
+        "description": "Deprecated. Instead use hostnameLabel in CreateVnicDetails. If you provide both, the values must match.",
+        "required": false
+      },
+      "image": {
+        "description": "Deprecated. Use sourceDetails with InstanceSourceViaImageDetails source type instead. If you specify values for both, the values must match.",
+        "required": false
+      },
+      "ipxe_script": {
+        "description": "This is an advanced option.",
+        "required": false
+      },
+      "kms_key_id": {
+        "description": "The OCID of the KMS key to be used as the master encryption key for the boot volume.",
+        "required": false
+      },
+      "metadata": {
+        "description": "(Updatable) Custom metadata key/value pairs that you provide, such as the SSH public key required to connect to the instance.",
+        "required": false
+      },
+      "preserve_boot_volume": {
+        "description": "Specifies whether to delete or preserve the boot volume when terminating an instance. The default value is false. Note: This value only applies to destroy operations initiated by Terraform.",
+        "required": false
+      },
+      "private_ip": {
+        "description": "A private IP address of your choice to assign to the VNIC. Must be an available IP address within the subnet's CIDR. If you don't specify a value, Oracle automatically assigns a private IP address from the subnet. This is the VNIC's primary private IP address. The value appears in the Vnic object and also the PrivateIp object returned by ListPrivateIps and GetPrivateIp.  Example: 10.0.3.3",
+        "required": false
+      },
+      "shape": {
+        "description": "The shape of an instance. The shape determines the number of CPUs, amount of memory, and other resources allocated to the instance.",
+        "required": true
+      },
+      "skip_source_dest_check": {
+        "description": "Whether the source/destination check is disabled on the VNIC. Defaults to false, which means the check is performed. For information about why you would skip the source/destination check, see Using a Private IP as a Route Target.  Example: true",
+        "required": false
+      },
+      "source_detailsboot_volume_size_in_gbskms_key_idsource_idsource_type": {
+      },
+      "source_id": {
+        "description": "The OCID of an image or a boot volume to use, depending on the value of source_type.",
+        "required": true
+      },
+      "source_type": {
+        "description": "The source type for the instance. Use image when specifying the image OCID. Use bootVolume when specifying the boot volume OCID. ",
+        "required": true
+      },
+      "subnet_id": {
+        "description": "Deprecated. Instead use subnetId in CreateVnicDetails. At least one of them is required; if you provide both, the values must match.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/core_instance.html",
+    "properties": [
+      "availability_domain",
+      "compartment_id",
+      "create_vnic_detailsassign_public_ipdefined_tagsdisplay_namefreeform_tagshostname_labelprivate_ipskip_source_dest_checksubnet_id",
+      "assign_public_ip",
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "hostname_label",
+      "private_ip",
+      "skip_source_dest_check",
+      "subnet_id",
+      "extended_metadata",
+      "fault_domain",
+      "image",
+      "ipxe_script",
+      "metadata",
+      "",
+      "preserve_boot_volume",
+      "shape",
+      "source_detailsboot_volume_size_in_gbskms_key_idsource_idsource_type",
+      "boot_volume_size_in_gbs",
+      "kms_key_id",
+      "source_id",
+      "source_type"
+    ]
+  },
+  "oci_core_instance_console_connection": {
+    "full_properties": {
+      "defined_tags": {
+        "description": "Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "instance_id": {
+        "description": "The OCID of the instance to create the console connection to.",
+        "required": true
+      },
+      "public_key": {
+        "description": "The SSH public key used to authenticate the console connection.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_instance_console_connection.html",
+    "properties": [
+      "defined_tags",
+      "freeform_tags",
+      "instance_id",
+      "public_key"
+    ]
+  },
+  "oci_core_internet_gateway": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of the compartment to contain the internet gateway.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.",
+        "required": false
+      },
+      "enabled": {
+        "description": "(Updatable) Whether the gateway is enabled upon creation.",
+        "required": true
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "vcn_id": {
+        "description": "The OCID of the VCN the internet gateway is attached to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_internet_gateway.html",
+    "properties": [
+      "compartment_id",
+      "defined_tags",
+      "display_name",
+      "enabled",
+      "freeform_tags",
+      "vcn_id"
+    ]
+  },
+  "oci_core_ipsec": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of the compartment to contain the IPSec connection.",
+        "required": true
+      },
+      "cpe_id": {
+        "description": "The OCID of the CPE.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.",
+        "required": false
+      },
+      "drg_id": {
+        "description": "The OCID of the DRG.",
+        "required": true
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "static_routes": {
+        "description": "Static routes to the CPE. At least one route must be included. The CIDR must not be a multicast address or class E address.  Example: 10.0.1.0/24 ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_ip_sec_connection.html",
+    "properties": [
+      "compartment_id",
+      "cpe_id",
+      "defined_tags",
+      "display_name",
+      "drg_id",
+      "freeform_tags",
+      "static_routes"
+    ]
+  },
+  "oci_core_local_peering_gateway": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of the compartment containing the local peering gateway (LPG).",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information. ",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "peer_id": {
+        "description": "The OCID of the LPG you want to peer with. Specifying a peer_id connects this local peering gateway (LPG) to another one in the same region. This operation must be called by the VCN administrator who is designated as the requestor in the peering relationship. The acceptor must implement an Identity and Access Management (IAM) policy that gives the requestor permission to connect to LPGs in the acceptor's compartment. Without that permission, this operation will fail. For more information, see VCN Peering.",
+        "required": false
+      },
+      "vcn_id": {
+        "description": "The OCID of the VCN the LPG belongs to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_local_peering_gateway.html",
+    "properties": [
+      "compartment_id",
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "peer_id",
+      "vcn_id"
+    ]
+  },
+  "oci_core_nat_gateway": {
+    "full_properties": {
+      "block_traffic": {
+        "description": "(Updatable) Whether the NAT gateway blocks traffic through it. The default is false.  Example: true ",
+        "required": false
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment to contain the NAT gateway. ",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information. ",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "vcn_id": {
+        "description": "The OCID of the VCN the gateway belongs to. ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_nat_gateway.html",
+    "properties": [
+      "block_traffic",
+      "compartment_id",
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "vcn_id"
+    ]
+  },
+  "oci_core_private_ip": {
+    "full_properties": {
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information. ",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "hostname_label": {
+        "description": "(Updatable) The hostname for the private IP. Used for DNS. The value is the hostname portion of the private IP's fully qualified domain name (FQDN) (for example, bminstance-1 in FQDN bminstance-1.subnet123.vcn1.oraclevcn.com). Must be unique across all VNICs in the subnet and comply with RFC 952 and RFC 1123.",
+        "required": false
+      },
+      "ip_address": {
+        "description": "A private IP address of your choice. Must be an available IP address within the subnet's CIDR. If you don't specify a value, Oracle automatically assigns a private IP address from the subnet.  Example: 10.0.3.3",
+        "required": false
+      },
+      "vnic_id": {
+        "description": "(Updatable) The OCID of the VNIC to assign the private IP to. The VNIC and private IP must be in the same subnet.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_private_ip.html",
+    "properties": [
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "hostname_label",
+      "ip_address",
+      "vnic_id"
+    ]
+  },
+  "oci_core_public_ip": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of the compartment to contain the public IP. For ephemeral public IPs, you must set this to the private IP's compartment OCID. ",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information. ",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "lifetime": {
+        "description": "Defines when the public IP is deleted and released back to the Oracle Cloud Infrastructure public IP pool. For more information, see Public IP Addresses. ",
+        "required": true
+      },
+      "private_ip_id": {
+        "description": "(Updatable) The OCID of the private IP to assign the public IP to.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/core_public_ip.html",
+    "properties": [
+      "compartment_id",
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "lifetime",
+      "private_ip_id"
+    ]
+  },
+  "oci_core_remote_peering_connection": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of the compartment to contain the RPC.",
+        "required": true
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information. ",
+        "required": false
+      },
+      "drg_id": {
+        "description": "The OCID of the DRG the RPC belongs to.",
+        "required": true
+      },
+      "peer_id": {
+        "description": "The OCID of the RPC you want to peer with.",
+        "required": false
+      },
+      "peer_region_name": {
+        "description": "The name of the region that contains the RPC you want to peer with.  Example: us-ashburn-1",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/core_remote_peering_connection.html",
+    "properties": [
+      "compartment_id",
+      "display_name",
+      "drg_id",
+      "peer_id",
+      "peer_region_name"
+    ]
+  },
+  "oci_core_route_table": {
+    "full_properties": {
+      "": {
+        "description": "The cidrBlock value for a Service, if you're setting up a route rule for traffic destined for a particular service through a service gateway. For example: oci-phx-objectstorage ",
+        "required": false
+      },
+      "CIDR_BLOCK": {
+        "description": "If the rule's destination is an IP address range in CIDR notation.",
+        "required": false
+      },
+      "SERVICE_CIDR_BLOCK": {
+        "description": "If the rule's destination is the cidrBlock value for a Service (the rule is for traffic destined for a particular service through a service gateway). ",
+        "required": false
+      },
+      "cidr_block": {
+        "description": "(Updatable) Deprecated. Instead use destination and destinationType. Requests that include both cidrBlock and destination will be rejected.",
+        "required": false
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment to contain the route table.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "destination": {
+        "description": "(Updatable) Conceptually, this is the range of IP addresses used for matching when routing traffic. Required if you provide a destinationType.",
+        "required": false
+      },
+      "destination_typeCIDR_BLOCKSERVICE_CIDR_BLOCK": {
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "network_entity_id": {
+        "description": "(Updatable) The OCID for the route rule's target. For information about the type of targets you can specify, see Route Tables.",
+        "required": true
+      },
+      "route_rulescidr_blockdestinationdestination_typeCIDR_BLOCKSERVICE_CIDR_BLOCKnetwork_entity_id": {
+      },
+      "vcn_id": {
+        "description": "The OCID of the VCN the route table belongs to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_route_table.html",
+    "properties": [
+      "compartment_id",
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "route_rulescidr_blockdestinationdestination_typeCIDR_BLOCKSERVICE_CIDR_BLOCKnetwork_entity_id",
+      "cidr_block",
+      "destination",
+      "",
+      "destination_typeCIDR_BLOCKSERVICE_CIDR_BLOCK",
+      "CIDR_BLOCK",
+      "SERVICE_CIDR_BLOCK",
+      "network_entity_id",
+      "vcn_id"
+    ]
+  },
+  "oci_core_security_list": {
+    "full_properties": {
+      "": {
+        "description": "The cidrBlock value for a Service, if you're setting up a security list rule for traffic coming from a particular service through a service gateway. For example: oci-phx-objectstorage ",
+        "required": false
+      },
+      "CIDR_BLOCK": {
+        "description": "If the rule's source is an IP address range in CIDR notation.",
+        "required": false
+      },
+      "SERVICE_CIDR_BLOCK": {
+        "description": "If the rule's source is the cidrBlock value for a Service (the rule is for traffic coming from a particular service through a service gateway). ",
+        "required": false
+      },
+      "code": {
+        "description": "(Updatable) The ICMP code (optional).",
+        "required": false
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment to contain the security list.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "destination": {
+        "description": "(Updatable) Conceptually, this is the range of IP addresses that a packet originating from the instance can go to.",
+        "required": true
+      },
+      "destination_port_rangemaxmin": {
+      },
+      "destination_typeCIDR_BLOCKSERVICE_CIDR_BLOCK": {
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.",
+        "required": false
+      },
+      "egress_security_rulesdestinationdestination_typeCIDR_BLOCKSERVICE_CIDR_BLOCKicmp_optionscodetypeprotocolstatelesstcp_optionsdestination_port_rangemaxminsource_port_rangemaxminudp_optionsdestination_port_rangemaxminsource_port_rangemaxmin": {
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"}",
+        "required": false
+      },
+      "icmp_optionscodetype": {
+      },
+      "ingress_security_rulesicmp_optionscodetypeprotocolsourcesource_typeCIDR_BLOCKSERVICE_CIDR_BLOCKstatelesstcp_optionsdestination_port_rangemaxminsource_port_rangemaxminudp_optionsdestination_port_rangemaxminsource_port_rangemaxmin": {
+      },
+      "max": {
+        "description": "(Updatable) The maximum port number. Must not be lower than the minimum port number. To specify a single port number, set both the min and max to the same value. ",
+        "required": true
+      },
+      "min": {
+        "description": "(Updatable) The minimum port number. Must not be greater than the maximum port number.",
+        "required": true
+      },
+      "protocol": {
+        "description": "(Updatable) The transport protocol. Specify either all or an IPv4 protocol number as defined in Protocol Numbers. Options are supported only for ICMP (\"1\"), TCP (\"6\"), and UDP (\"17\"). ",
+        "required": true
+      },
+      "source": {
+        "description": "(Updatable) Conceptually, this is the range of IP addresses that a packet coming into the instance can come from.",
+        "required": true
+      },
+      "source_port_rangemaxmin": {
+      },
+      "source_typeCIDR_BLOCKSERVICE_CIDR_BLOCK": {
+      },
+      "stateless": {
+        "description": "(Updatable) A stateless rule allows traffic in one direction. Remember to add a corresponding stateless rule in the other direction if you need to support bidirectional traffic. For example, if ingress traffic allows TCP destination port 80, there should be an egress rule to allow TCP source port 80. Defaults to false, which means the rule is stateful and a corresponding rule is not necessary for bidirectional traffic.",
+        "required": false
+      },
+      "tcp_optionsdestination_port_rangemaxminsource_port_rangemaxmin": {
+      },
+      "type": {
+        "description": "(Updatable) The ICMP type.",
+        "required": true
+      },
+      "udp_optionsdestination_port_rangemaxminsource_port_rangemaxmin": {
+      },
+      "vcn_id": {
+        "description": "The OCID of the VCN the security list belongs to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_security_list.html",
+    "properties": [
+      "compartment_id",
+      "defined_tags",
+      "display_name",
+      "egress_security_rulesdestinationdestination_typeCIDR_BLOCKSERVICE_CIDR_BLOCKicmp_optionscodetypeprotocolstatelesstcp_optionsdestination_port_rangemaxminsource_port_rangemaxminudp_optionsdestination_port_rangemaxminsource_port_rangemaxmin",
+      "destination",
+      "",
+      "destination_typeCIDR_BLOCKSERVICE_CIDR_BLOCK",
+      "CIDR_BLOCK",
+      "SERVICE_CIDR_BLOCK",
+      "icmp_optionscodetype",
+      "code",
+      "type",
+      "protocol",
+      "stateless",
+      "tcp_optionsdestination_port_rangemaxminsource_port_rangemaxmin",
+      "destination_port_rangemaxmin",
+      "max",
+      "min",
+      "source_port_rangemaxmin",
+      "udp_optionsdestination_port_rangemaxminsource_port_rangemaxmin",
+      "freeform_tags",
+      "ingress_security_rulesicmp_optionscodetypeprotocolsourcesource_typeCIDR_BLOCKSERVICE_CIDR_BLOCKstatelesstcp_optionsdestination_port_rangemaxminsource_port_rangemaxminudp_optionsdestination_port_rangemaxminsource_port_rangemaxmin",
+      "source",
+      "source_typeCIDR_BLOCKSERVICE_CIDR_BLOCK",
+      "vcn_id"
+    ]
+  },
+  "oci_core_service_gateway": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID  of the compartment to contain the service gateway. ",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information. ",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "service_id": {
+        "description": "(Updatable) The OCID of the service. ",
+        "required": true
+      },
+      "servicesservice_id": {
+      },
+      "vcn_id": {
+        "description": "The OCID of the VCN.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_service_gateway.html",
+    "properties": [
+      "compartment_id",
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "servicesservice_id",
+      "service_id",
+      "vcn_id"
+    ]
+  },
+  "oci_core_subnet": {
+    "full_properties": {
+      "availability_domain": {
+        "description": "The availability domain to contain the subnet.  Example: Uocm:PHX-AD-1 ",
+        "required": true
+      },
+      "cidr_block": {
+        "description": "The CIDR IP address range of the subnet.  Example: 172.16.1.0/24 ",
+        "required": true
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment to contain the subnet.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "dhcp_options_id": {
+        "description": "(Updatable) The OCID of the set of DHCP options the subnet will use. If you don't provide a value, the subnet uses the VCN's default set of DHCP options. ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.",
+        "required": false
+      },
+      "dns_label": {
+        "description": "A DNS label for the subnet, used in conjunction with the VNIC's hostname and VCN's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet (for example, bminstance-1.subnet123.vcn1.oraclevcn.com). Must be an alphanumeric string that begins with a letter and is unique within the VCN. The value cannot be changed.",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"}",
+        "required": false
+      },
+      "prohibit_public_ip_on_vnic": {
+        "description": "Whether VNICs within this subnet can have public IP addresses. Defaults to false, which means VNICs created in this subnet will automatically be assigned public IP addresses unless specified otherwise during instance launch or VNIC creation (with the assignPublicIp flag in CreateVnicDetails). If prohibitPublicIpOnVnic is set to true, VNICs created in this subnet cannot have public IP addresses (that is, it's a private subnet).  Example: true",
+        "required": false
+      },
+      "route_table_id": {
+        "description": "(Updatable) The OCID of the route table the subnet will use. If you don't provide a value, the subnet uses the VCN's default route table.",
+        "required": false
+      },
+      "security_list_ids": {
+        "description": "(Updatable) The OCIDs of the security list or lists the subnet will use. If you don't provide a value, the subnet uses the VCN's default security list. Remember that security lists are associated with the subnet, but the rules are applied to the individual VNICs in the subnet.",
+        "required": false
+      },
+      "vcn_id": {
+        "description": "The OCID of the VCN to contain the subnet.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_subnet.html",
+    "properties": [
+      "availability_domain",
+      "cidr_block",
+      "compartment_id",
+      "defined_tags",
+      "dhcp_options_id",
+      "display_name",
+      "dns_label",
+      "freeform_tags",
+      "prohibit_public_ip_on_vnic",
+      "route_table_id",
+      "security_list_ids",
+      "vcn_id"
+    ]
+  },
+  "oci_core_vcn": {
+    "full_properties": {
+      "cidr_block": {
+        "description": "The CIDR IP address block of the VCN.  Example: 172.16.0.0/16 ",
+        "required": true
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment to contain the VCN.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.",
+        "required": false
+      },
+      "dns_label": {
+        "description": "A DNS label for the VCN, used in conjunction with the VNIC's hostname and subnet's DNS label to form a fully qualified domain name (FQDN) for each VNIC within this subnet (for example, bminstance-1.subnet123.vcn1.oraclevcn.com). Not required to be unique, but it's a best practice to set unique DNS labels for VCNs in your tenancy. Must be an alphanumeric string that begins with a letter. The value cannot be changed.",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"}",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/core_vcn.html",
+    "properties": [
+      "cidr_block",
+      "compartment_id",
+      "defined_tags",
+      "display_name",
+      "dns_label",
+      "freeform_tags"
+    ]
+  },
+  "oci_core_virtual_circuit": {
+    "full_properties": {
+      "bandwidth_shape_name": {
+        "description": "(Updatable) The provisioned data rate of the connection.  To get a list of the available bandwidth levels (that is, shapes), see ListFastConnectProviderServiceVirtualCircuitBandwidthShapes.  Example: 10 Gbps ",
+        "required": false
+      },
+      "bgp_md5auth_key": {
+        "description": "(Updatable) The key for BGP MD5 authentication. Only applicable if your system requires MD5 authentication. If empty or not set (null), that means you don't use BGP MD5 authentication. ",
+        "required": false
+      },
+      "cidr_block": {
+        "description": "An individual public IP prefix (CIDR) to add to the public virtual circuit. Must be /31 or less specific. ",
+        "required": true
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment to contain the virtual circuit. ",
+        "required": true
+      },
+      "cross_connect_mappingsbgp_md5auth_keycross_connect_or_cross_connect_group_idcustomer_bgp_peering_iporacle_bgp_peering_ipvlan": {
+      },
+      "cross_connect_or_cross_connect_group_id": {
+        "description": "(Updatable) The OCID of the cross-connect or cross-connect group for this mapping. Specified by the owner of the cross-connect or cross-connect group (the customer if the customer is colocated with Oracle, or the provider if the customer is connecting via provider). ",
+        "required": false
+      },
+      "customer_bgp_asn": {
+        "description": "(Updatable) Your BGP ASN (either public or private). Provide this value only if there's a BGP session that goes from your edge router to Oracle. Otherwise, leave this empty or null.",
+        "required": false
+      },
+      "customer_bgp_peering_ip": {
+        "description": "(Updatable) The BGP IP address for the router on the other end of the BGP session from Oracle. Specified by the owner of that router. If the session goes from Oracle to a customer, this is the BGP IP address of the customer's edge router. If the session goes from Oracle to a provider, this is the BGP IP address of the provider's edge router. Must use a /30 or /31 subnet mask.",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information.",
+        "required": false
+      },
+      "gateway_id": {
+        "description": "(Updatable) For private virtual circuits only. The OCID of the dynamic routing gateway (DRG) that this virtual circuit uses.",
+        "required": false
+      },
+      "oracle_bgp_peering_ip": {
+        "description": "(Updatable) The IP address for Oracle's end of the BGP session. Must use a /30 or /31 subnet mask. If the session goes from Oracle to a customer's edge router, the customer specifies this information. If the session goes from Oracle to a provider's edge router, the provider specifies this.",
+        "required": false
+      },
+      "provider_service_id": {
+        "description": "The OCID of the service offered by the provider (if you're connecting via a provider). To get a list of the available service offerings, see ListFastConnectProviderServices.",
+        "required": false
+      },
+      "public_prefixescidr_block": {
+      },
+      "region": {
+        "description": "The Oracle Cloud Infrastructure region where this virtual circuit is located. Example: phx",
+        "required": false
+      },
+      "type": {
+        "description": "The type of IP addresses used in this virtual circuit. PRIVATE means RFC 1918 addresses (10.0.0.0/8, 172.16/12, and 192.168/16). Only PRIVATE is supported.",
+        "required": true
+      },
+      "vlan": {
+        "description": "(Updatable) The number of the specific VLAN (on the cross-connect or cross-connect group) that is assigned to this virtual circuit. Specified by the owner of the cross-connect or cross-connect group (the customer if the customer is colocated with Oracle, or the provider if the customer is connecting via provider).  Example: 200",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/core_virtual_circuit.html",
+    "properties": [
+      "bandwidth_shape_name",
+      "compartment_id",
+      "cross_connect_mappingsbgp_md5auth_keycross_connect_or_cross_connect_group_idcustomer_bgp_peering_iporacle_bgp_peering_ipvlan",
+      "bgp_md5auth_key",
+      "cross_connect_or_cross_connect_group_id",
+      "customer_bgp_peering_ip",
+      "oracle_bgp_peering_ip",
+      "vlan",
+      "customer_bgp_asn",
+      "display_name",
+      "gateway_id",
+      "provider_service_id",
+      "public_prefixescidr_block",
+      "cidr_block",
+      "region",
+      "type"
+    ]
+  },
+  "oci_core_vnic_attachment": {
+    "full_properties": {
+      "assign_public_ip": {
+        "description": "Whether the VNIC should be assigned a public IP address. Defaults to whether the subnet is public or private. If not set and the VNIC is being created in a private subnet (that is, where prohibitPublicIpOnVnic = true in the Subnet), then no public IP address is assigned. If not set and the subnet is public (prohibitPublicIpOnVnic = false), then a public IP address is assigned. If set to true and prohibitPublicIpOnVnic = true, an error is returned.",
+        "required": false
+      },
+      "create_vnic_detailsassign_public_ipdefined_tagsdisplay_namefreeform_tagshostname_labelprivate_ipskip_source_dest_checksubnet_id": {
+      },
+      "defined_tags": {
+        "description": "Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"}",
+        "required": false
+      },
+      "display_name": {
+        "description": "A user-friendly name for the attachment. Does not have to be unique, and it cannot be changed.",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"}",
+        "required": false
+      },
+      "hostname_label": {
+        "description": "The hostname for the VNIC's primary private IP. Used for DNS. The value is the hostname portion of the primary private IP's fully qualified domain name (FQDN) (for example, bminstance-1 in FQDN bminstance-1.subnet123.vcn1.oraclevcn.com). Must be unique across all VNICs in the subnet and comply with RFC 952 and RFC 1123. The value appears in the Vnic object and also the PrivateIp object returned by ListPrivateIps and GetPrivateIp.",
+        "required": false
+      },
+      "instance_id": {
+        "description": "The OCID of the instance.",
+        "required": true
+      },
+      "nic_index": {
+        "description": "Which physical network interface card (NIC) the VNIC will use. Defaults to 0. Certain bare metal instance shapes have two active physical NICs (0 and 1). If you add a secondary VNIC to one of these instances, you can specify which NIC the VNIC will use. For more information, see Virtual Network Interface Cards (VNICs).",
+        "required": false
+      },
+      "private_ip": {
+        "description": "A private IP address of your choice to assign to the VNIC. Must be an available IP address within the subnet's CIDR. If you don't specify a value, Oracle automatically assigns a private IP address from the subnet. This is the VNIC's primary private IP address. The value appears in the Vnic object and also the PrivateIp object returned by ListPrivateIps and GetPrivateIp.  Example: 10.0.3.3",
+        "required": false
+      },
+      "skip_source_dest_check": {
+        "description": "Whether the source/destination check is disabled on the VNIC. Defaults to false, which means the check is performed. For information about why you would skip the source/destination check, see Using a Private IP as a Route Target.  Example: true",
+        "required": false
+      },
+      "subnet_id": {
+        "description": "The OCID of the subnet to create the VNIC in. When launching an instance, use this subnetId instead of the deprecated subnetId in LaunchInstanceDetails. At least one of them is required; if you provide both, the values must match.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_vnic_attachment.html",
+    "properties": [
+      "create_vnic_detailsassign_public_ipdefined_tagsdisplay_namefreeform_tagshostname_labelprivate_ipskip_source_dest_checksubnet_id",
+      "assign_public_ip",
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "hostname_label",
+      "private_ip",
+      "skip_source_dest_check",
+      "subnet_id",
+      "instance_id",
+      "nic_index"
+    ]
+  },
+  "oci_core_volume": {
+    "full_properties": {
+      "availability_domain": {
+        "description": "The availability domain of the volume.  Example: Uocm:PHX-AD-1 ",
+        "required": true
+      },
+      "backup_policy_id": {
+        "description": "If provided, specifies the ID of the volume backup policy to assign to the newly created volume. If omitted, no policy will be assigned. ",
+        "required": false
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment that contains the volume.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. Does not have to be unique, and it's changeable. Avoid entering confidential information. ",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "id": {
+        "description": "The OCID of the volume or volume backup.",
+        "required": true
+      },
+      "kms_key_id": {
+        "description": "(Updatable) The OCID of the KMS key to be used as the master encryption key for the volume.",
+        "required": false
+      },
+      "size_in_gbs": {
+        "description": "(Updatable) The size of the volume in GBs.",
+        "required": false
+      },
+      "size_in_mbs": {
+        "description": "The size of the volume in MBs. The value must be a multiple of 1024. This field is deprecated. Use size_in_gbs instead. ",
+        "required": false
+      },
+      "source_detailsidtype": {
+      },
+      "type": {
+        "description": "The type can be one of these values: volume, volumeBackup",
+        "required": true
+      },
+      "volume_backup_id": {
+        "description": "The OCID of the volume backup from which the data should be restored on the newly created volume. This field is deprecated. Use the source_details field instead to specify the backup for the volume. ",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/core_volume.html",
+    "properties": [
+      "availability_domain",
+      "backup_policy_id",
+      "compartment_id",
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "kms_key_id",
+      "size_in_gbs",
+      "size_in_mbs",
+      "source_detailsidtype",
+      "id",
+      "type",
+      "volume_backup_id"
+    ]
+  },
+  "oci_core_volume_attachment": {
+    "full_properties": {
+      "attachment_type": {
+        "description": "The type of volume. The only supported value are \"iscsi\" and \"paravirtualized\".",
+        "required": true
+      },
+      "display_name": {
+        "description": "A user-friendly name. Does not have to be unique, and it cannot be changed. Avoid entering confidential information. ",
+        "required": false
+      },
+      "instance_id": {
+        "description": "The OCID of the instance.",
+        "required": true
+      },
+      "is_read_only": {
+        "description": "Whether the attachment was created in read-only mode.",
+        "required": false
+      },
+      "use_chap": {
+        "description": "Whether to use CHAP authentication for the volume attachment. Defaults to false.",
+        "required": false
+      },
+      "volume_id": {
+        "description": "The OCID of the volume.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_volume_attachment.html",
+    "properties": [
+      "attachment_type",
+      "display_name",
+      "instance_id",
+      "is_read_only",
+      "use_chap",
+      "volume_id"
+    ]
+  },
+  "oci_core_volume_backup": {
+    "full_properties": {
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name for the volume backup. Does not have to be unique and it's changeable. Avoid entering confidential information. ",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "type": {
+        "description": "The type of backup to create. If omitted, defaults to INCREMENTAL.",
+        "required": false
+      },
+      "volume_id": {
+        "description": "The OCID of the volume that needs to be backed up.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_volume_backup.html",
+    "properties": [
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "type",
+      "volume_id"
+    ]
+  },
+  "oci_core_volume_backup_policy_assignment": {
+    "full_properties": {
+      "asset_id": {
+        "description": "The OCID of the asset (e.g. a volume) to which to assign the policy.",
+        "required": true
+      },
+      "policy_id": {
+        "description": "The OCID of the volume backup policy to assign to an asset.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_volume_backup_policy_assignment.html",
+    "properties": [
+      "asset_id",
+      "policy_id"
+    ]
+  },
+  "oci_core_volume_group": {
+    "full_properties": {
+      "availability_domain": {
+        "description": "The availability domain of the volume group.",
+        "required": true
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment that contains the volume group.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name for the volume group. Does not have to be unique, and it's changeable.",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "source_detailstypevolume_group_backup_idvolume_group_idvolume_ids": {
+      },
+      "type": {
+        "description": "The type can be one of these values: volumeGroupBackupId, volumeGroupId, volumeIds",
+        "required": true
+      },
+      "volume_group_backup_id": {
+        "description": "The OCID of the volume group backup to restore from.",
+        "required": false
+      },
+      "volume_group_id": {
+        "description": "The OCID of the volume group to clone from.",
+        "required": false
+      },
+      "volume_ids": {
+        "description": "OCIDs for the volumes in this volume group.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/core_volume_group.html",
+    "properties": [
+      "availability_domain",
+      "compartment_id",
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "source_detailstypevolume_group_backup_idvolume_group_idvolume_ids",
+      "type",
+      "volume_group_backup_id",
+      "volume_group_id",
+      "volume_ids"
+    ]
+  },
+  "oci_core_volume_group_backup": {
+    "full_properties": {
+      "": {
+        "description": "INCREMENTAL",
+        "required": false
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment that will contain the volume group backup. This parameter is optional, by default backup will be created in the same compartment and source volume group.",
+        "required": false
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name for the volume group backup. Does not have to be unique and it's changeable.",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "type": {
+        "description": "The type of backup to create. If omitted, defaults to incremental.",
+        "required": false
+      },
+      "volume_group_id": {
+        "description": "The OCID of the volume group that needs to be backed up.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/core_volume_group_backup.html",
+    "properties": [
+      "compartment_id",
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "type",
+      "",
+      "volume_group_id"
+    ]
+  },
+  "oci_database_autonomous_data_warehouse": {
+    "full_properties": {
+      "admin_password": {
+        "description": "(Updatable) A strong password for Admin. The password must be between 12 and 60 characters long, and must contain at least 1 uppercase, 1 lowercase and 2 numeric characters. It cannot contain the double quote symbol (\"). It must be different than the last 4 passwords.",
+        "required": true
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment of the Autonomous Data Warehouse.",
+        "required": true
+      },
+      "cpu_core_count": {
+        "description": "(Updatable) The number of CPU Cores to be made available to the database.",
+        "required": true
+      },
+      "data_storage_size_in_tbs": {
+        "description": "(Updatable) Size, in terabytes, of the data volume that will be created and attached to the database. This storage can later be scaled up if needed. ",
+        "required": true
+      },
+      "db_name": {
+        "description": "The database name. The name must begin with an alphabetic character and can contain a maximum of 14 alphanumeric characters. Special characters are not permitted. The database name must be unique in the tenancy.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) The user-friendly name for the Autonomous Data Warehouse. The name does not have to be unique.",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "license_model": {
+        "description": "The Oracle license model that applies to the Oracle Autonomous Data Warehouse. The default is BRING_YOUR_OWN_LICENSE. ",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/database_autonomous_data_warehouse.html",
+    "properties": [
+      "admin_password",
+      "compartment_id",
+      "cpu_core_count",
+      "data_storage_size_in_tbs",
+      "db_name",
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "license_model"
+    ]
+  },
+  "oci_database_autonomous_data_warehouse_backup": {
+    "full_properties": {
+      "autonomous_data_warehouse_id": {
+        "description": "The OCID of the Autonomous Data Warehouse backup.",
+        "required": true
+      },
+      "display_name": {
+        "description": "The user-friendly name for the backup. The name does not have to be unique.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/database_autonomous_data_warehouse_backup.html",
+    "properties": [
+      "autonomous_data_warehouse_id",
+      "display_name"
+    ]
+  },
+  "oci_database_autonomous_database": {
+    "full_properties": {
+      "admin_password": {
+        "description": "(Updatable) A strong password for Admin. The password must be between 12 and 60 characters long, and must contain at least 1 uppercase, 1 lowercase and 2 numeric characters. It cannot contain the double quote symbol (\"). It must be different than the last 4 passwords.",
+        "required": true
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment of the autonomous database.",
+        "required": true
+      },
+      "cpu_core_count": {
+        "description": "(Updatable) The number of CPU Cores to be made available to the database.",
+        "required": true
+      },
+      "data_storage_size_in_tbs": {
+        "description": "(Updatable) The size, in terabytes, of the data volume that will be created and attached to the database. This storage can later be scaled up if needed. ",
+        "required": true
+      },
+      "db_name": {
+        "description": "The database name. The name must begin with an alphabetic character and can contain a maximum of 14 alphanumeric characters. Special characters are not permitted. The database name must be unique in the tenancy.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) The user-friendly name for the Autonomous Database. The name does not have to be unique.",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "license_model": {
+        "description": "The Oracle license model that applies to the Oracle Autonomous Database. The default is BRING_YOUR_OWN_LICENSE. ",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/database_autonomous_database.html",
+    "properties": [
+      "admin_password",
+      "compartment_id",
+      "cpu_core_count",
+      "data_storage_size_in_tbs",
+      "db_name",
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "license_model"
+    ]
+  },
+  "oci_database_autonomous_database_backup": {
+    "full_properties": {
+      "autonomous_database_id": {
+        "description": "The OCID of the Autonomous Database backup.",
+        "required": true
+      },
+      "display_name": {
+        "description": "The user-friendly name for the backup. The name does not have to be unique.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/database_autonomous_database_backup.html",
+    "properties": [
+      "autonomous_database_id",
+      "display_name"
+    ]
+  },
+  "oci_database_backup": {
+    "full_properties": {
+      "database_id": {
+        "description": "The OCID of the database.",
+        "required": true
+      },
+      "display_name": {
+        "description": "The user-friendly name for the backup. The name does not have to be unique.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/database_backup.html",
+    "properties": [
+      "database_id",
+      "display_name"
+    ]
+  },
+  "oci_database_db_system": {
+    "full_properties": {
+      "": {
+        "description": "For Exadata and virtual machine 2-node RAC DB systems, do not use a subnet that overlaps with 192.168.128.0/20.",
+        "required": false
+      },
+      "admin_password": {
+        "description": "A strong password for SYS, SYSTEM, PDB Admin and TDE Wallet. The password must be at least nine characters and contain at least two uppercase, two lowercase, two numbers, and two special characters. The special characters must be _, #, or -.",
+        "required": true
+      },
+      "auto_backup_enabled": {
+        "description": "If set to true, configures automatic backups. If you previously used RMAN or dbcli to configure backups and then you switch to using the Console or the API for backups, a new backup configuration is created and associated with your database. This means that you can no longer rely on your previously configured unmanaged backups to work.",
+        "required": false
+      },
+      "availability_domain": {
+        "description": "The availability domain where the DB system is located.",
+        "required": true
+      },
+      "backup_id": {
+        "description": "The backup OCID.",
+        "required": false
+      },
+      "backup_subnet_id": {
+        "description": "The OCID of the backup network subnet the DB system is associated with. Applicable only to Exadata DB systems.",
+        "required": false
+      },
+      "backup_tde_password": {
+        "description": "The password to open the TDE wallet.",
+        "required": false
+      },
+      "character_set": {
+        "description": "The character set for the database.  The default is AL32UTF8. Allowed values are:",
+        "required": false
+      },
+      "cluster_name": {
+        "description": "The cluster name for Exadata and 2-node RAC virtual machine DB systems. The cluster name must begin with an an alphabetic character, and may contain hyphens (-). Underscores (_) are not permitted. The cluster name can be no longer than 11 characters and is not case sensitive.",
+        "required": false
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment the DB system  belongs in.",
+        "required": true
+      },
+      "cpu_core_count": {
+        "description": "(Updatable) The number of CPU cores to enable for a bare metal or Exadata DB system. The valid values depend on the specified shape:",
+        "required": true
+      },
+      "data_storage_percentage": {
+        "description": "The percentage assigned to DATA storage (user data and database files). The remaining percentage is assigned to RECO storage (database redo logs, archive logs, and recovery manager backups). Specify 80 or 40. The default is 80 percent assigned to DATA storage. Not applicable for virtual machine DB systems.",
+        "required": false
+      },
+      "data_storage_size_in_gb": {
+        "description": "(Updatable) Size (in GB) of the initial data volume that will be created and attached to a virtual machine DB system. You can scale up storage after provisioning, as needed. Note that the total storage size attached will be more than the amount you specify to allow for REDO/RECO space and software volume.",
+        "required": false
+      },
+      "database_edition": {
+        "description": "The Oracle Database Edition that applies to all the databases on the DB system. Exadata DB systems and 2-node RAC DB systems require ENTERPRISE_EDITION_EXTREME_PERFORMANCE.",
+        "required": true
+      },
+      "databaseadmin_passwordbackup_idbackup_tde_passwordcharacter_setdb_backup_configauto_backup_enableddb_namedb_workloaddefined_tagsfreeform_tagsncharacter_setpdb_name": {
+      },
+      "db_backup_configauto_backup_enabled": {
+      },
+      "db_homedatabaseadmin_passwordbackup_idbackup_tde_passwordcharacter_setdb_backup_configauto_backup_enableddb_namedb_workloaddefined_tagsfreeform_tagsncharacter_setpdb_namedb_versiondisplay_name": {
+      },
+      "db_name": {
+        "description": "The database name. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted.",
+        "required": false
+      },
+      "db_version": {
+        "description": "A valid Oracle Database version. To get a list of supported versions, use the ListDbVersions operation.",
+        "required": false
+      },
+      "db_workload": {
+        "description": "The database workload type.",
+        "required": false
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"}",
+        "required": false
+      },
+      "disk_redundancy": {
+        "description": "The type of redundancy configured for the DB system. Normal is 2-way redundancy, recommended for test and development systems. High is 3-way redundancy, recommended for production systems.",
+        "required": false
+      },
+      "display_name": {
+        "description": "The user-friendly name for the DB system. The name does not have to be unique.",
+        "required": false
+      },
+      "domain": {
+        "description": "A domain name used for the DB system. If the Oracle-provided Internet and VCN Resolver is enabled for the specified subnet, the domain name for the subnet is used (do not provide one). Otherwise, provide a valid DNS domain name. Hyphens (-) are not permitted.",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"}",
+        "required": false
+      },
+      "hostname": {
+        "description": "The hostname for the DB system. The hostname must begin with an alphabetic character and can contain a maximum of 30 alphanumeric characters, including hyphens (-).",
+        "required": true
+      },
+      "license_model": {
+        "description": "The Oracle license model that applies to all the databases on the DB system. The default is LICENSE_INCLUDED. Allowed values are: LICENSE_INCLUDED, BRING_YOUR_OWN_LICENSE.",
+        "required": false
+      },
+      "ncharacter_set": {
+        "description": "The national character set for the database.  The default is AL16UTF16. Allowed values are: AL16UTF16 or UTF8.",
+        "required": false
+      },
+      "node_count": {
+        "description": "The number of nodes to launch for a 2-node RAC virtual machine DB system.",
+        "required": false
+      },
+      "pdb_name": {
+        "description": "The name of the pluggable database. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted. Pluggable database should not be same as database name.",
+        "required": false
+      },
+      "shape": {
+        "description": "The shape of the DB system. The shape determines resources allocated to the DB system.",
+        "required": true
+      },
+      "source": {
+        "description": "The source of the database: NONE for creating a new database. DB_BACKUP for creating a new database by restoring from a backup. The default is NONE.",
+        "required": false
+      },
+      "ssh_public_keys": {
+        "description": "(Updatable) The public key portion of the key pair to use for SSH access to the DB system. Multiple public keys can be provided. The length of the combined keys cannot exceed 10,000 characters.",
+        "required": true
+      },
+      "subnet_id": {
+        "description": "The OCID of the subnet the DB system is associated with.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/database_db_system.html",
+    "properties": [
+      "availability_domain",
+      "backup_subnet_id",
+      "cluster_name",
+      "compartment_id",
+      "cpu_core_count",
+      "",
+      "data_storage_percentage",
+      "data_storage_size_in_gb",
+      "database_edition",
+      "db_homedatabaseadmin_passwordbackup_idbackup_tde_passwordcharacter_setdb_backup_configauto_backup_enableddb_namedb_workloaddefined_tagsfreeform_tagsncharacter_setpdb_namedb_versiondisplay_name",
+      "databaseadmin_passwordbackup_idbackup_tde_passwordcharacter_setdb_backup_configauto_backup_enableddb_namedb_workloaddefined_tagsfreeform_tagsncharacter_setpdb_name",
+      "admin_password",
+      "backup_id",
+      "backup_tde_password",
+      "character_set",
+      "db_backup_configauto_backup_enabled",
+      "auto_backup_enabled",
+      "db_name",
+      "db_workload",
+      "defined_tags",
+      "freeform_tags",
+      "ncharacter_set",
+      "pdb_name",
+      "db_version",
+      "display_name",
+      "disk_redundancy",
+      "domain",
+      "hostname",
+      "license_model",
+      "node_count",
+      "shape",
+      "source",
+      "ssh_public_keys",
+      "subnet_id"
+    ]
+  },
+  "oci_dns_record": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "(Updatable) The OCID of the compartment the resource belongs to. If supplied, it must match the Zone's compartment ocid. ",
+        "required": false
+      },
+      "domain": {
+        "description": "(Updatable) The fully qualified domain name where the record can be located.",
+        "required": false
+      },
+      "rdata": {
+        "description": "(Updatable) The record's data, as whitespace-delimited tokens in type-specific presentation format.",
+        "required": false
+      },
+      "rtype": {
+        "description": "(Updatable) The canonical name for the record's type, such as A or CNAME. For more information, see Resource Record (RR) TYPEs. ",
+        "required": false
+      },
+      "ttl": {
+        "description": "(Updatable) The Time To Live for the record, in seconds.",
+        "required": false
+      },
+      "zone_name_or_id": {
+        "description": "The name or OCID of the target zone.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/dns_record.html",
+    "properties": [
+      "compartment_id",
+      "domain",
+      "rdata",
+      "rtype",
+      "ttl",
+      "zone_name_or_id"
+    ]
+  },
+  "oci_dns_zone": {
+    "full_properties": {
+      "address": {
+        "description": "(Updatable) The server's IP address (IPv4 or IPv6).",
+        "required": true
+      },
+      "algorithm": {
+        "description": "(Updatable) TSIG Algorithms are encoded as domain names, but most consist of only one non-empty label, which is not required to be explicitly absolute. For a full list of TSIG algorithms, see Secret Key Transaction Authentication for DNS (TSIG) Algorithm Names ",
+        "required": true
+      },
+      "compartment_id": {
+        "description": "(Updatable) The OCID of the compartment the resource belongs to.",
+        "required": true
+      },
+      "external_mastersaddressporttsigalgorithmnamesecret": {
+      },
+      "name": {
+        "description": "The name of the zone.",
+        "required": true
+      },
+      "port": {
+        "description": "(Updatable) The server's port.",
+        "required": false
+      },
+      "secret": {
+        "description": "(Updatable) A base64 string encoding the binary shared secret.",
+        "required": true
+      },
+      "tsigalgorithmnamesecret": {
+      },
+      "zone_type": {
+        "description": "The type of the zone. Must be either PRIMARY or SECONDARY. ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/dns_zone.html",
+    "properties": [
+      "compartment_id",
+      "external_mastersaddressporttsigalgorithmnamesecret",
+      "address",
+      "port",
+      "tsigalgorithmnamesecret",
+      "algorithm",
+      "name",
+      "secret",
+      "zone_type"
+    ]
+  },
+  "oci_email_sender": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of the compartment that contains the sender.",
+        "required": true
+      },
+      "email_address": {
+        "description": "The email address of the sender.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/email_sender.html",
+    "properties": [
+      "compartment_id",
+      "email_address"
+    ]
+  },
+  "oci_email_suppression": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of the compartment to contain the suppression. Since suppressions are at the customer level, this must be the tenancy OCID. ",
+        "required": true
+      },
+      "email_address": {
+        "description": "The recipient email address of the suppression.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/email_suppression.html",
+    "properties": [
+      "compartment_id",
+      "email_address"
+    ]
+  },
+  "oci_file_storage_export": {
+    "full_properties": {
+      "access": {
+        "description": "(Updatable) Type of access to grant clients using the file system through this export. If unspecified defaults to READ_ONLY. ",
+        "required": false
+      },
+      "anonymous_gid": {
+        "description": "(Updatable) GID value to remap to when squashing a client GID (see identitySquash for more details.) If unspecified defaults to 65534. ",
+        "required": false
+      },
+      "anonymous_uid": {
+        "description": "(Updatable) UID value to remap to when squashing a client UID (see identitySquash for more details.) If unspecified, defaults to 65534. ",
+        "required": false
+      },
+      "export_optionsaccessanonymous_gidanonymous_uididentity_squashrequire_privileged_source_portsource": {
+      },
+      "export_set_id": {
+        "description": "The OCID of this export's export set.",
+        "required": true
+      },
+      "file_system_id": {
+        "description": "The OCID of this export's file system.",
+        "required": true
+      },
+      "identity_squash": {
+        "description": "(Updatable) Used when clients accessing the file system through this export have their UID and GID remapped to 'anonymousUid' and 'anonymousGid'. If ALL, all users and groups are remapped; if ROOT, only the root user and group (UID/GID 0) are remapped; if NONE, no remapping is done. If unspecified, defaults to ROOT. ",
+        "required": false
+      },
+      "path": {
+        "description": "Path used to access the associated file system.",
+        "required": true
+      },
+      "require_privileged_source_port": {
+        "description": "(Updatable) If true, clients accessing the file system through this export must connect from a privileged source port. If unspecified, defaults to true. ",
+        "required": false
+      },
+      "source": {
+        "description": "(Updatable) Clients these options should apply to. Must be a either single IPv4 address or single IPv4 CIDR block.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/file_storage_export.html",
+    "properties": [
+      "export_optionsaccessanonymous_gidanonymous_uididentity_squashrequire_privileged_source_portsource",
+      "access",
+      "anonymous_gid",
+      "anonymous_uid",
+      "identity_squash",
+      "require_privileged_source_port",
+      "source",
+      "export_set_id",
+      "file_system_id",
+      "path"
+    ]
+  },
+  "oci_file_storage_export_set": {
+    "full_properties": {
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. It does not have to be unique, and it is changeable. Avoid entering confidential information.  Example: My export set ",
+        "required": false
+      },
+      "max_fs_stat_bytes": {
+        "description": "(Updatable) Controls the maximum tbytes, fbytes, and abytes, values reported by NFS FSSTAT calls through any associated mount targets. This is an advanced feature. For most applications, use the default value. The tbytes value reported by FSSTAT will be maxFsStatBytes. The value of fbytes and abytes will be maxFsStatBytes minus the metered size of the file system. If the metered size is larger than maxFsStatBytes, then fbytes and abytes will both be '0'. ",
+        "required": false
+      },
+      "max_fs_stat_files": {
+        "description": "(Updatable) Controls the maximum tfiles, ffiles, and afiles values reported by NFS FSSTAT calls through any associated mount targets. This is an advanced feature. For most applications, use the default value. The tfiles value reported by FSSTAT will be maxFsStatFiles. The value of ffiles and afiles will be maxFsStatFiles minus the metered size of the file system. If the metered size is larger than maxFsStatFiles, then ffiles and afiles will both be '0'. ",
+        "required": false
+      },
+      "mount_target_id": {
+        "description": "(Updatable) The OCID of the mount target that the export set is associated with",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/file_storage_export_set.html",
+    "properties": [
+      "mount_target_id",
+      "display_name",
+      "max_fs_stat_bytes",
+      "max_fs_stat_files"
+    ]
+  },
+  "oci_file_storage_file_system": {
+    "full_properties": {
+      "availability_domain": {
+        "description": "The availability domain to create the file system in.  Example: Uocm:PHX-AD-1 ",
+        "required": true
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment to create the file system in.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags. Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. It does not have to be unique, and it is changeable. Avoid entering confidential information.  Example: My file system ",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags. Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/file_storage_file_system.html",
+    "properties": [
+      "availability_domain",
+      "compartment_id",
+      "defined_tags",
+      "display_name",
+      "freeform_tags"
+    ]
+  },
+  "oci_file_storage_mount_target": {
+    "full_properties": {
+      "availability_domain": {
+        "description": "The availability domain in which to create the mount target.  Example: Uocm:PHX-AD-1 ",
+        "required": true
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment in which to create the mount target.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags. Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. It does not have to be unique, and it is changeable. Avoid entering confidential information.  Example: My mount target ",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags. Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "hostname_label": {
+        "description": "The hostname for the mount target's IP address, used for DNS resolution. The value is the hostname portion of the private IP address's fully qualified domain name (FQDN). For example, files-1 in the FQDN files-1.subnet123.vcn1.oraclevcn.com. Must be unique across all VNICs in the subnet and comply with RFC 952 and RFC 1123.",
+        "required": false
+      },
+      "ip_address": {
+        "description": "A private IP address of your choice. Must be an available IP address within the subnet's CIDR. If you don't specify a value, Oracle automatically assigns a private IP address from the subnet.  Example: 10.0.3.3",
+        "required": false
+      },
+      "subnet_id": {
+        "description": "The OCID of the subnet in which to create the mount target.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/file_storage_mount_target.html",
+    "properties": [
+      "availability_domain",
+      "compartment_id",
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "hostname_label",
+      "ip_address",
+      "subnet_id"
+    ]
+  },
+  "oci_file_storage_snapshot": {
+    "full_properties": {
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags. Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "file_system_id": {
+        "description": "The OCID of the file system to take a snapshot of.",
+        "required": true
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags. Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the snapshot. This value is immutable. It must also be unique with respect to all other non-DELETED snapshots on the associated file system.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/file_storage_snapshot.html",
+    "properties": [
+      "defined_tags",
+      "file_system_id",
+      "freeform_tags",
+      "name"
+    ]
+  },
+  "oci_identity_api_key": {
+    "full_properties": {
+      "key_value": {
+        "description": "The public key.  Must be an RSA key in PEM format.",
+        "required": true
+      },
+      "user_id": {
+        "description": "The OCID of the user.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/identity_api_key.html",
+    "properties": [
+      "key_value",
+      "user_id"
+    ]
+  },
+  "oci_identity_auth_token": {
+    "full_properties": {
+      "description": {
+        "description": "(Updatable) The description you assign to the auth token during creation. Does not have to be unique, and it's changeable. ",
+        "required": true
+      },
+      "user_id": {
+        "description": "The OCID of the user.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/identity_auth_token.html",
+    "properties": [
+      "description",
+      "user_id"
+    ]
+  },
+  "oci_identity_compartment": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of the parent compartment containing the compartment.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags. Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "description": {
+        "description": "(Updatable) The description you assign to the compartment during creation. Does not have to be unique, and it's changeable. ",
+        "required": true
+      },
+      "enable_delete": {
+        "description": "Defaults to false. If omitted or set to false the provider will implicitly import the compartment if there is a name collision, and will not actually delete the compartment on destroy or removal of the resource declaration. If set to true, the provider will throw an error on a name collision with another compartment, and will attempt to delete the compartment on destroy or removal of the resource declaration.",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags. Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "name": {
+        "description": "(Updatable) The name you assign to the compartment during creation. The name must be unique across all compartments in the parent compartment. Avoid entering confidential information.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/identity_compartment.html",
+    "properties": [
+      "compartment_id",
+      "defined_tags",
+      "description",
+      "freeform_tags",
+      "name",
+      "enable_delete"
+    ]
+  },
+  "oci_identity_customer_secret_key": {
+    "full_properties": {
+      "display_name": {
+        "description": "(Updatable) The name you assign to the secret key during creation. Does not have to be unique, and it's changeable. ",
+        "required": true
+      },
+      "user_id": {
+        "description": "The OCID of the user.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/identity_customer_secret_key.html",
+    "properties": [
+      "display_name",
+      "user_id"
+    ]
+  },
+  "oci_identity_dynamic_group": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of the tenancy containing the group.",
+        "required": true
+      },
+      "description": {
+        "description": "(Updatable) The description you assign to the group during creation. Does not have to be unique, and it's changeable.",
+        "required": true
+      },
+      "matching_rule": {
+        "description": "(Updatable) The matching rule to dynamically match an instance certificate to this dynamic group. For rule syntax, see Managing Dynamic Groups. ",
+        "required": true
+      },
+      "name": {
+        "description": "The name you assign to the group during creation. The name must be unique across all groups in the tenancy and cannot be changed. ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/identity_dynamic_group.html",
+    "properties": [
+      "compartment_id",
+      "description",
+      "matching_rule",
+      "name"
+    ]
+  },
+  "oci_identity_group": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of the tenancy containing the group.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags. Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "description": {
+        "description": "(Updatable) The description you assign to the group during creation. Does not have to be unique, and it's changeable.",
+        "required": true
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags. Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "name": {
+        "description": "The name you assign to the group during creation. The name must be unique across all groups in the tenancy and cannot be changed. ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/identity_group.html",
+    "properties": [
+      "compartment_id",
+      "defined_tags",
+      "description",
+      "freeform_tags",
+      "name"
+    ]
+  },
+  "oci_identity_identity_provider": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of your tenancy.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags. Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "description": {
+        "description": "(Updatable) The description you assign to the IdentityProvider during creation. Does not have to be unique, and it's changeable. ",
+        "required": true
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags. Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "metadata": {
+        "description": "(Updatable) The XML that contains the information required for federating. ",
+        "required": true
+      },
+      "metadata_url": {
+        "description": "(Updatable) The URL for retrieving the identity provider's metadata, which contains information required for federating. ",
+        "required": true
+      },
+      "name": {
+        "description": "The name you assign to the IdentityProvider during creation. The name must be unique across all IdentityProvider objects in the tenancy and cannot be changed. ",
+        "required": true
+      },
+      "product_type": {
+        "description": "The identity provider service or product. Supported identity providers are Oracle Identity Cloud Service (IDCS) and Microsoft Active Directory Federation Services (ADFS).  Example: IDCS ",
+        "required": true
+      },
+      "protocol": {
+        "description": "(Updatable) The protocol used for federation.  Example: SAML2 ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/identity_identity_provider.html",
+    "properties": [
+      "compartment_id",
+      "defined_tags",
+      "description",
+      "freeform_tags",
+      "metadata",
+      "metadata_url",
+      "name",
+      "product_type",
+      "protocol"
+    ]
+  },
+  "oci_identity_idp_group_mapping": {
+    "full_properties": {
+      "group_id": {
+        "description": "(Updatable) The OCID of the IAM Service group you want to map to the IdP group. ",
+        "required": true
+      },
+      "identity_provider_id": {
+        "description": "The OCID of the identity provider.",
+        "required": true
+      },
+      "idp_group_name": {
+        "description": "(Updatable) The name of the IdP group you want to map.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/identity_idp_group_mapping.html",
+    "properties": [
+      "group_id",
+      "identity_provider_id",
+      "idp_group_name"
+    ]
+  },
+  "oci_identity_policy": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of the compartment containing the policy (either the tenancy or another compartment).",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags. Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "description": {
+        "description": "(Updatable) The description you assign to the policy during creation. Does not have to be unique, and it's changeable. ",
+        "required": true
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags. Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "name": {
+        "description": "The name you assign to the policy during creation. The name must be unique across all policies in the tenancy and cannot be changed. ",
+        "required": true
+      },
+      "statements": {
+        "description": "(Updatable) An array of policy statements written in the policy language. See How Policies Work and Common Policies. ",
+        "required": true
+      },
+      "version_date": {
+        "description": "(Updatable) The version of the policy. If null or set to an empty string, when a request comes in for authorization, the policy will be evaluated according to the current behavior of the services at that moment. If set to a particular date (YYYY-MM-DD), the policy will be evaluated according to the behavior of the services on that date. ",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/identity_policy.html",
+    "properties": [
+      "compartment_id",
+      "defined_tags",
+      "description",
+      "freeform_tags",
+      "name",
+      "statements",
+      "version_date"
+    ]
+  },
+  "oci_identity_smtp_credential": {
+    "full_properties": {
+      "description": {
+        "description": "(Updatable) The description you assign to the SMTP credentials during creation. Does not have to be unique, and it's changeable. ",
+        "required": true
+      },
+      "user_id": {
+        "description": "The OCID of the user.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/identity_smtp_credential.html",
+    "properties": [
+      "description",
+      "user_id"
+    ]
+  },
+  "oci_identity_swift_password": {
+    "full_properties": {
+      "description": {
+        "description": "(Updatable) The description you assign to the Swift password during creation. Does not have to be unique, and it's changeable. ",
+        "required": true
+      },
+      "user_id": {
+        "description": "The OCID of the user.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/identity_swift_password.html",
+    "properties": [
+      "description",
+      "user_id"
+    ]
+  },
+  "oci_identity_tag": {
+    "full_properties": {
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags. Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "description": {
+        "description": "(Updatable) The description you assign to the tag during creation.",
+        "required": true
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags. Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "is_cost_tracking": {
+        "description": "(Updatable) Indicates whether the tag is enabled for cost tracking. ",
+        "required": false
+      },
+      "is_retired": {
+        "description": "(Updatable) Indicates whether the tag is retired. See Retiring Key Definitions and Namespace Definitions. ",
+        "required": false
+      },
+      "name": {
+        "description": "The name you assign to the tag during creation. The name must be unique within the tag namespace and cannot be changed. ",
+        "required": true
+      },
+      "tag_namespace_id": {
+        "description": "The OCID of the tag namespace. ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/identity_tag.html",
+    "properties": [
+      "defined_tags",
+      "description",
+      "freeform_tags",
+      "is_cost_tracking",
+      "name",
+      "tag_namespace_id",
+      "is_retired"
+    ]
+  },
+  "oci_identity_tag_namespace": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of the tenancy containing the tag namespace.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags. Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "description": {
+        "description": "(Updatable) The description you assign to the tag namespace during creation.",
+        "required": true
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags. Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "is_retired": {
+        "description": "(Updatable) Whether the tag namespace is retired. For more information, see Retiring Key Definitions and Namespace Definitions. ",
+        "required": false
+      },
+      "name": {
+        "description": "The name you assign to the tag namespace during creation. It must be unique across all tag namespaces in the tenancy and cannot be changed. ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/identity_tag_namespace.html",
+    "properties": [
+      "compartment_id",
+      "defined_tags",
+      "description",
+      "freeform_tags",
+      "name",
+      "is_retired"
+    ]
+  },
+  "oci_identity_ui_password": {
+    "full_properties": {
+      "user_id": {
+        "description": "The OCID of the user.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/identity_ui_password.html",
+    "properties": [
+      "user_id"
+    ]
+  },
+  "oci_identity_user": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of the tenancy containing the user.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags. Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "description": {
+        "description": "(Updatable) The description you assign to the user during creation. Does not have to be unique, and it's changeable.",
+        "required": true
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags. Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "name": {
+        "description": "The name you assign to the user during creation. This is the user's login for the Console. The name must be unique across all users in the tenancy and cannot be changed. ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/identity_user.html",
+    "properties": [
+      "compartment_id",
+      "defined_tags",
+      "description",
+      "freeform_tags",
+      "name"
+    ]
+  },
+  "oci_identity_user_group_membership": {
+    "full_properties": {
+      "group_id": {
+        "description": "The OCID of the group.",
+        "required": true
+      },
+      "user_id": {
+        "description": "The OCID of the user.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/identity_user_group_membership.html",
+    "properties": [
+      "group_id",
+      "user_id"
+    ]
+  },
+  "oci_kms_encrypted_data": {
+    "full_properties": {
+      "associated_data": {
+        "description": "Information that can be used to provide an encryption context for the encrypted data. The length of the string representation of the associatedData must be fewer than 4096 characters. ",
+        "required": false
+      },
+      "crypto_endpoint": {
+        "description": "The service endpoint to perform cryptographic operations against. Cryptographic operations include 'Encrypt,' 'Decrypt,' and 'GenerateDataEncryptionKey' operations. see Vault Crypto endpoint.",
+        "required": true
+      },
+      "key_id": {
+        "description": "The OCID of the key to encrypt with.",
+        "required": true
+      },
+      "plaintext": {
+        "description": "The plaintext data to encrypt.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/kms_encrypted_data.html",
+    "properties": [
+      "associated_data",
+      "crypto_endpoint",
+      "key_id",
+      "plaintext"
+    ]
+  },
+  "oci_kms_generated_key": {
+    "full_properties": {
+      "algorithm": {
+        "description": "The algorithm used by a key's KeyVersions to encrypt or decrypt.",
+        "required": true
+      },
+      "associated_data": {
+        "description": "Information that can be used to provide an encryption context for the  encrypted data. The length of the string representation of the associatedData must be fewer than 4096 characters. ",
+        "required": false
+      },
+      "crypto_endpoint": {
+        "description": "The service endpoint to perform cryptographic operations against. Cryptographic operations include 'Encrypt,' 'Decrypt,' and 'GenerateDataEncryptionKey' operations. see Vault Crypto endpoint.",
+        "required": true
+      },
+      "include_plaintext_key": {
+        "description": "If true, the generated key is also returned unencrypted.",
+        "required": true
+      },
+      "key_id": {
+        "description": "The OCID of the master encryption key to encrypt the generated data encryption key with.",
+        "required": true
+      },
+      "key_shapealgorithmlength": {
+      },
+      "length": {
+        "description": "The length of the key, expressed as an integer. Values of 16, 24, or 32 are supported. ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/kms_generated_key.html",
+    "properties": [
+      "associated_data",
+      "crypto_endpoint",
+      "include_plaintext_key",
+      "key_id",
+      "key_shapealgorithmlength",
+      "algorithm",
+      "length"
+    ]
+  },
+  "oci_kms_key": {
+    "full_properties": {
+      "algorithm": {
+        "description": "The algorithm used by a key's KeyVersions to encrypt or decrypt.",
+        "required": true
+      },
+      "compartment_id": {
+        "description": "The OCID of the compartment that contains this key.",
+        "required": true
+      },
+      "desirede_state": {
+        "description": "(Updatable) Desired state of the key. Possible values : ENABLED or DISABLED",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name for the key. It does not have to be unique, and it is changeable. Avoid entering confidential information. ",
+        "required": true
+      },
+      "key_shapealgorithmlength": {
+      },
+      "length": {
+        "description": "The length of the key, expressed as an integer. Values of 16, 24, or 32 are supported. ",
+        "required": true
+      },
+      "management_endpoint": {
+        "description": "The service endpoint to perform management operations against. Management operations include 'Create,' 'Update,' 'List,' 'Get,' and 'Delete' operations. See Vault Management endpoint.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/kms_key.html",
+    "properties": [
+      "compartment_id",
+      "display_name",
+      "desirede_state",
+      "key_shapealgorithmlength",
+      "algorithm",
+      "length",
+      "management_endpoint"
+    ]
+  },
+  "oci_kms_key_version": {
+    "full_properties": {
+      "key_id": {
+        "description": "The OCID of the key.",
+        "required": true
+      },
+      "management_endpoint": {
+        "description": "The service endpoint to perform management operations against. Management operations include 'Create,' 'Update,' 'List,' 'Get,' and 'Delete' operations. See Vault Management endpoint.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/kms_key_version.html",
+    "properties": [
+      "key_id",
+      "management_endpoint"
+    ]
+  },
+  "oci_kms_vault": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of the compartment where you want to create this vault.",
+        "required": true
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name for the vault. It does not have to be unique, and it is changeable. Avoid entering confidential information. ",
+        "required": true
+      },
+      "vault_type": {
+        "description": "The type of vault to create. Each type of vault stores the key with different degrees of isolation and has different options and pricing. ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/kms_vault.html",
+    "properties": [
+      "compartment_id",
+      "display_name",
+      "vault_type"
+    ]
+  },
+  "oci_load_balancer_backend": {
+    "full_properties": {
+      "backendset_name": {
+        "description": "The name of the backend set to add the backend server to.  Example: example_backend_set ",
+        "required": true
+      },
+      "backup": {
+        "description": "(Updatable) Whether the load balancer should treat this server as a backup unit. If true, the load balancer forwards no ingress traffic to this backend server unless all other backend servers not marked as \"backup\" fail the health check policy.  Example: false ",
+        "required": false
+      },
+      "drain": {
+        "description": "(Updatable) Whether the load balancer should drain this server. Servers marked \"drain\" receive no new incoming traffic.  Example: false ",
+        "required": false
+      },
+      "ip_address": {
+        "description": "The IP address of the backend server.  Example: 10.0.0.3 ",
+        "required": true
+      },
+      "load_balancer_id": {
+        "description": "The OCID of the load balancer associated with the backend set and servers.",
+        "required": true
+      },
+      "offline": {
+        "description": "(Updatable) Whether the load balancer should treat this server as offline. Offline servers receive no incoming traffic.  Example: false ",
+        "required": false
+      },
+      "port": {
+        "description": "The communication port for the backend server.  Example: 8080 ",
+        "required": true
+      },
+      "weight": {
+        "description": "(Updatable) The load balancing policy weight assigned to the server. Backend servers with a higher weight receive a larger proportion of incoming traffic. For example, a server weighted '3' receives 3 times the number of new connections as a server weighted '1'. For more information on load balancing policies, see How Load Balancing Policies Work.  Example: 3 ",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/load_balancer_backend.html",
+    "properties": [
+      "backendset_name",
+      "backup",
+      "drain",
+      "ip_address",
+      "load_balancer_id",
+      "offline",
+      "port",
+      "weight"
+    ]
+  },
+  "oci_load_balancer_backend_set": {
+    "full_properties": {
+      "backendbackupdrainip_addressofflineportweight": {
+      },
+      "backup": {
+        "description": "(Updatable) Whether the load balancer should treat this server as a backup unit. If true, the load balancer forwards no ingress traffic to this backend server unless all other backend servers not marked as \"backup\" fail the health check policy.  Example: false ",
+        "required": false
+      },
+      "certificate_name": {
+        "description": "(Updatable) A friendly name for the certificate bundle. It must be unique and it cannot be changed. Valid certificate bundle names include only alphanumeric characters, dashes, and underscores. Certificate bundle names cannot contain spaces. Avoid entering confidential information.  Example: example_certificate_bundle ",
+        "required": true
+      },
+      "cookie_name": {
+        "description": "(Updatable) The name of the cookie used to detect a session initiated by the backend server. Use '*' to specify that any cookie set by the backend causes the session to persist.  Example: example_cookie ",
+        "required": true
+      },
+      "disable_fallback": {
+        "description": "(Updatable) Whether the load balancer is prevented from directing traffic from a persistent session client to a different backend server if the original server is unavailable. Defaults to false.  Example: false ",
+        "required": false
+      },
+      "drain": {
+        "description": "(Updatable) Whether the load balancer should drain this server. Servers marked \"drain\" receive no new incoming traffic.  Example: false ",
+        "required": false
+      },
+      "health_checkerinterval_msportprotocolresponse_body_regexretriesreturn_codetimeout_in_millisurl_path": {
+      },
+      "interval_ms": {
+        "description": "(Updatable) The interval between health checks, in milliseconds.  Example: 10000 ",
+        "required": false
+      },
+      "ip_address": {
+        "description": "(Updatable) The IP address of the backend server.  Example: 10.0.0.3 ",
+        "required": true
+      },
+      "load_balancer_id": {
+        "description": "The OCID of the load balancer on which to add a backend set.",
+        "required": true
+      },
+      "name": {
+        "description": "A friendly name for the backend set. It must be unique and it cannot be changed.",
+        "required": true
+      },
+      "offline": {
+        "description": "(Updatable) Whether the load balancer should treat this server as offline. Offline servers receive no incoming traffic.  Example: false ",
+        "required": false
+      },
+      "policy": {
+        "description": "(Updatable) The load balancer policy for the backend set. To get a list of available policies, use the ListPolicies operation.  Example: LEAST_CONNECTIONS",
+        "required": true
+      },
+      "port": {
+        "description": "(Updatable) The backend server port against which to run the health check. If the port is not specified, the load balancer uses the port information from the Backend object.  Example: 8080 ",
+        "required": false
+      },
+      "protocol": {
+        "description": "(Updatable) The protocol the health check must use; either HTTP or TCP.  Example: HTTP ",
+        "required": true
+      },
+      "response_body_regex": {
+        "description": "(Updatable) A regular expression for parsing the response body from the backend server.  Example: ^((?!false).|\\s)*$ ",
+        "required": false
+      },
+      "retries": {
+        "description": "(Updatable) The number of retries to attempt before a backend server is considered \"unhealthy\".  Example: 3 ",
+        "required": false
+      },
+      "return_code": {
+        "description": "(Updatable) The status code a healthy backend server should return.  Example: 200 ",
+        "required": false
+      },
+      "session_persistence_configurationcookie_namedisable_fallback": {
+      },
+      "ssl_configurationcertificate_nameverify_depthverify_peer_certificate": {
+      },
+      "timeout_in_millis": {
+        "description": "(Updatable) The maximum time, in milliseconds, to wait for a reply to a health check. A health check is successful only if a reply returns within this timeout period.  Example: 3000 ",
+        "required": false
+      },
+      "url_path": {
+        "description": "(Updatable) The path against which to run the health check.  Example: /healthcheck ",
+        "required": false
+      },
+      "verify_depth": {
+        "description": "(Updatable) The maximum depth for peer certificate chain verification.  Example: 3 ",
+        "required": false
+      },
+      "verify_peer_certificate": {
+        "description": "(Updatable) Whether the load balancer listener should verify peer certificates.  Example: true ",
+        "required": false
+      },
+      "weight": {
+        "description": "(Updatable) The load balancing policy weight assigned to the server. Backend servers with a higher weight receive a larger proportion of incoming traffic. For example, a server weighted '3' receives 3 times the number of new connections as a server weighted '1'. For more information on load balancing policies, see How Load Balancing Policies Work.  Example: 3 ",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/load_balancer_backend_set.html",
+    "properties": [
+      "backendbackupdrainip_addressofflineportweight",
+      "backup",
+      "drain",
+      "ip_address",
+      "offline",
+      "port",
+      "weight",
+      "health_checkerinterval_msportprotocolresponse_body_regexretriesreturn_codetimeout_in_millisurl_path",
+      "interval_ms",
+      "protocol",
+      "response_body_regex",
+      "retries",
+      "return_code",
+      "timeout_in_millis",
+      "url_path",
+      "load_balancer_id",
+      "name",
+      "policy",
+      "session_persistence_configurationcookie_namedisable_fallback",
+      "cookie_name",
+      "disable_fallback",
+      "ssl_configurationcertificate_nameverify_depthverify_peer_certificate",
+      "certificate_name",
+      "verify_depth",
+      "verify_peer_certificate"
+    ]
+  },
+  "oci_load_balancer_certificate": {
+    "full_properties": {
+      "ca_certificate": {
+        "description": "The Certificate Authority certificate, or any interim certificate, that you received from your SSL certificate provider.",
+        "required": false
+      },
+      "certificate_name": {
+        "description": "A friendly name for the certificate bundle. It must be unique and it cannot be changed. Valid certificate bundle names include only alphanumeric characters, dashes, and underscores. Certificate bundle names cannot contain spaces. Avoid entering confidential information.  Example: example_certificate_bundle",
+        "required": true
+      },
+      "load_balancer_id": {
+        "description": "The OCID of the load balancer on which to add the certificate bundle.",
+        "required": true
+      },
+      "passphrase": {
+        "description": "A passphrase for encrypted private keys. This is needed only if you created your certificate with a passphrase.",
+        "required": false
+      },
+      "private_key": {
+        "description": "The SSL private key for your certificate, in PEM format.",
+        "required": false
+      },
+      "public_certificate": {
+        "description": "The public certificate, in PEM format, that you received from your SSL certificate provider.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/load_balancer_certificate.html",
+    "properties": [
+      "ca_certificate",
+      "certificate_name",
+      "load_balancer_id",
+      "passphrase",
+      "private_key",
+      "public_certificate"
+    ]
+  },
+  "oci_load_balancer_hostname": {
+    "full_properties": {
+      "hostname": {
+        "description": "(Updatable) A virtual hostname. For more information about virtual hostname string construction, see Managing Request Routing.  Example: app.example.com ",
+        "required": true
+      },
+      "load_balancer_id": {
+        "description": "The OCID of the load balancer to add the hostname to.",
+        "required": true
+      },
+      "name": {
+        "description": "A friendly name for the hostname resource. It must be unique and it cannot be changed. Avoid entering confidential information.  Example: example_hostname_001 ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/load_balancer_hostname.html",
+    "properties": [
+      "hostname",
+      "load_balancer_id",
+      "name"
+    ]
+  },
+  "oci_load_balancer_listener": {
+    "full_properties": {
+      "certificate_name": {
+        "description": "(Updatable) A friendly name for the certificate bundle. It must be unique and it cannot be changed. Valid certificate bundle names include only alphanumeric characters, dashes, and underscores. Certificate bundle names cannot contain spaces. Avoid entering confidential information.  Example: example_certificate_bundle ",
+        "required": true
+      },
+      "connection_configurationidle_timeout_in_seconds": {
+      },
+      "default_backend_set_name": {
+        "description": "(Updatable) The name of the associated backend set.  Example: example_backend_set",
+        "required": true
+      },
+      "hostname_names": {
+        "description": "(Updatable) An array of hostname resource names.",
+        "required": false
+      },
+      "idle_timeout_in_seconds": {
+        "description": "(Updatable) The maximum idle time, in seconds, allowed between two successive receive or two successive send operations between the client and backend servers. A send operation does not reset the timer for receive operations. A receive operation does not reset the timer for send operations.",
+        "required": true
+      },
+      "load_balancer_id": {
+        "description": "The OCID of the load balancer on which to add a listener.",
+        "required": true
+      },
+      "name": {
+        "description": "A friendly name for the listener. It must be unique and it cannot be changed. Avoid entering confidential information.  Example: example_listener",
+        "required": true
+      },
+      "path_route_set_name": {
+        "description": "(Updatable) The name of the set of path-based routing rules, PathRouteSet, applied to this listener's traffic.  Example: example_path_route_set",
+        "required": false
+      },
+      "port": {
+        "description": "(Updatable) The communication port for the listener.  Example: 80",
+        "required": true
+      },
+      "protocol": {
+        "description": "(Updatable) The protocol on which the listener accepts connection requests. To get a list of valid protocols, use the ListProtocols operation.  Example: HTTP",
+        "required": true
+      },
+      "ssl_configurationcertificate_nameverify_depthverify_peer_certificate": {
+      },
+      "verify_depth": {
+        "description": "(Updatable) The maximum depth for peer certificate chain verification.  Example: 3 ",
+        "required": false
+      },
+      "verify_peer_certificate": {
+        "description": "(Updatable) Whether the load balancer listener should verify peer certificates.  Example: true ",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/load_balancer_listener.html",
+    "properties": [
+      "connection_configurationidle_timeout_in_seconds",
+      "idle_timeout_in_seconds",
+      "default_backend_set_name",
+      "hostname_names",
+      "load_balancer_id",
+      "name",
+      "path_route_set_name",
+      "port",
+      "protocol",
+      "ssl_configurationcertificate_nameverify_depthverify_peer_certificate",
+      "certificate_name",
+      "verify_depth",
+      "verify_peer_certificate"
+    ]
+  },
+  "oci_load_balancer_load_balancer": {
+    "full_properties": {
+      "compartment_id": {
+        "description": "The OCID of the compartment in which to create the load balancer.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags.  Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "display_name": {
+        "description": "(Updatable) A user-friendly name. It does not have to be unique, and it is changeable. Avoid entering confidential information.  Example: example_load_balancer ",
+        "required": true
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags.  Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "is_private": {
+        "description": "Whether the load balancer has a VCN-local (private) IP address.",
+        "required": false
+      },
+      "shape": {
+        "description": "A template that determines the total pre-provisioned bandwidth (ingress plus egress). To get a list of available shapes, use the ListShapes operation.  Example: 100Mbps",
+        "required": true
+      },
+      "subnet_ids": {
+        "description": "An array of subnet OCIDs.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/load_balancer_load_balancer.html",
+    "properties": [
+      "compartment_id",
+      "defined_tags",
+      "display_name",
+      "freeform_tags",
+      "is_private",
+      "shape",
+      "subnet_ids"
+    ]
+  },
+  "oci_load_balancer_path_route_set": {
+    "full_properties": {
+      "": {
+        "description": "SUFFIX_MATCH - Looks for a path string that matches the ending portion of the incoming URI path.",
+        "required": false
+      },
+      "backend_set_name": {
+        "description": "(Updatable) The name of the target backend set for requests where the incoming URI matches the specified path.  Example: example_backend_set ",
+        "required": true
+      },
+      "load_balancer_id": {
+        "description": "The OCID of the load balancer to add the path route set to.",
+        "required": true
+      },
+      "match_type": {
+        "description": "(Updatable) Specifies how the load balancing service compares a PathRoute object's path string against the incoming URI.",
+        "required": true
+      },
+      "name": {
+        "description": "The name for this set of path route rules. It must be unique and it cannot be changed. Avoid entering confidential information.  Example: example_path_route_set ",
+        "required": true
+      },
+      "path": {
+        "description": "(Updatable) The path string to match against the incoming URI path.",
+        "required": true
+      },
+      "path_match_typematch_type": {
+      },
+      "path_routesbackend_set_namepathpath_match_typematch_type": {
+      }
+    },
+    "path": "/docs/providers/oci/r/load_balancer_path_route_set.html",
+    "properties": [
+      "load_balancer_id",
+      "name",
+      "path_routesbackend_set_namepathpath_match_typematch_type",
+      "backend_set_name",
+      "path",
+      "",
+      "path_match_typematch_type",
+      "match_type"
+    ]
+  },
+  "oci_objectstorage_bucket": {
+    "full_properties": {
+      "access_type": {
+        "description": "(Updatable) The type of public access enabled on this bucket. A bucket is set to NoPublicAccess by default, which only allows an authenticated caller to access the bucket and its contents. When ObjectRead is enabled on the bucket, public access is allowed for the GetObject, HeadObject, and ListObjects operations. When ObjectReadWithoutList is enabled on the bucket, public access is allowed for the GetObject and HeadObject operations. ",
+        "required": false
+      },
+      "compartment_id": {
+        "description": "(Updatable) The ID of the compartment in which to create the bucket.",
+        "required": true
+      },
+      "defined_tags": {
+        "description": "(Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace. For more information, see Resource Tags. Example: {\"Operations.CostCenter\": \"42\"} ",
+        "required": false
+      },
+      "freeform_tags": {
+        "description": "(Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace. For more information, see Resource Tags. Example: {\"Department\": \"Finance\"} ",
+        "required": false
+      },
+      "kms_key_id": {
+        "description": "(Updatable) The OCID of a KMS key id used to call KMS to generate data key, decrypt the encrypted data key",
+        "required": false
+      },
+      "metadata": {
+        "description": "(Updatable) Arbitrary string, up to 4KB, of keys and values for user-defined metadata.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the bucket. Valid characters are uppercase or lowercase letters, numbers, and dashes. Bucket names must be unique within the namespace. Avoid entering confidential information. example: Example: my-new-bucket1 ",
+        "required": true
+      },
+      "namespace": {
+        "description": "The top-level namespace used for the request.",
+        "required": true
+      },
+      "storage_tier": {
+        "description": "The type of storage tier of this bucket. A bucket is set to 'Standard' tier by default, which means the bucket will be put in the standard storage tier. When 'Archive' tier type is set explicitly, the bucket is put in the Archive Storage tier. The 'storageTier' property is immutable after bucket is created. ",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/oci/r/object_storage_bucket.html",
+    "properties": [
+      "access_type",
+      "compartment_id",
+      "defined_tags",
+      "freeform_tags",
+      "kms_key_id",
+      "metadata",
+      "name",
+      "namespace",
+      "storage_tier"
+    ]
+  },
+  "oci_objectstorage_object": {
+    "full_properties": {
+      "bucket": {
+        "description": "The name of the bucket for the source object.",
+        "required": true
+      },
+      "content": {
+        "description": "The object to upload to the object store. Cannot be defined if source or source_uri_details is defined.",
+        "required": true
+      },
+      "content_encoding": {
+        "description": "The content encoding of the object.",
+        "required": false
+      },
+      "content_language": {
+        "description": "The content language of the object.",
+        "required": false
+      },
+      "content_type": {
+        "description": "The content type of the object.  Defaults to 'application/octet-stream' if not overridden during the PutObject call.",
+        "required": false
+      },
+      "destination_object_if_match_etag": {
+        "description": "The entity tag to match the target object.",
+        "required": false
+      },
+      "destination_object_if_none_match_etag": {
+        "description": "The entity tag to not match the target object.",
+        "required": false
+      },
+      "metadata": {
+        "description": "Optional user-defined metadata key and value.",
+        "required": false
+      },
+      "namespace": {
+        "description": "The top-level namespace of the source object.",
+        "required": true
+      },
+      "object": {
+        "description": "The name of the source object.",
+        "required": true
+      },
+      "region": {
+        "description": "The region of the source object.",
+        "required": true
+      },
+      "source": {
+        "description": "An absolute path to a file on the local system. Cannot be defined if content or source_uri_details is defined.",
+        "required": false
+      },
+      "source_object_if_match_etag": {
+        "description": "The entity tag to match the source object.",
+        "required": false
+      },
+      "source_uri_detailsregionnamespacebucketobjectsource_object_if_match_etagdestination_object_if_match_etagdestination_object_if_none_match_etag": {
+      }
+    },
+    "path": "/docs/providers/oci/r/object_storage_object.html",
+    "properties": [
+      "bucket",
+      "content_encoding",
+      "content_language",
+      "content_type",
+      "content",
+      "metadata",
+      "namespace",
+      "object",
+      "source",
+      "source_uri_detailsregionnamespacebucketobjectsource_object_if_match_etagdestination_object_if_match_etagdestination_object_if_none_match_etag",
+      "region",
+      "source_object_if_match_etag",
+      "destination_object_if_match_etag",
+      "destination_object_if_none_match_etag"
+    ]
+  },
+  "oci_objectstorage_object_lifecycle_policy": {
+    "full_properties": {
+      "action": {
+        "description": "(Updatable) The action of the object lifecycle policy rule. Rules using the action 'ARCHIVE' move objects into the  Archival Storage tier. Rules using the action 'DELETE' permanently delete objects from buckets. 'ARCHIVE' and 'DELETE' are the only two supported actions at this time. ",
+        "required": true
+      },
+      "bucket": {
+        "description": "The name of the bucket. Avoid entering confidential information. Example: my-new-bucket1 ",
+        "required": true
+      },
+      "inclusion_prefixes": {
+        "description": "(Updatable) An array of object name prefixes that the rule will apply to. An empty array means to include all objects. ",
+        "required": false
+      },
+      "is_enabled": {
+        "description": "(Updatable) A boolean that determines whether this rule is currently enabled.",
+        "required": true
+      },
+      "name": {
+        "description": "(Updatable) The name of the lifecycle rule to be applied.",
+        "required": true
+      },
+      "namespace": {
+        "description": "The top-level namespace used for the request.",
+        "required": true
+      },
+      "object_name_filterinclusion_prefixes": {
+      },
+      "rulesactionis_enablednameobject_name_filterinclusion_prefixestime_amounttime_unit": {
+      },
+      "time_amount": {
+        "description": "(Updatable) Specifies the age of objects to apply the rule to. The timeAmount is interpreted in units defined by the timeUnit parameter, and is calculated in relation to each object's Last-Modified time. ",
+        "required": true
+      },
+      "time_unit": {
+        "description": "(Updatable) The unit that should be used to interpret timeAmount.  Days are defined as starting and ending at midnight UTC. Years are defined as 365.2425 days long and likewise round up to the next midnight UTC. ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/object_storage_object_lifecycle_policy.html",
+    "properties": [
+      "bucket",
+      "namespace",
+      "rulesactionis_enablednameobject_name_filterinclusion_prefixestime_amounttime_unit",
+      "action",
+      "is_enabled",
+      "name",
+      "object_name_filterinclusion_prefixes",
+      "inclusion_prefixes",
+      "time_amount",
+      "time_unit"
+    ]
+  },
+  "oci_objectstorage_preauthrequest": {
+    "full_properties": {
+      "access_type": {
+        "description": "The operation that can be performed on this resource.",
+        "required": true
+      },
+      "bucket": {
+        "description": "The name of the bucket. Avoid entering confidential information. Example: my-new-bucket1 ",
+        "required": true
+      },
+      "name": {
+        "description": "A user-specified name for the pre-authenticated request. Helpful for management purposes.",
+        "required": true
+      },
+      "namespace": {
+        "description": "The top-level namespace used for the request.",
+        "required": true
+      },
+      "object": {
+        "description": "The name of object that is being granted access to by the pre-authenticated request. This can be null and if it is, the pre-authenticated request grants access to the entire bucket.",
+        "required": false
+      },
+      "time_expires": {
+        "description": "The expiration date for the pre-authenticated request as per RFC 3339. After this date the pre-authenticated request will no longer be valid. ",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/oci/r/object_storage_preauthenticated_request.html",
+    "properties": [
+      "access_type",
+      "bucket",
+      "name",
+      "namespace",
+      "object",
+      "time_expires"
+    ]
+  }
+}

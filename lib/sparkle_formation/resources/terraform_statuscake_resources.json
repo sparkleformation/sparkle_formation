@@ -1,0 +1,159 @@
+{
+  "statuscake_test": {
+    "full_properties": {
+      "basic_pass": {
+        "description": "If BasicUser is set then this should be the password for the BasicUser.",
+        "required": false
+      },
+      "basic_user": {
+        "description": "A Basic Auth User account to use to login",
+        "required": false
+      },
+      "branding": {
+        "description": "Set to 0 to use branding (default) or 1 to disable public reporting branding).",
+        "required": false
+      },
+      "check_rate": {
+        "description": "Test check rate in seconds. Defaults to 300",
+        "required": false
+      },
+      "confirmations": {
+        "description": "The number of confirmation servers to use in order to detect downtime. Defaults to 0.",
+        "required": false
+      },
+      "contact_id": {
+        "description": "The id of the contact group to be add to the test.  Each test can have only one.",
+        "required": false
+      },
+      "custom_header": {
+        "description": "Custom HTTP header, must be supplied as JSON.",
+        "required": false
+      },
+      "do_not_find": {
+        "description": "If the above string should be found to trigger a alert. 1 = will trigger if find_string found.",
+        "required": false
+      },
+      "final_endpoint": {
+        "description": "Use to specify the expected Final URL in the testing process.",
+        "required": false
+      },
+      "find_string": {
+        "description": "A string that should either be found or not found.",
+        "required": false
+      },
+      "follow_redirect": {
+        "description": "Use to specify whether redirects should be followed, set to true to enable. Default is false.",
+        "required": false
+      },
+      "logo_image": {
+        "description": "A URL to a image to use for public reporting.",
+        "required": false
+      },
+      "node_locations": {
+        "description": "Set test node locations, must be array of strings.",
+        "required": false
+      },
+      "paused": {
+        "description": "Whether or not the test is paused. Defaults to false.",
+        "required": false
+      },
+      "ping_url": {
+        "description": "A URL to ping if a site goes down.",
+        "required": false
+      },
+      "port": {
+        "description": "The port to use when specifying a TCP test.",
+        "required": false
+      },
+      "post_raw": {
+        "description": "Use to populate the RAW POST data field on the test.",
+        "required": false
+      },
+      "public": {
+        "description": "Set 1 to enable public reporting, 0 to disable.",
+        "required": false
+      },
+      "real_browser": {
+        "description": "Use 1 to TURN OFF real browser testing.",
+        "required": false
+      },
+      "status_codes": {
+        "description": "Comma Seperated List of StatusCodes to Trigger Error on. Defaults are \"204, 205, 206, 303, 400, 401, 403, 404, 405, 406, 408, 410, 413, 444, 429, 494, 495, 496, 499, 500, 501, 502, 503, 504, 505, 506, 507, 508, 509, 510, 511, 521, 522, 523, 524, 520, 598, 599\".",
+        "required": false
+      },
+      "test_tags": {
+        "description": "Tags should be seperated by a comma - no spacing between tags (this,is,a set,of,tags).",
+        "required": false
+      },
+      "test_type": {
+        "description": "The type of Test. Either HTTP, TCP, PING, or DNS",
+        "required": true
+      },
+      "timeout": {
+        "description": "The timeout of the test in seconds.",
+        "required": false
+      },
+      "trigger_rate": {
+        "description": "The number of minutes to wait before sending an alert. Default is 5.",
+        "required": false
+      },
+      "use_jar": {
+        "description": "Set to true to enable the Cookie Jar. Required for some redirects. Default is false.",
+        "required": false
+      },
+      "user_agent": {
+        "description": "Test with a custom user agent set.",
+        "required": false
+      },
+      "virus": {
+        "description": "Enable virus checking or not. 1 to enable",
+        "required": false
+      },
+      "website_host": {
+        "description": "Used internally, when possible please add.",
+        "required": false
+      },
+      "website_name": {
+        "description": "This is the name of the test and the website to be monitored.",
+        "required": true
+      },
+      "website_url": {
+        "description": "The URL of the website to be monitored",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/statuscake/r/test.html",
+    "properties": [
+      "website_name",
+      "website_url",
+      "check_rate",
+      "contact_id",
+      "test_type",
+      "paused",
+      "timeout",
+      "confirmations",
+      "port",
+      "trigger_rate",
+      "custom_header",
+      "user_agent",
+      "node_locations",
+      "ping_url",
+      "basic_user",
+      "basic_pass",
+      "public",
+      "logo_image",
+      "branding",
+      "website_host",
+      "virus",
+      "find_string",
+      "do_not_find",
+      "real_browser",
+      "test_tags",
+      "status_codes",
+      "use_jar",
+      "post_raw",
+      "final_endpoint",
+      "follow_redirect"
+    ]
+  }
+}

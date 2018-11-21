@@ -1,0 +1,237 @@
+{
+  "spotinst_elastigroup_aws": {
+    "full_properties": {
+      "availability_zones": {
+        "description": "List of Strings of availability zones.",
+        "required": false
+      },
+      "capacity_unit": {
+        "description": "The capacity unit to launch instances by. If not specified, when choosing the weight unit, each instance will weight as the number of its vCPUs.",
+        "required": false
+      },
+      "description": {
+        "description": "The group description.",
+        "required": true
+      },
+      "desired_capacity": {
+        "description": "The desired number of instances the group should have at any time.",
+        "required": false
+      },
+      "draining_timeout": {
+        "description": "The time in seconds, the instance is allowed to run while detached from the ELB. This is to allow the instance time to be drained from incoming TCP connections before terminating it, during a scale down operation.",
+        "required": false
+      },
+      "ebs_optimized": {
+        "description": "Enable high bandwidth connectivity between instances and AWS’s Elastic Block Store (EBS). For instance types that are EBS-optimized by default this parameter will be ignored.",
+        "required": false
+      },
+      "elastic_ips": {
+        "description": "A list of AWS Elastic IP allocation IDs to associate to the group instances.",
+        "required": false
+      },
+      "enable_monitoring": {
+        "description": "Indicates whether monitoring is enabled for the instance.",
+        "required": false
+      },
+      "fallback_to_ondemand": {
+        "description": "In a case of no Spot instances available, Elastigroup will launch on-demand instances instead.",
+        "required": true
+      },
+      "health_check_grace_period": {
+        "description": "The amount of time, in seconds, after the instance has launched to starts and check its health.",
+        "required": false
+      },
+      "health_check_type": {
+        "description": "The service that will perform health checks for the instance. Valid values: \"ELB\", \"HCS\", \"TARGET_GROUP\", \"MLB\", \"EC2\", \"MULTAI_TARGET_SET\", \"MLB_RUNTIME\", \"K8S_NODE\", \"NOMAD_NODE\", \"ECS_CLUSTER_INSTANCE\".",
+        "required": false
+      },
+      "health_check_unhealthy_duration_before_replacement": {
+        "description": "The amount of time, in seconds, that we will wait before replacing an instance that is running and became unhealthy (this is only applicable for instances that were once healthy).",
+        "required": false
+      },
+      "iam_instance_profile": {
+        "description": "The ARN or name of an IAM instance profile to associate with launched instances.",
+        "required": false
+      },
+      "image_id": {
+        "description": "The ID of the AMI used to launch the instance.",
+        "required": false
+      },
+      "instance_type": {
+        "description": "Name of instance type (String).",
+        "required": true
+      },
+      "instance_types_ondemand": {
+        "description": "The type of instance determines your instance's CPU capacity, memory and storage (e.g., m1.small, c1.xlarge).",
+        "required": true
+      },
+      "instance_types_preferred_spot": {
+        "description": "Prioritize a subset of spot instance types. Must be a subset of the selected spot instance types.",
+        "required": false
+      },
+      "instance_types_spot": {
+        "description": "One or more instance types.",
+        "required": true
+      },
+      "instance_types_weightsweightinstance_type": {
+      },
+      "key_name": {
+        "description": "The key name that should be used for the instance.",
+        "required": false
+      },
+      "max_size": {
+        "description": "The maximum number of instances the group should have at any time.",
+        "required": false
+      },
+      "min_size": {
+        "description": "The minimum number of instances the group should have at any time.",
+        "required": false
+      },
+      "name": {
+        "description": "The group name.",
+        "required": true
+      },
+      "ondemand_count": {
+        "description": "Number of on demand instances to launch in the group. All other instances will be spot instances. When this parameter is set the spot_percentage parameter is being ignored.",
+        "required": false
+      },
+      "orientation": {
+        "description": "Select a prediction strategy. Valid values: \"balanced\", \"costOriented\", \"equalAzDistribution\", \"availabilityOriented\".",
+        "required": false
+      },
+      "perform_at": {
+        "description": "In the event of a fallback to On-Demand instances, select the time period to revert back to Spot. Supported Arguments – always (default), timeWindow, never. For timeWindow or never to be valid the group must have availabilityOriented OR persistence defined.",
+        "required": true
+      },
+      "placement_tenancy": {
+        "description": "Enable dedicated tenancy. Note: There is a flat hourly fee for each region in which dedicated tenancy is used.",
+        "required": false
+      },
+      "preferred_availability_zones": {
+        "description": "The AZs to prioritize when launching Spot instances. If no markets are available in the Preferred AZs, Spot instances are launched in the non-preferred AZs. ",
+        "required": false
+      },
+      "product": {
+        "description": "Operation system type. Valid values: \"Linux/UNIX\", \"SUSE Linux\", \"Windows\". ",
+        "required": true
+      },
+      "region": {
+        "description": "The AWS region your group will be created in.",
+        "required": false
+      },
+      "revert_to_spotperform_attime_windows": {
+      },
+      "security_groups": {
+        "description": "A list of associated security group IDS.",
+        "required": true
+      },
+      "shutdown_script": {
+        "description": "The Base64-encoded shutdown script that executes prior to instance termination, for more information please see: Shutdown Script",
+        "required": false
+      },
+      "spot_percentage": {
+        "description": "The percentage of Spot instances that would spin up from the desired_capacity number.",
+        "required": false
+      },
+      "subnet_ids": {
+        "description": "List of Strings of subnet identifiers.",
+        "required": false
+      },
+      "tags": {
+        "description": "A key/value mapping of tags to assign to the resource.",
+        "required": false
+      },
+      "time_windows": {
+        "description": "Specify a list of time windows for to execute revertToSpot strategy. Time window format: ddd:hh:mm-ddd:hh:mm. Example: Mon:03:00-Wed:02:30",
+        "required": false
+      },
+      "user_data": {
+        "description": "The user data to provide when launching the instance.",
+        "required": false
+      },
+      "utilize_reserved_instances": {
+        "description": "In a case of any available reserved instances, Elastigroup will utilize them first before purchasing Spot instances.",
+        "required": false
+      },
+      "weight": {
+        "description": "Weight per instance type (Integer).",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/spotinst/r/elastigroup_aws.html",
+    "properties": [
+      "name",
+      "description",
+      "product",
+      "availability_zones",
+      "subnet_ids",
+      "region",
+      "preferred_availability_zones",
+      "max_size",
+      "min_size",
+      "desired_capacity",
+      "capacity_unit",
+      "security_groups",
+      "image_id",
+      "iam_instance_profile",
+      "key_name",
+      "enable_monitoring",
+      "user_data",
+      "shutdown_script",
+      "ebs_optimized",
+      "placement_tenancy",
+      "instance_types_ondemand",
+      "instance_types_spot",
+      "instance_types_preferred_spot",
+      "instance_types_weightsweightinstance_type",
+      "weight",
+      "instance_type",
+      "fallback_to_ondemand",
+      "orientation",
+      "spot_percentage",
+      "ondemand_count",
+      "draining_timeout",
+      "utilize_reserved_instances",
+      "health_check_type",
+      "health_check_grace_period",
+      "health_check_unhealthy_duration_before_replacement",
+      "tags",
+      "elastic_ips",
+      "revert_to_spotperform_attime_windows",
+      "perform_at",
+      "time_windows"
+    ]
+  },
+  "spotinst_subscription": {
+    "full_properties": {
+      "endpoint": {
+        "description": "The endpoint the notification will be sent to: url in case of \"http\"/\"https\", email address in case of \"email\"/\"email-json\", sns-topic-arn in case of \"aws-sns\".",
+        "required": true
+      },
+      "event_type": {
+        "description": "The event to send the notification when triggered. Valid values: \"AWS_EC2_INSTANCE_TERMINATE\", \"AWS_EC2_INSTANCE_TERMINATED\", \"AWS_EC2_INSTANCE_LAUNCH\", \"AWS_EC2_INSTANCE_UNHEALTHY_IN_ELB\", \"GROUP_ROLL_FAILED\", \"GROUP_ROLL_FINISHED\", \"CANT_SCALE_UP_GROUP_MAX_CAPACITY\", \"GROUP_UPDATED\", \"AWS_EC2_CANT_SPIN_OD\", \"AWS_EMR_PROVISION_TIMEOUT\", \"AWS_EC2_INSTANCE_READY_SIGNAL_TIMEOUT\". ",
+        "required": true
+      },
+      "format": {
+        "description": "The format of the notification content (JSON Format - Key+Value). Valid values: \"%instance-id%\", \"%event%\", \"%resource-id%\", \"%resource-name%\".",
+        "required": false
+      },
+      "protocol": {
+        "description": "The protocol to send the notification. Valid values: \"http\", \"https\", \"email\", \"email-json\", \"aws-sns\".",
+        "required": true
+      },
+      "resource_id": {
+        "description": "Spotinst Resource ID (Elastigroup ID).",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/spotinst/r/subscription.html",
+    "properties": [
+      "resource_id",
+      "event_type",
+      "protocol",
+      "endpoint",
+      "format"
+    ]
+  }
+}

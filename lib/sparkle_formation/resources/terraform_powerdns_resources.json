@@ -1,0 +1,34 @@
+{
+  "powerdns_record": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the record.",
+        "required": true
+      },
+      "records": {
+        "description": "A string list of records.",
+        "required": true
+      },
+      "ttl": {
+        "description": "The TTL of the record.",
+        "required": true
+      },
+      "type": {
+        "description": "The record type.",
+        "required": true
+      },
+      "zone": {
+        "description": "The name of zone to contain this record.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/powerdns/r/record.html",
+    "properties": [
+      "zone",
+      "name",
+      "type",
+      "ttl",
+      "records"
+    ]
+  }
+}

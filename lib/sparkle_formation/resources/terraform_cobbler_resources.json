@@ -1,0 +1,589 @@
+{
+  "cobbler_distro": {
+    "full_properties": {
+      "arch": {
+        "description": "The architecture of the distro. Valid options",
+        "required": true
+      },
+      "boot_files": {
+        "description": "Files copied into tftpboot beyond the",
+        "required": false
+      },
+      "breed": {
+        "description": "The \"breed\" of distribution. Valid options",
+        "required": true
+      },
+      "comment": {
+        "description": "Free form text description.",
+        "required": false
+      },
+      "fetchable_files": {
+        "description": "Templates for tftp or wget.",
+        "required": false
+      },
+      "initrd": {
+        "description": "Absolute path to initrd on filesystem. This",
+        "required": true
+      },
+      "kernel": {
+        "description": "Absolute path to kernel on filesystem. This",
+        "required": true
+      },
+      "kernel_options": {
+        "description": "Kernel options to use with the",
+        "required": false
+      },
+      "kernel_options_post": {
+        "description": "Post install Kernel options to",
+        "required": false
+      },
+      "mgmt_classes": {
+        "description": "Management classes for external config",
+        "required": false
+      },
+      "name": {
+        "description": "A name for the distro.",
+        "required": true
+      },
+      "os_version": {
+        "description": "The version of the distro you are",
+        "required": true
+      },
+      "owners": {
+        "description": "Owners list for authz_ownership.",
+        "required": false
+      },
+      "redhat_management_key": {
+        "description": "Red Hat Management key.",
+        "required": false
+      },
+      "redhat_management_server": {
+        "description": "Red Hat Management server.",
+        "required": false
+      },
+      "template_files": {
+        "description": "File mappings for built-in config",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cobbler/r/distro.html",
+    "properties": [
+      "arch",
+      "breed",
+      "boot_files",
+      "comment",
+      "fetchable_files",
+      "kernel",
+      "kernel_options",
+      "kernel_options_post",
+      "initrd",
+      "mgmt_classes",
+      "name",
+      "os_version",
+      "owners",
+      "redhat_management_key",
+      "redhat_management_server",
+      "template_files"
+    ]
+  },
+  "cobbler_kickstart_file": {
+    "full_properties": {
+      "body": {
+        "description": "The body of the kickstart file.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the kickstart file. This must be",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cobbler/r/kickstart_file.html",
+    "properties": [
+      "body",
+      "name"
+    ]
+  },
+  "cobbler_profile": {
+    "full_properties": {
+      "boot_files": {
+        "description": "Files copied into tftpboot beyond the",
+        "required": false
+      },
+      "comment": {
+        "description": "Free form text description.",
+        "required": false
+      },
+      "distro": {
+        "description": "Parent distribution.",
+        "required": false
+      },
+      "enable_gpxe": {
+        "description": "Use gPXE instead of PXELINUX for",
+        "required": false
+      },
+      "enable_menu": {
+        "description": "Enable a boot menu.",
+        "required": false
+      },
+      "fetchable_files": {
+        "description": "Templates for tftp or wget.",
+        "required": false
+      },
+      "kernel_options": {
+        "description": "Kernel options for the profile.",
+        "required": false
+      },
+      "kernel_options_post": {
+        "description": "Post install kernel options.",
+        "required": false
+      },
+      "kickstart": {
+        "description": "The kickstart file to use.",
+        "required": false
+      },
+      "ks_meta": {
+        "description": "Kickstart metadata.",
+        "required": false
+      },
+      "mgmt_classes": {
+        "description": "For external configuration management.",
+        "required": false
+      },
+      "mgmt_parameters": {
+        "description": "Parameters which will be handed to",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the profile.",
+        "required": true
+      },
+      "name_servers": {
+        "description": "Name servers.",
+        "required": false
+      },
+      "name_servers_search": {
+        "description": "Name server search settings.",
+        "required": false
+      },
+      "owners": {
+        "description": "Owners list for authz_ownership.",
+        "required": false
+      },
+      "parent": {
+        "description": "The parent this profile inherits settings from.",
+        "required": false
+      },
+      "proxy": {
+        "description": "Proxy URL.",
+        "required": false
+      },
+      "redhat_management_key": {
+        "description": "Red Hat Management Key.",
+        "required": false
+      },
+      "redhat_management_server": {
+        "description": "RedHat Management Server.",
+        "required": false
+      },
+      "repos": {
+        "description": "Repos to auto-assign to this profile.",
+        "required": false
+      },
+      "server": {
+        "description": "The server-override for the profile.",
+        "required": false
+      },
+      "template_files": {
+        "description": "File mappings for built-in config",
+        "required": false
+      },
+      "template_remote_kickstarts": {
+        "description": "remote kickstart",
+        "required": false
+      },
+      "virt_auto_boot": {
+        "description": "Auto boot virtual machines.",
+        "required": false
+      },
+      "virt_bridge": {
+        "description": "The bridge for virtual machines.",
+        "required": false
+      },
+      "virt_cpus": {
+        "description": "The number of virtual CPUs.",
+        "required": false
+      },
+      "virt_disk_driver": {
+        "description": "The virtual machine disk driver.",
+        "required": false
+      },
+      "virt_file_size": {
+        "description": "The virtual machine file size.",
+        "required": false
+      },
+      "virt_path": {
+        "description": "The virtual machine path.",
+        "required": false
+      },
+      "virt_ram": {
+        "description": "The amount of RAM for the virtual machine.",
+        "required": false
+      },
+      "virt_type": {
+        "description": "The type of virtual machine. Valid options",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cobbler/r/profile.html",
+    "properties": [
+      "boot_files",
+      "comment",
+      "parent",
+      "server",
+      "distro",
+      "enable_gpxe",
+      "enable_menu",
+      "fetchable_files",
+      "kernel_options",
+      "kernel_options_post",
+      "kickstart",
+      "ks_meta",
+      "mgmt_classes",
+      "mgmt_parameters",
+      "name_servers_search",
+      "name_servers",
+      "name",
+      "owners",
+      "proxy",
+      "redhat_management_key",
+      "redhat_management_server",
+      "repos",
+      "template_files",
+      "template_remote_kickstarts",
+      "virt_auto_boot",
+      "virt_bridge",
+      "virt_cpus",
+      "virt_file_size",
+      "virt_path",
+      "virt_ram",
+      "virt_type",
+      "virt_disk_driver"
+    ]
+  },
+  "cobbler_repo": {
+    "full_properties": {
+      "apt_components": {
+        "description": "List of Apt components such as main,",
+        "required": false
+      },
+      "apt_dists": {
+        "description": "List of Apt distribution names such as trusty,",
+        "required": false
+      },
+      "arch": {
+        "description": "The architecture of the repo. Valid options",
+        "required": false
+      },
+      "breed": {
+        "description": "The \"breed\" of distribution. Valid options",
+        "required": true
+      },
+      "comment": {
+        "description": "Free form text description.",
+        "required": false
+      },
+      "createrepo_flags": {
+        "description": "Flags to use with createrepo.",
+        "required": false
+      },
+      "environment": {
+        "description": "Environment variables to use during repo command",
+        "required": false
+      },
+      "keep_updated": {
+        "description": "Update the repo upon Cobbler sync. Valid values",
+        "required": false
+      },
+      "mirror": {
+        "description": "Address of the repo to mirror.",
+        "required": true
+      },
+      "mirror_locally": {
+        "description": "Whether to copy the files locally or just",
+        "required": true
+      },
+      "name": {
+        "description": "A name for the repo.",
+        "required": true
+      },
+      "owners": {
+        "description": "List of Owners for authz_ownership.",
+        "required": false
+      },
+      "proxy": {
+        "description": "Proxy to use for downloading the repo. This argument does",
+        "required": false
+      },
+      "rpm_list": {
+        "description": "List of specific RPMs to mirror.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cobbler/r/repo.html",
+    "properties": [
+      "apt_components",
+      "apt_dists",
+      "arch",
+      "breed",
+      "comment",
+      "createrepo_flags",
+      "environment",
+      "keep_updated",
+      "mirror",
+      "mirror_locally",
+      "name",
+      "owners",
+      "proxy",
+      "rpm_list"
+    ]
+  },
+  "cobbler_snippet": {
+    "full_properties": {
+      "body": {
+        "description": "The body of the snippet.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the snippet. This must be the full",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cobbler/r/snippet.html",
+    "properties": [
+      "body",
+      "name"
+    ]
+  },
+  "cobbler_system": {
+    "full_properties": {
+      "boot_files": {
+        "description": "TFTP boot files copied into tftpboot.",
+        "required": false
+      },
+      "comment": {
+        "description": "Free form text description",
+        "required": false
+      },
+      "enable_gpxe": {
+        "description": "Use gPXE instead of PXELINUX.",
+        "required": false
+      },
+      "fetchable_files": {
+        "description": "Templates for tftp or wget.",
+        "required": false
+      },
+      "gateway": {
+        "description": "Network gateway.",
+        "required": false
+      },
+      "hostname": {
+        "description": "Hostname of the system.",
+        "required": false
+      },
+      "image": {
+        "description": "Parent image (if no profile is used).",
+        "required": false
+      },
+      "interface": {
+        "description": "(Optional)",
+        "required": false
+      },
+      "ipv6_default_device": {
+        "description": "IPv6 default device.",
+        "required": false
+      },
+      "kernel_options": {
+        "description": "Kernel options.",
+        "required": false
+      },
+      "kernel_options_post": {
+        "description": "Kernel options (post install).",
+        "required": false
+      },
+      "kickstart": {
+        "description": "Path to kickstart template.",
+        "required": false
+      },
+      "ks_meta": {
+        "description": "Kickstart metadata.",
+        "required": false
+      },
+      "ldap_enabled": {
+        "description": "Configure LDAP at next config update.",
+        "required": false
+      },
+      "ldap_type": {
+        "description": "LDAP management type.",
+        "required": false
+      },
+      "mgmt_classes": {
+        "description": "Management classes for external config",
+        "required": false
+      },
+      "mgmt_parameters": {
+        "description": "Parameters which will be handed to",
+        "required": false
+      },
+      "monit_enabled": {
+        "description": "Configure monit on this machine at",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the system.",
+        "required": true
+      },
+      "name_servers": {
+        "description": "Name servers.",
+        "required": false
+      },
+      "name_servers_search": {
+        "description": "Name servers search path.",
+        "required": false
+      },
+      "netboot_enabled": {
+        "description": "(re)Install this machine at next",
+        "required": false
+      },
+      "owners": {
+        "description": "Owners list for authz_ownership.",
+        "required": false
+      },
+      "power_address": {
+        "description": "Power management address.",
+        "required": false
+      },
+      "power_id": {
+        "description": "Usually a plug number or blade name if",
+        "required": false
+      },
+      "power_pass": {
+        "description": "Power management password.",
+        "required": false
+      },
+      "power_type": {
+        "description": "Power management type.",
+        "required": false
+      },
+      "power_user": {
+        "description": "Power management user.",
+        "required": false
+      },
+      "profile": {
+        "description": "Parent profile.",
+        "required": true
+      },
+      "proxy": {
+        "description": "Proxy URL.",
+        "required": false
+      },
+      "redhat_management_key": {
+        "description": "Red Hat management key.",
+        "required": false
+      },
+      "redhat_management_server": {
+        "description": "Red Hat management server.",
+        "required": false
+      },
+      "status": {
+        "description": "System status (development, testing,",
+        "required": false
+      },
+      "template_files": {
+        "description": "File mappings for built-in",
+        "required": false
+      },
+      "template_remote_kickstarts": {
+        "description": "template remote",
+        "required": false
+      },
+      "virt_auto_boot": {
+        "description": "Auto boot the VM.",
+        "required": false
+      },
+      "virt_cpus": {
+        "description": "Number of virtual CPUs in the VM.",
+        "required": false
+      },
+      "virt_disk_driver": {
+        "description": "The on-disk format for the",
+        "required": false
+      },
+      "virt_file_size": {
+        "description": "Virt file size.",
+        "required": false
+      },
+      "virt_path": {
+        "description": "Path to the VM.",
+        "required": false
+      },
+      "virt_pxe_boot": {
+        "description": "Use PXE to build this VM?",
+        "required": false
+      },
+      "virt_ram": {
+        "description": "The amount of RAM for the VM.",
+        "required": false
+      },
+      "virt_type": {
+        "description": "Virtualization technology to use: xenpv,",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cobbler/r/system.html",
+    "properties": [
+      "boot_files",
+      "comment",
+      "enable_gpxe",
+      "fetchable_files",
+      "gateway",
+      "hostname",
+      "image",
+      "interface",
+      "ipv6_default_device",
+      "kernel_options",
+      "kernel_options_post",
+      "kickstart",
+      "ks_meta",
+      "ldap_enabled",
+      "ldap_type",
+      "mgmt_classes",
+      "mgmt_parameters",
+      "monit_enabled",
+      "name_servers_search",
+      "name_servers",
+      "name",
+      "netboot_enabled",
+      "owners",
+      "power_address",
+      "power_id",
+      "power_pass",
+      "power_type",
+      "power_user",
+      "profile",
+      "proxy",
+      "redhat_management_key",
+      "redhat_management_server",
+      "status",
+      "template_files",
+      "template_remote_kickstarts",
+      "virt_auto_boot",
+      "virt_cpus",
+      "virt_disk_driver",
+      "virt_file_size",
+      "virt_path",
+      "virt_pxe_boot",
+      "virt_ram",
+      "virt_type"
+    ]
+  }
+}

@@ -1,0 +1,1414 @@
+{
+  "vault_approle_auth_backend_login": {
+    "full_properties": {
+      "backend": {
+        "description": "The unique path of the Vault backend to log in with.",
+        "required": false
+      },
+      "role_id": {
+        "description": "The ID of the role to log in with.",
+        "required": true
+      },
+      "secret_id": {
+        "description": "The secret ID of the role to log in with. Required",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/approle_auth_backend_login.html",
+    "properties": [
+      "role_id",
+      "secret_id",
+      "backend"
+    ]
+  },
+  "vault_approle_auth_backend_role": {
+    "full_properties": {
+      "backend": {
+        "description": "The unique name of the auth backend to configure.",
+        "required": false
+      },
+      "bind_secret_id": {
+        "description": "Whether or not to require secret_id to be",
+        "required": false
+      },
+      "bound_cidr_list": {
+        "description": "If set, specifies blocks of IP addresses which",
+        "required": false
+      },
+      "period": {
+        "description": "If set, indicates that the token generated using this",
+        "required": false
+      },
+      "policies": {
+        "description": "An array of strings specifying the policies to be set",
+        "required": false
+      },
+      "role_id": {
+        "description": "The RoleID of this role. If not specified, one will be",
+        "required": false
+      },
+      "role_name": {
+        "description": "The name of the role.",
+        "required": true
+      },
+      "secret_id_num_uses": {
+        "description": "The number of times any particular SecretID",
+        "required": false
+      },
+      "secret_id_ttl": {
+        "description": "The number of seconds after which any SecretID",
+        "required": false
+      },
+      "token_max_ttl": {
+        "description": "The maximum allowed lifetime of tokens issued",
+        "required": false
+      },
+      "token_num_uses": {
+        "description": "The number of times issued tokens can be used.",
+        "required": false
+      },
+      "token_ttl": {
+        "description": "The TTL period of tokens issued using this role,",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/approle_auth_backend_role.html",
+    "properties": [
+      "role_name",
+      "role_id",
+      "bind_secret_id",
+      "bound_cidr_list",
+      "policies",
+      "secret_id_num_uses",
+      "secret_id_ttl",
+      "token_num_uses",
+      "token_ttl",
+      "token_max_ttl",
+      "period",
+      "backend"
+    ]
+  },
+  "vault_approle_auth_backend_role_secret_id": {
+    "full_properties": {
+      "cidr_list": {
+        "description": "If set, specifies blocks of IP addresses which can",
+        "required": false
+      },
+      "metadata": {
+        "description": "A JSON-encoded string containing metadata in",
+        "required": false
+      },
+      "role_name": {
+        "description": "The name of the role to create the SecretID for.",
+        "required": true
+      },
+      "secret_id": {
+        "description": "The SecretID to be created. If set, uses \"Push\"",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/approle_auth_backend_role_secret_id.html",
+    "properties": [
+      "role_name",
+      "metadata",
+      "cidr_list",
+      "secret_id"
+    ]
+  },
+  "vault_audit": {
+    "full_properties": {
+      "description": {
+        "description": "Human-friendly description of the audit device.",
+        "required": false
+      },
+      "options": {
+        "description": "Configuration options to pass to the audit device itself.",
+        "required": true
+      },
+      "path": {
+        "description": "The path to mount the audit device. This defaults to the type.",
+        "required": false
+      },
+      "type": {
+        "description": "Type of the audit device, such as 'file'.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vault/r/audit.html",
+    "properties": [
+      "type",
+      "path",
+      "description",
+      "options"
+    ]
+  },
+  "vault_auth_backend": {
+    "full_properties": {
+      "description": {
+        "description": "A description of the auth backend",
+        "required": false
+      },
+      "path": {
+        "description": "The path to mount the auth backend. This defaults to the name.",
+        "required": false
+      },
+      "type": {
+        "description": "The name of the policy",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vault/r/auth_backend.html",
+    "properties": [
+      "type",
+      "path",
+      "description"
+    ]
+  },
+  "vault_aws_auth_backend_cert": {
+    "full_properties": {
+      "aws_public_cert": {
+        "description": "The  Base64 encoded AWS Public key required to",
+        "required": true
+      },
+      "backend": {
+        "description": "The path the AWS auth backend being configured was",
+        "required": false
+      },
+      "cert_name": {
+        "description": "The name of the certificate.",
+        "required": true
+      },
+      "type": {
+        "description": "Either \"pkcs7\" or \"identity\", indicating the type of",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/aws_auth_backend_cert.html",
+    "properties": [
+      "cert_name",
+      "aws_public_cert",
+      "type",
+      "backend"
+    ]
+  },
+  "vault_aws_auth_backend_client": {
+    "full_properties": {
+      "access_key": {
+        "description": "The AWS access key that Vault should use for the",
+        "required": false
+      },
+      "backend": {
+        "description": "The path the AWS auth backend being configured was",
+        "required": false
+      },
+      "ec2_endpoint": {
+        "description": "Override the URL Vault uses when making EC2 API",
+        "required": false
+      },
+      "iam_endpoint": {
+        "description": "Override the URL Vault uses when making IAM API",
+        "required": false
+      },
+      "iam_server_id_header_value": {
+        "description": "The value to require in the",
+        "required": false
+      },
+      "secret_key": {
+        "description": "The AWS secret key that Vault should use for the",
+        "required": false
+      },
+      "sts_endpoint": {
+        "description": "Override the URL Vault uses when making STS API",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/aws_auth_backend_client.html",
+    "properties": [
+      "backend",
+      "access_key",
+      "secret_key",
+      "ec2_endpoint",
+      "iam_endpoint",
+      "sts_endpoint",
+      "iam_server_id_header_value"
+    ]
+  },
+  "vault_aws_auth_backend_identity_whitelist": {
+    "full_properties": {
+      "backend": {
+        "description": "The path of the AWS backend being configured.",
+        "required": false
+      },
+      "disable_periodic_tidy": {
+        "description": "If set to true, disables the periodic",
+        "required": false
+      },
+      "safety_buffer": {
+        "description": "The amount of extra time, in minutes, that must",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/aws_auth_backend_identity_whitelist.html",
+    "properties": [
+      "backend",
+      "safety_buffer",
+      "disable_periodic_tidy"
+    ]
+  },
+  "vault_aws_auth_backend_login": {
+    "full_properties": {
+      "backend": {
+        "description": "The unique name of the AWS auth backend. Defaults to",
+        "required": false
+      },
+      "iam_http_request_method": {
+        "description": "The HTTP method used in the signed IAM",
+        "required": false
+      },
+      "iam_request_body": {
+        "description": "The base64-encoded body of the signed",
+        "required": false
+      },
+      "iam_request_headers": {
+        "description": "The base64-encoded, JSON serialized",
+        "required": false
+      },
+      "iam_request_url": {
+        "description": "The base64-encoded HTTP URL used in the signed",
+        "required": false
+      },
+      "identity": {
+        "description": "The base64-encoded EC2 instance identity document to",
+        "required": false
+      },
+      "nonce": {
+        "description": "The unique nonce to be used for login requests. Can be",
+        "required": false
+      },
+      "pkcs7": {
+        "description": "The PKCS#7 signature of the identity document to",
+        "required": false
+      },
+      "role": {
+        "description": "The name of the AWS auth backend role to create tokens",
+        "required": false
+      },
+      "signature": {
+        "description": "The base64-encoded SHA256 RSA signature of the",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/aws_auth_backend_login.html",
+    "properties": [
+      "backend",
+      "role",
+      "identity",
+      "signature",
+      "pkcs7",
+      "nonce",
+      "iam_http_request_method",
+      "iam_request_url",
+      "iam_request_body",
+      "iam_request_headers"
+    ]
+  },
+  "vault_aws_auth_backend_role": {
+    "full_properties": {
+      "allow_instance_migration": {
+        "description": "If set to true, allows migration of",
+        "required": false
+      },
+      "auth_type": {
+        "description": "The auth type permitted for this role. Valid choices",
+        "required": false
+      },
+      "bound_account_ids": {
+        "description": "If set, defines a constraint on the EC2",
+        "required": false
+      },
+      "bound_ami_ids": {
+        "description": "If set, defines a constraint on the EC2 instances",
+        "required": false
+      },
+      "bound_iam_instance_profile_arns": {
+        "description": "If set, defines a constraint on",
+        "required": false
+      },
+      "bound_iam_principal_arns": {
+        "description": "If set, defines the IAM principal that",
+        "required": false
+      },
+      "bound_iam_role_arns": {
+        "description": "If set, defines a constraint on the EC2",
+        "required": false
+      },
+      "bound_regions": {
+        "description": "If set, defines a constraint on the EC2 instances",
+        "required": false
+      },
+      "bound_subnet_ids": {
+        "description": "If set, defines a constraint on the EC2",
+        "required": false
+      },
+      "bound_vpc_ids": {
+        "description": "If set, defines a constraint on the EC2 instances",
+        "required": false
+      },
+      "disallow_reauthentication": {
+        "description": "IF set to true, only allows a",
+        "required": false
+      },
+      "inferred_aws_region": {
+        "description": "When inferred_entity_type is set, this",
+        "required": false
+      },
+      "inferred_entity_type": {
+        "description": "If set, instructs Vault to turn on",
+        "required": false
+      },
+      "max_ttl": {
+        "description": "The maximum allowed lifetime of tokens issued using",
+        "required": false
+      },
+      "period": {
+        "description": "If set, indicates that the token generated using this",
+        "required": false
+      },
+      "policies": {
+        "description": "An array of strings specifying the policies to be set",
+        "required": false
+      },
+      "resolve_aws_unique_ids": {
+        "description": "If set to true, the",
+        "required": false
+      },
+      "role": {
+        "description": "The name of the role.",
+        "required": true
+      },
+      "role_tag": {
+        "description": "If set, enable role tags for this role. The value set",
+        "required": false
+      },
+      "ttl": {
+        "description": "The TTL period of tokens issued using this role, provided",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/aws_auth_backend_role.html",
+    "properties": [
+      "role",
+      "auth_type",
+      "bound_ami_ids",
+      "bound_account_ids",
+      "bound_regions",
+      "bound_vpc_ids",
+      "bound_subnet_ids",
+      "bound_iam_role_arns",
+      "bound_iam_instance_profile_arns",
+      "role_tag",
+      "bound_iam_principal_arns",
+      "inferred_entity_type",
+      "inferred_aws_region",
+      "resolve_aws_unique_ids",
+      "ttl",
+      "max_ttl",
+      "period",
+      "policies",
+      "allow_instance_migration",
+      "disallow_reauthentication"
+    ]
+  },
+  "vault_aws_auth_backend_role_tag": {
+    "full_properties": {
+      "allow_instance_migration": {
+        "description": "If set, allows migration of the underlying instances where the client resides. Use with caution.",
+        "required": false
+      },
+      "backend": {
+        "description": "The path to the AWS auth backend to",
+        "required": false
+      },
+      "disallow_reauthentication": {
+        "description": "If set, only allows a single token to be granted per instance ID.",
+        "required": false
+      },
+      "instance_id": {
+        "description": "Instance ID for which this tag is intended for. If set, the created tag can only be used by the instance with the given ID.",
+        "required": false
+      },
+      "max_ttl": {
+        "description": "The maximum TTL of the tokens issued using this role.",
+        "required": false
+      },
+      "policies": {
+        "description": "The policies to be associated with the tag. Must be a subset of the policies associated with the role.",
+        "required": false
+      },
+      "role": {
+        "description": "The name of the AWS auth backend role to read",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vault/r/aws_auth_backend_role_tag.html",
+    "properties": [
+      "role",
+      "backend",
+      "policies",
+      "max_ttl",
+      "instance_id",
+      "allow_instance_migration",
+      "disallow_reauthentication"
+    ]
+  },
+  "vault_aws_auth_backend_roletag_blacklist": {
+    "full_properties": {
+      "backend": {
+        "description": "The path the AWS auth backend being configured was",
+        "required": true
+      },
+      "disable_periodic_tidy": {
+        "description": "If set to true, disables the periodic",
+        "required": false
+      },
+      "safety_buffer": {
+        "description": "The amount of extra time that must have passed",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/aws_auth_backend_roletag_blacklist.html",
+    "properties": [
+      "backend",
+      "safety_buffer",
+      "disable_periodic_tidy"
+    ]
+  },
+  "vault_aws_auth_backend_sts_role": {
+    "full_properties": {
+      "account_id": {
+        "description": "The AWS account ID to configure the STS role for.",
+        "required": false
+      },
+      "backend": {
+        "description": "The path the AWS auth backend being configured was",
+        "required": false
+      },
+      "sts_role": {
+        "description": "The STS role to assume when verifying requests made",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/aws_auth_backend_sts_role.html",
+    "properties": [
+      "account_id",
+      "sts_role",
+      "backend"
+    ]
+  },
+  "vault_aws_secret_backend": {
+    "full_properties": {
+      "access_key": {
+        "description": "The AWS Access Key ID this backend should use to",
+        "required": true
+      },
+      "secret_key": {
+        "description": "The AWS Secret Key this backend should use to",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vault/r/aws_secret_backend.html",
+    "properties": [
+      "access_key",
+      "secret_key"
+    ]
+  },
+  "vault_aws_secret_backend_role": {
+    "full_properties": {
+      "backend": {
+        "description": "The path the AWS secret backend is mounted at,",
+        "required": true
+      },
+      "name": {
+        "description": "The name to identify this role within the backend.",
+        "required": true
+      },
+      "policy": {
+        "description": "The JSON-formatted policy to associate with this",
+        "required": false
+      },
+      "policy_arn": {
+        "description": "The ARN for a pre-existing policy to associate",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/aws_secret_backend_role.html",
+    "properties": [
+      "backend",
+      "name",
+      "policy",
+      "policy_arn"
+    ]
+  },
+  "vault_cert_auth_backend_role": {
+    "full_properties": {
+      "allowed_names": {
+        "description": "Allowed subject names for authenticated client certificates",
+        "required": false
+      },
+      "backend": {
+        "description": "Path to the mounted Cert auth backend",
+        "required": false
+      },
+      "certificate": {
+        "description": "CA certificate used to validate client certificates",
+        "required": true
+      },
+      "display_name": {
+        "description": "The name to display on tokens issued under this role.",
+        "required": false
+      },
+      "max_ttl": {
+        "description": "Maximum TTL of tokens issued by the backend",
+        "required": false
+      },
+      "name": {
+        "description": "Name of the role",
+        "required": true
+      },
+      "period": {
+        "description": "Duration in seconds for token.  If set, the issued token is a periodic token.",
+        "required": false
+      },
+      "policies": {
+        "description": "Policies to grant on the issued token",
+        "required": false
+      },
+      "required_exwtensions": {
+        "description": "TLS extensions required on client certificates",
+        "required": false
+      },
+      "ttl": {
+        "description": "Default TTL of tokens issued by the backend",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/cert_auth_backend_role.html",
+    "properties": [
+      "name",
+      "certificate",
+      "allowed_names",
+      "required_exwtensions",
+      "ttl",
+      "max_ttl",
+      "period",
+      "policies",
+      "display_name",
+      "backend"
+    ]
+  },
+  "vault_consul_secret_backend": {
+    "full_properties": {
+      "token": {
+        "description": "The Consul management token this backend should use to issue new tokens.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vault/r/consul_secret_backend.html",
+    "properties": [
+      "token"
+    ]
+  },
+  "vault_database_secret_backend_connection": {
+    "full_properties": {
+      "allowed_roles": {
+        "description": "A list of roles that are allowed to use this",
+        "required": false
+      },
+      "backend": {
+        "description": "The unique name of the Vault mount to configure.",
+        "required": true
+      },
+      "cassandra": {
+        "description": "A nested block containing configuration options for Cassandra connections.",
+        "required": false
+      },
+      "hana": {
+        "description": "A nested block containing configuration options for SAP HanaDB connections.",
+        "required": false
+      },
+      "mongodb": {
+        "description": "A nested block containing configuration options for MongoDB connections.",
+        "required": false
+      },
+      "mssql": {
+        "description": "A nested block containing configuration options for MSSQL connections.",
+        "required": false
+      },
+      "mysql": {
+        "description": "A nested block containing configuration options for MySQL connections.",
+        "required": false
+      },
+      "mysql_aurora": {
+        "description": "A nested block containing configuration options for Aurora MySQL connections.",
+        "required": false
+      },
+      "mysql_legacy": {
+        "description": "A nested block containing configuration options for legacy MySQL connections.",
+        "required": false
+      },
+      "mysql_rds": {
+        "description": "A nested block containing configuration options for RDS MySQL connections.",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name to give the database connection.",
+        "required": true
+      },
+      "oracle": {
+        "description": "A nested block containing configuration options for Oracle connections.",
+        "required": false
+      },
+      "postgresql": {
+        "description": "A nested block containing configuration options for PostgreSQL connections.",
+        "required": false
+      },
+      "verify_connection": {
+        "description": "Whether the connection should be verified on",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/database_secret_backend_connection.html",
+    "properties": [
+      "name",
+      "backend",
+      "verify_connection",
+      "allowed_roles",
+      "cassandra",
+      "mongodb",
+      "hana",
+      "mssql",
+      "mysql",
+      "mysql_rds",
+      "mysql_aurora",
+      "mysql_legacy",
+      "postgresql",
+      "oracle"
+    ]
+  },
+  "vault_database_secret_backend_role": {
+    "full_properties": {
+      "backend": {
+        "description": "The unique name of the Vault mount to configure.",
+        "required": true
+      },
+      "creation_statements": {
+        "description": "The database statements to execute when",
+        "required": true
+      },
+      "db_name": {
+        "description": "The unique name of the database connection to use for",
+        "required": true
+      },
+      "default_ttl": {
+        "description": "The default number of seconds for leases for this",
+        "required": false
+      },
+      "max_ttl": {
+        "description": "The maximum number of seconds for leases for this",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name to give the role.",
+        "required": true
+      },
+      "renew_statements": {
+        "description": "The database statements to execute when",
+        "required": false
+      },
+      "revocation_statements": {
+        "description": "The database statements to execute when",
+        "required": false
+      },
+      "rollback_statements": {
+        "description": "The database statements to execute when",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/database_secret_backend_role.html",
+    "properties": [
+      "name",
+      "backend",
+      "db_name",
+      "creation_statements",
+      "revocation_statements",
+      "rollback_statements",
+      "renew_statements",
+      "default_ttl",
+      "max_ttl"
+    ]
+  },
+  "vault_gcp_auth_backend_role": {
+    "full_properties": {
+      "backend": {
+        "description": "Path to the mounted GCP auth backend",
+        "required": false
+      },
+      "bound_service_accounts": {
+        "description": "GCP Service Accounts allowed to issue tokens under this role. (Note: Required if role is iamWe)",
+        "required": false
+      },
+      "max_ttl": {
+        "description": "Maximum TTL of tokens issued by the backend",
+        "required": false
+      },
+      "period": {
+        "description": "Duration in seconds for token.  If set, the issued token is a periodic token.",
+        "required": false
+      },
+      "policies": {
+        "description": "Policies to grant on the issued token",
+        "required": false
+      },
+      "project_id": {
+        "description": "GCP Project that the role exists within",
+        "required": true
+      },
+      "role": {
+        "description": "Name of the GCP role",
+        "required": true
+      },
+      "ttl": {
+        "description": "Default TTL of tokens issued by the backend",
+        "required": false
+      },
+      "type": {
+        "description": "Type of GCP authentication role (either gce or iam)",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vault/r/gcp_auth_backend_role.html",
+    "properties": [
+      "role",
+      "type",
+      "project_id",
+      "ttl",
+      "max_ttl",
+      "period",
+      "policies",
+      "backend",
+      "bound_service_accounts"
+    ]
+  },
+  "vault_generic_secret": {
+    "full_properties": {
+      "allow_read": {
+        "description": "True/false. Set this to true if your",
+        "required": false
+      },
+      "data_json": {
+        "description": "String containing a JSON-encoded object that will be",
+        "required": true
+      },
+      "disable_read": {
+        "description": "True/false. Set this to true if your vault",
+        "required": false
+      },
+      "path": {
+        "description": "The full logical path at which to write the given data.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vault/r/generic_secret.html",
+    "properties": [
+      "path",
+      "data_json",
+      "allow_read",
+      "disable_read"
+    ]
+  },
+  "vault_jwt_auth_backend_role": {
+    "full_properties": {
+      "backend": {
+        "description": "The unique name of the auth backend to configure.",
+        "required": false
+      },
+      "bound_audiences": {
+        "description": "List of aud claims to match",
+        "required": true
+      },
+      "bound_cidrs": {
+        "description": "If set, a list of CIDRs valid as the source ",
+        "required": false
+      },
+      "bound_subject": {
+        "description": "If set, requires that the sub claim matches",
+        "required": false
+      },
+      "groups_claim": {
+        "description": "The claim to use to uniquely identify",
+        "required": false
+      },
+      "max_ttl": {
+        "description": "The maximum allowed lifetime of tokens issued using",
+        "required": false
+      },
+      "num_uses": {
+        "description": "If set, puts a use-count limitation on the issued",
+        "required": false
+      },
+      "period": {
+        "description": "If set, indicates that the token generated",
+        "required": false
+      },
+      "policies": {
+        "description": "Policies to be set on tokens issued using this role.",
+        "required": false
+      },
+      "role_name": {
+        "description": "The name of the role.",
+        "required": true
+      },
+      "ttl": {
+        "description": "The initial/renewal TTL of tokens issued using this role,",
+        "required": false
+      },
+      "user_claim": {
+        "description": "The claim to use to uniquely identify",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vault/r/jwt_auth_backend_role.html",
+    "properties": [
+      "role_name",
+      "bound_audiences",
+      "user_claim",
+      "policies",
+      "ttl",
+      "max_ttl",
+      "period",
+      "num_uses",
+      "bound_subject",
+      "bound_cidrs",
+      "groups_claim",
+      "backend"
+    ]
+  },
+  "vault_kubernetes_auth_backend_config": {
+    "full_properties": {
+      "kubernetes_ca_cert": {
+        "description": "PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.",
+        "required": false
+      },
+      "kubernetes_host": {
+        "description": "Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.",
+        "required": true
+      },
+      "pem_keys": {
+        "description": "List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.",
+        "required": false
+      },
+      "token_reviewer_jwt": {
+        "description": "A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/kubernetes_auth_backend_config.html",
+    "properties": [
+      "kubernetes_host",
+      "kubernetes_ca_cert",
+      "token_reviewer_jwt",
+      "pem_keys"
+    ]
+  },
+  "vault_kubernetes_auth_backend_role": {
+    "full_properties": {
+      "backend": {
+        "description": "Unique name of the kubernetes backend to configure.",
+        "required": false
+      },
+      "bound_service_account_names": {
+        "description": "List of service account names able to access this role. If set to \"\" all names are allowed, both this and bound_service_account_namespaces can not be \"\".",
+        "required": false
+      },
+      "bound_service_account_namespaces": {
+        "description": "List of namespaces allowed to access this role. If set to \"\" all namespaces are allowed, both this and bound_service_account_names can not be set to \"\".",
+        "required": false
+      },
+      "max_ttl": {
+        "description": "The maximum allowed lifetime of tokens issued in seconds using this role.",
+        "required": false
+      },
+      "period": {
+        "description": "If set, indicates that the token generated using this role should never expire. The token should be renewed within the duration specified by this value. At each renewal, the token's TTL will be set to the value of this parameter.",
+        "required": false
+      },
+      "policies": {
+        "description": "Policies to be set on tokens issued using this role.",
+        "required": false
+      },
+      "role_name": {
+        "description": "Name of the role.",
+        "required": true
+      },
+      "ttl": {
+        "description": "The TTL period of tokens issued using this role in seconds.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/kubernetes_auth_backend_role.html",
+    "properties": [
+      "role_name",
+      "bound_service_account_names",
+      "bound_service_account_namespaces",
+      "ttl",
+      "max_ttl",
+      "period",
+      "policies",
+      "backend"
+    ]
+  },
+  "vault_ldap_auth_backend": {
+    "full_properties": {
+      "binddn": {
+        "description": "DN of object to bind when performing user search",
+        "required": false
+      },
+      "bindpass": {
+        "description": "Password to use with binddn when performing user search",
+        "required": false
+      },
+      "certificate": {
+        "description": "Trusted CA to validate TLS certificate",
+        "required": false
+      },
+      "deny_null_bind": {
+        "description": "Prevents users from bypassing authentication when providing an empty password.",
+        "required": false
+      },
+      "description": {
+        "description": "Description for the LDAP auth backend mount",
+        "required": false
+      },
+      "discoverdn": {
+        "description": "Use anonymous bind to discover the bind DN of a user.",
+        "required": false
+      },
+      "groupattr": {
+        "description": "LDAP attribute to follow on objects returned by groupfilter",
+        "required": false
+      },
+      "groupdn": {
+        "description": "Base DN under which to perform group search",
+        "required": false
+      },
+      "groupfilter": {
+        "description": "Go template used to construct group membership query",
+        "required": false
+      },
+      "insecure_tls": {
+        "description": "Control whether or TLS certificates must be validated",
+        "required": false
+      },
+      "path": {
+        "description": "Path to mount the LDAP auth backend under",
+        "required": false
+      },
+      "starttls": {
+        "description": "Control use of TLS when conecting to LDAP",
+        "required": false
+      },
+      "tls_max_version": {
+        "description": "Maximum acceptable version of TLS",
+        "required": false
+      },
+      "tls_min_version": {
+        "description": "Minimum acceptable version of TLS",
+        "required": false
+      },
+      "upndomain": {
+        "description": "The userPrincipalDomain used to construct the UPN string for the authenticating user.",
+        "required": false
+      },
+      "url": {
+        "description": "The URL of the LDAP server",
+        "required": true
+      },
+      "userattr": {
+        "description": "Attribute on user object matching username passed in",
+        "required": false
+      },
+      "userdn": {
+        "description": "Base DN under which to perform user search",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/ldap_auth_backend.html",
+    "properties": [
+      "url",
+      "starttls",
+      "tls_min_version",
+      "tls_max_version",
+      "insecure_tls",
+      "certificate",
+      "binddn",
+      "bindpass",
+      "userdn",
+      "userattr",
+      "upndomain",
+      "discoverdn",
+      "deny_null_bind",
+      "groupfilter",
+      "groupdn",
+      "groupattr",
+      "path",
+      "description"
+    ]
+  },
+  "vault_ldap_auth_backend_group": {
+    "full_properties": {
+      "backend": {
+        "description": "Path to the authentication backend",
+        "required": false
+      },
+      "groupname": {
+        "description": "The LDAP groupname",
+        "required": true
+      },
+      "policies": {
+        "description": "Policies which should be granted to members of the group",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/ldap_auth_backend_group.html",
+    "properties": [
+      "groupname",
+      "policies",
+      "backend"
+    ]
+  },
+  "vault_ldap_auth_backend_user": {
+    "full_properties": {
+      "backend": {
+        "description": "Path to the authentication backend",
+        "required": false
+      },
+      "groups": {
+        "description": "Override LDAP groups which should be granted to user",
+        "required": false
+      },
+      "policies": {
+        "description": "Policies which should be granted to user",
+        "required": false
+      },
+      "username": {
+        "description": "The LDAP username",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vault/r/ldap_auth_backend_user.html",
+    "properties": [
+      "username",
+      "policies",
+      "groups",
+      "backend"
+    ]
+  },
+  "vault_mount": {
+    "full_properties": {
+      "default_lease_ttl_seconds": {
+        "description": "Default lease duration for tokens and secrets in seconds",
+        "required": false
+      },
+      "description": {
+        "description": "Human-friendly description of the mount",
+        "required": false
+      },
+      "max_lease_ttl_seconds": {
+        "description": "Maximum possible lease duration for tokens and secrets in seconds",
+        "required": false
+      },
+      "options": {
+        "description": "Specifies mount type specific options that are passed to the backend",
+        "required": false
+      },
+      "path": {
+        "description": "Where the secret backend will be mounted",
+        "required": true
+      },
+      "type": {
+        "description": "Type of the backend, such as \"aws\"",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vault/r/mount.html",
+    "properties": [
+      "path",
+      "type",
+      "description",
+      "default_lease_ttl_seconds",
+      "max_lease_ttl_seconds",
+      "options"
+    ]
+  },
+  "vault_okta_auth_backend": {
+    "full_properties": {
+      "base_url": {
+        "description": "The Okta url. Examples: oktapreview.com, okta.com",
+        "required": false
+      },
+      "bypass_okta_mfa": {
+        "description": "When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.",
+        "required": false
+      },
+      "description": {
+        "description": "The description of the auth backend",
+        "required": false
+      },
+      "group": {
+        "description": "Associate Okta groups with policies within Vault.",
+        "required": false
+      },
+      "max_ttl": {
+        "description": "Maximum duration after which authentication will be expired",
+        "required": false
+      },
+      "organization": {
+        "description": "The Okta organization. This will be the first part of the url https://XXX.okta.com",
+        "required": true
+      },
+      "path": {
+        "description": "Path to mount the Okta auth backend",
+        "required": true
+      },
+      "token": {
+        "description": "The Okta API token. This is required to query Okta for user group membership.",
+        "required": false
+      },
+      "ttl": {
+        "description": "Duration after which authentication will be expired.",
+        "required": false
+      },
+      "user": {
+        "description": "Associate Okta users with groups or policies within Vault.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/okta_auth_backend.html",
+    "properties": [
+      "path",
+      "description",
+      "organization",
+      "token",
+      "base_url",
+      "bypass_okta_mfa",
+      "ttl",
+      "max_ttl",
+      "group",
+      "user"
+    ]
+  },
+  "vault_okta_auth_backend_group": {
+    "full_properties": {
+      "group_name": {
+        "description": "Name of the group within the Okta",
+        "required": true
+      },
+      "path": {
+        "description": "The path where the Okta auth backend is mounted",
+        "required": true
+      },
+      "policies": {
+        "description": "Vault policies to associate with this group",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/okta_auth_backend_group.html",
+    "properties": [
+      "path",
+      "group_name",
+      "policies"
+    ]
+  },
+  "vault_okta_auth_backend_user": {
+    "full_properties": {
+      "groups": {
+        "description": "List of Okta groups to associate with this user",
+        "required": false
+      },
+      "path": {
+        "description": "The path where the Okta auth backend is mounted",
+        "required": true
+      },
+      "policies": {
+        "description": "List of Vault policies to associate with this user",
+        "required": false
+      },
+      "username": {
+        "description": "Name of the user within Okta",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/okta_auth_backend_user.html",
+    "properties": [
+      "path",
+      "username",
+      "groups",
+      "policies"
+    ]
+  },
+  "vault_policy": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the policy",
+        "required": true
+      },
+      "policy": {
+        "description": "String containing a Vault policy",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/vault/r/policy.html",
+    "properties": [
+      "name",
+      "policy"
+    ]
+  },
+  "vault_rabbitmq_secret_backend": {
+    "full_properties": {
+      "connection_uri": {
+        "description": "Specifies the RabbitMQ connection URI.",
+        "required": true
+      },
+      "password": {
+        "description": "Specifies the RabbitMQ management administrator password.",
+        "required": true
+      },
+      "username": {
+        "description": "Specifies the RabbitMQ management administrator username.",
+        "required": true
+      },
+      "verify_connection": {
+        "description": "Specifies whether to verify connection URI, username, and password.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/rabbitmq_secret_backend.html",
+    "properties": [
+      "connection_uri",
+      "username",
+      "password",
+      "verify_connection"
+    ]
+  },
+  "vault_rabbitmq_secret_backend_role": {
+    "full_properties": {
+      "backend": {
+        "description": "The path the RabbitMQ secret backend is mounted at,",
+        "required": true
+      },
+      "name": {
+        "description": "The name to identify this role within the backend.",
+        "required": true
+      },
+      "tags": {
+        "description": "Specifies a comma-separated RabbitMQ management tags.",
+        "required": false
+      },
+      "vhost": {
+        "description": "Specifies a map of virtual hosts to permissions.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/rabbitmq_secret_backend_role.html",
+    "properties": [
+      "backend",
+      "name",
+      "tags",
+      "vhost"
+    ]
+  },
+  "vault_ssh_secret_backend_ca": {
+    "full_properties": {
+      "backend": {
+        "description": "The path where the SSH secret backend is mounted. Defaults to 'ssh'",
+        "required": false
+      },
+      "generate_signing_key": {
+        "description": "Whether Vault should generate the signing key pair internally. Defaults to true",
+        "required": false
+      },
+      "private_key": {
+        "description": "The private key part the SSH CA key pair; required if generate_signing_key is false.",
+        "required": false
+      },
+      "public_key": {
+        "description": "The public key part the SSH CA key pair; required if generate_signing_key is false.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/ssh_secret_backend_ca.html",
+    "properties": [
+      "backend",
+      "generate_signing_key",
+      "public_key",
+      "private_key"
+    ]
+  },
+  "vault_token_auth_backend_role": {
+    "full_properties": {
+      "allowed_policies": {
+        "description": "List of allowed policies for given role.",
+        "required": false
+      },
+      "disallowed_policies": {
+        "description": "List of disallowed policies for given role.",
+        "required": false
+      },
+      "explicit_max_ttl": {
+        "description": "If set, the token will have an explicit max TTL set upon it.",
+        "required": false
+      },
+      "max_ttl": {
+        "description": "The maximum allowed lifetime of tokens issued using this role.",
+        "required": false
+      },
+      "orphan": {
+        "description": "If true, tokens created against this policy will be orphan tokens.",
+        "required": false
+      },
+      "path_suffix": {
+        "description": "Tokens created against this role will have the given suffix as part of their path in addition to the role name.",
+        "required": false
+      },
+      "period": {
+        "description": "The duration in which a token should be renewed. At each renewal, the token's TTL will be set to the value of this parameter.",
+        "required": false
+      },
+      "renewable": {
+        "description": "Wether to disable the ability of the token to be renewed past its initial TTL.",
+        "required": false
+      },
+      "role_name": {
+        "description": "The name of the role.",
+        "required": true
+      },
+      "ttl": {
+        "description": "The TTL period of tokens issued using this role, provided as the number of minutes.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/vault/r/token_auth_backend_role.html",
+    "properties": [
+      "role_name",
+      "allowed_policies",
+      "disallowed_policies",
+      "orphan",
+      "period",
+      "renewable",
+      "explicit_max_ttl",
+      "path_suffix",
+      "ttl",
+      "max_ttl"
+    ]
+  }
+}

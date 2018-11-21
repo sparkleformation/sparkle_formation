@@ -1,0 +1,24 @@
+{
+  "projects": {
+    "full_properties": {
+      "google_project_iam_binding": {
+        "description": "Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the project are preserved.",
+        "required": false
+      },
+      "google_project_iam_member": {
+        "description": "Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the project are preserved.",
+        "required": false
+      },
+      "google_project_iam_policy": {
+        "description": "Authoritative. Sets the IAM policy for the project and replaces any existing policy already attached.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/google/r/google_project_iam.html",
+    "properties": [
+      "google_project_iam_policy",
+      "google_project_iam_binding",
+      "google_project_iam_member"
+    ]
+  }
+}

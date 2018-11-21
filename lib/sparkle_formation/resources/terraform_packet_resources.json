@@ -1,0 +1,295 @@
+{
+  "packet_device": {
+    "full_properties": {
+      "always_pxe": {
+        "description": "- If true, a device with OS custom_ipxe will",
+        "required": false
+      },
+      "billing_cycle": {
+        "description": "monthly or hourly",
+        "required": true
+      },
+      "description": {
+        "description": "Description string for the device",
+        "required": false
+      },
+      "facility": {
+        "description": "The facility in which to create the device. To find the facility code, visit Facilities API docs, set your API auth token in the top of the page and see JSON from the API response.",
+        "required": true
+      },
+      "hardware_reservation_id": {
+        "description": "- The id of hardware reservation where you want this device deployed, or next-available if you want to pick your next available reservation automatically.",
+        "required": false
+      },
+      "hostname": {
+        "description": "The device name",
+        "required": true
+      },
+      "ipxe_script_url": {
+        "description": "- URL pointing to a hosted iPXE script. More",
+        "required": false
+      },
+      "operating_system": {
+        "description": "The operating system slug. To find the slug, or visit Operating Systems API docs, set your API auth token in the top of the page and see JSON from the API response.",
+        "required": true
+      },
+      "plan": {
+        "description": "The device plan slug. To find the plan slug, visit Device plans API docs, set your auth token in the top of the page and see JSON from the API response.",
+        "required": true
+      },
+      "project_id": {
+        "description": "The id of the project in which to create the device",
+        "required": true
+      },
+      "public_ipv4_subnet_size": {
+        "description": "- Size of allocated subnet, more",
+        "required": false
+      },
+      "storage": {
+        "description": "- JSON for custom partitioning. Only usable on reserved hardware. More information in in the Custom Partitioning and RAID doc.",
+        "required": false
+      },
+      "tags": {
+        "description": "Tags attached to the device",
+        "required": false
+      },
+      "user_data": {
+        "description": "- A string of the desired User Data for the device.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/packet/r/device.html",
+    "properties": [
+      "hostname",
+      "project_id",
+      "operating_system",
+      "facility",
+      "plan",
+      "billing_cycle",
+      "user_data",
+      "public_ipv4_subnet_size",
+      "ipxe_script_url",
+      "always_pxe",
+      "hardware_reservation_id",
+      "storage",
+      "tags",
+      "description"
+    ]
+  },
+  "packet_ip_attachment": {
+    "full_properties": {
+      "cidr_notation": {
+        "description": "CIDR notation of subnet from block reserved in the same",
+        "required": true
+      },
+      "device_id": {
+        "description": "ID of device to which to assign the subnet",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/packet/r/ip_attachment.html",
+    "properties": [
+      "device_id",
+      "cidr_notation"
+    ]
+  },
+  "packet_organization": {
+    "full_properties": {
+      "description": {
+        "description": "Description string.",
+        "required": false
+      },
+      "logo": {
+        "description": "Logo URL.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the Organization.",
+        "required": true
+      },
+      "twitter": {
+        "description": "Twitter handle.",
+        "required": false
+      },
+      "website": {
+        "description": "Website link.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/packet/r/organization.html",
+    "properties": [
+      "name",
+      "description",
+      "website",
+      "twitter",
+      "logo"
+    ]
+  },
+  "packet_project": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the Project on Packet.net",
+        "required": true
+      },
+      "organization_id": {
+        "description": "The UUID of Organization under which you want to create the project. If you leave it out, the project will be create under your the default Organization of your account.",
+        "required": false
+      },
+      "payment_method_id": {
+        "description": "The UUID of payment method for this project. If you keep it empty, Packet API will pick your default Payment Method.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/packet/r/project.html",
+    "properties": [
+      "name",
+      "payment_method_id",
+      "organization_id"
+    ]
+  },
+  "packet_reserved_ip_block": {
+    "full_properties": {
+      "facility": {
+        "description": "The facility where to allocate the address block",
+        "required": true
+      },
+      "project_id": {
+        "description": "The packet project ID where to allocate the address block",
+        "required": true
+      },
+      "quantity": {
+        "description": "The number of allocated /32 addresses, a power of 2",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/packet/r/reserved_ip_block.html",
+    "properties": [
+      "facility",
+      "project_id",
+      "quantity"
+    ]
+  },
+  "packet_spot_market_request": {
+    "full_properties": {
+      "devices_max": {
+        "description": "Maximum number devices to be created",
+        "required": true
+      },
+      "devices_min": {
+        "description": "Miniumum number devices to be created",
+        "required": true
+      },
+      "facilities": {
+        "description": "Facility IDs where devices should be created",
+        "required": true
+      },
+      "instance_parameters": {
+        "description": "Device parameters. See device resource for details",
+        "required": true
+      },
+      "max_bid_price": {
+        "description": "Maximum price user is willing to pay per hour per device",
+        "required": true
+      },
+      "project_id": {
+        "description": "Project ID",
+        "required": true
+      },
+      "wait_for_devices": {
+        "description": "On resource creation - wait until all desired devices are active, on resource destruction - wait until devices are removed",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/packet/r/spot_market_request.html",
+    "properties": [
+      "devices_max",
+      "devices_min",
+      "max_bid_price",
+      "facilities",
+      "instance_parameters",
+      "project_id",
+      "wait_for_devices"
+    ]
+  },
+  "packet_ssh_key": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the SSH key for identification",
+        "required": true
+      },
+      "public_key": {
+        "description": "The public key. If this is a file, it",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/packet/r/ssh_key.html",
+    "properties": [
+      "name",
+      "public_key"
+    ]
+  },
+  "packet_volume": {
+    "full_properties": {
+      "billing_cycle": {
+        "description": "The billing cycle, defaults to \"hourly\"",
+        "required": false
+      },
+      "description": {
+        "description": "Optional description for the volume",
+        "required": false
+      },
+      "facility": {
+        "description": "The facility to create the volume in",
+        "required": true
+      },
+      "locked": {
+        "description": "Lock or unlock the volume",
+        "required": false
+      },
+      "plan": {
+        "description": "The service plan slug of the volume",
+        "required": true
+      },
+      "project_id": {
+        "description": "The packet project ID to deploy the volume in",
+        "required": true
+      },
+      "size": {
+        "description": "The size in GB to make the volume",
+        "required": true
+      },
+      "snapshot_policies": {
+        "description": "Optional list of snapshot policies",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/packet/r/volume.html",
+    "properties": [
+      "plan",
+      "facility",
+      "project_id",
+      "size",
+      "billing_cycle",
+      "description",
+      "snapshot_policies",
+      "locked"
+    ]
+  },
+  "packet_volume_attachment": {
+    "full_properties": {
+      "device_id": {
+        "description": "The ID of the device to which the volume should be attached",
+        "required": true
+      },
+      "volume_id": {
+        "description": "The ID of the volume to attach",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/packet/r/volume_attachment.html",
+    "properties": [
+      "volume_id",
+      "device_id"
+    ]
+  }
+}

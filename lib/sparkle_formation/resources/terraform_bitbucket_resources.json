@@ -1,0 +1,123 @@
+{
+  "bitbucket_default_reviewers": {
+    "full_properties": {
+      "owner": {
+        "description": "The owner of this repository. Can be you or any team you",
+        "required": true
+      },
+      "repository": {
+        "description": "The name of the repository.",
+        "required": true
+      },
+      "reviewers": {
+        "description": "A list of reviewers to use.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/bitbucket/r/default_reviewers.html",
+    "properties": [
+      "owner",
+      "repository",
+      "reviewers"
+    ]
+  },
+  "bitbucket_hook": {
+    "full_properties": {
+      "description": {
+        "description": "The name / description to show in the UI.",
+        "required": true
+      },
+      "events": {
+        "description": "The event you want to react on.",
+        "required": true
+      },
+      "owner": {
+        "description": "The owner of this repository. Can be you or any team you",
+        "required": true
+      },
+      "repository": {
+        "description": "The name of the repository.",
+        "required": true
+      },
+      "url": {
+        "description": "Where to POST to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/bitbucket/r/hook.html",
+    "properties": [
+      "owner",
+      "repository",
+      "url",
+      "description",
+      "events"
+    ]
+  },
+  "bitbucket_repository": {
+    "full_properties": {
+      "description": {
+        "description": "What the description of the repo is.",
+        "required": false
+      },
+      "fork_policy": {
+        "description": "What the fork policy should be. Defaults to",
+        "required": false
+      },
+      "has_issues": {
+        "description": "If this should have issues turned on or not.",
+        "required": false
+      },
+      "has_wiki": {
+        "description": "If this should have wiki turned on or not.",
+        "required": false
+      },
+      "is_private": {
+        "description": "If this should be private or not. Defaults to true.",
+        "required": false
+      },
+      "language": {
+        "description": "What the language of this repository should be.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the repository.",
+        "required": true
+      },
+      "owner": {
+        "description": "The owner of this repository. Can be you or any team you",
+        "required": true
+      },
+      "project_key": {
+        "description": "If you want to have this repo associated with a",
+        "required": false
+      },
+      "scm": {
+        "description": "What SCM you want to use. Valid options are hg or git.",
+        "required": false
+      },
+      "slug": {
+        "description": "The slug of the repository.",
+        "required": false
+      },
+      "website": {
+        "description": "URL of website associated with this repository.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/bitbucket/r/repository.html",
+    "properties": [
+      "owner",
+      "name",
+      "slug",
+      "scm",
+      "is_private",
+      "website",
+      "language",
+      "has_issues",
+      "has_wiki",
+      "project_key",
+      "fork_policy",
+      "description"
+    ]
+  }
+}

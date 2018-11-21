@@ -1,0 +1,167 @@
+{
+  "runscope_bucket": {
+    "full_properties": {
+      "name": {
+        "description": "The name of this bucket.",
+        "required": false
+      },
+      "team_uuid": {
+        "description": "Unique identifier for the team this bucket",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/runscope/r/bucket.html",
+    "properties": [
+      "name",
+      "team_uuid"
+    ]
+  },
+  "runscope_environment": {
+    "full_properties": {
+      "bucket_id": {
+        "description": "The id of the bucket to associate this environment with.",
+        "required": true
+      },
+      "emails": {
+        "description": "A list of settings for sending email notifications upon completion of a test run using this environment. Emails block is documented below",
+        "required": false
+      },
+      "initial_variables": {
+        "description": "Map of keys and values being used for variables when the test begins.",
+        "required": false
+      },
+      "integrations": {
+        "description": "A list of integration ids to enable for test runs using this environment.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of environment.",
+        "required": true
+      },
+      "preserve_cookies": {
+        "description": "If this is set to true, tests using this enviornment will manage cookies between steps.",
+        "required": false
+      },
+      "regions": {
+        "description": "A list of Runscope regions to execute test runs in when using this environment.",
+        "required": false
+      },
+      "remote_agents": {
+        "description": "A list of Remote Agents to execute test runs in when using this environment.",
+        "required": false
+      },
+      "script": {
+        "description": "The script",
+        "required": false
+      },
+      "test_id": {
+        "description": "The id of the test to associate this environment with.",
+        "required": false
+      },
+      "webhooks": {
+        "description": "A list of URL's to send results to when test runs using this environment finish.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/runscope/r/environment.html",
+    "properties": [
+      "bucket_id",
+      "test_id",
+      "name",
+      "script",
+      "preserve_cookies",
+      "initial_variables",
+      "integrations",
+      "regions",
+      "remote_agents",
+      "webhooks",
+      "emails"
+    ]
+  },
+  "runscope_schedule": {
+    "full_properties": {
+      "": {
+        "description": "1d — every day.",
+        "required": false
+      },
+      "bucket_id": {
+        "description": "The id of the bucket to associate this schedule with.",
+        "required": true
+      },
+      "environment_id": {
+        "description": "The id of the environment to use when running the test.",
+        "required": true
+      },
+      "interval": {
+        "description": "The schedule's interval, must be one of:",
+        "required": true
+      },
+      "note": {
+        "description": "A human-friendly description for the schedule.",
+        "required": false
+      },
+      "test_id": {
+        "description": "The id of the test to associate this schedule with.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/runscope/r/schedule.html",
+    "properties": [
+      "bucket_id",
+      "test_id",
+      "environment_id",
+      "interval",
+      "",
+      "note"
+    ]
+  },
+  "runscope_step": {
+    "full_properties": {
+      "": {
+        "description": "subtest",
+        "required": false
+      },
+      "bucket_id": {
+        "description": "The id of the bucket to associate this step with.",
+        "required": true
+      },
+      "note": {
+        "description": "= (Optional) A comment attached to the test step.",
+        "required": false
+      },
+      "step_type": {
+        "description": "The type of step.",
+        "required": true
+      },
+      "test_id": {
+        "description": "The id of the test to associate this step with.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/runscope/r/step.html",
+    "properties": [
+      "bucket_id",
+      "test_id",
+      "note",
+      "step_type",
+      ""
+    ]
+  },
+  "runscope_test": {
+    "full_properties": {
+      "description": {
+        "description": "Human-readable description of the new test.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of this test.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/runscope/r/test.html",
+    "properties": [
+      "name",
+      "description"
+    ]
+  }
+}

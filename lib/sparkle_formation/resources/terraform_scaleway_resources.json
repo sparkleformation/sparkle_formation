@@ -1,0 +1,267 @@
+{
+  "scaleway_bucket": {
+    "full_properties": {
+      "name": {
+        "description": "Name of the Scaleway objectstorage bucket",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/scaleway/r/bucket.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "scaleway_ip": {
+    "full_properties": {
+      "reverse": {
+        "description": "Reverse DNS of the IP",
+        "required": false
+      },
+      "server": {
+        "description": "ID of server to associate IP with",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/scaleway/r/ip.html",
+    "properties": [
+      "server",
+      "reverse"
+    ]
+  },
+  "scaleway_security_group": {
+    "full_properties": {
+      "description": {
+        "description": "description of security group",
+        "required": true
+      },
+      "enable_default_security": {
+        "description": "default: true. Add default security group rules",
+        "required": false
+      },
+      "name": {
+        "description": "name of security group",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/scaleway/r/security_group.html",
+    "properties": [
+      "name",
+      "description",
+      "enable_default_security"
+    ]
+  },
+  "scaleway_security_group_rule": {
+    "full_properties": {
+      "action": {
+        "description": "action of rule (accept, drop)",
+        "required": true
+      },
+      "direction": {
+        "description": "direction of rule (inbound, outbound)",
+        "required": true
+      },
+      "ip_range": {
+        "description": "ip_range of rule",
+        "required": true
+      },
+      "port": {
+        "description": "port of the rule",
+        "required": false
+      },
+      "protocol": {
+        "description": "protocol of rule (ICMP, TCP, UDP)",
+        "required": true
+      },
+      "security_group": {
+        "description": "the security group which should be associated with this rule",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/scaleway/r/security_group_rule.html",
+    "properties": [
+      "security_group",
+      "action",
+      "direction",
+      "ip_range",
+      "protocol",
+      "port"
+    ]
+  },
+  "scaleway_server": {
+    "full_properties": {
+      "boot_type": {
+        "description": "the boot mechanism for this server. Possible values include local and bootscript",
+        "required": false
+      },
+      "bootscript": {
+        "description": "server bootscript",
+        "required": false
+      },
+      "dynamic_ip_required": {
+        "description": "make server publicly available",
+        "required": false
+      },
+      "enable_ipv6": {
+        "description": "enable ipv6",
+        "required": false
+      },
+      "image": {
+        "description": "base image of server",
+        "required": true
+      },
+      "name": {
+        "description": "name of server",
+        "required": true
+      },
+      "public_ip": {
+        "description": "set a public ip previously created (a real ip is expected here, not its resource id)",
+        "required": false
+      },
+      "public_ipv6": {
+        "description": "if enable_ipv6 is set this contains the ipv6 address of your instance",
+        "required": false
+      },
+      "security_group": {
+        "description": "assign security group to server",
+        "required": false
+      },
+      "state": {
+        "description": "allows you to define the desired state of your server. Valid values include (stopped, running)",
+        "required": false
+      },
+      "state_detail": {
+        "description": "contains details from the scaleway API the state of your instance",
+        "required": false
+      },
+      "tags": {
+        "description": "list of tags for server",
+        "required": false
+      },
+      "type": {
+        "description": "type of server",
+        "required": true
+      },
+      "volume": {
+        "description": "attach additional volumes to your instance (see below)",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/scaleway/r/server.html",
+    "properties": [
+      "name",
+      "image",
+      "type",
+      "bootscript",
+      "boot_type",
+      "tags",
+      "enable_ipv6",
+      "dynamic_ip_required",
+      "public_ip",
+      "security_group",
+      "volume",
+      "public_ipv6",
+      "state",
+      "state_detail"
+    ]
+  },
+  "scaleway_ssh_key": {
+    "full_properties": {
+      "key": {
+        "description": "public key of the SSH key to be added",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/scaleway/r/ssh_key.html",
+    "properties": [
+      "key"
+    ]
+  },
+  "scaleway_token": {
+    "full_properties": {
+      "description": {
+        "description": "Token description",
+        "required": false
+      },
+      "email": {
+        "description": "Scaleway account email. Defaults to registered account",
+        "required": false
+      },
+      "expires": {
+        "description": "Define if the token should automatically expire or not",
+        "required": false
+      },
+      "password": {
+        "description": "Scaleway account password. Required for cross-account token management",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/scaleway/r/token.html",
+    "properties": [
+      "expires",
+      "email",
+      "password",
+      "description"
+    ]
+  },
+  "scaleway_user_data": {
+    "full_properties": {
+      "key": {
+        "description": "The key of the user data object",
+        "required": true
+      },
+      "server": {
+        "description": "ID of server to associate the user data with",
+        "required": true
+      },
+      "value": {
+        "description": "The value of the user data object",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/scaleway/r/user_data.html",
+    "properties": [
+      "server",
+      "key",
+      "value"
+    ]
+  },
+  "scaleway_volume": {
+    "full_properties": {
+      "name": {
+        "description": "name of volume",
+        "required": true
+      },
+      "size_in_gb": {
+        "description": "size of the volume in GB",
+        "required": true
+      },
+      "type": {
+        "description": "type of volume",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/scaleway/r/volume.html",
+    "properties": [
+      "name",
+      "size_in_gb",
+      "type"
+    ]
+  },
+  "scaleway_volume_attachment": {
+    "full_properties": {
+      "server": {
+        "description": "id of the server",
+        "required": true
+      },
+      "volume": {
+        "description": "id of the volume to be attached",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/scaleway/r/volume_attachment.html",
+    "properties": [
+      "server",
+      "volume"
+    ]
+  }
+}

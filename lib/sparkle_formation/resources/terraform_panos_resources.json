@@ -1,0 +1,2686 @@
+{
+  "panos_address_group": {
+    "full_properties": {
+      "description": {
+        "description": "The address group's description.",
+        "required": false
+      },
+      "dynamic_match": {
+        "description": "The IP tags to include in this DAG.",
+        "required": false
+      },
+      "name": {
+        "description": "The address group's name.",
+        "required": true
+      },
+      "static_addresses": {
+        "description": "The address objects to include in this",
+        "required": false
+      },
+      "tags": {
+        "description": "List of administrative tags.",
+        "required": false
+      },
+      "vsys": {
+        "description": "The vsys to put the address group into (default:",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/address_group.html",
+    "properties": [
+      "name",
+      "vsys",
+      "static_addresses",
+      "dynamic_match",
+      "description",
+      "tags"
+    ]
+  },
+  "panos_address_object": {
+    "full_properties": {
+      "description": {
+        "description": "The address object's description.",
+        "required": false
+      },
+      "name": {
+        "description": "The address object's name.",
+        "required": true
+      },
+      "tags": {
+        "description": "List of administrative tags.",
+        "required": false
+      },
+      "type": {
+        "description": "The type of address object.  This can be ip-netmask",
+        "required": false
+      },
+      "value": {
+        "description": "The address object's value.  This can take various",
+        "required": true
+      },
+      "vsys": {
+        "description": "The vsys to put the address object into (default:",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/address_object.html",
+    "properties": [
+      "name",
+      "vsys",
+      "type",
+      "value",
+      "description",
+      "tags"
+    ]
+  },
+  "panos_administrative_tag": {
+    "full_properties": {
+      "color": {
+        "description": "The tag's color.  This should be either an empty string",
+        "required": false
+      },
+      "comment": {
+        "description": "The administrative tag's description.",
+        "required": false
+      },
+      "name": {
+        "description": "The administrative tag's name.",
+        "required": true
+      },
+      "vsys": {
+        "description": "The vsys to put the administrative tag into (default:",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/administrative_tag.html",
+    "properties": [
+      "name",
+      "vsys",
+      "color",
+      "comment"
+    ]
+  },
+  "panos_dag_tags": {
+    "full_properties": {
+      "register": {
+        "description": "A set that includes ip, the IP address to be tagged",
+        "required": true
+      },
+      "vsys": {
+        "description": "The vsys to put the DAG tags in (default: vsys1).",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/dag_tags.html",
+    "properties": [
+      "vsys",
+      "register"
+    ]
+  },
+  "panos_edl": {
+    "full_properties": {
+      "24hr hour": {
+        "description": "A two character hour string in 24hr notation (e.g. - 09 or 15)",
+        "required": false
+      },
+      "24hr time": {
+        "description": "A five character hour/minute string in 24hr notation (e.g. - 09:00 or 23:59)",
+        "required": false
+      },
+      "N/A": {
+        "description": "repeat_at should not be set",
+        "required": false
+      },
+      "minute": {
+        "description": "A two character minute string (e.g. - 07 or 59)",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/edl.html",
+    "properties": [
+      "N/A",
+      "minute",
+      "24hr hour",
+      "24hr time"
+    ]
+  },
+  "panos_ethernet_interface": {
+    "full_properties": {
+      "adjust_tcp_mss": {
+        "description": "Adjust TCP MSS (default: false).",
+        "required": false
+      },
+      "aggregate_group": {
+        "description": "The aggregate group (applicable for",
+        "required": false
+      },
+      "comment": {
+        "description": "The interface comment.",
+        "required": false
+      },
+      "create_dhcp_default_route": {
+        "description": "Set to true to create a DHCP",
+        "required": false
+      },
+      "dhcp_default_route_metric": {
+        "description": "The metric for the DHCP default",
+        "required": false
+      },
+      "enable_dhcp": {
+        "description": "Set to true to enable DHCP on this interface.",
+        "required": false
+      },
+      "ipv4_mss_adjust": {
+        "description": "The IPv4 MSS adjust value.",
+        "required": false
+      },
+      "ipv6_enabled": {
+        "description": "Set to true to enable IPv6.",
+        "required": false
+      },
+      "ipv6_mss_adjust": {
+        "description": "The IPv6 MSS adjust value.",
+        "required": false
+      },
+      "link_duplex": {
+        "description": "Link duplex setting.  This can be full, half,",
+        "required": false
+      },
+      "link_speed": {
+        "description": "Link speed.  This can be any of the following:",
+        "required": false
+      },
+      "link_state": {
+        "description": "The link state.  This can be up, down, or",
+        "required": false
+      },
+      "lldp_enabled": {
+        "description": "Enable LLDP (default: false).",
+        "required": false
+      },
+      "lldp_profile": {
+        "description": "LLDP profile.",
+        "required": false
+      },
+      "management_profile": {
+        "description": "The management profile.",
+        "required": false
+      },
+      "mode": {
+        "description": "The interface mode.  This can be any of the following",
+        "required": true
+      },
+      "mtu": {
+        "description": "The MTU.",
+        "required": false
+      },
+      "name": {
+        "description": "The ethernet interface's name.  This should be something",
+        "required": true
+      },
+      "netflow_profile": {
+        "description": "The netflow profile.",
+        "required": false
+      },
+      "static_ips": {
+        "description": "List of static IPv4 addresses to set for this data",
+        "required": false
+      },
+      "vsys": {
+        "description": "The vsys that will use this interface.  This should be",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/panos/r/ethernet_interface.html",
+    "properties": [
+      "name",
+      "vsys",
+      "mode",
+      "static_ips",
+      "enable_dhcp",
+      "create_dhcp_default_route",
+      "dhcp_default_route_metric",
+      "ipv6_enabled",
+      "management_profile",
+      "mtu",
+      "adjust_tcp_mss",
+      "netflow_profile",
+      "lldp_enabled",
+      "lldp_profile",
+      "link_speed",
+      "link_duplex",
+      "link_state",
+      "aggregate_group",
+      "comment",
+      "ipv4_mss_adjust",
+      "ipv6_mss_adjust"
+    ]
+  },
+  "panos_general_settings": {
+    "full_properties": {
+      "dns_primary": {
+        "description": "Primary DNS server.",
+        "required": false
+      },
+      "dns_secondary": {
+        "description": "Secondary DNS server.",
+        "required": false
+      },
+      "domain": {
+        "description": "The domain.",
+        "required": false
+      },
+      "hostname": {
+        "description": "Firewall hostname.",
+        "required": false
+      },
+      "ntp_primary_address": {
+        "description": "Primary NTP server.",
+        "required": false
+      },
+      "ntp_primary_algorithm": {
+        "description": "Primary NTP symmetric-key algorithm.  This can be",
+        "required": false
+      },
+      "ntp_primary_auth_key": {
+        "description": "Primary NTP symmetric-key auth key.  This is the",
+        "required": false
+      },
+      "ntp_primary_auth_type": {
+        "description": "Primary NTP auth type.  This can be none,",
+        "required": false
+      },
+      "ntp_primary_key_id": {
+        "description": "Primary NTP symmetric-key key ID.",
+        "required": false
+      },
+      "ntp_secondary_address": {
+        "description": "Secondary NTP server.",
+        "required": false
+      },
+      "ntp_secondary_algorithm": {
+        "description": "Secondary NTP symmetric-key algorithm.  This",
+        "required": false
+      },
+      "ntp_secondary_auth_key": {
+        "description": "Secondary NTP symmetric-key auth key.  This is",
+        "required": false
+      },
+      "ntp_secondary_auth_type": {
+        "description": "Secondary NTP auth type.  This can be none,",
+        "required": false
+      },
+      "ntp_secondary_key_id": {
+        "description": "Secondary NTP symmetric-key key ID.",
+        "required": false
+      },
+      "timezone": {
+        "description": "The timezone (e.g. - US/Pacific).",
+        "required": false
+      },
+      "update_server": {
+        "description": "The update server (Default: updates.paloaltonetworks.com).",
+        "required": false
+      },
+      "verify_update_server": {
+        "description": "Verify update server identity (Default: true).",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/general_settings.html",
+    "properties": [
+      "hostname",
+      "timezone",
+      "domain",
+      "update_server",
+      "verify_update_server",
+      "dns_primary",
+      "dns_secondary",
+      "ntp_primary_address",
+      "ntp_primary_auth_type",
+      "ntp_primary_key_id",
+      "ntp_primary_algorithm",
+      "ntp_primary_auth_key",
+      "ntp_secondary_address",
+      "ntp_secondary_auth_type",
+      "ntp_secondary_key_id",
+      "ntp_secondary_algorithm",
+      "ntp_secondary_auth_key"
+    ]
+  },
+  "panos_ike_crypto_profile": {
+    "full_properties": {
+      "authentication_multiple": {
+        "description": "IKEv2 SA",
+        "required": false
+      },
+      "authentications": {
+        "description": "List of authentication types.  This c",
+        "required": false
+      },
+      "dh_groups": {
+        "description": "List of DH Group entries.  Values should",
+        "required": false
+      },
+      "encryptions": {
+        "description": "List of encryption types.  Valid values",
+        "required": false
+      },
+      "lifetime_type": {
+        "description": "The lifetime type.  Valid values are seconds,",
+        "required": false
+      },
+      "lifetime_value": {
+        "description": "The lifetime value.",
+        "required": false
+      },
+      "name": {
+        "description": "The object's name",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/panos/r/ike_crypto_profile.html",
+    "properties": [
+      "name",
+      "dh_groups",
+      "authentications",
+      "encryptions",
+      "lifetime_type",
+      "lifetime_value",
+      "authentication_multiple"
+    ]
+  },
+  "panos_ike_gateway": {
+    "full_properties": {
+      "auth_type": {
+        "description": "The auth type.  Valid values are pre-shared-key",
+        "required": false
+      },
+      "cert_base_url": {
+        "description": "The host and directory part of URL for local",
+        "required": false
+      },
+      "cert_enable_hash_and_url": {
+        "description": "Set to true to use",
+        "required": false
+      },
+      "cert_enable_strict_validation": {
+        "description": "Set to true to enable",
+        "required": false
+      },
+      "cert_permit_payload_mismatch": {
+        "description": "Set to true to permit",
+        "required": false
+      },
+      "cert_profile": {
+        "description": "Profile for certificate valdiation during IKE",
+        "required": false
+      },
+      "cert_use_management_as_source": {
+        "description": "Set to true to",
+        "required": false
+      },
+      "dead_peer_detection_interval": {
+        "description": "The dead peer detection interval.",
+        "required": false
+      },
+      "dead_peer_detection_retry": {
+        "description": "Number of retries before disconnection.",
+        "required": false
+      },
+      "disabled": {
+        "description": "Set to true to disable.",
+        "required": false
+      },
+      "enable_dead_peer_detection": {
+        "description": "Set to true to enable dead",
+        "required": false
+      },
+      "enable_fragmentation": {
+        "description": "Set to true to enable fragmentation.",
+        "required": false
+      },
+      "enable_ipv6": {
+        "description": "Enable IPv6 or not.",
+        "required": false
+      },
+      "enable_liveness_check": {
+        "description": "Set to true to",
+        "required": false
+      },
+      "enable_nat_traversal": {
+        "description": "Set to true to enable NAT",
+        "required": false
+      },
+      "enable_passive_mode": {
+        "description": "Set to true to enable passive",
+        "required": false
+      },
+      "ikev1_crypto_profile": {
+        "description": "IKEv1 crypto profile.",
+        "required": false
+      },
+      "ikev1_exchange_mode": {
+        "description": "The IKEv1 exchange mode.",
+        "required": false
+      },
+      "ikev2_cookie_validation": {
+        "description": "Set to true to require cookie.",
+        "required": false
+      },
+      "ikev2_crypto_profile": {
+        "description": "IKEv2 crypto profile.",
+        "required": false
+      },
+      "interface": {
+        "description": "The interface.",
+        "required": true
+      },
+      "liveness_check_interval": {
+        "description": "Delay interval before",
+        "required": false
+      },
+      "local_cert": {
+        "description": "The local certificate name.",
+        "required": false
+      },
+      "local_id_type": {
+        "description": "The local ID type.  Valid values are ipaddr,",
+        "required": false
+      },
+      "local_id_value": {
+        "description": "The local ID value.",
+        "required": false
+      },
+      "local_ip_address_type": {
+        "description": "The local IP address type.  Valid",
+        "required": false
+      },
+      "local_ip_address_value": {
+        "description": "The IP address if local_ip_address_type",
+        "required": false
+      },
+      "name": {
+        "description": "The object's name",
+        "required": true
+      },
+      "nat_traversal_enable_udp_checksum": {
+        "description": "Set to true to enable",
+        "required": false
+      },
+      "nat_traversal_keep_alive": {
+        "description": "Sending interval for NAT",
+        "required": false
+      },
+      "peer_id_check": {
+        "description": "Enable peer ID wildcard match for certificate",
+        "required": false
+      },
+      "peer_id_type": {
+        "description": "The peer ID type.  Valid values are ipaddr,",
+        "required": false
+      },
+      "peer_id_value": {
+        "description": "The peer ID value.",
+        "required": false
+      },
+      "peer_ip_type": {
+        "description": "The peer IP type.  Valid values are ip,",
+        "required": false
+      },
+      "peer_ip_value": {
+        "description": "The peer IP value.",
+        "required": false
+      },
+      "pre_shared_key": {
+        "description": "The pre-shared key value.",
+        "required": false
+      },
+      "version": {
+        "description": "The IKE gateway version.  Valid values are",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/ike_gateway.html",
+    "properties": [
+      "name",
+      "version",
+      "enable_ipv6",
+      "disabled",
+      "peer_ip_type",
+      "peer_ip_value",
+      "interface",
+      "local_ip_address_type",
+      "local_ip_address_value",
+      "auth_type",
+      "pre_shared_key",
+      "local_id_type",
+      "local_id_value",
+      "peer_id_type",
+      "peer_id_value",
+      "peer_id_check",
+      "local_cert",
+      "cert_enable_hash_and_url",
+      "cert_base_url",
+      "cert_use_management_as_source",
+      "cert_permit_payload_mismatch",
+      "cert_profile",
+      "cert_enable_strict_validation",
+      "enable_passive_mode",
+      "enable_nat_traversal",
+      "nat_traversal_keep_alive",
+      "nat_traversal_enable_udp_checksum",
+      "enable_fragmentation",
+      "ikev1_exchange_mode",
+      "ikev1_crypto_profile",
+      "enable_dead_peer_detection",
+      "dead_peer_detection_interval",
+      "dead_peer_detection_retry",
+      "ikev2_crypto_profile",
+      "ikev2_cookie_validation",
+      "enable_liveness_check",
+      "liveness_check_interval"
+    ]
+  },
+  "panos_ipsec_crypto_profile": {
+    "full_properties": {
+      "authentications": {
+        "description": "- List of authentication types.",
+        "required": false
+      },
+      "dh_group": {
+        "description": "The DH group value.  Valid values should start with",
+        "required": false
+      },
+      "encryptions": {
+        "description": "- List of encryption types.  Valid values",
+        "required": false
+      },
+      "lifesize_type": {
+        "description": "The lifesize type.  Valid values are kb, mb,",
+        "required": false
+      },
+      "lifesize_value": {
+        "description": "the lifesize value.",
+        "required": false
+      },
+      "lifetime_type": {
+        "description": "The lifetime type.  Valid values are seconds,",
+        "required": false
+      },
+      "lifetime_value": {
+        "description": "The lifetime value.",
+        "required": false
+      },
+      "name": {
+        "description": "The object's name",
+        "required": true
+      },
+      "protocol": {
+        "description": "The protocol.  Valid values are esp (the default)",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/ipsec_crypto_profile.html",
+    "properties": [
+      "name",
+      "protocol",
+      "authentications",
+      "encryptions",
+      "dh_group",
+      "lifetime_type",
+      "lifetime_value",
+      "lifesize_type",
+      "lifesize_value"
+    ]
+  },
+  "panos_ipsec_tunnel": {
+    "full_properties": {
+      "ak": {
+        "description": "Auto key",
+        "required": false
+      },
+      "gps": {
+        "description": "GlobalProtect Satellite",
+        "required": false
+      },
+      "mk": {
+        "description": "Manual key",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/ipsec_tunnel.html",
+    "properties": [
+      "ak",
+      "mk",
+      "gps"
+    ]
+  },
+  "panos_ipsec_tunnel_proxy_id_ipv4": {
+    "full_properties": {
+      "ipsec_tunnel": {
+        "description": "The auto key IPSec tunnel to attach this ",
+        "required": true
+      },
+      "local": {
+        "description": "IP subnet or IP address represents local network.",
+        "required": false
+      },
+      "name": {
+        "description": "The object's name",
+        "required": true
+      },
+      "protocol_any": {
+        "description": "Set to true for any IP protocol.",
+        "required": false
+      },
+      "protocol_number": {
+        "description": "IP protocol number.",
+        "required": false
+      },
+      "protocol_tcp_local": {
+        "description": "Local TCP port number.",
+        "required": false
+      },
+      "protocol_tcp_remote": {
+        "description": "Remote TCP port number.",
+        "required": false
+      },
+      "protocol_udp_local": {
+        "description": "Local UDP port number.",
+        "required": false
+      },
+      "protocol_udp_remote": {
+        "description": "Remote UDP port number.",
+        "required": false
+      },
+      "remote": {
+        "description": "IP subnet or IP address represents remote network.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/ipsec_tunnel_proxy_id_ipv4.html",
+    "properties": [
+      "name",
+      "ipsec_tunnel",
+      "local",
+      "remote",
+      "protocol_any",
+      "protocol_number",
+      "protocol_tcp_local",
+      "protocol_tcp_remote",
+      "protocol_udp_local",
+      "protocol_udp_remote"
+    ]
+  },
+  "panos_license_api_key": {
+    "full_properties": {
+      "key": {
+        "description": "The licensing API key.",
+        "required": true
+      },
+      "retain_key": {
+        "description": "Set to true to retain the licensing API key",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/license_api_key.html",
+    "properties": [
+      "key",
+      "retain_key"
+    ]
+  },
+  "panos_licensing": {
+    "full_properties": {
+      "auth_codes": {
+        "description": "The list of auth codes to install.",
+        "required": true
+      },
+      "delicense": {
+        "description": "Leave as true if you want to delicense",
+        "required": false
+      },
+      "mode": {
+        "description": "For delicense of true, the type of delicensing to",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/licensing.html",
+    "properties": [
+      "auth_codes",
+      "delicense",
+      "mode"
+    ]
+  },
+  "panos_loopback_interface": {
+    "full_properties": {
+      "adjust_tcp_mss": {
+        "description": "Adjust TCP MSS (default: false).",
+        "required": false
+      },
+      "comment": {
+        "description": "The interface comment.",
+        "required": false
+      },
+      "ipv4_mss_adjust": {
+        "description": "The IPv4 MSS adjust value.",
+        "required": false
+      },
+      "ipv6_mss_adjust": {
+        "description": "The IPv6 MSS adjust value.",
+        "required": false
+      },
+      "management_profile": {
+        "description": "The management profile.",
+        "required": false
+      },
+      "mtu": {
+        "description": "The MTU.",
+        "required": false
+      },
+      "name": {
+        "description": "The interface's name.  This must start with loopback..",
+        "required": true
+      },
+      "netflow_profile": {
+        "description": "The netflow profile.",
+        "required": false
+      },
+      "static_ips": {
+        "description": "List of static IPv4 addresses to set for this data",
+        "required": false
+      },
+      "vsys": {
+        "description": "The vsys that will use this interface (default: vsys1).",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/loopback_interface.html",
+    "properties": [
+      "name",
+      "vsys",
+      "comment",
+      "netflow_profile",
+      "static_ips",
+      "management_profile",
+      "mtu",
+      "adjust_tcp_mss",
+      "ipv4_mss_adjust",
+      "ipv6_mss_adjust"
+    ]
+  },
+  "panos_management_profile": {
+    "full_properties": {
+      "http": {
+        "description": "Allow HTTP.",
+        "required": false
+      },
+      "http_ocsp": {
+        "description": "Allow HTTP OCSP.",
+        "required": false
+      },
+      "https": {
+        "description": "Allow HTTPS.",
+        "required": false
+      },
+      "name": {
+        "description": "The management profile's name.",
+        "required": true
+      },
+      "permitted_ips": {
+        "description": "The list of permitted IP addresses or address",
+        "required": false
+      },
+      "ping": {
+        "description": "Allow ping.",
+        "required": false
+      },
+      "response_pages": {
+        "description": "Allow response pages.",
+        "required": false
+      },
+      "snmp": {
+        "description": "Allow SNMP.",
+        "required": false
+      },
+      "ssh": {
+        "description": "Allow SSH.",
+        "required": false
+      },
+      "telnet": {
+        "description": "Allow telnet.",
+        "required": false
+      },
+      "userid_service": {
+        "description": "Allow User ID service.",
+        "required": false
+      },
+      "userid_syslog_listener_ssl": {
+        "description": "Allow User ID syslog listener",
+        "required": false
+      },
+      "userid_syslog_listener_udp": {
+        "description": "Allow User ID syslog listener",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/management_profile.html",
+    "properties": [
+      "name",
+      "ping",
+      "telnet",
+      "ssh",
+      "http",
+      "http_ocsp",
+      "https",
+      "snmp",
+      "response_pages",
+      "userid_service",
+      "userid_syslog_listener_ssl",
+      "userid_syslog_listener_udp",
+      "permitted_ips"
+    ]
+  },
+  "panos_nat_rule": {
+    "full_properties": {
+      "dat_address": {
+        "description": "Destination address translation's address.  Requires",
+        "required": false
+      },
+      "dat_dynamic_distribution": {
+        "description": "Distribution algorithm",
+        "required": false
+      },
+      "dat_port": {
+        "description": "Destination address translation's port number.  Requires",
+        "required": false
+      },
+      "dat_type": {
+        "description": "Destination address translation type.  This should",
+        "required": false
+      },
+      "description": {
+        "description": "The description.",
+        "required": false
+      },
+      "destination_addresses": {
+        "description": "List of destination address(es).",
+        "required": true
+      },
+      "destination_zone": {
+        "description": "The destination zone.",
+        "required": true
+      },
+      "disabled": {
+        "description": "Set to true to disable this rule.",
+        "required": false
+      },
+      "name": {
+        "description": "The NAT rule's name.",
+        "required": true
+      },
+      "rulebase": {
+        "description": "The rulebase.  For firewalls, there is only the",
+        "required": false
+      },
+      "sat_address_type": {
+        "description": "Source address translation address type.",
+        "required": false
+      },
+      "sat_fallback_interface": {
+        "description": "Source address translation fallback",
+        "required": false
+      },
+      "sat_fallback_ip_address": {
+        "description": "The source address translation",
+        "required": false
+      },
+      "sat_fallback_ip_type": {
+        "description": "Source address translation fallback",
+        "required": false
+      },
+      "sat_fallback_translated_addresses": {
+        "description": "Source address translation",
+        "required": false
+      },
+      "sat_fallback_type": {
+        "description": "Source address translation fallback type.",
+        "required": false
+      },
+      "sat_interface": {
+        "description": "Source address translation interface.",
+        "required": false
+      },
+      "sat_ip_address": {
+        "description": "Source address translation IP address.",
+        "required": false
+      },
+      "sat_static_bi_directional": {
+        "description": "Set to true to enable",
+        "required": false
+      },
+      "sat_static_translated_address": {
+        "description": "The statically translated source",
+        "required": false
+      },
+      "sat_translated_addresses": {
+        "description": "Source address translation list of",
+        "required": false
+      },
+      "sat_type": {
+        "description": "Type of source address translation.  This can be",
+        "required": false
+      },
+      "service": {
+        "description": "Service (default: any).",
+        "required": false
+      },
+      "source_addresses": {
+        "description": "List of source address(es).",
+        "required": true
+      },
+      "source_zones": {
+        "description": "The list of source zone(s).",
+        "required": true
+      },
+      "tags": {
+        "description": "List of administrative tags.",
+        "required": false
+      },
+      "to_interface": {
+        "description": "Egress interface from route lookup (default:",
+        "required": false
+      },
+      "type": {
+        "description": ". NAT type.  This can be ipv4 (default), nat64, or",
+        "required": false
+      },
+      "vsys": {
+        "description": "The vsys to put the NAT rule into (default:",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/nat_rule.html",
+    "properties": [
+      "name",
+      "vsys",
+      "rulebase",
+      "description",
+      "type",
+      "source_zones",
+      "destination_zone",
+      "to_interface",
+      "service",
+      "source_addresses",
+      "destination_addresses",
+      "sat_type",
+      "sat_address_type",
+      "sat_translated_addresses",
+      "sat_interface",
+      "sat_ip_address",
+      "sat_fallback_type",
+      "sat_fallback_translated_addresses",
+      "sat_fallback_interface",
+      "sat_fallback_ip_type",
+      "sat_fallback_ip_address",
+      "sat_static_translated_address",
+      "sat_static_bi_directional",
+      "dat_type",
+      "dat_address",
+      "dat_port",
+      "dat_dynamic_distribution",
+      "disabled",
+      "tags"
+    ]
+  },
+  "panos_panorama_address_group": {
+    "full_properties": {
+      "description": {
+        "description": "The address group's description.",
+        "required": false
+      },
+      "device_group": {
+        "description": "The device group to put the address group into",
+        "required": false
+      },
+      "dynamic_match": {
+        "description": "The IP tags to include in this DAG.",
+        "required": false
+      },
+      "name": {
+        "description": "The address group's name.",
+        "required": true
+      },
+      "static_addresses": {
+        "description": "The address objects to include in this",
+        "required": false
+      },
+      "tags": {
+        "description": "List of administrative tags.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_address_group.html",
+    "properties": [
+      "name",
+      "device_group",
+      "static_addresses",
+      "dynamic_match",
+      "description",
+      "tags"
+    ]
+  },
+  "panos_panorama_address_object": {
+    "full_properties": {
+      "description": {
+        "description": "The address object's description.",
+        "required": false
+      },
+      "device_group": {
+        "description": "The device group to put the address object",
+        "required": false
+      },
+      "name": {
+        "description": "The address object's name.",
+        "required": true
+      },
+      "tags": {
+        "description": "List of administrative tags.",
+        "required": false
+      },
+      "type": {
+        "description": "The type of address object.  This can be ip-netmask",
+        "required": false
+      },
+      "value": {
+        "description": "The address object's value.  This can take various",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_address_object.html",
+    "properties": [
+      "name",
+      "device_group",
+      "type",
+      "value",
+      "description",
+      "tags"
+    ]
+  },
+  "panos_panorama_administrative_tag": {
+    "full_properties": {
+      "color": {
+        "description": "The tag's color.  This should be either an empty string",
+        "required": false
+      },
+      "comment": {
+        "description": "The administrative tag's description.",
+        "required": false
+      },
+      "device_group": {
+        "description": "The device group to put the administrative tag into",
+        "required": false
+      },
+      "name": {
+        "description": "The administrative tag's name.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_administrative_tag.html",
+    "properties": [
+      "name",
+      "device_group",
+      "color",
+      "comment"
+    ]
+  },
+  "panos_panorama_device_group": {
+    "full_properties": {
+      "description": {
+        "description": "The device group's description.",
+        "required": false
+      },
+      "device": {
+        "description": "The device definition (see below).",
+        "required": false
+      },
+      "name": {
+        "description": "The device group's name.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_device_group.html",
+    "properties": [
+      "name",
+      "description",
+      "device"
+    ]
+  },
+  "panos_panorama_device_group_entry": {
+    "full_properties": {
+      "device_group": {
+        "description": "The device group's name.",
+        "required": true
+      },
+      "serial": {
+        "description": "The serial number of the firewall.",
+        "required": true
+      },
+      "vsys_list": {
+        "description": "A subset of all available vsys on the firewall",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_device_group_entry.html",
+    "properties": [
+      "device_group",
+      "serial",
+      "vsys_list"
+    ]
+  },
+  "panos_panorama_edl": {
+    "full_properties": {
+      "24hr hour": {
+        "description": "A two character hour string in 24hr notation (e.g. - 09 or 15)",
+        "required": false
+      },
+      "24hr time": {
+        "description": "A five character hour/minute string in 24hr notation (e.g. - 09:00 or 23:59)",
+        "required": false
+      },
+      "N/A": {
+        "description": "repeat_at should not be set",
+        "required": false
+      },
+      "minute": {
+        "description": "A two character minute string (e.g. - 07 or 59)",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_edl.html",
+    "properties": [
+      "N/A",
+      "minute",
+      "24hr hour",
+      "24hr time"
+    ]
+  },
+  "panos_panorama_ethernet_interface": {
+    "full_properties": {
+      "adjust_tcp_mss": {
+        "description": "Adjust TCP MSS (default: false).",
+        "required": false
+      },
+      "aggregate_group": {
+        "description": "The aggregate group (applicable for",
+        "required": false
+      },
+      "comment": {
+        "description": "The interface comment.",
+        "required": false
+      },
+      "create_dhcp_default_route": {
+        "description": "Set to true to create a DHCP",
+        "required": false
+      },
+      "dhcp_default_route_metric": {
+        "description": "The metric for the DHCP default",
+        "required": false
+      },
+      "enable_dhcp": {
+        "description": "Set to true to enable DHCP on this interface.",
+        "required": false
+      },
+      "ipv4_mss_adjust": {
+        "description": "The IPv4 MSS adjust value.",
+        "required": false
+      },
+      "ipv6_enabled": {
+        "description": "Set to true to enable IPv6.",
+        "required": false
+      },
+      "ipv6_mss_adjust": {
+        "description": "The IPv6 MSS adjust value.",
+        "required": false
+      },
+      "link_duplex": {
+        "description": "Link duplex setting.  This can be full, half,",
+        "required": false
+      },
+      "link_speed": {
+        "description": "Link speed.  This can be any of the following:",
+        "required": false
+      },
+      "link_state": {
+        "description": "The link state.  This can be up, down, or",
+        "required": false
+      },
+      "lldp_enabled": {
+        "description": "Enable LLDP (default: false).",
+        "required": false
+      },
+      "lldp_profile": {
+        "description": "LLDP profile.",
+        "required": false
+      },
+      "management_profile": {
+        "description": "The management profile.",
+        "required": false
+      },
+      "mode": {
+        "description": "The interface mode.  This can be any of the following",
+        "required": true
+      },
+      "mtu": {
+        "description": "The MTU.",
+        "required": false
+      },
+      "name": {
+        "description": "The ethernet interface's name.  This should be something",
+        "required": true
+      },
+      "netflow_profile": {
+        "description": "The netflow profile.",
+        "required": false
+      },
+      "static_ips": {
+        "description": "List of static IPv4 addresses to set for this data",
+        "required": false
+      },
+      "template": {
+        "description": "The template name.",
+        "required": true
+      },
+      "vsys": {
+        "description": "The vsys that will use this interface (default:",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_ethernet_interface.html",
+    "properties": [
+      "name",
+      "template",
+      "vsys",
+      "mode",
+      "static_ips",
+      "enable_dhcp",
+      "create_dhcp_default_route",
+      "dhcp_default_route_metric",
+      "ipv6_enabled",
+      "management_profile",
+      "mtu",
+      "adjust_tcp_mss",
+      "netflow_profile",
+      "lldp_enabled",
+      "lldp_profile",
+      "link_speed",
+      "link_duplex",
+      "link_state",
+      "aggregate_group",
+      "comment",
+      "ipv4_mss_adjust",
+      "ipv6_mss_adjust"
+    ]
+  },
+  "panos_panorama_ike_crypto_profile": {
+    "full_properties": {
+      "template": {
+        "description": "The template name.",
+        "required": false
+      },
+      "template_stack": {
+        "description": "The template stack name.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_ike_crypto_profile.html",
+    "properties": [
+      "template",
+      "template_stack"
+    ]
+  },
+  "panos_panorama_ike_gateway": {
+    "full_properties": {
+      "template": {
+        "description": "The template name.",
+        "required": false
+      },
+      "template_stack": {
+        "description": "The template stack name.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_ike_gateway.html",
+    "properties": [
+      "template",
+      "template_stack"
+    ]
+  },
+  "panos_panorama_ipsec_crypto_profile": {
+    "full_properties": {
+      "template": {
+        "description": "The template name.",
+        "required": false
+      },
+      "template_stack": {
+        "description": "The template stack name.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_ipsec_crypto_profile.html",
+    "properties": [
+      "template",
+      "template_stack"
+    ]
+  },
+  "panos_panorama_ipsec_tunnel": {
+    "full_properties": {
+      "ak": {
+        "description": "Auto key",
+        "required": false
+      },
+      "gps": {
+        "description": "GlobalProtect Satellite",
+        "required": false
+      },
+      "mk": {
+        "description": "Manual key",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_ipsec_tunnel.html",
+    "properties": [
+      "ak",
+      "mk",
+      "gps"
+    ]
+  },
+  "panos_panorama_ipsec_tunnel_proxy_id_ipv4": {
+    "full_properties": {
+      "ipsec_tunnel": {
+        "description": "The auto key IPSec tunnel to attach this ",
+        "required": true
+      },
+      "local": {
+        "description": "IP subnet or IP address represents local network.",
+        "required": false
+      },
+      "name": {
+        "description": "The object's name",
+        "required": true
+      },
+      "protocol_any": {
+        "description": "Set to true for any IP protocol.",
+        "required": false
+      },
+      "protocol_number": {
+        "description": "IP protocol number.",
+        "required": false
+      },
+      "protocol_tcp_local": {
+        "description": "Local TCP port number.",
+        "required": false
+      },
+      "protocol_tcp_remote": {
+        "description": "Remote TCP port number.",
+        "required": false
+      },
+      "protocol_udp_local": {
+        "description": "Local UDP port number.",
+        "required": false
+      },
+      "protocol_udp_remote": {
+        "description": "Remote UDP port number.",
+        "required": false
+      },
+      "remote": {
+        "description": "IP subnet or IP address represents remote network.",
+        "required": false
+      },
+      "template": {
+        "description": "The template name.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_ipsec_tunnel_proxy_id_ipv4.html",
+    "properties": [
+      "template",
+      "name",
+      "ipsec_tunnel",
+      "local",
+      "remote",
+      "protocol_any",
+      "protocol_number",
+      "protocol_tcp_local",
+      "protocol_tcp_remote",
+      "protocol_udp_local",
+      "protocol_udp_remote"
+    ]
+  },
+  "panos_panorama_loopback_interface": {
+    "full_properties": {
+      "adjust_tcp_mss": {
+        "description": "Adjust TCP MSS (default: false).",
+        "required": false
+      },
+      "comment": {
+        "description": "The interface comment.",
+        "required": false
+      },
+      "ipv4_mss_adjust": {
+        "description": "The IPv4 MSS adjust value.",
+        "required": false
+      },
+      "ipv6_mss_adjust": {
+        "description": "The IPv6 MSS adjust value.",
+        "required": false
+      },
+      "management_profile": {
+        "description": "The management profile.",
+        "required": false
+      },
+      "mtu": {
+        "description": "The MTU.",
+        "required": false
+      },
+      "name": {
+        "description": "The interface's name.  This must start with loopback..",
+        "required": true
+      },
+      "netflow_profile": {
+        "description": "The netflow profile.",
+        "required": false
+      },
+      "static_ips": {
+        "description": "List of static IPv4 addresses to set for this data",
+        "required": false
+      },
+      "template": {
+        "description": "The template name.",
+        "required": true
+      },
+      "vsys": {
+        "description": "The vsys that will use this interface (default: vsys1).",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_loopback_interface.html",
+    "properties": [
+      "name",
+      "template",
+      "vsys",
+      "comment",
+      "netflow_profile",
+      "static_ips",
+      "management_profile",
+      "mtu",
+      "adjust_tcp_mss",
+      "ipv4_mss_adjust",
+      "ipv6_mss_adjust"
+    ]
+  },
+  "panos_panorama_management_profile": {
+    "full_properties": {
+      "template": {
+        "description": "The template name.",
+        "required": false
+      },
+      "template_stack": {
+        "description": "The template stack name.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_management_profile.html",
+    "properties": [
+      "template",
+      "template_stack"
+    ]
+  },
+  "panos_panorama_nat_rule": {
+    "full_properties": {
+      "dat_address": {
+        "description": "Destination address translation's address.  Requires",
+        "required": false
+      },
+      "dat_dynamic_distribution": {
+        "description": "Distribution algorithm",
+        "required": false
+      },
+      "dat_port": {
+        "description": "Destination address translation's port number.  Requires",
+        "required": false
+      },
+      "dat_type": {
+        "description": "Destination address translation type.  This should",
+        "required": false
+      },
+      "description": {
+        "description": "The description.",
+        "required": false
+      },
+      "destination_addresses": {
+        "description": "List of destination address(es).",
+        "required": true
+      },
+      "destination_zone": {
+        "description": "The destination zone.",
+        "required": true
+      },
+      "device_group": {
+        "description": "The device group to put the NAT rule into",
+        "required": false
+      },
+      "disabled": {
+        "description": "Set to true to disable this rule.",
+        "required": false
+      },
+      "name": {
+        "description": "The NAT rule's name.",
+        "required": true
+      },
+      "negate_target": {
+        "description": "Instead of applying the rule for the",
+        "required": false
+      },
+      "rulebase": {
+        "description": "The rulebase.  This can be pre-rulebase (default),",
+        "required": false
+      },
+      "sat_address_type": {
+        "description": "Source address translation address type.",
+        "required": false
+      },
+      "sat_fallback_interface": {
+        "description": "Source address translation fallback",
+        "required": false
+      },
+      "sat_fallback_ip_address": {
+        "description": "The source address translation",
+        "required": false
+      },
+      "sat_fallback_ip_type": {
+        "description": "Source address translation fallback",
+        "required": false
+      },
+      "sat_fallback_translated_addresses": {
+        "description": "Source address translation",
+        "required": false
+      },
+      "sat_fallback_type": {
+        "description": "Source address translation fallback type.",
+        "required": false
+      },
+      "sat_interface": {
+        "description": "Source address translation interface.",
+        "required": false
+      },
+      "sat_ip_address": {
+        "description": "Source address translation IP address.",
+        "required": false
+      },
+      "sat_static_bi_directional": {
+        "description": "Set to true to enable",
+        "required": false
+      },
+      "sat_static_translated_address": {
+        "description": "The statically translated source",
+        "required": false
+      },
+      "sat_translated_addresses": {
+        "description": "Source address translation list of",
+        "required": false
+      },
+      "sat_type": {
+        "description": "Type of source address translation.  This can be",
+        "required": false
+      },
+      "service": {
+        "description": "Service (default: any).",
+        "required": false
+      },
+      "source_addresses": {
+        "description": "List of source address(es).",
+        "required": true
+      },
+      "source_zones": {
+        "description": "The list of source zone(s).",
+        "required": true
+      },
+      "tags": {
+        "description": "List of administrative tags.",
+        "required": false
+      },
+      "target": {
+        "description": "A target definition (see below).  If there are no",
+        "required": false
+      },
+      "to_interface": {
+        "description": "Egress interface from route lookup (default:",
+        "required": false
+      },
+      "type": {
+        "description": ". NAT type.  This can be ipv4 (default), nat64, or",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_nat_rule.html",
+    "properties": [
+      "name",
+      "device_group",
+      "rulebase",
+      "description",
+      "type",
+      "source_zones",
+      "destination_zone",
+      "to_interface",
+      "service",
+      "source_addresses",
+      "destination_addresses",
+      "sat_type",
+      "sat_address_type",
+      "sat_translated_addresses",
+      "sat_interface",
+      "sat_ip_address",
+      "sat_fallback_type",
+      "sat_fallback_translated_addresses",
+      "sat_fallback_interface",
+      "sat_fallback_ip_type",
+      "sat_fallback_ip_address",
+      "sat_static_translated_address",
+      "sat_static_bi_directional",
+      "dat_type",
+      "dat_address",
+      "dat_port",
+      "dat_dynamic_distribution",
+      "disabled",
+      "tags",
+      "target",
+      "negate_target"
+    ]
+  },
+  "panos_panorama_security_policy": {
+    "full_properties": {
+      "Group": {
+      },
+      "None": {
+        "description": "(the default)",
+        "required": false
+      },
+      "Profiles": {
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_security_policy.html",
+    "properties": [
+      "None",
+      "Group",
+      "Profiles"
+    ]
+  },
+  "panos_panorama_security_rule_group": {
+    "full_properties": {
+      "Group": {
+      },
+      "None": {
+        "description": "(the default)",
+        "required": false
+      },
+      "Profiles": {
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_security_rule_group.html",
+    "properties": [
+      "None",
+      "Group",
+      "Profiles"
+    ]
+  },
+  "panos_panorama_service_group": {
+    "full_properties": {
+      "device_group": {
+        "description": "The device group to put the service group into",
+        "required": false
+      },
+      "name": {
+        "description": "The service group's name.",
+        "required": true
+      },
+      "services": {
+        "description": "List of services to put in this service group.",
+        "required": true
+      },
+      "tags": {
+        "description": "List of administrative tags.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_service_group.html",
+    "properties": [
+      "name",
+      "device_group",
+      "services",
+      "tags"
+    ]
+  },
+  "panos_panorama_service_object": {
+    "full_properties": {
+      "description": {
+        "description": "The service object's description.",
+        "required": false
+      },
+      "destination_port": {
+        "description": "The destination port.  This can be a single",
+        "required": true
+      },
+      "device_group": {
+        "description": "The device group to put the service object into",
+        "required": false
+      },
+      "name": {
+        "description": "The service object's name.",
+        "required": true
+      },
+      "protocol": {
+        "description": "The service's protocol.  This should be tcp or",
+        "required": true
+      },
+      "source_port": {
+        "description": "The source port.  This can be a single port",
+        "required": false
+      },
+      "tags": {
+        "description": "List of administrative tags.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_service_object.html",
+    "properties": [
+      "name",
+      "device_group",
+      "description",
+      "protocol",
+      "source_port",
+      "destination_port",
+      "tags"
+    ]
+  },
+  "panos_panorama_static_route_ipv4": {
+    "full_properties": {
+      "template": {
+        "description": "The template name.",
+        "required": false
+      },
+      "template_stack": {
+        "description": "The template stack name.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_static_route_ipv4.html",
+    "properties": [
+      "template",
+      "template_stack"
+    ]
+  },
+  "panos_panorama_template": {
+    "full_properties": {
+      "description": {
+        "description": "The template's description.",
+        "required": false
+      },
+      "device": {
+        "description": "The device definition (see below).",
+        "required": false
+      },
+      "name": {
+        "description": "The template's name.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_template.html",
+    "properties": [
+      "name",
+      "description",
+      "device"
+    ]
+  },
+  "panos_panorama_template_entry": {
+    "full_properties": {
+      "serial": {
+        "description": "The serial number of the firewall.",
+        "required": true
+      },
+      "template": {
+        "description": "The template name.",
+        "required": true
+      },
+      "vsys_list": {
+        "description": "A subset of all available vsys on the firewall",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_template_entry.html",
+    "properties": [
+      "template",
+      "serial",
+      "vsys_list"
+    ]
+  },
+  "panos_panorama_template_stack": {
+    "full_properties": {
+      "default_vsys": {
+        "description": "The default virtual system template configuration",
+        "required": false
+      },
+      "description": {
+        "description": "The stack's description.",
+        "required": false
+      },
+      "devices": {
+        "description": "List of serial numbers to include in this stack.",
+        "required": false
+      },
+      "name": {
+        "description": "The stack's name.",
+        "required": true
+      },
+      "templates": {
+        "description": "List of templates in this stack.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_template_stack.html",
+    "properties": [
+      "name",
+      "description",
+      "default_vsys",
+      "templates",
+      "devices"
+    ]
+  },
+  "panos_panorama_template_stack_entry": {
+    "full_properties": {
+      "device": {
+        "description": "The serial number of the device to add.",
+        "required": true
+      },
+      "template": {
+        "description": "The template name.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_template_stack_entry.html",
+    "properties": [
+      "template",
+      "device"
+    ]
+  },
+  "panos_panorama_template_variable": {
+    "full_properties": {
+      "template": {
+        "description": "The template name.",
+        "required": false
+      },
+      "template_stack": {
+        "description": "The template stack name.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_template_variable.html",
+    "properties": [
+      "template",
+      "template_stack"
+    ]
+  },
+  "panos_panorama_tunnel_interface": {
+    "full_properties": {
+      "comment": {
+        "description": "The interface comment.",
+        "required": false
+      },
+      "management_profile": {
+        "description": "The management profile.",
+        "required": false
+      },
+      "mtu": {
+        "description": "The MTU.",
+        "required": false
+      },
+      "name": {
+        "description": "The interface's name.  This must start with tunnel..",
+        "required": true
+      },
+      "netflow_profile": {
+        "description": "The netflow profile.",
+        "required": false
+      },
+      "static_ips": {
+        "description": "List of static IPv4 addresses to set for this data",
+        "required": false
+      },
+      "template": {
+        "description": "The template name.",
+        "required": true
+      },
+      "vsys": {
+        "description": "The vsys that will use this interface (default: vsys1).",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_tunnel_interface.html",
+    "properties": [
+      "name",
+      "template",
+      "vsys",
+      "comment",
+      "netflow_profile",
+      "static_ips",
+      "management_profile",
+      "mtu"
+    ]
+  },
+  "panos_panorama_virtual_router": {
+    "full_properties": {
+      "ebgp_dist": {
+        "description": "Admin distance - EBGP (default: 20).",
+        "required": false
+      },
+      "ibgp_dist": {
+        "description": "Admin distance - IBGP (default: 200).",
+        "required": false
+      },
+      "interfaces": {
+        "description": "List of interfaces that should use this virtual",
+        "required": false
+      },
+      "name": {
+        "description": "The virtual router's name.",
+        "required": true
+      },
+      "ospf_ext_dist": {
+        "description": "Admin distance - OSPF Ext (default: 110).",
+        "required": false
+      },
+      "ospf_int_dist": {
+        "description": "Admin distance - OSPF Int (default: 30).",
+        "required": false
+      },
+      "ospfv3_ext_dist": {
+        "description": "Admin distance - OSPFv3 Ext (default:",
+        "required": false
+      },
+      "ospfv3_int_dist": {
+        "description": "Admin distance - OSPFv3 Int (default:",
+        "required": false
+      },
+      "rip_dist": {
+        "description": "Admin distance - RIP (default: 120).",
+        "required": false
+      },
+      "static_dist": {
+        "description": "Admin distance - Static (default: 10).",
+        "required": false
+      },
+      "static_ipv6_dist": {
+        "description": "Admin distance - Static IPv6 (default: 10).",
+        "required": false
+      },
+      "template": {
+        "description": "The template name.",
+        "required": true
+      },
+      "vsys": {
+        "description": "The vsys that will use this virtual router.  This should",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_virtual_router.html",
+    "properties": [
+      "name",
+      "template",
+      "vsys",
+      "interfaces",
+      "static_dist",
+      "static_ipv6_dist",
+      "ospf_int_dist",
+      "ospf_ext_dist",
+      "ospfv3_int_dist",
+      "ospfv3_ext_dist",
+      "ibgp_dist",
+      "ebgp_dist",
+      "rip_dist"
+    ]
+  },
+  "panos_panorama_virtual_router_entry": {
+    "full_properties": {
+      "interface": {
+        "description": "The interface to import into the virtual router.",
+        "required": true
+      },
+      "template": {
+        "description": "The template name.",
+        "required": true
+      },
+      "virtual_router": {
+        "description": "The virtual router's name.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_virtual_router_entry.html",
+    "properties": [
+      "template",
+      "virtual_router",
+      "interface"
+    ]
+  },
+  "panos_panorama_vlan_interface": {
+    "full_properties": {
+      "adjust_tcp_mss": {
+        "description": "Adjust TCP MSS (default: false).",
+        "required": false
+      },
+      "comment": {
+        "description": "The interface comment.",
+        "required": false
+      },
+      "create_dhcp_default_route": {
+        "description": "Set to true to create a DHCP",
+        "required": false
+      },
+      "dhcp_default_route_metric": {
+        "description": "The metric for the DHCP default",
+        "required": false
+      },
+      "enable_dhcp": {
+        "description": "Set to true to enable DHCP on this interface.",
+        "required": false
+      },
+      "ipv4_mss_adjust": {
+        "description": "The IPv4 MSS adjust value.",
+        "required": false
+      },
+      "ipv6_mss_adjust": {
+        "description": "The IPv6 MSS adjust value.",
+        "required": false
+      },
+      "management_profile": {
+        "description": "The management profile.",
+        "required": false
+      },
+      "mtu": {
+        "description": "The MTU.",
+        "required": false
+      },
+      "name": {
+        "description": "The interface's name.  Must start with vlan..",
+        "required": true
+      },
+      "netflow_profile": {
+        "description": "The netflow profile.",
+        "required": false
+      },
+      "static_ips": {
+        "description": "List of static IPv4 addresses to set for this data",
+        "required": false
+      },
+      "template": {
+        "description": "The template name.",
+        "required": true
+      },
+      "vsys": {
+        "description": "The vsys that will use this interface (default: vsys1).",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_vlan_interface.html",
+    "properties": [
+      "name",
+      "template",
+      "vsys",
+      "comment",
+      "netflow_profile",
+      "static_ips",
+      "enable_dhcp",
+      "create_dhcp_default_route",
+      "dhcp_default_route_metric",
+      "management_profile",
+      "mtu",
+      "adjust_tcp_mss",
+      "ipv4_mss_adjust",
+      "ipv6_mss_adjust"
+    ]
+  },
+  "panos_panorama_zone": {
+    "full_properties": {
+      "template": {
+        "description": "The template name.",
+        "required": false
+      },
+      "template_stack": {
+        "description": "The template stack name.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_zone.html",
+    "properties": [
+      "template",
+      "template_stack"
+    ]
+  },
+  "panos_panorama_zone_entry": {
+    "full_properties": {
+      "interface": {
+        "description": "The interface's name.",
+        "required": true
+      },
+      "mode": {
+        "description": "The mode.  Can be layer3 (default), layer2,",
+        "required": false
+      },
+      "template": {
+        "description": "The template name.",
+        "required": true
+      },
+      "vsys": {
+        "description": "The vsys (default: vsys1).",
+        "required": false
+      },
+      "zone": {
+        "description": "The zone's name.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/panos/r/panorama_zone_entry.html",
+    "properties": [
+      "template",
+      "vsys",
+      "zone",
+      "mode",
+      "interface"
+    ]
+  },
+  "panos_security_policy": {
+    "full_properties": {
+      "Group": {
+      },
+      "None": {
+        "description": "(the default)",
+        "required": false
+      },
+      "Profiles": {
+      }
+    },
+    "path": "/docs/providers/panos/r/security_policy.html",
+    "properties": [
+      "None",
+      "Group",
+      "Profiles"
+    ]
+  },
+  "panos_security_rule_group": {
+    "full_properties": {
+      "Group": {
+      },
+      "None": {
+        "description": "(the default)",
+        "required": false
+      },
+      "Profiles": {
+      }
+    },
+    "path": "/docs/providers/panos/r/security_rule_group.html",
+    "properties": [
+      "None",
+      "Group",
+      "Profiles"
+    ]
+  },
+  "panos_service_group": {
+    "full_properties": {
+      "name": {
+        "description": "The service group's name.",
+        "required": true
+      },
+      "services": {
+        "description": "List of services to put in this service group.",
+        "required": true
+      },
+      "tags": {
+        "description": "List of administrative tags.",
+        "required": false
+      },
+      "vsys": {
+        "description": "The vsys to put the service group into (default:",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/service_group.html",
+    "properties": [
+      "name",
+      "vsys",
+      "services",
+      "tags"
+    ]
+  },
+  "panos_service_object": {
+    "full_properties": {
+      "description": {
+        "description": "The service object's description.",
+        "required": false
+      },
+      "destination_port": {
+        "description": "The destination port.  This can be a single",
+        "required": true
+      },
+      "name": {
+        "description": "The service object's name.",
+        "required": true
+      },
+      "protocol": {
+        "description": "The service's protocol.  This should be tcp or",
+        "required": true
+      },
+      "source_port": {
+        "description": "The source port.  This can be a single port",
+        "required": false
+      },
+      "tags": {
+        "description": "List of administrative tags.",
+        "required": false
+      },
+      "vsys": {
+        "description": "The vsys to put the service object into (default:",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/service_object.html",
+    "properties": [
+      "name",
+      "vsys",
+      "description",
+      "protocol",
+      "source_port",
+      "destination_port",
+      "tags"
+    ]
+  },
+  "panos_static_route_ipv4": {
+    "full_properties": {
+      "admin_distance": {
+        "description": "The admin distance.",
+        "required": false
+      },
+      "bfd_profile": {
+        "description": "BFD configuration.",
+        "required": false
+      },
+      "destination": {
+        "description": "Destination IP address / prefix.",
+        "required": true
+      },
+      "interface": {
+        "description": "Interface to use.",
+        "required": false
+      },
+      "metric": {
+        "description": "Metric value / path cost (default: 10).",
+        "required": false
+      },
+      "name": {
+        "description": "The address object's name.",
+        "required": true
+      },
+      "next_hop": {
+        "description": "The value for the type setting.",
+        "required": false
+      },
+      "route_table": {
+        "description": "Target routing table to install the route.  Valid",
+        "required": false
+      },
+      "type": {
+        "description": "The next hop type.  Valid values are ip-address (the",
+        "required": false
+      },
+      "virtual_router": {
+        "description": "The virtual router to add the static",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/panos/r/static_route_ipv4.html",
+    "properties": [
+      "name",
+      "virtual_router",
+      "destination",
+      "interface",
+      "type",
+      "next_hop",
+      "admin_distance",
+      "metric",
+      "route_table",
+      "bfd_profile"
+    ]
+  },
+  "panos_telemetry": {
+    "full_properties": {
+      "application_reports": {
+        "description": "Application reports.",
+        "required": false
+      },
+      "file_type_identification_reports": {
+        "description": "File type identification",
+        "required": false
+      },
+      "passive_dns_monitoring": {
+        "description": "Passive DNS monitoring.",
+        "required": false
+      },
+      "product_usage_stats": {
+        "description": "Health and performance reports.",
+        "required": false
+      },
+      "threat_prevention_data": {
+        "description": "Threat prevention data.",
+        "required": false
+      },
+      "threat_prevention_packet_captures": {
+        "description": "Enable sending packet-",
+        "required": false
+      },
+      "threat_prevention_reports": {
+        "description": "Threat reports.",
+        "required": false
+      },
+      "url_reports": {
+        "description": "URL reports.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/telemetry.html",
+    "properties": [
+      "application_reports",
+      "threat_prevention_reports",
+      "url_reports",
+      "file_type_identification_reports",
+      "threat_prevention_data",
+      "threat_prevention_packet_captures",
+      "product_usage_stats",
+      "passive_dns_monitoring"
+    ]
+  },
+  "panos_tunnel_interface": {
+    "full_properties": {
+      "comment": {
+        "description": "The interface comment.",
+        "required": false
+      },
+      "management_profile": {
+        "description": "The management profile.",
+        "required": false
+      },
+      "mtu": {
+        "description": "The MTU.",
+        "required": false
+      },
+      "name": {
+        "description": "The interface's name.  This must start with tunnel..",
+        "required": true
+      },
+      "netflow_profile": {
+        "description": "The netflow profile.",
+        "required": false
+      },
+      "static_ips": {
+        "description": "List of static IPv4 addresses to set for this data",
+        "required": false
+      },
+      "vsys": {
+        "description": "The vsys that will use this interface (default: vsys1).",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/tunnel_interface.html",
+    "properties": [
+      "name",
+      "vsys",
+      "comment",
+      "netflow_profile",
+      "static_ips",
+      "management_profile",
+      "mtu"
+    ]
+  },
+  "panos_virtual_router": {
+    "full_properties": {
+      "ebgp_dist": {
+        "description": "Admin distance - EBGP (default: 20).",
+        "required": false
+      },
+      "ibgp_dist": {
+        "description": "Admin distance - IBGP (default: 200).",
+        "required": false
+      },
+      "interfaces": {
+        "description": "List of interfaces that should use this virtual",
+        "required": false
+      },
+      "name": {
+        "description": "The virtual router's name.",
+        "required": true
+      },
+      "ospf_ext_dist": {
+        "description": "Admin distance - OSPF Ext (default: 110).",
+        "required": false
+      },
+      "ospf_int_dist": {
+        "description": "Admin distance - OSPF Int (default: 30).",
+        "required": false
+      },
+      "ospfv3_ext_dist": {
+        "description": "Admin distance - OSPFv3 Ext (default:",
+        "required": false
+      },
+      "ospfv3_int_dist": {
+        "description": "Admin distance - OSPFv3 Int (default:",
+        "required": false
+      },
+      "rip_dist": {
+        "description": "Admin distance - RIP (default: 120).",
+        "required": false
+      },
+      "static_dist": {
+        "description": "Admin distance - Static (default: 10).",
+        "required": false
+      },
+      "static_ipv6_dist": {
+        "description": "Admin distance - Static IPv6 (default: 10).",
+        "required": false
+      },
+      "vsys": {
+        "description": "The vsys that will use this virtual router.  This should",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/panos/r/virtual_router.html",
+    "properties": [
+      "name",
+      "vsys",
+      "interfaces",
+      "static_dist",
+      "static_ipv6_dist",
+      "ospf_int_dist",
+      "ospf_ext_dist",
+      "ospfv3_int_dist",
+      "ospfv3_ext_dist",
+      "ibgp_dist",
+      "ebgp_dist",
+      "rip_dist"
+    ]
+  },
+  "panos_virtual_router_entry": {
+    "full_properties": {
+      "interface": {
+        "description": "The interface to import into the virtual router.",
+        "required": true
+      },
+      "virtual_router": {
+        "description": "The virtual router's name.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/panos/r/virtual_router_entry.html",
+    "properties": [
+      "virtual_router",
+      "interface"
+    ]
+  },
+  "panos_vlan_interface": {
+    "full_properties": {
+      "adjust_tcp_mss": {
+        "description": "Adjust TCP MSS (default: false).",
+        "required": false
+      },
+      "comment": {
+        "description": "The interface comment.",
+        "required": false
+      },
+      "create_dhcp_default_route": {
+        "description": "Set to true to create a DHCP",
+        "required": false
+      },
+      "dhcp_default_route_metric": {
+        "description": "The metric for the DHCP default",
+        "required": false
+      },
+      "enable_dhcp": {
+        "description": "Set to true to enable DHCP on this interface.",
+        "required": false
+      },
+      "ipv4_mss_adjust": {
+        "description": "The IPv4 MSS adjust value.",
+        "required": false
+      },
+      "ipv6_mss_adjust": {
+        "description": "The IPv6 MSS adjust value.",
+        "required": false
+      },
+      "management_profile": {
+        "description": "The management profile.",
+        "required": false
+      },
+      "mtu": {
+        "description": "The MTU.",
+        "required": false
+      },
+      "name": {
+        "description": "The interface's name.  Must start with vlan..",
+        "required": true
+      },
+      "netflow_profile": {
+        "description": "The netflow profile.",
+        "required": false
+      },
+      "static_ips": {
+        "description": "List of static IPv4 addresses to set for this data",
+        "required": false
+      },
+      "vsys": {
+        "description": "The vsys that will use this interface (default: vsys1).",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/vlan_interface.html",
+    "properties": [
+      "name",
+      "vsys",
+      "comment",
+      "netflow_profile",
+      "static_ips",
+      "enable_dhcp",
+      "create_dhcp_default_route",
+      "dhcp_default_route_metric",
+      "management_profile",
+      "mtu",
+      "adjust_tcp_mss",
+      "ipv4_mss_adjust",
+      "ipv6_mss_adjust"
+    ]
+  },
+  "panos_zone": {
+    "full_properties": {
+      "enable_user_id": {
+        "description": "Boolean to enable user identification.",
+        "required": false
+      },
+      "exclude_acls": {
+        "description": "Users from these addresses/subnets will not",
+        "required": false
+      },
+      "include_acls": {
+        "description": "Users from these addresses/subnets will",
+        "required": false
+      },
+      "interfaces": {
+        "description": "List of interfaces to associated with this zone.",
+        "required": false
+      },
+      "log_setting": {
+        "description": "Log setting.",
+        "required": false
+      },
+      "mode": {
+        "description": "The zone's mode.  This can be layer3, layer2,",
+        "required": true
+      },
+      "name": {
+        "description": "The zone's name.",
+        "required": true
+      },
+      "vsys": {
+        "description": "The vsys to put the zone into (default: vsys1).",
+        "required": false
+      },
+      "zone_profile": {
+        "description": "The zone protection profile.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/panos/r/zone.html",
+    "properties": [
+      "name",
+      "vsys",
+      "mode",
+      "zone_profile",
+      "log_setting",
+      "enable_user_id",
+      "interfaces",
+      "include_acls",
+      "exclude_acls"
+    ]
+  },
+  "panos_zone_entry": {
+    "full_properties": {
+      "interface": {
+        "description": "The interface's name.",
+        "required": true
+      },
+      "mode": {
+        "description": "The mode.  Can be layer3 (default), layer2,",
+        "required": false
+      },
+      "vsys": {
+        "description": "The vsys (default: vsys1).",
+        "required": false
+      },
+      "zone": {
+        "description": "The zone's name.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/panos/r/zone_entry.html",
+    "properties": [
+      "vsys",
+      "zone",
+      "mode",
+      "interface"
+    ]
+  }
+}

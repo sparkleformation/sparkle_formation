@@ -1,0 +1,1558 @@
+{
+  "telefonicaopencloud_as_configuration_v1": {
+    "full_properties": {
+      "instance_config": {
+        "description": "The information about instance configurations. The instance_config",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to create the AS configuration. If",
+        "required": false
+      },
+      "scaling_configuration_name": {
+        "description": "The name of the AS configuration. The name can contain letters,",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/as_configuration_v1.html",
+    "properties": [
+      "region",
+      "scaling_configuration_name",
+      "instance_config"
+    ]
+  },
+  "telefonicaopencloud_as_group_v1": {
+    "full_properties": {
+      "available_zones": {
+        "description": "The availability zones in which to create",
+        "required": false
+      },
+      "cool_down_time": {
+        "description": "The cooling duration (in seconds). The value ranges",
+        "required": false
+      },
+      "delete_instances": {
+        "description": "Whether to delete the instances in the AS group",
+        "required": false
+      },
+      "delete_publicip": {
+        "description": "Whether to delete the elastic IP address bound to the",
+        "required": false
+      },
+      "desire_instance_number": {
+        "description": "The expected number of instances. The default",
+        "required": false
+      },
+      "health_periodic_audit_method": {
+        "description": "The health check method for instances",
+        "required": false
+      },
+      "health_periodic_audit_time": {
+        "description": "The health check period for instances.",
+        "required": false
+      },
+      "instance_terminate_policy": {
+        "description": "The instance removal policy. The policy has",
+        "required": false
+      },
+      "lb_listener_id": {
+        "description": "The ELB listener IDs. The system supports up to",
+        "required": false
+      },
+      "max_instance_number": {
+        "description": "The maximum number of instances.",
+        "required": false
+      },
+      "min_instance_number": {
+        "description": "The minimum number of instances.",
+        "required": false
+      },
+      "networks": {
+        "description": "An array of one or more network IDs.",
+        "required": true
+      },
+      "notifications": {
+        "description": "The notification mode. The system only supports EMAIL",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to create the AS group. If",
+        "required": false
+      },
+      "scaling_configuration_id": {
+        "description": "The configuration ID which defines",
+        "required": false
+      },
+      "scaling_group_name": {
+        "description": "The name of the scaling group. The name can contain letters,",
+        "required": true
+      },
+      "security_groups": {
+        "description": "An array of one or more security group IDs",
+        "required": true
+      },
+      "vpc_id": {
+        "description": "The VPC ID. Changing this creates a new group.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/as_group_v1.html",
+    "properties": [
+      "region",
+      "scaling_group_name",
+      "scaling_configuration_id",
+      "desire_instance_number",
+      "min_instance_number",
+      "max_instance_number",
+      "cool_down_time",
+      "lb_listener_id",
+      "available_zones",
+      "networks",
+      "security_groups",
+      "vpc_id",
+      "health_periodic_audit_method",
+      "health_periodic_audit_time",
+      "instance_terminate_policy",
+      "notifications",
+      "delete_publicip",
+      "delete_instances"
+    ]
+  },
+  "telefonicaopencloud_as_policy_v1": {
+    "full_properties": {
+      "alarm_id": {
+        "description": "The alarm rule ID. This argument is mandatory",
+        "required": false
+      },
+      "cool_down_time": {
+        "description": "The cooling duration (in seconds), and is 900 by default.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to create the AS policy. If",
+        "required": false
+      },
+      "scaling_group_id": {
+        "description": "The AS group ID. Changing this creates a new AS policy.",
+        "required": true
+      },
+      "scaling_policy_action": {
+        "description": "The action of the AS policy. The scaling_policy_action",
+        "required": false
+      },
+      "scaling_policy_name": {
+        "description": "The name of the AS policy. The name can contain letters,",
+        "required": true
+      },
+      "scaling_policy_type": {
+        "description": "The AS policy type. The values can be ALARM, SCHEDULED,",
+        "required": true
+      },
+      "scheduled_policy": {
+        "description": "The periodic or scheduled AS policy. This argument is mandatory",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/as_policy_v1.html",
+    "properties": [
+      "region",
+      "scaling_policy_name",
+      "scaling_group_id",
+      "scaling_policy_type",
+      "alarm_id",
+      "scheduled_policy",
+      "scaling_policy_action",
+      "cool_down_time"
+    ]
+  },
+  "telefonicaopencloud_blockstorage_volume_v2": {
+    "full_properties": {
+      "availability_zone": {
+        "description": "The availability zone for the volume.",
+        "required": false
+      },
+      "consistency_group_id": {
+        "description": "The consistency group to place the volume",
+        "required": false
+      },
+      "description": {
+        "description": "A description of the volume. Changing this updates",
+        "required": false
+      },
+      "image_id": {
+        "description": "The image ID from which to create the volume.",
+        "required": false
+      },
+      "metadata": {
+        "description": "Metadata key/value pairs to associate with the volume.",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the volume. Changing this updates the",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to create the volume. If",
+        "required": false
+      },
+      "size": {
+        "description": "The size of the volume to create (in gigabytes). Changing",
+        "required": true
+      },
+      "snapshot_id": {
+        "description": "The snapshot ID from which to create the volume.",
+        "required": false
+      },
+      "source_replica": {
+        "description": "The volume ID to replicate with.",
+        "required": false
+      },
+      "source_vol_id": {
+        "description": "The volume ID from which to create the volume.",
+        "required": false
+      },
+      "volume_type": {
+        "description": "The type of volume to create.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/blockstorage_volume_v2.html",
+    "properties": [
+      "region",
+      "size",
+      "availability_zone",
+      "consistency_group_id",
+      "description",
+      "image_id",
+      "metadata",
+      "name",
+      "snapshot_id",
+      "source_replica",
+      "source_vol_id",
+      "volume_type"
+    ]
+  },
+  "telefonicaopencloud_ces_alarmrule": {
+    "full_properties": {
+      "alarm_action_enabled": {
+        "description": "Specifies whether to enable the action",
+        "required": false
+      },
+      "alarm_actions": {
+        "description": "Specifies the action triggered by an alarm. The",
+        "required": false
+      },
+      "alarm_description": {
+        "description": "The value can be a string of 0 to 256 characters.",
+        "required": false
+      },
+      "alarm_enabled": {
+        "description": "Specifies whether to enable the alarm. The default",
+        "required": false
+      },
+      "alarm_name": {
+        "description": "Specifies the name of an alarm rule. The value can",
+        "required": true
+      },
+      "condition": {
+        "description": "Specifies the alarm triggering condition. The structure",
+        "required": true
+      },
+      "insufficientdata_actions": {
+        "description": "Specifies the action triggered by",
+        "required": false
+      },
+      "metric": {
+        "description": "Specifies the alarm metrics. The structure is described",
+        "required": true
+      },
+      "ok_actions": {
+        "description": "Specifies the action triggered by the clearing of",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/ces_alarm_rule.html",
+    "properties": [
+      "alarm_name",
+      "alarm_description",
+      "metric",
+      "condition",
+      "alarm_actions",
+      "insufficientdata_actions",
+      "ok_actions",
+      "alarm_enabled",
+      "alarm_action_enabled"
+    ]
+  },
+  "telefonicaopencloud_compute_floatingip_associate_v2": {
+    "full_properties": {
+      "fixed_ip": {
+        "description": "The specific IP address to direct traffic to.",
+        "required": false
+      },
+      "floating_ip": {
+        "description": "The floating IP to associate.",
+        "required": true
+      },
+      "instance_id": {
+        "description": "The instance to associte the floating IP with.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/compute_floatingip_associate_v2.html",
+    "properties": [
+      "region",
+      "floating_ip",
+      "instance_id",
+      "fixed_ip"
+    ]
+  },
+  "telefonicaopencloud_compute_floatingip_v2": {
+    "full_properties": {
+      "pool": {
+        "description": "The name of the pool from which to obtain the floating",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/compute_floatingip_v2.html",
+    "properties": [
+      "region",
+      "pool"
+    ]
+  },
+  "telefonicaopencloud_compute_instance_v2": {
+    "full_properties": {
+      "admin_pass": {
+        "description": "The administrative password to assign to the server.",
+        "required": false
+      },
+      "availability_zone": {
+        "description": "The availability zone in which to create",
+        "required": false
+      },
+      "block_device": {
+        "description": "Configuration of block devices. The block_device",
+        "required": false
+      },
+      "config_drive": {
+        "description": "Whether to use the config_drive feature to",
+        "required": false
+      },
+      "flavor_id": {
+        "description": "The flavor ID of",
+        "required": false
+      },
+      "flavor_name": {
+        "description": "The name of the",
+        "required": false
+      },
+      "image_id": {
+        "description": "(Optional; Required if image_name is empty and not booting",
+        "required": false
+      },
+      "image_name": {
+        "description": "(Optional; Required if image_id is empty and not booting",
+        "required": false
+      },
+      "key_pair": {
+        "description": "The name of a key pair to put on the server. The key",
+        "required": false
+      },
+      "metadata": {
+        "description": "Metadata key/value pairs to make available from",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the resource.",
+        "required": true
+      },
+      "network": {
+        "description": "An array of one or more networks to attach to the",
+        "required": false
+      },
+      "personality": {
+        "description": "Customize the personality of an instance by",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to create the server instance. If",
+        "required": false
+      },
+      "scheduler_hints": {
+        "description": "Provide the Nova scheduler with hints on how",
+        "required": false
+      },
+      "security_groups": {
+        "description": "An array of one or more security group names",
+        "required": false
+      },
+      "stop_before_destroy": {
+        "description": "Whether to try stop instance gracefully",
+        "required": false
+      },
+      "user_data": {
+        "description": "The user data to provide when launching the instance.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/compute_instance_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "image_id",
+      "image_name",
+      "flavor_id",
+      "flavor_name",
+      "user_data",
+      "security_groups",
+      "availability_zone",
+      "network",
+      "metadata",
+      "config_drive",
+      "admin_pass",
+      "key_pair",
+      "block_device",
+      "scheduler_hints",
+      "personality",
+      "stop_before_destroy"
+    ]
+  },
+  "telefonicaopencloud_compute_keypair_v2": {
+    "full_properties": {
+      "name": {
+        "description": "A unique name for the keypair. Changing this creates a new",
+        "required": true
+      },
+      "public_key": {
+        "description": "A pregenerated OpenSSH-formatted public key.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/compute_keypair_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "public_key",
+      "value_specs"
+    ]
+  },
+  "telefonicaopencloud_compute_secgroup_v2": {
+    "full_properties": {
+      "description": {
+        "description": "A description for the security group. Changing this",
+        "required": true
+      },
+      "name": {
+        "description": "A unique name for the security group. Changing this",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      },
+      "rule": {
+        "description": "A rule describing how the security group operates. The",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/compute_secgroup_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "description",
+      "rule"
+    ]
+  },
+  "telefonicaopencloud_compute_servergroup_v2": {
+    "full_properties": {
+      "name": {
+        "description": "A unique name for the server group. Changing this creates",
+        "required": true
+      },
+      "policies": {
+        "description": "The set of policies for the server group. Only two",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/compute_servergroup_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "policies",
+      "value_specs"
+    ]
+  },
+  "telefonicaopencloud_compute_volume_attach_v2": {
+    "full_properties": {
+      "device": {
+        "description": "The device of the volume attachment (ex: /dev/vdc).",
+        "required": false
+      },
+      "instance_id": {
+        "description": "The ID of the Instance to attach the Volume to.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      },
+      "volume_id": {
+        "description": "The ID of the Volume to attach to an Instance.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/compute_volume_attach_v2.html",
+    "properties": [
+      "region",
+      "instance_id",
+      "volume_id",
+      "device"
+    ]
+  },
+  "telefonicaopencloud_dns_recordset_v2": {
+    "full_properties": {
+      "description": {
+        "description": "A description of the  record set.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the record set. Note the . at the end of the name.",
+        "required": true
+      },
+      "records": {
+        "description": "An array of DNS records.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 DNS client.",
+        "required": false
+      },
+      "ttl": {
+        "description": "The time to live (TTL) of the record set.",
+        "required": false
+      },
+      "type": {
+        "description": "The type of record set. Examples: \"A\", \"MX\".",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options. Changing this creates a",
+        "required": false
+      },
+      "zone_id": {
+        "description": "The ID of the zone in which to create the record set.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/dns_recordset_v2.html",
+    "properties": [
+      "region",
+      "zone_id",
+      "name",
+      "type",
+      "ttl",
+      "description",
+      "records",
+      "value_specs"
+    ]
+  },
+  "telefonicaopencloud_dns_zone_v2": {
+    "full_properties": {
+      "attributes": {
+        "description": "Attributes for the DNS Service scheduler.",
+        "required": false
+      },
+      "description": {
+        "description": "A description of the zone.",
+        "required": false
+      },
+      "email": {
+        "description": "The email contact for the zone record.",
+        "required": false
+      },
+      "masters": {
+        "description": "An array of master DNS servers. For when type is",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the zone. Note the . at the end of the name.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Compute client.",
+        "required": false
+      },
+      "ttl": {
+        "description": "The time to live (TTL) of the zone.",
+        "required": false
+      },
+      "type": {
+        "description": "The type of zone. Can either be PRIMARY or SECONDARY.",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options. Changing this creates a",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/dns_zone_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "email",
+      "type",
+      "attributes",
+      "ttl",
+      "description",
+      "masters",
+      "value_specs"
+    ]
+  },
+  "telefonicaopencloud_elb_backendecs": {
+    "full_properties": {
+      "listener_id": {
+        "description": "Specifies the listener ID.",
+        "required": true
+      },
+      "private_address": {
+        "description": "Specifies the private IP address of the backend member.",
+        "required": true
+      },
+      "server_id": {
+        "description": "Specifies the backend member ID.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/elb_backendecs.html",
+    "properties": [
+      "listener_id",
+      "server_id",
+      "private_address"
+    ]
+  },
+  "telefonicaopencloud_elb_healthcheck": {
+    "full_properties": {
+      "healthcheck_connect_port": {
+        "description": "Specifies the port used for the health",
+        "required": false
+      },
+      "healthcheck_interval": {
+        "description": "Specifies the maximum interval (s) for",
+        "required": false
+      },
+      "healthcheck_protocol": {
+        "description": "Specifies the protocol used for the health",
+        "required": false
+      },
+      "healthcheck_timeout": {
+        "description": "Specifies the maximum timeout duration",
+        "required": false
+      },
+      "healthcheck_uri": {
+        "description": "Specifies the URI for health check. This parameter",
+        "required": false
+      },
+      "healthy_threshold": {
+        "description": "Specifies the threshold at which the health",
+        "required": false
+      },
+      "listener_id": {
+        "description": "Specifies the ID of the listener to which the health",
+        "required": true
+      },
+      "unhealthy_threshold": {
+        "description": "Specifies the threshold at which the health",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/elb_healthcheck.html",
+    "properties": [
+      "listener_id",
+      "healthcheck_protocol",
+      "healthcheck_uri",
+      "healthcheck_connect_port",
+      "healthy_threshold",
+      "unhealthy_threshold",
+      "healthcheck_timeout",
+      "healthcheck_interval"
+    ]
+  },
+  "telefonicaopencloud_elb_listener": {
+    "full_properties": {
+      "backend_port": {
+        "description": "Specifies the backend port. The value ranges from",
+        "required": true
+      },
+      "backend_protocol": {
+        "description": "Specifies the backend protocol. If the value",
+        "required": true
+      },
+      "certificate_id": {
+        "description": "Specifies the ID of the SSL certificate used",
+        "required": false
+      },
+      "cookie_timeout": {
+        "description": "Specifies the cookie timeout period (minutes).",
+        "required": false
+      },
+      "description": {
+        "description": "Provides supplementary information about the listener.",
+        "required": false
+      },
+      "lb_algorithm": {
+        "description": "Specifies the load balancing algorithm for the",
+        "required": true
+      },
+      "loadbalancer_id": {
+        "description": "Specifies the ID of the load balancer to which",
+        "required": true
+      },
+      "name": {
+        "description": "Specifies the load balancer name. The name is a string",
+        "required": true
+      },
+      "port": {
+        "description": "Specifies the listening port. The value ranges from 1",
+        "required": true
+      },
+      "protocol": {
+        "description": "Specifies the listening protocol used for layer 4",
+        "required": true
+      },
+      "session_sticky": {
+        "description": "Specifies whether to enable sticky session.",
+        "required": false
+      },
+      "ssl_ciphers": {
+        "description": "Specifies the cipher suite of an encryption protocol.",
+        "required": false
+      },
+      "ssl_protocols": {
+        "description": "Specifies the SSL protocol standard supported",
+        "required": false
+      },
+      "sticky_session_type": {
+        "description": "Specifies the cookie processing method.",
+        "required": false
+      },
+      "tcp_draining": {
+        "description": "Specifies whether to maintain the TCP connection",
+        "required": false
+      },
+      "tcp_draining_timeout": {
+        "description": "Specifies the timeout duration (minutes)",
+        "required": false
+      },
+      "tcp_timeout": {
+        "description": "Specifies the TCP timeout period (minutes). This",
+        "required": false
+      },
+      "udp_timeout": {
+        "description": "Specifies the UDP timeout duration (minutes). This",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/elb_listener.html",
+    "properties": [
+      "name",
+      "description",
+      "loadbalancer_id",
+      "protocol",
+      "port",
+      "backend_protocol",
+      "backend_port",
+      "lb_algorithm",
+      "session_sticky",
+      "sticky_session_type",
+      "cookie_timeout",
+      "tcp_timeout",
+      "tcp_draining",
+      "tcp_draining_timeout",
+      "certificate_id",
+      "udp_timeout",
+      "ssl_protocols",
+      "ssl_ciphers"
+    ]
+  },
+  "telefonicaopencloud_elb_loadbalancer": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "Specifies the status of the load balancer.",
+        "required": true
+      },
+      "az": {
+        "description": "Specifies the ID of the availability zone (AZ). This",
+        "required": false
+      },
+      "bandwidth": {
+        "description": "Specifies the bandwidth (Mbit/s). This parameter",
+        "required": false
+      },
+      "charge_mode": {
+        "description": "This is a reserved field. If the system supports",
+        "required": false
+      },
+      "description": {
+        "description": "Provides supplementary information about the",
+        "required": false
+      },
+      "eip_type": {
+        "description": "This parameter is reserved.",
+        "required": false
+      },
+      "name": {
+        "description": "Specifies the load balancer name. The name is a string",
+        "required": true
+      },
+      "security_group_id": {
+        "description": "Specifies the security group ID. The",
+        "required": false
+      },
+      "tenantid": {
+        "description": "Specifies the tenant ID. This parameter is mandatory",
+        "required": false
+      },
+      "type": {
+        "description": "Specifies the load balancer type. The value can be",
+        "required": true
+      },
+      "vip_address": {
+        "description": "Specifies the IP address provided by ELB.",
+        "required": false
+      },
+      "vip_subnet_id": {
+        "description": "Specifies the ID of the private network",
+        "required": false
+      },
+      "vpc_id": {
+        "description": "Specifies the VPC ID.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/elb_loadbalancer.html",
+    "properties": [
+      "name",
+      "description",
+      "vpc_id",
+      "bandwidth",
+      "type",
+      "admin_state_up",
+      "vip_subnet_id",
+      "az",
+      "charge_mode",
+      "eip_type",
+      "security_group_id",
+      "vip_address",
+      "tenantid"
+    ]
+  },
+  "telefonicaopencloud_networking_floatingip_v2": {
+    "full_properties": {
+      "fixed_ip": {
+        "description": "Fixed IP of the port to associate with this floating IP. Required if",
+        "required": false
+      },
+      "pool": {
+        "description": "The name of the pool from which to obtain the floating",
+        "required": true
+      },
+      "port_id": {
+        "description": "ID of an existing port with at least one IP address to",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The target tenant ID in which to allocate the floating",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/networking_floatingip_v2.html",
+    "properties": [
+      "region",
+      "pool",
+      "port_id",
+      "tenant_id",
+      "fixed_ip",
+      "value_specs"
+    ]
+  },
+  "telefonicaopencloud_networking_network_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "The administrative state of the network.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the network. Changing this updates the name of",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "segments": {
+        "description": "An array of one or more provider segment objects.",
+        "required": false
+      },
+      "shared": {
+        "description": "Specifies whether the network resource can be accessed",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the network. Required if admin wants to",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/networking_network_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "shared",
+      "tenant_id",
+      "admin_state_up",
+      "segments",
+      "value_specs"
+    ]
+  },
+  "telefonicaopencloud_networking_port_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "Administrative up/down status for the port",
+        "required": false
+      },
+      "allowed_address_pairs": {
+        "description": "An IP/MAC Address pair of additional IP",
+        "required": false
+      },
+      "device_id": {
+        "description": "The ID of the device attached to the port. Changing this",
+        "required": false
+      },
+      "device_owner": {
+        "description": "The device owner of the Port. Changing this creates",
+        "required": false
+      },
+      "fixed_ip": {
+        "description": "An array of desired IPs for this port. The structure is",
+        "required": false
+      },
+      "mac_address": {
+        "description": "Specify a specific MAC address for the port. Changing",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the port. Changing this",
+        "required": false
+      },
+      "network_id": {
+        "description": "The ID of the network to attach the port to. Changing",
+        "required": true
+      },
+      "no_security_groups": {
+        "description": "If set to",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "security_group_ids": {
+        "description": "A list",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the Port. Required if admin wants",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/networking_port_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "network_id",
+      "admin_state_up",
+      "mac_address",
+      "tenant_id",
+      "device_owner",
+      "security_group_ids",
+      "no_security_groups",
+      "device_id",
+      "fixed_ip",
+      "allowed_address_pairs",
+      "value_specs"
+    ]
+  },
+  "telefonicaopencloud_networking_router_interface_v2": {
+    "full_properties": {
+      "port_id": {
+        "description": "ID of the port this interface connects to. Changing",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "router_id": {
+        "description": "ID of the router this interface belongs to. Changing",
+        "required": true
+      },
+      "subnet_id": {
+        "description": "ID of the subnet this interface connects to. Changing",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/networking_router_interface_v2.html",
+    "properties": [
+      "region",
+      "router_id",
+      "subnet_id",
+      "port_id"
+    ]
+  },
+  "telefonicaopencloud_networking_router_route_v2": {
+    "full_properties": {
+      "destination_cidr": {
+        "description": "CIDR block to match on the packet’s destination IP. Changing",
+        "required": true
+      },
+      "next_hop": {
+        "description": "IP address of the next hop gateway.  Changing",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "router_id": {
+        "description": "ID of the router this routing entry belongs to. Changing",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/networking_router_route_v2.html",
+    "properties": [
+      "region",
+      "router_id",
+      "destination_cidr",
+      "next_hop"
+    ]
+  },
+  "telefonicaopencloud_networking_router_v2": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "Administrative up/down status for the router",
+        "required": false
+      },
+      "distributed": {
+        "description": "Indicates whether or not to create a",
+        "required": false
+      },
+      "enable_snat": {
+        "description": "Enable Source NAT for the router. Valid values are",
+        "required": false
+      },
+      "external_fixed_ip": {
+        "description": "An external fixed IP for the router. This",
+        "required": false
+      },
+      "external_gateway": {
+        "description": "The",
+        "required": false
+      },
+      "external_network_id": {
+        "description": "The network UUID of an external gateway",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the router. Changing this",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the floating IP. Required if admin wants",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional driver-specific options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/networking_router_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "admin_state_up",
+      "distributed",
+      "external_gateway",
+      "external_network_id",
+      "enable_snat",
+      "external_fixed_ip",
+      "tenant_id",
+      "value_specs"
+    ]
+  },
+  "telefonicaopencloud_networking_secgroup_rule_v2": {
+    "full_properties": {
+      "": {
+        "description": "vrrp",
+        "required": false
+      },
+      "direction": {
+        "description": "The direction of the rule, valid values are ingress",
+        "required": true
+      },
+      "ethertype": {
+        "description": "The layer 3 protocol type, valid values are IPv4",
+        "required": true
+      },
+      "port_range_max": {
+        "description": "The higher part of the allowed port range, valid",
+        "required": false
+      },
+      "port_range_min": {
+        "description": "The lower part of the allowed port range, valid",
+        "required": false
+      },
+      "protocol": {
+        "description": "The layer 4 protocol type, valid values are following. Changing this creates a new security group rule. This is required if you want to specify a port range.",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "remote_group_id": {
+        "description": "The remote group id, the value needs to be an",
+        "required": false
+      },
+      "remote_ip_prefix": {
+        "description": "The remote CIDR, the value needs to be a valid",
+        "required": false
+      },
+      "security_group_id": {
+        "description": "The security group id the rule should belong",
+        "required": true
+      },
+      "tenant_id": {
+        "description": "The owner of the security group. Required if admin",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/networking_secgroup_rule_v2.html",
+    "properties": [
+      "region",
+      "direction",
+      "ethertype",
+      "protocol",
+      "",
+      "port_range_min",
+      "port_range_max",
+      "remote_ip_prefix",
+      "remote_group_id",
+      "security_group_id",
+      "tenant_id"
+    ]
+  },
+  "telefonicaopencloud_networking_secgroup_v2": {
+    "full_properties": {
+      "delete_default_rules": {
+        "description": "Whether or not to delete the default",
+        "required": false
+      },
+      "description": {
+        "description": "A unique name for the security group.",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the security group.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the security group. Required if admin",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/networking_secgroup_v2.html",
+    "properties": [
+      "region",
+      "name",
+      "description",
+      "tenant_id",
+      "delete_default_rules"
+    ]
+  },
+  "telefonicaopencloud_networking_subnet_v2": {
+    "full_properties": {
+      "allocation_pools": {
+        "description": "An array of sub-ranges of CIDR available for",
+        "required": false
+      },
+      "cidr": {
+        "description": "CIDR representing IP range for this subnet, based on IP",
+        "required": true
+      },
+      "dns_nameservers": {
+        "description": "An array of DNS name server names used by hosts",
+        "required": false
+      },
+      "enable_dhcp": {
+        "description": "The administrative state of the network.",
+        "required": false
+      },
+      "gateway_ip": {
+        "description": "Default gateway used by devices in this subnet.",
+        "required": false
+      },
+      "host_routes": {
+        "description": "An array of routes that should be used by devices",
+        "required": false
+      },
+      "ip_version": {
+        "description": "IP version, either 4 (default) or 6. Changing this creates a",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the subnet. Changing this updates the name of",
+        "required": false
+      },
+      "network_id": {
+        "description": "The UUID of the parent network. Changing this",
+        "required": true
+      },
+      "no_gateway": {
+        "description": "Do not set a gateway IP on this subnet. Changing",
+        "required": false
+      },
+      "region": {
+        "description": "The region in which to obtain the V2 Networking client.",
+        "required": false
+      },
+      "tenant_id": {
+        "description": "The owner of the subnet. Required if admin wants to",
+        "required": false
+      },
+      "value_specs": {
+        "description": "Map of additional options.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/networking_subnet_v2.html",
+    "properties": [
+      "region",
+      "network_id",
+      "cidr",
+      "ip_version",
+      "name",
+      "tenant_id",
+      "allocation_pools",
+      "gateway_ip",
+      "no_gateway",
+      "enable_dhcp",
+      "dns_nameservers",
+      "host_routes",
+      "value_specs"
+    ]
+  },
+  "telefonicaopencloud_s3_bucket": {
+    "full_properties": {
+      "acl": {
+        "description": "The canned ACL to apply. Defaults to \"private\".",
+        "required": false
+      },
+      "bucket": {
+        "description": "The name of the bucket. If omitted, Terraform will assign a random, unique name.",
+        "required": false
+      },
+      "bucket_prefix": {
+        "description": "Creates a unique bucket name beginning with the specified prefix. Conflicts with bucket.",
+        "required": false
+      },
+      "cors_rule": {
+        "description": "A rule of Cross-Origin Resource Sharing (documented below).",
+        "required": false
+      },
+      "force_destroy": {
+        "description": "A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are not recoverable.",
+        "required": false
+      },
+      "lifecycle_rule": {
+        "description": "A configuration of object lifecycle management (documented below).",
+        "required": false
+      },
+      "logging": {
+        "description": "A settings of bucket logging (documented below).",
+        "required": false
+      },
+      "policy": {
+        "description": "A valid bucket policy JSON document. Note that if the policy document is not specific enough (but still valid), Terraform may view the policy as constantly changing in a terraform plan. In this case, please make sure you use the verbose/specific version of the policy.",
+        "required": false
+      },
+      "region": {
+        "description": "If specified, the AWS region this bucket should reside in. Otherwise, the region used by the callee.",
+        "required": false
+      },
+      "versioning": {
+        "description": "A state of versioning (documented below)",
+        "required": false
+      },
+      "website": {
+        "description": "A website object (documented below).",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/s3_bucket.html",
+    "properties": [
+      "bucket",
+      "bucket_prefix",
+      "acl",
+      "policy",
+      "force_destroy",
+      "website",
+      "cors_rule",
+      "versioning",
+      "logging",
+      "lifecycle_rule",
+      "region"
+    ]
+  },
+  "telefonicaopencloud_s3_bucket_object": {
+    "full_properties": {
+      "acl": {
+        "description": "The canned ACL to apply. Defaults to \"private\".",
+        "required": false
+      },
+      "bucket": {
+        "description": "The name of the bucket to put the file in.",
+        "required": true
+      },
+      "cache_control": {
+        "description": "Specifies caching behavior along the request/reply chain Read w3c cache_control for further details.",
+        "required": false
+      },
+      "content": {
+        "description": "The literal content being uploaded to the bucket.",
+        "required": false
+      },
+      "content_disposition": {
+        "description": "Specifies presentational information for the object. Read wc3 content_disposition for further information.",
+        "required": false
+      },
+      "content_encoding": {
+        "description": "Specifies what content encodings have been applied to the object and thus what decoding mechanisms must be applied to obtain the media-type referenced by the Content-Type header field. Read w3c content encoding for further information.",
+        "required": false
+      },
+      "content_language": {
+        "description": "The language the content is in e.g. en-US or en-GB.",
+        "required": false
+      },
+      "content_type": {
+        "description": "A standard MIME type describing the format of the object data, e.g. application/octet-stream. All Valid MIME Types are valid for this input.",
+        "required": false
+      },
+      "etag": {
+        "description": "Used to trigger updates. The only meaningful value is ${md5(file(\"path/to/file\"))}.",
+        "required": false
+      },
+      "key": {
+        "description": "The name of the object once it is in the bucket.",
+        "required": true
+      },
+      "server_side_encryption": {
+        "description": "Specifies server-side encryption of the object in S3. Valid values are \"AES256\" and \"aws:kms\".",
+        "required": false
+      },
+      "source": {
+        "description": "The path to the source file being uploaded to the bucket.",
+        "required": true
+      },
+      "sse_kms_key_id": {
+        "description": "The ID of the kms key.",
+        "required": false
+      },
+      "website_redirect": {
+        "description": "Specifies a target URL for website redirect.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/s3_bucket_object.html",
+    "properties": [
+      "bucket",
+      "key",
+      "source",
+      "content",
+      "acl",
+      "cache_control",
+      "content_disposition",
+      "content_encoding",
+      "content_language",
+      "content_type",
+      "website_redirect",
+      "etag",
+      "server_side_encryption",
+      "sse_kms_key_id"
+    ]
+  },
+  "telefonicaopencloud_s3_bucket_policy": {
+    "full_properties": {
+      "bucket": {
+        "description": "The name of the bucket to which to apply the policy.",
+        "required": true
+      },
+      "policy": {
+        "description": "The text of the policy.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/s3_bucket_policy.html",
+    "properties": [
+      "bucket",
+      "policy"
+    ]
+  },
+  "telefonicaopencloud_smn_subscription_v2": {
+    "full_properties": {
+      "endpoint": {
+        "description": "Message endpoint.",
+        "required": true
+      },
+      "owner": {
+        "description": "Project ID of the topic creator.",
+        "required": false
+      },
+      "protocol": {
+        "description": "Protocol of the message endpoint. Currently, email,",
+        "required": true
+      },
+      "remark": {
+        "description": "Remark information. The remarks must be a UTF-8-coded",
+        "required": false
+      },
+      "status": {
+        "description": "Subscription status.",
+        "required": false
+      },
+      "subscription_urn": {
+        "description": "Resource identifier of a subscription, which",
+        "required": false
+      },
+      "topic_urn": {
+        "description": "Resource identifier of a topic, which is unique.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/smn_subscription_v2.html",
+    "properties": [
+      "topic_urn",
+      "endpoint",
+      "protocol",
+      "remark",
+      "subscription_urn",
+      "owner",
+      "status"
+    ]
+  },
+  "telefonicaopencloud_smn_topic_v2": {
+    "full_properties": {
+      "create_time": {
+        "description": "Time when the topic was created.",
+        "required": false
+      },
+      "display_name": {
+        "description": "Topic display name, which is presented as the",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the topic to be created.",
+        "required": true
+      },
+      "push_policy": {
+        "description": "Message pushing policy. 0 indicates that the message",
+        "required": false
+      },
+      "topic_urn": {
+        "description": "Resource identifier of a topic, which is unique.",
+        "required": false
+      },
+      "update_time": {
+        "description": "Time when the topic was updated.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/smn_topic_v2.html",
+    "properties": [
+      "name",
+      "display_name",
+      "topic_urn",
+      "push_policy",
+      "create_time",
+      "update_time"
+    ]
+  },
+  "telefonicaopencloud_vpc_eip_v1": {
+    "full_properties": {
+      "bandwidth": {
+        "description": "The bandwidth object.",
+        "required": true
+      },
+      "publicip": {
+        "description": "The elastic IP address object.",
+        "required": true
+      },
+      "region": {
+        "description": "The region in which to create the eip. If omitted,",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/telefonicaopencloud/r/vpc_eip_v1.html",
+    "properties": [
+      "region",
+      "publicip",
+      "bandwidth"
+    ]
+  }
+}

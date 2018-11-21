@@ -1,0 +1,24 @@
+{
+  "subnetwork": {
+    "full_properties": {
+      "google_compute_subnetwork_iam_binding": {
+        "description": "Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the subnetwork are preserved.",
+        "required": false
+      },
+      "google_compute_subnetwork_iam_member": {
+        "description": "Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role for the subnetwork are preserved.",
+        "required": false
+      },
+      "google_compute_subnetwork_iam_policy": {
+        "description": "Authoritative. Sets the IAM policy for the subnetwork and replaces any existing policy already attached.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/google/r/compute_subnetwork_iam.html",
+    "properties": [
+      "google_compute_subnetwork_iam_policy",
+      "google_compute_subnetwork_iam_binding",
+      "google_compute_subnetwork_iam_member"
+    ]
+  }
+}

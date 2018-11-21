@@ -1,0 +1,888 @@
+{
+  "cloudstack_affinity_group": {
+    "full_properties": {
+      "description": {
+        "description": "The description of the affinity group.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the affinity group. Changing this",
+        "required": true
+      },
+      "project": {
+        "description": "The name or ID of the project to register this",
+        "required": false
+      },
+      "type": {
+        "description": "The affinity group type. Changing this",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/affinity_group.html",
+    "properties": [
+      "name",
+      "description",
+      "type",
+      "project"
+    ]
+  },
+  "cloudstack_disk": {
+    "full_properties": {
+      "attach": {
+        "description": "Determines whether or not to attach the disk volume to a",
+        "required": false
+      },
+      "device_id": {
+        "description": "The device ID to map the disk volume to within the guest OS.",
+        "required": false
+      },
+      "disk_offering": {
+        "description": "The name or ID of the disk offering to use for",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the disk volume. Changing this forces a new",
+        "required": true
+      },
+      "project": {
+        "description": "The name or ID of the project to deploy this",
+        "required": false
+      },
+      "shrink_ok": {
+        "description": "Verifies if the disk volume is allowed to shrink when",
+        "required": false
+      },
+      "size": {
+        "description": "The size of the disk volume in gigabytes.",
+        "required": false
+      },
+      "virtual_machine_id": {
+        "description": "The ID of the virtual machine to which you want",
+        "required": false
+      },
+      "zone": {
+        "description": "The name or ID of the zone where this disk volume will be available.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/disk.html",
+    "properties": [
+      "name",
+      "attach",
+      "device_id",
+      "disk_offering",
+      "size",
+      "shrink_ok",
+      "virtual_machine_id",
+      "project",
+      "zone"
+    ]
+  },
+  "cloudstack_egress_firewall": {
+    "full_properties": {
+      "managed": {
+        "description": "USE WITH CAUTION! If enabled all the egress firewall",
+        "required": false
+      },
+      "network_id": {
+        "description": "The network ID for which to create the egress",
+        "required": true
+      },
+      "parallelism": {
+        "description": "Specifies how much rules will be created or deleted",
+        "required": false
+      },
+      "rule": {
+        "description": "Can be specified multiple times. Each rule block supports",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/egress_firewall.html",
+    "properties": [
+      "network_id",
+      "managed",
+      "rule",
+      "parallelism"
+    ]
+  },
+  "cloudstack_firewall": {
+    "full_properties": {
+      "ip_address_id": {
+        "description": "The IP address ID for which to create the",
+        "required": true
+      },
+      "managed": {
+        "description": "USE WITH CAUTION! If enabled all the firewall rules for",
+        "required": false
+      },
+      "parallelism": {
+        "description": "Specifies how much rules will be created or deleted",
+        "required": false
+      },
+      "rule": {
+        "description": "Can be specified multiple times. Each rule block supports",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/firewall.html",
+    "properties": [
+      "ip_address_id",
+      "managed",
+      "rule",
+      "parallelism"
+    ]
+  },
+  "cloudstack_instance": {
+    "full_properties": {
+      "affinity_group_ids": {
+        "description": "List of affinity group IDs to apply to this",
+        "required": false
+      },
+      "affinity_group_names": {
+        "description": "List of affinity group names to apply to",
+        "required": false
+      },
+      "display_name": {
+        "description": "The display name of the instance.",
+        "required": false
+      },
+      "expunge": {
+        "description": "This determines if the instance is expunged when it is",
+        "required": false
+      },
+      "group": {
+        "description": "The group name of the instance.",
+        "required": false
+      },
+      "ip_address": {
+        "description": "The IP address to assign to this instance. Changing",
+        "required": false
+      },
+      "keypair": {
+        "description": "The name of the SSH key pair that will be used to",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the instance.",
+        "required": true
+      },
+      "network_id": {
+        "description": "The ID of the network to connect this instance",
+        "required": false
+      },
+      "project": {
+        "description": "The name or ID of the project to deploy this",
+        "required": false
+      },
+      "root_disk_size": {
+        "description": "The size of the root disk in gigabytes. The",
+        "required": false
+      },
+      "security_group_ids": {
+        "description": "List of security group IDs to apply to this",
+        "required": false
+      },
+      "security_group_names": {
+        "description": "List of security group names to apply to",
+        "required": false
+      },
+      "service_offering": {
+        "description": "The name or ID of the service offering used",
+        "required": true
+      },
+      "template": {
+        "description": "The name or ID of the template used for this",
+        "required": true
+      },
+      "user_data": {
+        "description": "The user data to provide when launching the",
+        "required": false
+      },
+      "zone": {
+        "description": "The name or ID of the zone where this instance will be",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/instance.html",
+    "properties": [
+      "name",
+      "display_name",
+      "service_offering",
+      "network_id",
+      "ip_address",
+      "template",
+      "root_disk_size",
+      "group",
+      "affinity_group_ids",
+      "affinity_group_names",
+      "security_group_ids",
+      "security_group_names",
+      "project",
+      "zone",
+      "user_data",
+      "keypair",
+      "expunge"
+    ]
+  },
+  "cloudstack_ipaddress": {
+    "full_properties": {
+      "is_portable": {
+        "description": "This determines if the IP address should be transferable",
+        "required": false
+      },
+      "network_id": {
+        "description": "The ID of the network for which an IP address should",
+        "required": false
+      },
+      "project": {
+        "description": "The name or ID of the project to deploy this",
+        "required": false
+      },
+      "vpc_id": {
+        "description": "The ID of the VPC for which an IP address should be",
+        "required": false
+      },
+      "zone": {
+        "description": "The name or ID of the zone for which an IP address should be",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/ipaddress.html",
+    "properties": [
+      "is_portable",
+      "network_id",
+      "vpc_id",
+      "zone",
+      "project"
+    ]
+  },
+  "cloudstack_loadbalancer_rule": {
+    "full_properties": {
+      "algorithm": {
+        "description": "Load balancer rule algorithm (source, roundrobin,",
+        "required": true
+      },
+      "description": {
+        "description": "The description of the load balancer rule.",
+        "required": false
+      },
+      "ip_address_id": {
+        "description": "Public IP address ID from where the network",
+        "required": true
+      },
+      "member_ids": {
+        "description": "List of instance IDs to assign to the load balancer",
+        "required": true
+      },
+      "name": {
+        "description": "Name of the loadbalancer rule.",
+        "required": true
+      },
+      "network_id": {
+        "description": "The network ID this rule will be created for.",
+        "required": false
+      },
+      "private_port": {
+        "description": "The private port of the private IP address",
+        "required": true
+      },
+      "project": {
+        "description": "The name or ID of the project to deploy this",
+        "required": false
+      },
+      "protocol": {
+        "description": "Load balancer protocol (tcp, udp, tcp-proxy).",
+        "required": false
+      },
+      "public_port": {
+        "description": "The public port from where the network traffic",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/loadbalancer_rule.html",
+    "properties": [
+      "name",
+      "description",
+      "ip_address_id",
+      "network_id",
+      "algorithm",
+      "private_port",
+      "public_port",
+      "protocol",
+      "member_ids",
+      "project"
+    ]
+  },
+  "cloudstack_network": {
+    "full_properties": {
+      "acl_id": {
+        "description": "The ACL ID that should be attached to the network or",
+        "required": false
+      },
+      "cidr": {
+        "description": "The CIDR block for the network. Changing this forces a new",
+        "required": true
+      },
+      "display_text": {
+        "description": "The display text of the network.",
+        "required": false
+      },
+      "endip": {
+        "description": "End of the IP block that will be available on the",
+        "required": false
+      },
+      "gateway": {
+        "description": "Gateway that will be provided to the instances in this",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the network.",
+        "required": true
+      },
+      "network_domain": {
+        "description": "DNS domain for the network.",
+        "required": false
+      },
+      "network_offering": {
+        "description": "The name or ID of the network offering to use",
+        "required": true
+      },
+      "project": {
+        "description": "The name or ID of the project to deploy this",
+        "required": false
+      },
+      "startip": {
+        "description": "Start of the IP block that will be available on the",
+        "required": false
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the resource.",
+        "required": false
+      },
+      "vlan": {
+        "description": "The VLAN number (1-4095) the network will use. This might be",
+        "required": false
+      },
+      "vpc_id": {
+        "description": "The VPC ID in which to create this network. Changing",
+        "required": false
+      },
+      "zone": {
+        "description": "The name or ID of the zone where this network will be",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/network.html",
+    "properties": [
+      "name",
+      "display_text",
+      "cidr",
+      "gateway",
+      "startip",
+      "endip",
+      "network_domain",
+      "network_offering",
+      "vlan",
+      "vpc_id",
+      "acl_id",
+      "project",
+      "zone",
+      "tags"
+    ]
+  },
+  "cloudstack_network_acl": {
+    "full_properties": {
+      "description": {
+        "description": "The description of the ACL. Changing this forces a",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the ACL. Changing this forces a new resource",
+        "required": true
+      },
+      "project": {
+        "description": "The name or ID of the project to deploy this",
+        "required": false
+      },
+      "vpc_id": {
+        "description": "The ID of the VPC to create this ACL for. Changing this",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/network_acl.html",
+    "properties": [
+      "name",
+      "description",
+      "project",
+      "vpc_id"
+    ]
+  },
+  "cloudstack_network_acl_rule": {
+    "full_properties": {
+      "acl_id": {
+        "description": "The network ACL ID for which to create the rules.",
+        "required": true
+      },
+      "managed": {
+        "description": "USE WITH CAUTION! If enabled all the firewall rules for",
+        "required": false
+      },
+      "parallelism": {
+        "description": "Specifies how much rules will be created or deleted",
+        "required": false
+      },
+      "project": {
+        "description": "The name or ID of the project to deploy this",
+        "required": false
+      },
+      "rule": {
+        "description": "Can be specified multiple times. Each rule block supports",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/network_acl_rule.html",
+    "properties": [
+      "acl_id",
+      "managed",
+      "rule",
+      "project",
+      "parallelism"
+    ]
+  },
+  "cloudstack_nic": {
+    "full_properties": {
+      "ip_address": {
+        "description": "The IP address to assign to the NIC. Changing this",
+        "required": false
+      },
+      "network_id": {
+        "description": "The ID of the network to plug the NIC into. Changing",
+        "required": true
+      },
+      "virtual_machine_id": {
+        "description": "The ID of the virtual machine to which to",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/nic.html",
+    "properties": [
+      "network_id",
+      "ip_address",
+      "virtual_machine_id"
+    ]
+  },
+  "cloudstack_port_forward": {
+    "full_properties": {
+      "forward": {
+        "description": "Can be specified multiple times. Each forward block supports",
+        "required": true
+      },
+      "ip_address_id": {
+        "description": "The IP address ID for which to create the port",
+        "required": true
+      },
+      "managed": {
+        "description": "USE WITH CAUTION! If enabled all the port forwards for",
+        "required": false
+      },
+      "project": {
+        "description": "The name or ID of the project to create this port forward",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/port_forward.html",
+    "properties": [
+      "ip_address_id",
+      "managed",
+      "project",
+      "forward"
+    ]
+  },
+  "cloudstack_private_gateway": {
+    "full_properties": {
+      "acl_id": {
+        "description": "The ACL ID that should be attached to the network.",
+        "required": true
+      },
+      "gateway": {
+        "description": "the gateway of the Private gateway. Changing this",
+        "required": true
+      },
+      "ip_address": {
+        "description": "the IP address of the Private gateway. Changing this forces",
+        "required": true
+      },
+      "netmask": {
+        "description": "The netmask of the Private gateway. Changing",
+        "required": true
+      },
+      "network_offering": {
+        "description": "The name or ID of the network offering to use for",
+        "required": false
+      },
+      "physical_network_id": {
+        "description": "The ID of the physical network this private",
+        "required": false
+      },
+      "vlan": {
+        "description": "The VLAN number (1-4095) the network will use.",
+        "required": true
+      },
+      "vpc_id": {
+        "description": "The VPC ID in which to create this Private gateway. Changing",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/private_gateway.html",
+    "properties": [
+      "gateway",
+      "ip_address",
+      "netmask",
+      "vlan",
+      "physical_network_id",
+      "network_offering",
+      "acl_id",
+      "vpc_id"
+    ]
+  },
+  "cloudstack_secondary_ipaddress": {
+    "full_properties": {
+      "ip_address": {
+        "description": "The IP address to bind the to NIC. If not supplied",
+        "required": false
+      },
+      "nic_id": {
+        "description": "The NIC ID to which you want to attach the secondary IP",
+        "required": false
+      },
+      "virtual_machine_id": {
+        "description": "The ID of the virtual machine to which you",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/secondary_ipaddress.html",
+    "properties": [
+      "ip_address",
+      "nic_id",
+      "virtual_machine_id"
+    ]
+  },
+  "cloudstack_security_group": {
+    "full_properties": {
+      "description": {
+        "description": "The description of the security group. Changing",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the security group. Changing this forces a",
+        "required": true
+      },
+      "project": {
+        "description": "The name or ID of the project to create this security",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/security_group.html",
+    "properties": [
+      "name",
+      "description",
+      "project"
+    ]
+  },
+  "cloudstack_security_group_rule": {
+    "full_properties": {
+      "parallelism": {
+        "description": "Specifies how much rules will be created or deleted",
+        "required": false
+      },
+      "project": {
+        "description": "The name or ID of the project in which the security",
+        "required": false
+      },
+      "rule": {
+        "description": "Can be specified multiple times. Each rule block supports",
+        "required": true
+      },
+      "security_group_id": {
+        "description": "The security group ID for which to create",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/security_group_rule.html",
+    "properties": [
+      "security_group_id",
+      "rule",
+      "project",
+      "parallelism"
+    ]
+  },
+  "cloudstack_ssh_keypair": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the SSH key pair. This is a unique value",
+        "required": true
+      },
+      "project": {
+        "description": "The name or ID of the project to register this",
+        "required": false
+      },
+      "public_keyfile()": {
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/ssh_keypair.html",
+    "properties": [
+      "name",
+      "public_keyfile()",
+      "project"
+    ]
+  },
+  "cloudstack_static_nat": {
+    "full_properties": {
+      "ip_address_id": {
+        "description": "The public IP address ID for which static",
+        "required": true
+      },
+      "project": {
+        "description": "The name or ID of the project to deploy this",
+        "required": false
+      },
+      "virtual_machine_id": {
+        "description": "The virtual machine ID to enable the",
+        "required": true
+      },
+      "vm_guest_ip": {
+        "description": "The virtual machine IP address to forward the",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/static_nat.html",
+    "properties": [
+      "ip_address_id",
+      "virtual_machine_id",
+      "vm_guest_ip",
+      "project"
+    ]
+  },
+  "cloudstack_static_route": {
+    "full_properties": {
+      "cidr": {
+        "description": "The CIDR for the static route. Changing this forces",
+        "required": true
+      },
+      "gateway_id": {
+        "description": "The ID of the Private gateway. Changing this forces",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/static_route.html",
+    "properties": [
+      "cidr",
+      "gateway_id"
+    ]
+  },
+  "cloudstack_template": {
+    "full_properties": {
+      "display_text": {
+        "description": "The display name of the template.",
+        "required": false
+      },
+      "format": {
+        "description": "The format of the template. Valid values are QCOW2,",
+        "required": true
+      },
+      "hypervisor": {
+        "description": "The target hypervisor for the template. Changing",
+        "required": true
+      },
+      "is_dynamically_scalable": {
+        "description": "Set to indicate if the template contains",
+        "required": false
+      },
+      "is_extractable": {
+        "description": "Set to indicate if the template is extractable",
+        "required": false
+      },
+      "is_featured": {
+        "description": "Set to indicate if the template is featured",
+        "required": false
+      },
+      "is_public": {
+        "description": "Set to indicate if the template is available for",
+        "required": false
+      },
+      "is_ready_timeout": {
+        "description": "The maximum time in seconds to wait until the",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the template.",
+        "required": true
+      },
+      "os_type": {
+        "description": "The OS Type that best represents the OS of this",
+        "required": true
+      },
+      "password_enabled": {
+        "description": "Set to indicate if the template should be",
+        "required": false
+      },
+      "project": {
+        "description": "The name or ID of the project to create this template for.",
+        "required": false
+      },
+      "url": {
+        "description": "The URL of where the template is hosted. Changing this",
+        "required": true
+      },
+      "zone": {
+        "description": "The name or ID of the zone where this template will be created.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/template.html",
+    "properties": [
+      "name",
+      "display_text",
+      "format",
+      "hypervisor",
+      "os_type",
+      "url",
+      "project",
+      "zone",
+      "is_dynamically_scalable",
+      "is_extractable",
+      "is_featured",
+      "is_public",
+      "password_enabled",
+      "is_ready_timeout"
+    ]
+  },
+  "cloudstack_vpc": {
+    "full_properties": {
+      "cidr": {
+        "description": "The CIDR block for the VPC. Changing this forces a new",
+        "required": true
+      },
+      "display_text": {
+        "description": "The display text of the VPC.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the VPC.",
+        "required": true
+      },
+      "network_domain": {
+        "description": "The default DNS domain for networks created in",
+        "required": false
+      },
+      "project": {
+        "description": "The name or ID of the project to deploy this",
+        "required": false
+      },
+      "vpc_offering": {
+        "description": "The name or ID of the VPC offering to use for this VPC.",
+        "required": true
+      },
+      "zone": {
+        "description": "The name or ID of the zone where this disk volume will be",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/vpc.html",
+    "properties": [
+      "name",
+      "display_text",
+      "cidr",
+      "vpc_offering",
+      "network_domain",
+      "project",
+      "zone"
+    ]
+  },
+  "cloudstack_vpn_connection": {
+    "full_properties": {
+      "customer_gateway_id": {
+        "description": "The Customer Gateway ID to connect.",
+        "required": true
+      },
+      "vpn_gateway_id": {
+        "description": "The VPN Gateway ID to connect. Changing",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/vpn_connection.html",
+    "properties": [
+      "customer_gateway_id",
+      "vpn_gateway_id"
+    ]
+  },
+  "cloudstack_vpn_customer_gateway": {
+    "full_properties": {
+      "cidr": {
+        "description": "The CIDR block that needs to be routed through this gateway.",
+        "required": true
+      },
+      "dpd": {
+        "description": "If DPD is enabled for the related VPN connection (defaults false)",
+        "required": false
+      },
+      "esp_lifetime": {
+        "description": "The ESP lifetime of phase 2 VPN connection to this",
+        "required": false
+      },
+      "esp_policy": {
+        "description": "The ESP policy to use for this VPN Customer Gateway.",
+        "required": true
+      },
+      "gateway": {
+        "description": "The public IP address of the related VPN Gateway.",
+        "required": true
+      },
+      "ike_lifetime": {
+        "description": "The IKE lifetime of phase 2 VPN connection to this",
+        "required": false
+      },
+      "ike_policy": {
+        "description": "The IKE policy to use for this VPN Customer Gateway.",
+        "required": true
+      },
+      "ipsec_psk": {
+        "description": "The IPSEC pre-shared key used for this gateway.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the VPN Customer Gateway.",
+        "required": true
+      },
+      "project": {
+        "description": "The name or ID of the project to create this VPN Customer",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/vpn_customer_gateway.html",
+    "properties": [
+      "name",
+      "cidr",
+      "esp_policy",
+      "gateway",
+      "ike_policy",
+      "ipsec_psk",
+      "dpd",
+      "esp_lifetime",
+      "ike_lifetime",
+      "project"
+    ]
+  },
+  "cloudstack_vpn_gateway": {
+    "full_properties": {
+      "vpc_id": {
+        "description": "The ID of the VPC for which to create the VPN Gateway.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudstack/r/vpn_gateway.html",
+    "properties": [
+      "vpc_id"
+    ]
+  }
+}

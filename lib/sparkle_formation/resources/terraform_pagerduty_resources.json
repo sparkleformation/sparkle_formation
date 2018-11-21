@@ -1,0 +1,329 @@
+{
+  "pagerduty_addon": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the add-on.",
+        "required": true
+      },
+      "src": {
+        "description": "The source URL to display in a frame in the PagerDuty UI. HTTPS is required.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/pagerduty/r/addon.html",
+    "properties": [
+      "name",
+      "src"
+    ]
+  },
+  "pagerduty_escalation_policy": {
+    "full_properties": {
+      "description": {
+        "description": "A human-friendly description of the escalation policy.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the escalation policy.",
+        "required": true
+      },
+      "num_loops": {
+        "description": "The number of times the escalation policy will repeat after reaching the end of its escalation.",
+        "required": false
+      },
+      "rule": {
+        "description": "An Escalation rule block. Escalation rules documented below.",
+        "required": true
+      },
+      "teams": {
+        "description": "Teams associated with the policy. Account must have the teams ability to use this parameter.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/pagerduty/r/escalation_policy.html",
+    "properties": [
+      "name",
+      "teams",
+      "description",
+      "num_loops",
+      "rule"
+    ]
+  },
+  "pagerduty_extension": {
+    "full_properties": {
+      "config": {
+        "description": "The configuration of the service extension as string containing plain JSON-encoded data.",
+        "required": false
+      },
+      "endpoint_url": {
+        "description": "The url of the extension.",
+        "required": false
+      },
+      "extension_objects": {
+        "description": "This is the objects for which the extension applies (An array of service ids).",
+        "required": true
+      },
+      "extension_schema": {
+        "description": "This is the schema for this extension.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the service extension.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/pagerduty/r/extension.html",
+    "properties": [
+      "name",
+      "endpoint_url",
+      "extension_schema",
+      "extension_objects",
+      "config"
+    ]
+  },
+  "pagerduty_maintenance_window": {
+    "full_properties": {
+      "description": {
+        "description": "A description for the maintenance window.",
+        "required": false
+      },
+      "end_time": {
+        "description": "The maintenance window's end time. This is when the services will start creating incidents again. This date must be in the future and after the start_time.",
+        "required": true
+      },
+      "services": {
+        "description": "A list of service IDs to include in the maintenance window.",
+        "required": true
+      },
+      "start_time": {
+        "description": "The maintenance window's start time. This is when the services will stop creating incidents. If this date is in the past, it will be updated to be the current time.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/pagerduty/r/maintenance_window.html",
+    "properties": [
+      "start_time",
+      "end_time",
+      "services",
+      "description"
+    ]
+  },
+  "pagerduty_schedule": {
+    "full_properties": {
+      "description": {
+        "description": "The description of the schedule",
+        "required": false
+      },
+      "layer": {
+        "description": "A schedule layer block. Schedule layers documented below.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the escalation policy.",
+        "required": false
+      },
+      "overflow": {
+        "description": "Any on-call schedule entries that pass the date range bounds will be truncated at the bounds, unless the parameter overflow is passed. For instance, if your schedule is a rotation that changes daily at midnight UTC, and your date range is from 2011-06-01T10:00:00Z to 2011-06-01T14:00:00Z:",
+        "required": false
+      },
+      "time_zone": {
+        "description": "The time zone of the schedule (e.g Europe/Berlin).",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/pagerduty/r/schedule.html",
+    "properties": [
+      "name",
+      "time_zone",
+      "description",
+      "layer",
+      "overflow"
+    ]
+  },
+  "pagerduty_service": {
+    "full_properties": {
+      "acknowledgement_timeout": {
+        "description": "Time in seconds that an incident changes to the Triggered State after being Acknowledged. Disabled if set to the \"null\" string.",
+        "required": false
+      },
+      "alert_creation": {
+        "description": "Must be one of two values. PagerDuty receives events from your monitoring systems and can then create incidents in different ways. Value \"create_incidents\" is default: events will create an incident that cannot be merged. Value \"create_alerts_and_incidents\" is the alternative: events will create an alert and then add it to a new incident, these incidents can be merged.",
+        "required": false
+      },
+      "auto_resolve_timeout": {
+        "description": "Time in seconds that an incident is automatically resolved if left open for that long. Disabled if set to the \"null\" string.",
+        "required": false
+      },
+      "description": {
+        "description": "A human-friendly description of the escalation policy.",
+        "required": false
+      },
+      "escalation_policy": {
+        "description": "The escalation policy used by this service.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the service.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/pagerduty/r/service.html",
+    "properties": [
+      "name",
+      "description",
+      "auto_resolve_timeout",
+      "acknowledgement_timeout",
+      "escalation_policy",
+      "alert_creation"
+    ]
+  },
+  "pagerduty_service_integration": {
+    "full_properties": {
+      "integration_email": {
+        "description": "This is the unique fully-qualified email address used for routing emails to this integration for processing.",
+        "required": false
+      },
+      "integration_key": {
+        "description": "This is the unique key used to route events to this integration when received via the PagerDuty Events API.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the service integration.",
+        "required": false
+      },
+      "service": {
+        "description": "The ID of the service the integration should belong to.",
+        "required": true
+      },
+      "type": {
+        "description": "The service type. Can be:",
+        "required": false
+      },
+      "vendor": {
+        "description": "The ID of the vendor the integration should integrate with (e.g Datadog or Amazon Cloudwatch).",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/pagerduty/r/service_integration.html",
+    "properties": [
+      "service",
+      "name",
+      "type",
+      "vendor",
+      "integration_key",
+      "integration_email"
+    ]
+  },
+  "pagerduty_team": {
+    "full_properties": {
+      "description": {
+        "description": "A human-friendly description of the team.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the group.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/pagerduty/r/team.html",
+    "properties": [
+      "name",
+      "description"
+    ]
+  },
+  "pagerduty_team_membership": {
+    "full_properties": {
+      "team_id": {
+        "description": "The ID of the team in which the user will belong.",
+        "required": true
+      },
+      "user_id": {
+        "description": "The ID of the user to add to the team.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/pagerduty/r/team_membership.html",
+    "properties": [
+      "user_id",
+      "team_id"
+    ]
+  },
+  "pagerduty_user": {
+    "full_properties": {
+      "color": {
+        "description": "The schedule color for the user.",
+        "required": false
+      },
+      "description": {
+        "description": "A human-friendly description of the user.",
+        "required": false
+      },
+      "email": {
+        "description": "The user's email address.",
+        "required": true
+      },
+      "job_title": {
+        "description": "The user's title.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the user.",
+        "required": true
+      },
+      "role": {
+        "description": "The user role. Account must have the read_only_users ability to set a user as a read_only_user. Can be admin, limited_user, owner, read_only_user, team_responder or user",
+        "required": false
+      },
+      "teams": {
+        "description": "A list of teams the user should belong to.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/pagerduty/r/user.html",
+    "properties": [
+      "name",
+      "email",
+      "color",
+      "role",
+      "job_title",
+      "teams",
+      "description"
+    ]
+  },
+  "pagerduty_user_contact_method": {
+    "full_properties": {
+      "address": {
+        "description": "The \"address\" to deliver to: email, phone number, etc., depending on the type.",
+        "required": true
+      },
+      "country_code": {
+        "description": "The 1-to-3 digit country calling code. Required when using phone_contact_method or sms_contact_method.",
+        "required": false
+      },
+      "label": {
+        "description": "The label (e.g., \"Work\", \"Mobile\", etc.).",
+        "required": true
+      },
+      "send_short_email": {
+        "description": "Send an abbreviated email message instead of the standard email output.",
+        "required": false
+      },
+      "type": {
+        "description": "The contact method type. May be (email_contact_method, phone_contact_method, sms_contact_method, push_notification_contact_method).",
+        "required": true
+      },
+      "user_id": {
+        "description": "The ID of the user.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/pagerduty/r/user_contact_method.html",
+    "properties": [
+      "user_id",
+      "type",
+      "send_short_email",
+      "country_code",
+      "label",
+      "address"
+    ]
+  }
+}

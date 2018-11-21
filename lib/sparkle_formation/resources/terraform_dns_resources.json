@@ -1,0 +1,137 @@
+{
+  "dns_a_record_set": {
+    "full_properties": {
+      "addresses": {
+        "description": "The IPv4 addresses this record set will point to.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the record set. The zone argument will be appended to this value to create the full record path.",
+        "required": true
+      },
+      "ttl": {
+        "description": "The TTL of the record set. Defaults to 3600.",
+        "required": false
+      },
+      "zone": {
+        "description": "DNS zone the record set belongs to. It must be an FQDN, that is, include the trailing dot.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/dns/r/dns_a_record_set.html",
+    "properties": [
+      "zone",
+      "name",
+      "addresses",
+      "ttl"
+    ]
+  },
+  "dns_aaaa_record_set": {
+    "full_properties": {
+      "addresses": {
+        "description": "The IPv6 addresses this record set will point to.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the record set. The zone argument will be appended to this value to create the full record path.",
+        "required": true
+      },
+      "ttl": {
+        "description": "The TTL of the record set. Defaults to 3600.",
+        "required": false
+      },
+      "zone": {
+        "description": "DNS zone the record set belongs to. It must be an FQDN, that is, include the trailing dot.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/dns/r/dns_aaaa_record_set.html",
+    "properties": [
+      "zone",
+      "name",
+      "addresses",
+      "ttl"
+    ]
+  },
+  "dns_cname_record": {
+    "full_properties": {
+      "cname": {
+        "description": "The canonical name this record will point to.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the record. The zone argument will be appended to this value to create the full record path.",
+        "required": true
+      },
+      "ttl": {
+        "description": "The TTL of the record set. Defaults to 3600.",
+        "required": false
+      },
+      "zone": {
+        "description": "DNS zone the record belongs to. It must be an FQDN, that is, include the trailing dot.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/dns/r/dns_cname_record.html",
+    "properties": [
+      "zone",
+      "name",
+      "cname",
+      "ttl"
+    ]
+  },
+  "dns_ns_record_set": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the record set. The zone argument will be appended to this value to create the full record path.",
+        "required": true
+      },
+      "nameservers": {
+        "description": "The nameservers this record set will point to.",
+        "required": true
+      },
+      "ttl": {
+        "description": "The TTL of the record set. Defaults to 3600.",
+        "required": false
+      },
+      "zone": {
+        "description": "DNS zone the record set belongs to. It must be an FQDN, that is, include the trailing dot.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/dns/r/dns_ns_record_set.html",
+    "properties": [
+      "zone",
+      "name",
+      "nameservers",
+      "ttl"
+    ]
+  },
+  "dns_ptr_record": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the record. The zone argument will be appended to this value to create the full record path.",
+        "required": true
+      },
+      "ptr": {
+        "description": "The canonical name this record will point to.",
+        "required": true
+      },
+      "ttl": {
+        "description": "The TTL of the record set. Defaults to 3600.",
+        "required": false
+      },
+      "zone": {
+        "description": "DNS zone the record belongs to. It must be an FQDN, that is, include the trailing dot.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/dns/r/dns_ptr_record.html",
+    "properties": [
+      "zone",
+      "name",
+      "ptr",
+      "ttl"
+    ]
+  }
+}

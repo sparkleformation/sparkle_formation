@@ -1,0 +1,96 @@
+{
+  "cloudscale_floating_ip": {
+    "full_properties": {
+      "ip_version": {
+        "description": "4 or 6, for an IPv4 or IPv6 address or network respectively.",
+        "required": true
+      },
+      "prefix_length": {
+        "description": "If you want to assign an entire network instead of a single IP address to your server, you must specify the prefix length. Currently, there is only support for ip_version=6 and prefix_length=56.",
+        "required": false
+      },
+      "reverse_ptr": {
+        "description": "You can specify the PTR record (reverse DNS pointer) in case of a single Floating IP address.",
+        "required": false
+      },
+      "server": {
+        "description": "Assign the Floating IP to this server (UUID).",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/cloudscale/r/floating_ip.html",
+    "properties": [
+      "server",
+      "ip_version",
+      "prefix_length",
+      "reverse_ptr"
+    ]
+  },
+  "cloudscale_server": {
+    "full_properties": {
+      "anti_affinity_uuid": {
+        "description": "Pass the UUID of another server to either create a new anti-affinity group with that server or add the new server to the same (existing) group as the other server.",
+        "required": false
+      },
+      "bulk_volume_size_gb": {
+        "description": "The size in GB of the bulk storage volume of the new server. If this parameter is not specified, no bulk storage volume will be attached to the server. Valid values are multiples of 100.",
+        "required": false
+      },
+      "flavor_slug": {
+        "description": "The slug (name) of the flavor to use for the new server. Possible values can be found in our API documentation.",
+        "required": true
+      },
+      "image_slug": {
+        "description": "The slug (name) of the image to use for the new server. Possible values can be found in our API documentation.",
+        "required": true
+      },
+      "name": {
+        "description": "Name of the new server. The name has to be a valid host name or a fully qualified domain name (FQDN).",
+        "required": true
+      },
+      "ssh_keys": {
+        "description": "A list of SSH public keys. Use the full content of your *.pub file here.",
+        "required": true
+      },
+      "status": {
+        "description": "The desired state of a server. Can be running (default) or stopped.",
+        "required": false
+      },
+      "use_ipv6": {
+        "description": "Enable/disable IPv6 on the public network interface of the new server. Can be true (default) or false.",
+        "required": false
+      },
+      "use_private_network": {
+        "description": "Attach/detach the private network interface to/from the new server. Can be true or false (default).",
+        "required": false
+      },
+      "use_public_network": {
+        "description": "Attach/detach the public network interface to/from the new server. Can be true (default) or false.",
+        "required": false
+      },
+      "user_data": {
+        "description": "User data (custom cloud-config settings) to use for the new server. Needs to be valid YAML. A default configuration will be used if this parameter is not specified or set to null. Use only if you are an advanced user with knowledge of cloud-config and cloud-init.",
+        "required": false
+      },
+      "volume_size_gb": {
+        "description": "The size in GB of the SSD root volume of the new server. If this parameter is not specified, the value will be set to 10. Valid values are either 10 or multiples of 50.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/cloudscale/r/server.html",
+    "properties": [
+      "name",
+      "flavor_slug",
+      "image_slug",
+      "ssh_keys",
+      "volume_size_gb",
+      "bulk_volume_size_gb",
+      "use_public_network",
+      "use_private_network",
+      "use_ipv6",
+      "anti_affinity_uuid",
+      "user_data",
+      "status"
+    ]
+  }
+}

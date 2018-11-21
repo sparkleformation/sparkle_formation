@@ -1,0 +1,135 @@
+{
+  "grafana_alert_notification": {
+    "full_properties": {
+      "is_default": {
+        "description": "Is this the default channel for all your alerts.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the alert notification channel.",
+        "required": true
+      },
+      "settings": {
+        "description": "Additional settings, for full reference lookup Grafana HTTP API documentation.",
+        "required": false
+      },
+      "type": {
+        "description": "The type of the alert notification channel.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/grafana/r/alert_notification.html",
+    "properties": [
+      "name",
+      "type",
+      "is_default",
+      "settings"
+    ]
+  },
+  "grafana_dashboard": {
+    "full_properties": {
+      "config_json": {
+        "description": "The JSON configuration for the dashboard.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/grafana/r/dashboard.html",
+    "properties": [
+      "config_json"
+    ]
+  },
+  "grafana_data_source": {
+    "full_properties": {
+      "access_mode": {
+        "description": "The method by which the browser-based Grafana",
+        "required": false
+      },
+      "basic_auth_enabled": {
+        "description": "- If true, HTTP basic authentication will",
+        "required": false
+      },
+      "basic_auth_password": {
+        "description": "The",
+        "required": false
+      },
+      "basic_auth_username": {
+        "description": "The",
+        "required": false
+      },
+      "database_name": {
+        "description": "The name of the",
+        "required": false
+      },
+      "is_default": {
+        "description": "If true, the data source will be the default",
+        "required": false
+      },
+      "json_data": {
+        "description": "The default region",
+        "required": false
+      },
+      "name": {
+        "description": "A unique name for the data source within the Grafana",
+        "required": true
+      },
+      "password": {
+        "description": "The password to use to",
+        "required": false
+      },
+      "secure_json_data": {
+        "description": "The access and",
+        "required": false
+      },
+      "type": {
+        "description": "The data source type. Must be one of the data source",
+        "required": true
+      },
+      "url": {
+        "description": "The URL for the data source. The type of URL required",
+        "required": false
+      },
+      "username": {
+        "description": "The username to use to",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/grafana/r/data_source.html",
+    "properties": [
+      "type",
+      "name",
+      "url",
+      "is_default",
+      "basic_auth_enabled",
+      "basic_auth_username",
+      "basic_auth_password",
+      "username",
+      "password",
+      "json_data",
+      "secure_json_data",
+      "database_name",
+      "access_mode"
+    ]
+  },
+  "grafana_organization": {
+    "full_properties": {
+      "admin_user": {
+        "description": "The login name of the configured",
+        "required": false
+      },
+      "create_users": {
+        "description": "Whether or not to create Grafana users specified",
+        "required": false
+      },
+      "name": {
+        "description": "The display name for the Grafana organization created.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/grafana/r/organization.html",
+    "properties": [
+      "name",
+      "admin_user",
+      "create_users"
+    ]
+  }
+}

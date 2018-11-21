@@ -1,0 +1,813 @@
+{
+  "nsxt_algorithm_type_ns_service": {
+    "full_properties": {
+      "algorithm": {
+        "description": "Algorithm one of \"ORACLE_TNS\", \"FTP\", \"SUN_RPC_TCP\", \"SUN_RPC_UDP\", \"MS_RPC_TCP\", \"MS_RPC_UDP\", \"NBNS_BROADCAST\", \"NBDG_BROADCAST\", \"TFTP\"",
+        "required": true
+      },
+      "description": {
+        "description": "Description.",
+        "required": false
+      },
+      "destination_port": {
+        "description": "a single destination port.",
+        "required": true
+      },
+      "display_name": {
+        "description": "Display name, defaults to ID if not set.",
+        "required": false
+      },
+      "source_ports": {
+        "description": "Set of source ports/ranges.",
+        "required": false
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this service.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nsxt/r/algorithm_type_ns_service.html",
+    "properties": [
+      "display_name",
+      "description",
+      "destination_port",
+      "source_ports",
+      "algorithm",
+      "tag"
+    ]
+  },
+  "nsxt_dhcp_relay_profile": {
+    "full_properties": {
+      "description": {
+        "description": "Description of this resource.",
+        "required": false
+      },
+      "display_name": {
+        "description": "The display name of this resource. Defaults to ID if not set.",
+        "required": false
+      },
+      "server_addresses": {
+        "description": "IP addresses of the DHCP relay servers.",
+        "required": true
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this dhcp relay profile.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nsxt/r/dhcp_relay_profile.html",
+    "properties": [
+      "description",
+      "display_name",
+      "tag",
+      "server_addresses"
+    ]
+  },
+  "nsxt_dhcp_relay_service": {
+    "full_properties": {
+      "description": {
+        "description": "Description of this resource.",
+        "required": false
+      },
+      "dhcp_relay_profile_id": {
+        "description": "dhcp relay profile referenced by the dhcp relay service.",
+        "required": true
+      },
+      "display_name": {
+        "description": "The display name of this resource. Defaults to ID if not set.",
+        "required": false
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this dhcp_relay_service.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nsxt/r/dhcp_relay_service.html",
+    "properties": [
+      "description",
+      "display_name",
+      "tag",
+      "dhcp_relay_profile_id"
+    ]
+  },
+  "nsxt_ether_type_ns_service": {
+    "full_properties": {
+      "description": {
+        "description": "Description.",
+        "required": false
+      },
+      "display_name": {
+        "description": "Display name, defaults to ID if not set.",
+        "required": false
+      },
+      "ether_type": {
+        "description": "Type of the encapsulated protocol.",
+        "required": true
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this service.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nsxt/r/ether_type_ns_service.html",
+    "properties": [
+      "display_name",
+      "description",
+      "ether_type",
+      "tag"
+    ]
+  },
+  "nsxt_firewall_section": {
+    "full_properties": {
+      "action": {
+        "description": "Action enforced on the packets which matches the firewall rule. [Allowed values: \"ALLOW\", \"DROP\", \"REJECT\"]",
+        "required": true
+      },
+      "applied_to": {
+        "description": "List of object where rule will be enforced. The section level field overrides this one. Null will be treated as any. [Supported target types: \"LogicalPort\", \"LogicalSwitch\", \"NSGroup\"]",
+        "required": false
+      },
+      "description": {
+        "description": "Description of this rule.",
+        "required": false
+      },
+      "destination": {
+        "description": "List of the destinations. Null will be treated as any. [Allowed target types: \"IPSet\", \"LogicalPort\", \"LogicalSwitch\", \"NSGroup\", \"MACSet\" (depending on the section type)]",
+        "required": false
+      },
+      "destinations_excluded": {
+        "description": "Negation of the destination.",
+        "required": false
+      },
+      "direction": {
+        "description": "Rule direction in case of stateless firewall rules. This will only considered if section level parameter is set to stateless. Default to IN_OUT if not specified. [Allowed values: \"IN\", \"OUT\", \"IN_OUT\"]",
+        "required": false
+      },
+      "disabled": {
+        "description": "Flag to disable rule. Disabled will only be persisted but never provisioned/realized.",
+        "required": false
+      },
+      "display_name": {
+        "description": "The display name of this rule. Defaults to ID if not set.",
+        "required": false
+      },
+      "ip_protocol": {
+        "description": "Type of IP packet that should be matched while enforcing the rule. [allowed values: \"IPV4\", \"IPV6\", \"IPV4_IPV6\"]",
+        "required": false
+      },
+      "logged": {
+        "description": "Flag to enable packet logging. Default is disabled.",
+        "required": false
+      },
+      "notes": {
+        "description": "User notes specific to the rule.",
+        "required": false
+      },
+      "rule_tag": {
+        "description": "User level field which will be printed in CLI and packet logs.",
+        "required": false
+      },
+      "ruledisplay_namedescriptionactionapplied_todestinationdestinations_excludeddirectiondisabledip_protocolloggednotesrule_tagservicesourcesources_excluded": {
+      },
+      "section_type": {
+        "description": "Type of the rules which a section can contain. Either LAYER2 or LAYER3. Only homogeneous sections are supported.",
+        "required": true
+      },
+      "service": {
+        "description": "List of the services. Null will be treated as any. [Allowed target types: \"NSService\", \"NSServiceGroup\"]",
+        "required": false
+      },
+      "source": {
+        "description": "List of sources. Null will be treated as any. [Allowed target types: \"IPSet\", \"LogicalPort\", \"LogicalSwitch\", \"NSGroup\", \"MACSet\" (depending on the section type)]",
+        "required": false
+      },
+      "sources_excluded": {
+        "description": "Negation of the source.",
+        "required": false
+      },
+      "stateful": {
+        "description": "Stateful or Stateless nature of firewall section is enforced on all rules inside the section. Layer3 sections can be stateful or stateless. Layer2 sections can only be stateless.",
+        "required": true
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this firewall section.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nsxt/r/firewall_section.html",
+    "properties": [
+      "display_name",
+      "description",
+      "tag",
+      "applied_to",
+      "section_type",
+      "stateful",
+      "ruledisplay_namedescriptionactionapplied_todestinationdestinations_excludeddirectiondisabledip_protocolloggednotesrule_tagservicesourcesources_excluded",
+      "action",
+      "destination",
+      "destinations_excluded",
+      "direction",
+      "disabled",
+      "ip_protocol",
+      "logged",
+      "notes",
+      "rule_tag",
+      "service",
+      "source",
+      "sources_excluded"
+    ]
+  },
+  "nsxt_icmp_type_ns_service": {
+    "full_properties": {
+      "description": {
+        "description": "Description.",
+        "required": false
+      },
+      "display_name": {
+        "description": "Display name, defaults to ID if not set.",
+        "required": false
+      },
+      "icmp_code": {
+        "description": "ICMP message code",
+        "required": false
+      },
+      "icmp_type": {
+        "description": "ICMP message type.",
+        "required": false
+      },
+      "protocol": {
+        "description": "Version of ICMP protocol ICMPv4 or ICMPv6.",
+        "required": true
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this service.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nsxt/r/icmp_type_ns_service.html",
+    "properties": [
+      "display_name",
+      "description",
+      "protocol",
+      "icmp_type",
+      "icmp_code",
+      "tag"
+    ]
+  },
+  "nsxt_igmp_type_ns_service": {
+    "full_properties": {
+      "description": {
+        "description": "Description.",
+        "required": false
+      },
+      "display_name": {
+        "description": "Display name, defaults to ID if not set.",
+        "required": false
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this service.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nsxt/r/igmp_type_ns_service.html",
+    "properties": [
+      "display_name",
+      "description",
+      "tag"
+    ]
+  },
+  "nsxt_ip_protocol_ns_service": {
+    "full_properties": {
+      "description": {
+        "description": "Description.",
+        "required": false
+      },
+      "display_name": {
+        "description": "Display name, defaults to ID if not set.",
+        "required": false
+      },
+      "protocol": {
+        "description": "IP protocol number (0-255)",
+        "required": true
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this service.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nsxt/r/ip_protocol_ns_service.html",
+    "properties": [
+      "display_name",
+      "description",
+      "protocol",
+      "tag"
+    ]
+  },
+  "nsxt_ip_set": {
+    "full_properties": {
+      "description": {
+        "description": "Description of this resource.",
+        "required": false
+      },
+      "display_name": {
+        "description": "The display name of this resource. Defaults to ID if not set.",
+        "required": false
+      },
+      "ip_addresses": {
+        "description": "IP addresses.",
+        "required": false
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this ip_set.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nsxt/r/ip_set.html",
+    "properties": [
+      "description",
+      "display_name",
+      "tag",
+      "ip_addresses"
+    ]
+  },
+  "nsxt_l4_port_set_ns_service": {
+    "full_properties": {
+      "description": {
+        "description": "Description of this resource.",
+        "required": false
+      },
+      "destination_ports": {
+        "description": "Set of destination ports.",
+        "required": false
+      },
+      "display_name": {
+        "description": "Display name, defaults to ID if not set.",
+        "required": false
+      },
+      "protocol": {
+        "description": "VL4 protocol",
+        "required": false
+      },
+      "source_ports": {
+        "description": "Set of source ports.",
+        "required": false
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this service.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nsxt/r/l4_port_set_ns_service.html",
+    "properties": [
+      "display_name",
+      "description",
+      "destination_ports",
+      "source_ports",
+      "protocol",
+      "tag"
+    ]
+  },
+  "nsxt_logical_port": {
+    "full_properties": {
+      "admin_state": {
+        "description": "Admin state for the logical port. Accepted values - 'UP' or 'DOWN'. The default value is 'UP'.",
+        "required": false
+      },
+      "description": {
+        "description": "Description of this resource.",
+        "required": false
+      },
+      "display_name": {
+        "description": "Display name, defaults to ID if not set.",
+        "required": false
+      },
+      "logical_switch_id": {
+        "description": "Logical switch ID for the logical port.",
+        "required": true
+      },
+      "switching_profile_id": {
+        "description": "List of IDs of switching profiles (of various types) to be associated with this switch. Default switching profiles will be used if not specified.",
+        "required": false
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this logical port.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nsxt/r/logical_port.html",
+    "properties": [
+      "display_name",
+      "description",
+      "logical_switch_id",
+      "admin_state",
+      "switching_profile_id",
+      "tag"
+    ]
+  },
+  "nsxt_logical_router_downlink_port": {
+    "full_properties": {
+      "description": {
+        "description": "Description of the resource.",
+        "required": false
+      },
+      "display_name": {
+        "description": "Display name, defaults to ID if not set.",
+        "required": false
+      },
+      "ip_address": {
+        "description": "Logical router port subnet (ip_address / prefix length)",
+        "required": true
+      },
+      "linked_logical_switch_port_id": {
+        "description": "Identifier for port on logical switch to connect to",
+        "required": true
+      },
+      "logical_router_id": {
+        "description": "Identifier for logical Tier-1 router on which this port is created",
+        "required": true
+      },
+      "mac_address": {
+        "description": "Mac Address",
+        "required": false
+      },
+      "service_binding": {
+        "description": "A list of services for this port",
+        "required": false
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this port.",
+        "required": false
+      },
+      "urpf_mode": {
+        "description": "Unicast Reverse Path Forwarding mode",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nsxt/r/logical_router_downlink_port.html",
+    "properties": [
+      "logical_router_id",
+      "linked_logical_switch_port_id",
+      "ip_address",
+      "mac_address",
+      "urpf_mode",
+      "display_name",
+      "description",
+      "tag",
+      "service_binding"
+    ]
+  },
+  "nsxt_logical_router_link_port_on_tier0": {
+    "full_properties": {
+      "description": {
+        "description": "Description of the resource.",
+        "required": false
+      },
+      "display_name": {
+        "description": "Display name, defaults to ID if not set.",
+        "required": false
+      },
+      "logical_router_id": {
+        "description": "Identifier for logical Tier0 router on which this port is created.",
+        "required": true
+      },
+      "service_binding": {
+        "description": "A list of services for this port",
+        "required": false
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this port.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nsxt/r/logical_router_link_port_on_tier0.html",
+    "properties": [
+      "logical_router_id",
+      "display_name",
+      "description",
+      "tag",
+      "service_binding"
+    ]
+  },
+  "nsxt_logical_router_link_port_on_tier1": {
+    "full_properties": {
+      "description": {
+        "description": "Description of the resource.",
+        "required": false
+      },
+      "display_name": {
+        "description": "Display name, defaults to ID if not set.",
+        "required": false
+      },
+      "linked_logical_switch_port_id": {
+        "description": "Identifier for port on logical Tier-0 router to connect to.",
+        "required": true
+      },
+      "logical_router_id": {
+        "description": "Identifier for logical tier-1 router on which this port is created.",
+        "required": true
+      },
+      "service_binding": {
+        "description": "A list of services for this port",
+        "required": false
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this port.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nsxt/r/logical_router_link_port_on_tier1.html",
+    "properties": [
+      "logical_router_id",
+      "linked_logical_switch_port_id",
+      "display_name",
+      "description",
+      "tag",
+      "service_binding"
+    ]
+  },
+  "nsxt_logical_switch": {
+    "full_properties": {
+      "address_binding": {
+        "description": "List of Address Bindings for the logical switch. This setting allows to provide bindings between IP address, mac Address and vlan.",
+        "required": false
+      },
+      "admin_state": {
+        "description": "Admin state for the logical switch. Accepted values - 'UP' or 'DOWN'. The default value is 'UP'.",
+        "required": false
+      },
+      "description": {
+        "description": "Description of the resource.",
+        "required": false
+      },
+      "display_name": {
+        "description": "Display name, defaults to ID if not set.",
+        "required": false
+      },
+      "ip_pool_id": {
+        "description": "Ip Pool ID to be associated with the logical switch.",
+        "required": false
+      },
+      "mac_pool_id": {
+        "description": "Mac Pool ID to be associated with the logical switch.",
+        "required": false
+      },
+      "replication_mode": {
+        "description": "Replication mode of the Logical Switch. Accepted values - 'MTEP' (Hierarchical Two-Tier replication) and 'SOURCE' (Head Replication), with 'MTEP' being the default value. Applies to overlay logical switches.",
+        "required": false
+      },
+      "switching_profile_id": {
+        "description": "List of IDs of switching profiles (of various types) to be associated with this switch. Default switching profiles will be used if not specified.",
+        "required": false
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this logical switch.",
+        "required": false
+      },
+      "transport_zone_id": {
+        "description": "Transport Zone ID for the logical switch.",
+        "required": true
+      },
+      "vlan": {
+        "description": "Vlan for vlan logical switch. If not specified, this switch is overlay logical switch.",
+        "required": false
+      },
+      "vni": {
+        "description": "Vni for the logical switch.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nsxt/r/logical_switch.html",
+    "properties": [
+      "transport_zone_id",
+      "admin_state",
+      "replication_mode",
+      "switching_profile_id",
+      "display_name",
+      "description",
+      "ip_pool_id",
+      "mac_pool_id",
+      "vlan",
+      "vni",
+      "address_binding",
+      "tag"
+    ]
+  },
+  "nsxt_logical_tier1_router": {
+    "full_properties": {
+      "advertise_connected_routes": {
+        "description": "Enable the router advertisement for all NSX connected routes",
+        "required": false
+      },
+      "advertise_nat_routes": {
+        "description": "Enable the router advertisement for NAT routes",
+        "required": false
+      },
+      "advertise_static_routes": {
+        "description": "Enable the router advertisement for static routes",
+        "required": false
+      },
+      "description": {
+        "description": "Description of the resource.",
+        "required": false
+      },
+      "display_name": {
+        "description": "Display name, defaults to ID if not set.",
+        "required": false
+      },
+      "edge_cluster_id": {
+        "description": "Edge Cluster ID for the logical Tier1 router.",
+        "required": false
+      },
+      "enable_router_advertisement": {
+        "description": "Enable the router advertisement",
+        "required": false
+      },
+      "failover_mode": {
+        "description": "This failover mode determines, whether the preferred service router instance for given logical router will preempt the peer. Note - It can be specified if and only if logical router is ACTIVE_STANDBY and NON_PREEMPTIVE mode is supported only for a Tier1 logical router. For ACTIVE_ACTIVE logical routers, this field must not be populated",
+        "required": false
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this logical Tier1 router.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nsxt/r/logical_tier1_router.html",
+    "properties": [
+      "edge_cluster_id",
+      "display_name",
+      "description",
+      "tag",
+      "failover_mode",
+      "enable_router_advertisement",
+      "advertise_connected_routes",
+      "advertise_static_routes",
+      "advertise_nat_routes"
+    ]
+  },
+  "nsxt_nat_rule": {
+    "full_properties": {
+      "action": {
+        "description": "NAT rule action type. Valid actions are: SNAT, DNAT, NO_NAT and REFLEXIVE. All rules in a logical router are either stateless or stateful. Mix is not supported. SNAT and DNAT are stateful, and can NOT be supported when the logical router is running at active-active HA mode. The REFLEXIVE action is stateless. The NO_NAT action has no translated_fields, only match fields.",
+        "required": true
+      },
+      "description": {
+        "description": "Description of this resource.",
+        "required": false
+      },
+      "display_name": {
+        "description": "The display name of this resource. Defaults to ID if not set.",
+        "required": false
+      },
+      "enabled": {
+        "description": "enable/disable the rule.",
+        "required": false
+      },
+      "logging": {
+        "description": "enable/disable the logging of rule.",
+        "required": false
+      },
+      "logical_router_id": {
+        "description": "ID of the logical router.",
+        "required": true
+      },
+      "match_destination_network": {
+        "description": "IP Address | CIDR | (null implies Any).",
+        "required": false
+      },
+      "match_source_network": {
+        "description": "IP Address | CIDR | (null implies Any).",
+        "required": false
+      },
+      "nat_pass": {
+        "description": "Enable/disable to bypass following firewall stage. The default is true, meaning that the following firewall stage will be skipped. Please note, if action is NO_NAT, then nat_pass must be set to true or omitted.",
+        "required": false
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this NAT rule.",
+        "required": false
+      },
+      "translated_network": {
+        "description": "IP Address | IP Range | CIDR. For DNAT rules only a single ip is supported.",
+        "required": false
+      },
+      "translated_ports": {
+        "description": "port number or port range. DNAT only.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nsxt/r/nat_rule.html",
+    "properties": [
+      "logical_router_id",
+      "description",
+      "display_name",
+      "tag",
+      "action",
+      "enabled",
+      "logging",
+      "match_destination_network",
+      "match_source_network",
+      "nat_pass",
+      "translated_network",
+      "translated_ports"
+    ]
+  },
+  "nsxt_ns_group": {
+    "full_properties": {
+      "description": {
+        "description": "Description of this resource.",
+        "required": false
+      },
+      "display_name": {
+        "description": "The display name of this resource. Defaults to ID if not set.",
+        "required": false
+      },
+      "member": {
+        "description": "Reference to the direct/static members of the NSGroup. Can be ID based expressions only. VirtualMachine cannot be added as a static member. target_type can be: NSGroup, IPSet, LogicalPort, LogicalSwitch, MACSet",
+        "required": false
+      },
+      "membership_criteria": {
+        "description": "List of tag or ID expressions which define the membership criteria for this NSGroup. An object must satisfy at least one of these expressions to qualify as a member of this group.",
+        "required": false
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this NS group.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nsxt/r/ns_group.html",
+    "properties": [
+      "description",
+      "display_name",
+      "tag",
+      "member",
+      "membership_criteria"
+    ]
+  },
+  "nsxt_static_route": {
+    "full_properties": {
+      "administrative_distance": {
+        "description": "Administrative Distance for the next hop IP.",
+        "required": false
+      },
+      "description": {
+        "description": "Description of this resource.",
+        "required": false
+      },
+      "display_name": {
+        "description": "The display name of this resource. Defaults to ID if not set.",
+        "required": false
+      },
+      "ip_address": {
+        "description": "Next Hop IP.",
+        "required": false
+      },
+      "logical_router_id": {
+        "description": "Logical router id.",
+        "required": false
+      },
+      "logical_router_port_id": {
+        "description": "Reference of logical router port to be used for next hop.",
+        "required": false
+      },
+      "network": {
+        "description": "CIDR.",
+        "required": true
+      },
+      "next_hopadministrative_distanceip_addresslogical_router_port_id": {
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this static route.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nsxt/r/static_route.html",
+    "properties": [
+      "description",
+      "display_name",
+      "tag",
+      "logical_router_id",
+      "network",
+      "next_hopadministrative_distanceip_addresslogical_router_port_id",
+      "administrative_distance",
+      "ip_address",
+      "logical_router_port_id"
+    ]
+  },
+  "nsxt_vm_tags": {
+    "full_properties": {
+      "instance_id": {
+        "description": "BIOS Id of the Virtual Machine.",
+        "required": true
+      },
+      "tag": {
+        "description": "A list of scope + tag pairs to associate with this VM.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/nsxt/r/vm_tags.html",
+    "properties": [
+      "instance_id",
+      "tag"
+    ]
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "postgresql_database": {
+    "full_properties": {
+      "allow_connections": {
+        "description": "If false then no one can connect to this",
+        "required": false
+      },
+      "connection_limit": {
+        "description": "How many concurrent connections can be",
+        "required": false
+      },
+      "encoding": {
+        "description": "Character set encoding to use in the database.",
+        "required": false
+      },
+      "is_template": {
+        "description": "If true, then this database can be cloned by any",
+        "required": false
+      },
+      "lc_collate": {
+        "description": "Collation order (LC_COLLATE) to use in the",
+        "required": false
+      },
+      "lc_ctype": {
+        "description": "Character classification (LC_CTYPE) to use in the",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the database. Must be unique on the PostgreSQL",
+        "required": true
+      },
+      "owner": {
+        "description": "The role name of the user who will own the database, or",
+        "required": false
+      },
+      "tablespace_name": {
+        "description": "The name of the tablespace that will be",
+        "required": false
+      },
+      "template": {
+        "description": "The name of the template database from which to create",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/postgresql/r/postgresql_database.html",
+    "properties": [
+      "name",
+      "owner",
+      "tablespace_name",
+      "connection_limit",
+      "allow_connections",
+      "is_template",
+      "template",
+      "encoding",
+      "lc_collate",
+      "lc_ctype"
+    ]
+  },
+  "postgresql_extension": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the extension.",
+        "required": true
+      },
+      "schema": {
+        "description": "Sets the schema of an extension.",
+        "required": false
+      },
+      "version": {
+        "description": "Sets the version number of the extension.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/postgresql/r/postgresql_extension.html",
+    "properties": [
+      "name",
+      "schema",
+      "version"
+    ]
+  },
+  "postgresql_role": {
+    "full_properties": {
+      "bypass_row_level_security": {
+        "description": "Defines whether a role bypasses every",
+        "required": false
+      },
+      "connection_limit": {
+        "description": "If this role can log in, this specifies how",
+        "required": false
+      },
+      "create_database": {
+        "description": "Defines a role's ability to execute CREATE",
+        "required": false
+      },
+      "create_role": {
+        "description": "Defines a role's ability to execute CREATE ROLE.",
+        "required": false
+      },
+      "encrypted_passwordpassword_encryption": {
+      },
+      "inherit": {
+        "description": "Defines whether a role \"inherits\" the privileges of",
+        "required": false
+      },
+      "login": {
+        "description": "Defines whether role is allowed to log in.  Roles without",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the role. Must be unique on the PostgreSQL",
+        "required": true
+      },
+      "password": {
+        "description": "Sets the role's password. (A password is only of use",
+        "required": false
+      },
+      "replication": {
+        "description": "Defines whether a role is allowed to initiate",
+        "required": false
+      },
+      "skip_drop_role": {
+        "description": "When a PostgreSQL ROLE exists in multiple",
+        "required": false
+      },
+      "skip_reassign_ownedREASSIGN OWNEDDROP OWNED": {
+      },
+      "superuser": {
+        "description": "Defines whether the role is a \"superuser\", and",
+        "required": false
+      },
+      "valid_until": {
+        "description": "Defines the date and time after which the role's",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/postgresql/r/postgresql_role.html",
+    "properties": [
+      "name",
+      "superuser",
+      "create_database",
+      "create_role",
+      "inherit",
+      "login",
+      "replication",
+      "bypass_row_level_security",
+      "connection_limit",
+      "encrypted_passwordpassword_encryption",
+      "password",
+      "valid_until",
+      "skip_drop_role",
+      "skip_reassign_ownedREASSIGN OWNEDDROP OWNED"
+    ]
+  },
+  "postgresql_schema": {
+    "full_properties": {
+      "if_not_exists": {
+        "description": "When true, use the existing schema if it exists. (Default: true)",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the schema. Must be unique in the PostgreSQL",
+        "required": true
+      },
+      "owner": {
+        "description": "The ROLE who owns the schema.",
+        "required": false
+      },
+      "policy": {
+        "description": "Can be specified multiple times for each policy.  Each",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/postgresql/r/postgresql_schema.html",
+    "properties": [
+      "name",
+      "owner",
+      "if_not_exists",
+      "policy"
+    ]
+  }
+}

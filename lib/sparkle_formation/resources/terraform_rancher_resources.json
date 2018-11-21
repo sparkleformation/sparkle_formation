@@ -1,0 +1,310 @@
+{
+  "rancher_certificate": {
+    "full_properties": {
+      "cert": {
+        "description": "The certificate content.",
+        "required": true
+      },
+      "cert_chain": {
+        "description": "The certificate chain.",
+        "required": false
+      },
+      "description": {
+        "description": "A certificate description.",
+        "required": false
+      },
+      "environment_id": {
+        "description": "The ID of the environment to create the certificate for.",
+        "required": true
+      },
+      "key": {
+        "description": "The certificate key.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the certificate.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rancher/r/certificate.html",
+    "properties": [
+      "name",
+      "description",
+      "environment_id",
+      "cert",
+      "cert_chain",
+      "key"
+    ]
+  },
+  "rancher_environment": {
+    "full_properties": {
+      "description": {
+        "description": "An environment description.",
+        "required": false
+      },
+      "member": {
+        "description": "Members to add to the environment.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the environment.",
+        "required": true
+      },
+      "orchestration": {
+        "description": "Must be one of cattle, swarm, mesos, windows or kubernetes. This is a helper for setting the project_template_ids for the included Rancher templates. This will conflict with project_template_id setting. Changing this forces a new resource to be created.",
+        "required": false
+      },
+      "project_template_id": {
+        "description": "This can be any valid project template ID. If this is set, then orchestration can not be. Changing this forces a new resource to be created.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/rancher/r/environment.html",
+    "properties": [
+      "name",
+      "description",
+      "orchestration",
+      "project_template_id",
+      "member"
+    ]
+  },
+  "rancher_host": {
+    "full_properties": {
+      "description": {
+        "description": "A host description.",
+        "required": false
+      },
+      "environment_id": {
+        "description": "The ID of the environment the host is associated to.",
+        "required": true
+      },
+      "hostname": {
+        "description": "The host name. Used as the primary key to detect the host ID.",
+        "required": true
+      },
+      "id": {
+        "description": "The ID of the resource.",
+        "required": false
+      },
+      "labels": {
+        "description": "A dictionary of labels to apply to the host. Computed internal labels are excluded from that list.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the host.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rancher/r/host.html",
+    "properties": [
+      "id",
+      "name",
+      "description",
+      "environment_id",
+      "hostname",
+      "labels"
+    ]
+  },
+  "rancher_registration_token": {
+    "full_properties": {
+      "agent_ip": {
+        "description": "A string containing the CATTLE_AGENT_IP to add to the registration command.",
+        "required": false
+      },
+      "description": {
+        "description": "A registration token description.",
+        "required": false
+      },
+      "environment_id": {
+        "description": "The ID of the environment to create the token for.",
+        "required": true
+      },
+      "host_labels": {
+        "description": "A map of host labels to add to the registration command.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the registration token.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rancher/r/registration_token.html",
+    "properties": [
+      "name",
+      "description",
+      "environment_id",
+      "host_labels",
+      "agent_ip"
+    ]
+  },
+  "rancher_registry": {
+    "full_properties": {
+      "description": {
+        "description": "A registry description.",
+        "required": false
+      },
+      "environment_id": {
+        "description": "The ID of the environment to create the registry for.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the registry.",
+        "required": true
+      },
+      "server_address": {
+        "description": "The server address for the registry.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rancher/r/registry.html",
+    "properties": [
+      "name",
+      "description",
+      "environment_id",
+      "server_address"
+    ]
+  },
+  "rancher_registry_credential": {
+    "full_properties": {
+      "description": {
+        "description": "A registry credential description.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the registry credential.",
+        "required": true
+      },
+      "public_value": {
+        "description": "The public value (user name) of the account.",
+        "required": true
+      },
+      "registry_id": {
+        "description": "The ID of the registry to create the credential for.",
+        "required": true
+      },
+      "secret_value": {
+        "description": "The secret value (password) of the account.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rancher/r/registry_credential.html",
+    "properties": [
+      "name",
+      "description",
+      "registry_id",
+      "public_value",
+      "secret_value"
+    ]
+  },
+  "rancher_secrets": {
+    "full_properties": {
+      "description": {
+        "description": "A description of the secret.",
+        "required": false
+      },
+      "environment_id": {
+        "description": "The ID of the environment to create the secret for.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the secret.",
+        "required": true
+      },
+      "value": {
+        "description": "The secret value.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rancher/r/secret.html",
+    "properties": [
+      "name",
+      "description",
+      "environment_id",
+      "value"
+    ]
+  },
+  "rancher_stack": {
+    "full_properties": {
+      "catalog_id": {
+        "description": "The catalog ID to link this stack to. When provided, docker_compose and rancher_compose will be retrieved from the catalog unless they are overridden.",
+        "required": false
+      },
+      "description": {
+        "description": "A stack description.",
+        "required": false
+      },
+      "docker_compose": {
+        "description": "The docker-compose.yml content to apply for the stack.",
+        "required": false
+      },
+      "environment": {
+        "description": "The environment to apply to interpret the docker-compose and rancher-compose files.",
+        "required": false
+      },
+      "environment_id": {
+        "description": "The ID of the environment to create the stack for.",
+        "required": true
+      },
+      "finish_upgrade": {
+        "description": "Whether to automatically finish upgrades to this stack.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the stack.",
+        "required": true
+      },
+      "rancher_compose": {
+        "description": "The rancher-compose.yml content to apply for the stack.",
+        "required": false
+      },
+      "scope": {
+        "description": "The scope to attach the stack to. Must be one of user or system. Defaults to user.",
+        "required": false
+      },
+      "start_on_create": {
+        "description": "Whether to start the stack automatically.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/rancher/r/stack.html",
+    "properties": [
+      "name",
+      "description",
+      "environment_id",
+      "docker_compose",
+      "rancher_compose",
+      "environment",
+      "catalog_id",
+      "scope",
+      "start_on_create",
+      "finish_upgrade"
+    ]
+  },
+  "rancher_volumes": {
+    "full_properties": {
+      "description": {
+        "description": "A description of the volume.",
+        "required": false
+      },
+      "driver": {
+        "description": "The volume driver.",
+        "required": true
+      },
+      "environment_id": {
+        "description": "The ID of the environment to create the volume for.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the volume.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rancher/r/volume.html",
+    "properties": [
+      "name",
+      "description",
+      "environment_id",
+      "driver"
+    ]
+  }
+}

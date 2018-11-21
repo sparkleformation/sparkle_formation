@@ -1,0 +1,149 @@
+{
+  "nomad_acl_policy": {
+    "full_properties": {
+      "description": {
+        "description": "- A description of the policy.",
+        "required": false
+      },
+      "name": {
+        "description": "- A unique name for the policy.",
+        "required": false
+      },
+      "rules_hcl": {
+        "description": "- The contents of the policy to register,",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nomad/r/acl_policy.html",
+    "properties": [
+      "name",
+      "rules_hcl",
+      "description"
+    ]
+  },
+  "nomad_acl_token": {
+    "full_properties": {
+      "global": {
+        "description": "- Whether the token should be replicated to all",
+        "required": false
+      },
+      "name": {
+        "description": "- A human-friendly name for this token.",
+        "required": false
+      },
+      "policies": {
+        "description": "- A set of policy names to associate with this",
+        "required": false
+      },
+      "type": {
+        "description": "- The type of token this is. Use client",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nomad/r/acl_token.html",
+    "properties": [
+      "type",
+      "name",
+      "policies",
+      "global"
+    ]
+  },
+  "nomad_job": {
+    "full_properties": {
+      "deregister_on_destroy": {
+        "description": "- Determines if the job will be",
+        "required": false
+      },
+      "deregister_on_id_change": {
+        "description": "- Determines if the job will be",
+        "required": false
+      },
+      "jobspec": {
+        "description": "- The contents of the jobspec to register.",
+        "required": false
+      },
+      "policy_override": {
+        "description": "- Determins if the job will override any",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nomad/r/job.html",
+    "properties": [
+      "jobspec",
+      "deregister_on_destroy",
+      "deregister_on_id_change",
+      "policy_override"
+    ]
+  },
+  "nomad_namespace": {
+    "full_properties": {
+      "description": {
+        "description": "- A description of the namespace.",
+        "required": false
+      },
+      "name": {
+        "description": "- A unique name for the namespace.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nomad/r/namespace.html",
+    "properties": [
+      "name",
+      "description"
+    ]
+  },
+  "nomad_quota_specification": {
+    "full_properties": {
+      "description": {
+        "description": "- A description of the quota specification.",
+        "required": false
+      },
+      "limits": {
+        "description": "- A block of quota limits to enforce. Can",
+        "required": false
+      },
+      "name": {
+        "description": "- A unique name for the quota specification.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nomad/r/quota_specification.html",
+    "properties": [
+      "name",
+      "description",
+      "limits"
+    ]
+  },
+  "nomad_sentinel_policy": {
+    "full_properties": {
+      "description": {
+        "description": "- A description of the policy.",
+        "required": false
+      },
+      "enforcement_level": {
+        "description": "- The enforcement level",
+        "required": false
+      },
+      "name": {
+        "description": "- A unique name for the policy.",
+        "required": false
+      },
+      "policy": {
+        "description": "- The contents of the policy to register.",
+        "required": false
+      },
+      "scope": {
+        "description": "- The scope for this policy.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/nomad/r/sentinel_policy.html",
+    "properties": [
+      "name",
+      "policy",
+      "enforcement_level",
+      "scope",
+      "description"
+    ]
+  }
+}

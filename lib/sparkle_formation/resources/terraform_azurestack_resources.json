@@ -1,0 +1,1231 @@
+{
+  "azurestack_availability_set": {
+    "full_properties": {
+      "location": {
+        "description": "Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "name": {
+        "description": "Specifies the name of the availability set. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "platform_update_domain_count": {
+        "description": "Specifies the number of update domains that are used. Defaults to 5.",
+        "required": false
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to create the availability set. Changing this forces a new resource to be created.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azurestack/r/availability_set.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "location",
+      "platform_update_domain_count"
+    ]
+  },
+  "azurestack_dns_a_record": {
+    "full_properties": {
+      "TTL": {
+        "description": "The Time To Live (TTL) of the DNS record.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the DNS A Record.",
+        "required": true
+      },
+      "records": {
+        "description": "List of IPv4 Addresses.",
+        "required": true
+      },
+      "resource_group_name": {
+        "description": "Specifies the resource group where the resource exists. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the resource.",
+        "required": false
+      },
+      "zone_name": {
+        "description": "Specifies the DNS Zone where the resource exists. Changing this forces a new resource to be created.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azurestack/r/dns_a_record.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "zone_name",
+      "TTL",
+      "records",
+      "tags"
+    ]
+  },
+  "azurestack_dns_zone": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the DNS Zone. Must be a valid domain name.",
+        "required": true
+      },
+      "resource_group_name": {
+        "description": "Specifies the resource group where the resource exists. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the resource.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/azurestack/r/dns_zone.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "tags"
+    ]
+  },
+  "azurestack_lb": {
+    "full_properties": {
+      "frontend_ip_configuration": {
+        "description": "A frontend ip configuration block as documented below.",
+        "required": false
+      },
+      "location": {
+        "description": "Specifies the supported Azure location where the resource exists.",
+        "required": true
+      },
+      "name": {
+        "description": "Specifies the name of the LoadBalancer.",
+        "required": true
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to create the LoadBalancer.",
+        "required": true
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the resource.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/azurestack/r/loadbalancer.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "location",
+      "frontend_ip_configuration",
+      "tags"
+    ]
+  },
+  "azurestack_lb_backend_address_pool": {
+    "full_properties": {
+      "loadbalancer_id": {
+        "description": "The ID of the LoadBalancer in which to create the Backend Address Pool.",
+        "required": true
+      },
+      "name": {
+        "description": "Specifies the name of the Backend Address Pool.",
+        "required": true
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to create the resource.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azurestack/r/loadbalancer_backend_address_pool.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "loadbalancer_id"
+    ]
+  },
+  "azurestack_lb_nat_pool": {
+    "full_properties": {
+      "backend_port": {
+        "description": "The port used for the internal endpoint. Possible values range between 1 and 65535, inclusive.",
+        "required": true
+      },
+      "frontend_ip_configuration_name": {
+        "description": "The name of the frontend IP configuration exposing this rule.",
+        "required": true
+      },
+      "frontend_port_end": {
+        "description": "The last port number in the range of external ports that will be used to provide Inbound Nat to NICs associated with this Load Balancer. Possible values range between 1 and 65534, inclusive.",
+        "required": true
+      },
+      "frontend_port_start": {
+        "description": "The first port number in the range of external ports that will be used to provide Inbound Nat to NICs associated with this Load Balancer. Possible values range between 1 and 65534, inclusive.",
+        "required": true
+      },
+      "loadbalancer_id": {
+        "description": "The ID of the Load Balancer in which to create the NAT pool.",
+        "required": true
+      },
+      "name": {
+        "description": "Specifies the name of the NAT pool.",
+        "required": true
+      },
+      "protocol": {
+        "description": "The transport protocol for the external endpoint. Possible values are Udp or Tcp.",
+        "required": true
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to create the resource.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azurestack/r/loadbalancer_nat_pool.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "loadbalancer_id",
+      "frontend_ip_configuration_name",
+      "protocol",
+      "frontend_port_start",
+      "frontend_port_end",
+      "backend_port"
+    ]
+  },
+  "azurestack_lb_nat_rule": {
+    "full_properties": {
+      "backend_port": {
+        "description": "The port used for internal connections on the endpoint. Possible values range between 1 and 65535, inclusive.",
+        "required": true
+      },
+      "enable_floating_ip": {
+        "description": "Enables the Floating IP Capacity, required to configure a SQL AlwaysOn Availability Group.",
+        "required": false
+      },
+      "frontend_ip_configuration_name": {
+        "description": "The name of the frontend IP configuration exposing this rule.",
+        "required": true
+      },
+      "frontend_port": {
+        "description": "The port for the external endpoint. Port numbers for each Rule must be unique within the Load Balancer. Possible values range between 1 and 65534, inclusive.",
+        "required": true
+      },
+      "loadbalancer_id": {
+        "description": "The ID of the LoadBalancer in which to create the NAT Rule.",
+        "required": true
+      },
+      "name": {
+        "description": "Specifies the name of the NAT Rule.",
+        "required": true
+      },
+      "protocol": {
+        "description": "The transport protocol for the external endpoint. Possible values are Udp or Tcp.",
+        "required": true
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to create the resource.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azurestack/r/loadbalancer_nat_rule.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "loadbalancer_id",
+      "frontend_ip_configuration_name",
+      "protocol",
+      "frontend_port",
+      "backend_port",
+      "enable_floating_ip"
+    ]
+  },
+  "azurestack_lb_probe": {
+    "full_properties": {
+      "interval_in_seconds": {
+        "description": "The interval, in seconds between probes to the backend endpoint for health status. The default value is 15, the minimum value is 5.",
+        "required": false
+      },
+      "loadbalancer_id": {
+        "description": "The ID of the LoadBalancer in which to create the NAT Rule.",
+        "required": true
+      },
+      "name": {
+        "description": "Specifies the name of the Probe.",
+        "required": true
+      },
+      "number_of_probes": {
+        "description": "The number of failed probe attempts after which the backend endpoint is removed from rotation. The default value is 2. NumberOfProbes multiplied by intervalInSeconds value must be greater or equal to 10.Endpoints are returned to rotation when at least one probe is successful.",
+        "required": false
+      },
+      "port": {
+        "description": "Port on which the Probe queries the backend endpoint. Possible values range from 1 to 65535, inclusive.",
+        "required": true
+      },
+      "protocol": {
+        "description": "Specifies the protocol of the end point. Possible values are Http or Tcp. If Tcp is specified, a received ACK is required for the probe to be successful. If Http is specified, a 200 OK response from the specified URI is required for the probe to be successful.",
+        "required": false
+      },
+      "request_path": {
+        "description": "The URI used for requesting health status from the backend endpoint. Required if protocol is set to Http. Otherwise, it is not allowed.",
+        "required": false
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to create the resource.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azurestack/r/loadbalancer_probe.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "loadbalancer_id",
+      "protocol",
+      "port",
+      "request_path",
+      "interval_in_seconds",
+      "number_of_probes"
+    ]
+  },
+  "azurestack_lb_rule": {
+    "full_properties": {
+      "backend_address_pool_id": {
+        "description": "A reference to a Backend Address Pool over which this Load Balancing Rule operates.",
+        "required": false
+      },
+      "backend_port": {
+        "description": "The port used for internal connections on the endpoint. Possible values range between 1 and 65535, inclusive.",
+        "required": true
+      },
+      "enable_floating_ip": {
+        "description": "Floating IP is pertinent to failover scenarios: a \"floating” IP is reassigned to a secondary server in case the primary server fails. Floating IP is required for SQL AlwaysOn.",
+        "required": false
+      },
+      "frontend_ip_configuration_name": {
+        "description": "The name of the frontend IP configuration to which the rule is associated.",
+        "required": true
+      },
+      "frontend_port": {
+        "description": "The port for the external endpoint. Port numbers for each Rule must be unique within the Load Balancer. Possible values range between 1 and 65534, inclusive.",
+        "required": true
+      },
+      "idle_timeout_in_minutes": {
+        "description": "Specifies the timeout for the Tcp idle connection. The value can be set between 4 and 30 minutes. The default value is 4 minutes. This element is only used when the protocol is set to Tcp.",
+        "required": false
+      },
+      "load_distribution": {
+        "description": "Specifies the load balancing distribution type to be used by the Load Balancer. Possible values are: Default – The load balancer is configured to use a 5 tuple hash to map traffic to available servers. SourceIP – The load balancer is configured to use a 2 tuple hash to map traffic to available servers. SourceIPProtocol – The load balancer is configured to use a 3 tuple hash to map traffic to available servers. Also known as Session Persistence, where  the options are called None, Client IP and Client IP and Protocol respectively.",
+        "required": false
+      },
+      "loadbalancer_id": {
+        "description": "The ID of the Load Balancer in which to create the Rule.",
+        "required": true
+      },
+      "name": {
+        "description": "Specifies the name of the LB Rule.",
+        "required": true
+      },
+      "probe_id": {
+        "description": "A reference to a Probe used by this Load Balancing Rule.",
+        "required": false
+      },
+      "protocol": {
+        "description": "The transport protocol for the external endpoint. Possible values are Udp or Tcp.",
+        "required": true
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to create the resource.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azurestack/r/loadbalancer_rule.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "loadbalancer_id",
+      "frontend_ip_configuration_name",
+      "protocol",
+      "frontend_port",
+      "backend_port",
+      "backend_address_pool_id",
+      "probe_id",
+      "enable_floating_ip",
+      "idle_timeout_in_minutes",
+      "load_distribution"
+    ]
+  },
+  "azurestack_local_network_gateway": {
+    "full_properties": {
+      "address_space": {
+        "description": "The list of string CIDRs representing the",
+        "required": true
+      },
+      "bgp_settings": {
+        "description": "A bgp_settings block as defined below containing the",
+        "required": false
+      },
+      "gateway_address": {
+        "description": "The IP address of the gateway to which to",
+        "required": true
+      },
+      "location": {
+        "description": "The location/region where the local network gateway is",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the local network gateway. Changing this",
+        "required": true
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to",
+        "required": true
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the resource.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/azurestack/r/local_network_gateway.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "location",
+      "gateway_address",
+      "address_space",
+      "bgp_settings",
+      "tags"
+    ]
+  },
+  "azurestack_network_interface": {
+    "full_properties": {
+      "dns_servers": {
+        "description": "List of DNS servers IP addresses to use for this NIC, overrides the VNet-level server list",
+        "required": false
+      },
+      "enable_ip_forwarding": {
+        "description": "Enables IP Forwarding on the NIC. Defaults to false.",
+        "required": false
+      },
+      "internal_dns_name_label": {
+        "description": "Relative DNS name for this NIC used for internal communications between VMs in the same VNet",
+        "required": false
+      },
+      "ip_configuration": {
+        "description": "One or more ip_configuration associated with this NIC as documented below.",
+        "required": true
+      },
+      "location": {
+        "description": "The location/region where the network interface is created. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the network interface. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "network_security_group_id": {
+        "description": "The ID of the Network Security Group to associate with the network interface.",
+        "required": false
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to create the network interface. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the resource.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/azurestack/r/network_interface.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "location",
+      "network_security_group_id",
+      "internal_dns_name_label",
+      "enable_ip_forwarding",
+      "dns_servers",
+      "ip_configuration",
+      "tags"
+    ]
+  },
+  "azurestack_network_security_group": {
+    "full_properties": {
+      "location": {
+        "description": "Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "name": {
+        "description": "Specifies the name of the network security group. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to create the network security group. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "security_rule": {
+        "description": "One or more security_rule blocks as defined below.",
+        "required": false
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the resource.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/azurestack/r/network_security_group.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "location",
+      "security_rule",
+      "tags"
+    ]
+  },
+  "azurestack_network_security_rule": {
+    "full_properties": {
+      "access": {
+        "description": "Specifies whether network traffic is allowed or denied. Possible values are Allow and Deny.",
+        "required": true
+      },
+      "description": {
+        "description": "A description for this rule. Restricted to 140 characters.",
+        "required": false
+      },
+      "destination_address_prefix": {
+        "description": "CIDR or destination IP range or * to match any IP. Tags such as ‘VirtualNetwork’, ‘AzureLoadBalancer’ and ‘Internet’ can also be used.",
+        "required": false
+      },
+      "destination_port_range": {
+        "description": "Destination Port or Range. Integer or range between 0 and 65535 or * to match any.",
+        "required": false
+      },
+      "direction": {
+        "description": "The direction specifies if rule will be evaluated on incoming or outgoing traffic. Possible values are Inbound and Outbound.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the security rule. This needs to be unique across all Rules in the Network Security Group. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "network_security_group_name": {
+        "description": "The name of the Network Security Group that we want to attach the rule to. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "priority": {
+        "description": "Specifies the priority of the rule. The value can be between 100 and 4096. The priority number must be unique for each rule in the collection. The lower the priority number, the higher the priority of the rule.",
+        "required": true
+      },
+      "protocol": {
+        "description": "Network protocol this rule applies to. Possible values include Tcp, Udp or * (which matches both).",
+        "required": true
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to create the Network Security Rule. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "source_address_prefix": {
+        "description": "CIDR or source IP range or * to match any IP. Tags such as ‘VirtualNetwork’, ‘AzureLoadBalancer’ and ‘Internet’ can also be used.",
+        "required": false
+      },
+      "source_port_range": {
+        "description": "Source Port or Range. Integer or range between 0 and 65535 or * to match any.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/azurestack/r/network_security_rule.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "network_security_group_name",
+      "description",
+      "protocol",
+      "source_port_range",
+      "destination_port_range",
+      "source_address_prefix",
+      "destination_address_prefix",
+      "access",
+      "priority",
+      "direction"
+    ]
+  },
+  "azurestack_public_ip": {
+    "full_properties": {
+      "location": {
+        "description": "Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "name": {
+        "description": "Specifies the name of the Public IP resource . Changing this forces a",
+        "required": true
+      },
+      "public_ip_address_allocation": {
+        "description": "Defines whether the IP address is static or dynamic. Options are Static or Dynamic.",
+        "required": true
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azurestack/r/public_ip.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "location",
+      "public_ip_address_allocation"
+    ]
+  },
+  "azurestack_resource_group": {
+    "full_properties": {
+      "location": {
+        "description": "The location where the resource group should be created.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the resource group. Must be unique on your",
+        "required": true
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the resource.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/azurestack/r/resource_group.html",
+    "properties": [
+      "name",
+      "location",
+      "tags"
+    ]
+  },
+  "azurestack_route": {
+    "full_properties": {
+      "address_prefix": {
+        "description": "The destination CIDR to which the route applies, such as 10.1.0.0/16",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the route. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "next_hop_in_ip_address": {
+        "description": "Contains the IP address packets should be forwarded to. Next hop values are only allowed in routes where the next hop type is VirtualAppliance.",
+        "required": false
+      },
+      "next_hop_type": {
+        "description": "The type of Azure hop the packet should be sent to. Possible values are VirtualNetworkGateway, VnetLocal, Internet, VirtualAppliance and None",
+        "required": true
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to create the route. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "route_table_name": {
+        "description": "The name of the route table within which create the route. Changing this forces a new resource to be created.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azurestack/r/route.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "route_table_name",
+      "address_prefix",
+      "next_hop_type",
+      "next_hop_in_ip_address"
+    ]
+  },
+  "azurestack_route_table": {
+    "full_properties": {
+      "location": {
+        "description": "Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the route table. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to create the route table. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "route": {
+        "description": "Can be specified multiple times to define multiple routes. Each route block supports fields documented below.",
+        "required": false
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the resource.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/azurestack/r/route_table.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "location",
+      "route",
+      "tags"
+    ]
+  },
+  "azurestack_storage_account": {
+    "full_properties": {
+      "access_tier": {
+        "description": "Defines the access tier",
+        "required": false
+      },
+      "account_encryption_source": {
+        "description": "The Encryption Source for this Storage Account. Possible values are Microsoft.Keyvault and Microsoft.Storage. Defaults to Microsoft.Storage.",
+        "required": false
+      },
+      "account_kind": {
+        "description": "Defines the Kind of account. Valid option is Storage.",
+        "required": false
+      },
+      "account_replication_type": {
+        "description": "Defines the type of replication to use for this storage account. Valid option is LRS currently as per Azure Stack Storage Differences",
+        "required": true
+      },
+      "account_tier": {
+        "description": "Defines the Tier to use for this storage account. Valid options are Standard and Premium. Changing this forces a new resource to be created - Can be provisioned, but no performance limit or guarantee.",
+        "required": true
+      },
+      "custom_domain": {
+        "description": "A custom_domain block as documented below.",
+        "required": false
+      },
+      "location": {
+        "description": "Specifies the supported Azure location where the",
+        "required": true
+      },
+      "name": {
+        "description": "Specifies the name of the storage account. Changing this forces a",
+        "required": true
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to",
+        "required": true
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the resource.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/azurestack/r/storage_account.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "location",
+      "account_kind",
+      "account_tier",
+      "account_replication_type",
+      "access_tier",
+      "account_encryption_source",
+      "custom_domain",
+      "tags"
+    ]
+  },
+  "azurestack_storage_blob": {
+    "full_properties": {
+      "attempts": {
+        "description": "The number of attempts to make per page or block when uploading. Defaults to 1.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the storage blob. Must be unique within the storage container the blob is located.",
+        "required": true
+      },
+      "parallelism": {
+        "description": "The number of workers per CPU core to run for concurrent uploads. Defaults to 8.",
+        "required": false
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to",
+        "required": true
+      },
+      "size": {
+        "description": "Used only for page blobs to specify the size in bytes of the blob to be created. Must be a multiple of 512. Defaults to 0.",
+        "required": false
+      },
+      "source": {
+        "description": "An absolute path to a file on the local system. Cannot be defined if source_uri is defined.",
+        "required": false
+      },
+      "source_uri": {
+        "description": "The URI of an existing blob, or a file in the Azure File service, to use as the source contents",
+        "required": false
+      },
+      "storage_account_name": {
+        "description": "Specifies the storage account in which to create the storage container.",
+        "required": true
+      },
+      "storage_container_name": {
+        "description": "The name of the storage container in which this blob should be created.",
+        "required": true
+      },
+      "type": {
+        "description": "The type of the storage blob to be created. One of either block or page. When not copying from an existing blob,",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/azurestack/r/storage_blob.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "storage_account_name",
+      "storage_container_name",
+      "type",
+      "size",
+      "source",
+      "source_uri",
+      "parallelism",
+      "attempts"
+    ]
+  },
+  "azurestack_storage_container": {
+    "full_properties": {
+      "container_access_type": {
+        "description": "The 'interface' for access the container provides. Can be either blob, container or private. Defaults to private. Changing this forces a new resource to be created.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the storage container. Must be unique within the storage service the container is located.",
+        "required": true
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to",
+        "required": true
+      },
+      "storage_account_name": {
+        "description": "Specifies the storage account in which to create the storage container.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azurestack/r/storage_container.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "storage_account_name",
+      "container_access_type"
+    ]
+  },
+  "azurestack_subnet": {
+    "full_properties": {
+      "address_prefix": {
+        "description": "The address prefix to use for the subnet.",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the subnet. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "network_security_group_id": {
+        "description": "The ID of the Network Security Group to associate with the subnet.",
+        "required": false
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to create the subnet. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "route_table_id": {
+        "description": "The ID of the Route Table to associate with the subnet.",
+        "required": false
+      },
+      "virtual_network_name": {
+        "description": "The name of the virtual network to which to attach the subnet. Changing this forces a new resource to be created.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azurestack/r/subnet.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "virtual_network_name",
+      "address_prefix",
+      "network_security_group_id",
+      "route_table_id"
+    ]
+  },
+  "azurestack_template_deployment": {
+    "full_properties": {
+      "deployment_mode": {
+        "description": "Specifies the mode that is used to deploy resources. This value could be either Incremental or Complete.",
+        "required": true
+      },
+      "name": {
+        "description": "Specifies the name of the template deployment. Changing this forces a",
+        "required": true
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to",
+        "required": true
+      },
+      "template_body": {
+        "description": "Specifies the JSON definition for the template.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/azurestack/r/template_deployment.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "deployment_mode",
+      "template_body"
+    ]
+  },
+  "azurestack_virtual_machine": {
+    "full_properties": {
+      "availability_set_id": {
+        "description": "The Id of the Availability Set in which to create the virtual machine",
+        "required": false
+      },
+      "boot_diagnostics": {
+        "description": "A boot diagnostics profile block as referenced below.",
+        "required": false
+      },
+      "delete_data_disks_on_termination": {
+        "description": "Flag to enable deletion of storage data disk VHD blobs when the VM is deleted, defaults to false.",
+        "required": false
+      },
+      "identity": {
+        "description": "An identity block as documented below.",
+        "required": false
+      },
+      "license_type": {
+        "description": "Specifies the Windows OS license type. If supplied, the only allowed values are Windows_Client and Windows_Server.",
+        "required": false
+      },
+      "location": {
+        "description": "Specifies the supported Azure Stack Region where the resource exists. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "name": {
+        "description": "Specifies the name of the virtual machine resource. Changing this forces a",
+        "required": true
+      },
+      "network_interface_ids": {
+        "description": "Specifies the list of resource IDs for the network interfaces associated with the virtual machine.",
+        "required": true
+      },
+      "os_profile": {
+        "description": "An OS Profile block as documented below. Required when create_option in the storage_os_disk block is set to FromImage.",
+        "required": false
+      },
+      "os_profile_linux_config": {
+        "description": "A Linux config block as documented below.",
+        "required": false
+      },
+      "os_profile_secrets": {
+        "description": "A collection of Secret blocks as documented below.",
+        "required": false
+      },
+      "os_profile_windows_config": {
+        "description": "A Windows config block as documented below.",
+        "required": false
+      },
+      "plan": {
+        "description": "A plan block as documented below.",
+        "required": false
+      },
+      "primary_network_interface_id": {
+        "description": "Specifies the resource ID for the primary network interface associated with the virtual machine.",
+        "required": false
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to",
+        "required": true
+      },
+      "storage_data_disk": {
+        "description": "A list of Storage Data disk blocks as referenced below.",
+        "required": false
+      },
+      "storage_image_reference": {
+        "description": "A Storage Image Reference block as documented below.",
+        "required": false
+      },
+      "storage_os_disk": {
+        "description": "A Storage OS DFlag to enable deletion of the OS disk VHD blob when the VM is deleted, defaults to false (not yet supported).",
+        "required": true
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the resource.",
+        "required": false
+      },
+      "vm_size": {
+        "description": "Specifies the size of the virtual machine.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azurestack/r/virtual_machine.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "location",
+      "plan",
+      "availability_set_id",
+      "boot_diagnostics",
+      "vm_size",
+      "storage_image_reference",
+      "storage_os_disk",
+      "storage_data_disk",
+      "delete_data_disks_on_termination",
+      "os_profile",
+      "identity",
+      "license_type",
+      "os_profile_windows_config",
+      "os_profile_linux_config",
+      "os_profile_secrets",
+      "network_interface_ids",
+      "primary_network_interface_id",
+      "tags"
+    ]
+  },
+  "azurestack_virtual_machine_extension": {
+    "full_properties": {
+      "location": {
+        "description": "The location where the extension is created. Changing",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the virtual machine extension peering. Changing",
+        "required": true
+      },
+      "publisher": {
+        "description": "The publisher of the extension, available publishers",
+        "required": true
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to",
+        "required": true
+      },
+      "type": {
+        "description": "The type of extension, available types for a publisher can",
+        "required": true
+      },
+      "virtual_machine_name": {
+        "description": "The name of the virtual machine. Changing",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azurestack/r/virtual_machine_extension.html",
+    "properties": [
+      "name",
+      "location",
+      "resource_group_name",
+      "virtual_machine_name",
+      "publisher",
+      "type"
+    ]
+  },
+  "azurestack_virtual_machine_scale_set": {
+    "full_properties": {
+      "extension": {
+        "description": "Can be specified multiple times to add extension profiles to the scale set. Each extension block supports the fields documented below.",
+        "required": false
+      },
+      "license_type": {
+        "description": "Specifies the Windows OS license type. If supplied, the only allowed values are Windows_Client and Windows_Server.",
+        "required": false
+      },
+      "location": {
+        "description": "Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "name": {
+        "description": "Specifies the name of the virtual machine scale set resource. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "network_profile": {
+        "description": "A collection of network profile block as documented below.",
+        "required": true
+      },
+      "os_profile": {
+        "description": "A Virtual Machine OS Profile block as documented below.",
+        "required": true
+      },
+      "os_profile_linux_config": {
+        "description": "A Linux config block as documented below.",
+        "required": false
+      },
+      "os_profile_secrets": {
+        "description": "A collection of Secret blocks as documented below.",
+        "required": false
+      },
+      "os_profile_windows_config": {
+        "description": "A Windows config block as documented below.",
+        "required": false
+      },
+      "overprovision": {
+        "description": "Specifies whether the virtual machine scale set should be overprovisioned. Defaults to true.",
+        "required": false
+      },
+      "plan": {
+        "description": "A plan block as documented below.",
+        "required": false
+      },
+      "priority": {
+        "description": "Specifies the priority for the virtual machines in the scale set, defaults to Regular. Possible values are Low and Regular.",
+        "required": false
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to create the virtual machine scale set. Changing this forces a new resource to be created.",
+        "required": true
+      },
+      "sku": {
+        "description": "A sku block as documented below.",
+        "required": true
+      },
+      "storage_profile_image_reference": {
+        "description": "A storage profile image reference block as documented below.",
+        "required": false
+      },
+      "storage_profile_os_disk": {
+        "description": "A storage profile os disk block as documented below",
+        "required": true
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the resource.",
+        "required": false
+      },
+      "upgrade_policy_mode": {
+        "description": "Specifies the mode of an upgrade to virtual machines in the scale set. Possible values, Manual or Automatic.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azurestack/r/virtual_machine_scale_set.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "location",
+      "sku",
+      "upgrade_policy_mode",
+      "overprovision",
+      "license_type",
+      "os_profile",
+      "os_profile_secrets",
+      "os_profile_windows_config",
+      "os_profile_linux_config",
+      "network_profile",
+      "storage_profile_os_disk",
+      "storage_profile_image_reference",
+      "extension",
+      "plan",
+      "priority",
+      "tags"
+    ]
+  },
+  "azurestack_virtual_network": {
+    "full_properties": {
+      "address_space": {
+        "description": "The address space that is used the virtual",
+        "required": true
+      },
+      "dns_servers": {
+        "description": "List of IP addresses of DNS servers",
+        "required": false
+      },
+      "location": {
+        "description": "The location/region where the virtual network is",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the virtual network. Changing this forces a",
+        "required": true
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to",
+        "required": true
+      },
+      "subnet": {
+        "description": "Can be specified multiple times to define multiple",
+        "required": false
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the resource.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/azurestack/r/virtual_network.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "address_space",
+      "location",
+      "dns_servers",
+      "subnet",
+      "tags"
+    ]
+  },
+  "azurestack_virtual_network_gateway_connection": {
+    "full_properties": {
+      "authorization_key": {
+        "description": "The authorization key associated with the",
+        "required": false
+      },
+      "enable_bgp": {
+        "description": "If true, BGP (Border Gateway Protocol) is enabled",
+        "required": false
+      },
+      "express_route_circuit_id": {
+        "description": "The ID of the Express Route Circuit",
+        "required": false
+      },
+      "ipsec_policy": {
+        "description": "A ipsec_policy block which is documented below.",
+        "required": false
+      },
+      "local_network_gateway_id": {
+        "description": "The ID of the local network gateway",
+        "required": false
+      },
+      "location": {
+        "description": "The location/region where the connection is",
+        "required": true
+      },
+      "name": {
+        "description": "The name of the connection. Changing the name forces a",
+        "required": true
+      },
+      "peer_virtual_network_gateway_id": {
+        "description": "The ID of the peer virtual",
+        "required": false
+      },
+      "resource_group_name": {
+        "description": "The name of the resource group in which to",
+        "required": true
+      },
+      "routing_weight": {
+        "description": "The routing weight. Defaults to 10.",
+        "required": false
+      },
+      "shared_key": {
+        "description": "The shared IPSec key. A key must be provided if a",
+        "required": false
+      },
+      "tags": {
+        "description": "A mapping of tags to assign to the resource.",
+        "required": false
+      },
+      "type": {
+        "description": "The type of connection. Valid options are IPsec",
+        "required": true
+      },
+      "use_policy_based_traffic_selectors": {
+        "description": "If true, policy-based traffic",
+        "required": false
+      },
+      "virtual_network_gateway_id": {
+        "description": "The ID of the Virtual Network Gateway",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/azurestack/r/virtual_network_gateway.html",
+    "properties": [
+      "name",
+      "resource_group_name",
+      "location",
+      "type",
+      "virtual_network_gateway_id",
+      "authorization_key",
+      "express_route_circuit_id",
+      "peer_virtual_network_gateway_id",
+      "local_network_gateway_id",
+      "routing_weight",
+      "shared_key",
+      "enable_bgp",
+      "use_policy_based_traffic_selectors",
+      "ipsec_policy",
+      "tags"
+    ]
+  }
+}

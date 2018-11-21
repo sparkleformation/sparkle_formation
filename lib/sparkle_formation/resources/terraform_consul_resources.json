@@ -1,0 +1,297 @@
+{
+  "consul_agent_service": {
+    "full_properties": {
+      "address": {
+        "description": "The address of the service. Defaults to the",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the service.",
+        "required": true
+      },
+      "port": {
+        "description": "The port of the service.",
+        "required": false
+      },
+      "tags": {
+        "description": "A list of values that are opaque to Consul,",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/consul/r/agent_service.html",
+    "properties": [
+      "address",
+      "name",
+      "port",
+      "tags"
+    ]
+  },
+  "consul_catalog_entry": {
+    "full_properties": {
+      "address": {
+        "description": "The address of the node being added to,",
+        "required": true
+      },
+      "datacenter": {
+        "description": "The datacenter to use. This overrides the",
+        "required": false
+      },
+      "node": {
+        "description": "The name of the node being added to, or",
+        "required": true
+      },
+      "service": {
+        "description": "A service to optionally associated with",
+        "required": false
+      },
+      "token": {
+        "description": "ACL token.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/consul/r/catalog_entry.html",
+    "properties": [
+      "address",
+      "node",
+      "service",
+      "datacenter",
+      "token"
+    ]
+  },
+  "consul_intention": {
+    "full_properties": {
+      "action": {
+        "description": "The intention action. Must be one of allow or deny.",
+        "required": false
+      },
+      "datacenter": {
+        "description": "The datacenter to use. This overrides the datacenter in the",
+        "required": false
+      },
+      "description": {
+        "description": "Optional description that can be used by Consul",
+        "required": false
+      },
+      "destination_name": {
+        "description": "The name of the destination service for the intention. This",
+        "required": false
+      },
+      "meta": {
+        "description": "Key/value pairs that are opaque to Consul and are associated",
+        "required": false
+      },
+      "source_name": {
+        "description": "The name of the source service for the intention. This",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/consul/r/intention.html",
+    "properties": [
+      "source_name",
+      "destination_name",
+      "action",
+      "meta",
+      "description",
+      "datacenter"
+    ]
+  },
+  "consul_key_prefix": {
+    "full_properties": {
+      "datacenter": {
+        "description": "The datacenter to use. This overrides the",
+        "required": false
+      },
+      "path_prefix": {
+        "description": "Specifies the common prefix shared by all keys",
+        "required": true
+      },
+      "subkeys": {
+        "description": "A mapping from subkey name (which will be appended",
+        "required": true
+      },
+      "token": {
+        "description": "The ACL token to use. This overrides the",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/consul/r/key_prefix.html",
+    "properties": [
+      "datacenter",
+      "token",
+      "path_prefix",
+      "subkeys"
+    ]
+  },
+  "consul_keys": {
+    "full_properties": {
+      "datacenter": {
+        "description": "The datacenter to use. This overrides the",
+        "required": false
+      },
+      "key": {
+        "description": "Specifies a key in Consul to be written.",
+        "required": true
+      },
+      "token": {
+        "description": "The ACL token to use. This overrides the",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/consul/r/keys.html",
+    "properties": [
+      "datacenter",
+      "token",
+      "key"
+    ]
+  },
+  "consul_node": {
+    "full_properties": {
+      "address": {
+        "description": "The address of the node being added to,",
+        "required": true
+      },
+      "meta": {
+        "description": "Key/value pairs that are associated with the node.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the node being added to, or",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/consul/r/node.html",
+    "properties": [
+      "address",
+      "name",
+      "meta"
+    ]
+  },
+  "consul_prepared_query": {
+    "full_properties": {
+      "datacenter": {
+        "description": "The datacenter to use. This overrides the",
+        "required": false
+      },
+      "datacenters": {
+        "description": "Remote datacenters to return results from.",
+        "required": false
+      },
+      "dnsttl": {
+      },
+      "failovernearest_ndatacenters": {
+      },
+      "name": {
+        "description": "The name of the prepared query. Used to identify",
+        "required": true
+      },
+      "near": {
+        "description": "Allows specifying the name of a node to sort results",
+        "required": false
+      },
+      "nearest_n": {
+        "description": "Return results from this many datacenters,",
+        "required": false
+      },
+      "only_passing": {
+        "description": "When true, the prepared query will only",
+        "required": false
+      },
+      "regexp": {
+        "description": "The regular expression to match with. When using",
+        "required": true
+      },
+      "service": {
+        "description": "The name of the service to query.",
+        "required": true
+      },
+      "session": {
+        "description": "The name of the Consul session to tie this query's",
+        "required": false
+      },
+      "stored_token": {
+        "description": "The ACL token to store with the prepared",
+        "required": false
+      },
+      "tags": {
+        "description": "The list of required and/or disallowed tags.  If a tag is",
+        "required": false
+      },
+      "templatetyperegexp": {
+      },
+      "token": {
+        "description": "The ACL token to use when saving the prepared query.",
+        "required": false
+      },
+      "ttl": {
+        "description": "The TTL to send when returning DNS results.",
+        "required": false
+      },
+      "type": {
+        "description": "The type of template matching to perform. Currently",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/consul/r/prepared_query.html",
+    "properties": [
+      "datacenter",
+      "token",
+      "stored_token",
+      "name",
+      "service",
+      "session",
+      "tags",
+      "only_passing",
+      "near",
+      "failovernearest_ndatacenters",
+      "nearest_n",
+      "datacenters",
+      "dnsttl",
+      "ttl",
+      "templatetyperegexp",
+      "type",
+      "regexp"
+    ]
+  },
+  "consul_service": {
+    "full_properties": {
+      "address": {
+        "description": "The address of the service. Defaults to the",
+        "required": false
+      },
+      "datacenter": {
+        "description": "The datacenter to use. This overrides the datacenter in the",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the service.",
+        "required": false
+      },
+      "node": {
+        "description": "The name of the node the to register the service on.",
+        "required": false
+      },
+      "port": {
+        "description": "The port of the service.",
+        "required": false
+      },
+      "service_id": {
+        "description": "- If the service ID is not provided, it will be defaulted to the value",
+        "required": false
+      },
+      "tags": {
+        "description": "A list of values that are opaque to Consul,",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/consul/r/service.html",
+    "properties": [
+      "name",
+      "node",
+      "address",
+      "service_id",
+      "port",
+      "tags",
+      "datacenter"
+    ]
+  }
+}

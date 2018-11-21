@@ -1,0 +1,29 @@
+{
+  "mailgun_domain": {
+    "full_properties": {
+      "name": {
+        "description": "The domain to add to Mailgun",
+        "required": true
+      },
+      "smtp_password": {
+        "description": "Password for SMTP authentication",
+        "required": true
+      },
+      "spam_action": {
+        "description": "disabled or tag Disable, no spam",
+        "required": false
+      },
+      "wildcard": {
+        "description": "Boolean that determines whether",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/mailgun/r/domain.html",
+    "properties": [
+      "name",
+      "smtp_password",
+      "spam_action",
+      "wildcard"
+    ]
+  }
+}

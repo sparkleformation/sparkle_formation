@@ -1,0 +1,406 @@
+{
+  "circonus_check": {
+    "full_properties": {
+      "active": {
+        "description": "Whether or not the check is enabled or not (default",
+        "required": false
+      },
+      "caql": {
+        "description": "A Circonus Analytics Query Language",
+        "required": false
+      },
+      "cloudwatch": {
+        "description": "A CloudWatch",
+        "required": false
+      },
+      "collector": {
+        "description": "A collector ID.  The collector(s) that are",
+        "required": true
+      },
+      "consul": {
+        "description": "A native Consul check.  See below for details on how to",
+        "required": false
+      },
+      "http": {
+        "description": "A poll-based HTTP check.  See below for details on how to configure",
+        "required": false
+      },
+      "httptrap": {
+        "description": "An push-based HTTP check.  This check method expects",
+        "required": false
+      },
+      "icmp_ping": {
+        "description": "An ICMP ping check.  See below for details on how to",
+        "required": false
+      },
+      "json": {
+        "description": "A JSON check.  See below for details on how to configure",
+        "required": false
+      },
+      "metric": {
+        "description": "A list of one or more metric configurations.  All",
+        "required": true
+      },
+      "metric_limit": {
+        "description": "Setting a metric limit will tell the Circonus",
+        "required": false
+      },
+      "mysql": {
+        "description": "A MySQL check.  See below for details on how to configure",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the check that will be displayed in the web",
+        "required": false
+      },
+      "notes": {
+        "description": "Notes about this check.",
+        "required": false
+      },
+      "period": {
+        "description": "The period between each time the check is made in",
+        "required": false
+      },
+      "postgresql": {
+        "description": "A PostgreSQL check.  See below for details on how to",
+        "required": false
+      },
+      "statsd": {
+        "description": "A statsd check.  See below for details on how to",
+        "required": false
+      },
+      "tags": {
+        "description": "A list of tags assigned to this check.",
+        "required": false
+      },
+      "target": {
+        "description": "A string containing the location of the thing being",
+        "required": true
+      },
+      "tcp": {
+        "description": "A TCP check.  See below for details on how to configure the",
+        "required": false
+      },
+      "timeout": {
+        "description": "A floating point number representing the maximum number",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/circonus/r/check.html",
+    "properties": [
+      "active",
+      "caql",
+      "cloudwatch",
+      "collector",
+      "consul",
+      "http",
+      "httptrap",
+      "icmp_ping",
+      "json",
+      "metric",
+      "metric_limit",
+      "mysql",
+      "name",
+      "notes",
+      "period",
+      "postgresql",
+      "statsd",
+      "tags",
+      "target",
+      "tcp",
+      "timeout"
+    ]
+  },
+  "circonus_contact_group": {
+    "full_properties": {
+      "aggregation_window": {
+        "description": "The aggregation window for batching up alert",
+        "required": false
+      },
+      "alert_option": {
+        "description": "There is one alert_option per severity, where",
+        "required": false
+      },
+      "email": {
+        "description": "Zero or more email attributes may be present to",
+        "required": false
+      },
+      "http": {
+        "description": "Zero or more http attributes may be present to dispatch",
+        "required": false
+      },
+      "irc": {
+        "description": "Zero or more irc attributes may be present to dispatch",
+        "required": false
+      },
+      "long_message": {
+        "description": "The bulk of the message used in long form alert",
+        "required": false
+      },
+      "long_subject": {
+        "description": "The subject used in long form alert messages.",
+        "required": false
+      },
+      "long_summary": {
+        "description": "The brief summary used in long form alert messages.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the contact group.",
+        "required": true
+      },
+      "pager_duty": {
+        "description": "Zero or more pager_duty attributes may be present",
+        "required": false
+      },
+      "short_message": {
+        "description": "The subject used in short form alert messages.",
+        "required": false
+      },
+      "short_summary": {
+        "description": "The brief summary used in short form alert",
+        "required": false
+      },
+      "slack": {
+        "description": "Zero or more slack attributes may be present to",
+        "required": false
+      },
+      "sms": {
+        "description": "Zero or more sms attributes may be present to dispatch",
+        "required": false
+      },
+      "tags": {
+        "description": "A list of tags attached to the Contact Group.",
+        "required": false
+      },
+      "victorops": {
+        "description": "Zero or more victorops attributes may be present",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/circonus/r/contact_group.html",
+    "properties": [
+      "aggregation_window",
+      "alert_option",
+      "email",
+      "http",
+      "irc",
+      "long_message",
+      "long_subject",
+      "long_summary",
+      "name",
+      "pager_duty",
+      "short_message",
+      "short_summary",
+      "slack",
+      "sms",
+      "tags",
+      "victorops"
+    ]
+  },
+  "circonus_graph": {
+    "full_properties": {
+      "description": {
+        "description": "Description of what the graph is for.",
+        "required": false
+      },
+      "graph_style": {
+        "description": "How the graph should be rendered.  Valid options",
+        "required": false
+      },
+      "left": {
+        "description": "A map of graph left axis options.  Valid values in left",
+        "required": false
+      },
+      "line_style": {
+        "description": "How the line should change between points.  Can be",
+        "required": false
+      },
+      "metric": {
+        "description": "A list of metric streams to graph.  See below for",
+        "required": false
+      },
+      "metric_cluster": {
+        "description": "A metric cluster to graph.  See below for options.",
+        "required": false
+      },
+      "name": {
+        "description": "The title of the graph.",
+        "required": true
+      },
+      "notes": {
+        "description": "A place for storing notes about this graph.",
+        "required": false
+      },
+      "right": {
+        "description": "A map of graph right axis options.  Valid values in",
+        "required": false
+      },
+      "tags": {
+        "description": "A list of tags assigned to this graph.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/circonus/r/graph.html",
+    "properties": [
+      "description",
+      "graph_style",
+      "left",
+      "line_style",
+      "name",
+      "notes",
+      "right",
+      "metric",
+      "metric_cluster",
+      "tags"
+    ]
+  },
+  "circonus_metric": {
+    "full_properties": {
+      "active": {
+        "description": "A boolean indicating if the metric is being filtered out",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the metric.  A name must be unique within a",
+        "required": true
+      },
+      "tags": {
+        "description": "A list of tags assigned to the metric.",
+        "required": false
+      },
+      "type": {
+        "description": "The type of metric.  This value must be present and can be",
+        "required": true
+      },
+      "unit": {
+        "description": "The unit of measurement for this circonus_metric.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/circonus/r/metric.html",
+    "properties": [
+      "active",
+      "name",
+      "tags",
+      "type",
+      "unit"
+    ]
+  },
+  "circonus_metric_cluster": {
+    "full_properties": {
+      "description": {
+        "description": "A long-form description of the metric cluster.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the metric cluster.  This name must be unique",
+        "required": true
+      },
+      "query": {
+        "description": "One or more query attributes must be present.  Each",
+        "required": true
+      },
+      "tags": {
+        "description": "A list of tags attached to the metric cluster.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/circonus/r/metric_cluster.html",
+    "properties": [
+      "description",
+      "name",
+      "query",
+      "tags"
+    ]
+  },
+  "circonus_rule_set": {
+    "full_properties": {
+      "check": {
+        "description": "The Circonus ID that this Rule Set will use to search for",
+        "required": true
+      },
+      "if": {
+        "description": "One or more ordered predicate clauses that describe when",
+        "required": true
+      },
+      "link": {
+        "description": "A link to external documentation (or anything else you",
+        "required": false
+      },
+      "metric_name": {
+        "description": "The name of the metric stream within a given check",
+        "required": true
+      },
+      "metric_type": {
+        "description": "The type of metric this rule set will operate on.",
+        "required": false
+      },
+      "notes": {
+        "description": "Notes about this rule set.",
+        "required": false
+      },
+      "parent": {
+        "description": "A Circonus Metric ID that, if specified and active with",
+        "required": false
+      },
+      "tags": {
+        "description": "A list of tags assigned to this rule set.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/circonus/r/rule_set.html",
+    "properties": [
+      "check",
+      "if",
+      "link",
+      "metric_type",
+      "notes",
+      "parent",
+      "metric_name",
+      "tags"
+    ]
+  },
+  "circonus_worksheet": {
+    "full_properties": {
+      "description": {
+        "description": "Description of what the worksheet is for.",
+        "required": false
+      },
+      "favourite": {
+        "description": "Mark (star) this worksheet as a favorite. Default is false.",
+        "required": false
+      },
+      "graphs": {
+        "description": "A list of graphs that compose this worksheet.",
+        "required": false
+      },
+      "notes": {
+        "description": "A place to store notes about this worksheet.",
+        "required": false
+      },
+      "smart_queries": {
+        "description": "The smart queries that will be displayed on this worksheet. See below for details on how to configure a smart_query.",
+        "required": false
+      },
+      "tags": {
+        "description": "A list of tags assigned to this worksheet.",
+        "required": false
+      },
+      "title": {
+        "description": "The title of the worksheet.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/circonus/r/worksheet.html",
+    "properties": [
+      "title",
+      "description",
+      "favourite",
+      "notes",
+      "graphs",
+      "smart_queries",
+      "tags"
+    ]
+  }
+}

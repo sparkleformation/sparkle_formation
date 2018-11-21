@@ -1,0 +1,175 @@
+{
+  "rundeck_job": {
+    "full_properties": {
+      "allow_concurrent_executions": {
+        "description": "Boolean defining whether two or more executions of",
+        "required": false
+      },
+      "command": {
+        "description": "Nested block defining one step in the job workflow. A job must have one or",
+        "required": true
+      },
+      "command_ordering_strategy": {
+        "description": "The name of the strategy used to describe how to",
+        "required": false
+      },
+      "continue_on_error": {
+        "description": "Boolean defining whether Rundeck will continue to run",
+        "required": false
+      },
+      "description": {
+        "description": "A longer description of the job, describing the job in the Rundeck UI.",
+        "required": true
+      },
+      "group_name": {
+        "description": "The name of a group within the project in which to place the job.",
+        "required": false
+      },
+      "log_level": {
+        "description": "The log level that Rundeck should use for this job. Defaults to \"INFO\".",
+        "required": false
+      },
+      "max_thread_count": {
+        "description": "The maximum number of threads to use to execute this job, which",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the job, used to describe the job in the Rundeck UI.",
+        "required": true
+      },
+      "node_filter_exclude_precedence": {
+        "description": "Boolean controlling a deprecated Rundeck feature that controls",
+        "required": false
+      },
+      "node_filter_query": {
+        "description": "A query string using",
+        "required": false
+      },
+      "option": {
+        "description": "Nested block defining an option a user may set when executing this job. A",
+        "required": false
+      },
+      "preserve_options_order": {
+        "description": "Boolean controlling whether the configured options will",
+        "required": false
+      },
+      "project_name": {
+        "description": "The name of the project that this job should belong to.",
+        "required": true
+      },
+      "rank_attribute": {
+        "description": "The name of the attribute that will be used to decide in which",
+        "required": false
+      },
+      "rank_order": {
+        "description": "Keyword deciding which direction the nodes are sorted in terms of",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/rundeck/r/job.html",
+    "properties": [
+      "name",
+      "description",
+      "project_name",
+      "group_name",
+      "log_level",
+      "allow_concurrent_executions",
+      "max_thread_count",
+      "continue_on_error",
+      "rank_attribute",
+      "rank_order",
+      "preserve_options_order",
+      "command_ordering_strategy",
+      "node_filter_query",
+      "node_filter_exclude_precedence",
+      "option",
+      "command"
+    ]
+  },
+  "rundeck_private_key": {
+    "full_properties": {
+      "key_material": {
+        "description": "The private key material to store, serialized in any way that is",
+        "required": true
+      },
+      "path": {
+        "description": "The path within the key store where the key will be stored.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rundeck/r/private_key.html",
+    "properties": [
+      "path",
+      "key_material"
+    ]
+  },
+  "rundeck_project": {
+    "full_properties": {
+      "default_node_executor_plugin": {
+        "description": "The name of a plugin to use to run commands on",
+        "required": false
+      },
+      "default_node_file_copier_plugin": {
+        "description": "The name of a plugin to use to copy files onto",
+        "required": false
+      },
+      "description": {
+        "description": "A description of the project, to be displayed in the Rundeck UI.",
+        "required": false
+      },
+      "extra_config": {
+        "description": "Behind the scenes a Rundeck project is really an arbitrary set of",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the project, used both in the UI and to uniquely identify",
+        "required": true
+      },
+      "resource_model_source": {
+        "description": "Nested block instructing Rundeck on how to determine the",
+        "required": true
+      },
+      "ssh_authentication_type": {
+        "description": "When the SSH-based file copier and executor plugins are",
+        "required": false
+      },
+      "ssh_key_file_path": {
+        "description": "Like ssh_key_storage_path except that the key is read from",
+        "required": false
+      },
+      "ssh_key_storage_path": {
+        "description": "When the SSH-based file copier and executor plugins are",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/rundeck/r/project.html",
+    "properties": [
+      "name",
+      "resource_model_source",
+      "description",
+      "default_node_file_copier_plugin",
+      "default_node_executor_plugin",
+      "ssh_authentication_type",
+      "ssh_key_storage_path",
+      "ssh_key_file_path",
+      "extra_config"
+    ]
+  },
+  "rundeck_public_key": {
+    "full_properties": {
+      "key_material": {
+        "description": "The public key string to store, serialized in any way that is accepted",
+        "required": false
+      },
+      "path": {
+        "description": "The path within the key store where the key will be stored. By convention",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/rundeck/r/public_key.html",
+    "properties": [
+      "path",
+      "key_material"
+    ]
+  }
+}

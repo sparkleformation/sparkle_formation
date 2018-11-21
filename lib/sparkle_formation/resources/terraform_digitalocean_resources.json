@@ -1,0 +1,408 @@
+{
+  "digitalocean_certificate": {
+    "full_properties": {
+      "certificate_chain": {
+        "description": "The full PEM-formatted trust chain",
+        "required": false
+      },
+      "domains": {
+        "description": "List of fully qualified domain names (FQDNs) for",
+        "required": false
+      },
+      "leaf_certificate": {
+        "description": "The contents of a PEM-formatted public",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the certificate for identification.",
+        "required": true
+      },
+      "private_key": {
+        "description": "The contents of a PEM-formatted private-key",
+        "required": false
+      },
+      "type": {
+        "description": "The type of certificate to provision. Can be either",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/do/r/certificate.html",
+    "properties": [
+      "name",
+      "type",
+      "private_key",
+      "leaf_certificate",
+      "certificate_chain",
+      "domains"
+    ]
+  },
+  "digitalocean_domain": {
+    "full_properties": {
+      "ip_address": {
+        "description": "The IP address of the domain. If specified, this IP",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the domain",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/do/r/domain.html",
+    "properties": [
+      "name",
+      "ip_address"
+    ]
+  },
+  "digitalocean_droplet": {
+    "full_properties": {
+      "backups": {
+        "description": "Boolean controlling if backups are made. Defaults to",
+        "required": false
+      },
+      "image": {
+        "description": "The Droplet image ID or slug.",
+        "required": true
+      },
+      "ipv6": {
+        "description": "Boolean controlling if IPv6 is enabled. Defaults to false.",
+        "required": false
+      },
+      "monitoring": {
+        "description": "Boolean controlling whether monitoring agent is installed.",
+        "required": false
+      },
+      "name": {
+        "description": "The Droplet name.",
+        "required": true
+      },
+      "private_networking": {
+        "description": "Boolean controlling if private networks are",
+        "required": false
+      },
+      "region": {
+        "description": "The region to start in.",
+        "required": true
+      },
+      "resize_disk": {
+        "description": "Boolean controlling whether to increase the disk",
+        "required": false
+      },
+      "size": {
+        "description": "The unique slug that indentifies the type of Droplet. You can find a list of available slugs on DigitalOcean API documentation.",
+        "required": true
+      },
+      "ssh_keys": {
+        "description": "A list of SSH IDs or fingerprints to enable in",
+        "required": false
+      },
+      "tags": {
+        "description": "A list of the tags to label this Droplet. A tag resource",
+        "required": false
+      },
+      "user_data": {
+        "description": "- A string of the desired User Data for the Droplet.",
+        "required": false
+      },
+      "volume_ids": {
+        "description": "- A list of the IDs of each block storage volume to be attached to the Droplet.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/do/r/droplet.html",
+    "properties": [
+      "image",
+      "name",
+      "region",
+      "size",
+      "backups",
+      "monitoring",
+      "ipv6",
+      "private_networking",
+      "ssh_keys",
+      "resize_disk",
+      "tags",
+      "user_data",
+      "volume_ids"
+    ]
+  },
+  "digitalocean_firewall": {
+    "full_properties": {
+      "droplet_ids": {
+        "description": "- The list of the IDs of the Droplets assigned",
+        "required": false
+      },
+      "inbound_rule": {
+        "description": "The inbound access rule block for the Firewall.",
+        "required": false
+      },
+      "name": {
+        "description": "The Firewall name",
+        "required": true
+      },
+      "outbound_rule": {
+        "description": "The outbound access rule block for the Firewall.",
+        "required": false
+      },
+      "tags": {
+        "description": "- The names of the Tags assigned to the Firewall.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/do/r/firewall.html",
+    "properties": [
+      "name",
+      "droplet_ids",
+      "tags",
+      "inbound_rule",
+      "outbound_rule"
+    ]
+  },
+  "digitalocean_floating_ip": {
+    "full_properties": {
+      "droplet_id": {
+        "description": "The ID of Droplet that the Floating IP will be assigned to.",
+        "required": false
+      },
+      "region": {
+        "description": "The region that the Floating IP is reserved to.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/do/r/floating_ip.html",
+    "properties": [
+      "region",
+      "droplet_id"
+    ]
+  },
+  "digitalocean_floating_ip_assignment": {
+    "full_properties": {
+      "droplet_id": {
+        "description": "The ID of Droplet that the Floating IP will be assigned to.",
+        "required": false
+      },
+      "ip_address": {
+        "description": "The Floating IP to assign to the Droplet.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/do/r/floating_ip_assignment.html",
+    "properties": [
+      "ip_address",
+      "droplet_id"
+    ]
+  },
+  "digitalocean_loadbalancer": {
+    "full_properties": {
+      "algorithm": {
+        "description": "The load balancing algorithm used to determine",
+        "required": false
+      },
+      "droplet_ids": {
+        "description": "- A list of the IDs of each droplet to be attached to the Load Balancer.",
+        "required": false
+      },
+      "droplet_tag": {
+        "description": "- The name of a Droplet tag corresponding to Droplets to be assigned to the Load Balancer.",
+        "required": false
+      },
+      "forwarding_rule": {
+        "description": "A list of forwarding_rule to be assigned to the",
+        "required": true
+      },
+      "healthcheck": {
+        "description": "A healthcheck block to be assigned to the",
+        "required": false
+      },
+      "name": {
+        "description": "The Load Balancer name",
+        "required": true
+      },
+      "redirect_http_to_https": {
+        "description": "A boolean value indicating whether",
+        "required": false
+      },
+      "region": {
+        "description": "The region to start in",
+        "required": true
+      },
+      "sticky_sessions": {
+        "description": "A sticky_sessions block to be assigned to the",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/do/r/loadbalancer.html",
+    "properties": [
+      "name",
+      "region",
+      "algorithm",
+      "forwarding_rule",
+      "healthcheck",
+      "sticky_sessions",
+      "redirect_http_to_https",
+      "droplet_ids",
+      "droplet_tag"
+    ]
+  },
+  "digitalocean_record": {
+    "full_properties": {
+      "domain": {
+        "description": "The domain to add the record to.",
+        "required": true
+      },
+      "flags": {
+        "description": "The flags of the record. Only valid when type is CAA. Must be between 0 and 255.",
+        "required": false
+      },
+      "name": {
+        "description": "The name of the record.",
+        "required": true
+      },
+      "port": {
+        "description": "The port of the record. Only valid when type is SRV.  Must be between 1 and 65535.",
+        "required": false
+      },
+      "priority": {
+        "description": "The priority of the record. Only valid when type is MX or SRV. Must be between 0 and 65535.",
+        "required": false
+      },
+      "tag": {
+        "description": "The tag of the record. Only valid when type is CAA. Must be one of issue, wildissue, or iodef.",
+        "required": false
+      },
+      "ttl": {
+        "description": "The time to live for the record, in seconds. Must be at least 0.",
+        "required": false
+      },
+      "type": {
+        "description": "The type of record. Must be one of A, AAAA, CAA, CNAME, MX, NS, TXT, or SRV.",
+        "required": true
+      },
+      "value": {
+        "description": "The value of the record.",
+        "required": true
+      },
+      "weight": {
+        "description": "The weight of the record. Only valid when type is SRV.  Must be between 0 and 65535.",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/do/r/record.html",
+    "properties": [
+      "type",
+      "domain",
+      "value",
+      "name",
+      "port",
+      "priority",
+      "weight",
+      "ttl",
+      "flags",
+      "tag"
+    ]
+  },
+  "digitalocean_ssh_key": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the SSH key for identification",
+        "required": true
+      },
+      "public_key": {
+        "description": "The public key. If this is a file, it",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/do/r/ssh_key.html",
+    "properties": [
+      "name",
+      "public_key"
+    ]
+  },
+  "digitalocean_tag": {
+    "full_properties": {
+      "name": {
+        "description": "The name of the tag",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/do/r/tag.html",
+    "properties": [
+      "name"
+    ]
+  },
+  "digitalocean_volume": {
+    "full_properties": {
+      "description": {
+        "description": "A free-form text field up to a limit of 1024 bytes to describe a block storage volume.",
+        "required": false
+      },
+      "initial_filesystem_label": {
+        "description": "Initial filesystem label for the block storage volume.",
+        "required": false
+      },
+      "initial_filesystem_type": {
+        "description": "Initial filesystem type (xfs or ext4) for the block storage volume.",
+        "required": false
+      },
+      "name": {
+        "description": "A name for the block storage volume. Must be lowercase and be composed only of numbers, letters and \"-\", up to a limit of 64 characters.",
+        "required": true
+      },
+      "region": {
+        "description": "The region that the block storage volume will be created in.",
+        "required": true
+      },
+      "size": {
+        "description": "The size of the block storage volume in GiB. If updated, can only be expanded.",
+        "required": true
+      },
+      "snapshot_id": {
+        "description": "The ID of an existing volume snapshot from which the new volume will be created. If supplied, the region and size will be limitied on creation to that of the referenced snapshot",
+        "required": false
+      }
+    },
+    "path": "/docs/providers/do/r/volume.html",
+    "properties": [
+      "region",
+      "name",
+      "size",
+      "description",
+      "snapshot_id",
+      "initial_filesystem_type",
+      "initial_filesystem_label"
+    ]
+  },
+  "digitalocean_volume_attachment": {
+    "full_properties": {
+      "droplet_id": {
+        "description": "ID of the Droplet to attach the volume to.",
+        "required": true
+      },
+      "volume_id": {
+        "description": "ID of the Volume to be attached to the Droplet.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/do/r/volume_attachment.html",
+    "properties": [
+      "droplet_id",
+      "volume_id"
+    ]
+  },
+  "digitalocean_volume_snapshot": {
+    "full_properties": {
+      "name": {
+        "description": "A name for the volume snapshot.",
+        "required": true
+      },
+      "volume_id": {
+        "description": "The ID of the volume from which the volume snapshot originated.",
+        "required": true
+      }
+    },
+    "path": "/docs/providers/do/r/volume_snapshot.html",
+    "properties": [
+      "name",
+      "volume_id"
+    ]
+  }
+}
