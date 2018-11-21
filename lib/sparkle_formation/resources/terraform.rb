@@ -33,6 +33,22 @@ class SparkleFormation
           end
         end
 
+        # Load namespaced file
+        #
+        # @param key [String, Symbol]
+        # @return [TrueClass]
+        def key_loader(key)
+          prefix = key.to_s.split("_").first
+          memoize("terraform_#{prefix}_resources".to_sym, :global) do
+            file_path = File.join(
+              File.dirname(__FILE__),
+              "terraform_#{prefix}_resources.json"
+            )
+            load(file_path) if File.exist?(file_path)
+            true
+          end
+        end
+
         # Auto load data when included
         def included(_klass)
           load!
