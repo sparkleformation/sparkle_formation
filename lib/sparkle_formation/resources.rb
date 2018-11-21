@@ -144,6 +144,7 @@ class SparkleFormation
       # @param key [String, Symbol]
       # @return [String, NilClass]
       def registry_key(key)
+        key_loader(key)
         if registry[key]
           result = key
         else
@@ -182,6 +183,12 @@ class SparkleFormation
             Regexp.escape(value)
           }.join("|")
         )
+      end
+
+      # Called before key lookup to perform any required
+      # actions for customized setup/modifications
+      def key_loader(key)
+        true
       end
 
       # Registry information for given type
