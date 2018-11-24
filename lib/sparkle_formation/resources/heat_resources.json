@@ -1307,6 +1307,40 @@
       "cloud_config"
     ]
   },
+  "OS::Heat::Delay": {
+    "full_properties": {
+      "actions": {
+        "description": "Actions during which the delay will occur.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
+      "jitter_multiplier": {
+        "description": "Number of seconds to multiply the maximum jitter value by.",
+        "required": false,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "max_jitter": {
+        "description": "Maximum jitter to add to the minimum wait time.",
+        "required": false,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "min_wait": {
+        "description": "Minimum time in seconds to wait during the specified actions.",
+        "required": false,
+        "type": "number",
+        "update_causes": "none"
+      }
+    },
+    "properties": [
+      "actions",
+      "jitter_multiplier",
+      "max_jitter",
+      "min_wait"
+    ]
+  },
   "OS::Heat::DeployedServer": {
     "full_properties": {
       "deployment_swift_data": {
@@ -4617,7 +4651,7 @@
   "OS::Neutron::RBACPolicy": {
     "full_properties": {
       "action": {
-        "description": "Action for the RBAC policy.",
+        "description": "Action for the RBAC policy. The allowed actions differ for different object types - only network objects can have an access_as_external action.",
         "required": true,
         "type": "string",
         "update_causes": "replacement"
@@ -4966,7 +5000,7 @@
         "description": "The name/ID of the segment to associate.",
         "required": false,
         "type": "string",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "subnetpool": {
         "description": "The name or ID of the subnet pool.",
@@ -5717,6 +5751,123 @@
       "url_path"
     ]
   },
+  "OS::Octavia::L7Policy": {
+    "full_properties": {
+      "action": {
+        "description": "Action type of the policy.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "admin_state_up": {
+        "description": "The administrative state of the policy.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "description": {
+        "description": "Description of the policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "listener": {
+        "description": "ID or name of the listener this policy belongs to.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "name": {
+        "description": "Name of the policy.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "position": {
+        "description": "L7 policy position in ordered policies list. This must be an integer starting from 1. If not specified, policy will be placed at the tail of existing policies list.",
+        "required": false,
+        "type": "number",
+        "update_causes": "none"
+      },
+      "redirect_pool": {
+        "description": "ID or name of the pool for REDIRECT_TO_POOL action type.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "redirect_url": {
+        "description": "URL for REDIRECT_TO_URL action type. This should be a valid URL string.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      }
+    },
+    "properties": [
+      "action",
+      "admin_state_up",
+      "description",
+      "listener",
+      "name",
+      "position",
+      "redirect_pool",
+      "redirect_url"
+    ]
+  },
+  "OS::Octavia::L7Rule": {
+    "full_properties": {
+      "admin_state_up": {
+        "description": "The administrative state of the rule.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "compare_type": {
+        "description": "Rule compare type.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "invert": {
+        "description": "Invert the compare type.",
+        "required": false,
+        "type": "boolean",
+        "update_causes": "none"
+      },
+      "key": {
+        "description": "Key to compare. Relevant for HEADER and COOKIE types only.",
+        "required": false,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "l7policy": {
+        "description": "ID or name of L7 policy this rule belongs to.",
+        "required": true,
+        "type": "string",
+        "update_causes": "replacement"
+      },
+      "type": {
+        "description": "Rule type.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      },
+      "value": {
+        "description": "Value to compare.",
+        "required": true,
+        "type": "string",
+        "update_causes": "none"
+      }
+    },
+    "properties": [
+      "admin_state_up",
+      "compare_type",
+      "invert",
+      "key",
+      "l7policy",
+      "type",
+      "value"
+    ]
+  },
   "OS::Octavia::Listener": {
     "full_properties": {
       "admin_state_up": {
@@ -5732,7 +5883,7 @@
         "update_causes": "none"
       },
       "default_pool": {
-        "description": "ID or name of the default pool for the listener. Requires shared_pools service extension.",
+        "description": "ID or name of the default pool for the listener.",
         "required": false,
         "type": "string",
         "update_causes": "none"
@@ -5882,7 +6033,7 @@
         "update_causes": "replacement"
       },
       "loadbalancer": {
-        "description": "Loadbalancer name or ID to be associated with this pool. Requires shared_pools service extension.",
+        "description": "Loadbalancer name or ID to be associated with this pool.",
         "required": false,
         "type": "string",
         "update_causes": "replacement"
@@ -6946,6 +7097,18 @@
         "type": "map",
         "update_causes": "replacement"
       },
+      "hints": {
+        "description": "Arbitrary key-value pairs for scheduler to select host.",
+        "required": false,
+        "type": "map",
+        "update_causes": "replacement"
+      },
+      "hostname": {
+        "description": "The hostname of the container.",
+        "required": false,
+        "type": "string",
+        "update_causes": "replacement"
+      },
       "image": {
         "description": "Name or ID of the image.",
         "required": true,
@@ -6982,16 +7145,34 @@
         "type": "integer",
         "update_causes": "none"
       },
+      "mounts": {
+        "description": "A list of volumes mounted inside the container.",
+        "required": false,
+        "type": "list",
+        "update_causes": "replacement"
+      },
       "name": {
         "description": "Name of the container.",
         "required": false,
         "type": "string",
         "update_causes": "none"
       },
+      "networks": {
+        "description": "An ordered list of nics to be added to this server, with information about connected networks, fixed ips, port etc.",
+        "required": false,
+        "type": "list",
+        "update_causes": "none"
+      },
       "restart_policy": {
         "description": "Restart policy to apply when a container exits. Possible values are “no”, “on-failure[:max-retry]”, “always”, and “unless-stopped”.",
         "required": false,
         "type": "string",
+        "update_causes": "replacement"
+      },
+      "security_groups": {
+        "description": "List of security group names or IDs.",
+        "required": false,
+        "type": "list",
         "update_causes": "replacement"
       },
       "workdir": {
@@ -7005,14 +7186,19 @@
       "command",
       "cpu",
       "environment",
+      "hints",
+      "hostname",
       "image",
       "image_driver",
       "image_pull_policy",
       "interactive",
       "labels",
       "memory",
+      "mounts",
       "name",
+      "networks",
       "restart_policy",
+      "security_groups",
       "workdir"
     ]
   }
