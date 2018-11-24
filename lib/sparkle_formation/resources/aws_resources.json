@@ -1,4 +1,144 @@
 {
+  "AWS::AmazonMQ::Broker": {
+    "full_properties": {
+      "AutoMinorVersionUpgrade": {
+        "description": "Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions. The automatic upgrades occur during the maintenance window of the broker or after a manual broker reboot.",
+        "required": true,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "BrokerName": {
+        "description": "The name of the broker. This value must be unique in your AWS account, 1-50 characters long, must contain only letters, numbers, dashes, and underscores, and must not contain whitespaces, brackets, wildcard characters, or special characters.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Configuration": {
+        "description": "The broker configuration. If no configuration exists for a broker, Amazon MQ creates a default configuration.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "interrupt"
+      },
+      "DeploymentMode": {
+        "description": "The deployment mode of the broker. SINGLE_INSTANCE creates a single-instance broker in a single Availability Zone. ACTIVE_STANDBY_MULTI_AZ creates an active/standby broker for high availability.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "EngineType": {
+        "description": "The type of broker engine.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "EngineVersion": {
+        "description": "The version of the broker engine.",
+        "required": true,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "HostInstanceType": {
+        "description": "The broker's instance type. For more information, see Instance Types in the Amazon MQ Developer Guide.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "Logs": {
+        "description": "The Amazon CloudWatch Logs configuration for the broker.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "interrupt"
+      },
+      "MaintenanceWindowStartTime": {
+        "description": "The parameters that determine the WeeklyStartTime.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "PubliclyAccessible": {
+        "description": "Enables connections from applications outside of the VPC that hosts the broker's subnets.",
+        "required": true,
+        "type": "Boolean",
+        "update_causes": "replacement"
+      },
+      "SecurityGroups": {
+        "description": "The list of rules (1 minimum, 125 maximum) that authorize connections to brokers.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "SubnetIds": {
+        "description": "The list of groups (2 maximum) that define which subnets and IP ranges the broker can use from different Availability Zones. A SINGLE_INSTANCE  deployment requires one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ deployment requires two subnets.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "Users": {
+        "description": "The list of all ActiveMQ usernames for the specified broker.",
+        "required": true,
+        "type": "Array",
+        "update_causes": "interrupt"
+      }
+    },
+    "path": "aws-resource-amazonmq-broker.html",
+    "properties": [
+      "AutoMinorVersionUpgrade",
+      "BrokerName",
+      "Users",
+      "Configuration",
+      "DeploymentMode",
+      "EngineType",
+      "EngineVersion",
+      "HostInstanceType",
+      "Logs",
+      "MaintenanceWindowStartTime",
+      "PubliclyAccessible",
+      "SecurityGroups",
+      "SubnetIds"
+    ]
+  },
+  "AWS::AmazonMQ::Configuration": {
+    "full_properties": {
+      "Data": {
+        "description": "The base64-encoded XML configuration.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Description": {
+        "description": "The description of the configuration.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "EngineType": {
+        "description": "The type of broker engine.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "EngineVersion": {
+        "description": "The version of the broker engine.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Name": {
+        "description": "The name of the configuration. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 1-150 characters long.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-amazonmq-configuration.html",
+    "properties": [
+      "Data",
+      "Description",
+      "EngineType",
+      "EngineVersion",
+      "Name"
+    ]
+  },
   "AWS::ApiGateway::Account": {
     "full_properties": {
       "CloudWatchRoleArn": {
@@ -89,7 +229,7 @@
         "update_causes": "none"
       },
       "IdentitySource": {
-        "description": "The source of the identity in an incoming request. If you specify TOKEN for the authorizer's Type property, specify a mapping expression. The custom header mapping expression has the form method.request.header.name, where name is the name of a custom authorization header that clients submit as part of their requests.",
+        "description": "The source of the identity in an incoming request.",
         "required": true,
         "type": "Unknown",
         "update_causes": "none"
@@ -107,7 +247,7 @@
         "update_causes": "none"
       },
       "ProviderARNs": {
-        "description": "A list of the Amazon Cognito user pool Amazon Resource Names (ARNs) to associate with this authorizer. For more information, see Use Amazon Cognito Your User Pool in the API Gateway Developer Guide.",
+        "description": "A list of the Amazon Cognito user pool Amazon Resource Names (ARNs) to associate with this authorizer. For more information, see Use Amazon Cognito User Pools in the API Gateway Developer Guide.",
         "required": false,
         "type": "Array",
         "update_causes": "none"
@@ -119,7 +259,7 @@
         "update_causes": "replacement"
       },
       "Type": {
-        "description": "The type of authorizer:",
+        "description": "The type of authorizer. Valid values include:",
         "required": true,
         "type": "String",
         "update_causes": "none"
@@ -190,6 +330,12 @@
   },
   "AWS::ApiGateway::Deployment": {
     "full_properties": {
+      "DeploymentCanarySettings": {
+        "description": "Specifies settings for the canary deployment.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
       "Description": {
         "description": "A description of the purpose of the API Gateway deployment.",
         "required": false,
@@ -217,6 +363,7 @@
     },
     "path": "aws-resource-apigateway-deployment.html",
     "properties": [
+      "DeploymentCanarySettings",
       "Description",
       "RestApiId",
       "StageDescription",
@@ -364,8 +511,14 @@
         "type": "Boolean",
         "update_causes": "none"
       },
+      "AuthorizationScopes": {
+        "description": "A list of authorization scopes configured on the method. The scopes are used with a COGNITO_USER_POOLS authorizer to authorize the method invocation. The authorization works by matching the method scopes against the scopes parsed from the access token in the incoming request. The method invocation is authorized if any method scopes matches a claimed scope in the access token. Otherwise, the invocation is not authorized. When the method scope is configured, the client must provide an access token instead of an identity token for authorization purposes.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
       "AuthorizationType": {
-        "description": "The method's authorization type.",
+        "description": "The method's authorization type. For valid values, see Method in the API Gateway API Reference.",
         "required": true,
         "type": "String",
         "update_causes": "none"
@@ -435,6 +588,7 @@
     "properties": [
       "ApiKeyRequired",
       "AuthorizationType",
+      "AuthorizationScopes",
       "AuthorizerId",
       "HttpMethod",
       "Integration",
@@ -645,6 +799,12 @@
   },
   "AWS::ApiGateway::Stage": {
     "full_properties": {
+      "AccessLogSetting": {
+        "description": "Specifies settings for logging access in this stage.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
       "CacheClusterEnabled": {
         "description": "Indicates whether cache clustering is enabled for the stage.",
         "required": false,
@@ -655,6 +815,12 @@
         "description": "The stage's cache cluster size.",
         "required": false,
         "type": "String",
+        "update_causes": "none"
+      },
+      "CanarySetting": {
+        "description": "Specifies settings for the canary deployment in this stage.",
+        "required": false,
+        "type": "Unknown",
         "update_causes": "none"
       },
       "ClientCertificateId": {
@@ -699,6 +865,18 @@
         "type": "String",
         "update_causes": "replacement"
       },
+      "Tags": {
+        "description": "An array of arbitrary tags (key-value pairs) to associate with the stage.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "TracingEnabled": {
+        "description": "Specifies whether active tracing with X-ray is enabled for this stage.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
       "Variables": {
         "description": "A map (string-to-string map) that defines the stage variables, where the variable name is the key and the variable value is the value. Variable names are limited to alphanumeric characters. Values must match the following regular expression: [A-Za-z0-9-._~:/?#&amp;=,]+.",
         "required": false,
@@ -708,8 +886,10 @@
     },
     "path": "aws-resource-apigateway-stage.html",
     "properties": [
+      "AccessLogSetting",
       "CacheClusterEnabled",
       "CacheClusterSize",
+      "CanarySetting",
       "ClientCertificateId",
       "DeploymentId",
       "Description",
@@ -717,6 +897,8 @@
       "MethodSettings",
       "RestApiId",
       "StageName",
+      "Tags",
+      "TracingEnabled",
       "Variables"
     ]
   },
@@ -818,6 +1000,384 @@
       "TargetArns"
     ]
   },
+  "AWS::AppStream::DirectoryConfig": {
+    "full_properties": {
+      "DirectoryName": {
+        "description": "The fully qualified name of the directory (for example, corp.example.com).",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "OrganizationalUnitDistinguishedNames": {
+        "description": "The distinguished names of the organizational units for computer accounts.",
+        "required": true,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "ServiceAccountCredentials": {
+        "description": "The credentials for the service account used by the streaming instance to connect to the directory. Do not use this parameter directly. Use ServiceAccountCredentials as an input parameter with noEcho as shown in the Parameters. For best practices information, see Do Not Embed Credentials in Your Templates.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-appstream-directoryconfig.html",
+    "properties": [
+      "DirectoryName",
+      "OrganizationalUnitDistinguishedNames",
+      "ServiceAccountCredentials"
+    ]
+  },
+  "AWS::AppStream::Fleet": {
+    "full_properties": {
+      "ComputeCapacity": {
+        "description": "The desired capacity for the fleet.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "Description": {
+        "description": "The description to display.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "DisconnectTimeoutInSeconds": {
+        "description": "The time after disconnection when a session is considered to have ended, in seconds. If a user who was disconnected reconnects within this time interval, the user is connected to their previous session. Specify a value between 60 and 57600.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "DisplayName": {
+        "description": "The fleet name to display.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "DomainJoinInfo": {
+        "description": "The information needed to join a Microsoft Active Directory domain.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "EnableDefaultInternetAccess": {
+        "description": "Enables or disables default internet access for the fleet.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "FleetType": {
+        "description": "The fleet type.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "ImageArn": {
+        "description": "The ARN of the public, private, or shared image to use.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "ImageName": {
+        "description": "The name of the image used to create the fleet.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "InstanceType": {
+        "description": "The instance type to use when launching fleet instances.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "MaxUserDurationInSeconds": {
+        "description": "The maximum time that a streaming session can run, in seconds. Specify a value between 600 and 57600.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "Name": {
+        "description": "A unique name for the fleet.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "VpcConfig": {
+        "description": "The VPC configuration for the fleet.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-appstream-fleet.html",
+    "properties": [
+      "ComputeCapacity",
+      "Description",
+      "DisconnectTimeoutInSeconds",
+      "DisplayName",
+      "DomainJoinInfo",
+      "EnableDefaultInternetAccess",
+      "FleetType",
+      "ImageArn",
+      "ImageName",
+      "InstanceType",
+      "MaxUserDurationInSeconds",
+      "Name",
+      "VpcConfig"
+    ]
+  },
+  "AWS::AppStream::ImageBuilder": {
+    "full_properties": {
+      "AppstreamAgentVersion": {
+        "description": "The version of the Amazon AppStream 2.0 agent to use for this image builder. To use the latest version of the agent, specify [LATEST].",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Description": {
+        "description": "The description to display.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "DisplayName": {
+        "description": "The image builder name to display.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "DomainJoinInfo": {
+        "description": "The name of the directory and organizational unit (OU) to use to join the image builder to a Microsoft Active Directory domain.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "EnableDefaultInternetAccess": {
+        "description": "Enables or disables default internet access for the image builder.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "ImageArn": {
+        "description": "The ARN of the public, private, or shared image to use.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "ImageName": {
+        "description": "The name of the image used to create the image builder.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "InstanceType": {
+        "description": "The instance type to use when launching the image builder.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Name": {
+        "description": "A unique name for the image builder.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "VpcConfig": {
+        "description": "The VPC configuration for the image builder. You can specify only one subnet.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-appstream-imagebuilder.html",
+    "properties": [
+      "AppstreamAgentVersion",
+      "Description",
+      "DisplayName",
+      "DomainJoinInfo",
+      "EnableDefaultInternetAccess",
+      "ImageArn",
+      "ImageName",
+      "InstanceType",
+      "Name",
+      "VpcConfig"
+    ]
+  },
+  "AWS::AppStream::Stack": {
+    "full_properties": {
+      "ApplicationSettings": {
+        "description": "The persistent application settings for users of a stack. When these settings are enabled, changes that users make to applications and Windows settings are automatically saved after each session and applied to the next session.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "AttributesToDelete": {
+        "description": "The stack attributes to delete.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "DeleteStorageConnectors": {
+        "description": "This parameter has been deprecated.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "Description": {
+        "description": "The description to display.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "DisplayName": {
+        "description": "The stack name to display.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "FeedbackURL": {
+        "description": "The URL that users are redirected to after they choose the Send Feedback link. If no URL is specified, no Send Feedback link is displayed.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Name": {
+        "description": "The name of the stack.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "RedirectURL": {
+        "description": "The URL that users are redirected to after their streaming session ends.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "StorageConnectors": {
+        "description": "The storage connectors to enable.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "UserSettings": {
+        "description": "The actions that are enabled or disabled for users during their streaming sessions. By default, these actions are enabled.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-appstream-stack.html",
+    "properties": [
+      "ApplicationSettings",
+      "AttributesToDelete",
+      "DeleteStorageConnectors",
+      "Description",
+      "DisplayName",
+      "FeedbackURL",
+      "Name",
+      "RedirectURL",
+      "StorageConnectors",
+      "UserSettings"
+    ]
+  },
+  "AWS::AppStream::StackFleetAssociation": {
+    "full_properties": {
+      "FleetName": {
+        "description": "The name of the fleet.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "StackName": {
+        "description": "The name of the stack.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-appstream-stackfleetassociation.html",
+    "properties": [
+      "FleetName",
+      "StackName"
+    ]
+  },
+  "AWS::AppStream::StackUserAssociation": {
+    "full_properties": {
+      "AuthenticationType": {
+        "description": "The authentication type for the user.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "SendEmailNotification": {
+        "description": "Specifies whether a welcome email is sent to a user after the user is created in the user pool.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "StackName": {
+        "description": "The name of the stack.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Username": {
+        "description": "The email address of the user.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-appstream-stackuserassociation.html",
+    "properties": [
+      "AuthenticationType",
+      "SendEmailNotification",
+      "StackName",
+      "Username"
+    ]
+  },
+  "AWS::AppStream::User": {
+    "full_properties": {
+      "AuthenticationType": {
+        "description": "The authentication type for the user. You must specify USERPOOL.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "FirstName": {
+        "description": "The first name, or given name, of the user.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "LastName": {
+        "description": "The last name, or surname, of the user.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "MessageAction": {
+        "description": "The action to take for the welcome email that is sent to a user after the user is created in the user pool. If you specify SUPPRESS, no email is sent. If you specify RESEND, do not specify the first name or last name of the user. If the value is null, the email is sent.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "UserName": {
+        "description": "The email address of the user.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-appstream-user.html",
+    "properties": [
+      "AuthenticationType",
+      "FirstName",
+      "LastName",
+      "MessageAction",
+      "UserName"
+    ]
+  },
   "AWS::AppSync::ApiKey": {
     "full_properties": {
       "ApiId": {
@@ -833,8 +1393,8 @@
         "update_causes": "none"
       },
       "Expires": {
-        "description": "Expiration time of the API Key in seconds (using Unix Epoch time), with a minimum of 1 day and a maximum of 365 days.",
-        "required": true,
+        "description": "Expiration time of the API Key in seconds (using Unix Epoch time), with a minimum of 1 day and a maximum of 365 days. The default value is 7 days.",
+        "required": false,
         "type": "Unknown",
         "update_causes": "none"
       }
@@ -872,6 +1432,12 @@
         "type": "Unknown",
         "update_causes": "none"
       },
+      "HttpConfig": {
+        "description": "Endpoints for an HTTP DataSource.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
       "LambdaConfig": {
         "description": "A valid ARN of a Lambda function in your account.",
         "required": false,
@@ -884,14 +1450,20 @@
         "type": "String",
         "update_causes": "replacement"
       },
-      "ServiceRoleArn": {
-        "description": "IAM role ARN which the data source will use to connect to a resource.",
+      "RelationalDatabaseConfig": {
+        "description": "Relational Database configuration of the relational database data source.",
         "required": false,
-        "type": "String",
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "ServiceRoleArn": {
+        "description": "The Amazon Resource Name (ARN) of the IAM role which the data source will use to connect to a resource.",
+        "required": false,
+        "type": "Unknown",
         "update_causes": "none"
       },
       "Type": {
-        "description": "Mandatory resource to return data from in customer AWS account. You can also specify NONE to use Local Resolvers. See Local Resolvers Tutorial for more information.",
+        "description": "Mandatory resource to return data from in customer AWS account. For a complete list of values, see CreateDataSource in the AWS AppSync API Reference for more information.",
         "required": true,
         "type": "String",
         "update_causes": "none"
@@ -906,7 +1478,79 @@
       "ApiId",
       "Name",
       "DynamoDBConfig",
-      "ElasticsearchConfig"
+      "ElasticsearchConfig",
+      "HttpConfig",
+      "RelationalDatabaseConfig"
+    ]
+  },
+  "AWS::AppSync::FunctionConfiguration": {
+    "full_properties": {
+      "ApiId": {
+        "description": "The AWS AppSync GraphQL API which you will attach with this function.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "DataSourceName": {
+        "description": "The AWS AppSync data source that this function will run against in order to return data to the caller.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Description": {
+        "description": "The Description of the function.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "FunctionVersion": {
+        "description": "The version of the function.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Name": {
+        "description": "The Name of the function.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "RequestMappingTemplate": {
+        "description": "The function’s request mapping template, written in text within the CloudFormation template.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "RequestMappingTemplateS3Location": {
+        "description": "A location of a request mapping template on an S3 bucket if you wish to provision with the template file living in S3 rather than embedded in your CloudFormation template.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "ResponseMappingTemplate": {
+        "description": "The function’s response mapping template, written in text within the CloudFormation template.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "ResponseMappingTemplateS3Location": {
+        "description": "A location of a response mapping template on an S3 bucket if you wish to provision with the template file living in S3 rather than embedded in your CloudFormation template.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-appsync-functionconfiguration.html",
+    "properties": [
+      "ApiId",
+      "Name",
+      "Description",
+      "DataSourceName",
+      "FunctionVersion",
+      "RequestMappingTemplate",
+      "RequestMappingTemplateS3Location",
+      "ResponseMappingTemplate",
+      "ResponseMappingTemplateS3Location"
     ]
   },
   "AWS::AppSync::GraphQLApi": {
@@ -999,6 +1643,12 @@
         "type": "String",
         "update_causes": "replacement"
       },
+      "PipelineConfig": {
+        "description": "Functions linked with the pipeline resolver.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
       "RequestMappingTemplate": {
         "description": "The resolver’s request mapping template, written in text within the CloudFormation template.",
         "required": false,
@@ -1039,7 +1689,8 @@
       "ResponseMappingTemplate",
       "RequestMappingTemplateS3Location",
       "ApiId",
-      "FieldName"
+      "FieldName",
+      "PipelineConfig"
     ]
   },
   "AWS::ApplicationAutoScaling::ScalableTarget": {
@@ -1081,7 +1732,7 @@
         "update_causes": "none"
       },
       "ServiceNamespace": {
-        "description": "The AWS service namespace of the scalable target. For a list of service namespaces, see AWS Service Namespaces in the AWS General Reference.",
+        "description": "The namespace of the AWS service that provides the resource or custom-resource for a resource provided by your own application or service. For valid AWS service namespace values, see the RegisterScalableTarget action in the Application Auto Scaling API Reference.",
         "required": true,
         "type": "String",
         "update_causes": "replacement"
@@ -1185,7 +1836,7 @@
         "description": "The SQL query statements that comprise the query.",
         "required": true,
         "type": "String",
-        "update_causes": "none"
+        "update_causes": "replacement"
       }
     },
     "path": "aws-resource-athena-namedquery.html",
@@ -1223,7 +1874,7 @@
         "update_causes": "none"
       },
       "HealthCheckGracePeriod": {
-        "description": "The length of time in seconds after a new EC2 instance comes into service that Auto Scaling starts checking its health.",
+        "description": "The length of time in seconds after a new EC2 instance comes into service that Amazon EC2 Auto Scaling starts checking its health.",
         "required": false,
         "type": "Number",
         "update_causes": "none"
@@ -1253,13 +1904,13 @@
         "update_causes": "none"
       },
       "LifecycleHookSpecificationList": {
-        "description": "The lifecycle hooks for the group, which specify actions to perform when Auto Scaling launches or terminates instances. For more information, see Amazon EC2 Auto Scaling Lifecycle Hooks in the Amazon EC2 Auto Scaling User Guide.",
+        "description": "The lifecycle hooks for the group, which specify actions to perform when Amazon EC2 Auto Scaling launches or terminates instances. For more information, see Amazon EC2 Auto Scaling Lifecycle Hooks in the Amazon EC2 Auto Scaling User Guide.",
         "required": false,
         "type": "Array",
         "update_causes": "none"
       },
       "LoadBalancerNames": {
-        "description": "A list of Classic load balancers associated with this Auto Scaling group. To specify Application load balancers, use TargetGroupARNs.",
+        "description": "A list of Classic load balancers associated with this Auto Scaling group. To specify Application Load Balancers, use TargetGroupARNs.",
         "required": false,
         "type": "Array",
         "update_causes": "none"
@@ -1282,6 +1933,12 @@
         "type": "String",
         "update_causes": "none"
       },
+      "MixedInstancesPolicy": {
+        "description": "The mixed instances policy to use to launch instances. This parameter, a launch template, a launch configuration, or an Amazon EC2 instance must be specified.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
       "NotificationConfigurations": {
         "description": "An embedded property that configures an Auto Scaling group to send notifications when specified events take place.",
         "required": false,
@@ -1301,7 +1958,7 @@
         "update_causes": "none"
       },
       "Tags": {
-        "description": "The Auto Scaling tags to attach to this resource. For more information about Auto Scaling tags, see Tagging Auto Scaling Groups and Instances in the Amazon EC2 Auto Scaling User Guide.",
+        "description": "The tags to attach to this resource. For more information, see Tagging Auto Scaling Groups and Instances in the Amazon EC2 Auto Scaling User Guide.",
         "required": false,
         "type": "Array",
         "update_causes": "none"
@@ -1341,6 +1998,7 @@
       "MaxSize",
       "MetricsCollection",
       "MinSize",
+      "MixedInstancesPolicy",
       "NotificationConfigurations",
       "PlacementGroup",
       "ServiceLinkedRoleARN",
@@ -1353,7 +2011,7 @@
   "AWS::AutoScaling::LaunchConfiguration": {
     "full_properties": {
       "AssociatePublicIpAddress": {
-        "description": "For Amazon EC2 instances in a VPC, indicates whether instances in the Auto Scaling group receive public IP addresses. If you specify true, each instance in the Auto Scaling receives a unique public IP address.",
+        "description": "For Amazon EC2 instances in a VPC, indicates whether instances in the Auto Scaling group receive public IP addresses. If you specify true, each instance in the Auto Scaling group receives a unique public IP address.",
         "required": false,
         "type": "Boolean",
         "update_causes": "replacement"
@@ -1498,7 +2156,7 @@
         "update_causes": "none"
       },
       "HeartbeatTimeout": {
-        "description": "The amount of time that can elapse before the lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action that you specified in the DefaultResult property.",
+        "description": "The amount of time (in seconds) that can elapse before the lifecycle hook times out. When the lifecycle hook times out, Amazon EC2 Auto Scaling performs the action that you specified in the DefaultResult property.",
         "required": false,
         "type": "Number",
         "update_causes": "none"
@@ -1516,13 +2174,13 @@
         "update_causes": "none"
       },
       "NotificationMetadata": {
-        "description": "Additional information that you want to include when Auto Scaling sends a message to the notification target.",
+        "description": "Additional information that you want to include when Amazon EC2 Auto Scaling sends a message to the notification target.",
         "required": false,
         "type": "String",
         "update_causes": "none"
       },
       "NotificationTargetARN": {
-        "description": "The Amazon resource name (ARN) of the notification target that Auto Scaling uses to notify you when an instance is in the transition state for the lifecycle hook. You can specify an Amazon SQS queue or an Amazon SNS topic. The notification message includes the following information: lifecycle action token, user account ID, Auto Scaling group name, lifecycle hook name, instance ID, lifecycle transition, and notification metadata.",
+        "description": "The Amazon resource name (ARN) of the notification target that Amazon EC2 Auto Scaling uses to notify you when an instance is in the transition state for the lifecycle hook. You can specify an Amazon SQS queue or an Amazon SNS topic. The notification message includes the following information: lifecycle action token, user account ID, Auto Scaling group name, lifecycle hook name, instance ID, lifecycle transition, and notification metadata.",
         "required": false,
         "type": "String",
         "update_causes": "none"
@@ -1555,7 +2213,7 @@
         "update_causes": "none"
       },
       "AutoScalingGroupName": {
-        "description": "The name or Amazon Resource Name (ARN) of the Auto Scaling Group that you want to attach the policy to.",
+        "description": "The name or Amazon Resource Name (ARN) of the Auto Scaling group that you want to attach the policy to.",
         "required": true,
         "type": "String",
         "update_causes": "none"
@@ -1567,7 +2225,7 @@
         "update_causes": "none"
       },
       "EstimatedInstanceWarmup": {
-        "description": "The estimated time, in seconds, until a newly launched instance can send metrics to CloudWatch. By default, Auto Scaling uses the cooldown period, as specified in the Cooldown property.",
+        "description": "The estimated time, in seconds, until a newly launched instance can send metrics to CloudWatch. By default, Amazon EC2 Auto Scaling uses the cooldown period, as specified in the Cooldown property.",
         "required": false,
         "type": "Number",
         "update_causes": "none"
@@ -1706,31 +2364,31 @@
         "description": "The name of the compute environment.",
         "required": false,
         "type": "String",
-        "update_causes": "unknown"
+        "update_causes": "replacement"
       },
       "ComputeResources": {
         "description": "The compute resources defined for the compute environment.",
-        "required": false,
+        "required": true,
         "type": "Unknown",
-        "update_causes": "unknown"
+        "update_causes": "none"
       },
       "ServiceRole": {
         "description": "The service role associated with the compute environment that allows AWS Batch to make calls to AWS API operations on your behalf.",
-        "required": false,
+        "required": true,
         "type": "String",
-        "update_causes": "unknown"
+        "update_causes": "none"
       },
       "State": {
         "description": "The state of the compute environment. The valid values are ENABLED or DISABLED. An ENABLED state indicates that you can register instances with the compute environment and that the associated instances can accept jobs.",
         "required": false,
         "type": "String",
-        "update_causes": "unknown"
+        "update_causes": "none"
       },
       "Type": {
         "description": "The type of the compute environment.",
-        "required": false,
+        "required": true,
         "type": "String",
-        "update_causes": "unknown"
+        "update_causes": "replacement"
       }
     },
     "path": "aws-resource-batch-computeenvironment.html",
@@ -1746,7 +2404,7 @@
     "full_properties": {
       "ContainerProperties": {
         "description": "An object with various properties specific to container-based jobs.",
-        "required": false,
+        "required": true,
         "type": "Unknown",
         "update_causes": "unknown"
       },
@@ -1756,8 +2414,14 @@
         "type": "String",
         "update_causes": "unknown"
       },
+      "NodeProperties": {
+        "description": "An object representing the node properties of a multi-node parallel job.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "interrupt"
+      },
       "Parameters": {
-        "description": "Default parameters or parameter substitution placeholders that are set in the job definition. Parameters are specified as a key-value pair mapping.",
+        "description": "Default parameters or parameter substitution placeholders that are set in the job definition. Parameters are specified as a key-value pair mapping. For more information about specifying parameters, see Job Definition Parameters in the AWS Batch User Guide.",
         "required": false,
         "type": "Unknown",
         "update_causes": "unknown"
@@ -1768,9 +2432,15 @@
         "type": "Unknown",
         "update_causes": "unknown"
       },
+      "Timeout": {
+        "description": "Specifies a job timeout configuration.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "unknown"
+      },
       "Type": {
         "description": "The type of job definition.",
-        "required": false,
+        "required": true,
         "type": "String",
         "update_causes": "unknown"
       }
@@ -1779,8 +2449,10 @@
     "properties": [
       "Type",
       "Parameters",
+      "NodeProperties",
       "JobDefinitionName",
       "ContainerProperties",
+      "Timeout",
       "RetryStrategy"
     ]
   },
@@ -1865,6 +2537,12 @@
         "required": false,
         "type": "Unknown",
         "update_causes": "none"
+      },
+      "ValidationMethod": {
+        "description": "The method you want to use if you are requesting a public certificate to validate that you own or control a domain. Valid values include EMAIL or DNS. We recommend that you use DNS validation. The default is EMAIL.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
       }
     },
     "path": "aws-resource-certificatemanager-certificate.html",
@@ -1872,7 +2550,8 @@
       "DomainName",
       "DomainValidationOptions",
       "SubjectAlternativeNames",
-      "Tags"
+      "Tags",
+      "ValidationMethod"
     ]
   },
   "AWS::Cloud9::EnvironmentEC2": {
@@ -2027,6 +2706,48 @@
     "properties": [
       "ParameterGroups",
       "ParameterLabels"
+    ]
+  },
+  "AWS::CloudFormation::Macro": {
+    "full_properties": {
+      "Description": {
+        "description": "A description of the macro.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "FunctionName": {
+        "description": "The Amazon Resource Name (ARN) of the underlying AWS Lambda function that you want AWS CloudFormation to invoke when the macro is run.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "LogGroupName": {
+        "description": "The Amazon CloudWatch log group to which AWS CloudFormation sends error logging information when invoking the macro's underlying AWS Lambda function.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "LogRoleARN": {
+        "description": "The ARN of the role AWS CloudFormation should assume when sending log entries to CloudWatch logs.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Name": {
+        "description": "The name of the macro. The name of the macro must be unique across all macros in the account.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-cloudformation-macro.html",
+    "properties": [
+      "Description",
+      "FunctionName",
+      "LogGroupName",
+      "LogRoleARN",
+      "Name"
     ]
   },
   "AWS::CloudFormation::Stack": {
@@ -2285,6 +3006,12 @@
         "type": "String",
         "update_causes": "none"
       },
+      "DatapointsToAlarm": {
+        "description": "The number of datapoints that must be breaching to trigger the alarm. This is used only if you are setting an \"M out of N\" alarm. In that case, this value is the M. For more information, see Evaluating an Alarm in the Amazon CloudWatch User Guide.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
       "Dimensions": {
         "description": "The dimensions of the metric for the alarm.",
         "required": false,
@@ -2310,20 +3037,26 @@
         "update_causes": "none"
       },
       "InsufficientDataActions": {
-        "description": "The list of actions to execute when this alarm transitions into an INSUFFICIENT_DATA state. Specify each action as an Amazon Resource Number (ARN). Currently, the only action supported is publishing to an Amazon SNS topic or an Auto Scaling policy.",
+        "description": "The list of actions to execute when this alarm transitions into an INSUFFICIENT_DATA state. Specify each action as an Amazon Resource Number (ARN). Currently, the only supported actions are publishing to an Amazon SNS topic and publishing to an Auto Scaling policy.",
         "required": false,
         "type": "Array",
         "update_causes": "none"
       },
       "MetricName": {
         "description": "The name of the metric associated with the alarm. For more information about the metrics that you can specify, see Amazon CloudWatch Namespaces, Dimensions, and Metrics Reference in the Amazon CloudWatch User Guide.",
-        "required": true,
+        "required": false,
         "type": "String",
+        "update_causes": "none"
+      },
+      "Metrics": {
+        "description": "Specifies the metric data to return.",
+        "required": false,
+        "type": "Array",
         "update_causes": "none"
       },
       "Namespace": {
         "description": "The namespace of the metric that is associated with the alarm.",
-        "required": true,
+        "required": false,
         "type": "String",
         "update_causes": "none"
       },
@@ -2335,7 +3068,7 @@
       },
       "Period": {
         "description": "The time over which the specified statistic is applied. Specify time in seconds, in multiples of 60.",
-        "required": true,
+        "required": false,
         "type": "Number",
         "update_causes": "none"
       },
@@ -2371,12 +3104,14 @@
       "AlarmDescription",
       "AlarmName",
       "ComparisonOperator",
+      "DatapointsToAlarm",
       "Dimensions",
       "EvaluateLowSampleCountPercentile",
       "EvaluationPeriods",
       "ExtendedStatistic",
       "InsufficientDataActions",
       "MetricName",
+      "Metrics",
       "Namespace",
       "OKActions",
       "Period",
@@ -2445,11 +3180,29 @@
         "type": "Unknown",
         "update_causes": "none"
       },
+      "LogsConfig": {
+        "description": "Information about logs for this build project.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
       "Name": {
         "description": "A name for the project. The name must be unique across all of the projects in your AWS account.",
         "required": true,
         "type": "String",
         "update_causes": "replacement"
+      },
+      "SecondaryArtifacts": {
+        "description": "An array of artifacts objects. Each artifacts object specifies output settings that the project generates during a build.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "SecondarySources": {
+        "description": "An array of source objects. Each source object contains source code settings for the project.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
       },
       "ServiceRole": {
         "description": "The ARN of the service role that AWS CodeBuild uses to interact with services on your behalf.",
@@ -2496,7 +3249,10 @@
       "Description",
       "EncryptionKey",
       "Environment",
+      "LogsConfig",
       "Name",
+      "SecondaryArtifacts",
+      "SecondarySources",
       "ServiceRole",
       "Source",
       "Tags",
@@ -2542,7 +3298,7 @@
         "update_causes": "unavailable"
       },
       "ComputePlatform": {
-        "description": "The compute platform that AWS CodeDeploy deploys the application to.",
+        "description": "The compute platform that AWS CodeDeploy deploys the application to. For valid values see CreateApplication in the AWS CodeDeploy API Reference.",
         "required": false,
         "type": "String",
         "update_causes": "replacement"
@@ -2631,6 +3387,12 @@
         "type": "Array",
         "update_causes": "none"
       },
+      "Ec2TagSet": {
+        "description": "Specifies information about groups of tags applied to EC2 instances. The deployment group will include only EC2 instances identified by all the tag groups.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
       "LoadBalancerInfo": {
         "description": "Information about the load balancer used in the deployment. For more information, see Integrating AWS CodeDeploy with Elastic Load Balancing in the AWS CodeDeploy User Guide.",
         "required": false,
@@ -2641,6 +3403,12 @@
         "description": "The on-premises instance tags already applied to on-premises instances that you want to include in the deployment group. AWS CodeDeploy includes all on-premises instances identified by any of the tags you specify in this deployment group. To register on-premises instances with AWS CodeDeploy, see Working with On-Premises Instances for AWS CodeDeploy in the AWS CodeDeploy User Guide. Duplicates are not allowed.",
         "required": false,
         "type": "Array",
+        "update_causes": "none"
+      },
+      "OnPremisesInstanceTagSet": {
+        "description": "Information about groups of tags applied to on-premises instances. The deployment group will include only on-premises instances identified by all the tag groups.",
+        "required": false,
+        "type": "Unknown",
         "update_causes": "none"
       },
       "ServiceRoleArn": {
@@ -2667,8 +3435,10 @@
       "DeploymentGroupName",
       "DeploymentStyle",
       "Ec2TagFilters",
+      "Ec2TagSet",
       "LoadBalancerInfo",
       "OnPremisesInstanceTagFilters",
+      "OnPremisesInstanceTagSet",
       "ServiceRoleArn",
       "TriggerConfigurations"
     ]
@@ -2712,9 +3482,9 @@
         "update_causes": "replacement"
       },
       "Version": {
-        "description": "The version number of this custom action.",
-        "required": false,
-        "type": "String",
+        "description": "The version number of this custom action. For length constraints, see the version parameter of the CreateCustomActionType action in the AWS CodePipeline API Reference.",
+        "required": true,
+        "type": "Unknown",
         "update_causes": "replacement"
       }
     },
@@ -2732,9 +3502,15 @@
   "AWS::CodePipeline::Pipeline": {
     "full_properties": {
       "ArtifactStore": {
-        "description": "The Amazon Simple Storage Service (Amazon S3) location where AWS CodePipeline stores pipeline artifacts. For more information, see Create an Amazon S3 Bucket for Your Application in the AWS CodePipeline User Guide.",
-        "required": true,
+        "description": "The Amazon Simple Storage Service (Amazon S3) location where AWS CodePipeline stores pipeline artifacts. You can only use either ArtifactStore or ArtifactStores, not both. For more information, see Create an Amazon S3 Bucket for Your Application in the AWS CodePipeline User Guide.",
+        "required": false,
         "type": "Unknown",
+        "update_causes": "none"
+      },
+      "ArtifactStores": {
+        "description": "Specifies a list of ArtifactStoreMap mappings. There must be an artifact store for the pipeline region and for each cross-region action within the pipeline. You can only use either ArtifactStore or ArtifactStores, not both.",
+        "required": false,
+        "type": "Array",
         "update_causes": "none"
       },
       "DisableInboundStageTransitions": {
@@ -2764,18 +3540,82 @@
       "Stages": {
         "description": "Defines the AWS CodePipeline pipeline stages.",
         "required": true,
-        "type": "Unknown",
+        "type": "Array",
         "update_causes": "none"
       }
     },
     "path": "aws-resource-codepipeline-pipeline.html",
     "properties": [
       "ArtifactStore",
+      "ArtifactStores",
       "DisableInboundStageTransitions",
       "Name",
       "RestartExecutionOnUpdate",
       "RoleArn",
       "Stages"
+    ]
+  },
+  "AWS::CodePipeline::Webhook": {
+    "full_properties": {
+      "Authentication": {
+        "description": "The type of authentication scheme that allows the trigger request to be accepted. For more information, see Webhook Definition in the AWS CodePipeline API Reference.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "AuthenticationConfiguration": {
+        "description": "Properties that configure the authentication applied to incoming webhook trigger requests. For more information, see Webhook Definition in the AWS CodePipeline API Reference.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "Filters": {
+        "description": "A list of rules applied to the body/payload sent in the POST request to a webhook URL. All defined rules must pass for the request to be accepted and the pipeline started.",
+        "required": true,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "Name": {
+        "description": "The name of the webhook to be created and, if applicable, to register with a supported third party.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "RegisterWithThirdParty": {
+        "description": "Indicates whether to register the webhook with a third party. Third party registration configures a connection between the webhook that was created and the external tool, such as GitHub, with events to be detected.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "TargetAction": {
+        "description": "The name of the action in a pipeline you want to connect to the webhook. The action must be from the source (first) stage of the pipeline.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "TargetPipeline": {
+        "description": "The name of the pipeline you want to connect to the webhook.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "TargetPipelineVersion": {
+        "description": "The version number of the pipeline to be connected to the trigger request.",
+        "required": true,
+        "type": "Number",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-codepipeline-webhook.html",
+    "properties": [
+      "Authentication",
+      "AuthenticationConfiguration",
+      "Filters",
+      "Name",
+      "RegisterWithThirdParty",
+      "TargetAction",
+      "TargetPipeline",
+      "TargetPipelineVersion"
     ]
   },
   "AWS::Cognito::IdentityPool": {
@@ -2892,13 +3732,13 @@
         "update_causes": "none"
       },
       "AliasAttributes": {
-        "description": "Attributes supported as an alias for this user pool. Possible values: phone_number, email, and/or preferred_username.",
+        "description": "Attributes supported as an alias for this user pool. Possible values: phone_number, email, or preferred_username.",
         "required": false,
         "type": "Array",
-        "update_causes": "none"
+        "update_causes": "replacement"
       },
       "AutoVerifiedAttributes": {
-        "description": "The attributes to be auto-verified. Possible values: email and/or phone_number.",
+        "description": "The attributes to be auto-verified. Possible values: email or phone_number.",
         "required": false,
         "type": "Array",
         "update_causes": "none"
@@ -2980,6 +3820,12 @@
         "required": false,
         "type": "String",
         "update_causes": "none"
+      },
+      "UsernameAttributes": {
+        "description": "Specifies whether email addresses or phone numbers can be specified as usernames when a user signs up. Possible values: phone_number or email.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
       }
     },
     "path": "aws-resource-cognito-userpool.html",
@@ -2994,11 +3840,12 @@
       "LambdaConfig",
       "MfaConfiguration",
       "Policies",
-      "UserPoolName",
       "Schema",
       "SmsAuthenticationMessage",
       "SmsConfiguration",
       "SmsVerificationMessage",
+      "UsernameAttributes",
+      "UserPoolName",
       "UserPoolTags"
     ]
   },
@@ -3011,7 +3858,7 @@
         "update_causes": "none"
       },
       "ExplicitAuthFlows": {
-        "description": "The explicit authentication flows, which can be one of the following: ADMIN_NO_SRP_AUTH or CUSTOM_AUTH_FLOW_ONLY.",
+        "description": "The explicit authentication flows, which can be one of the following: ADMIN_NO_SRP_AUTH, CUSTOM_AUTH_FLOW_ONLY, or USER_PASSWORD_AUTH.",
         "required": false,
         "type": "Array",
         "update_causes": "none"
@@ -3408,6 +4255,12 @@
         "type": "Number",
         "update_causes": "interrupt"
       },
+      "SSESpecification": {
+        "description": "Whether server-side encryption is enabled or not.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
       "SecurityGroupIds": {
         "description": "A list of security group IDs to be assigned to each node in the DAX cluster. (Each of the security group ID is system-generated.)",
         "required": false,
@@ -3439,6 +4292,7 @@
       "PreferredMaintenanceWindow",
       "ReplicationFactor",
       "SecurityGroupIds",
+      "SSESpecification",
       "SubnetGroupName",
       "Tags"
     ]
@@ -3497,6 +4351,41 @@
       "SubnetGroupName",
       "Description",
       "SubnetIds"
+    ]
+  },
+  "AWS::DLM::LifecyclePolicy": {
+    "full_properties": {
+      "Description": {
+        "description": "The description of the lifecycle policy.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "ExecutionRoleArn": {
+        "description": "The Amazon Resource Name (ARN) of the IAM role used to run the operations specified by the lifecycle policy.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "PolicyDetails": {
+        "description": "The configuration of the lifecycle policy.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "interrupt"
+      },
+      "State": {
+        "description": "The activation state of the lifecycle policy.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      }
+    },
+    "path": "aws-resource-dlm-lifecyclepolicy.html",
+    "properties": [
+      "Description",
+      "ExecutionRoleArn",
+      "PolicyDetails",
+      "State"
     ]
   },
   "AWS::DMS::Certificate": {
@@ -3560,7 +4449,7 @@
         "update_causes": "none"
       },
       "EngineName": {
-        "description": "The type of engine for the endpoint. Valid values depend on the EndPointType and include MYSQL, ORACLE, POSTGRES, MARIADB, AURORA, REDSHIFT, S3, SYBASE, DYNAMODB, MONGODB, and SQLSERVER.",
+        "description": "The type of engine for the endpoint. Valid values depend on the EndPointType and include mysql, oracle, postgres, mariadb, aurora, aurora-postgresql, redshift, s3, db2, azuredb, sybase, dynamodb, mongodb, and sqlserver.",
         "required": true,
         "type": "Unknown",
         "update_causes": "none"
@@ -3621,7 +4510,7 @@
       },
       "Username": {
         "description": "The user name to be used to login to the endpoint database.",
-        "required": true,
+        "required": false,
         "type": "String",
         "update_causes": "none"
       }
@@ -4020,7 +4909,7 @@
   "AWS::DirectoryService::SimpleAD": {
     "full_properties": {
       "CreateAlias": {
-        "description": "A unique alias to assign to the directory. AWS Directory Service uses the alias to construct the access URL for the directory, such as http://alias.awsapps.com. By default, AWS CloudFormation does not create an alias.",
+        "description": "If set to true, creates an alias for a directory and assigns the alias to the directory. AWS Directory Service uses the alias to construct the access URL for the directory, such as http://alias.awsapps.com. By default, this property is set to false.",
         "required": false,
         "type": "Boolean",
         "update_causes": "replacement"
@@ -4252,6 +5141,90 @@
       "Tags"
     ]
   },
+  "AWS::EC2::EC2Fleet": {
+    "full_properties": {
+      "ExcessCapacityTerminationPolicy": {
+        "description": "Indicates whether running instances should be terminated if the total target capacity of the EC2 Fleet is decreased below the current size of the EC2 Fleet.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "LaunchTemplateConfigs": {
+        "description": "The configuration for the EC2 Fleet.",
+        "required": true,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "OnDemandOptions": {
+        "description": "The allocation strategy of On-Demand Instances in an EC2 Fleet.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "ReplaceUnhealthyInstances": {
+        "description": "Indicates whether EC2 Fleet should replace unhealthy instances.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "replacement"
+      },
+      "SpotOptions": {
+        "description": "Describes the configuration of Spot Instances in an EC2 Fleet.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "TagSpecifications": {
+        "description": "The key-value pair for tagging the EC2 Fleet request on creation. The value for ResourceType must be fleet, otherwise the fleet request fails. To tag instances at launch, specify the tags in the launch template. For information about tagging after launch, see Tagging Your Resources.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "TargetCapacitySpecification": {
+        "description": "The TotalTargetCapacity, OnDemandTargetCapacity, SpotTargetCapacity, and DefaultCapacityType structure.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "TerminateInstancesWithExpiration": {
+        "description": "Indicates whether running instances should be terminated when the EC2 Fleet expires.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "replacement"
+      },
+      "Type": {
+        "description": "The type of the request. By default, the EC2 Fleet places an asynchronous request for your desired capacity, and maintains it by replenishing interrupted Spot Instances (maintain). A value of instant places a synchronous one-time request, and returns errors for any instances that could not be launched. A value of request places an asynchronous one-time request without maintaining capacity or submitting requests in alternative capacity pools if capacity is unavailable. For more information, see EC2 Fleet Request Types in the Amazon EC2 User Guide for Linux Instances.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "ValidFrom": {
+        "description": "The start date and time of the request, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ). The default is to start fulfilling the request immediately.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "replacement"
+      },
+      "ValidUntil": {
+        "description": "The end date and time of the request, in UTC format (for example, YYYY-MM-DDTHH:MM:SSZ). At this point, no new EC2 Fleet requests are placed or able to fulfill the request. The default end date is 7 days from the current date.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-ec2-ec2fleet.html",
+    "properties": [
+      "ExcessCapacityTerminationPolicy",
+      "LaunchTemplateConfigs",
+      "OnDemandOptions",
+      "ReplaceUnhealthyInstances",
+      "SpotOptions",
+      "TagSpecifications",
+      "TargetCapacitySpecification",
+      "TerminateInstancesWithExpiration",
+      "Type",
+      "ValidFrom",
+      "ValidUntil"
+    ]
+  },
   "AWS::EC2::EIP": {
     "full_properties": {
       "Domain": {
@@ -4265,12 +5238,19 @@
         "required": false,
         "type": "String",
         "update_causes": "none"
+      },
+      "PublicIpv4Pool": {
+        "description": "Specifies the ID of an address pool that you own to let Amazon EC2 select an address from the address pool.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
       }
     },
     "path": "aws-properties-ec2-eip.html",
     "properties": [
+      "Domain",
       "InstanceId",
-      "Domain"
+      "PublicIpv4Pool"
     ]
   },
   "AWS::EC2::EIPAssociation": {
@@ -4345,14 +5325,26 @@
     "full_properties": {
       "DeliverLogsPermissionArn": {
         "description": "The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that permits Amazon EC2 to publish flow logs to a CloudWatch Logs log group in your account.",
-        "required": true,
-        "type": "String",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "LogDestination": {
+        "description": "Specifies the destination to which the flow log data is to be published. Flow log data can be published to a CloudWatch Logs log group or an Amazon S3 bucket. The value specified for this parameter depends on the value specified for LogDestinationType.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "LogDestinationType": {
+        "description": "Specifies the type of destination to which the flow log data is to be published. Flow log data can be published to CloudWatch Logs or Amazon S3. To publish flow log data to CloudWatch Logs, specify cloud-watch-logs. To publish flow log data to Amazon S3, specify s3.",
+        "required": false,
+        "type": "Unknown",
         "update_causes": "replacement"
       },
       "LogGroupName": {
         "description": "The name of a new or existing CloudWatch Logs log group where Amazon EC2 publishes your flow logs.",
-        "required": true,
-        "type": "String",
+        "required": false,
+        "type": "Unknown",
         "update_causes": "replacement"
       },
       "ResourceId": {
@@ -4377,6 +5369,8 @@
     "path": "aws-resource-ec2-flowlog.html",
     "properties": [
       "DeliverLogsPermissionArn",
+      "LogDestination",
+      "LogDestinationType",
       "LogGroupName",
       "ResourceId",
       "ResourceType",
@@ -4495,7 +5489,7 @@
         "update_causes": "none"
       },
       "InstanceType": {
-        "description": "The instance type, such as t2.micro. The default type is \"m3.medium\". For a list of instance types, see Instance Families and Types.",
+        "description": "The instance type, such as t2.micro. The default type is m1.small. For a list of instance types, see Instance Families and Types.",
         "required": false,
         "type": "Array",
         "update_causes": [
@@ -5093,7 +6087,7 @@
       "Tags": {
         "description": "The tags that you want to attach to the resource.",
         "required": false,
-        "type": "Unknown",
+        "type": "Array",
         "update_causes": "none"
       },
       "VpcId": {
@@ -5227,6 +6221,12 @@
         "type": "String",
         "update_causes": "replacement"
       },
+      "SourcePrefixListId": {
+        "description": "The AWS service prefix of an Amazon VPC endpoint. For more information, see VPC Endpoints in the Amazon VPC User Guide.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
       "SourceSecurityGroupId": {
         "description": "Specifies the ID of the source security group or uses the Ref intrinsic function to refer to the logical ID of a security group defined in the same template.",
         "required": false,
@@ -5261,6 +6261,7 @@
       "GroupId",
       "GroupName",
       "IpProtocol",
+      "SourcePrefixListId",
       "SourceSecurityGroupId",
       "SourceSecurityGroupName",
       "SourceSecurityGroupOwnerId",
@@ -5494,25 +6495,49 @@
   "AWS::EC2::VPCEndpoint": {
     "full_properties": {
       "PolicyDocument": {
-        "description": "A policy to attach to the endpoint that controls access to the service. The policy must be valid JSON. The default policy allows full access to the AWS service. For more information, see Controlling Access to Services in the Amazon VPC User Guide.",
+        "description": "[Gateway endpoint] A policy to attach to the endpoint that controls access to the service. The policy must be valid JSON. The default policy allows full access to the AWS service. For more information, see Controlling Access to Services in the Amazon VPC User Guide.",
         "required": false,
         "type": "Unknown",
         "update_causes": "none"
       },
+      "PrivateDnsEnabled": {
+        "description": "[Interface endpoint] Indicates whether to associate a private hosted zone with the specified VPC.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
       "RouteTableIds": {
-        "description": "One or more route table IDs that are used by the VPC to reach the endpoint.",
+        "description": "[Gateway endpoint] One or more route table IDs that are used by the VPC to reach the endpoint.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "SecurityGroupIds": {
+        "description": "[Interface endpoint] The ID of one or more security groups to associate with the endpoint network interface.",
         "required": false,
         "type": "Array",
         "update_causes": "none"
       },
       "ServiceName": {
-        "description": "The AWS service to which you want to establish a connection. Specify the service name in the form of com.amazonaws.region.service.",
+        "description": "The name of the service. To get a list of available services, use DescribeVpcEndpointServices or get the name from the service provider.",
         "required": true,
         "type": "String",
         "update_causes": "replacement"
       },
+      "SubnetIds": {
+        "description": "[Interface endpoint] The ID of one or more subnets in which to create an endpoint network interface.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "VpcEndpointType": {
+        "description": "The type of endpoint. Valid values are Interface and Gateway.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
       "VpcId": {
-        "description": "The ID of the VPC in which the endpoint is used.",
+        "description": "The ID of the VPC in which the endpoint will be used.",
         "required": true,
         "type": "String",
         "update_causes": "replacement"
@@ -5520,10 +6545,91 @@
     },
     "path": "aws-resource-ec2-vpcendpoint.html",
     "properties": [
+      "PrivateDnsEnabled",
       "PolicyDocument",
       "RouteTableIds",
+      "SecurityGroupIds",
       "ServiceName",
+      "SubnetIds",
+      "VpcEndpointType",
       "VpcId"
+    ]
+  },
+  "AWS::EC2::VPCEndpointConnectionNotification": {
+    "full_properties": {
+      "ConnectionEvents": {
+        "description": "One or more endpoint events for which to receive notifications. Valid values are Accept, Connect, Delete, and Reject.",
+        "required": true,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "ConnectionNotificationArn": {
+        "description": "The ARN of the SNS topic for the notifications.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "ServiceId": {
+        "description": "The ID of the endpoint service.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "VPCEndpointId": {
+        "description": "The ID of the endpoint.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-ec2-vpcendpointconnectionnotification.html",
+    "properties": [
+      "ConnectionEvents",
+      "ConnectionNotificationArn",
+      "ServiceId",
+      "VPCEndpointId"
+    ]
+  },
+  "AWS::EC2::VPCEndpointService": {
+    "full_properties": {
+      "AcceptanceRequired": {
+        "description": "Indicate whether requests from service consumers to create an endpoint to your service must be accepted. To accept a request, use AcceptVpcEndpointConnections.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "NetworkLoadBalancerArns": {
+        "description": "The Amazon Resource Names (ARNs) of one or more Network Load Balancers for your service.",
+        "required": true,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-ec2-vpcendpointservice.html",
+    "properties": [
+      "AcceptanceRequired",
+      "NetworkLoadBalancerArns"
+    ]
+  },
+  "AWS::EC2::VPCEndpointServicePermissions": {
+    "full_properties": {
+      "AllowedPrincipals": {
+        "description": "The Amazon Resource Names (ARN) of one or more principals (IAM users, IAM roles, and AWS accounts). Permissions are granted to the principals in this list. To grant permissions to all principals, specify an asterisk (*). Permissions are revoked for principals not in this list. If the list is empty, then all permissions are revoked.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "ServiceId": {
+        "description": "The ID of the VPC endpoint service.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-ec2-vpcendpointservicepermissions.html",
+    "properties": [
+      "AllowedPrincipals",
+      "ServiceId"
     ]
   },
   "AWS::EC2::VPCGatewayAttachment": {
@@ -5562,6 +6668,12 @@
         "type": "String",
         "update_causes": "replacement"
       },
+      "PeerRegion": {
+        "description": "The region code for the accepter VPC, if the accepter VPC is located in a region other than the region in which you make the request. The default is the region in which you make the request.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
       "PeerRoleArn": {
         "description": "The Amazon Resource Name (ARN) of the VPC peer role for the peering connection in another AWS account.",
         "required": false,
@@ -5593,6 +6705,7 @@
       "Tags",
       "VpcId",
       "PeerOwnerId",
+      "PeerRegion",
       "PeerRoleArn"
     ]
   },
@@ -5672,7 +6785,7 @@
         "description": "The private Autonomous System Number (ASN) for the Amazon side of a BGP session.",
         "required": false,
         "type": "Unknown",
-        "update_causes": "none"
+        "update_causes": "replacement"
       },
       "Tags": {
         "description": "An arbitrary set of tags (key–value pairs) for this resource.",
@@ -5923,6 +7036,12 @@
         "type": "String",
         "update_causes": "replacement"
       },
+      "SchedulingStrategy": {
+        "description": "The scheduling strategy to use for the service.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
       "ServiceName": {
         "description": "The name of your service. The name is limited to 255 letters (uppercase and lowercase), numbers, hyphens, and underscores. Service names must be unique within a cluster, but you can have similarly named services in multiple clusters within a region or across multiple regions.",
         "required": false,
@@ -5933,7 +7052,7 @@
         "description": "Details of the service registry.",
         "required": false,
         "type": "Unknown",
-        "update_causes": "none"
+        "update_causes": "replacement"
       },
       "TaskDefinition": {
         "description": "The ARN of the task definition (including the revision number) that you want to run on the cluster, such as arn:aws:ecs:us-east-1:123456789012:task-definition/mytask:3. You can't use :latest to specify a revision because it's ambiguous. For example, if AWS CloudFormation needed to roll back an update, it wouldn't know which revision to roll back to.",
@@ -5955,6 +7074,7 @@
       "PlacementStrategies",
       "PlatformVersion",
       "Role",
+      "SchedulingStrategy",
       "ServiceName",
       "ServiceRegistries",
       "TaskDefinition"
@@ -5969,7 +7089,7 @@
         "update_causes": "replacement"
       },
       "Cpu": {
-        "description": "The number of cpu units used by the task. If using the EC2 launch type, this field is optional and any value can be used. If you are using the Fargate launch type, this field is required and you must use one of the following values, which determines your range of valid values for the memory parameter:",
+        "description": "The number of cpu units used by the task. If using the EC2 launch type, this field is optional. Supported values are between 128 CPU units (0.125 vCPUs) and 10240 CPU units (10 vCPUs). If you are using the Fargate launch type, this field is required and you must use one of the following values, which determines your range of valid values for the memory parameter:",
         "required": false,
         "type": "String",
         "update_causes": "replacement"
@@ -6062,6 +7182,18 @@
         "required": false,
         "type": "String",
         "update_causes": "replacement"
+      },
+      "ProvisionedThroughputInMibps": {
+        "description": "The throughput, measured in MiB/s, that you want to provision for a file system that you're creating. The limit on throughput is 1024 MiB/s. You can get these limits increased by contacting AWS Support. For more information, see Amazon EFS Limits That You Can Increase in the Amazon Elastic File System User Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "ThroughputMode": {
+        "description": "The throughput mode for the file system to be created. There are two throughput modes to choose from for your file system: bursting and provisioned. You can decrease your file system's throughput in Provisioned Throughput mode or change between the throughput modes as long as it’s been more than 24 hours since the last decrease or throughput mode change.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
       }
     },
     "path": "aws-resource-efs-filesystem.html",
@@ -6069,7 +7201,9 @@
       "FileSystemTags",
       "Encrypted",
       "KmsKeyId",
-      "PerformanceMode"
+      "PerformanceMode",
+      "ProvisionedThroughputInMibps",
+      "ThroughputMode"
     ]
   },
   "AWS::EFS::MountTarget": {
@@ -6198,6 +7332,12 @@
         "type": "String",
         "update_causes": "replacement"
       },
+      "KerberosAttributes": {
+        "description": "Attributes for Kerberos configuration when Kerberos authentication is enabled using a security configuration.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
       "LogUri": {
         "description": "An S3 bucket location that Amazon EMR writes logs files to from a job flow. If you don't specify a value, Amazon EMR doesn't write any log files.",
         "required": false,
@@ -6234,6 +7374,12 @@
         "type": "String",
         "update_causes": "replacement"
       },
+      "Steps": {
+        "description": "The cluster (job flow) steps.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
       "Tags": {
         "description": "An arbitrary set of tags (key–value pairs) to help you identify the Amazon EMR cluster.",
         "required": false,
@@ -6258,12 +7404,14 @@
       "EbsRootVolumeSize",
       "Instances",
       "JobFlowRole",
+      "KerberosAttributes",
       "LogUri",
       "Name",
       "ReleaseLabel",
       "ScaleDownBehavior",
       "SecurityConfiguration",
       "ServiceRole",
+      "Steps",
       "Tags",
       "VisibleToAllUsers"
     ]
@@ -6697,7 +7845,7 @@
       },
       "Engine": {
         "description": "The name of the cache engine to use for the cache clusters in this replication group. Currently, you can specify only redis.",
-        "required": true,
+        "required": false,
         "type": "String",
         "update_causes": "none"
       },
@@ -6711,7 +7859,7 @@
         "description": "Configuration options for the node group (shard).",
         "required": false,
         "type": "Array",
-        "update_causes": "replacement"
+        "update_causes": "interrupt"
       },
       "NotificationTopicArn": {
         "description": "The Amazon Resource Name (ARN) of the Amazon Simple Notification Service topic to which notifications are sent.",
@@ -6726,10 +7874,10 @@
         "update_causes": "none"
       },
       "NumNodeGroups": {
-        "description": "The number of node groups (shards) for this Redis (clustered mode enabled) replication group. For Redis (clustered mode disabled), omit this property.",
+        "description": "The number of node groups (shards) for this Redis (clustered mode enabled) replication group. For Redis (clustered mode disabled), either omit this property or set it to 1.",
         "required": false,
         "type": "Number",
-        "update_causes": "replacement"
+        "update_causes": "interrupt"
       },
       "Port": {
         "description": "The port number on which each member of the replication group accepts connections.",
@@ -7240,8 +8388,8 @@
       "HealthCheck",
       "Instances",
       "LBCookieStickinessPolicy",
-      "LoadBalancerName",
       "Listeners",
+      "LoadBalancerName",
       "Policies",
       "Scheme",
       "SecurityGroups",
@@ -7413,6 +8561,7 @@
     },
     "path": "aws-resource-elasticloadbalancingv2-loadbalancer.html",
     "properties": [
+      "IpAddressType",
       "LoadBalancerAttributes",
       "Name",
       "Scheme",
@@ -7420,8 +8569,7 @@
       "SubnetMappings",
       "Subnets",
       "Tags",
-      "Type",
-      "IpAddressType"
+      "Type"
     ]
   },
   "AWS::ElasticLoadBalancingV2::TargetGroup": {
@@ -7433,7 +8581,7 @@
         "update_causes": "none"
       },
       "HealthCheckPath": {
-        "description": "The ping path destination where Elastic Load Balancing sends health check requests.",
+        "description": "[HTTP/HTTPS health checks] The ping path destination where Elastic Load Balancing sends health check requests. The default is /.",
         "required": false,
         "type": "String",
         "update_causes": "none"
@@ -7451,7 +8599,7 @@
         "update_causes": "none"
       },
       "HealthCheckTimeoutSeconds": {
-        "description": "The number of seconds to wait for a response before considering that a health check has failed.",
+        "description": "The number of seconds to wait for a response before considering that a health check has failed. For Application Load Balancers, the range is 2–60 seconds and the default is 5 seconds. For Network Load Balancers, this value is 10 seconds for TCP and HTTPS health checks and 6 seconds for HTTP health checks.",
         "required": false,
         "type": "Number",
         "update_causes": "none"
@@ -7463,7 +8611,7 @@
         "update_causes": "none"
       },
       "Matcher": {
-        "description": "The HTTP codes that a healthy target uses when responding to a health check.",
+        "description": "[HTTP/HTTPS health checks] The HTTP codes that a healthy target uses when responding to a health check.",
         "required": false,
         "type": "Unknown",
         "update_causes": "none"
@@ -7618,6 +8766,41 @@
       "SnapshotOptions",
       "Tags",
       "VPCOptions"
+    ]
+  },
+  "AWS::Events::EventBusPolicy": {
+    "full_properties": {
+      "Action": {
+        "description": "The action that you are enabling the other account to perform. Currently, this must be events:PutEvents.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Condition": {
+        "description": "A JSON string which you can use to limit the event bus permissions you are granting to only accounts that fulfill the condition. Currently, the only supported condition is membership in a certain AWS organization. The string must contain Type, Key, and Value fields.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "Principal": {
+        "description": "The 12-digit AWS account ID that you are permitting to put events to your default  event bus. Specify * to permit any account to put events to your default event bus, or if you are specifying an organization ID in the Condition object.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "StatementId": {
+        "description": "An identifier string for the external account to which you are granting permissions.  To later revoke the permission for this external account, you need to know this string.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-events-eventbuspolicy.html",
+    "properties": [
+      "Action",
+      "Condition",
+      "Principal",
+      "StatementId"
     ]
   },
   "AWS::Events::Rule": {
@@ -7816,11 +8999,25 @@
         "required": false,
         "type": "Unknown",
         "update_causes": "none"
+      },
+      "JsonClassifier": {
+        "description": "A classifier for JSON content.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "XMLClassifier": {
+        "description": "A classifier for XML content.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
       }
     },
     "path": "aws-resource-glue-classifier.html",
     "properties": [
-      "GrokClassifier"
+      "GrokClassifier",
+      "JsonClassifier",
+      "XMLClassifier"
     ]
   },
   "AWS::Glue::Connection": {
@@ -7850,6 +9047,12 @@
         "description": "A list of UTF-8 strings that specify the custom classifiers that are associated with the crawler.",
         "required": false,
         "type": "Array",
+        "update_causes": "none"
+      },
+      "Configuration": {
+        "description": "Crawler configuration information. This versioned JSON string allows users to specify aspects of a crawler's behavior. For more information, see Configuring a Crawler..",
+        "required": false,
+        "type": "String",
         "update_causes": "none"
       },
       "DatabaseName": {
@@ -7905,6 +9108,7 @@
     "properties": [
       "Role",
       "Classifiers",
+      "Configuration",
       "Description",
       "SchemaChangePolicy",
       "Schedule",
@@ -8022,7 +9226,7 @@
         "description": "UTF-8 string–to–UTF-8 string key-value pairs that specify the default parameters for the job.",
         "required": false,
         "type": "Unknown",
-        "update_causes": "none"
+        "update_causes": "interrupt"
       },
       "Description": {
         "description": "The description of the job.",
@@ -8194,11 +9398,18 @@
         "required": true,
         "type": "Boolean",
         "update_causes": "interrupt"
+      },
+      "FindingPublishingFrequency": {
+        "description": "Specifies the frequency of notifications sent about the subsequent finding occurrences. Valid values include only the following: FIFTEEN_MINUTES, ONE_HOUR, SIX_HOURS.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
       }
     },
     "path": "aws-resource-guardduty-detector.html",
     "properties": [
-      "Enable"
+      "Enable",
+      "FindingPublishingFrequency"
     ]
   },
   "AWS::GuardDuty::Filter": {
@@ -8353,7 +9564,7 @@
         "update_causes": "interrupt"
       },
       "Status": {
-        "description": "You can use this property to update the status of the relationship between the member account and its master account. Valid values are CREATED | INVITED | DISABLED | ENABLED | REMOVED | RESIGNED. If the value for this property is not provided or set to CREATED, a member account is only created. If the value of this property is set to INVITED, a member account is created and invited.",
+        "description": "You can use this property to update the status of the relationship between the member account and its master account. Valid values are Created | Invited | Disabled | Enabled | Removed | Resigned. If the value for this property is not provided or set to Created, a member account is only created. If the value of this property is set to Invited, a member account is created and invited.",
         "required": false,
         "type": "String",
         "update_causes": "interrupt"
@@ -8626,6 +9837,12 @@
         "type": "String",
         "update_causes": "replacement"
       },
+      "PermissionsBoundary": {
+        "description": "The ARN of the policy that is used to set the permissions boundary for the role. Minimum length of 20. Maximum length of 2048.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
       "Policies": {
         "description": "The policies to associate with this role. For sample templates, see Template Examples.",
         "required": false,
@@ -8645,8 +9862,37 @@
       "ManagedPolicyArns",
       "MaxSessionDuration",
       "Path",
+      "PermissionsBoundary",
       "Policies",
       "RoleName"
+    ]
+  },
+  "AWS::IAM::ServiceLinkedRole": {
+    "full_properties": {
+      "AWSServiceName": {
+        "description": "The service principal for the AWS service to which this role is attached. You use a string similar to a URL but without the http:// in front. For example: elasticbeanstalk.amazonaws.com.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "CustomSuffix": {
+        "description": "A string that you provide, which is combined with the service-provided prefix to form the complete role name. If you make multiple requests for the same service, then you must supply a different CustomSuffix for each request. Otherwise the request fails with a duplicate role name error. For example, you could add -1 or -debug to the suffix.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Description": {
+        "description": "The description of the role.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-iam-servicelinkedrole.html",
+    "properties": [
+      "AWSServiceName",
+      "CustomSuffix",
+      "Description"
     ]
   },
   "AWS::IAM::User": {
@@ -8675,6 +9921,12 @@
         "type": "String",
         "update_causes": "none"
       },
+      "PermissionsBoundary": {
+        "description": "The ARN of the policy that is used to set the permissions boundary for the user. Minimum length of 20. Maximum length of 2048.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
       "Policies": {
         "description": "The policies to associate with this user. For information about policies, see Overview of IAM Policies in the IAM User Guide.",
         "required": false,
@@ -8694,6 +9946,7 @@
       "LoginProfile",
       "ManagedPolicyArns",
       "Path",
+      "PermissionsBoundary",
       "Policies",
       "UserName"
     ]
@@ -8794,6 +10047,90 @@
     "path": "aws-resource-inspector-resourcegroup.html",
     "properties": [
       "ResourceGroupTags"
+    ]
+  },
+  "AWS::IoT1Click::Device": {
+    "full_properties": {
+      "DeviceId": {
+        "description": "The unique identifier of the device.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Enabled": {
+        "description": "A Boolean value indicating whether the device is enabled (true) or not (false).",
+        "required": true,
+        "type": "Boolean",
+        "update_causes": "interrupt"
+      }
+    },
+    "path": "aws-resource-iot1click-device.html",
+    "properties": [
+      "DeviceId",
+      "Enabled"
+    ]
+  },
+  "AWS::IoT1Click::Placement": {
+    "full_properties": {
+      "AssociatedDevices": {
+        "description": "The device(s) to associate with the placement, as defined by a mapping of zero or more key/value pairs wherein the key is a template name and the value is a device ID.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "Attributes": {
+        "description": "User specified attribute(s) in the form of key/value pairs.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "interrupt"
+      },
+      "PlacementName": {
+        "description": "The name of this placement.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "ProjectName": {
+        "description": "The name of the project that will contain this placement.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-iot1click-placement.html",
+    "properties": [
+      "AssociatedDevices",
+      "Attributes",
+      "PlacementName",
+      "ProjectName"
+    ]
+  },
+  "AWS::IoT1Click::Project": {
+    "full_properties": {
+      "Description": {
+        "description": "An optional description for the project.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "PlacementTemplate": {
+        "description": "The template defining the placement to be created. A placement template defines placement default attributes and device templates. You cannot add or remove device templates after the project has been created. However, you can update callbackOverrides for the device templates using the UpdateProject API.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "interrupt"
+      },
+      "ProjectName": {
+        "description": "The name of the project to create.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-iot1click-project.html",
+    "properties": [
+      "Description",
+      "PlacementTemplate",
+      "ProjectName"
     ]
   },
   "AWS::IoT::Certificate": {
@@ -8969,6 +10306,18 @@
         "type": "Unknown",
         "update_causes": "none"
       },
+      "KeyUsage": {
+        "description": "The intended use of the key. You can use CMKs only for symmetric encryption and decryption.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "PendingWindowInDays": {
+        "description": "The waiting period, specified in number of days. After the waiting period ends, AWS KMS deletes the customer master key (CMK).",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
       "Tags": {
         "description": "Specifies an arbitrary set of tags (key–value pairs) to associate with this key. Use tags to manage your resources.",
         "required": false,
@@ -8982,6 +10331,8 @@
       "Enabled",
       "EnableKeyRotation",
       "KeyPolicy",
+      "KeyUsage",
+      "PendingWindowInDays",
       "Tags"
     ]
   },
@@ -9025,6 +10376,27 @@
       "ShardCount",
       "StreamEncryption",
       "Tags"
+    ]
+  },
+  "AWS::Kinesis::StreamConsumer": {
+    "full_properties": {
+      "ConsumerName": {
+        "description": "The name of the consumer is something you choose when you register the consumer.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "StreamARN": {
+        "description": "The ARN of the Kinesis data stream that you want to register the consumer with.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-kinesis-streamconsumer.html",
+    "properties": [
+      "ConsumerName",
+      "StreamARN"
     ]
   },
   "AWS::KinesisAnalytics::Application": {
@@ -9137,7 +10509,7 @@
         ]
       },
       "KinesisStreamSourceConfiguration": {
-        "description": "When a Kinesis stream is used as the source for the delivery stream, a Kinesis Data Firehose DeliveryStream KinesisStreamSourceConfiguration containing the Kinesis stream ARN and the role ARN for the source stream.",
+        "description": "When a Kinesis stream is used as the source for the delivery stream, a KinesisStreamSourceConfiguration containing the Kinesis stream ARN and the role ARN for the source stream.",
         "required": false,
         "type": "Unknown",
         "update_causes": "none"
@@ -9236,7 +10608,7 @@
         "update_causes": "none"
       },
       "EventSourceArn": {
-        "description": "The Amazon Resource Name (ARN) of the Kinesis or DynamoDB stream that is the source of events. Any record added to this stream can invoke the Lambda function. For more information, see CreateEventSourceMapping in the AWS Lambda Developer Guide.",
+        "description": "The Amazon Resource Name (ARN) of the event source. Any record added to this stream can invoke the Lambda function. For more information, see CreateEventSourceMapping in the AWS Lambda Developer Guide.",
         "required": true,
         "type": "String",
         "update_causes": "replacement"
@@ -9248,7 +10620,7 @@
         "update_causes": "none"
       },
       "StartingPosition": {
-        "description": "The position in the stream where Lambda starts reading. For valid values, see CreateEventSourceMapping in the AWS Lambda Developer Guide.",
+        "description": "The position in a DynamoDB or Kinesis stream where Lambda starts reading. Not required if you set an Amazon SQS queue as the event source. The AT_TIMESTAMP value is supported only for Kinesis streams. For valid values, see CreateEventSourceMapping in the AWS Lambda Developer Guide.",
         "required": false,
         "type": "String",
         "update_causes": "replacement"
@@ -9595,13 +10967,13 @@
   "AWS::Neptune::DBCluster": {
     "full_properties": {
       "AvailabilityZones": {
-        "description": "A list of Availability Zones (AZs) in which DB instances in the cluster can be created.",
+        "description": "A list of Availability Zones in which DB instances in the cluster can be created.",
         "required": false,
         "type": "String",
         "update_causes": "replacement"
       },
       "BackupRetentionPeriod": {
-        "description": "The number of days for which automatic backups are retained. For more information, see CreateDBCluster.",
+        "description": "The number of days for which automatic backups are retained. For more information, see CreateDBCluster in the Amazon Neptune User Guide.",
         "required": false,
         "type": "Number",
         "update_causes": [
@@ -9628,13 +11000,13 @@
         "update_causes": "replacement"
       },
       "IamAuthEnabled": {
-        "description": "Enable IAM authentication and authoriation on this cluster.",
+        "description": "Enable IAM authentication and authorization on this cluster.",
         "required": false,
         "type": "Boolean",
         "update_causes": "none"
       },
       "KmsKeyId": {
-        "description": "The Amazon Resource Name (ARN) of the AWS Key Management Service master key that is used to encrypt the database instances in the DB cluster, such as arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef. If you enable the StorageEncrypted property but don't specify this property, the default master key is used. If you specify this property, you must set the StorageEncrypted property to true.",
+        "description": "The Amazon Resource Name (ARN) of the AWS Key Management Service (AWS KMS) master key that is used to encrypt the database instances in the DB cluster, such as arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef. If you enable the StorageEncrypted property but don't specify this property, the default master key is used. If you specify this property, you must set the StorageEncrypted property to true.",
         "required": false,
         "type": "String",
         "update_causes": "replacement"
@@ -9646,7 +11018,7 @@
         "update_causes": "none"
       },
       "PreferredBackupWindow": {
-        "description": "if automated backups are enabled (see the BackupRetentionPeriod property), the daily time range in UTC during which you want to create automated backups.",
+        "description": "If automated backups are enabled (see the BackupRetentionPeriod property), the daily time range in UTC during which you want to create automated backups.",
         "required": false,
         "type": "String",
         "update_causes": "none"
@@ -9799,19 +11171,19 @@
         ]
       },
       "DBSnapshotIdentifier": {
-        "description": "The name or Amazon Resource Name (ARN) of the DB snapshot that's used to restore the DB instance. If you're restoring from a shared manual DB snapshot, you must specify the ARN of the snapshot.",
+        "description": "This parameter is not supported.",
         "required": false,
         "type": "String",
         "update_causes": "replacement"
       },
       "DBSubnetGroupName": {
-        "description": "A DB subnet group to associate with the DB instance. If you update this value, the new subnet group must be a subnet group in a new VPC.",
+        "description": "A DB subnet group to associate with the DB instance. If you update this value, the new subnet group must be a subnet group in a new virtual private cloud (VPC).",
         "required": false,
         "type": "String",
         "update_causes": "replacement"
       },
       "PreferredMaintenanceWindow": {
-        "description": "The weekly time range (in UTC) during which system maintenance can occur. For valid values, see the PreferredMaintenanceWindow parameter for the CreateDBInstance action in the .",
+        "description": "The weekly time range (in UTC) during which system maintenance can occur. For valid values, see the PreferredMaintenanceWindow parameter for the CreateDBInstance action in the Amazon Neptune User Guide.",
         "required": false,
         "type": "String",
         "update_causes": [
@@ -9896,25 +11268,25 @@
   "AWS::Neptune::DBSubnetGroup": {
     "full_properties": {
       "DBSubnetGroupDescription": {
-        "description": "The description for the DB Subnet Group.",
+        "description": "The description for the DB subnet group.",
         "required": true,
         "type": "String",
         "update_causes": "none"
       },
       "DBSubnetGroupName": {
-        "description": "The name for the DB Subnet Group. This value is stored as a lowercase string.",
+        "description": "The name for the DB subnet group. This value is stored as a lowercase string.",
         "required": false,
         "type": "String",
         "update_causes": "replacement"
       },
       "SubnetIds": {
-        "description": "The EC2 Subnet IDs for the DB Subnet Group.",
+        "description": "The Amazon EC2 subnet IDs for the DB subnet group.",
         "required": true,
         "type": "Array",
         "update_causes": "none"
       },
       "Tags": {
-        "description": "The tags that you want to attach to the RDS database subnet group.",
+        "description": "The tags that you want to attach to the Amazon RDS database subnet group.",
         "required": false,
         "type": "Array",
         "update_causes": "none"
@@ -10584,17 +11956,20 @@
       "AvailabilityZones": {
         "description": "A list of Availability Zones (AZs) in which DB instances in the cluster can be created.",
         "required": false,
-        "type": "String",
+        "type": "Array",
         "update_causes": "replacement"
       },
+      "BacktrackWindow": {
+        "description": "The target backtrack window, in seconds. To disable backtracking, specify 0. If specified, this property must be set to a number from 0 to 259,200 (72 hours).",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
       "BackupRetentionPeriod": {
-        "description": "The number of days for which automatic backups are retained. For more information, see CreateDBCluster in the Amazon Relational Database Service API Reference.",
+        "description": "The number of days for which automatic backups are retained. For more information, see CreateDBCluster in the Amazon RDS API Reference.",
         "required": false,
         "type": "Number",
-        "update_causes": [
-          "none",
-          "interrupt"
-        ]
+        "update_causes": "none"
       },
       "DBClusterIdentifier": {
         "description": "The DB cluster identifier. This parameter is stored as a lowercase string.",
@@ -10603,7 +11978,7 @@
         "update_causes": "replacement"
       },
       "DBClusterParameterGroupName": {
-        "description": "The name of the DB cluster parameter group to associate with this DB cluster. For the default value, see the DBClusterParameterGroupName parameter of the CreateDBCluster action in the Amazon Relational Database Service API Reference.",
+        "description": "The name of the DB cluster parameter group to associate with this DB cluster.",
         "required": false,
         "type": "String",
         "update_causes": "interrupt"
@@ -10615,14 +11990,38 @@
         "update_causes": "replacement"
       },
       "DatabaseName": {
-        "description": "The name of your database. If you don't provide a name, Amazon Relational Database Service (Amazon RDS) won't create a database in this DB cluster. For naming constraints, see Naming Constraints in Amazon RDS in the Amazon Relational Database Service User Guide.",
+        "description": "The name of your database. If you don't provide a name, Amazon Relational Database Service (Amazon RDS) won't create a database in this DB cluster. For naming constraints, see Naming Constraints in Amazon RDS in the Amazon RDS User Guide.",
         "required": false,
         "type": "String",
         "update_causes": "replacement"
       },
+      "DeletionProtection": {
+        "description": "Indicates whether the DB cluster should have deletion protection enabled. The database can't be deleted when this value is set to true. If you want to delete a stack with a protected cluster, update this value to false before you delete the stack.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "EnableCloudwatchLogsExports": {
+        "description": "The list of log types that need to be enabled for exporting to CloudWatch Logs. The values in the list depend on the DB engine being used. Log types that are excluded or removed from this list during updates are disabled. For more information, see Publishing Database Logs to Amazon CloudWatch Logs in the Amazon Aurora User Guide.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "EnableIAMDatabaseAuthentication": {
+        "description": "If set to true, enables mapping of AWS Identity and Access Management (IAM) accounts to database accounts.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
       "Engine": {
         "description": "The name of the database engine that you want to use for this DB cluster.",
         "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "EngineMode": {
+        "description": "The DB engine mode of the DB cluster. Valid values include provisioned or serverless.",
+        "required": false,
         "type": "String",
         "update_causes": "replacement"
       },
@@ -10651,13 +12050,13 @@
         "update_causes": "replacement"
       },
       "Port": {
-        "description": "The port number on which the DB instances in the cluster can accept connections.",
+        "description": "The port number on which the DB instances in the cluster can accept connections. If this argument is omitted, 3306 is used.",
         "required": false,
         "type": "Number",
         "update_causes": "none"
       },
       "PreferredBackupWindow": {
-        "description": "if automated backups are enabled (see the BackupRetentionPeriod property), the daily time range in UTC during which you want to create automated backups.",
+        "description": "If automated backups are enabled (see the BackupRetentionPeriod property), the daily time range in UTC during which you want to create automated backups.",
         "required": false,
         "type": "String",
         "update_causes": "none"
@@ -10672,9 +12071,15 @@
         ]
       },
       "ReplicationSourceIdentifier": {
-        "description": "The Amazon Resource Name (ARN) of the source Amazon RDS MySQL DB instance or DB cluster,  if this DB cluster is created as a Read Replica.",
+        "description": "The Amazon Resource Name (ARN) of the source Amazon RDS DB instance or DB cluster,  if this DB cluster is created as a Read Replica.",
         "required": false,
         "type": "String",
+        "update_causes": "none"
+      },
+      "ScalingConfiguration": {
+        "description": "For DB clusters in serverless DB engine mode, the scaling properties of the DB cluster.",
+        "required": false,
+        "type": "Unknown",
         "update_causes": "none"
       },
       "SnapshotIdentifier": {
@@ -10705,12 +12110,17 @@
     "path": "aws-resource-rds-dbcluster.html",
     "properties": [
       "AvailabilityZones",
+      "BacktrackWindow",
       "BackupRetentionPeriod",
       "DatabaseName",
       "DBClusterIdentifier",
       "DBClusterParameterGroupName",
       "DBSubnetGroupName",
+      "DeletionProtection",
+      "EnableCloudwatchLogsExports",
+      "EnableIAMDatabaseAuthentication",
       "Engine",
+      "EngineMode",
       "EngineVersion",
       "KmsKeyId",
       "MasterUsername",
@@ -10719,6 +12129,7 @@
       "PreferredBackupWindow",
       "PreferredMaintenanceWindow",
       "ReplicationSourceIdentifier",
+      "ScalingConfiguration",
       "SnapshotIdentifier",
       "StorageEncrypted",
       "Tags",
@@ -10740,7 +12151,7 @@
         "update_causes": "replacement"
       },
       "Parameters": {
-        "description": "The parameters to set for this DB cluster parameter group. For a list of parameter keys, see Appendix: DB Cluster and DB Instance Parameters in the Amazon Relational Database Service User Guide.",
+        "description": "The parameters to set for this DB cluster parameter group. For a list of parameter keys, see Appendix: DB Cluster and DB Instance Parameters in the Amazon RDS User Guide.",
         "required": true,
         "type": "Unknown",
         "update_causes": [
@@ -10752,7 +12163,7 @@
         "description": "The tags that you want to attach to this parameter group.",
         "required": false,
         "type": "Array",
-        "update_causes": "unavailable"
+        "update_causes": "none"
       }
     },
     "path": "aws-resource-rds-dbclusterparametergroup.html",
@@ -10772,7 +12183,7 @@
         "update_causes": "none"
       },
       "AllowMajorVersionUpgrade": {
-        "description": "If you update the EngineVersion property to a version that's different from the DB instance's current major version, set this property to true. For more information, see ModifyDBInstance in the Amazon Relational Database Service API Reference.",
+        "description": "If you update the EngineVersion property to a version that's different from the DB instance's current major version, set this property to true. For more information, see ModifyDBInstance in the Amazon RDS API Reference.",
         "required": false,
         "type": "Boolean",
         "update_causes": "none"
@@ -10802,7 +12213,7 @@
         ]
       },
       "CharacterSetName": {
-        "description": "For supported engines, specifies the character set to associate with the DB instance. For more information, see Appendix: Oracle Character Sets Supported in Amazon RDS in the Amazon Relational Database Service User Guide.",
+        "description": "For supported engines, specifies the character set to associate with the DB instance. For more information, see Appendix: Oracle Character Sets Supported in Amazon RDS in the Amazon RDS User Guide.",
         "required": false,
         "type": "String",
         "update_causes": "replacement"
@@ -10864,8 +12275,20 @@
         "type": "String",
         "update_causes": "replacement"
       },
+      "DeleteAutomatedBackups": {
+        "description": "Indicates whether automated backups should be deleted (true) or retained (false) when you delete a DB instance. The default is true.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "DeletionProtection": {
+        "description": "Indicates whether the DB instance should have deletion protection enabled. The database can't be deleted when this value is set to true. If you want to delete a stack with a protected instance, update this value to false before you delete the stack.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
       "Domain": {
-        "description": "For an Amazon RDS DB instance that's running Microsoft SQL Server, the Active Directory directory ID to create the instance in. Amazon RDS uses Windows Authentication to authenticate users that connect to the DB instance. For more information, see Using Windows Authentication with an Amazon RDS DB Instance Running Microsoft SQL Server in the Amazon Relational Database Service User Guide.",
+        "description": "For an Amazon RDS DB instance that's running Microsoft SQL Server, the Active Directory directory ID to create the instance in. Amazon RDS uses Windows Authentication to authenticate users that connect to the DB instance. For more information, see Using Windows Authentication with an Amazon RDS DB Instance Running Microsoft SQL Server in the Amazon RDS User Guide.",
         "required": false,
         "type": "String",
         "update_causes": "none"
@@ -10874,6 +12297,24 @@
         "description": "The name of an IAM role that Amazon RDS uses when calling the AWS Directory Service APIs.",
         "required": false,
         "type": "String",
+        "update_causes": "none"
+      },
+      "EnableCloudwatchLogsExports": {
+        "description": "The list of log types that need to be enabled for exporting to CloudWatch Logs. The values in the list depend on the DB engine being used. Log types that are excluded or removed from this list during updates are disabled. For more information, see Publishing Database Logs to Amazon CloudWatch Logs  in the Amazon Relational Database Service User Guide.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "EnableIAMDatabaseAuthentication": {
+        "description": "If set to true, enables mapping of AWS Identity and Access Management (IAM) accounts to database accounts.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "EnablePerformanceInsights": {
+        "description": "If set to true, enables Performance Insights for the DB instance.",
+        "required": false,
+        "type": "Boolean",
         "update_causes": "none"
       },
       "Engine": {
@@ -10904,7 +12345,7 @@
         "description": "The license model of the DB instance.",
         "required": false,
         "type": "String",
-        "update_causes": "none"
+        "update_causes": "interrupt"
       },
       "MasterUserPassword": {
         "description": "The master password for the DB instance.",
@@ -10928,7 +12369,7 @@
         ]
       },
       "MonitoringRoleArn": {
-        "description": "The ARN of the AWS Identity and Access Management (IAM) role that permits Amazon RDS to send enhanced monitoring metrics to Amazon CloudWatch, for example, arn:aws:iam::123456789012:role/emaccess. For information on creating a monitoring role, see To create an IAM role for Amazon RDS Enhanced Monitoring in the Amazon Relational Database Service User Guide.",
+        "description": "The ARN of the AWS Identity and Access Management (IAM) role that permits Amazon RDS to send enhanced monitoring metrics to Amazon CloudWatch, for example, arn:aws:iam::123456789012:role/emaccess. For information on creating a monitoring role, see To create an IAM role for Amazon RDS Enhanced Monitoring in the Amazon RDS User Guide.",
         "required": false,
         "type": "String",
         "update_causes": "none"
@@ -10945,6 +12386,22 @@
         "type": "String",
         "update_causes": "none"
       },
+      "PerformanceInsightsKMSKeyId": {
+        "description": "The AWS KMS key identifier for encryption of Performance Insights data. The AWS KMS key ID is the Amazon Resource Name (ARN), AWS KMS key identifier, or the AWS KMS key alias for the AWS KMS encryption key.",
+        "required": false,
+        "type": "String",
+        "update_causes": [
+          "replacement",
+          "none",
+          "interrupt"
+        ]
+      },
+      "PerformanceInsightsRetentionPeriod": {
+        "description": "The amount of time, in days, to retain Performance Insights data. Valid values are 7 or 731 (2 years).",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
       "Port": {
         "description": "The port for the instance.",
         "required": false,
@@ -10952,19 +12409,31 @@
         "update_causes": "replacement"
       },
       "PreferredBackupWindow": {
-        "description": "The daily time range during which automated backups are performed if automated backups are enabled, as determined by the BackupRetentionPeriod property. For valid values, see the PreferredBackupWindow parameter for the CreateDBInstance action in the Amazon Relational Database Service API Reference.",
+        "description": "The daily time range during which automated backups are performed if automated backups are enabled, as determined by the BackupRetentionPeriod property. For valid values, see the PreferredBackupWindow parameter for the CreateDBInstance action in the Amazon RDS API Reference.",
         "required": false,
         "type": "String",
         "update_causes": "none"
       },
       "PreferredMaintenanceWindow": {
-        "description": "The weekly time range (in UTC) during which system maintenance can occur. For valid values, see the PreferredMaintenanceWindow parameter for the CreateDBInstance action in the Amazon Relational Database Service API Reference.",
+        "description": "The weekly time range (in UTC) during which system maintenance can occur. For valid values, see the PreferredMaintenanceWindow parameter for the CreateDBInstance action in the Amazon RDS API Reference.",
         "required": false,
         "type": "String",
         "update_causes": [
           "none",
           "interrupt"
         ]
+      },
+      "ProcessorFeatures": {
+        "description": "The number of CPU cores and the number of threads per core for the DB instance class of the DB instance.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "PromotionTier": {
+        "description": "A value that specifies the order in which an Aurora Replica is promoted to the primary instance after a failure of the existing primary instance. For more information, see Fault Tolerance for an Aurora DB Cluster in the Amazon Aurora User Guide.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
       },
       "PubliclyAccessible": {
         "description": "Indicates whether the DB instance is an internet-facing instance. If you specify true, AWS CloudFormation creates an instance with a publicly resolvable DNS name, which resolves to a public IP address. If you specify false, AWS CloudFormation creates an internal instance with a DNS name that resolves to a private IP address.",
@@ -10999,11 +12468,11 @@
       "Tags": {
         "description": "An arbitrary set of tags (key–value pairs) for this DB instance.",
         "required": false,
-        "type": "Unknown",
+        "type": "Array",
         "update_causes": "none"
       },
       "Timezone": {
-        "description": "The time zone of the DB instance, which you can specify to match the time zone of your applications. To see which engines support time zones, see the Timezone parameter for the CreateDBInstance action in the Amazon Relational Database Service API Reference.",
+        "description": "The time zone of the DB instance, which you can specify to match the time zone of your applications. To see which engines support time zones, see the Timezone parameter for the CreateDBInstance action in the Amazon RDS API Reference.",
         "required": false,
         "type": "String",
         "update_causes": "replacement"
@@ -11032,8 +12501,13 @@
       "DBSecurityGroups",
       "DBSnapshotIdentifier",
       "DBSubnetGroupName",
+      "DeleteAutomatedBackups",
+      "DeletionProtection",
       "Domain",
       "DomainIAMRoleName",
+      "EnableCloudwatchLogsExports",
+      "EnableIAMDatabaseAuthentication",
+      "EnablePerformanceInsights",
       "Engine",
       "EngineVersion",
       "Iops",
@@ -11045,9 +12519,13 @@
       "MonitoringRoleArn",
       "MultiAZ",
       "OptionGroupName",
+      "PerformanceInsightsKMSKeyId",
+      "PerformanceInsightsRetentionPeriod",
       "Port",
       "PreferredBackupWindow",
       "PreferredMaintenanceWindow",
+      "ProcessorFeatures",
+      "PromotionTier",
       "PubliclyAccessible",
       "SourceDBInstanceIdentifier",
       "SourceRegion",
@@ -11217,7 +12695,7 @@
         "update_causes": "none"
       },
       "EventCategories": {
-        "description": "A list of event categories that you want to subscribe to for a given source type. If you don't specify this property, you are notified about all event categories. For more information, see  Using Amazon RDS Event Notification in the Amazon Relational Database Service User Guide.",
+        "description": "A list of event categories that you want to subscribe to for a given source type. If you don't specify this property, you are notified about all event categories. For more information, see  Using Amazon RDS Event Notification in the Amazon RDS User Guide.",
         "required": false,
         "type": "Array",
         "update_causes": "none"
@@ -11235,7 +12713,7 @@
         "update_causes": "none"
       },
       "SourceType": {
-        "description": "The type of source for which Amazon RDS provides notification events. For example, if you want to be notified of events generated by a database instance, set this parameter to db-instance. If you don't specify a value, notifications are provided for all source types. For valid values, see the SourceType parameter for the CreateEventSubscription action in the Amazon Relational Database Service API Reference.",
+        "description": "The type of source for which Amazon RDS provides notification events. For example, if you want to be notified of events generated by a database instance, set this parameter to db-instance. If you don't specify a value, notifications are provided for all source types. For valid values, see the SourceType parameter for the CreateEventSubscription action in the Amazon RDS API Reference.",
         "required": false,
         "type": "Unknown",
         "update_causes": [
@@ -11445,7 +12923,7 @@
         "description": "Indicates whether the cluster can be accessed from a public network.",
         "required": false,
         "type": "Boolean",
-        "update_causes": "replacement"
+        "update_causes": "interrupt"
       },
       "SnapshotClusterIdentifier": {
         "description": "The name of the cluster that the source snapshot was created from. For more information about restoring from a snapshot, see the RestoreFromClusterSnapshot action in the Amazon Redshift API Reference.",
@@ -11699,7 +13177,7 @@
         "update_causes": "none"
       },
       "Comment": {
-        "description": "Any comments that you want to include about the hosted zone.",
+        "description": "Any comments that you want to include about the change batch.",
         "required": false,
         "type": "String",
         "update_causes": "none"
@@ -11733,6 +13211,12 @@
         "required": false,
         "type": "String",
         "update_causes": "replacement"
+      },
+      "MultiValueAnswer": {
+        "description": "Multivalue answer resource record sets only: To route traffic approximately randomly to multiple resources, such as web servers, create one multivalue answer record for each resource and specify true for MultiValueAnswer.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
       },
       "Name": {
         "description": "The name of the domain. You must specify a fully qualified domain name that ends with a period as the last label indication. If you omit the final period, Route 53 adds it.",
@@ -11786,6 +13270,7 @@
       "HealthCheckId",
       "HostedZoneId",
       "HostedZoneName",
+      "MultiValueAnswer",
       "Name",
       "Region",
       "ResourceRecords",
@@ -11798,7 +13283,7 @@
   "AWS::Route53::RecordSetGroup": {
     "full_properties": {
       "Comment": {
-        "description": "Any comments you want to include about the hosted zone.",
+        "description": "Any comments you want to include about the change batch.",
         "required": false,
         "type": "String",
         "update_causes": "none"
@@ -11830,6 +13315,97 @@
       "RecordSets"
     ]
   },
+  "AWS::Route53Resolver::ResolverEndpoint": {
+    "full_properties": {
+      "Direction": {
+        "description": "Indicates whether the resolver endpoint allows inbound or outbound DNS queries:",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "IpAddresses": {
+        "description": "The subnets and IP addresses in your VPC that you want DNS queries to pass through on the way from your VPCs to your network (for outbound endpoints) or on the way from your network to your VPCs (for inbound resolver endpoints).",
+        "required": true,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "Name": {
+        "description": "A friendly name that lets you easily find a configuration in the Resolver dashboard in the Route 53 console.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "SecurityGroupIds": {
+        "description": "The ID of one or more security groups that you want to use to control access to this VPC. The security group that you specify must include one or more inbound rules (for inbound resolver endpoints) or outbound rules (for outbound resolver endpoints).",
+        "required": true,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "Tags": {
+        "description": "A list of the tag keys and values that you want to associate with the endpoint.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-route53resolver-resolverendpoint.html",
+    "properties": [
+      "Direction",
+      "IpAddresses",
+      "Name",
+      "SecurityGroupIds",
+      "Tags"
+    ]
+  },
+  "AWS::Route53Resolver::ResolverRule": {
+    "full_properties": {
+      "DomainName": {
+        "description": "DNS queries for this domain name are forwarded to the IP addresses that are specified in TargetIps. If a query matches multiple resolver rules (example.com and www.example.com), the query is routed using the resolver rule that contains the most specific domain name (www.example.com).",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Name": {
+        "description": "A friendly name that lets you easily find a rule in the Resolver dashboard in the Route 53 console.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "ResolverEndpointId": {
+        "description": "The ID of the outbound endpoint that the rule is associated with.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "RuleType": {
+        "description": "When you want to forward DNS queries for specified domain name to resolvers on your network, specify FORWARD.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "Tags": {
+        "description": "A list of the tag keys and values that you want to associate with the rule.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "TargetIps": {
+        "description": "When a DNS query matches the name that you specify in DomainName, the outbound endpoint forwards the query to the IP addresses that you specify here, typically the IP addresses for DNS resolvers on your network. Specify IPv4 addresses. IPv6 is not supported.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-resource-route53resolver-resolverrule.html",
+    "properties": [
+      "DomainName",
+      "Name",
+      "ResolverEndpointId",
+      "RuleType",
+      "Tags",
+      "TargetIps"
+    ]
+  },
   "AWS::S3::Bucket": {
     "full_properties": {
       "AccelerateConfiguration": {
@@ -11851,7 +13427,7 @@
         "update_causes": "none"
       },
       "BucketEncryption": {
-        "description": "Specifies default encryption for a bucket using server-side encryption with Amazon S3-managed keys SSE-S3 or AWS KMS-managed Keys (SSE-KMS) bucket..",
+        "description": "Specifies default encryption for a bucket using server-side encryption with either Amazon S3-managed keys (SSE-S3) or AWS KMS-managed keys (SSE-KMS).",
         "required": false,
         "type": "Unknown",
         "update_causes": "none"
@@ -11887,13 +13463,19 @@
         "update_causes": "none"
       },
       "MetricsConfigurations": {
-        "description": "Settings that define a metrics configuration for the CloudWatch request metrics from the bucket.",
+        "description": "Settings that define a metrics configuration for the CloudWatch request metrics from the bucket. For a list of request metrics, see Amazon S3 CloudWatch Request Metrics in the Amazon Simple Storage Service Developer Guide.",
         "required": false,
         "type": "Array",
         "update_causes": "none"
       },
       "NotificationConfiguration": {
         "description": "Configuration that defines how Amazon S3 handles bucket notifications.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "PublicAccessBlockConfiguration": {
+        "description": "Configuration that defines how Amazon S3 handles public access.",
         "required": false,
         "type": "Unknown",
         "update_causes": "none"
@@ -11936,6 +13518,7 @@
       "LoggingConfiguration",
       "MetricsConfigurations",
       "NotificationConfiguration",
+      "PublicAccessBlockConfiguration",
       "ReplicationConfiguration",
       "Tags",
       "VersioningConfiguration",
@@ -11945,7 +13528,7 @@
   "AWS::S3::BucketPolicy": {
     "full_properties": {
       "Bucket": {
-        "description": "The Amazon S3 bucket that the policy applies to.",
+        "description": "The name of the Amazon S3 bucket to which the policy applies.",
         "required": true,
         "type": "String",
         "update_causes": "unavailable"
@@ -12084,15 +13667,39 @@
   },
   "AWS::SNS::Subscription": {
     "full_properties": {
+      "DeliveryPolicy": {
+        "description": "The JSON serialization of the subscription's delivery policy. For more information, see GetSubscriptionAttributes in the Amazon Simple Notification Service API Reference.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
       "Endpoint": {
         "description": "The endpoint that receives notifications from the Amazon SNS topic. The endpoint value depends on the protocol that you specify. For more information, see the Subscribe Endpoint parameter in the Amazon Simple Notification Service API Reference.",
         "required": false,
         "type": "String",
         "update_causes": "replacement"
       },
+      "FilterPolicy": {
+        "description": "The filter policy JSON that is assigned to the subscription. For more information, see GetSubscriptionAttributes in the Amazon Simple Notification Service API Reference.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
       "Protocol": {
         "description": "The subscription's protocol. For more information, see the Subscribe Protocol parameter in the Amazon Simple Notification Service API Reference.",
         "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "RawMessageDelivery": {
+        "description": "true if raw message delivery is enabled for the subscription. Raw messages are free of JSON formatting and can be sent to HTTP/S and Amazon SQS endpoints. For more information, see GetSubscriptionAttributes in the Amazon Simple Notification Service API Reference.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "Region": {
+        "description": "The region in which the topic resides.",
+        "required": false,
         "type": "String",
         "update_causes": "replacement"
       },
@@ -12105,8 +13712,12 @@
     },
     "path": "aws-resource-sns-subscription.html",
     "properties": [
+      "DeliveryPolicy",
       "Endpoint",
+      "FilterPolicy",
       "Protocol",
+      "RawMessageDelivery",
+      "Region",
       "TopicArn"
     ]
   },
@@ -12114,6 +13725,12 @@
     "full_properties": {
       "DisplayName": {
         "description": "A developer-defined string that can be used to identify this SNS topic.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "KmsMasterKeyId": {
+        "description": "An AWS KMS key identifier. This can be a key ID, key ARN, or key alias.",
         "required": false,
         "type": "String",
         "update_causes": "none"
@@ -12134,6 +13751,7 @@
     "path": "aws-properties-sns-topic.html",
     "properties": [
       "DisplayName",
+      "KmsMasterKeyId",
       "Subscription",
       "TopicName"
     ]
@@ -12174,7 +13792,7 @@
         "update_causes": "none"
       },
       "FifoQueue": {
-        "description": "Indicates whether this queue is a FIFO queue. For more information, see FIFO (First-In-First-Out) Queues in the Amazon Simple Queue Service Developer Guide.",
+        "description": "If set to true, creates a FIFO queue. If you don't specify this property, Amazon SQS creates a standard queue. For more information, see FIFO (First-In-First-Out) Queues in the Amazon Simple Queue Service Developer Guide.",
         "required": false,
         "type": "Boolean",
         "update_causes": "replacement"
@@ -12221,6 +13839,12 @@
         "type": "Unknown",
         "update_causes": "none"
       },
+      "Tags": {
+        "description": "The tags that you want to attach to this queue.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
       "VisibilityTimeout": {
         "description": "The length of time during which a message will be unavailable after a message is delivered from the queue. This blocks other components from receiving the same message and gives the initial component time to process and delete the message from the queue.",
         "required": false,
@@ -12240,6 +13864,7 @@
       "QueueName",
       "ReceiveMessageWaitTimeSeconds",
       "RedrivePolicy",
+      "Tags",
       "VisibilityTimeout"
     ]
   },
@@ -12381,6 +14006,12 @@
         "type": "Number",
         "update_causes": "interrupt"
       },
+      "EndDate": {
+        "description": "The date and time, in ISO-8601 Extended format, for when you want the Maintenance Window to become inactive. EndDate allows you to set a date and time in the future when the Maintenance Window will no longer run.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
       "Name": {
         "description": "The name of the Maintenance Window.",
         "required": true,
@@ -12392,16 +14023,31 @@
         "required": true,
         "type": "String",
         "update_causes": "interrupt"
+      },
+      "ScheduleTimezone": {
+        "description": "The time zone that the scheduled Maintenance Window executions are based on, in Internet Assigned Numbers Authority (IANA) format. For example: \"America/Los_Angeles\", \"etc/UTC\", or \"Asia/Seoul\". For more information, see the Time Zone Database on the IANA website.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "StartDate": {
+        "description": "The date and time, in ISO-8601 Extended format, for when you want the Maintenance Window to become active. StartDate allows you to delay activation of the Maintenance Window until the specified future date.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
       }
     },
     "path": "aws-resource-ssm-maintenancewindow.html",
     "properties": [
+      "Name",
       "Description",
       "AllowUnassociatedTargets",
-      "Cutoff",
       "Schedule",
       "Duration",
-      "Name"
+      "Cutoff",
+      "StartDate",
+      "EndDate",
+      "ScheduleTimezone"
     ]
   },
   "AWS::SSM::MaintenanceWindowTarget": {
@@ -12566,7 +14212,7 @@
         "update_causes": "none"
       },
       "Name": {
-        "description": "The name of the parameter. Names must not be prefixed with aws or ssm.",
+        "description": "The name of the parameter.",
         "required": false,
         "type": "String",
         "update_causes": "replacement"
@@ -12586,11 +14232,11 @@
     },
     "path": "aws-resource-ssm-parameter.html",
     "properties": [
-      "Name",
+      "AllowedPattern",
       "Description",
+      "Name",
       "Type",
-      "Value",
-      "AllowedPattern"
+      "Value"
     ]
   },
   "AWS::SSM::PatchBaseline": {
@@ -12599,40 +14245,46 @@
         "description": "A set of rules that are used to include patches in the baseline.",
         "required": false,
         "type": "Unknown",
-        "update_causes": "interrupt"
+        "update_causes": "none"
       },
       "ApprovedPatches": {
         "description": "A list of explicitly approved patches for the baseline.",
         "required": false,
         "type": "Array",
-        "update_causes": "interrupt"
+        "update_causes": "none"
       },
       "ApprovedPatchesComplianceLevel": {
         "description": "The compliance level for approved patches. This means that if an approved patch is reported as missing, this is the severity of the compliance violation. Valid compliance severity levels include the following: CRITICAL, HIGH, MEDIUM, LOW, INFORMATIONAL, and UNSPECIFIED. The default value is UNSPECIFIED.",
         "required": false,
         "type": "String",
-        "update_causes": "interrupt"
+        "update_causes": "none"
+      },
+      "ApprovedPatchesEnableNonSecurity": {
+        "description": "Indicates whether the list of approved patches includes non-security updates that should be applied to the instances. The default value is 'false'. Applies to Linux instances only.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
       },
       "Description": {
         "description": "A description of the patch baseline.",
         "required": false,
         "type": "String",
-        "update_causes": "interrupt"
+        "update_causes": "none"
       },
       "GlobalFilters": {
         "description": "A set of global filters that are used to exclude patches from the baseline.",
         "required": false,
         "type": "Unknown",
-        "update_causes": "interrupt"
+        "update_causes": "none"
       },
       "Name": {
         "description": "The name of the patch baseline.",
         "required": true,
         "type": "String",
-        "update_causes": "interrupt"
+        "update_causes": "none"
       },
       "OperatingSystem": {
-        "description": "Defines the operating system that the patch baseline applies to. Supported operating systems include WINDOWS, AMAZON_LINUX, UBUNTU, REDHAT_ENTERPRISE_LINUX, SUSE, and CENTOS. The default value is WINDOWS.",
+        "description": "Defines the operating system that the patch baseline applies to. Supported operating systems include WINDOWS, AMAZON_LINUX, AMAZON_LINUX_2, UBUNTU, REDHAT_ENTERPRISE_LINUX, SUSE, and CENTOS. The default value is WINDOWS.",
         "required": false,
         "type": "String",
         "update_causes": "replacement"
@@ -12641,26 +14293,90 @@
         "description": "The names of the patch groups to register with the patch baseline.",
         "required": false,
         "type": "Array",
-        "update_causes": "interrupt"
+        "update_causes": "none"
       },
       "RejectedPatches": {
         "description": "A list of explicitly rejected patches for the baseline.",
         "required": false,
         "type": "Array",
-        "update_causes": "interrupt"
+        "update_causes": "none"
+      },
+      "RejectedPatchesAction": {
+        "description": "The action for Patch Manager to take on patches included in the RejectedPackages list.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "Sources": {
+        "description": "Information about the patches to use to update the instances, including target operating systems and source repositories. Applies to Linux instances only.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
       }
     },
     "path": "aws-resource-ssm-patchbaseline.html",
     "properties": [
-      "OperatingSystem",
-      "ApprovedPatches",
-      "PatchGroups",
-      "Description",
-      "ApprovedPatchesComplianceLevel",
-      "ApprovalRules",
-      "GlobalFilters",
       "Name",
-      "RejectedPatches"
+      "OperatingSystem",
+      "Description",
+      "PatchGroups",
+      "ApprovalRules",
+      "ApprovedPatches",
+      "ApprovedPatchesComplianceLevel",
+      "ApprovedPatchesEnableNonSecurity",
+      "RejectedPatches",
+      "RejectedPatchesAction",
+      "GlobalFilters",
+      "Sources"
+    ]
+  },
+  "AWS::SSM::ResourceDataSync": {
+    "full_properties": {
+      "BucketName": {
+        "description": "The name of the Amazon S3 bucket where the aggregated data is stored.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "BucketPrefix": {
+        "description": "An Amazon S3 prefix for the bucket.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "BucketRegion": {
+        "description": "The AWS Region with the Amazon S3 bucket targeted by the Resource Data Sync.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "KMSKeyArn": {
+        "description": "The ARN of an encryption key for a destination in Amazon S3. You can use a KMS key to encrypt inventory data in Amazon S3. You must specify a key that exist in the same region as the destination Amazon S3 bucket.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "SyncFormat": {
+        "description": "The format in which Resource Data Sync output will be stored in Amazon S3. The following format is currently supported: JsonSerDe",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "SyncName": {
+        "description": "A name for the Resource Data Sync.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-ssm-resourcedatasync.html",
+    "properties": [
+      "KMSKeyArn",
+      "BucketName",
+      "BucketRegion",
+      "SyncFormat",
+      "SyncName",
+      "BucketPrefix"
     ]
   },
   "AWS::SageMaker::Endpoint": {
@@ -12866,6 +14582,132 @@
       "OnCreate"
     ]
   },
+  "AWS::SecretsManager::ResourcePolicy": {
+    "full_properties": {
+      "ResourcePolicy": {
+        "description": "Specifies a JSON object that's constructed according to the grammar and syntax for an AWSresource-based policy. The policy identifies who can access or manage this secret and its versions. For information on how to format a JSON object as a parameter for this resource type, see Using Resource-based Policies for Secrets Manager in the AWS Secrets Manager User Guide. Those same rules apply here.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "interrupt"
+      },
+      "SecretId": {
+        "description": "Specifies the Amazon Resource Name (ARN) or the friendly name of the secret that you want to attach a resource-based permissions policy to. To reference a secret that's also created in this template, use the Ref function with the secret's logical ID.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-secretsmanager-resourcepolicy.html",
+    "properties": [
+      "SecretId",
+      "ResourcePolicy"
+    ]
+  },
+  "AWS::SecretsManager::RotationSchedule": {
+    "full_properties": {
+      "RotationLambdaARN": {
+        "description": "Specifies the ARN of the Lambda function that can rotate the secret. If you don't specify this parameter, then the secret must already have the ARN of a Lambda function configured. To reference a Lambda function that's also created in this template, use the Ref function with the function's logical ID.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "RotationRules": {
+        "description": "Specifies a structure that defines the rotation schedule for this secret.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "interrupt"
+      },
+      "SecretId": {
+        "description": "Specifies the Amazon Resource Name (ARN) or the friendly name of the secret that you want to rotate. To reference a secret also that's created in this template, use the Ref function with the secret's logical ID.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-secretsmanager-rotationschedule.html",
+    "properties": [
+      "SecretId",
+      "RotationLambdaARN",
+      "RotationRules"
+    ]
+  },
+  "AWS::SecretsManager::Secret": {
+    "full_properties": {
+      "Description": {
+        "description": "Specifies a user-provided description of the secret.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "GenerateSecretString": {
+        "description": "A structure that specifies how to generate a random password by using the functionality of the GetRandomPassword API. You can return that string directly to use as the secret value, or you can alternatively also specify both the SecretStringTemplate and the GenerateSecretKey parameters. Secrets Manager uses the value in GenerateSecretKey as the key name and combines it with the randomly generated password to make a JSON key-value pair. It then inserts that pair into the JSON structure that's specified in the SecretStringTemplate parameter. Secrets Manager stores the completed string as the secret value in the initial version of the secret. For more information about how to use this property, see Secrets Manager Secret GenerateSecretString and the first example in the following Examples section.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "interrupt"
+      },
+      "KmsKeyId": {
+        "description": "Specifies the ARN, Key ID, or alias of the AWS KMS customer master key (CMK) that's used to encrypt the secret values for versions of this secret. If you don't specify this value, then Secrets Manager defaults to the AWS account's default CMK (the one named aws/secretsmanager). If an AWS KMS CMK with that name doesn't yet exist, Secrets Manager creates it for you automatically the first time it needs to encrypt a version's secret value fields.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "Name": {
+        "description": "Specifies the friendly name of the new secret. If a Name parameter isn't specified, then Secrets Manager generates a name based on the logical resource ID of the secret in the AWS CloudFormation template.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "SecretString": {
+        "description": "Specifies a literal string to use as the secret value in the initial version of this secret. You can specify any text you like, but remember that Lambda rotation functions require a specific JSON structure to be present in this field.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "Tags": {
+        "description": "Specifies an arbitrary set of tags (key–value pairs) to associate with this secret. Use tags to manage your AWS resources.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "interrupt"
+      }
+    },
+    "path": "aws-resource-secretsmanager-secret.html",
+    "properties": [
+      "Description",
+      "KmsKeyId",
+      "SecretString",
+      "GenerateSecretString",
+      "Tags",
+      "Name"
+    ]
+  },
+  "AWS::SecretsManager::SecretTargetAttachment": {
+    "full_properties": {
+      "SecretId": {
+        "description": "The Amazon Resource Name (ARN) or the friendly name of the secret that contains the credentials that you want to use with the specified service or database. To reference a secret that's also created in this template, use the Ref function with the secret's logical ID.",
+        "required": true,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "TargetId": {
+        "description": "The ARN of the service or database whose credentials are stored in the specified secret. To reference a service or database that's also created in this template, use the Ref function with the service or database's logical ID.",
+        "required": true,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "TargetType": {
+        "description": "A string that defines the type of service or database that's being associated with the secret. This value instructs Secrets Manager how to update the secret with the details of the service or database. This value must be one of the following:",
+        "required": true,
+        "type": "String",
+        "update_causes": "interrupt"
+      }
+    },
+    "path": "aws-resource-secretsmanager-secrettargetattachment.html",
+    "properties": [
+      "SecretId",
+      "TargetId",
+      "TargetType"
+    ]
+  },
   "AWS::ServiceCatalog::AcceptedPortfolioShare": {
     "full_properties": {
       "AcceptLanguage": {
@@ -13003,13 +14845,13 @@
         "update_causes": "replacement"
       },
       "ProvisioningArtifactId": {
-        "description": "The identifier of the provisioning artifact. You must specify either the ID or the name of the provisioning artifact, but not both.",
+        "description": "The identifier of the provisioning artifact (also known as a version) for the product. You must specify either the ID or the name of the provisioning artifact, but not both.",
         "required": false,
         "type": "String",
         "update_causes": "none"
       },
       "ProvisioningArtifactName": {
-        "description": "The name of the provisioning artifact. This name must be unique for the product. You must specify either the name or the ID of the provisioning artifact, but not both.",
+        "description": "The name of the provisioning artifact (also known as a version) for the product. This name must be unique for the product. You must specify either the name or the ID of the provisioning artifact, but not both.",
         "required": false,
         "type": "String",
         "update_causes": "none"
@@ -13282,13 +15124,13 @@
   "AWS::ServiceCatalog::PortfolioShare": {
     "full_properties": {
       "AcceptLanguage": {
-        "description": "The AWS account ID.",
+        "description": "The language code.",
         "required": false,
         "type": "String",
         "update_causes": "replacement"
       },
       "AccountId": {
-        "description": "The language code.",
+        "description": "The AWS account ID.",
         "required": true,
         "type": "String",
         "update_causes": "replacement"
@@ -13453,6 +15295,12 @@
         "type": "Unknown",
         "update_causes": "none"
       },
+      "HealthCheckCustomConfig": {
+        "description": "Specifies information about an optional custom health check.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
       "Name": {
         "description": "The name that you want to assign to the service.",
         "required": false,
@@ -13465,6 +15313,7 @@
       "Description",
       "DnsConfig",
       "HealthCheckConfig",
+      "HealthCheckCustomConfig",
       "Name"
     ]
   },
@@ -13534,7 +15383,7 @@
   "AWS::WAF::IPSet": {
     "full_properties": {
       "IPSetDescriptors": {
-        "description": "The IP address type and IP address range (in CIDR notation) from which web requests originate. If you associate the IPSet with a web ACL that is associated with a Amazon CloudFront (CloudFront) distribution, this descriptor is the value of one of the following fields in the CloudFront access logs:",
+        "description": "The IP address type and IP address range (in CIDR notation) from which web requests originate. If you associate the IPSet with a web ACL that is associated with an Amazon CloudFront (CloudFront) distribution and the viewer did not use an HTTP proxy or a load balancer to send the request, this descriptor is the value of the c-ip field in the CloudFront access logs.",
         "required": false,
         "type": "Array",
         "update_causes": "none"
@@ -13887,6 +15736,12 @@
         "type": "Boolean",
         "update_causes": "unavailable"
       },
+      "Tags": {
+        "description": "The tags (key-value pairs) for the WorkSpace.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "interrupt"
+      },
       "UserName": {
         "description": "The name of the user to which the workspace is assigned. This user name must exist in the specified AWS Directory Service directory.",
         "required": true,
@@ -13904,16 +15759,66 @@
         "required": false,
         "type": "String",
         "update_causes": "unavailable"
+      },
+      "WorkspaceProperties": {
+        "description": "The WorkSpace properties.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
       }
     },
     "path": "aws-resource-workspaces-workspace.html",
     "properties": [
       "BundleId",
       "DirectoryId",
-      "UserName",
       "RootVolumeEncryptionEnabled",
+      "Tags",
+      "UserName",
       "UserVolumeEncryptionEnabled",
-      "VolumeEncryptionKey"
+      "VolumeEncryptionKey",
+      "WorkspaceProperties"
+    ]
+  },
+  "Alexa::ASK::Skill": {
+    "full_properties": {
+      "AuthenticationConfiguration": {
+        "description": "Login with Amazon (LWA) configuration used to authenticate with the Alexa service. Only Login with Amazon clients created through the Amazon Developer Console are supported. The Client ID, Client Secret, and Refresh Token are required.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "interrupt"
+      },
+      "SkillPackage": {
+        "description": "Configuration for the skill package that contains the components of the Alexa Skill. Skill packages are retrieved from an Amazon S3 bucket and key and used to create and update the skill. More details about the skill package format are located in the Skill Package API Reference.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "interrupt"
+      },
+      "VendorId": {
+        "description": "The vendor ID associated with the Amazon developer account that will host the skill. Details for retrieving the vendor ID are in How to get your vendor ID. The provided LWA credentials must be linked to the developer account associated with this vendor ID.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-ask-skill.html",
+    "properties": [
+      "AuthenticationConfiguration",
+      "SkillPackage",
+      "VendorId"
+    ]
+  },
+  "PatchSource": {
+    "full_properties": {
+      "Configuration": {
+        "description": "The value of the yum repo configuration.",
+        "required": true,
+        "type": "String",
+        "update_causes": "unknown"
+      }
+    },
+    "path": "aws-properties-ssm-patchbaseline-patchsource.html",
+    "properties": [
+      "Configuration"
     ]
   }
 }

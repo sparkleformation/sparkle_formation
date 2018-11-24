@@ -127,7 +127,12 @@ Dir.glob(File.join(STORE, "**/*.html")).each do |path|
   end
 end
 
-puts MultiJson.dump(aws_resources.to_smash(:sorted), :pretty => true)
+file_path = File.join(File.dirname(File.dirname(__FILE__)),
+                      "lib", "sparkle_formation", "resources", "aws_resources.json")
+$stdout.puts "Writing resource file: #{file_path}"
+File.open(file_path, "w+") do |file|
+  file.puts MultiJson.dump(aws_resources.to_smash(:sorted), :pretty => true)
+end
 
 unless (multiple_update_causes.empty?)
   $stderr.puts "--------------------------------------------------------"
