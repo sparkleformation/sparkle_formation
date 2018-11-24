@@ -10,37 +10,37 @@
   end
 end
 
-STORE = '/tmp/azure-schemas'
+STORE = "/tmp/azure-schemas"
 
 UPDATE_MAPPING = {}
 
 unless (File.directory?(STORE))
   FileUtils.mkdir_p(STORE)
   Dir.chdir(STORE) do
-    unless (system('wget -q https://github.com/Azure/azure-resource-manager-schemas/archive/master.tar.gz'))
-      puts 'FAILED: Documentation fetching failed!'
+    unless (system("wget -q https://github.com/Azure/azure-resource-manager-schemas/archive/master.tar.gz"))
+      puts "FAILED: Documentation fetching failed!"
       exit -1
     end
-    unless (system('tar xzf master.tar.gz'))
-      puts 'FAILED: Documentation unpacking failed!'
+    unless (system("tar xzf master.tar.gz"))
+      puts "FAILED: Documentation unpacking failed!"
       exit -1
     end
   end
 end
 
-schema_files = Dir.glob(File.join(STORE, 'azure-resource-manager-schemas-master', 'schemas', '**', '**', '*.json')).sort
+schema_files = Dir.glob(File.join(STORE, "azure-resource-manager-schemas-master", "schemas", "**", "**", "*.json")).sort
 schema_contents = schema_files.map do |s_path|
-  File.read(s_path).sub(/^[^\{]*/, '')
+  File.read(s_path).sub(/^[^\{]*/, "")
 end
 schemas = schema_contents.map do |s_content|
   MultiJson.load(s_content).to_smash
 end
 
 resource_definitions = schemas.find_all do |schema|
-  schema.keys.include?('resourceDefinitions')
+  schema.keys.include?("resourceDefinitions")
 end.inject(Smash.new) do |memo, schema|
   r_defs = Smash[
-    schema['resourceDefinitions'].map do |r_key, r_val|
+    schema["resourceDefinitions"].map do |r_key, r_val|
       ["#{schema["title"]}/#{r_key}", r_val]
     end
   ]
@@ -48,14 +48,14 @@ end.inject(Smash.new) do |memo, schema|
 end
 
 definitions = schemas.find_all do |schema|
-  schema.keys.include?('definitions')
+  schema.keys.include?("definitions")
 end.inject(Smash.new) do |memo, schema|
-  memo.deep_merge(schema['definitions'])
+  memo.deep_merge(schema["definitions"])
 end
 
 ref_replacer = lambda do |item|
-  if (item.is_a?(Hash) && item.size == 1 && item.keys.first == '$ref' && item.values.first.start_with?('#/definitions'))
-    def_name = item.values.first.sub('#/definitions/', '')
+  if (item.is_a?(Hash) && item.size == 1 && item.keys.first == "$ref" && item.values.first.start_with?("#/definitions"))
+    def_name = item.values.first.sub("#/definitions/", "")
     definitions[def_name] || raise("Failed to locate definition! `#{def_name}`")
   elsif (item.is_a?(::Enumerable))
     if (item.respond_to?(:keys))
@@ -94,7 +94,7 @@ azure_resources = Smash[
           :description => prop_val[:description],
           :required => v.fetch(:properties, :properties, :required, []).include?(prop_key),
           :type => prop_val[:type],
-          :update_causes => 'unknown']
+          :update_causes => "unknown"]
        end
      ],
      :api_version => v.fetch(:properties, :apiVersion, :enum, []).sort.last,
@@ -102,4 +102,9 @@ azure_resources = Smash[
   end.compact
 ]
 
-puts MultiJson.dump(azure_resources.to_smash(:sorted), :pretty => true)
+file_path = File.join(File.dirname(File.dirname(__FILE__)),
+                      "lib", "sparkle_formation", "resources", "azure_resources.json")
+$stdout.puts "Writing resource file: #{file_path}"
+File.open(file_path, "w+") do |file|
+  file.puts MultiJson.dump(azure_resources.to_smash(:sorted), :pretty => true)
+end
