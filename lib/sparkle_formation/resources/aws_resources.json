@@ -2687,6 +2687,14 @@
       "ServiceToken"
     ]
   },
+  "AWS::CloudFormation::Init": {
+    "full_properties": {
+    },
+    "path": "aws-resource-init.html",
+    "properties": [
+
+    ]
+  },
   "AWS::CloudFormation::Interface": {
     "full_properties": {
       "ParameterGroups": {
@@ -2818,6 +2826,14 @@
       "Count",
       "Handle",
       "Timeout"
+    ]
+  },
+  "AWS::CloudFormation::WaitConditionHandle": {
+    "full_properties": {
+    },
+    "path": "aws-properties-waitconditionhandle.html",
+    "properties": [
+
     ]
   },
   "AWS::CloudFront::CloudFrontOriginAccessIdentity": {
