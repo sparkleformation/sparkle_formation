@@ -48,12 +48,15 @@ Dir.glob(File.join(STORE, "**/*.html")).each do |path|
     end
     property_information = {}
     if (resource)
+      names = []
+      infos = []
       resource = resource.css("div.variablelist").first
-      next unless resource
-      names = resource.children.detect { |r| r.name == "dl" }.children.find_all { |r| r.name == "dt" }.map(&:text).map(&:strip)
-      infos = resource.children.detect { |r| r.name == "dl" }.children.find_all { |r| r.name == "dd" }
-      unless (names.size == infos.size)
-        raise "Failed to align resource properties with information - #{type} (#{path})"
+      if resource
+        names = resource.children.detect { |r| r.name == "dl" }.children.find_all { |r| r.name == "dt" }.map(&:text).map(&:strip)
+        infos = resource.children.detect { |r| r.name == "dl" }.children.find_all { |r| r.name == "dd" }
+        unless (names.size == infos.size)
+          raise "Failed to align resource properties with information - #{type} (#{path})"
+        end
       end
       names.each_with_index do |name, idx|
         info = infos[idx]
