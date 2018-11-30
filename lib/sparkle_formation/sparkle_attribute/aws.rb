@@ -300,12 +300,12 @@ class SparkleFormation
         {
           "Fn::Or" => _array(
             *args.map { |v|
-              if v.is_a?(Symbol) || v.is_a?(String)
-                _condition(v)
-              else
-                v
-              end
-            }
+            if v.is_a?(Symbol) || v.is_a?(String)
+              _condition(v)
+            else
+              v
+            end
+          }
           ),
         }
       end
