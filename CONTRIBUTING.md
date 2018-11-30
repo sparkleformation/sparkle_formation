@@ -12,7 +12,7 @@ The develop branch is the current edge of development.
 
 ## Pull requests
 
-* https://github.com/heavywater/sparkle_formation/pulls
+* https://github.com/sparkleformation/sparkle_formation/pulls
 
 Please base all pull requests off the `develop` branch. Merges to
 `master` only occur through the `develop` branch. Pull requests
@@ -34,4 +34,4 @@ bundle exec ruby test/specs/attribute_spec.rb -n '/should generate Fn::Join with
 
 Need to report an issue? Use the github issues:
 
-* https://github.com/heavywater/sparkle_formation/issues
+* https://github.com/sparkleformation/sparkle_formation/issues
