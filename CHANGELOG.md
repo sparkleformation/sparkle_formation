@@ -1,3 +1,11 @@
+# v3.0.34
+* Allow mapped provider name when loading resources
+* Support natural terraform format when applying reformat
+* Support terraform lookup in natural format
+* Add terraform resources and resource collector
+* Fix AWS resource collector to match resources with no properties (#249)
+* Add cidr! and transform! helpers for AWS templates
+
 # v3.0.32
 * Update AWS builtin resources
 
