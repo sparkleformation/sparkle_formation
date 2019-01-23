@@ -14,6 +14,8 @@ class SparkleFormation
     "registry",
   ]
 
+  # @return [String] path to root of this library
+  SPARKLEFORMATION_ROOT_LIBRARY = File.dirname(File.dirname(File.dirname(__FILE__)))
   # @return [String] default stack resource name
   DEFAULT_STACK_RESOURCE = "AWS::CloudFormation::Stack"
   # @return [Array<String>] collection of valid stack resource types
@@ -199,6 +201,26 @@ class SparkleFormation
 
     alias_method :dynamic_information, :dynamic_info
 
+    # Extract the origin of the caller outside this library
+    #
+    # @param cinfo [Array<String>] caller info
+    # @return [Array<String, Integer>] caller path and line number
+    def extract_caller(cinfo)
+      res = cinfo.detect { |c|
+        !c.include?(SPARKLEFORMATION_ROOT_LIBRARY)
+      }.to_s.split(":")[0, 2]
+      if res.size != 2
+        line = res.last
+        if line.to_i.to_s != line
+          res << 0
+        end
+        if res != 2
+          res.unshift(:unknown)
+        end
+      end
+      res
+    end
+
     # Insert a dynamic into a context
     #
     # @param dynamic_name [String, Symbol] dynamic name
@@ -209,7 +231,15 @@ class SparkleFormation
       __t_stringish(registry_name)
       opts = args.detect { |item| item.is_a?(Hash) } || {}
       reg = struct._self.sparkle.get(:registry, registry_name, opts[:provider])
-      struct.instance_exec(*args, &reg[:block])
+      record = struct._self.audit_log.push(
+        type: :registry,
+        name: registry_name,
+        location: reg[:block].source_location,
+        caller: extract_caller(caller),
+      )
+      struct._self.wrapped_audit(record) do
+        struct.instance_exec(*args, &reg[:block])
+      end
     end
 
     # Insert a dynamic into a context
@@ -226,22 +256,39 @@ class SparkleFormation
         dyn = struct._self.sparkle.get(:dynamic, dynamic_name, opts[:provider])
         opts = nil
         raise dyn if dyn.is_a?(Exception)
+        result = nil
         dyn.monochrome.each do |dynamic_item|
-          if result
-            opts = args.detect { |i| i.is_a?(Hash) }
-            if opts
-              opts[:previous_layer_result] = result
-            else
-              args.push(:previous_layer_result => result)
+          record = struct._self.audit_log.push(
+            type: :dynamic,
+            name: dynamic_name,
+            caller: extract_caller(caller),
+            location: dynamic_item[:block].source_location,
+          )
+          struct._self.wrapped_audit(record) do
+            if result
+              opts = args.detect { |i| i.is_a?(Hash) }
+              if opts
+                opts[:previous_layer_result] = result
+              else
+                args.push(:previous_layer_result => result)
+              end
             end
+            result = struct.instance_exec(*args, &dynamic_item[:block])
           end
-          result = struct.instance_exec(*args, &dynamic_item[:block])
         end
         if block_given?
           result.instance_exec(&block)
         end
       rescue Error::NotFound::Dynamic
-        result = builtin_insert(dynamic_name, struct, *args, &block)
+        record = struct._self.audit_log.push(
+          type: :dynamic,
+          name: dynamic_name,
+          location: [:builtin, 0],
+          caller: extract_caller(caller),
+        )
+        result = struct._self.wrapped_audit(record) do
+          builtin_insert(dynamic_name, struct, *args, &block)
+        end
         unless result
           message = "Failed to locate requested dynamic block for insertion: #{dynamic_name} " \
           "(valid: #{struct._self.sparkle.dynamics.fetch(struct._self.sparkle.provider, {}).keys.sort.join(", ")})"
@@ -286,24 +333,37 @@ class SparkleFormation
           args.map { |a| Bogo::Utility.snake(a) }.join("_"),
         ].flatten.compact.join("_").to_sym
       end
-      resource_name = struct._process_key(resource_name.to_sym)
-      nested_template = compile(to_nest[:path], :sparkle)
-      nested_template.parent = struct._self
-      nested_template.name = resource_name
-      if options[:parameters]
-        nested_template.compile_state = options[:parameters]
-      end
-      unless struct._self.sparkle.empty?
-        nested_template.sparkle.apply(struct._self.sparkle)
-      end
-      nested_resource = struct.dynamic!(
-        struct._self.stack_resource_type,
-        resource_name,
-        {:resource_name_suffix => nil},
-        &block
+      record = struct._self.audit_log.push(
+        type: :template,
+        caller: extract_caller(caller),
+        name: resource_name,
+        location: to_nest[:path],
       )
-      nested_resource.properties.stack nested_template
-      nested_resource
+      struct._self.wrapped_audit(record) do
+        resource_name = struct._process_key(resource_name.to_sym)
+        nested_template = compile(to_nest[:path], :sparkle)
+        nested_template.parent = struct._self
+        nested_template.audit_log = record.audit_log
+        nested_template.name = resource_name
+        if options[:parameters]
+          nested_template.compile_state = options[:parameters]
+        end
+        unless struct._self.sparkle.empty?
+          nested_template.sparkle.apply(struct._self.sparkle)
+        end
+        nested_resource = struct.dynamic!(
+          struct._self.stack_resource_type,
+          resource_name,
+          {:resource_name_suffix => nil},
+          &block
+        )
+        # Ignore the stack resource that we generated in the
+        # audit log since the wrapping template record will
+        # provide the context with actual information
+        record.audit_log.list.pop
+        nested_resource.properties.stack nested_template
+        nested_resource
+      end
     end
 
     # Insert a builtin dynamic into a context
@@ -364,6 +424,8 @@ class SparkleFormation
 
   include Bogo::Memoization
 
+  # @return [AuditLog] records of template composition
+  attr_accessor :audit_log
   # @return [Symbol] name of formation
   attr_accessor :name
   # @return [Sparkle] parts store
@@ -379,7 +441,7 @@ class SparkleFormation
   # @return [Hash] parameters for stack generation
   attr_reader :parameters
   # @return [SparkleFormation] parent stack
-  attr_accessor :parent
+  attr_reader :parent
   # @return [Array<String>] valid stack resource types
   attr_reader :stack_resource_types
   # @return [Hash] state hash for compile time parameters
@@ -456,7 +518,33 @@ class SparkleFormation
     if base_block
       load_block(base_block)
     end
+    @audit_log = AuditLog.new
     @compiled = nil
+  end
+
+  # Set the parent template
+  #
+  # @param p [SparkleFormation] parent template
+  # @return [self]
+  def parent=(p)
+    unless p.is_a?(SparkleFormation)
+      raise TypeError, "Expected `SparkleFormation` but received `#{p.class.name}`"
+    end
+    @parent = p
+    @audit_log = p.audit_log
+    self
+  end
+
+  # Wrap given block within audit log of given record
+  #
+  # @param record [AuditLog::Record]
+  # @return [Object] result of yield
+  def wrapped_audit(record)
+    start_log = audit_log
+    @audit_log = record ? record.audit_log : start_log
+    yield
+  ensure
+    @audit_log = start_log
   end
 
   # Update underlying data structures based on inherit
@@ -728,17 +816,50 @@ class SparkleFormation
         case item
         when Composition::Component
           if item.block
-            self.class.build(compiled, &item.block)
+            if item.key == "__base__"
+              record = audit_log.push(
+                type: :template,
+                name: name,
+                location: item.block.source_location.first,
+                caller: [:template, 0],
+              ) if parent.nil?
+            else
+              record = audit_log.push(
+                type: :component,
+                name: item.key,
+                location: item.block.source_location.first,
+                caller: [:template, 0],
+              )
+            end
+            wrapped_audit(record) do
+              self.class.build(compiled, &item.block)
+            end
           else
             sparkle.get(:component, item.key).monochrome.each do |component_block|
-              self.class.build(compiled, &component_block[:block])
+              record = audit_log.push(
+                type: :component,
+                name: item.key,
+                location: component_block[:block].source_location.first,
+                caller: [:template, 0],
+              )
+              wrapped_audit(record) do
+                self.class.build(compiled, &component_block[:block])
+              end
             end
           end
         when Composition::Override
+          record = audit_log.push(
+            type: :component,
+            name: :override,
+            location: item.block.source_location.first,
+            caller: [:template, 0],
+          )
           if item.args && !item.args.empty?
             compiled._set_state(item.args)
           end
-          self.class.build(compiled, &item.block)
+          wrapped_audit(record) do
+            self.class.build(compiled, &item.block)
+          end
         end
       end
       if compile_state && !compile_state.empty?
