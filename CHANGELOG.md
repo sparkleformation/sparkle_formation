@@ -1,3 +1,6 @@
+# v3.0.36
+* Add audit log feature to record template construction
+
 # v3.0.34
 * Allow mapped provider name when loading resources
 * Support natural terraform format when applying reformat
