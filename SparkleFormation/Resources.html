@@ -131,11 +131,16 @@
   
 </p>
 
-  <h2>Constant Summary</h2>
-  <dl class="constants">
-    
-      <dt id="RESOURCE_TYPE_TR-constant" class="">RESOURCE_TYPE_TR =
-        <div class="docstring">
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="RESOURCE_TYPE_TR-constant" class="">RESOURCE_TYPE_TR =
+          <div class="docstring">
   <div class="discussion">
     <p>Characters to be removed from supplied key on matching</p>
 
@@ -146,11 +151,11 @@
   
 
 </div>
-      </dt>
-      <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_:</span><span class='tstring_end'>&#39;</span></span></pre></dd>
-    
-      <dt id="RESOURCE_TYPE_NAMESPACE_SPLITTER-constant" class="">RESOURCE_TYPE_NAMESPACE_SPLITTER =
-        <div class="docstring">
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>_:</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="RESOURCE_TYPE_NAMESPACE_SPLITTER-constant" class="">RESOURCE_TYPE_NAMESPACE_SPLITTER =
+          <div class="docstring">
   <div class="discussion">
     <p>String to split for resource namespacing</p>
 
@@ -161,11 +166,11 @@
   
 
 </div>
-      </dt>
-      <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>::</span><span class='tstring_end'>&#39;</span></span></pre></dd>
-    
-      <dt id="PROPERTY_UPDATE_CONDITIONALS-constant" class="">PROPERTY_UPDATE_CONDITIONALS =
-        <div class="docstring">
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>::</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="PROPERTY_UPDATE_CONDITIONALS-constant" class="">PROPERTY_UPDATE_CONDITIONALS =
+          <div class="docstring">
   <div class="discussion">
     <p>Property update conditionals
 Format: Smash.new(RESOURCE_TYPE =&gt; =&gt; [PropertyConditional])</p>
@@ -177,10 +182,11 @@ Format: Smash.new(RESOURCE_TYPE =&gt; =&gt; [PropertyConditional])</p>
   
 
 </div>
-      </dt>
-      <dd><pre class="code"><span class='const'>Smash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span></pre></dd>
-    
-  </dl>
+        </dt>
+        <dd><pre class="code"><span class='const'>Smash</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span></pre></dd>
+      
+    </dl>
+  
 
 
 
@@ -242,6 +248,29 @@ Format: Smash.new(RESOURCE_TYPE =&gt; =&gt; [PropertyConditional])</p>
 
   
     <span class="summary_desc"><div class='inline'><p>Camel case string.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#key_loader-class_method" title="key_loader (class method)">.<strong>key_loader</strong>(key)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Called before key lookup to perform any required actions for customized setup/modifications.</p>
 </div></span>
   
 </li>
@@ -558,15 +587,15 @@ Format: Smash.new(RESOURCE_TYPE =&gt; =&gt; [PropertyConditional])</p>
       <pre class="lines">
 
 
-83
-84
-85</pre>
+81
+82
+83</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 83</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 81</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_base_key'>base_key</span>
-  <span class='const'>Bogo</span><span class='op'>::</span><span class='const'>Utility</span><span class='period'>.</span><span class='id identifier rubyid_snake'>snake</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>::</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='rparen'>)</span> <span class='comment'># rubocop:disable Style/RedundantSelf
+  <span class='const'>Bogo</span><span class='op'>::</span><span class='const'>Utility</span><span class='period'>.</span><span class='id identifier rubyid_snake'>snake</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>::</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='rparen'>)</span> <span class='comment'># rubocop:disable Style/RedundantSelf
 </span><span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -629,6 +658,47 @@ Format: Smash.new(RESOURCE_TYPE =&gt; =&gt; [PropertyConditional])</p>
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="key_loader-class_method">
+  
+    .<strong>key_loader</strong>(key)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Called before key lookup to perform any required
+actions for customized setup/modifications</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+190
+191
+192</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 190</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_key_loader'>key_loader</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+  <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="load-class_method">
   
     .<strong>load</strong>(json_path_or_hash)  &#x21d2; <tt>TrueClass</tt> 
@@ -685,6 +755,8 @@ Format: Smash.new(RESOURCE_TYPE =&gt; =&gt; [PropertyConditional])</p>
       <pre class="lines">
 
 
+120
+121
 122
 123
 124
@@ -696,12 +768,10 @@ Format: Smash.new(RESOURCE_TYPE =&gt; =&gt; [PropertyConditional])</p>
 130
 131
 132
-133
-134
-135</pre>
+133</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 122</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 120</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='id identifier rubyid_json_path_or_hash'>json_path_or_hash</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_json_path_or_hash'>json_path_or_hash</span>
@@ -760,12 +830,12 @@ Format: Smash.new(RESOURCE_TYPE =&gt; =&gt; [PropertyConditional])</p>
       <pre class="lines">
 
 
-140
-141
-142</pre>
+138
+139
+140</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 140</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 138</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load!'>load!</span>
   <span class='kw'>true</span>
@@ -828,12 +898,12 @@ Format: Smash.new(RESOURCE_TYPE =&gt; =&gt; [PropertyConditional])</p>
       <pre class="lines">
 
 
-193
-194
-195</pre>
+198
+199
+200</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 193</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 198</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='cvar'>@@registry</span><span class='lbracket'>[</span><span class='id identifier rubyid_base_key'>base_key</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='cvar'>@@registry</span><span class='lbracket'>[</span><span class='id identifier rubyid_base_key'>base_key</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_registry_key'>registry_key</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span><span class='rbracket'>]</span>
@@ -915,6 +985,8 @@ Format: Smash.new(RESOURCE_TYPE =&gt; =&gt; [PropertyConditional])</p>
       <pre class="lines">
 
 
+90
+91
 92
 93
 94
@@ -923,18 +995,16 @@ Format: Smash.new(RESOURCE_TYPE =&gt; =&gt; [PropertyConditional])</p>
 97
 98
 99
-100
-101
-102</pre>
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 92</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 90</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span>
-  <span class='kw'>unless</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>TypeError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Expecting `Hash` type but received `</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>`</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
-  <span class='kw'>unless</span><span class='lparen'>(</span><span class='id identifier rubyid_class_variable_defined?'>class_variable_defined?</span><span class='lparen'>(</span><span class='symbol'>:@@registry</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_class_variable_defined?'>class_variable_defined?</span><span class='lparen'>(</span><span class='symbol'>:@@registry</span><span class='rparen'>)</span>
     <span class='cvar'>@@registry</span> <span class='op'>=</span> <span class='const'>AttributeStruct</span><span class='period'>.</span><span class='id identifier rubyid_hashish'>hashish</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
   <span class='kw'>end</span>
   <span class='cvar'>@@registry</span><span class='lbracket'>[</span><span class='id identifier rubyid_base_key'>base_key</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>AttributeStruct</span><span class='period'>.</span><span class='id identifier rubyid_hashish'>hashish</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -988,18 +1058,18 @@ Format: Smash.new(RESOURCE_TYPE =&gt; =&gt; [PropertyConditional])</p>
       <pre class="lines">
 
 
-198
-199
-200
-201
-202
-203</pre>
+203
+204
+205
+206
+207
+208</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 198</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 203</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_registry'>registry</span>
-  <span class='kw'>unless</span><span class='lparen'>(</span><span class='id identifier rubyid_class_variable_defined?'>class_variable_defined?</span><span class='lparen'>(</span><span class='symbol'>:@@registry</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_class_variable_defined?'>class_variable_defined?</span><span class='lparen'>(</span><span class='symbol'>:@@registry</span><span class='rparen'>)</span>
     <span class='cvar'>@@registry</span> <span class='op'>=</span> <span class='const'>AttributeStruct</span><span class='period'>.</span><span class='id identifier rubyid_hashish'>hashish</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
   <span class='kw'>end</span>
   <span class='cvar'>@@registry</span><span class='lbracket'>[</span><span class='id identifier rubyid_base_key'>base_key</span><span class='rbracket'>]</span>
@@ -1062,6 +1132,8 @@ Format: Smash.new(RESOURCE_TYPE =&gt; =&gt; [PropertyConditional])</p>
       <pre class="lines">
 
 
+146
+147
 148
 149
 150
@@ -1090,37 +1162,37 @@ Format: Smash.new(RESOURCE_TYPE =&gt; =&gt; [PropertyConditional])</p>
 173
 174
 175
-176
-177</pre>
+176</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 148</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 146</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_registry_key'>registry_key</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
-  <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_registry'>registry</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_key_loader'>key_loader</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_registry'>registry</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_o_key'>o_key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span>
-    <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_tr'>tr</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='symbol'>:RESOURCE_TYPE_TR</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='comment'># rubocop:disable Style/RedundantSelf
+    <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_tr'>tr</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='symbol'>:RESOURCE_TYPE_TR</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='comment'># rubocop:disable Style/RedundantSelf
 </span>    <span class='id identifier rubyid_snake_parts'>snake_parts</span> <span class='op'>=</span> <span class='kw'>nil</span>
     <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='cvar'>@@registry</span><span class='lbracket'>[</span><span class='id identifier rubyid_base_key'>base_key</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_detect'>detect</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ref'>ref</span><span class='op'>|</span>
       <span class='id identifier rubyid_ref'>ref</span> <span class='op'>=</span> <span class='id identifier rubyid_ref'>ref</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
       <span class='id identifier rubyid_snake_parts'>snake_parts</span> <span class='op'>=</span> <span class='id identifier rubyid_ref'>ref</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='id identifier rubyid_resource_type_splitter'>resource_type_splitter</span><span class='rparen'>)</span>
-      <span class='kw'>until</span><span class='lparen'>(</span><span class='id identifier rubyid_snake_parts'>snake_parts</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span>
-        <span class='kw'>break</span> <span class='kw'>if</span> <span class='id identifier rubyid_snake_parts'>snake_parts</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='id identifier rubyid_key'>key</span>
+      <span class='kw'>until</span> <span class='id identifier rubyid_snake_parts'>snake_parts</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+        <span class='kw'>break</span> <span class='kw'>if</span> <span class='id identifier rubyid_snake_parts'>snake_parts</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='id identifier rubyid_key'>key</span>
         <span class='id identifier rubyid_snake_parts'>snake_parts</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span>
       <span class='kw'>end</span>
       <span class='op'>!</span><span class='id identifier rubyid_snake_parts'>snake_parts</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
     <span class='kw'>end</span>
-    <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_result'>result</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span>
       <span class='id identifier rubyid_collisions'>collisions</span> <span class='op'>=</span> <span class='cvar'>@@registry</span><span class='lbracket'>[</span><span class='id identifier rubyid_base_key'>base_key</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_find_all'>find_all</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_ref'>ref</span><span class='op'>|</span>
         <span class='id identifier rubyid_split_ref'>split_ref</span> <span class='op'>=</span> <span class='id identifier rubyid_ref'>ref</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='id identifier rubyid_resource_type_splitter'>resource_type_splitter</span><span class='rparen'>)</span>
-        <span class='id identifier rubyid_ref'>ref</span> <span class='op'>=</span> <span class='const'>Array</span><span class='lparen'>(</span><span class='id identifier rubyid_split_ref'>split_ref</span><span class='period'>.</span><span class='id identifier rubyid_slice'>slice</span><span class='lparen'>(</span><span class='id identifier rubyid_split_ref'>split_ref</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>-</span> <span class='id identifier rubyid_snake_parts'>snake_parts</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='comma'>,</span> <span class='id identifier rubyid_split_ref'>split_ref</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_ref'>ref</span> <span class='op'>=</span> <span class='const'>Array</span><span class='lparen'>(</span><span class='id identifier rubyid_split_ref'>split_ref</span><span class='period'>.</span><span class='id identifier rubyid_slice'>slice</span><span class='lparen'>(</span><span class='id identifier rubyid_split_ref'>split_ref</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>-</span> <span class='id identifier rubyid_snake_parts'>snake_parts</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='comma'>,</span> <span class='id identifier rubyid_split_ref'>split_ref</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
         <span class='id identifier rubyid_key'>key</span> <span class='op'>==</span> <span class='id identifier rubyid_ref'>ref</span>
       <span class='kw'>end</span>
-      <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_collisions'>collisions</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;</span> <span class='int'>1</span><span class='rparen'>)</span>
-        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Ambiguous dynamic name returned multiple matches! </span><span class='tstring_end'>&#39;</span></span> \
-          <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>`</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_o_key'>o_key</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>` -&gt; </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_collisions'>collisions</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_collisions'>collisions</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;</span> <span class='int'>1</span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Ambiguous dynamic name returned multiple matches! </span><span class='tstring_end'>&quot;</span></span> \
+                                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>`</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_o_key'>o_key</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>` -&gt; </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_collisions'>collisions</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>, </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -1205,21 +1277,21 @@ Format: Smash.new(RESOURCE_TYPE =&gt; =&gt; [PropertyConditional])</p>
       <pre class="lines">
 
 
+107
+108
 109
 110
 111
 112
 113
-114
-115
-116</pre>
+114</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 109</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 107</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_resource'>resource</span><span class='lparen'>(</span><span class='id identifier rubyid_identifier'>identifier</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_resource'>resource</span><span class='lparen'>(</span><span class='id identifier rubyid_identifier'>identifier</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_res'>res</span> <span class='op'>=</span> <span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='id identifier rubyid_identifier'>identifier</span><span class='rparen'>)</span>
-  <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_res'>res</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_res'>res</span>
     <span class='id identifier rubyid_res'>res</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_res'>res</span>
@@ -1295,12 +1367,12 @@ provider requires/offers extra setup</p>
       <pre class="lines">
 
 
-211
-212
-213</pre>
+216
+217
+218</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 211</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 216</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_resource_customizer'>resource_customizer</span><span class='lparen'>(</span><span class='id identifier rubyid_struct'>struct</span><span class='comma'>,</span> <span class='id identifier rubyid_lookup_key'>lookup_key</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_struct'>struct</span>
@@ -1367,11 +1439,6 @@ provider requires/offers extra setup</p>
       <pre class="lines">
 
 
-219
-220
-221
-222
-223
 224
 225
 226
@@ -1383,22 +1450,25 @@ provider requires/offers extra setup</p>
 232
 233
 234
-235</pre>
+235
+236
+237
+238
+239</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 219</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 224</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_resource_lookup'>resource_lookup</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_registry'>registry</span><span class='lbracket'>[</span><span class='id identifier rubyid_type'>type</span><span class='rbracket'>]</span>
-  <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_result'>result</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_properties'>properties</span> <span class='op'>=</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>full_properties</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_p_name'>p_name</span><span class='comma'>,</span> <span class='id identifier rubyid_p_info'>p_info</span><span class='op'>|</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span>
+    <span class='id identifier rubyid_properties'>properties</span> <span class='op'>=</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>full_properties</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_p_name'>p_name</span><span class='comma'>,</span> <span class='id identifier rubyid_p_info'>p_info</span><span class='op'>|</span>
       <span class='const'><span class='object_link'><a href="Resources/Property.html" title="SparkleFormation::Resources::Property (class)">Property</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_p_name'>p_name</span><span class='comma'>,</span>
-        <span class='id identifier rubyid_p_info'>p_info</span><span class='lbracket'>[</span><span class='symbol'>:description</span><span class='rbracket'>]</span><span class='comma'>,</span>
-        <span class='id identifier rubyid_p_info'>p_info</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span><span class='comma'>,</span>
-        <span class='id identifier rubyid_p_info'>p_info</span><span class='lbracket'>[</span><span class='symbol'>:required</span><span class='rbracket'>]</span><span class='comma'>,</span>
-        <span class='id identifier rubyid_p_info'>p_info</span><span class='lbracket'>[</span><span class='symbol'>:update_causes</span><span class='rbracket'>]</span><span class='comma'>,</span>
-        <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='symbol'>:PROPERTY_UPDATE_CONDITIONALS</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_p_name'>p_name</span><span class='rparen'>)</span>
-      <span class='rparen'>)</span>
+                   <span class='id identifier rubyid_p_info'>p_info</span><span class='lbracket'>[</span><span class='symbol'>:description</span><span class='rbracket'>]</span><span class='comma'>,</span>
+                   <span class='id identifier rubyid_p_info'>p_info</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span><span class='comma'>,</span>
+                   <span class='id identifier rubyid_p_info'>p_info</span><span class='lbracket'>[</span><span class='symbol'>:required</span><span class='rbracket'>]</span><span class='comma'>,</span>
+                   <span class='id identifier rubyid_p_info'>p_info</span><span class='lbracket'>[</span><span class='symbol'>:update_causes</span><span class='rbracket'>]</span><span class='comma'>,</span>
+                   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='symbol'>:PROPERTY_UPDATE_CONDITIONALS</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_p_name'>p_name</span><span class='rparen'>)</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
     <span class='const'><span class='object_link'><a href="Resources/Resource.html" title="SparkleFormation::Resources::Resource (class)">Resource</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_properties'>properties</span><span class='comma'>,</span> <span class='id identifier rubyid_result'>result</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
@@ -1452,22 +1522,22 @@ provider requires/offers extra setup</p>
       <pre class="lines">
 
 
+180
 181
 182
 183
 184
 185
-186
-187</pre>
+186</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 181</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/resources.rb', line 180</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_resource_type_splitter'>resource_type_splitter</span>
   <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
-    <span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='symbol'>:RESOURCE_TYPE_NAMESPACE_SPLITTER</span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
+    <span class='lbracket'>[</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='symbol'>:RESOURCE_TYPE_NAMESPACE_SPLITTER</span><span class='rparen'>)</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
       <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_escape'>escape</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-    <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>|</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>|</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1535,9 +1605,9 @@ provider requires/offers extra setup</p>
 </div>
 
       <div id="footer">
-  Generated on Sun May 14 08:59:14 2017 by
+  Generated on Sat Jan 26 12:13:22 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.3).
+  0.9.16 (ruby-2.6.0).
 </div>
 
     </div>

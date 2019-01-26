@@ -111,15 +111,21 @@
   
 </p>
 
-  <h2>Constant Summary</h2>
-  <dl class="constants">
-    
-      <dt id="OpenStack-constant" class="">OpenStack =
-        
-      </dt>
-      <dd><pre class="code"><span class='const'><span class='object_link'><a href="SparkleAttribute/Heat.html" title="SparkleFormation::SparkleAttribute::Heat (module)">Heat</a></span></span></pre></dd>
-    
-  </dl>
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="OpenStack-constant" class="">OpenStack =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="SparkleAttribute/Heat.html" title="SparkleFormation::SparkleAttribute::Heat (module)">Heat</a></span></span></pre></dd>
+      
+    </dl>
+  
 
 
 
@@ -429,19 +435,19 @@ is applied</p>
       <pre class="lines">
 
 
-144
-145
-146
-147
-148
-149
-150</pre>
+151
+152
+153
+154
+155
+156
+157</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute.rb', line 144</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute.rb', line 151</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid___attribute_key'>__attribute_key</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
-  <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>Symbol</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>String</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>Symbol</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>String</span><span class='rparen'>)</span>
     <span class='id identifier rubyid__process_key'>_process_key</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>Symbol</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='symbol'>:force</span> <span class='op'>:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_key'>key</span>
@@ -729,12 +735,12 @@ name generation (defaults to resource_type)</p>
       <pre class="lines">
 
 
-97
-98
-99</pre>
+101
+102
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute.rb', line 97</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__dynamic'>_dynamic</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="../SparkleFormation.html" title="SparkleFormation (class)">SparkleFormation</a></span></span><span class='period'>.</span><span class='id identifier rubyid_insert'><span class='object_link'><a href="../SparkleFormation.html#insert-class_method" title="SparkleFormation.insert (method)">insert</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='kw'>self</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -830,12 +836,12 @@ name generation (defaults to resource_type)</p>
       <pre class="lines">
 
 
-73
-74
-75</pre>
+76
+77
+78</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__method'>_method</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='op'>::</span><span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_instance_method'>instance_method</span><span class='lparen'>(</span><span class='symbol'>:method</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_bind'>bind</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
@@ -1032,12 +1038,12 @@ template name in resource name</p>
       <pre class="lines">
 
 
-133
-134
-135</pre>
+139
+140
+141</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute.rb', line 133</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute.rb', line 139</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__nest'>_nest</span><span class='lparen'>(</span><span class='id identifier rubyid_template'>template</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="../SparkleFormation.html" title="SparkleFormation (class)">SparkleFormation</a></span></span><span class='period'>.</span><span class='id identifier rubyid_nest'><span class='object_link'><a href="../SparkleFormation.html#nest-class_method" title="SparkleFormation.nest (method)">nest</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_template'>template</span><span class='comma'>,</span> <span class='kw'>self</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -1126,12 +1132,12 @@ template name in resource name</p>
       <pre class="lines">
 
 
-55
 56
-57</pre>
+57
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__puts'>_puts</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='gvar'>$stdout</span><span class='period'>.</span><span class='id identifier rubyid_puts'>puts</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
@@ -1177,12 +1183,12 @@ template name in resource name</p>
       <pre class="lines">
 
 
-62
-63
-64</pre>
+64
+65
+66</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__raise'>_raise</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='op'>::</span><span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_raise'>raise</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
@@ -1370,12 +1376,12 @@ return the value</p>
       <pre class="lines">
 
 
-114
-115
-116</pre>
+119
+120
+121</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute.rb', line 114</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute.rb', line 119</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__registry'>_registry</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="../SparkleFormation.html" title="SparkleFormation (class)">SparkleFormation</a></span></span><span class='period'>.</span><span class='id identifier rubyid_registry'><span class='object_link'><a href="../SparkleFormation.html#registry-class_method" title="SparkleFormation.registry (method)">registry</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='kw'>self</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
@@ -1427,6 +1433,7 @@ return the value</p>
       <pre class="lines">
 
 
+18
 19
 20
 21
@@ -1445,16 +1452,15 @@ return the value</p>
 34
 35
 36
-37
-38</pre>
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute.rb', line 18</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__resource_name'>_resource_name</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>nil</span>
-  <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid__parent'>_parent</span><span class='rparen'>)</span>
-    <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid__parent'>_parent</span><span class='period'>.</span><span class='id identifier rubyid__parent'>_parent</span> <span class='op'>==</span> <span class='id identifier rubyid__root'>_root</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid__parent'>_parent</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid__parent'>_parent</span><span class='period'>.</span><span class='id identifier rubyid__parent'>_parent</span> <span class='op'>==</span> <span class='id identifier rubyid__root'>_root</span>
       <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid__parent'>_parent</span><span class='period'>.</span><span class='id identifier rubyid__data'>_data</span><span class='period'>.</span><span class='id identifier rubyid_detect'>detect</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_r_name'>r_name</span><span class='comma'>,</span> <span class='id identifier rubyid_r_value'>r_value</span><span class='op'>|</span>
         <span class='id identifier rubyid_r_value'>r_value</span> <span class='op'>==</span> <span class='kw'>self</span>
       <span class='kw'>end</span>
@@ -1463,10 +1469,10 @@ return the value</p>
       <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid__parent'>_parent</span><span class='period'>.</span><span class='id identifier rubyid__resource_name'>_resource_name</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
-  <span class='kw'>unless</span><span class='lparen'>(</span><span class='id identifier rubyid_result'>result</span><span class='rparen'>)</span>
-    <span class='op'>::</span><span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_raise'>raise</span> <span class='const'>NameError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Failed to determine current resource name! (Check call location)</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_result'>result</span>
+    <span class='op'>::</span><span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_raise'>raise</span> <span class='const'>NameError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Failed to determine current resource name! (Check call location)</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
-  <span class='kw'>if</span><span class='lparen'>(</span><span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../SparkleFormation.html" title="SparkleFormation (class)">SparkleFormation</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="FunctionStruct.html" title="SparkleFormation::FunctionStruct (class)">FunctionStruct</a></span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../SparkleFormation.html" title="SparkleFormation (class)">SparkleFormation</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="FunctionStruct.html" title="SparkleFormation::FunctionStruct (class)">FunctionStruct</a></span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid__clone'>_clone</span>
   <span class='kw'>end</span>
   <span class='id identifier rubyid_result'>result</span>
@@ -1545,7 +1551,7 @@ return the value</p>
       <pre class="code"><span class="info file"># File 'lib/sparkle_formation/sparkle_attribute.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__system'>_system</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='rparen'>)</span>
-  <span class='op'>::</span><span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>`</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_command'>command</span><span class='rparen'>)</span>
+  <span class='op'>::</span><span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>`</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_command'>command</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1557,9 +1563,9 @@ return the value</p>
 </div>
 
       <div id="footer">
-  Generated on Sun May 14 08:59:10 2017 by
+  Generated on Sat Jan 26 12:13:19 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.3).
+  0.9.16 (ruby-2.6.0).
 </div>
 
     </div>

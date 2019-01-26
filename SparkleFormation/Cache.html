@@ -255,13 +255,13 @@
       <pre class="lines">
 
 
-114
-115
-116
-117</pre>
+108
+109
+110
+111</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/utils.rb', line 114</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/utils.rb', line 108</span>
 
 <span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_init!'>init!</span>
@@ -348,13 +348,13 @@
       <pre class="lines">
 
 
-124
-125
-126
-127</pre>
+118
+119
+120
+121</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/utils.rb', line 124</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/utils.rb', line 118</span>
 
 <span class='kw'>def</span> <span class='op'>[]=</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_init!'>init!</span>
@@ -403,18 +403,18 @@
       <pre class="lines">
 
 
-132
-133
-134
-135
-136
-137</pre>
+126
+127
+128
+129
+130
+131</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/utils.rb', line 132</span>
+      <pre class="code"><span class="info file"># File 'lib/sparkle_formation/utils.rb', line 126</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_init!'>init!</span>
-  <span class='kw'>unless</span><span class='lparen'>(</span><span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='lbracket'>[</span><span class='symbol'>:sparkle_cache</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='lbracket'>[</span><span class='symbol'>:sparkle_cache</span><span class='rbracket'>]</span>
     <span class='const'>Thread</span><span class='period'>.</span><span class='id identifier rubyid_current'>current</span><span class='lbracket'>[</span><span class='symbol'>:sparkle_cache</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='kw'>end</span>
   <span class='kw'>self</span>
@@ -429,9 +429,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sun May 14 08:59:14 2017 by
+  Generated on Sat Jan 26 12:13:21 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.3).
+  0.9.16 (ruby-2.6.0).
 </div>
 
     </div>

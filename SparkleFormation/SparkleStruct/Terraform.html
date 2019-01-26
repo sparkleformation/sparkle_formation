@@ -164,7 +164,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#__resource_lookup-instance_method" title="#__resource_lookup (instance method)">#<strong>__resource_lookup</strong>(name)  &#x21d2; Object </a>
+      <a href="#__resource_lookup-instance_method" title="#__resource_lookup (instance method)">#<strong>__resource_lookup</strong>(name)  &#x21d2; String </a>
     
 
     
@@ -183,7 +183,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Lookup resource based on name and provide formatted reference to the resource with type included.</p>
+</div></span>
   
 </li>
 
@@ -793,7 +794,7 @@ is applied</p>
       <div class="method_details ">
   <h3 class="signature " id="__resource_lookup-instance_method">
   
-    #<strong>__resource_lookup</strong>(name)  &#x21d2; <tt>Object</tt> 
+    #<strong>__resource_lookup</strong>(name)  &#x21d2; <tt>String</tt> 
   
 
   
@@ -804,7 +805,54 @@ is applied</p>
         <span class='object_link'><a href="../SparkleAttribute/Terraform.html#__resource_lookup-instance_method" title="SparkleFormation::SparkleAttribute::Terraform#__resource_lookup (method)">SparkleFormation::SparkleAttribute::Terraform</a></span>
     </span>
   
-</h3>
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Lookup resource based on name and provide formatted
+reference to the resource with type included.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>resource name</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>resource name</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
 </div>
     
       <div class="method_details ">
@@ -2192,9 +2240,9 @@ return the value</p>
 </div>
 
       <div id="footer">
-  Generated on Sun May 14 08:59:47 2017 by
+  Generated on Sat Jan 26 12:13:24 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.3).
+  0.9.16 (ruby-2.6.0).
 </div>
 
     </div>
