@@ -287,7 +287,7 @@ class SparkleFormation
     # @param name [String, Symbol] name of item
     # @param target_provider [String, Symbol] restrict to provider
     # @return [Smash] requested item
-    # @raises [NameError, Error::NotFound]
+    # @raise [NameError, Error::NotFound]
     def get(type, name, target_provider = nil)
       unless TYPES.keys.include?(type.to_s)
         raise NameError.new "Invalid type requested (#{type})! Valid types: #{TYPES.keys.join(", ")}"

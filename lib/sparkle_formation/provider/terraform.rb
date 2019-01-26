@@ -111,7 +111,7 @@ class SparkleFormation
       # @param output_name [String] name of output
       # @param outputs [Hash] listing of outputs
       # @param source_stack [SparkleFormation] requesting stack
-      # @reutrn [Hash] reference to output value (used for setting parameter)
+      # @return [Hash] reference to output value (used for setting parameter)
       def make_output_available(output_name, outputs, source_stack)
         bubble_path = outputs[output_name].root_path - root_path
         drip_path = root_path - outputs[output_name].root_path

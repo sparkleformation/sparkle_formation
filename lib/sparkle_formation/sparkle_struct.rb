@@ -170,7 +170,7 @@ class SparkleFormation
     #
     # @param arg [String, Symbol] name of parameter
     # @return [Object]
-    # @raises [ArgumentError]
+    # @raise [ArgumentError]
     def _state(arg)
       result = super
       if @self && result.nil?

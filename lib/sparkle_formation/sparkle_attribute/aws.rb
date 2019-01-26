@@ -392,7 +392,7 @@ class SparkleFormation
       # Reference output value from nested stack
       #
       # @param stack_name [String, Symbol] logical resource name of stack
-      # @apram output_name [String, Symbol] stack output name
+      # @param output_name [String, Symbol] stack output name
       def _cf_stack_output(stack_name, output_name)
         _cf_attr(_process_key(stack_name), "Outputs.#{__attribute_key(output_name)}")
       end

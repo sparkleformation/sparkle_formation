@@ -152,7 +152,7 @@ class SparkleFormation
     # @param name [String, Symbol] name of item
     # @param target_provider [String, Symbol] restrict to provider
     # @return [Smash] requested item
-    # @raises [NameError, Error::NotFound]
+    # @raise [NameError, Error::NotFound]
     def get(type, name, target_provider = nil)
       type_name = Sparkle::TYPES[type.to_s]
       unless type_name

@@ -94,7 +94,7 @@ class SparkleFormation
     #   @param options [Hash]
     #   @option options [String, Symbol] :provider override provider restriction when fetching dynamic
     #   @note All options are passed to dynamic with custom_name
-    # @yieldblock [new_struct] Provides newly inserted structure
+    # @yield [new_struct] Provides newly inserted structure
     # @yieldparam new_struct [SparkleStruct] newly inserted structure which can be modified
     # @yieldreturn [Object] discarded
     # @return [self]
@@ -132,7 +132,7 @@ class SparkleFormation
     #   @option options [Truthy, Falsey] :overwrite_name when set to true, will not include
     #     template name in resource name
     #   @option options [Hash] :parameters compile time parameter values to pass to nested template
-    # @yieldblock [new_struct] Provides newly inserted structure
+    # @yield [new_struct] Provides newly inserted structure
     # @yieldparam new_struct [SparkleStruct] newly inserted structure which can be modified
     # @yieldreturn [Object] discarded
     # @return [self]

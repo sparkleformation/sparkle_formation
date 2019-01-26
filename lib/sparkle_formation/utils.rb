@@ -11,7 +11,7 @@ class SparkleFormation
       # @param val [Object] value
       # @param types [Class, Array<Class>] valid types
       # @return [NilClass]
-      # @raises [TypeError]
+      # @raise [TypeError]
       def __t_check(val, types)
         types = [types] unless types.is_a?(Array)
         if types.none? { |t| val.is_a?(t) }
@@ -28,7 +28,7 @@ class SparkleFormation
       # Validate given value is String or Symbol type
       #
       # @return [NilClass]
-      # @raises [TypeError]
+      # @raise [TypeError]
       def __t_stringish(val)
         __t_check(val, [String, Symbol])
       end
@@ -36,7 +36,7 @@ class SparkleFormation
       # Validate given value is a Hash type
       #
       # @return [NilClass]
-      # @raises [TypeError]
+      # @raise [TypeError]
       def __t_hashish(val)
         __t_check(val, Hash)
       end

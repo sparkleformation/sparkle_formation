@@ -722,7 +722,7 @@ class SparkleFormation
   #
   # @param params [Hash] parameter set
   # @return [Hash] parameter set
-  # @raises [ArgumentError]
+  # @raise [ArgumentError]
   def set_generation_parameters!(params)
     params.each do |name, value|
       unless value.is_a?(Hash)
@@ -1004,7 +1004,7 @@ class SparkleFormation
   #
   # @param output_name [String] name of output
   # @param outputs [Hash] listing of outputs
-  # @reutrn [Hash] reference to output value (used for setting parameter)
+  # @return [Hash] reference to output value (used for setting parameter)
   def make_output_available(output_name, outputs)
     {}
   end
