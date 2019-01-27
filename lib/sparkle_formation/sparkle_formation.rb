@@ -817,12 +817,22 @@ class SparkleFormation
         when Composition::Component
           if item.block
             if item.key == "__base__"
-              record = audit_log.push(
-                type: :template,
-                name: name,
-                location: item.block.source_location.first,
-                caller: [:template, 0],
-              ) if parent.nil?
+              if parent.nil?
+                record = audit_log.push(
+                  type: :template,
+                  name: name,
+                  location: item.block.source_location.first,
+                  caller: [:template, 0],
+                )
+                # NOTE: Move audit log records under new record's
+                # audit log. This allows components to be listed
+                # logically under the template record instead of
+                # at the same level.
+                record.audit_log.list.replace(audit_log.list)
+                record.audit_log.list.delete(record)
+                audit_log.list.clear
+                audit_log.list << record
+              end
             else
               record = audit_log.push(
                 type: :component,
