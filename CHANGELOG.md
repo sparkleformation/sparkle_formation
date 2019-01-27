@@ -1,3 +1,6 @@
+# v3.0.38
+* Fix root template audit log setup
+
 # v3.0.36
 * Add audit log feature to record template construction
 
