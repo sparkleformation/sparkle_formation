@@ -79,4 +79,19 @@ RSpec.describe SparkleFormation do
       end
     end
   end
+
+  describe "#wrapped_audit" do
+    let(:record) { double("record", audit_log: nil) }
+
+    before { allow(record).to receive(:compile_duration=) }
+
+    it "should set compile duration" do
+      expect(record).to receive(:compile_duration=)
+      instance.wrapped_audit(record) { true }
+    end
+
+    it "should return block result" do
+      expect(instance.wrapped_audit(record) { :value }).to eq(:value)
+    end
+  end
 end

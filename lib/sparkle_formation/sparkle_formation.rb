@@ -362,6 +362,8 @@ class SparkleFormation
         # provide the context with actual information
         record.audit_log.list.pop
         nested_resource.properties.stack nested_template
+        # Force compilation to properly record audit log times
+        nested_template.compile
         nested_resource
       end
     end
@@ -541,8 +543,11 @@ class SparkleFormation
   # @return [Object] result of yield
   def wrapped_audit(record)
     start_log = audit_log
+    start_time = Time.now.to_f
     @audit_log = record ? record.audit_log : start_log
-    yield
+    result = yield if block_given?
+    record.compile_duration = Time.now.to_f - start_time if record
+    result
   ensure
     @audit_log = start_log
   end
@@ -815,6 +820,7 @@ class SparkleFormation
       composition.each do |item|
         case item
         when Composition::Component
+          record = nil
           if item.block
             if item.key == "__base__"
               if parent.nil?
@@ -830,6 +836,7 @@ class SparkleFormation
                 # at the same level.
                 record.audit_log.list.replace(audit_log.list)
                 record.audit_log.list.delete(record)
+
                 audit_log.list.clear
                 audit_log.list << record
               end
