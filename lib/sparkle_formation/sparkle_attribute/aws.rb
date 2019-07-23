@@ -426,6 +426,17 @@ class SparkleFormation
 
       alias_method :_tags, :_cf_tags
       alias_method :tags!, :_cf_tags
+
+
+      # Partition generator
+      #
+      # @return [Hash]
+      def _cf_partition
+        _ref("AWS::Partition")
+      end
+
+      alias_method :_partition, :_cf_partition
+      alias_method :partition!, :_cf_partition
     end
   end
 end
