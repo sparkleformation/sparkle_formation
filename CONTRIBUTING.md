@@ -26,8 +26,8 @@ Tests can be run with bundler:
 ```
 bundle
 bundle exec rake
-bundle exec ruby test/specs/attribute_spec.rb
-bundle exec ruby test/specs/attribute_spec.rb -n '/should generate Fn::Join with custom delimiter/'
+bundle exec ruby test/specs/sparkle_attribute_spec.rb
+bundle exec ruby test/specs/sparkle_attribute_spec.rb -n '/should generate Fn::Join with custom delimiter/'
 ```
 
 ## Issues
