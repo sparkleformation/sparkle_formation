@@ -5374,6 +5374,167 @@
       "TimeToLiveSpecification"
     ]
   },
+  "AWS::EC2::ClientVpnAuthorizationRule": {
+    "full_properties": {
+      "AccessGroupId": {
+        "description": "The ID of the Active Directory group to grant access.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "AuthorizeAllGroups": {
+        "description": "Indicates whether to grant access to all clients. Use true to grant all clients who successfully establish a VPN connection access to the network.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "replacement"
+      },
+      "ClientVpnEndpointId": {
+        "description": "The ID of the Client VPN endpoint.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Description": {
+        "description": "A brief description of the authorization rule.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "TargetNetworkCidr": {
+        "description": "The IPv4 address range, in CIDR notation, of the network for which access is being authorized.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-ec2-clientvpnauthorizationrule.html",
+    "properties": [
+      "AccessGroupId",
+      "AuthorizeAllGroups",
+      "ClientVpnEndpointId",
+      "Description",
+      "TargetNetworkCidr"
+    ]
+  },
+  "AWS::EC2::ClientVpnEndpoint": {
+    "full_properties": {
+      "AuthenticationOptions": {
+        "description": "Information about the authentication method to be used to authenticate clients.",
+        "required": true,
+        "type": "List",
+        "update_causes": "replacement"
+      },
+      "ClientCidrBlock": {
+        "description": "The IPv4 address range, in CIDR notation, from which to assign client IP addresses. The address range cannot overlap with the local CIDR of the VPC in which the associated subnet is located, or the routes that you add manually. The address range cannot be changed after the Client VPN endpoint has been created. The CIDR block should be /22 or greater.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "ConnectionLogOptions": {
+        "description": "Information about the client connection logging options. If you enable client connection logging, data about client connections is sent to a Cloudwatch Logs log stream. The following information is logged: Client connection requests, Client connection results (successful and unsuccessful), Reasons for unsuccessful client connection requests, Client connection termination time",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "Description": {
+        "description": "A brief description of the Client VPN endpoint.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "DnsServers": {
+        "description": "Information about the DNS servers to be used for DNS resolution. A Client VPN endpoint can have up to two DNS servers. If no DNS server is specified, the DNS address of the VPC that is to be associated with Client VPN endpoint is used as the DNS server.",
+        "required": false,
+        "type": "List",
+        "update_causes": "none"
+      },
+      "ServerCertificateArn": {
+        "description": "The ARN of the server certificate. For more information, see the AWS Certificate Manager User Guide.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "TagSpecifications": {
+        "description": "The tags to apply to the Client VPN endpoint during creation.",
+        "required": false,
+        "type": "List",
+        "update_causes": "replacement"
+      },
+      "TransportProtocol": {
+        "description": "The transport protocol to be used by the VPN session.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-ec2-clientvpnendpoint.html",
+    "properties": [
+      "AuthenticationOptions",
+      "ClientCidrBlock",
+      "ConnectionLogOptions",
+      "Description",
+      "DnsServers",
+      "ServerCertificateArn",
+      "TagSpecifications",
+      "TransportProtocol"
+    ]
+  },
+  "AWS::EC2::ClientVpnRoute": {
+    "full_properties": {
+      "ClientVpnEndpointId": {
+        "description": "The ID of the Client VPN endpoint to which to add the route.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Description": {
+        "description": "A brief description of the route.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "DestinationCidrBlock": {
+        "description": "The IPv4 address range, in CIDR notation, of the route destination. For example: To add a route for Internet access, enter 0.0.0.0/0. To add a route for a peered VPC, enter the peered VPC's IPv4 CIDR range. To add a route for an on-premises network, enter the AWS Site-to-Site VPN connection's IPv4 CIDR range. Route address ranges cannot overlap with the CIDR range specified for client allocation.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "TargetVpcSubnetId": {
+        "description": "The ID of the subnet through which you want to route traffic. The specified subnet must be an existing target network of the Client VPN endpoint.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-ec2-clientvpnroute.html",
+    "properties": [
+      "ClientVpnEndpointId",
+      "Description",
+      "DestinationCidrBlock",
+      "TargetVpcSubnetId"
+    ]
+  },
+  "AWS::EC2::ClientVpnTargetNetworkAssociation": {
+    "full_properties": {
+      "ClientVpnEndpointId": {
+        "description": "The ID of the Client VPN endpoint.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "SubnetId": {
+        "description": "The ID of the subnet to associate with the Client VPN endpoint.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-resource-ec2-clientvpntargetnetworkassociation.html",
+    "properties": [
+      "ClientVpnEndpointId",
+      "SubnetId"
+    ]
+  },
   "AWS::EC2::CustomerGateway": {
     "full_properties": {
       "BgpAsn": {
