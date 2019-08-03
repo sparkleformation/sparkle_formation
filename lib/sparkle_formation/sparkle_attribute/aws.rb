@@ -426,6 +426,26 @@ class SparkleFormation
 
       alias_method :_tags, :_cf_tags
       alias_method :tags!, :_cf_tags
+
+      # URL suffix generator
+      #
+      # @return [Hash]
+      def _cf_url_suffix
+        _ref("AWS::URLSuffix")
+      end
+
+      alias_method :_url_suffix, :_cf_url_suffix
+      alias_method :url_suffix!, :_cf_url_suffix
+
+      # Partition generator
+      #
+      # @return [Hash]
+      def _cf_partition
+        _ref("AWS::Partition")
+      end
+
+      alias_method :_partition, :_cf_partition
+      alias_method :partition!, :_cf_partition
     end
   end
 end

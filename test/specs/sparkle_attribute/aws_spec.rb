@@ -175,6 +175,14 @@ describe SparkleFormation::SparkleAttribute::Aws do
     @attr.stack_name!.must_equal "Ref" => "AWS::StackName"
   end
 
+  it "should generate a partition ref" do
+    @attr.partition!.must_equal "Ref" => "AWS::Partition"
+  end
+
+  it "should generate a URL suffix ref" do
+    @attr.url_suffix!.must_equal "Ref" => "AWS::URLSuffix"
+  end
+
   it "should generate a depends on array" do
     @attr.depends_on!("ResourceOne", :resource_two).must_equal ["ResourceOne", "ResourceTwo"]
     @attr._dump.must_equal "DependsOn" => ["ResourceOne", "ResourceTwo"]
