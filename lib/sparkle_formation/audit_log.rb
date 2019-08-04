@@ -38,6 +38,8 @@ class SparkleFormation
       attr_reader :type
       # @return [SourcePoint] path and line of caller
       attr_reader :caller
+      # @return [Float] compile duration
+      attr_accessor :compile_duration
 
       def initialize(*args)
         if args.last.is_a?(Hash)
@@ -50,6 +52,7 @@ class SparkleFormation
         @name = opts[:name] if opts[:name]
         @type = opts[:type] if opts[:type]
         @location = opts[:location] if opts[:location]
+        @compile_duration = opts[:compile_duration].to_f
 
         [[@name, :name], [@location, :location], [@type, :type], [@caller, :caller]].each do |v, n|
           raise ArgumentError, "Missing required argument `#{n}`" unless v

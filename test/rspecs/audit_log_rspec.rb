@@ -38,10 +38,15 @@ RSpec.describe SparkleFormation::AuditLog do
     let(:type) { :dynamic }
     let(:location_args) { ["LOCATION_PATH", 5] }
     let(:caller_args) { ["CALLERS_ARGS", 6] }
+    let(:duration) { 1.0 }
 
     let(:instance) {
-      described_class.new(name, type, location_args, caller_args)
+      described_class.new(name, type, location_args, caller_args, compile_duration: duration)
     }
+
+    it "should set the duration of record" do
+      expect(instance.compile_duration).to eq(duration)
+    end
 
     it "should convert location arguments to SourcePoint" do
       expect(instance.location).to be_a(SparkleFormation::AuditLog::SourcePoint)
