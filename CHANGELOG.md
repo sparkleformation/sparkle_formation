@@ -1,3 +1,8 @@
+# v3.0.40
+* Add missing AWS pseudo parameters (#260)
+* Update AWS resource list (#262)
+* Adding timing information within audit log data (#259)
+
 # v3.0.38
 * Fix root template audit log setup
 
