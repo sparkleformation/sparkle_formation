@@ -4241,6 +4241,328 @@
       "WorkGroupConfigurationUpdates"
     ]
   },
+  "AWS::AutoScaling::AutoScalingGroup": {
+    "full_properties": {
+      "AutoScalingGroupName": {
+        "description": "The name of the Auto Scaling group. This name must be unique per Region per account.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "AvailabilityZones": {
+        "description": "A list of Availability Zones where instances in the Auto Scaling group can be created. You must specify one of the following properties: VPCZoneIdentifier or AvailabilityZones. If your account supports EC2-Classic and VPC, this property is required to create an Auto Scaling group that launches instances into EC2-Classic.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "CapacityRebalance": {
+        "description": "Indicates whether Capacity Rebalancing is enabled. For more information, see Amazon EC2 Auto Scaling Capacity Rebalancing in the Amazon EC2 Auto Scaling User Guide.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "Cooldown": {
+        "description": "The amount of time, in seconds, after a scaling activity completes before another scaling activity can start. The default value is 300. This setting applies when using simple scaling policies, but not when using other scaling policies or scheduled scaling. For more information, see Scaling cooldowns for Amazon EC2 Auto Scaling in the Amazon EC2 Auto Scaling User Guide.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "DesiredCapacity": {
+        "description": "The desired capacity is the initial capacity of the Auto Scaling group at the time of its creation and the capacity it attempts to maintain. It can scale beyond this capacity if you configure automatic scaling.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "HealthCheckGracePeriod": {
+        "description": "The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before checking the health status of an EC2 instance that has come into service. The default value is 0. For more information, see Health checks for Auto Scaling instances in the Amazon EC2 Auto Scaling User Guide.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "HealthCheckType": {
+        "description": "The service to use for the health checks. The valid values are EC2 (default) and ELB. If you configure an Auto Scaling group to use load balancer (ELB) health checks, it considers the instance unhealthy if it fails either the EC2 status checks or the load balancer health checks. For more information, see Health checks for Auto Scaling instances in the Amazon EC2 Auto Scaling User Guide.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "InstanceId": {
+        "description": "The ID of the instance used to base the launch configuration on. If specified, Amazon EC2 Auto Scaling uses the configuration values from the specified instance to create a new launch configuration. For more information, see Creating an Auto Scaling group using an EC2 instance in the Amazon EC2 Auto Scaling User Guide.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "LaunchConfigurationName": {
+        "description": "The name of the launch configuration to use to launch instances.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "LaunchTemplate": {
+        "description": "Properties used to specify the launch template and version to use to launch instances. You can alternatively associate a launch template to the Auto Scaling group by specifying a MixedInstancesPolicy.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "LifecycleHookSpecificationList": {
+        "description": "One or more lifecycle hooks for the group, which specify actions to perform when Amazon EC2 Auto Scaling launches or terminates instances.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "LoadBalancerNames": {
+        "description": "A list of Classic Load Balancers associated with this Auto Scaling group. For Application Load Balancers, Network Load Balancers, and Gateway Load Balancers, specify the TargetGroupARNs property instead.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "MaxInstanceLifetime": {
+        "description": "The maximum amount of time, in seconds, that an instance can be in service. The default is null. If specified, the value must be either 0 or a number equal to or greater than 86,400 seconds (1 day). For more information, see Replacing Auto Scaling instances based on maximum instance lifetime in the Amazon EC2 Auto Scaling User Guide.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "MaxSize": {
+        "description": "The maximum size of the group.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "MetricsCollection": {
+        "description": "Enables the monitoring of group metrics of an Auto Scaling group. By default, these metrics are disabled.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "MinSize": {
+        "description": "The minimum size of the group.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "MixedInstancesPolicy": {
+        "description": "An embedded object that specifies a mixed instances policy.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "NewInstancesProtectedFromScaleIn": {
+        "description": "Indicates whether newly launched instances are protected from termination by Amazon EC2 Auto Scaling when scaling in. For more information about preventing instances from terminating on scale in, see Instance Protection in the Amazon EC2 Auto Scaling User Guide.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "NotificationConfigurations": {
+        "description": "Configures an Auto Scaling group to send notifications when specified events take place.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "PlacementGroup": {
+        "description": "The name of the placement group into which you want to launch your instances. A placement group is a logical grouping of instances within a single Availability Zone. For more information, see Placement Groups in the Amazon EC2 User Guide for Linux Instances.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "ServiceLinkedRoleARN": {
+        "description": "The Amazon Resource Name (ARN) of the service-linked role that the Auto Scaling group uses to call other AWS services on your behalf. By default, Amazon EC2 Auto Scaling uses a service-linked role named AWSServiceRoleForAutoScaling, which it creates if it does not exist. For more information, see Service-linked roles for Amazon EC2 Auto Scaling in the Amazon EC2 Auto Scaling User Guide.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Tags": {
+        "description": "One or more tags. You can tag your Auto Scaling group and propagate the tags to the Amazon EC2 instances it launches. For more information, see Tagging Auto Scaling groups and instances in the Amazon EC2 Auto Scaling User Guide.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "TargetGroupARNs": {
+        "description": "One or more Amazon Resource Names (ARN) of load balancer target groups to associate with the Auto Scaling group. Instances are registered as targets in a target group, and traffic is routed to the target group. For more information, see Elastic Load Balancing and Amazon EC2 Auto Scaling in the Amazon EC2 Auto Scaling User Guide.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "TerminationPolicies": {
+        "description": "A policy or a list of policies that are used to select the instances to terminate. The policies are executed in the order that you list them. The termination policies supported by Amazon EC2 Auto Scaling: OldestInstance, OldestLaunchConfiguration, NewestInstance, ClosestToNextInstanceHour, Default, OldestLaunchTemplate, and AllocationStrategy. For more information, see Controlling which Auto Scaling instances terminate during scale in in the Amazon EC2 Auto Scaling User Guide.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "VPCZoneIdentifier": {
+        "description": "A list of subnet IDs for a virtual private cloud (VPC) where instances in the Auto Scaling group can be created. If you specify VPCZoneIdentifier with AvailabilityZones, the subnets that you specify for this property must reside in those Availability Zones.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "interrupt"
+      }
+    },
+    "path": "aws-properties-as-group.html",
+    "properties": [
+      "AutoScalingGroupName",
+      "AvailabilityZones",
+      "CapacityRebalance",
+      "Cooldown",
+      "DesiredCapacity",
+      "HealthCheckGracePeriod",
+      "HealthCheckType",
+      "InstanceId",
+      "LaunchConfigurationName",
+      "LaunchTemplate",
+      "LifecycleHookSpecificationList",
+      "LoadBalancerNames",
+      "MaxInstanceLifetime",
+      "MaxSize",
+      "MetricsCollection",
+      "MinSize",
+      "MixedInstancesPolicy",
+      "NewInstancesProtectedFromScaleIn",
+      "NotificationConfigurations",
+      "PlacementGroup",
+      "ServiceLinkedRoleARN",
+      "Tags",
+      "TargetGroupARNs",
+      "TerminationPolicies",
+      "VPCZoneIdentifier"
+    ]
+  },
+  "AWS::AutoScaling::LaunchConfiguration": {
+    "full_properties": {
+      "AssociatePublicIpAddress": {
+        "description": "For Auto Scaling groups that are running in a virtual private cloud (VPC), specifies whether to assign a public IP address to the group's instances. If you specify true, each instance in the Auto Scaling group receives a unique public IP address. For more information, see Launching Auto Scaling instances in a VPC in the Amazon EC2 Auto Scaling User Guide.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "replacement"
+      },
+      "BlockDeviceMappings": {
+        "description": "Specifies how block devices are exposed to the instance. You can specify virtual devices and EBS volumes.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "ClassicLinkVPCId": {
+        "description": "The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances to.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "ClassicLinkVPCSecurityGroups": {
+        "description": "The IDs of one or more security groups for the VPC that you specified in the ClassicLinkVPCId property.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "EbsOptimized": {
+        "description": "Specifies whether the launch configuration is optimized for EBS I/O (true) or not (false). This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal EBS I/O performance. Additional fees are incurred when you enable EBS optimization for an instance type that is not EBS-optimized by default. For more information, see Amazon EBS–optimized instances in the Amazon EC2 User Guide for Linux Instances.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "replacement"
+      },
+      "IamInstanceProfile": {
+        "description": "Provides the name or the Amazon Resource Name (ARN) of the instance profile associated with the IAM role for the instance. The instance profile contains the IAM role.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "ImageId": {
+        "description": "Provides the unique ID of the Amazon Machine Image (AMI) that was assigned during registration. For more information, see Finding a Linux AMI in the Amazon EC2 User Guide for Linux Instances.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "InstanceId": {
+        "description": "The ID of the Amazon EC2 instance you want to use to create the launch configuration. Use this property if you want the launch configuration to use settings from an existing Amazon EC2 instance. When you use an instance to create a launch configuration, all properties are derived from the instance with the exception of BlockDeviceMapping and AssociatePublicIpAddress. You can override any properties from the instance by specifying them in the launch configuration.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "InstanceMonitoring": {
+        "description": "Controls whether instances in this group are launched with detailed (true) or basic (false) monitoring. The default value is true (enabled).",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "replacement"
+      },
+      "InstanceType": {
+        "description": "Specifies the instance type of the EC2 instance. For information about available instance types, see Available instance types in the Amazon EC2 User Guide for Linux Instances.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "KernelId": {
+        "description": "Provides the ID of the kernel associated with the EC2 AMI.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "KeyName": {
+        "description": "Provides the name of the EC2 key pair.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "LaunchConfigurationName": {
+        "description": "The name of the launch configuration. This name must be unique per Region per account.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "MetadataOptions": {
+        "description": "The metadata options for the instances. For more information, see Configuring the Instance Metadata Options in the Amazon EC2 Auto Scaling User Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "PlacementTenancy": {
+        "description": "The tenancy of the instance, either default or dedicated. An instance with dedicated tenancy runs on isolated, single-tenant hardware and can only be launched into a VPC. You must set the value of this property to dedicated if want to launch dedicated instances in a shared tenancy VPC (a VPC with the instance placement tenancy attribute set to default).",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "RamDiskId": {
+        "description": "The ID of the RAM disk to select.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "SecurityGroups": {
+        "description": "A list that contains the security groups to assign to the instances in the Auto Scaling group. The list can contain both the IDs of existing security groups and references to SecurityGroup resources created in the template.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "SpotPrice": {
+        "description": "The maximum hourly price you are willing to pay for any Spot Instances launched to fulfill the request. Spot Instances are launched when the price you specify exceeds the current Spot price. For more information, see Requesting Spot Instances for fault-tolerant and flexible applications  in the Amazon EC2 Auto Scaling User Guide.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "UserData": {
+        "description": "The Base64-encoded user data to make available to the launched EC2 instances.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-properties-as-launchconfig.html",
+    "properties": [
+      "AssociatePublicIpAddress",
+      "BlockDeviceMappings",
+      "ClassicLinkVPCId",
+      "ClassicLinkVPCSecurityGroups",
+      "EbsOptimized",
+      "IamInstanceProfile",
+      "ImageId",
+      "InstanceId",
+      "InstanceMonitoring",
+      "InstanceType",
+      "KernelId",
+      "KeyName",
+      "LaunchConfigurationName",
+      "MetadataOptions",
+      "PlacementTenancy",
+      "RamDiskId",
+      "SecurityGroups",
+      "SpotPrice",
+      "UserData"
+    ]
+  },
   "AWS::AutoScaling::LifecycleHook": {
     "full_properties": {
       "AutoScalingGroupName": {
@@ -4302,6 +4624,83 @@
       "NotificationMetadata",
       "NotificationTargetARN",
       "RoleARN"
+    ]
+  },
+  "AWS::AutoScaling::ScalingPolicy": {
+    "full_properties": {
+      "AdjustmentType": {
+        "description": "Specifies how the scaling adjustment is interpreted. The valid values are ChangeInCapacity, ExactCapacity, and PercentChangeInCapacity.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "AutoScalingGroupName": {
+        "description": "The name or Amazon Resource Name (ARN) of the Auto Scaling group that you want to attach the policy to.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Cooldown": {
+        "description": "The duration of the policy's cooldown period, in seconds. When a cooldown period is specified here, it overrides the default cooldown period defined for the Auto Scaling group.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "EstimatedInstanceWarmup": {
+        "description": "The estimated time, in seconds, until a newly launched instance can contribute to the CloudWatch metrics. If not provided, the default is to use the value from the default cooldown period for the Auto Scaling group.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "MetricAggregationType": {
+        "description": "The aggregation type for the CloudWatch metrics. The valid values are Minimum, Maximum, and Average. If the aggregation type is null, the value is treated as Average.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "MinAdjustmentMagnitude": {
+        "description": "The minimum value to scale by when the adjustment type is PercentChangeInCapacity. For example, suppose that you create a step scaling policy to scale out an Auto Scaling group by 25 percent and you specify a MinAdjustmentMagnitude of 2. If the group has 4 instances and the scaling policy is performed, 25 percent of 4 is 1. However, because you specified a MinAdjustmentMagnitude of 2, Amazon EC2 Auto Scaling scales out the group by 2 instances.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "PolicyType": {
+        "description": "One of the following policy types:",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "ScalingAdjustment": {
+        "description": "The amount by which to scale, based on the specified adjustment type. A positive value adds to the current capacity while a negative number removes from the current capacity. For exact capacity, you must specify a positive value.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "StepAdjustments": {
+        "description": "A set of adjustments that enable you to scale based on the size of the alarm breach.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "TargetTrackingConfiguration": {
+        "description": "A target tracking scaling policy. Includes support for predefined or customized metrics.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-as-policy.html",
+    "properties": [
+      "AdjustmentType",
+      "AutoScalingGroupName",
+      "Cooldown",
+      "EstimatedInstanceWarmup",
+      "MetricAggregationType",
+      "MinAdjustmentMagnitude",
+      "PolicyType",
+      "ScalingAdjustment",
+      "StepAdjustments",
+      "TargetTrackingConfiguration"
     ]
   },
   "AWS::AutoScaling::ScheduledAction": {
@@ -4965,6 +5364,57 @@
       "Name"
     ]
   },
+  "AWS::CloudFormation::Stack": {
+    "full_properties": {
+      "NotificationARNs": {
+        "description": "The Simple Notification Service (SNS) topic ARNs to publish stack related events. You can find your SNS topic ARNs using the SNS console or your Command Line Interface (CLI).",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "Parameters": {
+        "description": "The set value pairs that represent the parameters passed to CloudFormation when this nested stack is created. Each parameter has a name corresponding to a parameter defined in the embedded template and a value representing the value that you want to set for the parameter.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": [
+          "interrupt",
+          "none"
+        ]
+      },
+      "Tags": {
+        "description": "Key-value pairs to associate with this stack. AWS CloudFormation also propagates these tags to the resources created in the stack. A maximum number of 50 tags can be specified.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "TemplateURL": {
+        "description": "Location of file containing the template body. The URL must point to a template (max size: 460,800 bytes) that is located in an Amazon S3 bucket. For more information, see Template anatomy.",
+        "required": true,
+        "type": "String",
+        "update_causes": [
+          "interrupt",
+          "none"
+        ]
+      },
+      "TimeoutInMinutes": {
+        "description": "The length of time, in minutes, that CloudFormation waits for the nested stack to reach the CREATE_COMPLETE state. The default is no timeout. When CloudFormation detects that the nested stack has reached the CREATE_COMPLETE state, it marks the nested stack resource as CREATE_COMPLETE in the parent stack and resumes creating the parent stack. If the timeout period expires before the nested stack reaches CREATE_COMPLETE, CloudFormation marks the nested stack as failed and rolls back both the nested stack and parent stack.",
+        "required": false,
+        "type": "Number",
+        "update_causes": [
+          "unavailable",
+          "none"
+        ]
+      }
+    },
+    "path": "aws-properties-stack.html",
+    "properties": [
+      "NotificationARNs",
+      "Parameters",
+      "Tags",
+      "TemplateURL",
+      "TimeoutInMinutes"
+    ]
+  },
   "AWS::CloudFormation::StackSet": {
     "full_properties": {
       "AdministrationRoleARN": {
@@ -5061,6 +5511,51 @@
       "Tags",
       "TemplateBody",
       "TemplateURL"
+    ]
+  },
+  "AWS::CloudFormation::WaitCondition": {
+    "full_properties": {
+      "Count": {
+        "description": "The number of success signals that CloudFormation must receive before it continues the stack creation process. When the wait condition receives the requisite number of success signals, CloudFormation resumes the creation of the stack. If the wait condition does not receive the specified number of success signals before the Timeout period expires, CloudFormation assumes that the wait condition has failed and rolls the stack back.",
+        "required": false,
+        "type": "Number",
+        "update_causes": [
+          "unavailable",
+          "none"
+        ]
+      },
+      "Handle": {
+        "description": "A reference to the wait condition handle used to signal this wait condition. Use the Ref intrinsic function to specify an AWS::CloudFormation::WaitConditionHandle resource.",
+        "required": false,
+        "type": "String",
+        "update_causes": [
+          "unavailable",
+          "none"
+        ]
+      },
+      "Timeout": {
+        "description": "The length of time (in seconds) to wait for the number of signals that the Count property specifies. Timeout is a minimum-bound property, meaning the timeout occurs no sooner than the time you specify, but can occur shortly thereafter. The maximum time that can be specified for this property is 12 hours (43200 seconds).",
+        "required": false,
+        "type": "String",
+        "update_causes": [
+          "unavailable",
+          "none"
+        ]
+      }
+    },
+    "path": "aws-properties-waitcondition.html",
+    "properties": [
+      "Count",
+      "Handle",
+      "Timeout"
+    ]
+  },
+  "AWS::CloudFormation::WaitConditionHandle": {
+    "full_properties": {
+    },
+    "path": "aws-properties-waitconditionhandle.html",
+    "properties": [
+
     ]
   },
   "AWS::CloudFront::CachePolicy": {
@@ -5278,6 +5773,160 @@
       "SnsTopicName",
       "Tags",
       "TrailName"
+    ]
+  },
+  "AWS::CloudWatch::Alarm": {
+    "full_properties": {
+      "ActionsEnabled": {
+        "description": "Indicates whether actions should be executed during any changes to the alarm state. The default is TRUE.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "AlarmActions": {
+        "description": "The list of actions to execute when this alarm transitions into an ALARM state from any other state.  Specify each action as an Amazon Resource Name (ARN). For more information about creating alarms and the actions that you can specify, see PutMetricAlarm in the Amazon CloudWatch API Reference.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "AlarmDescription": {
+        "description": "The description of the alarm.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "AlarmName": {
+        "description": "The name of the alarm. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the alarm name.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "ComparisonOperator": {
+        "description": "The arithmetic operation to use when comparing the specified statistic and threshold. The specified statistic value is used as the first operand.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "DatapointsToAlarm": {
+        "description": "The number of datapoints that must be breaching to trigger the alarm. This is used only if you are setting an \"M out of N\" alarm. In that case, this value is the M, and the value that you set for EvaluationPeriods is the N value. For more information, see Evaluating an Alarm in the Amazon CloudWatch User Guide.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "Dimensions": {
+        "description": "The dimensions for the metric associated with the alarm. For an alarm based on a math expression, you can't specify Dimensions. Instead, you use Metrics.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "EvaluateLowSampleCountPercentile": {
+        "description": "Used only for alarms based on percentiles. If ignore, the alarm state does not change during periods with too few data points to be statistically significant. If evaluate or this parameter is not used, the alarm is always evaluated and possibly changes state no matter how many data points are available.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "EvaluationPeriods": {
+        "description": "The number of periods over which data is compared to the specified threshold. If you are setting an alarm that requires that a number of consecutive data points be breaching to trigger the alarm, this value specifies that number. If you are setting an \"M out of N\" alarm, this value is the N, and DatapointsToAlarm is the M.",
+        "required": true,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "ExtendedStatistic": {
+        "description": "The percentile statistic for the metric associated with the alarm. Specify a value between p0.0 and p100.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "InsufficientDataActions": {
+        "description": "The actions to execute when this alarm transitions to the INSUFFICIENT_DATA state from any other state. Each action is specified as an Amazon Resource Name (ARN).",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "MetricName": {
+        "description": "The name of the metric associated with the alarm. This is required for an alarm based on a metric. For an alarm based on a math expression, you use Metrics instead and you can't specify MetricName.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Metrics": {
+        "description": "An array that enables you to create an alarm based on the result of a metric math expression. Each item in the array either retrieves a metric or performs a math expression.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "Namespace": {
+        "description": "The namespace of the metric associated with the alarm. This is required for an alarm based on a metric. For an alarm based on a math expression, you can't specify Namespace and you use Metrics instead.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "OKActions": {
+        "description": "The actions to execute when this alarm transitions to the OK state from any other state. Each action is specified as an Amazon Resource Name (ARN).",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "Period": {
+        "description": "The period, in seconds, over which the statistic is applied. This is required for an alarm based on a metric. Valid values are 10, 30, 60, and any multiple of 60.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "Statistic": {
+        "description": "The statistic for the metric associated with the alarm, other than percentile. For percentile statistics, use ExtendedStatistic.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Threshold": {
+        "description": "The value to compare with the specified statistic.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "ThresholdMetricId": {
+        "description": "In an alarm based on an anomaly detection model, this is the ID of the ANOMALY_DETECTION_BAND function used as the threshold for the alarm.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "TreatMissingData": {
+        "description": "Sets how this alarm is to handle missing data points. Valid values are breaching, notBreaching, ignore, and missing. For more information, see Configuring How CloudWatch Alarms Treat Missing Data in the Amazon CloudWatch User Guide.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Unit": {
+        "description": "The unit of the metric associated with the alarm. Specify this only if you are creating an alarm based on a single metric. Do not specify this if you are specifying a Metrics array.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-cw-alarm.html",
+    "properties": [
+      "ActionsEnabled",
+      "AlarmActions",
+      "AlarmDescription",
+      "AlarmName",
+      "ComparisonOperator",
+      "DatapointsToAlarm",
+      "Dimensions",
+      "EvaluateLowSampleCountPercentile",
+      "EvaluationPeriods",
+      "ExtendedStatistic",
+      "InsufficientDataActions",
+      "MetricName",
+      "Metrics",
+      "Namespace",
+      "OKActions",
+      "Period",
+      "Statistic",
+      "Threshold",
+      "ThresholdMetricId",
+      "TreatMissingData",
+      "Unit"
     ]
   },
   "AWS::CloudWatch::AnomalyDetector": {
@@ -9552,6 +10201,83 @@
       "ValidUntil"
     ]
   },
+  "AWS::EC2::EIP": {
+    "full_properties": {
+      "Domain": {
+        "description": "Indicates whether the Elastic IP address is for use with instances in a VPC or instance in EC2-Classic.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "InstanceId": {
+        "description": "The ID of the instance.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "PublicIpv4Pool": {
+        "description": "The ID of an address pool that you own. Use this parameter to let Amazon EC2 select an address from the address pool.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "Tags": {
+        "description": "Any tags assigned to the Elastic IP address.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-ec2-eip.html",
+    "properties": [
+      "Domain",
+      "InstanceId",
+      "PublicIpv4Pool",
+      "Tags"
+    ]
+  },
+  "AWS::EC2::EIPAssociation": {
+    "full_properties": {
+      "AllocationId": {
+        "description": "[EC2-VPC] The allocation ID. This is required for EC2-VPC.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "EIP": {
+        "description": "The Elastic IP address to associate with the instance. This is required for EC2-Classic.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "InstanceId": {
+        "description": "The ID of the instance. This is required for EC2-Classic. For EC2-VPC, you can specify either the instance ID or the network interface ID, but not both. The operation fails if you specify an instance ID unless exactly one network interface is attached.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "NetworkInterfaceId": {
+        "description": "[EC2-VPC] The ID of the network interface. If the instance has more than one network interface, you must specify a network interface ID.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "PrivateIpAddress": {
+        "description": "[EC2-VPC] The primary or secondary private IP address to associate with the Elastic IP address. If no private IP address is specified, the Elastic IP address is associated with the primary private IP address.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-ec2-eip-association.html",
+    "properties": [
+      "AllocationId",
+      "EIP",
+      "InstanceId",
+      "NetworkInterfaceId",
+      "PrivateIpAddress"
+    ]
+  },
   "AWS::EC2::EgressOnlyInternetGateway": {
     "full_properties": {
       "VpcId": {
@@ -9697,6 +10423,272 @@
       "AvailabilityZone",
       "HostRecovery",
       "InstanceType"
+    ]
+  },
+  "AWS::EC2::Instance": {
+    "full_properties": {
+      "AdditionalInfo": {
+        "description": "This property is reserved for internal use. If you use it, the stack fails with this error: Bad property set: [Testing this property] (Service: AmazonEC2; Status Code: 400; Error Code: InvalidParameterCombination; Request ID: 0XXXXXX-49c7-4b40-8bcc-76885dcXXXXX).",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "Affinity": {
+        "description": "Indicates whether the instance is associated with a dedicated host. If you want the instance to always restart on the same host on which it was launched, specify host. If you want the instance to restart on any available host, but try to launch onto the last host it ran on (on a best-effort basis), specify default.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "AvailabilityZone": {
+        "description": "The Availability Zone of the instance.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "BlockDeviceMappings": {
+        "description": "The block device mapping entries that defines the block devices to attach to the instance at launch.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "interrupt"
+      },
+      "CpuOptions": {
+        "description": "The CPU options for the instance.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "CreditSpecification": {
+        "description": "The credit option for CPU usage of the burstable performance instance. Valid values are standard and unlimited. To change this attribute after launch, use ModifyInstanceCreditSpecification. For more information, see Burstable performance instances in the Amazon Elastic Compute Cloud User Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "DisableApiTermination": {
+        "description": "If you set this parameter to true, you can't terminate the instance using the Amazon EC2 console, CLI, or API; otherwise, you can. To change this attribute after launch, use ModifyInstanceAttribute. Alternatively, if you set InstanceInitiatedShutdownBehavior to terminate, you can terminate the instance by running the shutdown command from the instance.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "EbsOptimized": {
+        "description": "Indicates whether the instance is optimized for Amazon EBS I/O. This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal Amazon EBS I/O performance. This optimization isn't available with all instance types. Additional usage charges apply when using an EBS-optimized instance.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "interrupt"
+      },
+      "ElasticGpuSpecifications": {
+        "description": "An elastic GPU to associate with the instance. An Elastic GPU is a GPU resource that you can attach to your Windows instance to accelerate the graphics performance of your applications. For more information, see  Amazon EC2 Elastic GPUs in the Amazon Elastic Compute Cloud User Guide.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "ElasticInferenceAccelerators": {
+        "description": "An elastic inference accelerator to associate with the instance. Elastic inference accelerators are a resource you can attach to your Amazon EC2 instances to accelerate your Deep Learning (DL) inference workloads.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "HibernationOptions": {
+        "description": "Indicates whether an instance is enabled for hibernation. For more information, see Hibernate your instance in the Amazon Elastic Compute Cloud User Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "HostId": {
+        "description": "If you specify host for the Affinity property, the ID of a dedicated host that the instance is associated with. If you don't specify an ID, Amazon EC2 launches the instance onto any available, compatible dedicated host in your account. This type of launch is called an untargeted launch. Note that for untargeted launches, you must have a compatible, dedicated host available to successfully launch instances.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "HostResourceGroupArn": {
+        "description": "The ARN of the host resource group in which to launch the instances. If you specify  a host resource group ARN, omit the Tenancy parameter or set it to host.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "IamInstanceProfile": {
+        "description": "The IAM instance profile. See IamInstanceProfileSpecification in the Amazon EC2 API Reference for property values.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "ImageId": {
+        "description": "The ID of the AMI. An AMI ID is required to launch an instance and must be specified here or in a launch template.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "InstanceInitiatedShutdownBehavior": {
+        "description": "Indicates whether an instance stops or terminates when you initiate shutdown from the instance (using the operating system command for system shutdown).",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "InstanceType": {
+        "description": "The instance type. For more information, see Instance types in the Amazon Elastic Compute Cloud User Guide.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "Ipv6AddressCount": {
+        "description": "[EC2-VPC] The number of IPv6 addresses to associate with the primary network interface. Amazon EC2 chooses the IPv6 addresses from the range of your subnet. You cannot specify this option and the option to assign specific IPv6 addresses in the same request. You can specify this option if you've specified a minimum number of instances to launch.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "replacement"
+      },
+      "Ipv6Addresses": {
+        "description": "[EC2-VPC] The IPv6 addresses from the range of the subnet to associate with the primary network interface. You cannot specify this option and the option to assign a number of IPv6 addresses in the same request. You cannot specify this option if you've specified a minimum number of instances to launch.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "KernelId": {
+        "description": "The ID of the kernel.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "KeyName": {
+        "description": "The name of the key pair. You can create a key pair using CreateKeyPair or ImportKeyPair.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "LaunchTemplate": {
+        "description": "The launch template to use to launch the instances. Any parameters that you specify in the AWS CloudFormation template override the same parameters in the launch template. You can specify either the name or ID of a launch template, but not both.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "LicenseSpecifications": {
+        "description": "The license configurations.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "Monitoring": {
+        "description": "Specifies whether detailed monitoring is enabled for the instance.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "NetworkInterfaces": {
+        "description": "The network interfaces to associate with the instance.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "PlacementGroupName": {
+        "description": "The name of an existing placement group that you want to launch the instance into (for cluster instances).",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "PrivateIpAddress": {
+        "description": "[EC2-VPC] The primary IPv4 address. You must specify a value from the IPv4 address range of the subnet.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "RamdiskId": {
+        "description": "The ID of the RAM disk to select. Some kernels require additional drivers at launch. Check the kernel requirements for information about whether you need to specify a RAM disk. To find kernel requirements, go to the AWS Resource Center and search for the kernel ID.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "SecurityGroupIds": {
+        "description": "The IDs of the security groups. You can create a security group using CreateSecurityGroup.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "interrupt"
+      },
+      "SecurityGroups": {
+        "description": "[EC2-Classic, default VPC] The names of the security groups. For a nondefault VPC, you must use security group IDs instead.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "SourceDestCheck": {
+        "description": "Specifies whether to enable an instance launched in a VPC to perform NAT. This controls whether source/destination checking is enabled on the instance. A value of true means that checking is enabled, and false means that checking is disabled. The value must be false for the instance to perform NAT. For more information, see NAT Instances in the Amazon Virtual Private Cloud User Guide.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "SsmAssociations": {
+        "description": "The SSM document and parameter values in AWS Systems Manager to associate with this instance. To use this property, you must specify an IAM instance profile role for the instance. For more information, see  Create an Instance Profile for Systems Manager in the AWS Systems Manager User Guide.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "SubnetId": {
+        "description": "[EC2-VPC] The ID of the subnet to launch the instance into.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Tags": {
+        "description": "The tags to add to the instance. These tags are not applied to the EBS volumes, such as the root volume.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "Tenancy": {
+        "description": "The tenancy of the instance (if the instance is running in a VPC). An instance with a tenancy of dedicated runs on single-tenant hardware.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "UserData": {
+        "description": "The user data to make available to the instance. For more information, see Running commands on your Linux instance at launch (Linux) and Adding User Data (Windows). If you are using a command line tool, base64-encoding is performed for you, and you can load the text from a file. Otherwise, you must provide base64-encoded text. User data is limited to 16 KB.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "Volumes": {
+        "description": "The volumes to attach to the instance.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-ec2-instance.html",
+    "properties": [
+      "AdditionalInfo",
+      "Affinity",
+      "AvailabilityZone",
+      "BlockDeviceMappings",
+      "CpuOptions",
+      "CreditSpecification",
+      "DisableApiTermination",
+      "EbsOptimized",
+      "ElasticGpuSpecifications",
+      "ElasticInferenceAccelerators",
+      "HibernationOptions",
+      "HostId",
+      "HostResourceGroupArn",
+      "IamInstanceProfile",
+      "ImageId",
+      "InstanceInitiatedShutdownBehavior",
+      "InstanceType",
+      "Ipv6AddressCount",
+      "Ipv6Addresses",
+      "KernelId",
+      "KeyName",
+      "LaunchTemplate",
+      "LicenseSpecifications",
+      "Monitoring",
+      "NetworkInterfaces",
+      "PlacementGroupName",
+      "PrivateIpAddress",
+      "RamdiskId",
+      "SecurityGroupIds",
+      "SecurityGroups",
+      "SourceDestCheck",
+      "SsmAssociations",
+      "SubnetId",
+      "Tags",
+      "Tenancy",
+      "UserData",
+      "Volumes"
     ]
   },
   "AWS::EC2::InternetGateway": {
@@ -10231,6 +11223,55 @@
       "VpcId"
     ]
   },
+  "AWS::EC2::SecurityGroup": {
+    "full_properties": {
+      "GroupDescription": {
+        "description": "A description for the security group. This is informational only.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "GroupName": {
+        "description": "The name of the security group.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "SecurityGroupEgress": {
+        "description": "[VPC only] The outbound rules associated with the security group. There is a short interruption during which you cannot connect to the security group.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "SecurityGroupIngress": {
+        "description": "The inbound rules associated with the security group. There is a short interruption during which you cannot connect to the security group.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "Tags": {
+        "description": "Any tags assigned to the security group.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "VpcId": {
+        "description": "[VPC only] The ID of the VPC for the security group.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-properties-ec2-security-group.html",
+    "properties": [
+      "GroupDescription",
+      "GroupName",
+      "SecurityGroupEgress",
+      "SecurityGroupIngress",
+      "Tags",
+      "VpcId"
+    ]
+  },
   "AWS::EC2::SecurityGroupEgress": {
     "full_properties": {
       "CidrIp": {
@@ -10376,7 +11417,7 @@
         "update_causes": "replacement"
       }
     },
-    "path": "aws-resource-ec2-security-group-ingress.html",
+    "path": "aws-properties-ec2-security-group-ingress.html",
     "properties": [
       "CidrIp",
       "CidrIpv6",
@@ -11377,6 +12418,118 @@
     "properties": [
       "RouteTableIds",
       "VpnGatewayId"
+    ]
+  },
+  "AWS::EC2::Volume": {
+    "full_properties": {
+      "AutoEnableIO": {
+        "description": "Indicates whether the volume is auto-enabled for I/O operations. By default, Amazon EBS disables I/O to the volume from attached EC2 instances when it determines  that a volume's data is potentially inconsistent. If the consistency of the volume is not a concern, and you prefer that the volume be made available immediately if it's  impaired, you can configure the volume to automatically enable I/O.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "AvailabilityZone": {
+        "description": "The Availability Zone in which to create the volume.",
+        "required": true,
+        "type": "String",
+        "update_causes": "unavailable"
+      },
+      "Encrypted": {
+        "description": "Specifies whether the volume should be encrypted. The effect of setting the encryption state to true depends on the volume origin (new or from a snapshot), starting encryption state, ownership, and whether encryption by default is enabled. For more information, see Encryption by default in the Amazon Elastic Compute Cloud User Guide.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "unavailable"
+      },
+      "Iops": {
+        "description": "The number of I/O operations per second (IOPS) to provision for an io1 or io2 volume, with a maximum ratio of 50 IOPS/GiB for io1, and 500 IOPS/GiB for io2. Range is 100 to 64,000 IOPS for volumes in most Regions. Maximum IOPS of 64,000 is guaranteed only on Nitro-based instances. Other instance families guarantee performance up to 32,000 IOPS. For more information, see Amazon EBS volume types in the Amazon Elastic Compute Cloud User Guide.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "KmsKeyId": {
+        "description": "The identifier of the AWS Key Management Service (AWS KMS) customer master key (CMK) to use for Amazon EBS encryption. If KmsKeyId is specified, the encrypted state must be true.",
+        "required": false,
+        "type": "String",
+        "update_causes": "unavailable"
+      },
+      "MultiAttachEnabled": {
+        "description": "Indicates whether Amazon EBS Multi-Attach is enabled.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "OutpostArn": {
+        "description": "The Amazon Resource Name (ARN) of the Outpost.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Size": {
+        "description": "The size of the volume, in GiBs. You must specify either a snapshot ID or a volume size.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "SnapshotId": {
+        "description": "The snapshot from which to create the volume. You must specify either a snapshot ID or a volume size.",
+        "required": false,
+        "type": "String",
+        "update_causes": "unavailable"
+      },
+      "Tags": {
+        "description": "The tags to apply to the volume during creation.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "VolumeType": {
+        "description": "The volume type. This can be gp2 for General Purpose SSD, io1 or io2 for Provisioned IOPS SSD, st1 for Throughput Optimized HDD, sc1 for Cold HDD, or standard for Magnetic volumes.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-ec2-ebs-volume.html",
+    "properties": [
+      "AutoEnableIO",
+      "AvailabilityZone",
+      "Encrypted",
+      "Iops",
+      "KmsKeyId",
+      "MultiAttachEnabled",
+      "OutpostArn",
+      "Size",
+      "SnapshotId",
+      "Tags",
+      "VolumeType"
+    ]
+  },
+  "AWS::EC2::VolumeAttachment": {
+    "full_properties": {
+      "Device": {
+        "description": "The device name (for example, /dev/sdh or xvdh).",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "InstanceId": {
+        "description": "The ID of the instance to which the volume attaches. This value can be a reference to an AWS::EC2::Instance resource, or it can be the physical ID of an existing EC2 instance.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "VolumeId": {
+        "description": "The ID of the Amazon EBS volume. The volume and instance must be within the same Availability Zone. This value can be a reference to an AWS::EC2::Volume resource, or it can be the volume ID of an existing Amazon EBS volume.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-properties-ec2-ebs-volumeattachment.html",
+    "properties": [
+      "Device",
+      "InstanceId",
+      "VolumeId"
     ]
   },
   "AWS::ECR::Repository": {
@@ -12576,6 +13729,191 @@
       "Name"
     ]
   },
+  "AWS::ElastiCache::CacheCluster": {
+    "full_properties": {
+      "AZMode": {
+        "description": "Specifies whether the nodes in this Memcached cluster are created in a single Availability Zone or created across multiple Availability Zones in the cluster's region.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "AutoMinorVersionUpgrade": {
+        "description": "This parameter is currently disabled.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "CacheNodeType": {
+        "description": "The compute and memory capacity of the nodes in the node group (shard).",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "CacheParameterGroupName": {
+        "description": "The name of the parameter group to associate with this cluster. If this argument is omitted, the default parameter group for the specified engine is used. You cannot use any parameter group which has cluster-enabled='yes' when creating a cluster.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "CacheSecurityGroupNames": {
+        "description": "A list of security group names to associate with this cluster.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "CacheSubnetGroupName": {
+        "description": "The name of the subnet group to be used for the cluster.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "ClusterName": {
+        "description": "A name for the cache cluster. If you don't specify a name, AWSCloudFormation generates a unique physical ID and uses that ID for the cache cluster. For more information, see Name Type.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "Engine": {
+        "description": "The name of the cache engine to be used for this cluster.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "EngineVersion": {
+        "description": "The version number of the cache engine to be used for this cluster. To view the supported cache engine versions, use the DescribeCacheEngineVersions operation.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "NotificationTopicArn": {
+        "description": "The Amazon Resource Name (ARN) of the Amazon Simple Notification Service (SNS) topic  to which notifications are sent.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "NumCacheNodes": {
+        "description": "The number of cache nodes that the cache cluster should have.",
+        "required": true,
+        "type": "Number",
+        "update_causes": [
+          "replacement",
+          "interrupt"
+        ]
+      },
+      "Port": {
+        "description": "The port number on which each of the cache nodes  accepts connections.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "replacement"
+      },
+      "PreferredAvailabilityZone": {
+        "description": "The EC2 Availability Zone in which the cluster is created.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "PreferredAvailabilityZones": {
+        "description": "A list of the Availability Zones in which cache nodes are created. The order of the zones in the list is not important.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "interrupt"
+      },
+      "PreferredMaintenanceWindow": {
+        "description": "Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid values for ddd are:",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "SnapshotArns": {
+        "description": "A single-element string list containing an Amazon Resource Name (ARN) that uniquely identifies a Redis RDB snapshot file stored in Amazon S3. The snapshot file is used to populate the node group (shard). The Amazon S3 object name in the ARN cannot contain any commas.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "replacement"
+      },
+      "SnapshotName": {
+        "description": "The name of a Redis snapshot from which to restore data into the new node group (shard). The snapshot status changes to restoring while the new node group (shard) is being created.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "SnapshotRetentionLimit": {
+        "description": "The number of days for which ElastiCache retains automatic snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, a snapshot taken today is retained for 5 days before being deleted.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "SnapshotWindow": {
+        "description": "The daily time range (in UTC) during which ElastiCache begins taking a daily snapshot of your node group (shard).",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Tags": {
+        "description": "A list of cost allocation tags to be added to this resource.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "VpcSecurityGroupIds": {
+        "description": "One or more VPC security groups associated with the cluster.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-elasticache-cache-cluster.html",
+    "properties": [
+      "AutoMinorVersionUpgrade",
+      "AZMode",
+      "CacheNodeType",
+      "CacheParameterGroupName",
+      "CacheSecurityGroupNames",
+      "CacheSubnetGroupName",
+      "ClusterName",
+      "Engine",
+      "EngineVersion",
+      "NotificationTopicArn",
+      "NumCacheNodes",
+      "Port",
+      "PreferredAvailabilityZone",
+      "PreferredAvailabilityZones",
+      "PreferredMaintenanceWindow",
+      "SnapshotArns",
+      "SnapshotName",
+      "SnapshotRetentionLimit",
+      "SnapshotWindow",
+      "Tags",
+      "VpcSecurityGroupIds"
+    ]
+  },
+  "AWS::ElastiCache::ParameterGroup": {
+    "full_properties": {
+      "CacheParameterGroupFamily": {
+        "description": "The name of the cache parameter group family that this cache parameter group is compatible with.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Description": {
+        "description": "The description for this cache parameter group.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Properties": {
+        "description": "A comma-delimited list of parameter name/value pairs. For more information, see ModifyCacheParameterGroup in the Amazon ElastiCache API Reference Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-elasticache-parameter-group.html",
+    "properties": [
+      "CacheParameterGroupFamily",
+      "Description",
+      "Properties"
+    ]
+  },
   "AWS::ElastiCache::ReplicationGroup": {
     "full_properties": {
       "AtRestEncryptionEnabled": {
@@ -12806,6 +14144,132 @@
       "TransitEncryptionEnabled"
     ]
   },
+  "AWS::ElastiCache::SecurityGroup": {
+    "full_properties": {
+      "Description": {
+        "description": "A description for the cache security group.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-elasticache-security-group.html",
+    "properties": [
+      "Description"
+    ]
+  },
+  "AWS::ElastiCache::SecurityGroupIngress": {
+    "full_properties": {
+      "CacheSecurityGroupName": {
+        "description": "The name of the Cache Security Group to authorize.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "EC2SecurityGroupName": {
+        "description": "Name of the EC2 Security Group to include in the authorization.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "EC2SecurityGroupOwnerId": {
+        "description": "Specifies the AWS Account ID of the owner of the EC2 security group specified in the EC2SecurityGroupName property. The AWS access key ID is not an acceptable value.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-elasticache-security-group-ingress.html",
+    "properties": [
+      "CacheSecurityGroupName",
+      "EC2SecurityGroupName",
+      "EC2SecurityGroupOwnerId"
+    ]
+  },
+  "AWS::ElastiCache::SubnetGroup": {
+    "full_properties": {
+      "CacheSubnetGroupName": {
+        "description": "The name for the cache subnet group. This value is stored as a lowercase string.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Description": {
+        "description": "The description for the cache subnet group.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "SubnetIds": {
+        "description": "The EC2 subnet IDs for the cache subnet group.",
+        "required": true,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-elasticache-subnetgroup.html",
+    "properties": [
+      "CacheSubnetGroupName",
+      "Description",
+      "SubnetIds"
+    ]
+  },
+  "AWS::ElasticBeanstalk::Application": {
+    "full_properties": {
+      "ApplicationName": {
+        "description": "A name for the Elastic Beanstalk application. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the application name. For more information, see Name Type.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "Description": {
+        "description": "Your description of the application.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "ResourceLifecycleConfig": {
+        "description": "Specifies an application resource lifecycle configuration to prevent your application from accumulating too many versions.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-beanstalk.html",
+    "properties": [
+      "ApplicationName",
+      "Description",
+      "ResourceLifecycleConfig"
+    ]
+  },
+  "AWS::ElasticBeanstalk::ApplicationVersion": {
+    "full_properties": {
+      "ApplicationName": {
+        "description": "The name of the Elastic Beanstalk application that is associated with this application version.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Description": {
+        "description": "A description of this application version.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "SourceBundle": {
+        "description": "The Amazon S3 bucket and key that identify the location of the source bundle for this version.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-properties-beanstalk-version.html",
+    "properties": [
+      "ApplicationName",
+      "Description",
+      "SourceBundle"
+    ]
+  },
   "AWS::ElasticBeanstalk::ConfigurationTemplate": {
     "full_properties": {
       "ApplicationName": {
@@ -12860,6 +14324,209 @@
       "PlatformArn",
       "SolutionStackName",
       "SourceConfiguration"
+    ]
+  },
+  "AWS::ElasticBeanstalk::Environment": {
+    "full_properties": {
+      "ApplicationName": {
+        "description": "The name of the application that is associated with this environment.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "CNAMEPrefix": {
+        "description": "If specified, the environment attempts to use this value as the prefix for the CNAME in your Elastic Beanstalk environment URL. If not specified, the CNAME is generated automatically by appending a random alphanumeric string to the environment name.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Description": {
+        "description": "Your description for this environment.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "EnvironmentName": {
+        "description": "A unique name for the environment.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "OptionSettings": {
+        "description": "Key-value pairs defining configuration options for this environment, such as the instance type. These options override the values that are defined in the solution stack or the configuration template. If you remove any options during a stack update, the removed options retain their current values.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "PlatformArn": {
+        "description": "The Amazon Resource Name (ARN) of the custom platform to use with the environment. For more information, see Custom Platforms in the AWS Elastic Beanstalk Developer Guide.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "SolutionStackName": {
+        "description": "The name of an Elastic Beanstalk solution stack (platform version) to use with the environment. If specified, Elastic Beanstalk sets the configuration values to the default values associated with the specified solution stack. For a list of current solution stacks, see Elastic Beanstalk Supported Platforms in the AWS Elastic Beanstalk Platforms guide.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Tags": {
+        "description": "Specifies the tags applied to resources in the environment.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "TemplateName": {
+        "description": "The name of the Elastic Beanstalk configuration template to use with the environment.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Tier": {
+        "description": "Specifies the tier to use in creating this environment. The environment tier that you choose determines whether Elastic Beanstalk provisions resources to support a web application that handles HTTP(S) requests or a web application that handles background-processing tasks.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "interrupt"
+      },
+      "VersionLabel": {
+        "description": "The name of the application version to deploy.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-beanstalk-environment.html",
+    "properties": [
+      "ApplicationName",
+      "CNAMEPrefix",
+      "Description",
+      "EnvironmentName",
+      "OptionSettings",
+      "PlatformArn",
+      "SolutionStackName",
+      "Tags",
+      "TemplateName",
+      "Tier",
+      "VersionLabel"
+    ]
+  },
+  "AWS::ElasticLoadBalancing::LoadBalancer": {
+    "full_properties": {
+      "AccessLoggingPolicy": {
+        "description": "Information about where and how access logs are stored for the load balancer.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "AppCookieStickinessPolicy": {
+        "description": "Information about a policy for application-controlled session stickiness.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "AvailabilityZones": {
+        "description": "The Availability Zones for the load balancer. For load balancers in a VPC, specify Subnets instead.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "interrupt"
+      },
+      "ConnectionDrainingPolicy": {
+        "description": "If enabled, the load balancer allows existing requests to complete before the load balancer shifts traffic away from a deregistered or unhealthy instance.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "ConnectionSettings": {
+        "description": "If enabled, the load balancer allows the connections to remain idle (no data is sent over the connection) for the specified duration.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "CrossZone": {
+        "description": "If enabled, the load balancer routes the request traffic evenly across all instances regardless of the Availability Zones.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "HealthCheck": {
+        "description": "The health check settings to use when evaluating the health of your EC2 instances.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "interrupt"
+      },
+      "Instances": {
+        "description": "The IDs of the instances for the load balancer.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "LBCookieStickinessPolicy": {
+        "description": "Information about a policy for duration-based session stickiness.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "Listeners": {
+        "description": "The listeners for the load balancer. You can specify at most one listener per port.",
+        "required": true,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "LoadBalancerName": {
+        "description": "The name of the load balancer. This name must be unique within your set of load balancers for the region.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "Policies": {
+        "description": "The policies defined for your Classic Load Balancer. Specify only back-end server policies.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "Scheme": {
+        "description": "The type of load balancer. Valid only for load balancers in a VPC.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "SecurityGroups": {
+        "description": "The security groups for the load balancer. Valid only for load balancers in a VPC.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "Subnets": {
+        "description": "The IDs of the subnets for the load balancer. You can specify at most one subnet per Availability Zone.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "interrupt"
+      },
+      "Tags": {
+        "description": "The tags associated with a load balancer.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-ec2-elb.html",
+    "properties": [
+      "AccessLoggingPolicy",
+      "AppCookieStickinessPolicy",
+      "AvailabilityZones",
+      "ConnectionDrainingPolicy",
+      "ConnectionSettings",
+      "CrossZone",
+      "HealthCheck",
+      "Instances",
+      "LBCookieStickinessPolicy",
+      "Listeners",
+      "LoadBalancerName",
+      "Policies",
+      "Scheme",
+      "SecurityGroups",
+      "Subnets",
+      "Tags"
     ]
   },
   "AWS::ElasticLoadBalancingV2::Listener": {
@@ -15917,6 +17584,69 @@
       "Name"
     ]
   },
+  "AWS::IAM::AccessKey": {
+    "full_properties": {
+      "Serial": {
+        "description": "This value is specific to CloudFormation and can only be incremented. Incrementing this value notifies CloudFormation that you want to rotate your access key. When you update your stack, CloudFormation will replace the existing access key with a new key.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "replacement"
+      },
+      "Status": {
+        "description": "The status of the access key. Active means that the key is valid for API calls, while Inactive means it is not.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "UserName": {
+        "description": "The name of the IAM user that the new key will belong to.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-properties-iam-accesskey.html",
+    "properties": [
+      "Serial",
+      "Status",
+      "UserName"
+    ]
+  },
+  "AWS::IAM::Group": {
+    "full_properties": {
+      "GroupName": {
+        "description": "The name of the group to create. Do not include the path in this value.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "ManagedPolicyArns": {
+        "description": "The Amazon Resource Name (ARN) of the IAM policy you want to attach.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "Path": {
+        "description": "The path to the group. For more information about paths, see IAM Identifiers in the IAM User Guide.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Policies": {
+        "description": "Adds or updates an inline policy document that is embedded in the specified IAM group. To view AWS::IAM::Group snippets, see Declaring an IAM Group Resource.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-iam-group.html",
+    "properties": [
+      "GroupName",
+      "ManagedPolicyArns",
+      "Path",
+      "Policies"
+    ]
+  },
   "AWS::IAM::InstanceProfile": {
     "full_properties": {
       "InstanceProfileName": {
@@ -16139,6 +17869,90 @@
       "AWSServiceName",
       "CustomSuffix",
       "Description"
+    ]
+  },
+  "AWS::IAM::User": {
+    "full_properties": {
+      "Groups": {
+        "description": "A list of groups to which you want to add the user.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "LoginProfile": {
+        "description": "Creates a password for the specified user, giving the user the ability to access AWS services through the AWS Management Console. For more information about managing passwords, see Managing Passwords in the IAM User Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "ManagedPolicyArns": {
+        "description": "A list of Amazon Resource Names (ARNs) of the IAM managed policies that you want to attach to the user.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "Path": {
+        "description": "The path for the user name. For more information about paths, see IAM Identifiers in the IAM User Guide.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "PermissionsBoundary": {
+        "description": "The ARN of the policy that is used to set the permissions boundary for the user.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Policies": {
+        "description": "Adds or updates an inline policy document that is embedded in the specified IAM user. To view AWS::IAM::User snippets, see Declaring an IAM User Resource.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "Tags": {
+        "description": "A list of tags that you want to attach to the newly created user. Each tag consists of a key name and an associated value. For more information about tagging, see Tagging IAM Identities in the IAM User Guide.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "UserName": {
+        "description": "The name of the user to create. Do not include the path in this value.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-properties-iam-user.html",
+    "properties": [
+      "Groups",
+      "LoginProfile",
+      "ManagedPolicyArns",
+      "Path",
+      "PermissionsBoundary",
+      "Policies",
+      "Tags",
+      "UserName"
+    ]
+  },
+  "AWS::IAM::UserToGroupAddition": {
+    "full_properties": {
+      "GroupName": {
+        "description": "The name of the group to update.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Users": {
+        "description": "A list of the names of the users that you want to add to the group.",
+        "required": true,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-iam-addusertogroup.html",
+    "properties": [
+      "GroupName",
+      "Users"
     ]
   },
   "AWS::IVS::Channel": {
@@ -22621,6 +24435,412 @@
       "Tags"
     ]
   },
+  "AWS::RDS::DBInstance": {
+    "full_properties": {
+      "AllocatedStorage": {
+        "description": "The amount of storage (in gigabytes) to be initially allocated for the database instance.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "AllowMajorVersionUpgrade": {
+        "description": "A value that indicates whether major version upgrades are allowed. Changing this parameter doesn't result in an outage and the change is asynchronously applied as soon as possible.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "AssociatedRoles": {
+        "description": "The AWS Identity and Access Management (IAM) roles associated with the DB instance.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "AutoMinorVersionUpgrade": {
+        "description": "A value that indicates whether minor engine upgrades are applied automatically to the DB instance during the maintenance window. By default, minor engine upgrades are applied automatically.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "interrupt"
+      },
+      "AvailabilityZone": {
+        "description": "The Availability Zone (AZ) where the database will be created. For information on AWS Regions and Availability Zones, see Regions and Availability Zones.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "BackupRetentionPeriod": {
+        "description": "The number of days for which automated backups are retained. Setting this parameter to a positive number enables backups. Setting this parameter to 0 disables automated backups.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "interrupt"
+      },
+      "CACertificateIdentifier": {
+        "description": "The identifier of the CA certificate for this DB instance.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "CharacterSetName": {
+        "description": "For supported engines, indicates that the DB instance should be associated with the specified character set.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "CopyTagsToSnapshot": {
+        "description": "A value that indicates whether to copy tags from the DB instance to snapshots of the DB instance. By default, tags are not copied.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "DBClusterIdentifier": {
+        "description": "The identifier of the DB cluster that the instance will belong to.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "DBInstanceClass": {
+        "description": "The compute and memory capacity of the DB instance, for example, db.m4.large. Not all DB instance classes are available in all AWS Regions, or for all database engines.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "DBInstanceIdentifier": {
+        "description": "A name for the DB instance. If you specify a name, AWS CloudFormation converts it to lowercase. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the DB instance. For more information, see Name Type.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "DBName": {
+        "description": "The meaning of this parameter differs according to the database engine you use.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "DBParameterGroupName": {
+        "description": "The name of an existing DB parameter group or a reference to an AWS::RDS::DBParameterGroup resource created in the template.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "DBSecurityGroups": {
+        "description": "A list of the DB security groups to assign to the DB instance. The list can include both the name of existing DB security groups or references to AWS::RDS::DBSecurityGroup resources created in the template.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "DBSnapshotIdentifier": {
+        "description": "The name or Amazon Resource Name (ARN) of the DB snapshot that's used to restore the DB instance. If you're restoring from a shared manual DB snapshot, you must specify the ARN of the snapshot.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "DBSubnetGroupName": {
+        "description": "A DB subnet group to associate with the DB instance. If you update this value, the new subnet group must be a subnet group in a new VPC.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "DeleteAutomatedBackups": {
+        "description": "A value that indicates whether to remove automated backups immediately after the DB instance is deleted. This parameter isn't case-sensitive. The default is to remove  automated backups immediately after the DB instance is deleted.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "DeletionProtection": {
+        "description": "A value that indicates whether the DB instance has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled. For more information, see  Deleting a DB Instance.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "Domain": {
+        "description": "The Active Directory directory ID to create the DB instance in. Currently, only MySQL, Microsoft SQL Server, Oracle, and PostgreSQL DB instances can be created in an Active Directory Domain.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "DomainIAMRoleName": {
+        "description": "Specify the name of the IAM role to be used when making API calls to the Directory Service.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "EnableCloudwatchLogsExports": {
+        "description": "The list of log types that need to be enabled for exporting to CloudWatch Logs. The values in the list depend on the DB engine being used. For more information, see Publishing Database Logs to Amazon CloudWatch Logs  in the Amazon Relational Database Service User Guide.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "EnableIAMDatabaseAuthentication": {
+        "description": "A value that indicates whether to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts. By default, mapping is disabled.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "EnablePerformanceInsights": {
+        "description": "A value that indicates whether to enable Performance Insights for the DB instance.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "Engine": {
+        "description": "The name of the database engine that you want to use for this DB instance.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "EngineVersion": {
+        "description": "The version number of the database engine to use.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "Iops": {
+        "description": "The number of I/O operations per second (IOPS) that the database provisions. The value must be equal to or greater than 1000.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "KmsKeyId": {
+        "description": "The ARN of the AWS Key Management Service (AWS KMS) master key that's used to encrypt the DB instance, such as arn:aws:kms:us-east-1:012345678910:key/abcd1234-a123-456a-a12b-a123b4cd56ef. If you enable the StorageEncrypted property but don't specify this property, AWS CloudFormation uses the default master key. If you specify this property, you must set the StorageEncrypted property to true.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "LicenseModel": {
+        "description": "License model information for this DB instance.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "MasterUserPassword": {
+        "description": "The password for the master user. The password can include any printable ASCII character except \"/\", \"\"\", or \"@\".",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "MasterUsername": {
+        "description": "The master user name for the DB instance.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "MaxAllocatedStorage": {
+        "description": "The upper limit to which Amazon RDS can automatically scale the storage of the DB instance.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "MonitoringInterval": {
+        "description": "The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collecting Enhanced Monitoring metrics, specify 0. The default is 0.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "interrupt"
+      },
+      "MonitoringRoleArn": {
+        "description": "The ARN for the IAM role that permits RDS to send enhanced monitoring metrics to Amazon CloudWatch Logs. For example, arn:aws:iam:123456789012:role/emaccess. For information on creating a monitoring role, go to Setting Up and Enabling Enhanced Monitoring in the Amazon RDS User Guide.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "MultiAZ": {
+        "description": "Specifies whether the database instance is a multiple Availability Zone deployment. You can't set the AvailabilityZone parameter if the MultiAZ parameter is set to true. Amazon Aurora storage is replicated across all the Availability Zones and doesn't require the MultiAZ option to be set.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "interrupt"
+      },
+      "OptionGroupName": {
+        "description": "Indicates that the DB instance should be associated with the specified option group.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "PerformanceInsightsKMSKeyId": {
+        "description": "The AWS KMS key identifier for encryption of Performance Insights data. The KMS key ID is the Amazon Resource Name (ARN), KMS key identifier, or the KMS key alias for the KMS encryption key.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "PerformanceInsightsRetentionPeriod": {
+        "description": "The amount of time, in days, to retain Performance Insights data. Valid values are 7 or 731 (2 years).",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "Port": {
+        "description": "The port number on which the database accepts connections.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "PreferredBackupWindow": {
+        "description": "The daily time range during which automated backups are created if automated backups are enabled, using the BackupRetentionPeriod parameter. For more information, see The Backup Window in the Amazon RDS User Guide.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "PreferredMaintenanceWindow": {
+        "description": "The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "ProcessorFeatures": {
+        "description": "The number of CPU cores and the number of threads per core for the DB instance class of the DB instance.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "PromotionTier": {
+        "description": "A value that specifies the order in which an Aurora Replica is promoted to the primary instance after a failure of the existing primary instance. For more information, see Fault Tolerance for an Aurora DB Cluster in the Amazon Aurora User Guide.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "PubliclyAccessible": {
+        "description": "Indicates whether the DB instance is an internet-facing instance. If you specify true, AWS CloudFormation creates an instance with a publicly resolvable DNS name, which resolves to a public IP address. If you specify false, AWS CloudFormation creates an internal instance with a DNS name that resolves to a private IP address.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "replacement"
+      },
+      "SourceDBInstanceIdentifier": {
+        "description": "If you want to create a Read Replica DB instance, specify the ID of the source DB instance. Each DB instance can have a limited number of Read Replicas. For more information, see Working with Read Replicas in the Amazon Relational Database Service Developer Guide.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "SourceRegion": {
+        "description": "The ID of the region that contains the source DB instance for the Read Replica.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "StorageEncrypted": {
+        "description": "A value that indicates whether the DB instance is encrypted. By default, it isn't encrypted.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "replacement"
+      },
+      "StorageType": {
+        "description": "Specifies the storage type to be associated with the DB instance.",
+        "required": false,
+        "type": "String",
+        "update_causes": "interrupt"
+      },
+      "Tags": {
+        "description": "Tags to assign to the DB instance.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "Timezone": {
+        "description": "The time zone of the DB instance. The time zone parameter is currently supported only by Microsoft SQL Server.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "UseDefaultProcessorFeatures": {
+        "description": "A value that indicates whether the DB instance class of the DB instance uses its default processor features.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "VPCSecurityGroups": {
+        "description": "A list of the VPC security group IDs to assign to the DB instance. The list can include both the physical IDs of existing VPC security groups and references to AWS::EC2::SecurityGroup resources created in the template.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-rds-database-instance.html",
+    "properties": [
+      "AllocatedStorage",
+      "AllowMajorVersionUpgrade",
+      "AssociatedRoles",
+      "AutoMinorVersionUpgrade",
+      "AvailabilityZone",
+      "BackupRetentionPeriod",
+      "CACertificateIdentifier",
+      "CharacterSetName",
+      "CopyTagsToSnapshot",
+      "DBClusterIdentifier",
+      "DBInstanceClass",
+      "DBInstanceIdentifier",
+      "DBName",
+      "DBParameterGroupName",
+      "DBSecurityGroups",
+      "DBSnapshotIdentifier",
+      "DBSubnetGroupName",
+      "DeleteAutomatedBackups",
+      "DeletionProtection",
+      "Domain",
+      "DomainIAMRoleName",
+      "EnableCloudwatchLogsExports",
+      "EnableIAMDatabaseAuthentication",
+      "EnablePerformanceInsights",
+      "Engine",
+      "EngineVersion",
+      "Iops",
+      "KmsKeyId",
+      "LicenseModel",
+      "MasterUsername",
+      "MasterUserPassword",
+      "MaxAllocatedStorage",
+      "MonitoringInterval",
+      "MonitoringRoleArn",
+      "MultiAZ",
+      "OptionGroupName",
+      "PerformanceInsightsKMSKeyId",
+      "PerformanceInsightsRetentionPeriod",
+      "Port",
+      "PreferredBackupWindow",
+      "PreferredMaintenanceWindow",
+      "ProcessorFeatures",
+      "PromotionTier",
+      "PubliclyAccessible",
+      "SourceDBInstanceIdentifier",
+      "SourceRegion",
+      "StorageEncrypted",
+      "StorageType",
+      "Tags",
+      "Timezone",
+      "UseDefaultProcessorFeatures",
+      "VPCSecurityGroups"
+    ]
+  },
+  "AWS::RDS::DBParameterGroup": {
+    "full_properties": {
+      "Description": {
+        "description": "Provides the customer-specified description for this DB parameter group.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Family": {
+        "description": "The DB parameter group family name. A DB parameter group can be associated with one and only one DB parameter group family, and can be applied only to a DB instance running a DB engine and engine version compatible with that DB parameter group family.",
+        "required": true,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Parameters": {
+        "description": "An array of parameter names and values for the parameter update. At least one parameter name and value must be supplied. Subsequent arguments are optional. You can modify a maximum of 20 parameters in a single request.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "Tags": {
+        "description": "Tags to assign to the DB parameter group.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-rds-dbparametergroup.html",
+    "properties": [
+      "Description",
+      "Family",
+      "Parameters",
+      "Tags"
+    ]
+  },
   "AWS::RDS::DBProxy": {
     "full_properties": {
       "Auth": {
@@ -22740,6 +24960,41 @@
       "TargetGroupName"
     ]
   },
+  "AWS::RDS::DBSecurityGroup": {
+    "full_properties": {
+      "DBSecurityGroupIngress": {
+        "description": "Ingress rules to be applied to the DB security group.",
+        "required": true,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "EC2VpcId": {
+        "description": "The identifier of an Amazon VPC. This property indicates the VPC that this DB security group belongs to.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "GroupDescription": {
+        "description": "Provides the description of the DB security group.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Tags": {
+        "description": "Tags to assign to the DB security group.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-rds-security-group.html",
+    "properties": [
+      "DBSecurityGroupIngress",
+      "EC2VpcId",
+      "GroupDescription",
+      "Tags"
+    ]
+  },
   "AWS::RDS::DBSecurityGroupIngress": {
     "full_properties": {
       "CIDRIP": {
@@ -22749,25 +25004,25 @@
         "update_causes": "none"
       },
       "DBSecurityGroupName": {
-        "description": "The name of the DB Security Group to add authorization to.",
+        "description": "The name of the DB security group to add authorization to.",
         "required": true,
         "type": "String",
         "update_causes": "none"
       },
       "EC2SecurityGroupId": {
-        "description": "Id of the EC2 Security Group to authorize. For VPC DB Security Groups, EC2SecurityGroupId must be provided. Otherwise, EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId must be provided.",
+        "description": "Id of the EC2 security group to authorize. For VPC DB security groups, EC2SecurityGroupId must be provided. Otherwise, EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId must be provided.",
         "required": false,
         "type": "String",
         "update_causes": "none"
       },
       "EC2SecurityGroupName": {
-        "description": "Name of the EC2 Security Group to authorize. For VPC DB Security Groups, EC2SecurityGroupId must be provided. Otherwise, EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId must be provided.",
+        "description": "Name of the EC2 security group to authorize. For VPC DB security groups, EC2SecurityGroupId must be provided. Otherwise, EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId must be provided.",
         "required": false,
         "type": "String",
         "update_causes": "none"
       },
       "EC2SecurityGroupOwnerId": {
-        "description": "AWS Account Number of the owner of the EC2 Security Group specified in the EC2SecurityGroupName parameter. The AWS Access Key ID is not an acceptable value. For VPC DB Security Groups, EC2SecurityGroupId must be provided. Otherwise, EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId must be provided.",
+        "description": "AWS account number of the owner of the EC2 security group specified in the EC2SecurityGroupName parameter. The AWS access key ID isn't an acceptable value. For VPC DB security groups, EC2SecurityGroupId must be provided. Otherwise, EC2SecurityGroupOwnerId and either EC2SecurityGroupName or EC2SecurityGroupId must be provided.",
         "required": false,
         "type": "String",
         "update_causes": "none"
@@ -22785,7 +25040,7 @@
   "AWS::RDS::DBSubnetGroup": {
     "full_properties": {
       "DBSubnetGroupDescription": {
-        "description": "The description for the DB Subnet Group.",
+        "description": "The description for the DB subnet group.",
         "required": true,
         "type": "String",
         "update_causes": "none"
@@ -22797,7 +25052,7 @@
         "update_causes": "replacement"
       },
       "SubnetIds": {
-        "description": "The EC2 Subnet IDs for the DB Subnet Group.",
+        "description": "The EC2 Subnet IDs for the DB subnet group.",
         "required": true,
         "type": "Array",
         "update_causes": "none"
@@ -22820,13 +25075,13 @@
   "AWS::RDS::EventSubscription": {
     "full_properties": {
       "Enabled": {
-        "description": "A Boolean value; set to true to activate the subscription, set to false to create the subscription but not active it.",
+        "description": "A value that indicates whether to activate the subscription. If the event notification subscription isn't activated, the subscription is created but not active.",
         "required": false,
         "type": "Boolean",
         "update_causes": "none"
       },
       "EventCategories": {
-        "description": "A list of event categories for a SourceType that you want to subscribe to. You can see a list of the categories for a given SourceType in the Events topic in the Amazon RDS User Guide or by using the DescribeEventCategories action.",
+        "description": "A list of event categories for a particular source type (SourceType) that you want to subscribe to. You can see a list of the categories for a given source type in Events in the Amazon RDS User Guide or by using the DescribeEventCategories operation.",
         "required": false,
         "type": "Array",
         "update_causes": "none"
@@ -22838,7 +25093,7 @@
         "update_causes": "replacement"
       },
       "SourceIds": {
-        "description": "The list of identifiers of the event sources for which events will be returned. If not specified, then all sources are included in the response. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens; it cannot end with a hyphen or contain two consecutive hyphens.",
+        "description": "The list of identifiers of the event sources for which events are returned. If not specified, then all sources are included in the response. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens. It can't end with a hyphen or contain two consecutive hyphens.",
         "required": false,
         "type": "Unknown",
         "update_causes": "none"
@@ -23580,6 +25835,118 @@
       "VPCs"
     ]
   },
+  "AWS::Route53::RecordSet": {
+    "full_properties": {
+      "AliasTarget": {
+        "description": "Alias resource record sets only: Information about the AWS resource, such as a CloudFront distribution or an Amazon S3 bucket, that you want to route traffic to.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "Comment": {
+        "description": "Optional: Any comments you want to include about a change batch request.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Failover": {
+        "description": "Failover resource record sets only: To configure failover, you add the Failover element to two resource record sets. For one resource record set, you specify PRIMARY as the value for Failover; for the other resource record set, you specify SECONDARY. In addition, you include the HealthCheckId element and specify the health check that you want Amazon Route 53 to perform for each resource record set.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "GeoLocation": {
+        "description": "Geolocation resource record sets only: A complex type that lets you control how Amazon Route 53 responds to DNS queries  based on the geographic origin of the query. For example, if you want all queries from Africa to be routed to a web server with an IP address of 192.0.2.111, create a resource record set with a Type of A and a ContinentCode of AF.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "HealthCheckId": {
+        "description": "If you want Amazon Route 53 to return this resource record set in response to a DNS query only when the status of a health check is healthy, include the HealthCheckId element and specify the ID of the applicable health check.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "HostedZoneId": {
+        "description": "The ID of the hosted zone that you want to create records in.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "HostedZoneName": {
+        "description": "The name of the hosted zone that you want to create records in.",
+        "required": false,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "MultiValueAnswer": {
+        "description": "Multivalue answer resource record sets only: To route traffic approximately randomly to multiple resources, such as web servers, create one multivalue answer record for each resource and specify true for MultiValueAnswer. Note the following:",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "Name": {
+        "description": "For ChangeResourceRecordSets requests, the name of the record that you want to create, update, or delete. For ListResourceRecordSets responses, the name of a record in the specified hosted zone.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "Region": {
+        "description": "Latency-based resource record sets only: The Amazon EC2 Region where you created the resource that this resource record set refers to. The resource typically is an AWS resource, such as an EC2 instance or an ELB load balancer, and is referred to by an IP address or a DNS domain name, depending on the record type.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "ResourceRecords": {
+        "description": "One or more values that correspond with the value that you specified for the Type property. For example, if you specified A for Type, you specify one or more IP addresses in IPv4 format for ResourceRecords. For information about the format of values for each record type, see Supported DNS Resource Record Types in the Amazon Route 53 Developer Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "SetIdentifier": {
+        "description": "Resource record sets that have a routing policy other than simple: An identifier that differentiates among multiple resource record sets that have the same combination of name and type, such as multiple weighted resource record sets named acme.example.com that have a type of A. In a group of resource record sets that have the same name and type, the value of SetIdentifier must be unique for each resource record set.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "TTL": {
+        "description": "The resource record cache time to live (TTL), in seconds. Note the following:",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Type": {
+        "description": "The DNS record type. For information about different record types and how data is encoded for them, see Supported DNS Resource Record Types in the Amazon Route 53 Developer Guide.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "Weight": {
+        "description": "Weighted resource record sets only: Among resource record sets that have the same combination of DNS name and type, a value that determines the proportion of DNS queries that Amazon Route 53 responds to using the current resource record set. Route 53 calculates the sum of the weights for the resource record sets that have the same combination of DNS name and type. Route 53 then responds to queries based on the ratio of a resource's weight to the total. Note the following:",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-route53-recordset.html",
+    "properties": [
+      "AliasTarget",
+      "Comment",
+      "Failover",
+      "GeoLocation",
+      "HealthCheckId",
+      "HostedZoneId",
+      "HostedZoneName",
+      "MultiValueAnswer",
+      "Name",
+      "Region",
+      "ResourceRecords",
+      "SetIdentifier",
+      "TTL",
+      "Type",
+      "Weight"
+    ]
+  },
   "AWS::Route53::RecordSetGroup": {
     "full_properties": {
       "Comment": {
@@ -23839,6 +26206,188 @@
       "VpcConfiguration"
     ]
   },
+  "AWS::S3::Bucket": {
+    "full_properties": {
+      "AccelerateConfiguration": {
+        "description": "Configures the transfer acceleration state for an Amazon S3 bucket. For more information, see Amazon S3 Transfer Acceleration in the Amazon Simple Storage Service Developer Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "AccessControl": {
+        "description": "A canned access control list (ACL) that grants predefined permissions to the bucket. For more information about canned ACLs, see Canned ACL in the Amazon Simple Storage Service Developer Guide.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "AnalyticsConfigurations": {
+        "description": "Specifies the configuration and any analyses for the analytics filter of an Amazon S3 bucket.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "BucketEncryption": {
+        "description": "Specifies default encryption for a bucket using server-side encryption with Amazon S3-managed keys (SSE-S3) or AWS KMS-managed keys (SSE-KMS) bucket. For information about the Amazon S3 default encryption feature, see  Amazon S3 Default Encryption for S3 Buckets in the Amazon Simple Storage Service Developer Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "BucketName": {
+        "description": "A name for the bucket. If you don't specify a name, AWS CloudFormation generates a unique ID and uses that ID for the bucket name. For more information, see Name Type. The bucket name must contain only lowercase letters, numbers, periods (.), and dashes (-).",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "CorsConfiguration": {
+        "description": "Describes the cross-origin access configuration for objects in an Amazon S3 bucket. For more information, see Enabling Cross-Origin Resource Sharing in the Amazon Simple Storage Service Developer Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "IntelligentTieringConfigurations": {
+        "description": "Configuration that defines how Amazon S3 handles Intelligent-Tiering storage.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "InventoryConfigurations": {
+        "description": "Specifies the inventory configuration for an Amazon S3 bucket. For more information, see GET Bucket inventory in the Amazon Simple Storage Service API Reference.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "LifecycleConfiguration": {
+        "description": "Specifies the lifecycle configuration for objects in an Amazon S3 bucket. For more information, see Object Lifecycle Management in the Amazon Simple Storage Service Developer Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "LoggingConfiguration": {
+        "description": "Settings that define where logs are stored.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "MetricsConfigurations": {
+        "description": "Specifies a metrics configuration for the CloudWatch request metrics (specified by the metrics configuration ID) from an Amazon S3 bucket. If you're updating an existing metrics configuration, note that this is a full replacement of the existing metrics configuration. If you don't include the elements you want to keep, they are erased. For more information, see  PUT Bucket metrics in the Amazon Simple Storage Service API Reference.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "NotificationConfiguration": {
+        "description": "Configuration that defines how Amazon S3 handles bucket notifications.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "ObjectLockConfiguration": {
+        "description": "Places an Object Lock configuration on the specified bucket. The rule specified in the Object Lock configuration will be applied by default to every new object placed in the specified bucket.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "ObjectLockEnabled": {
+        "description": "Indicates whether this bucket has an Object Lock configuration enabled.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "replacement"
+      },
+      "OwnershipControls": {
+        "description": "Configuration that defines how Amazon S3 handles object ownership rules.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "PublicAccessBlockConfiguration": {
+        "description": "Configuration that defines how Amazon S3 handles public access.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "ReplicationConfiguration": {
+        "description": "Configuration for replicating objects in an S3 bucket. To enable replication, you must also enable versioning by using the VersioningConfiguration property.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "Tags": {
+        "description": "An arbitrary set of tags (key-value pairs) for this S3 bucket.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "VersioningConfiguration": {
+        "description": "Enables multiple versions of all objects in this bucket. You might enable versioning to prevent objects from being deleted or overwritten by mistake or to archive objects so that you can retrieve previous versions of them.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "WebsiteConfiguration": {
+        "description": "Information used to configure the bucket as a static website. For more information, see Hosting Websites on Amazon S3.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-s3-bucket.html",
+    "properties": [
+      "AccelerateConfiguration",
+      "AccessControl",
+      "AnalyticsConfigurations",
+      "BucketEncryption",
+      "BucketName",
+      "CorsConfiguration",
+      "IntelligentTieringConfigurations",
+      "InventoryConfigurations",
+      "LifecycleConfiguration",
+      "LoggingConfiguration",
+      "MetricsConfigurations",
+      "NotificationConfiguration",
+      "ObjectLockConfiguration",
+      "ObjectLockEnabled",
+      "OwnershipControls",
+      "PublicAccessBlockConfiguration",
+      "ReplicationConfiguration",
+      "Tags",
+      "VersioningConfiguration",
+      "WebsiteConfiguration"
+    ]
+  },
+  "AWS::S3::BucketPolicy": {
+    "full_properties": {
+      "Bucket": {
+        "description": "The name of the Amazon S3 bucket to which the policy applies.",
+        "required": true,
+        "type": "String",
+        "update_causes": "replacement"
+      },
+      "PolicyDocument": {
+        "description": "A policy document containing permissions to add to the specified bucket. For more information, see Access Policy Language Overview in the Amazon Simple Storage Service Developer Guide.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-s3-policy.html",
+    "properties": [
+      "Bucket",
+      "PolicyDocument"
+    ]
+  },
+  "AWS::SDB::Domain": {
+    "full_properties": {
+      "Description": {
+        "description": "Information about the SimpleDB domain.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-simpledb.html",
+    "properties": [
+      "Description"
+    ]
+  },
   "AWS::SES::ConfigurationSet": {
     "full_properties": {
       "Name": {
@@ -24047,6 +26596,195 @@
       "Region",
       "SubscriptionRoleArn",
       "TopicArn"
+    ]
+  },
+  "AWS::SNS::Topic": {
+    "full_properties": {
+      "ContentBasedDeduplication": {
+        "description": "Enables content-based deduplication for FIFO topics.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "DisplayName": {
+        "description": "The display name to use for an Amazon SNS topic with SMS subscriptions.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "FifoTopic": {
+        "description": "Set to true to create a FIFO topic.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "replacement"
+      },
+      "KmsMasterKeyId": {
+        "description": "The ID of an AWS-managed customer master key (CMK) for Amazon SNS or a custom CMK. For more information, see Key Terms. For more examples, see KeyId in the AWS Key Management Service API Reference.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "Subscription": {
+        "description": "The SNS subscriptions (endpoints) for this topic.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "Tags": {
+        "description": "The list of tags to add to a new topic.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "TopicName": {
+        "description": "The name of the topic you want to create. Topic names must include only uppercase and lowercase ASCII letters, numbers, underscores, and hyphens, and must be between 1 and 256 characters long. FIFO topic names must end with .fifo.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      }
+    },
+    "path": "aws-properties-sns-topic.html",
+    "properties": [
+      "ContentBasedDeduplication",
+      "DisplayName",
+      "FifoTopic",
+      "KmsMasterKeyId",
+      "Subscription",
+      "Tags",
+      "TopicName"
+    ]
+  },
+  "AWS::SNS::TopicPolicy": {
+    "full_properties": {
+      "PolicyDocument": {
+        "description": "A policy document that contains permissions to add to the specified SNS topics.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "Topics": {
+        "description": "The Amazon Resource Names (ARN) of the topics to which you want to add the policy. You can use the Ref function to specify an AWS::SNS::Topic resource.",
+        "required": true,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-sns-policy.html",
+    "properties": [
+      "PolicyDocument",
+      "Topics"
+    ]
+  },
+  "AWS::SQS::Queue": {
+    "full_properties": {
+      "ContentBasedDeduplication": {
+        "description": "For first-in-first-out (FIFO) queues, specifies whether to enable content-based deduplication. During the deduplication interval, Amazon SQS treats messages that are sent with identical content as duplicates and delivers only one copy of the message. For more information, see the ContentBasedDeduplication attribute for the CreateQueue action in the Amazon Simple Queue Service API Reference.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "none"
+      },
+      "DelaySeconds": {
+        "description": "The time in seconds for which the delivery of all messages in the queue is delayed. You can specify an integer value of 0 to 900 (15 minutes). The default value is 0.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "FifoQueue": {
+        "description": "If set to true, creates a FIFO queue. If you don't specify this property, Amazon SQS creates a standard queue. For more information, see FIFO (First-In-First-Out) Queues in the Amazon Simple Queue Service Developer Guide.",
+        "required": false,
+        "type": "Boolean",
+        "update_causes": "replacement"
+      },
+      "KmsDataKeyReusePeriodSeconds": {
+        "description": "The length of time in seconds for which Amazon SQS can reuse a data key to encrypt or decrypt messages before calling AWS KMS again. The value must be an integer between 60 (1 minute) and 86,400 (24 hours). The default is 300 (5 minutes).",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "KmsMasterKeyId": {
+        "description": "The ID of an AWS managed customer master key (CMK) for Amazon SQS or a custom CMK. To use the AWS managed CMK for Amazon SQS, specify the (default) alias alias/aws/sqs. For more information, see the following:",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
+      },
+      "MaximumMessageSize": {
+        "description": "The limit of how many bytes that a message can contain before Amazon SQS rejects it. You can specify an integer value from 1,024 bytes (1 KiB) to 262,144 bytes (256 KiB). The default value is 262,144 (256 KiB).",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "MessageRetentionPeriod": {
+        "description": "The number of seconds that Amazon SQS retains a message. You can specify an integer value from 60 seconds (1 minute) to 1,209,600 seconds (14 days). The default value is 345,600 seconds (4 days).",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "QueueName": {
+        "description": "A name for the queue. To create a FIFO queue, the name of your FIFO queue must end with the .fifo suffix. For more information, see FIFO (First-In-First-Out) Queues in the Amazon Simple Queue Service Developer Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "replacement"
+      },
+      "ReceiveMessageWaitTimeSeconds": {
+        "description": "Specifies the duration, in seconds, that the ReceiveMessage action call waits until a message is in the queue in order to include it in the response, rather than returning an empty response if a message isn't yet available. You can specify an integer from 1 to 20. Short polling is used as the default or when you specify 0 for this property. For more information, see Amazon SQS Long Poll.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      },
+      "RedrivePolicy": {
+        "description": "A string that includes the parameters for the dead-letter queue functionality (redrive policy) of the source queue. For more information about the redrive policy and dead-letter queues, see Using Amazon SQS Dead-Letter Queues in the Amazon Simple Queue Service Developer Guide.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "Tags": {
+        "description": "The tags that you attach to this queue. For more information, see Resource Tag in the AWS CloudFormation User Guide.",
+        "required": false,
+        "type": "Array",
+        "update_causes": "none"
+      },
+      "VisibilityTimeout": {
+        "description": "The length of time during which a message will be unavailable after a message is delivered from the queue. This blocks other components from receiving the same message and gives the initial component time to process and delete the message from the queue.",
+        "required": false,
+        "type": "Number",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-sqs-queues.html",
+    "properties": [
+      "ContentBasedDeduplication",
+      "DelaySeconds",
+      "FifoQueue",
+      "KmsDataKeyReusePeriodSeconds",
+      "KmsMasterKeyId",
+      "MaximumMessageSize",
+      "MessageRetentionPeriod",
+      "QueueName",
+      "ReceiveMessageWaitTimeSeconds",
+      "RedrivePolicy",
+      "Tags",
+      "VisibilityTimeout"
+    ]
+  },
+  "AWS::SQS::QueuePolicy": {
+    "full_properties": {
+      "PolicyDocument": {
+        "description": "A policy document that contains the permissions for the specified Amazon SQS queues. For more information about Amazon SQS policies, see Creating Custom Policies Using the Access Policy Language in the Amazon Simple Queue Service Developer Guide.",
+        "required": true,
+        "type": "Unknown",
+        "update_causes": "none"
+      },
+      "Queues": {
+        "description": "The URLs of the queues to which you want to add the policy. You can use the Ref function to specify an AWS::SQS::Queue resource.",
+        "required": true,
+        "type": "Array",
+        "update_causes": "none"
+      }
+    },
+    "path": "aws-properties-sqs-policy.html",
+    "properties": [
+      "PolicyDocument",
+      "Queues"
     ]
   },
   "AWS::SSM::Association": {

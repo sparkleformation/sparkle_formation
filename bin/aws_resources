@@ -22,7 +22,7 @@ UPDATE_MAPPING = {
 unless (File.directory?(STORE))
   FileUtils.mkdir_p(STORE)
   Dir.chdir(STORE) do
-    unless (system('wget -q -r -l 3 -A "aws-resource-*" "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html"'))
+    unless (system('wget -q -r -l 2 -A "aws-*" "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html"'))
       puts "FAILED: Documentation fetching failed!"
       exit -1
     end
