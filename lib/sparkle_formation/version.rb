@@ -1,5 +1,5 @@
 # Unicorns and rainbows
 class SparkleFormation
   # Current library version
-  VERSION = Gem::Version.new("3.0.41")
+  VERSION = Gem::Version.new("3.0.42")
 end

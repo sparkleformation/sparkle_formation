@@ -1,3 +1,6 @@
+# v3.0.42
+* Update AWS resource list
+
 # v3.0.40
 * Add missing AWS pseudo parameters (#260)
 * Update AWS resource list (#262)
