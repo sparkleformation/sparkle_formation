@@ -75,6 +75,7 @@ class SparkleFormation
         "reference",
         "resourceGroup",
         "subscription",
+        "listAccountSas",
       ]
 
       # NOTE: Alias implementation disabled due to Ruby 2.3 __callee__ bug
