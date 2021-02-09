@@ -167,6 +167,7 @@ class SparkleFormation
           :NIL,
           :TRUE,
           :FALSE,
+          :SortedSet,
         ]
         ::Object.constants.each do |const|
           unless self.const_defined?(const) # rubocop:disable Style/RedundantSelf
