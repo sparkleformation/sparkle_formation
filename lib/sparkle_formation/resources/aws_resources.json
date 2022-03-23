@@ -14152,7 +14152,7 @@
         "description": "Includes information related to client authentication.",
         "required": false,
         "type": "Unknown",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "ClusterName": {
         "description": "The name of the cluster.",
@@ -14164,7 +14164,13 @@
         "description": "The Amazon MSK configuration to use for the cluster.",
         "required": false,
         "type": "Unknown",
-        "update_causes": "replacement"
+        "update_causes": "none"
+      },
+      "CurrentVersion": {
+        "description": "The version of the cluster that you want to update.",
+        "required": false,
+        "type": "String",
+        "update_causes": "none"
       },
       "EncryptionInfo": {
         "description": "Includes all encryption-related information.",
@@ -14176,22 +14182,34 @@
         "description": "Specifies the level of monitoring for the MSK cluster. The possible values are DEFAULT, PER_BROKER, and PER_TOPIC_PER_BROKER.",
         "required": false,
         "type": "String",
-        "update_causes": "replacement"
+        "update_causes": "none"
       },
       "KafkaVersion": {
-        "description": "The version of Apache Kafka.",
+        "description": "The version of Apache Kafka. For more information, see Supported Apache Kafka versions in the Amazon MSK Developer Guide.",
         "required": true,
         "type": "String",
-        "update_causes": "replacement"
+        "update_causes": "none"
+      },
+      "LoggingInfo": {
+        "description": "You can configure your Amazon MSK cluster to send broker logs to different destination types. This is a container for the configuration details related to broker logs.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
       },
       "NumberOfBrokerNodes": {
-        "description": "The number of broker nodes you want in the Amazon MSK cluster.",
+        "description": "The number of broker nodes you want in the Amazon MSK cluster. You can submit an update to increase the number of broker nodes in a cluster.",
         "required": true,
         "type": "Number",
-        "update_causes": "replacement"
+        "update_causes": "none"
+      },
+      "OpenMonitoring": {
+        "description": "The settings for open monitoring.",
+        "required": false,
+        "type": "Unknown",
+        "update_causes": "none"
       },
       "Tags": {
-        "description": "An array of key-value pairs to apply to this resource. You can specify tags in JSON or in YAML, depending on which format you use for your template.",
+        "description": "A map of key:value pairs to apply to this resource. Both key and value are of type String.",
         "required": false,
         "type": "Unknown",
         "update_causes": "replacement"
@@ -14203,10 +14221,13 @@
       "ClientAuthentication",
       "ClusterName",
       "ConfigurationInfo",
+      "CurrentVersion",
       "EncryptionInfo",
       "EnhancedMonitoring",
       "KafkaVersion",
+      "LoggingInfo",
       "NumberOfBrokerNodes",
+      "OpenMonitoring",
       "Tags"
     ]
   },
