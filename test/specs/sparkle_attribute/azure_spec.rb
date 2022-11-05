@@ -50,8 +50,9 @@ describe SparkleFormation::SparkleAttribute::Azure do
   end
 
   describe "resource_id helper method" do
+    # TODO(spox): Check this behavior. Original had argument as 'fubar_type/fubar'.
     it "should generate a direct resource id" do
-      _(@attr.resource_id!("fubar_type", "fubar").dump).must_equal "[resourceId('fubar_type/fubar')]"
+      _(@attr.resource_id!("fubar_type", "fubar")._dump).must_equal "[resourceId('fubar_type', 'fubar')]"
     end
 
     it "should generate a resource id using defined resources" do
