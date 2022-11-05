@@ -15,7 +15,7 @@ class SparkleFormation
 
       def _var(v_name)
         __t_stringish(v_name)
-        res = ::SparkleFormation::TerraformStruct.new("var").set!(__attribute_key(v_name))
+        ::SparkleFormation::TerraformStruct.new("var").set!(__attribute_key(v_name))
       end
 
       alias_method :var!, :_var

@@ -10,19 +10,19 @@ describe SparkleFormation::Sparkle do
     end
 
     it "should have template registered" do
-      @pack.get(:template, :stack).must_be_kind_of Hash
+      _(@pack.get(:template, :stack)).must_be_kind_of Hash
     end
 
     it "should have a dynamic registered" do
-      @pack.get(:dynamic, :base).must_be_kind_of Hash
+      _(@pack.get(:dynamic, :base)).must_be_kind_of Hash
     end
 
     it "should have a component registered" do
-      @pack.get(:component, :base).must_be_kind_of Hash
+      _(@pack.get(:component, :base)).must_be_kind_of Hash
     end
 
     it "should have a registry item registered" do
-      @pack.get(:registry, :base).must_be_kind_of Hash
+      _(@pack.get(:registry, :base)).must_be_kind_of Hash
     end
   end
 
@@ -35,13 +35,13 @@ describe SparkleFormation::Sparkle do
     end
 
     it "should be able to compile a stack with the dynamics" do
-      @template.to_json.must_be_kind_of String
+      _(@template.to_json).must_be_kind_of String
     end
   end
 
   describe "invalid name collision pack" do
     it "should raise a KeyError on duplicate template name" do
-      -> {
+      _{
         SparkleFormation::Sparkle.new(
           :root => File.join(File.dirname(__FILE__), "packs/name_collision_pack"),
         ).templates
@@ -49,7 +49,7 @@ describe SparkleFormation::Sparkle do
     end
 
     it "should raise a KeyError on duplicate dynamic name" do
-      -> {
+      _{
         SparkleFormation::Sparkle.new(
           :root => File.join(File.dirname(__FILE__), "packs/name_collision_pack_item"),
         )

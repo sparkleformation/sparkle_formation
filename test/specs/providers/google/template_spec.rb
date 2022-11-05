@@ -8,7 +8,7 @@ describe "Google templates" do
           value true
         end
       end.sparkle_dump
-      result.to_smash.get("resources", "testResource", "value").must_equal true
+      _(result.to_smash.get("resources", "testResource", "value")).must_equal true
     end
 
     it "should restructure template into nested template when dumped" do
@@ -17,12 +17,12 @@ describe "Google templates" do
           value true
         end
       end.dump.to_smash
-      result.keys.sort.must_equal ["config", "imports"]
-      result[:imports].first.get(:content, :resources).first[:name].must_equal "testResource"
-      result[:imports].first.get(:content, :resources).first[:value].must_equal true
-      result.get(:config, :content, :imports).first.must_equal result[:imports].first[:name]
-      result.get(:config, :content, :resources).first[:name].must_equal "dummy"
-      result.get(:config, :content, :resources).first[:type].must_equal result[:imports].first[:name]
+      _(result.keys.sort).must_equal ["config", "imports"]
+      _(result[:imports].first.get(:content, :resources).first[:name]).must_equal "testResource"
+      _(result[:imports].first.get(:content, :resources).first[:value]).must_equal true
+      _(result.get(:config, :content, :imports).first).must_equal result[:imports].first[:name]
+      _(result.get(:config, :content, :resources).first[:name]).must_equal "dummy"
+      _(result.get(:config, :content, :resources).first[:type]).must_equal result[:imports].first[:name]
     end
   end
 
@@ -31,8 +31,8 @@ describe "Google templates" do
       result = SparkleFormation.new(:dummy, :provider => :google) do
         dynamic!(:v1_bucket, :test, :sparkle_unique)
       end.dump.to_smash
-      result[:imports].first.get(:content, :resources).first[:type].must_equal "storage.v1.bucket"
-      result[:imports].first.get(:content, :resources).first[:name].must_equal "test-ywyleejouz"
+      _(result[:imports].first.get(:content, :resources).first[:type]).must_equal "storage.v1.bucket"
+      _(result[:imports].first.get(:content, :resources).first[:name]).must_equal "test-ywyleejouz"
     end
 
     it "should generate properly formatted refs" do
@@ -45,26 +45,26 @@ describe "Google templates" do
         dynamic!(:v1_bucket, :other).properties.array_string ref!(:test_v1_bucket)["test"]
         dynamic!(:v1_bucket, :other).properties.array_name ref!(:test_v1_bucket)[0].name
       end.sparkle_dump.to_smash
-      result.get(:resources, :otherV1Bucket, :properties, :direct).must_equal "$(ref.testV1Bucket)"
-      result.get(:resources, :otherV1Bucket, :properties, :name).must_equal "$(ref.testV1Bucket.name)"
-      result.get(:resources, :otherV1Bucket, :properties, :nameArgs).must_equal '$(ref.testV1Bucket.name("string", 0))'
-      result.get(:resources, :otherV1Bucket, :properties, :arrayInt).must_equal "$(ref.testV1Bucket[0])"
-      result.get(:resources, :otherV1Bucket, :properties, :arrayString).must_equal '$(ref.testV1Bucket["test"])'
-      result.get(:resources, :otherV1Bucket, :properties, :arrayName).must_equal "$(ref.testV1Bucket[0].name)"
+      _(result.get(:resources, :otherV1Bucket, :properties, :direct)).must_equal "$(ref.testV1Bucket)"
+      _(result.get(:resources, :otherV1Bucket, :properties, :name)).must_equal "$(ref.testV1Bucket.name)"
+      _(result.get(:resources, :otherV1Bucket, :properties, :nameArgs)).must_equal '$(ref.testV1Bucket.name("string", 0))'
+      _(result.get(:resources, :otherV1Bucket, :properties, :arrayInt)).must_equal "$(ref.testV1Bucket[0])"
+      _(result.get(:resources, :otherV1Bucket, :properties, :arrayString)).must_equal '$(ref.testV1Bucket["test"])'
+      _(result.get(:resources, :otherV1Bucket, :properties, :arrayName)).must_equal "$(ref.testV1Bucket[0].name)"
     end
 
     it "should generate properly formatted property values" do
       result = SparkleFormation.new(:dummy, :provider => :google) do
         test_value property!(:my_property)
       end.sparkle_dump
-      result["testValue"].must_equal '{{ properties["myProperty"] }}'
+      _(result["testValue"]).must_equal '{{ properties["myProperty"] }}'
     end
 
     it "should generate properly formatted environment values" do
       result = SparkleFormation.new(:dummy, :provider => :google) do
         test_value env!(:project)
       end.sparkle_dump
-      result["testValue"].must_equal '{{ env["project"] }}'
+      _(result["testValue"]).must_equal '{{ env["project"] }}'
     end
 
     it "should generate properly formatted jinja calls" do
@@ -72,8 +72,8 @@ describe "Google templates" do
         test_value jinja!.time.clock
         test_value_params jinja!.time.sleep(2)
       end.sparkle_dump
-      result["testValue"].must_equal "{{ time.clock }}"
-      result["testValueParams"].must_equal "{{ time.sleep(2) }}"
+      _(result["testValue"]).must_equal "{{ time.clock }}"
+      _(result["testValueParams"]).must_equal "{{ time.sleep(2) }}"
     end
   end
 end

@@ -5,9 +5,11 @@ class SparkleFormation
   class Composition
 
     # Component item of composition
-    Component = Struct.new("Component", :origin, :key, :block) do
-      def key
-        self[:key].to_s
+    Component = Utils.silence_warnings do
+      Struct.new("Component", :origin, :key, :block) do
+        def key
+          self[:key].to_s
+        end
       end
     end
 

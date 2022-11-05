@@ -8,9 +8,9 @@ describe "Azure templates" do
           value true
         end
       end.dump
-      result.keys.must_include "resources"
-      result["resources"].must_be_kind_of Array
-      result["resources"].first.must_equal "value" => true, "name" => "testResource"
+      _(result.keys).must_include "resources"
+      _(result["resources"]).must_be_kind_of Array
+      _(result["resources"].first).must_equal "value" => true, "name" => "testResource"
     end
   end
 
@@ -19,10 +19,10 @@ describe "Azure templates" do
       result = SparkleFormation.new(:dummy, :provider => :azure) do
         dynamic!(:compute_virtual_machines, :test)
       end.dump
-      result["resources"].first["name"].must_equal "testComputeVirtualMachines"
-      result["resources"].first.keys.must_include "apiVersion"
-      result["resources"].first.keys.must_include "type"
-      result["resources"].first.keys.must_include "location"
+      _(result["resources"].first["name"]).must_equal "testComputeVirtualMachines"
+      _(result["resources"].first.keys).must_include "apiVersion"
+      _(result["resources"].first.keys).must_include "type"
+      _(result["resources"].first.keys).must_include "location"
     end
   end
 end

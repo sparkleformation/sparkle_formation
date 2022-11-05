@@ -22,8 +22,8 @@ describe SparkleFormation do
       )
       template.sparkle.set_root collection.sparkle_at(0)
       result = template.dump.to_smash
-      result.get("CoreCustomBlock", "BaseDynamic").must_equal true
-      result.get("ExtendedCustomBlock", "BaseDynamic").must_equal true
+      _(result.get("CoreCustomBlock", "BaseDynamic")).must_equal true
+      _(result.get("ExtendedCustomBlock", "BaseDynamic")).must_equal true
     end
 
     it "should error on self inherit" do
@@ -33,7 +33,7 @@ describe SparkleFormation do
         :sparkle_path => collection.sparkle_at(0).root,
       )
       template.sparkle.set_root collection.sparkle_at(0)
-      -> { template.dump }.must_raise SparkleFormation::Error::CircularInheritance
+      _{ template.dump }.must_raise SparkleFormation::Error::CircularInheritance
     end
 
     it "should error on non-direct circular inheritance" do
@@ -43,7 +43,7 @@ describe SparkleFormation do
         :sparkle_path => collection.sparkle_at(0).root,
       )
       template.sparkle.set_root collection.sparkle_at(0)
-      -> { template.dump }.must_raise SparkleFormation::Error::CircularInheritance
+      _{ template.dump }.must_raise SparkleFormation::Error::CircularInheritance
     end
   end
 
@@ -72,21 +72,21 @@ describe SparkleFormation do
     let(:result) { @result }
 
     it "should inherit and merge template" do
-      result.get("CoreCustomBlock", "BaseDynamic").must_equal true
-      result.get("ExtendedCustomBlock", "BaseDynamic").must_equal true
-      result.get("LayeredExtra").must_equal true
+      _(result.get("CoreCustomBlock", "BaseDynamic")).must_equal true
+      _(result.get("ExtendedCustomBlock", "BaseDynamic")).must_equal true
+      _(result.get("LayeredExtra")).must_equal true
     end
 
     it "should have merged component layer" do
-      result["ExtraBaseComponent"].must_equal true
+      _(result["ExtraBaseComponent"]).must_equal true
     end
 
     it "should have merged dynamic layer" do
-      result["ExpandedDynamic"].must_equal "extended"
+      _(result["ExpandedDynamic"]).must_equal "extended"
     end
 
     it "should have provided original dynamic return context" do
-      result.get("ExtendedCustomBlock", "ReturnValue").must_equal "test"
+      _(result.get("ExtendedCustomBlock", "ReturnValue")).must_equal "test"
     end
   end
 
@@ -153,26 +153,26 @@ describe SparkleFormation do
     end
 
     it "should replace the previous template layer" do
-      extended.must_equal "KnockoutTemplate" => true
+      _(extended).must_equal "KnockoutTemplate" => true
     end
 
     it "should replace previous component layer" do
-      final["KnockoutComponent"].must_equal true
+      _(final["KnockoutComponent"]).must_equal true
     end
 
     it "should replace previous dynamic layer" do
-      final["KnockoutDynamic"].must_equal "core"
+      _(final["KnockoutDynamic"]).must_equal "core"
     end
 
     it "should replace previous registry item" do
-      final["Final"].must_equal "Customvalue"
+      _(final["Final"]).must_equal "Customvalue"
     end
 
     it "should properly order inherited template components" do
-      complex["CoreBlock"].must_equal "core"
-      complex["TestValue"].must_equal "inherit"
-      complex["OverrideValue"].must_equal "inherit"
-      complex["KnockoutComponent"].must_equal true
+      _(complex["CoreBlock"]).must_equal "core"
+      _(complex["TestValue"]).must_equal "inherit"
+      _(complex["OverrideValue"]).must_equal "inherit"
+      _(complex["KnockoutComponent"]).must_equal true
     end
   end
 end
