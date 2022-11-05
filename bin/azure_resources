@@ -28,7 +28,7 @@ unless (File.directory?(STORE))
   end
 end
 
-schema_files = Dir.glob(File.join(STORE, "azure-resource-manager-schemas-master", "schemas", "**", "**", "*.json")).sort
+schema_files = Dir.glob(File.join(STORE, "azure-resource-manager-schemas-main", "schemas", "**", "**", "*.json")).sort
 schema_contents = schema_files.map do |s_path|
   File.read(s_path).sub(/^[^\{]*/, "")
 end
