@@ -5309,10 +5309,7 @@
         "description": "Indicates whether Capacity Rebalancing is enabled. Otherwise, Capacity Rebalancing is disabled. When you turn on Capacity Rebalancing, Amazon EC2 Auto Scaling attempts to launch a Spot Instance whenever Amazon EC2 notifies that a Spot Instance is at an elevated risk of interruption. After launching a new instance, it then terminates an old instance. For more information, see Use Capacity Rebalancing to handle Amazon EC2 Spot Interruptions in the in the Amazon EC2 Auto Scaling User Guide.",
         "required": false,
         "type": "Boolean",
-        "update_causes": [
-          "none",
-          "interrupt"
-        ]
+        "update_causes": "interrupt"
       },
       "Context": {
         "description": "Reserved.",
@@ -7427,10 +7424,7 @@
         "description": "The set value pairs that represent the parameters passed to CloudFormation when this nested stack is created. Each parameter has a name corresponding to a parameter defined in the embedded template and a value representing the value that you want to set for the parameter.",
         "required": false,
         "type": "Unknown",
-        "update_causes": [
-          "interrupt",
-          "none"
-        ]
+        "update_causes": "interrupt"
       },
       "Tags": {
         "description": "Key-value pairs to associate with this stack. AWS CloudFormation also propagates these tags to the resources created in the stack. A maximum number of 50 tags can be specified.",
@@ -7442,10 +7436,7 @@
         "description": "Location of file containing the template body. The URL must point to a template (max size: 460,800 bytes) that's located in an Amazon S3 bucket. For more information, see Template anatomy.",
         "required": true,
         "type": "String",
-        "update_causes": [
-          "interrupt",
-          "none"
-        ]
+        "update_causes": "interrupt"
       },
       "TimeoutInMinutes": {
         "description": "The length of time, in minutes, that CloudFormation waits for the nested stack to reach the CREATE_COMPLETE state. The default is no timeout. When CloudFormation detects that the nested stack has reached the CREATE_COMPLETE state, it marks the nested stack resource as CREATE_COMPLETE in the parent stack and resumes creating the parent stack. If the timeout period expires before the nested stack reaches CREATE_COMPLETE, CloudFormation marks the nested stack as failed and rolls back both the nested stack and parent stack.",
@@ -10424,10 +10415,7 @@
         "description": "A name for the configuration recorder. If you don't specify a name, AWS CloudFormation CloudFormation generates a unique physical ID and uses that ID for the configuration recorder name. For more information, see Name Type.",
         "required": false,
         "type": "Unknown",
-        "update_causes": [
-          "unavailable",
-          "replacement"
-        ]
+        "update_causes": "replacement"
       },
       "RecordingGroup": {
         "description": "Indicates whether to record configurations for all supported resources or for a list of resource types. The resource types that you list must be supported by AWS Config.",
@@ -10517,10 +10505,7 @@
         "description": "A name for the delivery channel. If you don't specify a name, AWS CloudFormation generates a unique physical ID and uses that ID for the delivery channel name. For more information, see Name Type.",
         "required": false,
         "type": "Unknown",
-        "update_causes": [
-          "unavailable",
-          "replacement"
-        ]
+        "update_causes": "replacement"
       },
       "S3BucketName": {
         "description": "The name of the Amazon S3 bucket to which AWS Config delivers configuration snapshots and configuration history files.",
@@ -14245,10 +14230,7 @@
         "description": "A list of attributes that describe the key schema for the table and indexes.",
         "required": false,
         "type": "Array",
-        "update_causes": [
-          "none",
-          "interrupt"
-        ]
+        "update_causes": "interrupt"
       },
       "BillingMode": {
         "description": "Specify how you are charged for read and write throughput and how you manage capacity.",
@@ -14266,10 +14248,7 @@
         "description": "Global secondary indexes to be created on the table. You can create up to 20 global secondary indexes.",
         "required": false,
         "type": "Array",
-        "update_causes": [
-          "unavailable",
-          "none"
-        ]
+        "update_causes": "unavailable"
       },
       "ImportSourceSpecification": {
         "description": "Specifies the properties of data being imported from the S3 bucket source to the table.",
@@ -15445,10 +15424,7 @@
         "description": "The block device mapping entries that defines the block devices to attach to the instance at launch.",
         "required": false,
         "type": "Array",
-        "update_causes": [
-          "replacement",
-          "interrupt"
-        ]
+        "update_causes": "replacement"
       },
       "CpuOptions": {
         "description": "The CPU options for the instance. For more information, see Optimize CPU options in the Amazon Elastic Compute Cloud User Guide.",
@@ -19927,10 +19903,7 @@
         "description": "The number of cache nodes that the cache cluster should have.",
         "required": true,
         "type": "Number",
-        "update_causes": [
-          "replacement",
-          "interrupt"
-        ]
+        "update_causes": "replacement"
       },
       "Port": {
         "description": "The port number on which each of the cache nodes  accepts connections.",
@@ -20143,10 +20116,7 @@
         "description": "Reserved parameter. The password used to access a password protected server.",
         "required": false,
         "type": "String",
-        "update_causes": [
-          "replacement",
-          "interrupt"
-        ]
+        "update_causes": "replacement"
       },
       "AutoMinorVersionUpgrade": {
         "description": "If you are running Redis engine version 6.0 or later, set this parameter to yes if you want to opt-in to the next minor version upgrade campaign. This parameter is disabled for previous versions.",
@@ -20230,10 +20200,7 @@
         "description": "NodeGroupConfiguration  is a property of the AWS::ElastiCache::ReplicationGroup resource that configures an Amazon ElastiCache (ElastiCache) Redis cluster node group.",
         "required": false,
         "type": "Array",
-        "update_causes": [
-          "replacement",
-          "interrupt"
-        ]
+        "update_causes": "replacement"
       },
       "NotificationTopicArn": {
         "description": "The Amazon Resource Name (ARN) of the Amazon Simple Notification Service (SNS) topic to which notifications are sent.",
@@ -20251,10 +20218,7 @@
         "description": "An optional parameter that specifies the number of node groups (shards) for this Redis (cluster mode enabled) replication group. For Redis (cluster mode disabled) either omit this parameter or set it to 1.",
         "required": false,
         "type": "Number",
-        "update_causes": [
-          "replacement",
-          "interrupt"
-        ]
+        "update_causes": "replacement"
       },
       "Port": {
         "description": "The port number on which each member of the replication group accepts connections.",
@@ -21251,10 +21215,7 @@
         "description": "The version of Elasticsearch to use, such as 2.3. If not specified, 1.5 is used as the default. For information about the versions that OpenSearch Service supports, see Supported versions of OpenSearch and Elasticsearch in the Amazon OpenSearch Service Developer Guide.",
         "required": false,
         "type": "String",
-        "update_causes": [
-          "replacement",
-          "interrupt"
-        ]
+        "update_causes": "replacement"
       },
       "EncryptionAtRestOptions": {
         "description": "Whether the domain should encrypt data at rest, and if so, the AWS Key Management Service key to use. See Encryption of data at rest for Amazon OpenSearch Service.",
@@ -30267,19 +30228,13 @@
         "description": "An Amazon ES destination for the delivery stream.",
         "required": false,
         "type": "Unknown",
-        "update_causes": [
-          "none",
-          "interrupt"
-        ]
+        "update_causes": "interrupt"
       },
       "ExtendedS3DestinationConfiguration": {
         "description": "An Amazon S3 destination for the delivery stream.",
         "required": false,
         "type": "Unknown",
-        "update_causes": [
-          "none",
-          "interrupt"
-        ]
+        "update_causes": "interrupt"
       },
       "HttpEndpointDestinationConfiguration": {
         "description": "Enables configuring Kinesis Firehose to deliver data to any HTTP endpoint destination. You can specify only one destination.",
@@ -30297,19 +30252,13 @@
         "description": "An Amazon Redshift destination for the delivery stream.",
         "required": false,
         "type": "Unknown",
-        "update_causes": [
-          "none",
-          "interrupt"
-        ]
+        "update_causes": "interrupt"
       },
       "S3DestinationConfiguration": {
         "description": "The S3DestinationConfiguration property type specifies an Amazon Simple Storage Service (Amazon S3) destination to which Amazon Kinesis Data Firehose (Kinesis Data Firehose) delivers data.",
         "required": false,
         "type": "Unknown",
-        "update_causes": [
-          "none",
-          "interrupt"
-        ]
+        "update_causes": "interrupt"
       },
       "SplunkDestinationConfiguration": {
         "description": "The configuration of a destination in Splunk for the delivery stream.",
@@ -31284,10 +31233,7 @@
         "description": "Only publish a version if the hash value matches the value that's specified. Use this option to avoid publishing a version if the function code has changed since you last updated it. Updates are not supported for this property.",
         "required": false,
         "type": "String",
-        "update_causes": [
-          "unavailable",
-          "none"
-        ]
+        "update_causes": "unavailable"
       },
       "Description": {
         "description": "A description for the version to override the description in the function configuration. Updates are not supported for this property.",
@@ -31305,10 +31251,7 @@
         "description": "Specifies a provisioned concurrency configuration for a function's version. Updates are not supported for this property.",
         "required": false,
         "type": "Unknown",
-        "update_causes": [
-          "unavailable",
-          "none"
-        ]
+        "update_causes": "unavailable"
       }
     },
     "path": "aws-resource-lambda-version.html",
@@ -36335,10 +36278,7 @@
         "description": "The version of OpenSearch to use. The value must be in the format OpenSearch_X.Y or Elasticsearch_X.Y. If not specified, the latest version of OpenSearch is used. For information about the versions that OpenSearch Service supports, see Supported versions of OpenSearch and Elasticsearch in the Amazon OpenSearch Service Developer Guide.",
         "required": false,
         "type": "String",
-        "update_causes": [
-          "replacement",
-          "none"
-        ]
+        "update_causes": "replacement"
       },
       "LogPublishingOptions": {
         "description": "An object with one or more of the following keys: SEARCH_SLOW_LOGS, ES_APPLICATION_LOGS, INDEX_SLOW_LOGS, AUDIT_LOGS, depending on the types of logs you want to publish. Each key needs a valid LogPublishingOption value. For the full syntax, see the examples.",
