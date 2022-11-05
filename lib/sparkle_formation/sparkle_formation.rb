@@ -1,7 +1,30 @@
-require "sparkle_formation"
+require "bogo"
+require "multi_json"
+require "attribute_struct"
 
 # Formation container
 class SparkleFormation
+  autoload :Aws, "sparkle_formation/aws"
+  autoload :AuditLog, "sparkle_formation/audit_log"
+  autoload :AzureVariableStruct, "sparkle_formation/function_struct"
+  autoload :Composition, "sparkle_formation/composition"
+  autoload :Error, "sparkle_formation/error"
+  autoload :FunctionStruct, "sparkle_formation/function_struct"
+  autoload :GoogleStruct, "sparkle_formation/function_struct"
+  autoload :JinjaExpressionStruct, "sparkle_formation/function_struct"
+  autoload :JinjaStatementStruct, "sparkle_formation/function_struct"
+  autoload :Provider, "sparkle_formation/provider"
+  autoload :Resources, "sparkle_formation/resources"
+  autoload :Sparkle, "sparkle_formation/sparkle"
+  autoload :SparklePack, "sparkle_formation/sparkle"
+  autoload :SparkleCollection, "sparkle_formation/sparkle_collection"
+  autoload :SparkleAttribute, "sparkle_formation/sparkle_attribute"
+  autoload :SparkleStruct, "sparkle_formation/sparkle_struct"
+  autoload :TerraformStruct, "sparkle_formation/function_struct"
+  autoload :Utils, "sparkle_formation/utils"
+  autoload :Translation, "sparkle_formation/translation"
+  autoload :Version, "sparkle_formation/version"
+
   include SparkleFormation::Utils::AnimalStrings
   # @!parse include SparkleFormation::Utils::AnimalStrings
   extend SparkleFormation::Utils::AnimalStrings
@@ -799,8 +822,15 @@ class SparkleFormation
       if provider && SparkleStruct.const_defined?(camel(provider))
         struct_class = SparkleStruct.const_get(camel(provider))
         struct_name = [SparkleStruct.name, camel(provider)].join("::")
-        struct_class.define_singleton_method(:name) { struct_name }
-        struct_class.define_singleton_method(:to_s) { struct_name }
+        # Silence method redefinition warnings
+        begin
+          v = $VERBOSE
+          $VERBOSE = nil
+          struct_class.define_singleton_method(:name) { struct_name }
+          struct_class.define_singleton_method(:to_s) { struct_name }
+        ensure
+          $VERBOSE = v
+        end
       else
         struct_class = SparkleStruct
       end
