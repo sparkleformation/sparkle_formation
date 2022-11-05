@@ -97,9 +97,19 @@ Dir.glob(File.join(STORE, "**/*.html")).each do |path|
         end
         update_causes = :unknown unless update_causes
         if (update_causes.is_a?(Array))
-          $stderr.puts "Multiple update_causes values detected! Resource: #{type} Property: #{name} -> #{update_causes.inspect}"
-          multiple_update_causes[type] ||= []
-          multiple_update_causes[type] << name
+          # Delete causes that are lower priorities
+          [:none, :unavailable, :interrupt].each do |low_prio|
+            update_causes.delete(low_prio)
+            if update_causes.size == 1
+              update_causes = update_causes.first
+              break
+            end
+          end
+          if update_causes.is_a?(Array)
+            $stderr.puts "Multiple update_causes values detected! Resource: #{type} Property: #{name} -> #{update_causes.inspect}"
+            multiple_update_causes[type] ||= []
+            multiple_update_causes[type] << name
+          end
         end
 
         property_information[name] = {
