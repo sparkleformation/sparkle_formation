@@ -93,7 +93,8 @@ class SparkleFormation
                     properties[hot] = healthcheck[aws]
                   end
                 end
-                type, port, path = healthcheck["Target"].split(%r{(:|/.*)}).find_all { |x| x != ":" }
+                # NOTE: Second param (ignored) is port
+                type, _, path = healthcheck["Target"].split(%r{(:|/.*)}).find_all { |x| x != ":" }
                 properties["type"] = type
                 if path
                   properties["url_path"] = path
@@ -177,7 +178,7 @@ class SparkleFormation
           if lbs = value["properties"].delete("load_balancers")
             lbs.each do |lb_ref|
               lb_name = resource_name(lb_ref)
-              lb_resource = translated["resources"][lb_name]
+              # lb_resource = translated["resources"][lb_name]
               vip_resources = translated["resources"].find_all do |k, v|
                 k.match(/#{lb_name}Vip\d+/) && v["type"] == "OS::Neutron::LoadBalancer"
               end

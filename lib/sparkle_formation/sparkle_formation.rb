@@ -521,6 +521,7 @@ class SparkleFormation
         )
       end
     end
+    @parent = options[:parent]
     self.provider = options.fetch(:provider, @parent ? @parent.provider : :aws)
     if provider == :aws || !options[:disable_aws_builtins]
       require "sparkle_formation/aws"
@@ -535,7 +536,6 @@ class SparkleFormation
     ].compact.uniq
     @blacklisted_templates = [name]
     @composition = Composition.new(self)
-    @parent = options[:parent]
     @seed = Smash.new(
       :inherit => options[:inherit],
       :layering => options[:layering],
@@ -823,13 +823,9 @@ class SparkleFormation
         struct_class = SparkleStruct.const_get(camel(provider))
         struct_name = [SparkleStruct.name, camel(provider)].join("::")
         # Silence method redefinition warnings
-        begin
-          v = $VERBOSE
-          $VERBOSE = nil
+        Utils.silence_warnings do
           struct_class.define_singleton_method(:name) { struct_name }
           struct_class.define_singleton_method(:to_s) { struct_name }
-        ensure
-          $VERBOSE = v
         end
       else
         struct_class = SparkleStruct

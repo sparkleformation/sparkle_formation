@@ -159,7 +159,6 @@ class SparkleFormation
         raise ArgumentError.new "Unknown file type requested from collection `#{type}`"
       end
       result = nil
-      error = nil
       unless target_provider
         target_provider = provider
       end

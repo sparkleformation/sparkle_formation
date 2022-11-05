@@ -3,6 +3,15 @@ class SparkleFormation
   # Helper utilities
   module Utils
 
+    # Execue provided block without warnings
+    def self.silence_warnings
+      v = $VERBOSE
+      $VERBOSE = nil
+      yield
+    ensure
+      $VEBOSE = v
+    end
+
     # Type check helpers
     module TypeCheckers
 
