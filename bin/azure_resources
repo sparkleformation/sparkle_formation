@@ -28,7 +28,7 @@ unless (File.directory?(STORE))
   end
 end
 
-schema_files = Dir.glob(File.join(STORE, "azure-resource-manager-schemas-master", "schemas", "**", "**", "*.json")).sort
+schema_files = Dir.glob(File.join(STORE, "azure-resource-manager-schemas-main", "schemas", "**", "**", "*.json")).sort
 schema_contents = schema_files.map do |s_path|
   File.read(s_path).sub(/^[^\{]*/, "")
 end
@@ -36,15 +36,23 @@ schemas = schema_contents.map do |s_content|
   MultiJson.load(s_content).to_smash
 end
 
-resource_definitions = schemas.find_all do |schema|
+resource_definitions = Smash.new
+
+schemas.find_all do |schema|
   schema.keys.include?("resourceDefinitions")
-end.inject(Smash.new) do |memo, schema|
-  r_defs = Smash[
-    schema["resourceDefinitions"].map do |r_key, r_val|
-      ["#{schema["title"]}/#{r_key}", r_val]
-    end
-  ]
-  memo.deep_merge(r_defs)
+end.each do |schema|
+  pairs = schema["resourceDefinitions"].map do |r_key, r_val|
+    ["#{schema["title"]}/#{r_key}", r_val]
+  end
+
+  r_defs = Smash.new
+  pairs.each do |i|
+    d_key = i.first.downcase
+    match = resource_definitions.keys.detect { |k| k.downcase == d_key }
+    d_key = match ? match : i.first
+    r_defs[d_key] = i.last
+  end
+  resource_definitions = resource_definitions.deep_merge(r_defs)
 end
 
 definitions = schemas.find_all do |schema|
@@ -54,21 +62,25 @@ end.inject(Smash.new) do |memo, schema|
 end
 
 ref_replacer = lambda do |item|
-  if (item.is_a?(Hash) && item.size == 1 && item.keys.first == "$ref" && item.values.first.start_with?("#/definitions"))
-    def_name = item.values.first.sub("#/definitions/", "")
+  if item.is_a?(Hash) && item.size == 1 && item.keys.first == "$ref" && item.values.first.match(%r{^.*#/definitions/})
+    def_name = item.values.first.sub(%r{^.*#/definitions/}, "")
     definitions[def_name] || raise("Failed to locate definition! `#{def_name}`")
-  elsif (item.is_a?(::Enumerable))
-    if (item.respond_to?(:keys))
+  elsif item.is_a?(::Enumerable)
+    if item.respond_to?(:keys)
       item.class[
-        *item.map do |entry|
-          ref_replacer.call(entry)
-        end.flatten(1)
+        *(
+          item.map { |k, v|
+            [ref_replacer.call(k), ref_replacer.call(v)]
+          }.flatten(1)
+        )
       ]
     else
       item.class[
-        *item.map do |entry|
-          ref_replacer.call(entry)
-        end
+        *(
+          item.map { |entry|
+            ref_replacer.call(entry)
+          }
+        )
       ]
     end
   else
@@ -90,10 +102,11 @@ azure_resources = Smash[
      :properties => r_properties.keys,
      :full_properties => Smash[
        r_properties.map do |prop_key, prop_val|
+         type = prop_val[:type]
          [prop_key,
           :description => prop_val[:description],
           :required => v.fetch(:properties, :properties, :required, []).include?(prop_key),
-          :type => prop_val[:type],
+          :type => type,
           :update_causes => "unknown"]
        end
      ],
