@@ -30,7 +30,6 @@ end
 
 schema_files = Dir.glob(File.join(STORE, "azure-resource-manager-schemas-main", "schemas", "**", "**", "*.json")).sort
 schema_contents = schema_files.map do |s_path|
-  next if s_path.end_with?("-preview")
   File.read(s_path).sub(/^[^\{]*/, "")
 end
 schemas = schema_contents.map do |s_content|
@@ -65,7 +64,7 @@ end
 ref_replacer = lambda do |item|
   if item.is_a?(Hash) && item.size == 1 && item.keys.first == "$ref" && item.values.first.match(%r{^.*#/definitions/})
     def_name = item.values.first.sub(%r{^.*#/definitions/}, "")
-    definitions[def_name] || item # raise("Failed to locate definition! `#{def_name}`")
+    definitions[def_name] || raise("Failed to locate definition! `#{def_name}`")
   elsif item.is_a?(::Enumerable)
     if item.respond_to?(:keys)
       item.class[
@@ -89,6 +88,8 @@ ref_replacer = lambda do |item|
   end
 end
 
+resource_definitions = ref_replacer.call(resource_definitions)
+
 azure_resources = Smash[
   resource_definitions.map do |k, v|
     resource_name = v.fetch(:properties, :type, :enum, []).first
@@ -102,12 +103,6 @@ azure_resources = Smash[
      :full_properties => Smash[
        r_properties.map do |prop_key, prop_val|
          type = prop_val[:type]
-         if type.nil?
-           type = prop_val.fetch(:oneOf, []).first
-           if type.is_a?(Hash)
-             type = type.key?(:type) ? type[:type] : ref_replacer.call(type)
-           end
-         end
          [prop_key,
           :description => prop_val[:description],
           :required => v.fetch(:properties, :properties, :required, []).include?(prop_key),
