@@ -1,6 +1,8 @@
 require_relative "../spec"
 
 describe SparkleFormation::Sparkle do
+  before { SparkleFormation._cleanify! }
+
   describe "valid sparkle pack" do
     before do
       SparkleFormation.sparkle_path = nil

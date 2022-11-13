@@ -1,6 +1,8 @@
 require_relative "../spec"
 
 describe SparkleFormation::SparkleStruct do
+  before { SparkleFormation._cleanify! }
+
   before do
     @struct = SparkleFormation::SparkleStruct.new
     @struct._set_self(

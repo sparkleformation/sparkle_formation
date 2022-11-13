@@ -1,6 +1,8 @@
 require_relative "../rspecs"
 
 RSpec.describe SparkleFormation::SparkleStruct do
+  before { SparkleFormation._cleanify! }
+
   let(:instance) { described_class.new }
 
   describe "#_set_self" do

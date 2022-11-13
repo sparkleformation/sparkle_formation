@@ -1,6 +1,8 @@
 require_relative "../../rspecs"
 
 RSpec.describe SparkleFormation::Resources::Google do
+  before { SparkleFormation._cleanify! }
+
   before do
     described_class.unmemoize(:google_resources, :global)
     if described_class.registry

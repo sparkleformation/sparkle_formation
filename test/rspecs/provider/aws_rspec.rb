@@ -1,6 +1,8 @@
 require_relative "../../rspecs"
 
 RSpec.describe SparkleFormation::Provider::Aws do
+  before { SparkleFormation._cleanify! }
+
   let(:instance) { SparkleFormation.new("test", :provider => :aws) }
 
   describe "#stack_resource_type" do

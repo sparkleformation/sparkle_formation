@@ -2,6 +2,7 @@ require "tempfile"
 require_relative "../rspecs"
 
 RSpec.describe SparkleFormation::Resources do
+  before { SparkleFormation._cleanify! }
   before { described_class.registry.clear if described_class.registry }
 
   describe "#base_key" do

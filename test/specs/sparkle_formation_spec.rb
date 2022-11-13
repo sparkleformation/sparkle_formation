@@ -1,6 +1,8 @@
 require_relative "../spec"
 
 describe SparkleFormation do
+  before { SparkleFormation._cleanify! }
+
   describe "Class Methods" do
     before do
       @template = SparkleFormation.new(:template)

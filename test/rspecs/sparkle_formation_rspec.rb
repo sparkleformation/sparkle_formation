@@ -1,6 +1,8 @@
 require_relative "../rspecs"
 
 RSpec.describe SparkleFormation do
+  before { SparkleFormation._cleanify! }
+
   let(:instance_args) { {} }
   let(:instance) { described_class.new("test", instance_args) { content "value" } }
 

@@ -1,6 +1,8 @@
 require_relative "../../rspecs"
 
 RSpec.describe SparkleFormation::SparkleAttribute::Aws do
+  before { SparkleFormation._cleanify! }
+
   let(:instance) do
     klass = Class.new(SparkleFormation::SparkleStruct)
     klass.include(described_class)

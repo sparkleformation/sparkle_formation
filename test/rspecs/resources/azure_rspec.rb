@@ -1,6 +1,8 @@
 require_relative "../../rspecs"
 
 RSpec.describe SparkleFormation::Resources::Azure do
+  before { SparkleFormation._cleanify! }
+
   before do
     described_class.unmemoize(:azure_resources, :global)
     if described_class.registry

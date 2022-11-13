@@ -1,6 +1,8 @@
 require_relative "../../../../rspecs"
 
 RSpec.describe "Acceptance -> Deep Nesting -> Aws" do
+  before { SparkleFormation._cleanify! }
+
   describe "-> Deep nesting parameter push" do
     let(:root) do
       SparkleFormation.new(:root) do

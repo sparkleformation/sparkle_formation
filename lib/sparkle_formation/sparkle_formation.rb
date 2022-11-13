@@ -445,6 +445,16 @@ class SparkleFormation
       struct._camel_keys_set(nil)
       struct
     end
+
+    # Clean global variables
+    #
+    # NOTE: This is used primary for testing
+    def _cleanify!(arg=:most)
+      instance_variables.each do |var|
+        next if var == :@_path && arg != :all
+        remove_instance_variable(var)
+      end
+    end
   end
 
   include Bogo::Memoization

@@ -1,6 +1,8 @@
 require_relative "../spec"
 
 describe SparkleFormation::SparkleAttribute do
+  before { SparkleFormation._cleanify! }
+
   before do
     @attr = Object.new
     @attr.extend(SparkleFormation::SparkleAttribute)
