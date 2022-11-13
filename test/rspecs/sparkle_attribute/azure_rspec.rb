@@ -1,6 +1,8 @@
 require_relative "../../rspecs"
 
 RSpec.describe SparkleFormation::SparkleAttribute::Azure do
+  before { SparkleFormation._cleanify! }
+
   let(:template) { SparkleFormation.new("test") }
 
   let(:instance) do

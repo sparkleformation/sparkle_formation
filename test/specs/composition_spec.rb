@@ -1,6 +1,8 @@
 require_relative "../spec"
 
 describe SparkleFormation::Composition do
+  before { SparkleFormation._cleanify! }
+
   it "should require `SparkleFormation` origin" do
     _{ SparkleFormation::Composition.new(:test) }.must_raise TypeError
   end

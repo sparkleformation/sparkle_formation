@@ -1,6 +1,8 @@
 require_relative "../rspecs"
 
 RSpec.describe SparkleFormation::SparkleAttribute do
+  before { SparkleFormation._cleanify! }
+
   let(:instance) do
     obj = Class.new(SparkleFormation::SparkleStruct).new
     obj._set_self(SparkleFormation.new("test"))

@@ -1,6 +1,8 @@
 require_relative "../spec"
 
 describe SparkleFormation::SparkleCollection do
+  before { SparkleFormation._cleanify! }
+
   describe "Basic behavior" do
     before do
       @collection = SparkleFormation::SparkleCollection.new

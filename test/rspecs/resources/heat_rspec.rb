@@ -1,6 +1,8 @@
 require_relative "../../rspecs"
 
 RSpec.describe SparkleFormation::Resources::Heat do
+  before { SparkleFormation._cleanify! }
+
   before do
     described_class.unmemoize(:heat_resources, :global)
     if described_class.registry

@@ -1,6 +1,8 @@
 require_relative "../spec"
 
 describe SparkleFormation do
+  before { SparkleFormation._cleanify! }
+
   before do
     SparkleFormation.sparkle_path = File.join(File.dirname(__FILE__), "sparkleformation")
   end

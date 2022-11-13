@@ -1,6 +1,8 @@
 require_relative "../rspecs"
 
 RSpec.describe SparkleFormation::Composition do
+  before { SparkleFormation._cleanify! }
+
   it "should raise error if provided origin is not a SparkleFormation instance" do
     expect { described_class.new(true) }.to raise_error(TypeError)
   end

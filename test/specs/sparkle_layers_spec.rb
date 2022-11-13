@@ -1,6 +1,8 @@
 require_relative "../spec"
 
 describe SparkleFormation do
+  before { SparkleFormation._cleanify! }
+
   describe "Basic template inheritance" do
     before do
       SparkleFormation.sparkle_path = nil

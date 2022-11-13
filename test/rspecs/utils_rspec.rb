@@ -1,6 +1,8 @@
 require_relative "../rspecs"
 
 RSpec.describe SparkleFormation::Utils do
+  before { SparkleFormation._cleanify! }
+
   let(:subject) do
     mod = Module.new
     mod.extend(described_class)

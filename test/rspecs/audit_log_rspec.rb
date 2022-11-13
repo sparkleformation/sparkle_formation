@@ -1,6 +1,8 @@
 require_relative "../rspecs"
 
 RSpec.describe SparkleFormation::AuditLog do
+  before { SparkleFormation._cleanify! }
+
   describe SparkleFormation::AuditLog::SourcePoint do
     let(:path) { "PATH" }
     let(:line) { 3 }

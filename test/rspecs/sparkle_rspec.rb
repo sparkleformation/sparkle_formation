@@ -1,6 +1,8 @@
 require_relative "../rspecs"
 
 RSpec.describe SparkleFormation::Sparkle do
+  before { SparkleFormation._cleanify! }
+
   let(:root_dir) { Dir.mktmpdir("sparkleformation-sparkle-rspec") }
   after { FileUtils.rm_rf(root_dir) }
 
