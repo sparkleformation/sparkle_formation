@@ -52,7 +52,26 @@ describe SparkleFormation::SparkleAttribute::Azure do
   describe "resource_id helper method" do
     # TODO(spox): Check this behavior. Original had argument as 'fubar_type/fubar'.
     it "should generate a direct resource id" do
-      _(@attr.resource_id!("fubar_type", "fubar")._dump).must_equal "[resourceId('fubar_type', 'fubar')]"
+      _(@attr.resource_id!("fubar_type", "fubar").to_s).must_equal "[resourceId('fubar_type', 'fubar')]"
+    end
+
+    it "should have consistent behavior" do
+      @sfn.overrides do
+        r = dynamic!(:network_security_groups, :test)
+        resources.first_test.resource_id_check resource_id!(r.resource_name!).to_s
+        resources.second_test.resource_id_check resource_id!(r.resource_name!).to_s
+        resources.third_test.resource_id_check resource_id!(r.resource_name!).to_s
+      end
+      result = @sfn.dump
+      _(result["resources"][1]["resourceIdCheck"]).must_equal(
+        "[resourceId('Microsoft.Network/networkSecurityGroups', 'testNetworkSecurityGroups')]"
+      )
+      _(result["resources"][2]["resourceIdCheck"]).must_equal(
+        "[resourceId('Microsoft.Network/networkSecurityGroups', 'testNetworkSecurityGroups')]"
+      )
+      _(result["resources"][3]["resourceIdCheck"]).must_equal(
+        "[resourceId('Microsoft.Network/networkSecurityGroups', 'testNetworkSecurityGroups')]"
+      )
     end
 
     it "should generate a resource id using defined resources" do
