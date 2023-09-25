@@ -22,7 +22,7 @@ class SparkleFormation
             UpdateCausesConditional.new("replacement",
                                         lambda { |final, original|
               original.get("Properties", "InstanceId") != final.get("Properties", "InstanceId") ||
-                original.get("Properties", "NetworkInterfaceId") != final.get("Properties", "NewtorkInterfaceId")
+                original.get("Properties", "NetworkInterfaceId") != final.get("Properties", "NetworkInterfaceId")
             }),
             UpdateCausesConditional.new("none", true),
           ],
@@ -30,7 +30,7 @@ class SparkleFormation
             UpdateCausesConditional.new("replacement",
                                         lambda { |final, original|
               original.get("Properties", "InstanceId") != final.get("Properties", "InstanceId") ||
-                original.get("Properties", "NetworkInterfaceId") != final.get("Properties", "NewtorkInterfaceId")
+                original.get("Properties", "NetworkInterfaceId") != final.get("Properties", "NetworkInterfaceId")
             }),
             UpdateCausesConditional.new("none", true),
           ],
